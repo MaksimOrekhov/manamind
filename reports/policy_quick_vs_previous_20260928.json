@@ -1,0 +1,228 @@
+{
+  "checkpoint": "checkpoints\\policy_real_deck_mix_48games_20260928.pt",
+  "deck_config": "data\\samples\\mother_drake_combo_drake_selfplay.json",
+  "opponent": "checkpoints\\policy_mother_drake_pilot_20260927.pt",
+  "evaluation_policy": "greedy argmax",
+  "seed_start": 91001,
+  "paired_seeds": 3,
+  "deck_pairs": 1,
+  "games_per_deck_pair": 12,
+  "summary": {
+    "games": 12,
+    "wins": 5,
+    "losses": 7,
+    "draws": 0,
+    "decisive_win_rate": 0.4166666666666667,
+    "score_rate_with_half_draws": 0.4166666666666667,
+    "decisive_win_rate_wilson_95": [
+      0.19325746190524656,
+      0.6804926643446272
+    ],
+    "by_policy_seat": {
+      "1": {
+        "WIN": 3,
+        "LOSS": 3
+      },
+      "2": {
+        "LOSS": 4,
+        "WIN": 2
+      }
+    },
+    "by_deck_order": {
+      "original": {
+        "WIN": 3,
+        "LOSS": 3
+      },
+      "swapped": {
+        "LOSS": 4,
+        "WIN": 2
+      }
+    },
+    "by_deck_pair": {
+      "WARLOCK vs WARLOCK": {
+        "WIN": 5,
+        "LOSS": 7
+      }
+    },
+    "mean_actions": 74.0
+  },
+  "matches": [
+    {
+      "seed": 91001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 42
+    },
+    {
+      "seed": 91001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 40
+    },
+    {
+      "seed": 91001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 32
+    },
+    {
+      "seed": 91001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 35
+    },
+    {
+      "seed": 91002,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 52
+    },
+    {
+      "seed": 91002,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 116
+    },
+    {
+      "seed": 91002,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 124
+    },
+    {
+      "seed": 91002,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 118
+    },
+    {
+      "seed": 91003,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 105
+    },
+    {
+      "seed": 91003,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 31
+    },
+    {
+      "seed": 91003,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 104
+    },
+    {
+      "seed": 91003,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 89
+    }
+  ],
+  "baseline_control": {
+    "opponent": "same fixed heuristic baseline on both seats",
+    "games": 6,
+    "results": {
+      "PLAYER2_WIN": 3,
+      "PLAYER1_WIN": 3
+    },
+    "matches": [
+      {
+        "seed": 91001,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 40
+      },
+      {
+        "seed": 91001,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 57
+      },
+      {
+        "seed": 91002,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 55
+      },
+      {
+        "seed": 91002,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 41
+      },
+      {
+        "seed": 91003,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 89
+      },
+      {
+        "seed": 91003,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 70
+      }
+    ]
+  },
+  "limitations": [
+    "The selected Mother Drake list has focused card and combo coverage, but not exhaustive edge-case coverage.",
+    "The current Standard ban list and complete card-effect pool are not yet audited.",
+    "This weak fixed opponent and small sample do not establish ranked-play strength."
+  ]
+}

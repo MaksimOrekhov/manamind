@@ -1,0 +1,41 @@
+{
+  "format": "STANDARD",
+  "player1_class": "WARLOCK",
+  "player2_class": "PALADIN",
+  "player1_deck": [
+    "CORE_ICC_023", "CORE_ICC_023",
+    "CORE_LOEA10_3", "CORE_LOEA10_3",
+    "CORE_CFM_120", "CORE_CFM_120",
+    "CORE_CS2_065", "CORE_CS2_065",
+    "CORE_EX1_010", "CORE_EX1_010",
+    "CORE_EX1_509", "CORE_EX1_509",
+    "CS3_037", "CS3_037",
+    "CORE_AT_021", "CORE_AT_021",
+    "CORE_CS2_142", "CORE_CS2_142",
+    "CORE_EX1_012",
+    "CORE_EX1_096", "CORE_EX1_096",
+    "CORE_EX1_162", "CORE_EX1_162",
+    "CORE_FP1_007", "CORE_FP1_007",
+    "CORE_GVG_076", "CORE_GVG_076",
+    "CORE_GVG_085", "CORE_GVG_085",
+    "CORE_LOOT_413"
+  ],
+  "player2_deck": [
+    "CORE_ICC_023", "CORE_ICC_023",
+    "CORE_LOEA10_3", "CORE_LOEA10_3",
+    "CORE_CFM_120", "CORE_CFM_120",
+    "CORE_EX1_010", "CORE_EX1_010",
+    "CORE_EX1_509", "CORE_EX1_509",
+    "CORE_ICC_038", "CORE_ICC_038",
+    "CS3_037", "CS3_037",
+    "CORE_CS2_142", "CORE_CS2_142",
+    "CORE_EX1_012",
+    "CORE_EX1_096", "CORE_EX1_096",
+    "CORE_EX1_162", "CORE_EX1_162",
+    "CORE_FP1_007", "CORE_FP1_007",
+    "CORE_GVG_076", "CORE_GVG_076",
+    "CORE_GVG_085", "CORE_GVG_085",
+    "CORE_LOOT_413", "CORE_LOOT_413",
+    "CORE_NEW1_020"
+  ]
+}

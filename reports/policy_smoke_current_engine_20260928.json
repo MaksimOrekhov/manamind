@@ -1,0 +1,115 @@
+{
+  "checkpoint": "checkpoints\\policy_real_deck_mix_48games_20260928.pt",
+  "deck_config": "data\\samples\\mother_drake_combo_drake_selfplay.json",
+  "opponent": "fixed cheapest-minion/first-attack baseline",
+  "evaluation_policy": "greedy argmax",
+  "seed_start": 90001,
+  "paired_seeds": 1,
+  "deck_pairs": 1,
+  "games_per_deck_pair": 4,
+  "summary": {
+    "games": 4,
+    "wins": 4,
+    "losses": 0,
+    "draws": 0,
+    "decisive_win_rate": 1.0,
+    "score_rate_with_half_draws": 1.0,
+    "decisive_win_rate_wilson_95": [
+      0.5100999795960008,
+      1.0
+    ],
+    "by_policy_seat": {
+      "1": {
+        "WIN": 2
+      },
+      "2": {
+        "WIN": 2
+      }
+    },
+    "by_deck_order": {
+      "original": {
+        "WIN": 2
+      },
+      "swapped": {
+        "WIN": 2
+      }
+    },
+    "by_deck_pair": {
+      "WARLOCK vs WARLOCK": {
+        "WIN": 4
+      }
+    },
+    "mean_actions": 48.75
+  },
+  "matches": [
+    {
+      "seed": 90001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 54
+    },
+    {
+      "seed": 90001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 62
+    },
+    {
+      "seed": 90001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 39
+    },
+    {
+      "seed": 90001,
+      "deck_pair": "WARLOCK vs WARLOCK",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 40
+    }
+  ],
+  "baseline_control": {
+    "opponent": "same fixed heuristic baseline on both seats",
+    "games": 2,
+    "results": {
+      "PLAYER1_WIN": 1,
+      "PLAYER2_WIN": 1
+    },
+    "matches": [
+      {
+        "seed": 90001,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 68
+      },
+      {
+        "seed": 90001,
+        "deck_pair": "WARLOCK vs WARLOCK",
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 40
+      }
+    ]
+  },
+  "limitations": [
+    "The selected Mother Drake list has focused card and combo coverage, but not exhaustive edge-case coverage.",
+    "The current Standard ban list and complete card-effect pool are not yet audited.",
+    "This weak fixed opponent and small sample do not establish ranked-play strength."
+  ]
+}

@@ -1,0 +1,505 @@
+{
+  "checkpoint": "checkpoints\\policy_real_deck_mix_100games_20260928.pt",
+  "opponent_checkpoint": "checkpoints\\policy_mother_drake_pilot_20260927.pt",
+  "deck_config": "data\\samples\\mother_drake_combo_drake_selfplay.json",
+  "evaluation_policy": "greedy argmax",
+  "seed_start": 94001,
+  "seed_end": 94013,
+  "games": 50,
+  "design": "12 complete seat/deck-order factorial seeds plus 2 balancing matches; 50 head-to-head games total",
+  "summary": {
+    "games": 50,
+    "wins": 18,
+    "losses": 32,
+    "draws": 0,
+    "decisive_win_rate": 0.36,
+    "score_rate_with_half_draws": 0.36,
+    "decisive_win_rate_wilson_95": [
+      0.24138562967182875,
+      0.49859237989698046
+    ],
+    "by_policy_seat": {
+      "1": {
+        "LOSS": 18,
+        "WIN": 7
+      },
+      "2": {
+        "LOSS": 14,
+        "WIN": 11
+      }
+    },
+    "by_deck_order": {
+      "original": {
+        "LOSS": 17,
+        "WIN": 8
+      },
+      "swapped": {
+        "LOSS": 15,
+        "WIN": 10
+      }
+    },
+    "by_deck_pair": {
+      "Mother Drake vs Combo Drake Warlock": {
+        "LOSS": 32,
+        "WIN": 18
+      }
+    },
+    "mean_actions": 92.5
+  },
+  "matches": [
+    {
+      "seed": 94001,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 113
+    },
+    {
+      "seed": 94001,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 118
+    },
+    {
+      "seed": 94001,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 80
+    },
+    {
+      "seed": 94001,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 93
+    },
+    {
+      "seed": 94002,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 100
+    },
+    {
+      "seed": 94002,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 106
+    },
+    {
+      "seed": 94002,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 65
+    },
+    {
+      "seed": 94002,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 132
+    },
+    {
+      "seed": 94003,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 114
+    },
+    {
+      "seed": 94003,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 139
+    },
+    {
+      "seed": 94003,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 120
+    },
+    {
+      "seed": 94003,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 134
+    },
+    {
+      "seed": 94004,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 77
+    },
+    {
+      "seed": 94004,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 68
+    },
+    {
+      "seed": 94004,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 61
+    },
+    {
+      "seed": 94004,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 108
+    },
+    {
+      "seed": 94005,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 116
+    },
+    {
+      "seed": 94005,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 78
+    },
+    {
+      "seed": 94005,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 112
+    },
+    {
+      "seed": 94005,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 60
+    },
+    {
+      "seed": 94006,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 116
+    },
+    {
+      "seed": 94006,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 47
+    },
+    {
+      "seed": 94006,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 79
+    },
+    {
+      "seed": 94006,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 107
+    },
+    {
+      "seed": 94007,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 120
+    },
+    {
+      "seed": 94007,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 48
+    },
+    {
+      "seed": 94007,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 99
+    },
+    {
+      "seed": 94007,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 99
+    },
+    {
+      "seed": 94008,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 132
+    },
+    {
+      "seed": 94008,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 117
+    },
+    {
+      "seed": 94008,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 80
+    },
+    {
+      "seed": 94008,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 129
+    },
+    {
+      "seed": 94009,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 76
+    },
+    {
+      "seed": 94009,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 84
+    },
+    {
+      "seed": 94009,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 31
+    },
+    {
+      "seed": 94009,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 33
+    },
+    {
+      "seed": 94010,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 112
+    },
+    {
+      "seed": 94010,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 121
+    },
+    {
+      "seed": 94010,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 49
+    },
+    {
+      "seed": 94010,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 41
+    },
+    {
+      "seed": 94011,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 117
+    },
+    {
+      "seed": 94011,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 56
+    },
+    {
+      "seed": 94011,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 102
+    },
+    {
+      "seed": 94011,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 53
+    },
+    {
+      "seed": 94012,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 68
+    },
+    {
+      "seed": 94012,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 147
+    },
+    {
+      "seed": 94012,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 92
+    },
+    {
+      "seed": 94012,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 99
+    },
+    {
+      "seed": 94013,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 47
+    },
+    {
+      "seed": 94013,
+      "deck_pair": "Mother Drake vs Combo Drake Warlock",
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "LOSS",
+      "actions": 130
+    }
+  ],
+  "limitations": [
+    "Only two fully supported and closely related Warlock decks were used.",
+    "This 50-game result is a limited simulator comparison, not evidence of ladder strength."
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "turn_number": 7,
+  "active_player": "SELF",
+  "self_player": {
+    "hero_health": 24,
+    "armor": 0,
+    "hero_attack": 0,
+    "max_mana": 7,
+    "available_mana": 4,
+    "overloaded_mana": 0,
+    "pending_overload": 0,
+    "deck_size": 19,
+    "hand_size": 4,
+    "fatigue": 0,
+    "player_class": "MAGE",
+    "board": []
+  },
+  "opponent": {
+    "hero_health": 18,
+    "armor": 2,
+    "hero_attack": 0,
+    "max_mana": 7,
+    "available_mana": 0,
+    "overloaded_mana": 0,
+    "pending_overload": 0,
+    "deck_size": 17,
+    "hand_size": 5,
+    "fatigue": 0,
+    "player_class": "WARRIOR",
+    "board": []
+  },
+  "self_hand": [
+    {"card_id": "EX1_116", "cost": 5, "card_type": "MINION", "card_class": "NEUTRAL", "attack": 6, "health": 2, "mechanics": ["CHARGE"]},
+    {"card_id": "UNKNOWN_CARD", "cost": 2, "card_type": "MINION", "card_class": "NEUTRAL", "attack": 2, "health": 2}
+  ],
+  "self_hand_known_count": 2,
+  "opponent_known_cards": []
+}

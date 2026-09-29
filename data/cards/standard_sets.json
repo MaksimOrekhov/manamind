@@ -1,0 +1,17 @@
+{
+  "format": "STANDARD",
+  "valid_as_of": "2026-09-27",
+  "standard_card_ids": [
+    "BE_036"
+  ],
+  "standard_sets": [
+    "CORE",
+    "EVENT",
+    "EMERALD_DREAM",
+    "THE_LOST_CITY",
+    "TIME_TRAVEL",
+    "CATACLYSM",
+    "ESCAPEFROM_VIOLET_HOLD"
+  ],
+  "notes": "Core and the 2025/2026 Standard expansion sets available on 2026-09-27. EVENT is included as the current rotating Event Set. BE_036 (M.O.T.H.E.R.) is a one-card early-access Standard exception from the upcoming BE set; do not add the full BE set before its Standard release. Revisit this exception when the set enters the Standard manifest."
+}

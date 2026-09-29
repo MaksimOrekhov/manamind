@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "generated_for": "Dark Gift rules and candidate-pool scope; not a correctness or training-eligibility claim",
+  "catalog_valid_as_of": "2026-09-27",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "deck_pool_sha256": "3ed473967d38ff70b89a07812d175d9d5bc9c2b3cfb071fc1b3fa8e9d6fa05e6",
+  "selected_cards": {
+    "EDR_456": {
+      "name": "Darkrider",
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you're holding\na Dragon, <b>Discover</b> a Dragon\nwith a <b>Dark Gift</b>."
+    },
+    "EDR_856": {
+      "name": "Nightmare Lord Xavius",
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> <b>Discover</b> a minion from your deck. Give it a <b>Dark Gift</b>."
+    },
+    "FIR_939": {
+      "name": "Shadowflame Suffusion",
+      "card_type": "SPELL",
+      "text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>."
+    }
+  },
+  "gifts": [
+    {
+      "id": 1,
+      "effect": "+3 Attack, Lifesteal"
+    },
+    {
+      "id": 2,
+      "effect": "+2/+2, Elusive"
+    },
+    {
+      "id": 3,
+      "effect": "Cost -2, Attack -2; resulting Attack must remain at least 1"
+    },
+    {
+      "id": 4,
+      "effect": "Charge"
+    },
+    {
+      "id": 5,
+      "effect": "Playing minion summons a 2/2 copy"
+    },
+    {
+      "id": 6,
+      "effect": "Battlecries trigger twice; Battlecry required"
+    },
+    {
+      "id": 7,
+      "effect": "+4 Health, Taunt"
+    },
+    {
+      "id": 8,
+      "effect": "Reborn; returns with full Health and enchantments"
+    },
+    {
+      "id": 9,
+      "effect": "+4/+5; put card on top of deck"
+    },
+    {
+      "id": 10,
+      "effect": "Divine Shield, Windfury"
+    }
+  ],
+  "candidate_pools": {
+    "EDR_456": {
+      "predicate": "collectible Standard minion with race DRAGON",
+      "count": 80,
+      "card_ids": [
+        "CATA_111",
+        "CATA_132",
+        "CATA_133",
+        "CATA_140",
+        "CATA_154",
+        "CATA_155",
+        "CATA_160",
+        "CATA_201",
+        "CATA_305",
+        "CATA_307",
+        "CATA_432",
+        "CATA_464",
+        "CATA_469",
+        "CATA_474",
+        "CATA_476",
+        "CATA_484",
+        "CATA_494",
+        "CATA_497",
+        "CATA_556",
+        "CATA_614",
+        "CATA_723",
+        "CATA_898",
+        "CATA_999",
+        "CORE_AT_123",
+        "CORE_DRG_079",
+        "CORE_EX1_043",
+        "CORE_EX1_189",
+        "CORE_LOOT_137",
+        "CORE_NEW1_023",
+        "CORE_UNG_848",
+        "CORE_YOP_034",
+        "CS3_035",
+        "EDR_000",
+        "EDR_256",
+        "EDR_260",
+        "EDR_451",
+        "EDR_453",
+        "EDR_459",
+        "EDR_462",
+        "EDR_465",
+        "EDR_571",
+        "EDR_572",
+        "EDR_889",
+        "EDR_890",
+        "END_006",
+        "END_010",
+        "END_018",
+        "END_021",
+        "END_022",
+        "END_030",
+        "END_032",
+        "END_033",
+        "END_034",
+        "END_035",
+        "FIR_901",
+        "FIR_927",
+        "FIR_959",
+        "FIR_960",
+        "MEND_045",
+        "TIME_003",
+        "TIME_004",
+        "TIME_024",
+        "TIME_025",
+        "TIME_028",
+        "TIME_029",
+        "TIME_032",
+        "TIME_034",
+        "TIME_045",
+        "TIME_051",
+        "TIME_052",
+        "TIME_056",
+        "TIME_063",
+        "TIME_435",
+        "TIME_714",
+        "TIME_720",
+        "TIME_852",
+        "TIME_856",
+        "TIME_871",
+        "TIME_EVENT_301",
+        "TLC_600"
+      ]
+    },
+    "FIR_939": {
+      "predicate": "collectible Standard minion with cardClass WARRIOR",
+      "count": 42,
+      "card_ids": [
+        "CAP_104",
+        "CAP_106",
+        "CAP_107",
+        "CATA_150",
+        "CATA_160",
+        "CATA_586",
+        "CATA_591",
+        "CATA_EVENT_002",
+        "CORE_BT_120",
+        "CORE_DRG_024",
+        "CORE_EX1_414",
+        "CORE_EX1_604",
+        "CORE_NX2_028",
+        "CORE_OG_149",
+        "CORE_OG_218",
+        "CORE_WW_329",
+        "DINO_400",
+        "DINO_401",
+        "EDR_456",
+        "EDR_457",
+        "EDR_459",
+        "EDR_465",
+        "EDR_468",
+        "EDR_471",
+        "END_021",
+        "FIR_928",
+        "FIR_956",
+        "JAIL_029",
+        "JAIL_311",
+        "JAIL_384",
+        "JAIL_421",
+        "JAIL_435",
+        "JAIL_455",
+        "TIME_034",
+        "TIME_714",
+        "TIME_850",
+        "TIME_871",
+        "TIME_872",
+        "TLC_600",
+        "TLC_606",
+        "TLC_623",
+        "TLC_624"
+      ]
+    },
+    "EDR_856": {
+      "predicate": "actual minion entities in saved Quest Priest deck, excluding played Xavius card ID",
+      "count": 3,
+      "card_ids": [
+        "CAP_804",
+        "CAP_806",
+        "JAIL_912"
+      ]
+    }
+  },
+  "pool_relationship": {
+    "dragon_warrior_overlap_count": 8,
+    "dragon_warrior_overlap_ids": [
+      "CATA_160",
+      "EDR_459",
+      "EDR_465",
+      "END_021",
+      "TIME_034",
+      "TIME_714",
+      "TIME_871",
+      "TLC_600"
+    ],
+    "union_count": 114
+  },
+  "limitations": [
+    "Candidate-pool metadata does not implement the Dark Gift choice or effect.",
+    "Selected minion future behavior remains a transitive dependency; unsupported candidates cannot be hidden in strict training.",
+    "Gift-specific card behavior is not inferred from rules text or metadata by this script."
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "checkpoint": "checkpoints\\policy_mother_drake_pilot_20260927.pt",
+  "deck_config": "data\\samples\\mother_drake_warlock_selfplay.json",
+  "opponent": "checkpoints\\policy_mother_drake_cycle1_20260927.pt",
+  "evaluation_policy": "greedy argmax",
+  "seed_start": 50001,
+  "paired_seeds": 5,
+  "summary": {
+    "games": 20,
+    "wins": 20,
+    "losses": 0,
+    "draws": 0,
+    "decisive_win_rate": 1.0,
+    "score_rate_with_half_draws": 1.0,
+    "decisive_win_rate_wilson_95": [
+      0.8388698745050667,
+      1.0
+    ],
+    "by_policy_seat": {
+      "1": {
+        "WIN": 10
+      },
+      "2": {
+        "WIN": 10
+      }
+    },
+    "by_deck_order": {
+      "original": {
+        "WIN": 10
+      },
+      "swapped": {
+        "WIN": 10
+      }
+    },
+    "mean_actions": 75.6
+  },
+  "matches": [
+    {
+      "seed": 50001,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 101
+    },
+    {
+      "seed": 50001,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 90
+    },
+    {
+      "seed": 50001,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 101
+    },
+    {
+      "seed": 50001,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 90
+    },
+    {
+      "seed": 50002,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 89
+    },
+    {
+      "seed": 50002,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 31
+    },
+    {
+      "seed": 50002,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 89
+    },
+    {
+      "seed": 50002,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 31
+    },
+    {
+      "seed": 50003,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 82
+    },
+    {
+      "seed": 50003,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 61
+    },
+    {
+      "seed": 50003,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 82
+    },
+    {
+      "seed": 50003,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 61
+    },
+    {
+      "seed": 50004,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 90
+    },
+    {
+      "seed": 50004,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 50004,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 90
+    },
+    {
+      "seed": 50004,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 50005,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 111
+    },
+    {
+      "seed": 50005,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 50005,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 111
+    },
+    {
+      "seed": 50005,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    }
+  ],
+  "baseline_control": {
+    "opponent": "same fixed heuristic baseline on both seats",
+    "games": 10,
+    "results": {
+      "PLAYER2_WIN": 6,
+      "PLAYER1_WIN": 4
+    },
+    "matches": [
+      {
+        "seed": 50001,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 81
+      },
+      {
+        "seed": 50001,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 81
+      },
+      {
+        "seed": 50002,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 47
+      },
+      {
+        "seed": 50002,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 47
+      },
+      {
+        "seed": 50003,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 58
+      },
+      {
+        "seed": 50003,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 58
+      },
+      {
+        "seed": 50004,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 50
+      },
+      {
+        "seed": 50004,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 50
+      },
+      {
+        "seed": 50005,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 47
+      },
+      {
+        "seed": 50005,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 47
+      }
+    ]
+  },
+  "limitations": [
+    "The selected Mother Drake list has focused card and combo coverage, but not exhaustive edge-case coverage.",
+    "The current Standard ban list and complete card-effect pool are not yet audited.",
+    "This weak fixed opponent and small sample do not establish ranked-play strength."
+  ]
+}

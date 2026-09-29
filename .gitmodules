@@ -1,0 +1,3 @@
+[submodule "vendor/RosettaStone"]
+	path = vendor/RosettaStone
+	url = https://github.com/utilForever/RosettaStone.git

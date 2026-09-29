@@ -1,0 +1,3409 @@
+{
+  "schema_version": 1,
+  "source_report": "reports/card_support_analysis_20260929.json",
+  "selection": {
+    "selected_deck_cards": 74,
+    "stratified_extension": 26,
+    "audited_total": 100
+  },
+  "cards": [
+    {
+      "card_id": "BE_036",
+      "name": "M.O.T.H.E.R.",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "BE",
+      "text": "[x]<b>Battlecry:</b> Reduce the Cost of\na card in your hand by (5). This\ncontinues to the left and right\nwith (1) less reduction.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "FuncNumberTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CAP_105",
+      "name": "Hook n' Heave",
+      "card_class": "WARRIOR",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Discover</b> a Pirate.\nSummon two 1/1 Cannoneers.",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DiscoverTask",
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "CAP_107t"
+        ]
+      }
+    },
+    {
+      "card_id": "CAP_107",
+      "name": "Cannonmaster",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Battlecry:</b> Get a 1/1\nCannoneer that deals\n1 damage to a random\nenemy at end of turn.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "CAP_107t"
+        ]
+      }
+    },
+    {
+      "card_id": "CAP_405",
+      "name": "Godfather Kazakus",
+      "card_class": "WARLOCK",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Battlecry:</b> Plot a custom sham trial! Then choose the trial's length.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CAP_801",
+      "name": "Haunt",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Give a minion +2/+3,\n<b>Reborn</b>, and <b>Taunt</b>.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "GENERATED_COMPOSITION",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Generated effect composition is registered; rule status is limited to its scoped scenario evidence.",
+      "verification_status": "VERIFIED_SCOPED",
+      "verification_evidence": {
+        "test": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindEffectCompositionTests.cpp",
+        "scope": "+2/+3, Taunt, and Reborn on one minion"
+      },
+      "generated_effect_ir": {
+        "card_id": "CAP_801",
+        "name": "Haunt",
+        "activation": "SPELL_PLAY",
+        "rules_text_sha256": "006c2aa03cb57f7e795eeea24dc845edc8b63196aa85b0bff2d8f7a594a42fa8",
+        "play_requirements": [
+          "REQ_TARGET_TO_PLAY",
+          "REQ_MINION_TARGET"
+        ],
+        "dependencies": [
+          "CS2_009e"
+        ],
+        "effects": [
+          {
+            "op": "ENCHANT",
+            "target": "TARGET",
+            "id": "CS2_009e"
+          },
+          {
+            "op": "SET_TAG",
+            "target": "TARGET",
+            "tag": "REBORN",
+            "value": 1
+          }
+        ],
+        "training_eligible": false
+      },
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CAP_804",
+      "name": "Specter Specialist",
+      "card_class": "PRIEST",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Battlecry:</b> Give a\nfriendly minion <b>Reborn</b>.\nIf it already has <b>Reborn</b>,\n summon a copy of it.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "ConditionTask",
+          "FlagTask",
+          "SetGameTagTask",
+          "SummonCopyTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CAP_805",
+      "name": "Slime 'em!",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Destroy all minions.\nEach player gets a\n3-Cost spell that\nresummons theirs.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Must preserve the set of each player's destroyed minions and produce per-player resummon spells.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CAP_806",
+      "name": "Raith Van Geist",
+      "card_class": "PRIEST",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Battlecry:</b> Resurrect your\nminions that were <b>Reborn</b>\nthis game. They attack\n   random enemy minions.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_131",
+      "name": "Felwood Treant",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent 4\nMana while holding this, it's\n   permanent. <i>({0} left!)</i>@[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent 4\nMana while holding this, it's\n   permanent. <i>(Ready!)</i>@[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent\n4 Mana while holding this,\nit's permanent.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_139",
+      "name": "Wickerfang",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "<b>Colossal +4</b>\nAfter one of Wickerfang's Legs gains stats, this gains them too.",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Colossal appendages exist as a property, but stat changes must propagate to the correct parent entity.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CATA_140",
+      "name": "Merithra of the Dream",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>({0} left!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>(Ready!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding\nthis, they cost (1).",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_302",
+      "name": "Mend",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Restore a minion\nto full Health.\nDraw a card.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "DrawTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_308",
+      "name": "Medivh's Triumph",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "Deal $4 damage\nto all minions.\nCosts (1) if you control\na <b>Legendary</b> card.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_496",
+      "name": "Cursed Chains",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Take control of an\nenemy minion until\nthe end of their turn.\n It can't attack this turn.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "ControlTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_556",
+      "name": "Carrier Whelp",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "<b>Battlecry:</b> Get a random\nDragon that costs\n(3) or less.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_582",
+      "name": "Searing Fissure",
+      "card_class": "WARRIOR",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn.",
+      "mechanics": [],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "CustomTask",
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "CS2_045e"
+        ]
+      }
+    },
+    {
+      "card_id": "CATA_584",
+      "name": "Erupting Volcano",
+      "card_class": "WARRIOR",
+      "type": "LOCATION",
+      "set": "CATACLYSM",
+      "text": "[x]Deal 3 damage randomly\nsplit among enemies.\nIf you've played a Fire spell\nthis turn, deal 3 more.",
+      "mechanics": [],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_585",
+      "name": "Torch",
+      "card_class": "WARRIOR",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_725",
+      "name": "Shadowsworn Disciple",
+      "card_class": "WARLOCK",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "<b><b>Battlecry:</b> Herald</b> {0}.\n<b>Deathrattle:</b> Restore #3 Health to your hero.",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "HealTask",
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "CATA_725t"
+        ]
+      }
+    },
+    {
+      "card_id": "CATA_999",
+      "name": "Earthen Drake",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "At the end of your turn, deal 4 damage to the enemy hero.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_BAR_311",
+      "name": "Devouring Plague",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "[x]<b>Lifesteal</b>. Deal $4 damage\nrandomly split among\nall enemy minions.",
+      "mechanics": [
+        "LIFESTEAL",
+        "ImmuneToSpellpower"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Give a minion +2 Health.\nDraw a card.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "GENERATED_COMPOSITION",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Generated effect composition is registered; rule status is limited to its scoped scenario evidence.",
+      "verification_status": "VERIFIED_SCOPED",
+      "verification_evidence": {
+        "test": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindEffectCompositionTests.cpp",
+        "scope": "+2 Health enchantment then draw"
+      },
+      "generated_effect_ir": {
+        "card_id": "CORE_CS2_004",
+        "name": "Power Word: Shield",
+        "activation": "SPELL_PLAY",
+        "rules_text_sha256": "abe54bfac81e1d08069797f53510b889aea12b3af2734aa008397935a08cba4a",
+        "play_requirements": [
+          "REQ_TARGET_TO_PLAY",
+          "REQ_MINION_TARGET"
+        ],
+        "dependencies": [
+          "CS2_004e"
+        ],
+        "effects": [
+          {
+            "op": "ENCHANT",
+            "target": "TARGET",
+            "id": "CS2_004e"
+          },
+          {
+            "op": "DRAW",
+            "amount": 1
+          }
+        ],
+        "training_eligible": false
+      },
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_CS2_062",
+      "name": "Hellfire",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Deal $3 damage to ALL characters.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_EX1_169",
+      "name": "Innervate",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Gain 1 Mana Crystal this turn only.",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "TempManaTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_EX1_197",
+      "name": "Shadow Word: Ruin",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Destroy all minions with 5 or more Attack.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DestroyTask",
+          "FilterStackTask",
+          "IncludeTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_EX1_302",
+      "name": "Mortal Coil",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "ConditionTask",
+          "DamageTask",
+          "DrawTask",
+          "FlagTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_ICC_055",
+      "name": "Drain Soul",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "<b>Lifesteal</b>\nDeal $3 damage\nto a minion.",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_REV_990",
+      "name": "Sanguine Depths",
+      "card_class": "WARRIOR",
+      "type": "LOCATION",
+      "set": "CORE",
+      "text": "[x]Deal 1 damage to a \nminion and give it \n+2 Attack.",
+      "mechanics": [],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "REV_990e"
+        ]
+      }
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "name": "Royal Librarian",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> <b>Silence</b>\na minion.",
+      "mechanics": [
+        "BATTLECRY",
+        "TRADEABLE"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "GENERATED_COMPOSITION",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Generated effect composition is registered; rule status is limited to its scoped scenario evidence.",
+      "verification_status": "VERIFIED_SCOPED",
+      "verification_evidence": {
+        "test": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindEffectCompositionTests.cpp",
+        "scope": "Battlecry silence on selected minion"
+      },
+      "generated_effect_ir": {
+        "card_id": "CORE_SW_066",
+        "name": "Royal Librarian",
+        "activation": "BATTLECRY",
+        "rules_text_sha256": "c38c5090588571afe075e5041c28044f5a3165a149fe31301b2862e6f4f51911",
+        "play_requirements": [
+          "REQ_TARGET_TO_PLAY",
+          "REQ_MINION_TARGET"
+        ],
+        "dependencies": [],
+        "effects": [
+          {
+            "op": "SILENCE",
+            "target": "TARGET"
+          }
+        ],
+        "training_eligible": false
+      },
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_UNG_205",
+      "name": "Glacial Shard",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Battlecry:</b> <b>Freeze</b> an enemy.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "FreezeTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "DINO_402",
+      "name": "Bat Mask",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "Set a friendly minion's stats to 1/1. Fill your board with copies of it.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "DINO_426",
+      "name": "Ritual of Life",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Discover</b> a 3-Cost minion. Summon a 2/3 copy of it.",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "EDR_000",
+      "name": "Ysera, Emerald Aspect",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Start of Game:</b> Increase both\nplayers'maximum Mana by 5.\n<b>Battlecry:</b> Gain 3\nMana Crystals.",
+      "mechanics": [
+        "BATTLECRY",
+        "START_OF_GAME_KEYWORD"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "ManaCrystalTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "EDR_456",
+      "name": "Darkrider",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Battlecry:</b> If you're holding\na Dragon, <b>Discover</b> a Dragon\nwith a <b>Dark Gift</b>.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Dark Gift Discover needs the exact gift-choice pool and application semantics.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "EDR_457",
+      "name": "Brood Keeper",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Battlecry:</b> If you're holding a\nDragon, equip a 2/2 Sword.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "EDR_457t"
+        ]
+      }
+    },
+    {
+      "card_id": "EDR_463",
+      "name": "Twilight Influence",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Choose One -</b> Destroy a minion with 3 or less Attack; or Summon a random 2-Cost minion.",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "EDR_492",
+      "name": "Mother Duck",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Battlecry:</b> Summon three 1/1 Ducklings with <b>Rush</b>.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "EDR_492t"
+        ]
+      }
+    },
+    {
+      "card_id": "EDR_844",
+      "name": "Naralex, Herald of the Flights",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "Your first Dragon\neach turn costs (1).",
+      "mechanics": [
+        "AURA"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "EDR_846",
+      "name": "Shaladrassil",
+      "card_class": "NEUTRAL",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "text": "[x]Get all 5 Dream cards.\nIf you've played a higher\nCost card while holding\nthis, corrupt them!",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "DREAM_01",
+          "DREAM_02",
+          "DREAM_03",
+          "DREAM_04",
+          "DREAM_05",
+          "EDR_846t1",
+          "EDR_846t2",
+          "EDR_846t3",
+          "EDR_846t4",
+          "EDR_846t5"
+        ]
+      }
+    },
+    {
+      "card_id": "EDR_856",
+      "name": "Nightmare Lord Xavius",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Battlecry:</b> <b>Discover</b> a minion from your deck. Give it a <b>Dark Gift</b>.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Discover from own deck followed by Dark Gift application needs deck-choice/gift semantics.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "END_007",
+      "name": "Press the Advantage",
+      "card_class": null,
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Deal $1 damage. Give your hero +1 Attack this turn. Draw 1 card. Gain 1 Armor.",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "GENERATED_COMPOSITION",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Generated effect composition is registered; rule status is limited to its scoped scenario evidence.",
+      "verification_status": "VERIFIED_SCOPED",
+      "verification_evidence": {
+        "test": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindEffectCompositionTests.cpp",
+        "scope": "target damage, temporary hero attack, draw, and armor"
+      },
+      "generated_effect_ir": {
+        "card_id": "END_007",
+        "name": "Press the Advantage",
+        "activation": "SPELL_PLAY",
+        "rules_text_sha256": "3a75f8ca6695b0e4ba7bf3747fe8a2265635ecbf68ab28db3fb0b72c2c26a6a2",
+        "play_requirements": [
+          "REQ_TARGET_TO_PLAY"
+        ],
+        "dependencies": [
+          "BTA_02pe"
+        ],
+        "effects": [
+          {
+            "op": "DAMAGE",
+            "target": "TARGET",
+            "amount": 1,
+            "spell_damage": true
+          },
+          {
+            "op": "ENCHANT",
+            "target": "HERO",
+            "id": "BTA_02pe"
+          },
+          {
+            "op": "DRAW",
+            "amount": 1
+          },
+          {
+            "op": "ARMOR",
+            "amount": 1
+          }
+        ],
+        "training_eligible": false
+      },
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "END_011",
+      "name": "Acceleration Aura",
+      "card_class": null,
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "At the start of your turn, gain a temporary Mana Crystal. Lasts 3 turns.",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "END_033",
+      "name": "Prescient Slitherdrake",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Elusive</b>\nCosts (3) less if you're\n holding another Dragon.",
+      "mechanics": [
+        "ELUSIVE"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "FIR_907",
+      "name": "Amirdrassil",
+      "card_class": "DRUID",
+      "type": "LOCATION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]Summon a 1-Cost minion.\nGain 1 Armor. Draw 1 card.\nRefresh 1 Mana |4(Crystal, Crystals).\n<i>(Improves each use!)</i>",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "ArmorTask",
+          "CustomTask",
+          "DrawTask",
+          "RandomMinionTask",
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "FIR_939",
+      "name": "Shadowflame Suffusion",
+      "card_class": "WARRIOR",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>.",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Dark Gift Discover requires a Warrior-minion pool and a damage-then-choice continuation.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "FIR_959",
+      "name": "Fyrakk the Blazing",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Immune</b> to Fire spells.\n<b>Battlecry:</b> Cast 15 Mana\nworth of Fire spells at\nrandom enemies.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "CastRandomSpellTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "FIR_959e"
+        ]
+      }
+    },
+    {
+      "card_id": "JAIL_200",
+      "name": "Infest the Scullery",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Summon two random\n3-Cost minions.\n<i>(Improved by your hero\nattacks this game.)</i>",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_201",
+      "name": "Secret Ingredient",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Choose One -</b>\nGive your hero +2 Attack this turn; or get a random Druid card.",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_202",
+      "name": "Spiderling",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Your hero has +1 Attack\non your turn.",
+      "mechanics": [
+        "AURA"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_384",
+      "name": "Chainbreaker Hogger",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Taunt</b>\n<b>Start of Game:</b> Duplicate\nall other <b>Legendary</b> cards\nin your deck.",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD",
+        "TAUNT"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_399",
+      "name": "Imp Gang Stooge",
+      "card_class": "WARLOCK",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "PutCardDeckTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "JAIL_399t1"
+        ]
+      }
+    },
+    {
+      "card_id": "JAIL_421",
+      "name": "Warptooth",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Charge</b>. If four friendly\ncharacters take damage on\none of your turns, summon\n  this from hand or deck.",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_509",
+      "name": "Godfrey the Betrayer",
+      "card_class": "WARLOCK",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Start of Game:</b> Overdrawn\ncards return to your hand\nwhen you have space.\nThey cost (1) less.",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_510",
+      "name": "Annihilation",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Destroy all minions.\nSummon any Demons\nin the bottom 3 cards\nof your deck.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "DestroyTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_511",
+      "name": "Spire of Solitude",
+      "card_class": "WARLOCK",
+      "type": "LOCATION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Summon a Demon\nwith stats equal to your\nhand size. It attacks a\nrandom enemy minion.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "FuncPlayableTask",
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "JAIL_511t"
+        ]
+      }
+    },
+    {
+      "card_id": "JAIL_513",
+      "name": "Caged Cranium",
+      "card_class": "WARLOCK",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Gain +1 Health\n  for each card in your hand. ",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "FuncPlayableTask",
+          "IncludeTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_514",
+      "name": "The Unseen Atlas",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Draw 3 cards.\nCosts (1) less for each card in your hand.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DrawTask"
+        ],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_515",
+      "name": "Shadow Rounds",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Deal $2 damage to an\nenemy minion. If it dies,\ncast this on another\nrandom enemy minion.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_872",
+      "name": "Spider Rider",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "After your hero attacks, draw a card.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DrawTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_875",
+      "name": "Staff of Trickery",
+      "card_class": "DRUID",
+      "type": "WEAPON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]After your hero attacks,\n<b>Discover</b> a Druid card.\nReduce its Cost by\nyour hero's Attack.",
+      "mechanics": [
+        "DISCOVER",
+        "TRIGGER_VISUAL"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DiscoverTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_912",
+      "name": "Soothsayer",
+      "card_class": "PRIEST",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Prepare</b>, <b>Taunt</b>\n<b>Deathrattle:</b> Restore #6 Health\nto your hero. Summon a\n random 6-Cost minion.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Prepare semantics and subsequent Deathrattle need an independently verified timing contract.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "JAIL_940",
+      "name": "Undeath Sentence",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Trigger the <b>Deathrattle</b> of\na random friendly minion\nthat died this game.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "JAIL_941",
+      "name": "Holy Embrace",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Restore #4 Health.\n Get a 'Dark Embrace'\n that deals 4 damage.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "HealTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "JAIL_941t"
+        ]
+      }
+    },
+    {
+      "card_id": "MEND_046",
+      "name": "Bashana Runetotem",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Battlecry:</b> Get three\n2/2 Treants. Carve 12\nMana worth of Nature\nspells into them.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Carve embeds 12 Mana of Nature spells into three generated Treants; likely requires a named stateful native handler.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_031",
+      "name": "RAFAAM LADDER!!",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Draw 3 cards of different Costs.",
+      "mechanics": [],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TIME_034",
+      "name": "Stadium Announcer",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Rewind</b>\n<b>Battlecry:</b> Both players\nequip a random weapon.\nGive yours +1/+1.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Rewind setup plus independent random weapon generation for both players needs timing and pool verification.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_064",
+      "name": "Chrono-Lord Deios",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Your <b>Battlecries</b>,\n<b>Deathrattles</b>, Hero Power,\nand end of turn effects\ntrigger twice.",
+      "mechanics": [
+        "AURA"
+      ],
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TIME_701",
+      "name": "Waveshaping",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Discover</b> a card from your deck. The others get put on the bottom.",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TIME_702",
+      "name": "Ebb and Flow",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Deal $3 damage.\nIf you played a minion while holding this,\ngain 5 Armor.",
+      "mechanics": [],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Source registration contains CustomTask; retain native implementation unless a measured common contract is proven.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "DamageTask",
+          "SetGameTagTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TLC_100",
+      "name": "Elise the Navigator",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Battlecry:</b> If your deck started with 10 cards of different Costs, craft a custom location.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Attack Druid"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "CUSTOM",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Builds a custom Location from the deck's starting cost distribution; dynamic output is card-specific.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TLC_451",
+      "name": "Cursed Catacombs",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Discover</b> another\ncard from your deck. Make it <b>Temporary</b>.",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "decks": [
+        "Mother Drake Warlock"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "AUTO",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TLC_600",
+      "name": "Windpeak Wyrm",
+      "card_class": "WARRIOR",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Battlecry:</b> Deal 5 damage\nand gain 5 Armor.\n<b>Kindred:</b> Costs (3) less.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "ArmorTask",
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TLC_816",
+      "name": "Gravedawn Sunbloom",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "Draw 2 cards. <b>Kindred:</b> This costs (2) less.",
+      "mechanics": [],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": true,
+      "registration_status": "DIRECT",
+      "equivalent_base_rules_id": null,
+      "route": "COMPOSABLE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DrawTask"
+        ],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "TLC_817",
+      "name": "Reach Equilibrium",
+      "card_class": "PRIEST",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Cast 4 Holy spells\n<b>Reward:</b> Life's Breath.\n<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "mechanics": [
+        "QUEST"
+      ],
+      "decks": [
+        "Quest Priest"
+      ],
+      "metadata_present": true,
+      "rules_registered": false,
+      "registration_status": "MISSING_RULES",
+      "equivalent_base_rules_id": null,
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "source_heuristic_needs_manual_review",
+      "route_reason": "Two sequential school-specific Quest conditions and rewards require progression/order support.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_436",
+      "name": "Past Conflux",
+      "card_class": "PRIEST",
+      "type": "LOCATION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Summon a random Dragon\nthat costs (5) or more.\n<i>Advance to the present!</i>",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "UNKNOWN",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Advance to the Present is a named mechanic whose state transition needs ruling/source inspection.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_712",
+      "name": "Dethrone",
+      "card_class": "ROGUE",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Destroy a minion. <b>Combo:</b> Summon a random 8-Cost minion.",
+      "mechanics": [
+        "COMBO"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Destroy plus Combo random-minion generation; verify Combo hook and exact pool.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "EDR_570",
+      "name": "Ominous Nightmares",
+      "card_class": "WARRIOR",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Choose One - </b>Deal $1\ndamage to all minions;\nor Give a damaged\nminion +2/+2.",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Choose One effects appear expressible with existing destroy/summon operations.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TLC_438",
+      "name": "Violet Treasuregill",
+      "card_class": "PALADIN",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Battlecry:</b> Cast a random\nspell from your deck that\ncosts (2) or less <i>(targets\nthis if possible)</i>.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Randomly select from own deck by cost and cast onto this minion; target and card-zone semantics need a contract.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_KAR_062",
+      "name": "Netherspite Historian",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Battlecry:</b> If you're holding a Dragon, <b>Discover</b>\na Dragon.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": true,
+      "equivalent_base_rules_id": null,
+      "registration_status": "GENERATED_ALIAS",
+      "sampling_stratum": "choice_random_generated",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Generated Core alias is registered; confirm runtime rules and dependencies before admission.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/KaraCardsGen.cpp",
+        "task_types": [
+          "ConditionTask",
+          "DiscoverTask",
+          "FlagTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CATA_498",
+      "name": "Rafaams' Last Stand",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "Deal $2 damage to two\n random enemy minions.\n<i>(Upgrades each turn!)</i>",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Repeated random target damage with an upgrade/state counter across turns.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_RLK_116",
+      "name": "Necrotic Mortician",
+      "card_class": "DEATHKNIGHT",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Battlecry:</b> If a friendly Undead died after your\nlast turn, <b>Discover</b> an Unholy Rune card.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "choice_random_generated",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Requires game-history tracking for friendly Undead deaths and rune-filtered Discover.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_WC_042",
+      "name": "Wailing Vapor",
+      "card_class": "SHAMAN",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "[x]After you play an Elemental,\ngain +1 Attack.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": "WC_042",
+      "registration_status": "MISSING_CORE_ALIAS",
+      "sampling_stratum": "triggered",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "After-Elemental-play trigger plus permanent Attack gain; verify event source and turn scope.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "WC_042e"
+        ]
+      }
+    },
+    {
+      "card_id": "EDR_845",
+      "name": "Hamuul Runetotem",
+      "card_class": "DRUID",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Start of Game:</b> If each spell\nin your deck is Nature, <b>Imbue</b>\nyour Hero Power. Repeat this\n every 3 spells you cast.",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Start-of-game deck condition plus repeated Imbue progress from Nature spells.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_CATA_001",
+      "name": "Tichondrius",
+      "card_class": "DEMONHUNTER",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "Your hero is <b>Immune</b>. <b>Battlecry:</b> Your next Demon this turn costs (0).",
+      "mechanics": [
+        "AURA",
+        "BATTLECRY"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Battlecry plus a same-turn cost aura for the next Demon; verify hand-zone aura lifetime.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CATA_553",
+      "name": "Ebyssian",
+      "card_class": "HUNTER",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Battlecry:</b> Your Dragons\nhave <b>Rush</b> this game.\n<i>(While in hand, play a Dragon to\nbecome a 12/12 Dragon!)</i>",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "CUSTOM",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Game-long Dragon Rush effect and conditional transformation of cards in hand require coordinated state handling.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "MEND_506",
+      "name": "Mystic Runesaber",
+      "card_class": "MAGE",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Elusive</b>\n<b>Battlecry:</b> Increase the\neffects of your Leylines\nby 1 this game.",
+      "mechanics": [
+        "BATTLECRY",
+        "ELUSIVE"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Changes Leyline effects for the rest of the game; enumerate affected spell families first.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_EDR_003",
+      "name": "Falric",
+      "card_class": "DEATHKNIGHT",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "You gain twice as many\n<b>Corpses</b> as normal.\n<b>Battlecry:</b> Draw a card that spends <b>Corpses</b>.",
+      "mechanics": [
+        "AURA",
+        "BATTLECRY"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Corpse resource gain multiplier and an alternate corpse-spend draw action.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CATA_724",
+      "name": "Stormbinder",
+      "card_class": "SHAMAN",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Deathrattle:</b> Unlock your\n<b>Overloaded</b> Mana Crystals.\n<b>Overload:</b> (3)",
+      "mechanics": [
+        "DEATHRATTLE",
+        "OVERLOAD"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "triggered",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Deathrattle unlocks overloaded mana and applies Overload; verify timing and resource semantics.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_443",
+      "name": "Hounds of Fury",
+      "card_class": "DEMONHUNTER",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Summon two 3/2\nDemons. If your deck has\nno minions, they attack\nthe lowest Health enemy.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "composed",
+      "route": "CUSTOM",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Summon two Hounds and force an attack selected by lowest enemy Health when deck has no minions.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CATA_479",
+      "name": "Flight Maneuvers",
+      "card_class": "PALADIN",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Shatter</b>. Summon\ntwo 4/2 Drakes. Give\nyour minions +1 Attack\nand <b>Divine Shield</b>.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "composed",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Shatter keyword and its summon/buff interaction need source and timing review.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "DINO_432",
+      "name": "Panther Mask",
+      "card_class": "DRUID",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "Set a minion's stats to\n5/4 and give it <b>Stealth</b>. Draw 2 cards.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "composed",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Set stats, grant Stealth, then draw; verify silence/stat reset behavior.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CATA_452",
+      "name": "Spellweaver's Brilliance",
+      "card_class": "MAGE",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "composed",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Discount depends on spell damage actually dealt this turn, requiring event history and cost recalculation.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TLC_819",
+      "name": "Gladesong Siren",
+      "card_class": "PRIEST",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Lifesteal</b>\nCosts (1) if you've\ncast a Holy and Shadow spell this turn.",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "composed",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Discount checks whether both Holy and Shadow spells were cast this turn.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CORE_BAR_801",
+      "name": "Wound Prey",
+      "card_class": "HUNTER",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Deal $1 damage. Summon a 1/1 Hyena with <b>Rush</b>.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": true,
+      "equivalent_base_rules_id": null,
+      "registration_status": "GENERATED_ALIAS",
+      "sampling_stratum": "composed",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Generated Core alias is registered; confirm runtime rules and dependencies before admission.",
+      "verification_status": "VERIFIED_SCOPED",
+      "verification_evidence": {
+        "test": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindCoreAliasCardsTests.cpp",
+        "scope": "1 damage and 1/1 Rush token summon"
+      },
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+        "task_types": [
+          "DamageTask",
+          "SummonTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "BAR_035t"
+        ]
+      }
+    },
+    {
+      "card_id": "CORE_EX1_145",
+      "name": "Preparation",
+      "card_class": "ROGUE",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "The next spell you cast this turn costs (2) less.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": true,
+      "equivalent_base_rules_id": null,
+      "registration_status": "DIRECT",
+      "sampling_stratum": "single_effect",
+      "route": "COMPOSABLE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "EX1_145o"
+        ]
+      }
+    },
+    {
+      "card_id": "CORE_EX1_010",
+      "name": "Worgen Infiltrator",
+      "card_class": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Stealth</b>",
+      "mechanics": [
+        "STEALTH"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": true,
+      "equivalent_base_rules_id": null,
+      "registration_status": "DIRECT",
+      "sampling_stratum": "single_effect",
+      "route": "AUTO",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    },
+    {
+      "card_id": "CORE_LOOT_044",
+      "name": "Bladed Gauntlet",
+      "card_class": "WARRIOR",
+      "type": "WEAPON",
+      "set": "CORE",
+      "text": "Has Attack equal to your Armor. Can't attack heroes.",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "single_effect",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Weapon Attack follows Armor dynamically and cannot attack heroes.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_027",
+      "name": "Tachyon Barrage",
+      "card_class": "WARLOCK",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Deal $6 damage split among all enemies. Shuffle 2 Shreds of Time into your deck.",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "single_effect",
+      "route": "MISSING_PRIMITIVE",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Split damage plus shuffle generated Shreds of Time into deck.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "TIME_044",
+      "name": "Past Gnomeregan",
+      "card_class": "PALADIN",
+      "type": "LOCATION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Give a minion +2/+1.\n<i>Advance to the present!</i>",
+      "mechanics": [],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": false,
+      "equivalent_base_rules_id": null,
+      "registration_status": "MISSING_RULES",
+      "sampling_stratum": "single_effect",
+      "route": "UNKNOWN",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Advance to the Present has no resolved source contract in this audit.",
+      "verification_status": "UNSUPPORTED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {}
+    },
+    {
+      "card_id": "CS3_007",
+      "name": "Novice Zapper",
+      "card_class": "SHAMAN",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Spell Damage +1</b> <b>Overload:</b> (1)",
+      "mechanics": [
+        "OVERLOAD",
+        "SPELLPOWER"
+      ],
+      "decks": [],
+      "metadata_present": true,
+      "rules_registered": true,
+      "equivalent_base_rules_id": null,
+      "registration_status": "DIRECT",
+      "sampling_stratum": "single_effect",
+      "route": "AUTO",
+      "route_confidence": "manual_route_hypothesis_needs_source_review",
+      "route_reason": "Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
+      "verification_evidence": null,
+      "generated_effect_ir": null,
+      "dependency_status": "UNRESOLVED",
+      "bridge_action_status": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
+    }
+  ]
+}

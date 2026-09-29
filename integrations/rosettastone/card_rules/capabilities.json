@@ -1,0 +1,1159 @@
+{
+  "schema_version": 1,
+  "generated_from_report": "reports/card_support_analysis_20260929.json",
+  "status_vocabulary": {
+    "UNSUPPORTED": "No registered rules for non-empty text.",
+    "PARTIAL": "Some behavior known, but material rule paths/dependencies remain unsupported.",
+    "IMPLEMENTED_UNVERIFIED": "Rules source is registered, but no scoped scenario evidence was assessed by this inventory.",
+    "VERIFIED_SCOPED": "Only permitted with an explicit tested scope and evidence."
+  },
+  "route_vocabulary": {
+    "AUTO": "Known metadata/keyword behavior or a constrained declarative mapping; still requires scenario verification.",
+    "COMPOSABLE": "Existing Tasks/Power/targeting primitives appear sufficient; composition and dependencies need review.",
+    "MISSING_PRIMITIVE": "A shared mechanic, event/state contract, or dependency behavior must be implemented/reviewed first.",
+    "CUSTOM": "Card-specific or stateful behavior is a better fit for a named native implementation.",
+    "UNKNOWN": "Text/ruling or source mapping is not clear enough to choose an implementation route."
+  },
+  "simple_tasks": [
+    {
+      "name": "ActivateCapturedDeathrattleTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ActivateCapturedDeathrattleTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ActivateCapturedDeathrattleTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ActivateDeathrattleTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ActivateDeathrattleTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ActivateDeathrattleTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddAuraEffectTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddAuraEffectTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddAuraEffectTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddCardTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddCardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddCardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddEnchantmentTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddEnchantmentTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddEnchantmentTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddLackeyTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddLackeyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddLackeyTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddPoisonTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddPoisonTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddPoisonTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AddStackToTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddStackToTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddStackToTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ApplyEffectTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ApplyEffectTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ApplyEffectTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ArmorTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ArmorTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ArmorTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "AttackTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AttackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AttackTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/PlayerTasks/AttackTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CastCopyTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CastCopyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CastCopyTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CastRandomSpellTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CastRandomSpellTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CastRandomSpellTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CastSpellStackTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CastSpellStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CastSpellStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ChanceTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ChanceTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ChanceTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ChangeAttackingTargetTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeAttackingTargetTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeAttackingTargetTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ChangeEntityTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeEntityTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeEntityTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ChangeHeroPowerTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeHeroPowerTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeHeroPowerTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/ChangeHeroPowerTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ChangeUnidentifiedTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeUnidentifiedTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ChangeUnidentifiedTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ClearStackTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ClearStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ClearStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ConditionTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ConditionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ConditionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ConsecutiveDamageTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ConsecutiveDamageTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ConsecutiveDamageTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ControlTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ControlTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ControlTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/ControlTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CopyTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CopyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CopyTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Actions/CopyTests.cpp",
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/TransformCopyTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CountTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CountTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CountTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/CountTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "CustomTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CustomTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CustomTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DamageNumberTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DamageTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/DamageTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DamageWeaponTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DestroyAllTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyAllTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyAllTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DestroyDeckCardTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyDeckCardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyDeckCardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DestroySoulFragmentTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroySoulFragmentTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroySoulFragmentTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DestroyTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/DestroyTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DiscardTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DiscardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DiscardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DiscoverTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DiscoverTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DiscoverTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawMinionTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawMinionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawMinionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawNumberTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawOpTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawOpTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawOpTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawRaceMinionTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawRaceMinionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawRaceMinionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawSpellTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawSpellTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawSpellTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawStackTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/DrawTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DrawWeaponTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawWeaponTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawWeaponTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "DredgeTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DredgeTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DredgeTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "EnqueueNumberTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/EnqueueNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/EnqueueNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "EnqueueTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/EnqueueTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/EnqueueTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "FilterStackTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/FilterStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/FilterStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "FlagTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/FlagTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/FlagTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "FreezeTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/FreezeTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/FreezeTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "FuncNumberTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/FuncNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/FuncNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "FuncPlayableTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/FuncPlayableTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/FuncPlayableTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "GetEventNumberTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/GetEventNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/GetEventNumberTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/GetEventNumberTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "GetGameTagTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/GetGameTagTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/GetGameTagTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "GetPlayerGameTagTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/GetPlayerGameTagTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/GetPlayerGameTagTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "GetPlayerManaTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/GetPlayerManaTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/GetPlayerManaTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "HealFullTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/HealFullTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/HealFullTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "HealNumberTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/HealNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/HealNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "HealTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/HealTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/HealTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "IncludeAdjacentTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/IncludeAdjacentTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/IncludeAdjacentTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "IncludeTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/IncludeTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/IncludeTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/IncludeTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "InvokeTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/InvokeTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/InvokeTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ManaCrystalTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ManaCrystalTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ManaCrystalTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MathAddTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MathAddTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MathAddTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MathMultiplyTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MathMultiplyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MathMultiplyTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MathNumberIndexTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MathNumberIndexTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MathNumberIndexTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/MathNumberIndexTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MathRandTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MathRandTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MathRandTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MathSubtractTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MathSubtractTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MathSubtractTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MoveToDeckTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToDeckTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToDeckTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MoveToGraveyardTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToGraveyardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToGraveyardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "MoveToSetasideTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToSetasideTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/MoveToSetasideTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "NumberConditionTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/NumberConditionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/NumberConditionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "PlayTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/PlayTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/PlayTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Enchants/PlayerAuraEffectsTests.cpp",
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Models/PlayerTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "PutCardDeckTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/PutCardDeckTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/PutCardDeckTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "QuestProgressTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/QuestProgressTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/QuestProgressTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomCardTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomCardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomCardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomEntourageTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomEntourageTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomEntourageTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomMinionNumberTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomMinionTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomSpellTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomSpellTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomSpellTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RandomTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Agents/RandomAgentTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RefreshManaTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RefreshManaTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RefreshManaTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RemoveDurabilityTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveDurabilityTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveDurabilityTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RemoveEnchantmentTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveEnchantmentTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveEnchantmentTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RemoveHandTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveHandTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RemoveHandTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ReplaceHeroTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ReplaceHeroTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ReplaceHeroTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "ReturnHandTask",
+      "category_guess": "card_zone_movement",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/ReturnHandTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/ReturnHandTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "RevealStealthTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RevealStealthTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RevealStealthTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SetGameTagNumberTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SetGameTagNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SetGameTagNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SetGameTagTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SetGameTagTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SetGameTagTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SetManaCrystalTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SetManaCrystalTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SetManaCrystalTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SetPlayerGameTagTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SetPlayerGameTagTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SetPlayerGameTagTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SilenceTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SilenceTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SilenceTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonCapturedMinionTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonCapturedMinionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonCapturedMinionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonCopyTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonCopyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonCopyTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonNumberTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonNumberTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonNumberTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonOpTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonOpTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonOpTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonStackTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SummonTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SwapAttackHealthTask",
+      "category_guess": "damage_healing_status",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SwapAttackHealthTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SwapAttackHealthTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SwapHeroPowerTask",
+      "category_guess": "other_or_composition",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SwapHeroPowerTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SwapHeroPowerTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "SwapTopCardTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SwapTopCardTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SwapTopCardTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "TempManaTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/TempManaTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/TempManaTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "TransformCopyTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/TransformCopyTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/TransformCopyTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/TransformCopyTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "TransformMinionTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/TransformMinionTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/TransformMinionTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "TransformTask",
+      "category_guess": "summon_destroy_transform",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/TransformTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/TransformTask.cpp",
+      "test_file_candidates": [
+        "vendor/RosettaStone/Tests/UnitTests/PlayMode/Tasks/SimpleTasks/TransformCopyTaskTests.cpp"
+      ],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "WeaponStackTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/WeaponStackTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/WeaponStackTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
+      "name": "WeaponTask",
+      "category_guess": "stats_resources_and_continuous_effects",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/WeaponTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/WeaponTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    }
+  ],
+  "source_contract_reviews": [
+    {
+      "capability": "DamageTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageTask.cpp"
+      ],
+      "contract": "Applies fixed or ranged damage to entities selected by EntityType; Spell Damage flag is explicit and passed to character damage handling.",
+      "limits": "Target legality is separate; armor, immunity, lifesteal and death processing depend on downstream Generic/Character paths."
+    },
+    {
+      "capability": "HealFullTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/HealFullTask.cpp",
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/HealFullTask.hpp"
+      ],
+      "contract": "Calls Character::TakeFullHeal on selected entities.",
+      "limits": "Not interchangeable with an explicit HealTask amount without checking heal modifiers and source attribution; CATA_302 currently uses TakeHeal(damage)."
+    },
+    {
+      "capability": "DrawTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DrawTask.cpp",
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DrawTask.hpp"
+      ],
+      "contract": "Repeats normal draw action for a requested amount; can alternatively push cards onto task stack.",
+      "limits": "Fatigue, overdraw, and draw triggers are inherited from normal draw action; stack mode is not ordinary draw."
+    },
+    {
+      "capability": "SummonTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/SummonTask.cpp",
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/SummonTask.hpp"
+      ],
+      "contract": "Summons a fixed card or stack entity with a requested side, position behavior, and amount.",
+      "limits": "Board capacity, minion-plus-Location slots, ownership, source position, and partial summon failure affect results."
+    },
+    {
+      "capability": "DestroyTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyTask.cpp",
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyTask.hpp"
+      ],
+      "contract": "Marks selected playables destroyed; optional flag explicitly processes death/aura resolution.",
+      "limits": "Death ordering and simultaneous destruction require scenario coverage; DestroyAllTask has a different selection contract."
+    },
+    {
+      "capability": "DiscoverTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DiscoverTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DiscoverTask.cpp"
+      ],
+      "contract": "Builds choices from explicit IDs, a DiscoverType, or type/class/race/rarity predicates, then suspends task flow for choice resolution.",
+      "limits": "Exact candidate population and post-choice continuation matter; selecting a card does not implement that card's effect."
+    },
+    {
+      "capability": "RandomMinionTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomMinionTask.cpp"
+      ],
+      "contract": "Filters the current format's standard or wild card pool by GameTag values and selects random candidates.",
+      "limits": "The pool is format-wide and may include unsupported effects; never silently narrow it for strict Standard results."
+    },
+    {
+      "capability": "AddEnchantmentTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/AddEnchantmentTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/AddEnchantmentTask.cpp"
+      ],
+      "contract": "Looks up a named enchantment definition and applies it to selected entities; can consume task-stack parameters/entity IDs.",
+      "limits": "The enchantment definition and expiry/removal behavior are separate dependencies; stack-driven parameters need explicit declarations."
+    },
+    {
+      "capability": "QuestProgressTask",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/QuestProgressTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/QuestProgressTask.cpp"
+      ],
+      "contract": "Advances configured quest progress and can resolve reward tasks or move to a next quest.",
+      "limits": "ProgressType enum is finite; school-specific consecutive quest conditions are not implied by generic quest progress."
+    }
+  ],
+  "other_surfaces_inventory": [
+    {
+      "surface": "Triggers",
+      "path": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Triggers",
+      "header_count": 3,
+      "status": "file_inventory_only"
+    },
+    {
+      "surface": "Auras",
+      "path": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Auras",
+      "header_count": 9,
+      "status": "file_inventory_only"
+    },
+    {
+      "surface": "Conditions",
+      "path": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Conditions",
+      "header_count": 2,
+      "status": "file_inventory_only"
+    },
+    {
+      "surface": "TargetingPredicates",
+      "path": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Loaders/TargetingPredicates.hpp",
+      "header_count": 1,
+      "status": "source_path_inventory_only"
+    },
+    {
+      "surface": "PlayReq enum",
+      "path": "vendor/RosettaStone/Includes/Rosetta/Common/Enums/CardEnums.hpp",
+      "header_count": 1,
+      "status": "source_path_inventory_only"
+    },
+    {
+      "surface": "CardProperty",
+      "path": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Cards/CardProperty.hpp",
+      "fields": [
+        "playReqs",
+        "chooseCardIDs",
+        "entourages",
+        "appendages",
+        "corruptCardID",
+        "infusedCardID",
+        "questProgressTotal",
+        "heroPowerDbfID",
+        "numMinionsToInfuse"
+      ],
+      "status": "source_reviewed"
+    }
+  ],
+  "notes": [
+    "Task entries are a file inventory, not verified capabilities.",
+    "Tests are listed by candidate filename only.",
+    "Do not admit a card or deck based on this registry alone."
+  ]
+}

@@ -1,0 +1,421 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/core_aliases.v1.json",
+  "declaration_sha256": "6bb52ddb815f356269c3b52713db43e397b15bcdf6a86e3a2ff0f8e46e22e753",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.cpp",
+  "cards": [
+    {
+      "card_id": "CORE_BAR_801",
+      "base_card_id": "BAR_801",
+      "copy_of_dbf_id": 63195,
+      "base_dbf_id": 63195,
+      "name": "Wound Prey",
+      "rules_text_sha256": "94bbec9361296fe6f62d7dfb154ed5eb07f5889cc59a8ee1854d2fbf39a88943",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+      "task_types": [
+        "DamageTask",
+        "SummonTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "BAR_035t",
+          "name": "Swift Hyena",
+          "type": "MINION",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_108",
+      "base_card_id": "SW_108",
+      "copy_of_dbf_id": 64430,
+      "base_dbf_id": 64430,
+      "name": "First Flame",
+      "rules_text_sha256": "e00628a35c25aac935d167c07191b638f147a32d59ba2003e3bcab8d6356646a",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/StormwindCardsGen.cpp",
+      "task_types": [
+        "AddCardTask",
+        "DamageTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "SW_108t",
+          "name": "Second Flame",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BT_072",
+      "base_card_id": "BT_072",
+      "copy_of_dbf_id": 57950,
+      "base_dbf_id": 57950,
+      "name": "Deep Freeze",
+      "rules_text_sha256": "9178c2a3feecfb2d677e32c003c2874f25b71a0fec5fd96dc19f84efef05b9b7",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/BlackTempleCardsGen.cpp",
+      "task_types": [
+        "FreezeTask",
+        "SummonTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "CS2_033",
+          "name": "Water Elemental",
+          "type": "MINION",
+          "collectible": true,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BAR_310",
+      "base_card_id": "BAR_310",
+      "copy_of_dbf_id": 62874,
+      "base_dbf_id": 62874,
+      "name": "Lightshower Elemental",
+      "rules_text_sha256": "c3b9d70fa1e1e9982538ae1f130a2dd90ce05f77d6b6e41b1f6247e96e03de3d",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+      "task_types": [
+        "HealTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_AV_337",
+      "base_card_id": "AV_337",
+      "copy_of_dbf_id": 70245,
+      "base_dbf_id": 70245,
+      "name": "Mountain Bear",
+      "rules_text_sha256": "ff9d427aceb72ef227d3089cb3237253f31e5cd55aeb3b8abdf7e8bbb398f83a",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/AlteracValleyCardsGen.cpp",
+      "task_types": [
+        "SummonTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "AV_337t",
+          "name": "Mountain Cub",
+          "type": "MINION",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BAR_541",
+      "base_card_id": "BAR_541",
+      "copy_of_dbf_id": 63056,
+      "base_dbf_id": 63056,
+      "name": "Runed Orb",
+      "rules_text_sha256": "238a72ba8e6fa13cbef096cdadfdfd09fb433eb46c210c86c1300dee0f2a0341",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+      "task_types": [
+        "DamageTask",
+        "DiscoverTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "UNKNOWN_POOL",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_KAR_062",
+      "base_card_id": "KAR_062",
+      "copy_of_dbf_id": 39554,
+      "base_dbf_id": 39554,
+      "name": "Netherspite Historian",
+      "rules_text_sha256": "f1abc3dd30fbd534137a354c2c9dcdc05b35dfad412a71d614a1377d6b95c342",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/KaraCardsGen.cpp",
+      "task_types": [
+        "ConditionTask",
+        "DiscoverTask",
+        "FlagTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "UNKNOWN_POOL",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BT_156",
+      "base_card_id": "BT_156",
+      "copy_of_dbf_id": 56820,
+      "base_dbf_id": 56820,
+      "name": "Imprisoned Vilefiend",
+      "rules_text_sha256": "c57ffd28d26ea1cdb9043da3d332d868a530f1d8d52aed1ff7653921fd003aa7",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/BlackTempleCardsGen.cpp",
+      "task_types": [],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_068",
+      "base_card_id": "SW_068",
+      "copy_of_dbf_id": 64716,
+      "base_dbf_id": 64716,
+      "name": "Mo'arg Forgefiend",
+      "rules_text_sha256": "b038b8581a2627c4b6239ac367621470a7bbce043895832ad6363c3ff28a000c",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/StormwindCardsGen.cpp",
+      "task_types": [
+        "ArmorTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_088",
+      "base_card_id": "SW_088",
+      "copy_of_dbf_id": 64897,
+      "base_dbf_id": 64897,
+      "name": "Demonic Assault",
+      "rules_text_sha256": "04f1833c9c56f5a6bd7898c8b50328587408a83026ae91efbededdd619bc536d",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/StormwindCardsGen.cpp",
+      "task_types": [
+        "DamageTask",
+        "SummonTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "CS2_065",
+          "name": "Voidwalker",
+          "type": "MINION",
+          "collectible": true,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_EX1_131",
+      "base_card_id": "EX1_131",
+      "copy_of_dbf_id": 201,
+      "base_dbf_id": 201,
+      "name": "Defias Ringleader",
+      "rules_text_sha256": "74d9623cf44ef768a700819c31e103d52689497c48d7c9414bff07b480b334ee",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/Expert1CardsGen.cpp",
+      "task_types": [
+        "SummonTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "EX1_131t",
+          "name": "Defias Bandit",
+          "type": "MINION",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_EX1_278",
+      "base_card_id": "EX1_278",
+      "copy_of_dbf_id": 573,
+      "base_dbf_id": 573,
+      "name": "Shiv",
+      "rules_text_sha256": "8e9969133827801229b45f03f183e6e891a7c1dee959de94dadc9cd98ec17d1e",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/LegacyCardsGen.cpp",
+      "task_types": [
+        "DamageTask",
+        "DrawTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_DRG_107",
+      "base_card_id": "DRG_107",
+      "copy_of_dbf_id": 54907,
+      "base_dbf_id": 54907,
+      "name": "Violet Spellwing",
+      "rules_text_sha256": "97bfcd500bcfd80750df2038a2ff238d7e9f816b21854679eaa7c7c4ef794f9e",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/DragonsCardsGen.cpp",
+      "task_types": [
+        "AddCardTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "EX1_277",
+          "name": "Arcane Missiles",
+          "type": "SPELL",
+          "collectible": true,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_WC_701",
+      "base_card_id": "WC_701",
+      "copy_of_dbf_id": 63407,
+      "base_dbf_id": 63407,
+      "name": "Felrattler",
+      "rules_text_sha256": "280aead0f168ab35b4a8a5ebea1537e9c011b837abefc72fff190309ec77dcf8",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+      "task_types": [
+        "DamageTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BT_701",
+      "base_card_id": "BT_701",
+      "copy_of_dbf_id": 56377,
+      "base_dbf_id": 56377,
+      "name": "Spymistress",
+      "rules_text_sha256": "2d998cb471a020c0c58428d556cb5125365cac15eba3508faf2301e94bd88429",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/BlackTempleCardsGen.cpp",
+      "task_types": [],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BAR_313",
+      "base_card_id": "BAR_313",
+      "copy_of_dbf_id": 62877,
+      "base_dbf_id": 62877,
+      "name": "Priest of An'she",
+      "rules_text_sha256": "049fafea83f02c736b7b8e06ffb7fdcd5a7e2e4bfd163954e78dab6a61ea9970",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheBarrensCardsGen.cpp",
+      "task_types": [
+        "AddEnchantmentTask",
+        "ConditionTask",
+        "FlagTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "BAR_313e",
+          "name": "Sun's Strength",
+          "type": "ENCHANTMENT",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_EX1_058",
+      "base_card_id": "EX1_058",
+      "copy_of_dbf_id": 891,
+      "base_dbf_id": 891,
+      "name": "Sunfury Protector",
+      "rules_text_sha256": "3504d022e99a39c95c5a8fc1ecf2ccf68662f189579163146393b3ccce9dae30",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/Expert1CardsGen.cpp",
+      "task_types": [
+        "FilterStackTask",
+        "IncludeTask",
+        "SetGameTagTask"
+      ],
+      "dependencies": [],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_ONY_018",
+      "base_card_id": "ONY_018",
+      "copy_of_dbf_id": 71241,
+      "base_dbf_id": 71241,
+      "name": "Boomkin",
+      "rules_text_sha256": "b13f3a2d68933b23a2cec085212293026fb2ab6713e0f607060b953be06840c9",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/AlteracValleyCardsGen.cpp",
+      "task_types": [],
+      "dependencies": [
+        {
+          "card_id": "ONY_018t",
+          "name": "Eyes of the Moon",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        },
+        {
+          "card_id": "ONY_018t2",
+          "name": "Heart of the Sun",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_439",
+      "base_card_id": "SW_439",
+      "copy_of_dbf_id": 64388,
+      "base_dbf_id": 64388,
+      "name": "Vibrant Squirrel",
+      "rules_text_sha256": "acbce4b3408a0691b4e53308c31708973f30094c25292e0f6f1b28d678aa9148",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/StormwindCardsGen.cpp",
+      "task_types": [
+        "AddCardTask"
+      ],
+      "dependencies": [
+        {
+          "card_id": "SW_439t",
+          "name": "Acorn",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_TSC_650",
+      "base_card_id": "TSC_650",
+      "copy_of_dbf_id": 73462,
+      "base_dbf_id": 73462,
+      "name": "Flipper Friends",
+      "rules_text_sha256": "fd7d536eb8e9be04d948b761102060ac1f7f4692f1329e788e8324aa9ba3ecf8",
+      "base_source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/TheSunkenCityCardsGen.cpp",
+      "task_types": [],
+      "dependencies": [
+        {
+          "card_id": "TSC_650a",
+          "name": "Order the Orca",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        },
+        {
+          "card_id": "TSC_650d",
+          "name": "Romp of Otters",
+          "type": "SPELL",
+          "collectible": null,
+          "direct_rules_source": true
+        }
+      ],
+      "dynamic_pool_status": "NONE_DETECTED",
+      "training_eligible": false
+    }
+  ],
+  "strict_training_ready": false,
+  "training_blockers": [
+    "Dynamic pools remain unresolved for Discover cards.",
+    "Alias behaviors still need focused scenarios and bridge action checks."
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "catalog_path": "data/cards/standard_current_enUS.json",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "cards": [
+    {
+      "card_id": "CORE_CS2_004",
+      "activation": "SPELL_PLAY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
+      "dependencies": ["CS2_004e"],
+      "effects": [
+        {"op": "ENCHANT", "target": "TARGET", "id": "CS2_004e"},
+        {"op": "DRAW", "amount": 1}
+      ]
+    },
+    {
+      "card_id": "END_007",
+      "activation": "SPELL_PLAY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY"],
+      "dependencies": ["BTA_02pe"],
+      "effects": [
+        {"op": "DAMAGE", "target": "TARGET", "amount": 1, "spell_damage": true},
+        {"op": "ENCHANT", "target": "HERO", "id": "BTA_02pe"},
+        {"op": "DRAW", "amount": 1},
+        {"op": "ARMOR", "amount": 1}
+      ]
+    },
+    {
+      "card_id": "CAP_801",
+      "activation": "SPELL_PLAY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
+      "dependencies": ["CS2_009e"],
+      "effects": [
+        {"op": "ENCHANT", "target": "TARGET", "id": "CS2_009e"},
+        {"op": "SET_TAG", "target": "TARGET", "tag": "REBORN", "value": 1}
+      ]
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "activation": "BATTLECRY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
+      "dependencies": [],
+      "effects": [
+        {"op": "SILENCE", "target": "TARGET"}
+      ]
+    }
+  ]
+}

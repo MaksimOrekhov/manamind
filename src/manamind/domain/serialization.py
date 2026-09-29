@@ -1,0 +1,92 @@
+"""Convert JSON-like mappings to the simulator-independent domain schema."""
+
+from typing import Any
+
+from manamind.domain.card import CardFeatures
+from manamind.domain.entity import BoardEntity
+from manamind.domain.game_state import GameState, PlayerObservation
+
+
+def _card(data: dict[str, Any] | None) -> CardFeatures | None:
+    if data is None:
+        return None
+    return CardFeatures(
+        card_id=str(data.get("card_id", data.get("id", "UNKNOWN_CARD"))),
+        cost=data.get("cost"),
+        attack=data.get("attack"),
+        health=data.get("health"),
+        durability=data.get("durability"),
+        card_type=str(data.get("card_type", data.get("type", "UNKNOWN_TYPE"))).upper(),
+        card_class=str(data.get("card_class", data.get("cardClass", "UNKNOWN_CLASS"))).upper(),
+        race=data.get("race"),
+        mechanics=tuple(str(item).upper() for item in data.get("mechanics", ())),
+    )
+
+
+def _board_entity(data: dict[str, Any]) -> BoardEntity:
+    card_data = data.get("card", data)
+    card = _card(card_data)
+    if card is None:
+        raise ValueError("A board entity must include card features")
+    flag_names = (
+        "taunt", "divine_shield", "stealth", "frozen", "silenced", "immune",
+        "rush", "charge", "windfury", "lifesteal", "poisonous", "reborn",
+        "dormant", "can_attack",
+    )
+    current_attack = int(data.get("current_attack", data.get("attack", card.attack or 0)))
+    current_health = int(data.get("current_health", data.get("health", card.health or 0)))
+    max_health = int(data.get("max_health", data.get("health", card.health or current_health)))
+    return BoardEntity(
+        card=card,
+        current_attack=current_attack,
+        current_health=current_health,
+        max_health=max_health,
+        board_position=int(data.get("board_position", 0)),
+        **{name: bool(data.get(name, False)) for name in flag_names},
+    )
+
+
+def _player(data: dict[str, Any]) -> PlayerObservation:
+    if "hero_health" not in data:
+        raise ValueError("Each player must include hero_health")
+    return PlayerObservation(
+        hero_health=int(data.get("hero_health", 0)),
+        armor=int(data.get("armor", 0)),
+        hero_attack=int(data.get("hero_attack", 0)),
+        max_mana=int(data.get("max_mana", 0)),
+        available_mana=int(data.get("available_mana", 0)),
+        overloaded_mana=int(data.get("overloaded_mana", 0)),
+        pending_overload=int(data.get("pending_overload", 0)),
+        deck_size=int(data.get("deck_size", 0)),
+        hand_size=int(data.get("hand_size", 0)),
+        fatigue=int(data.get("fatigue", 0)),
+        hero_power_ready=(
+            None if "hero_power_ready" not in data
+            else bool(data["hero_power_ready"])
+        ),
+        player_class=str(data.get("player_class", "UNKNOWN_CLASS")).upper(),
+        weapon=_card(data.get("weapon")),
+        hero_power=_card(data.get("hero_power")),
+        board=tuple(_board_entity(item) for item in data.get("board", ())),
+    )
+
+
+def game_state_from_dict(data: dict[str, Any]) -> GameState:
+    """Build a GameState from a JSON-decoded mapping."""
+    for key in ("turn_number", "active_player", "self_player", "opponent"):
+        if key not in data:
+            raise ValueError(f"Game state is missing required field: {key}")
+    self_hand = tuple(_card(item) for item in data.get("self_hand", ()))
+    opponent_known_cards = tuple(_card(item) for item in data.get("opponent_known_cards", ()))
+    if any(card is None for card in (*self_hand, *opponent_known_cards)):
+        raise ValueError("Cards in known zones must be objects")
+
+    return GameState(
+        turn_number=int(data.get("turn_number", 0)),
+        active_player=str(data["active_player"]).upper(),
+        self_player=_player(data["self_player"]),
+        opponent=_player(data["opponent"]),
+        self_hand=self_hand,
+        self_hand_known_count=data.get("self_hand_known_count"),
+        opponent_known_cards=opponent_known_cards,
+    )

@@ -1,0 +1,1346 @@
+{
+  "as_of": "2026-09-27",
+  "format": "STANDARD",
+  "deck_pool_path": "E:\\ManaMind\\data\\samples\\standard_meta_deck_pool_20260928.json",
+  "decks": [
+    {
+      "name": "Dragon Warrior",
+      "player_class": "WARRIOR",
+      "source_name": "Hearthstone Meta Stats — Azeroth’s Most Wanted Legend list",
+      "source_url": "https://metastats.net/hearthstone/decksbyrank/legend/patch/",
+      "published": "2026-09-27",
+      "source_stats": {
+        "reported_games": 816,
+        "reported_win_rate_percent": 55.92
+      },
+      "card_count": 30,
+      "unique_card_count": 17,
+      "invalid_or_noncollectible_ids": []
+    },
+    {
+      "name": "Attack Druid",
+      "player_class": "DRUID",
+      "source_name": "Hearthstone Meta Stats — Azeroth’s Most Wanted Legend list",
+      "source_url": "https://metastats.net/hearthstone/decksbyrank/legend/patch/",
+      "published": "2026-09-27",
+      "source_stats": {
+        "reported_games": 2902,
+        "reported_win_rate_percent": 53.42
+      },
+      "card_count": 30,
+      "unique_card_count": 20,
+      "invalid_or_noncollectible_ids": []
+    },
+    {
+      "name": "Quest Priest",
+      "player_class": "PRIEST",
+      "source_name": "Hearthstone Meta Stats — Azeroth’s Most Wanted Legend list",
+      "source_url": "https://metastats.net/hearthstone/decksbyrank/legend/patch/",
+      "published": "2026-09-27",
+      "source_stats": {
+        "reported_games": 88,
+        "reported_win_rate_percent": 54.38
+      },
+      "card_count": 30,
+      "unique_card_count": 17,
+      "invalid_or_noncollectible_ids": []
+    },
+    {
+      "name": "Mother Drake Warlock",
+      "player_class": "WARLOCK",
+      "source_name": "Vicious Syndicate",
+      "source_url": "https://www.vicioussyndicate.com/decks/mother-drake-warlock/",
+      "published": "2026-09-23",
+      "source_stats": null,
+      "card_count": 30,
+      "unique_card_count": 19,
+      "invalid_or_noncollectible_ids": []
+    },
+    {
+      "name": "Combo Drake Warlock",
+      "player_class": "WARLOCK",
+      "source_name": "Walk to Work podcast / Apple Podcasts",
+      "source_url": "https://podcasts.apple.com/ca/podcast/w2w-1643-legend-storytime-for-september/id1074167723?i=1000791092392",
+      "published": "2026-09-22",
+      "source_stats": null,
+      "card_count": 30,
+      "unique_card_count": 19,
+      "invalid_or_noncollectible_ids": []
+    }
+  ],
+  "deck_coverage": {
+    "Dragon Warrior": {
+      "class": "WARRIOR",
+      "card_slots": 30,
+      "unique_cards": 17,
+      "rules_covered_unique_cards": 14,
+      "unsupported_card_ids": [
+        "EDR_456",
+        "FIR_939",
+        "TIME_034"
+      ]
+    },
+    "Attack Druid": {
+      "class": "DRUID",
+      "card_slots": 30,
+      "unique_cards": 20,
+      "rules_covered_unique_cards": 17,
+      "unsupported_card_ids": [
+        "CATA_139",
+        "MEND_046",
+        "TLC_100"
+      ]
+    },
+    "Quest Priest": {
+      "class": "PRIEST",
+      "card_slots": 30,
+      "unique_cards": 17,
+      "rules_covered_unique_cards": 13,
+      "unsupported_card_ids": [
+        "CAP_805",
+        "EDR_856",
+        "JAIL_912",
+        "TLC_817"
+      ]
+    },
+    "Mother Drake Warlock": {
+      "class": "WARLOCK",
+      "card_slots": 30,
+      "unique_cards": 19,
+      "rules_covered_unique_cards": 19,
+      "unsupported_card_ids": []
+    },
+    "Combo Drake Warlock": {
+      "class": "WARLOCK",
+      "card_slots": 30,
+      "unique_cards": 19,
+      "rules_covered_unique_cards": 19,
+      "unsupported_card_ids": []
+    }
+  },
+  "unique_card_count": 74,
+  "registered_or_textless_unique_cards": 64,
+  "missing_rules_unique_cards": 10,
+  "cards": [
+    {
+      "card_id": "BE_036",
+      "name": "M.O.T.H.E.R.",
+      "type": "MINION",
+      "set": "BE",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Reduce the Cost of\na card in your hand by (5). This\ncontinues to the left and right\nwith (1) less reduction.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_105",
+      "name": "Hook n' Heave",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "text": "<b>Discover</b> a Pirate.\nSummon two 1/1 Cannoneers.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_107",
+      "name": "Cannonmaster",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Get a 1/1\nCannoneer that deals\n1 damage to a random\nenemy at end of turn.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_405",
+      "name": "Godfather Kazakus",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> Plot a custom sham trial! Then choose the trial's length.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_801",
+      "name": "Haunt",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "Give a minion +2/+3,\n<b>Reborn</b>, and <b>Taunt</b>.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_804",
+      "name": "Specter Specialist",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Give a\nfriendly minion <b>Reborn</b>.\nIf it already has <b>Reborn</b>,\n summon a copy of it.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CAP_805",
+      "name": "Slime 'em!",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Destroy all minions.\nEach player gets a\n3-Cost spell that\nresummons theirs.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "CAP_806",
+      "name": "Raith Van Geist",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Resurrect your\nminions that were <b>Reborn</b>\nthis game. They attack\n   random enemy minions.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_131",
+      "name": "Felwood Treant",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent 4\nMana while holding this, it's\n   permanent. <i>({0} left!)</i>@[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent 4\nMana while holding this, it's\n   permanent. <i>(Ready!)</i>@[x]<b>Battlecry:</b> Gain a temporary\nMana Crystal. If you spent\n4 Mana while holding this,\nit's permanent.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_139",
+      "name": "Wickerfang",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "text": "<b>Colossal +4</b>\nAfter one of Wickerfang's Legs gains stats, this gains them too.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "CATA_140",
+      "name": "Merithra of the Dream",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>({0} left!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>(Ready!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding\nthis, they cost (1).",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_302",
+      "name": "Mend",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "mechanics": [],
+      "text": "[x]Restore a minion\nto full Health.\nDraw a card.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_308",
+      "name": "Medivh's Triumph",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "mechanics": [],
+      "text": "Deal $4 damage\nto all minions.\nCosts (1) if you control\na <b>Legendary</b> card.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_496",
+      "name": "Cursed Chains",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "mechanics": [],
+      "text": "[x]Take control of an\nenemy minion until\nthe end of their turn.\n It can't attack this turn.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_556",
+      "name": "Carrier Whelp",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> Get a random\nDragon that costs\n(3) or less.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_582",
+      "name": "Searing Fissure",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "mechanics": [],
+      "text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_584",
+      "name": "Erupting Volcano",
+      "type": "LOCATION",
+      "set": "CATACLYSM",
+      "mechanics": [],
+      "text": "[x]Deal 3 damage randomly\nsplit among enemies.\nIf you've played a Fire spell\nthis turn, deal 3 more.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_585",
+      "name": "Torch",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_725",
+      "name": "Shadowsworn Disciple",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "text": "<b><b>Battlecry:</b> Herald</b> {0}.\n<b>Deathrattle:</b> Restore #3 Health to your hero.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CATA_999",
+      "name": "Earthen Drake",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "text": "At the end of your turn, deal 4 damage to the enemy hero.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_BAR_311",
+      "name": "Devouring Plague",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [
+        "LIFESTEAL",
+        "ImmuneToSpellpower"
+      ],
+      "text": "[x]<b>Lifesteal</b>. Deal $4 damage\nrandomly split among\nall enemy minions.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "Give a minion +2 Health.\nDraw a card.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_CS2_062",
+      "name": "Hellfire",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "Deal $3 damage to ALL characters.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_EX1_169",
+      "name": "Innervate",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "Gain 1 Mana Crystal this turn only.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_EX1_197",
+      "name": "Shadow Word: Ruin",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "Destroy all minions with 5 or more Attack.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_EX1_302",
+      "name": "Mortal Coil",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "decks": [
+        "Combo Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_ICC_055",
+      "name": "Drain Soul",
+      "type": "SPELL",
+      "set": "CORE",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "text": "<b>Lifesteal</b>\nDeal $3 damage\nto a minion.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_REV_990",
+      "name": "Sanguine Depths",
+      "type": "LOCATION",
+      "set": "CORE",
+      "mechanics": [],
+      "text": "[x]Deal 1 damage to a \nminion and give it \n+2 Attack.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "name": "Royal Librarian",
+      "type": "MINION",
+      "set": "CORE",
+      "mechanics": [
+        "BATTLECRY",
+        "TRADEABLE"
+      ],
+      "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> <b>Silence</b>\na minion.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "CORE_UNG_205",
+      "name": "Glacial Shard",
+      "type": "MINION",
+      "set": "CORE",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> <b>Freeze</b> an enemy.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "DINO_402",
+      "name": "Bat Mask",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "mechanics": [],
+      "text": "Set a friendly minion's stats to 1/1. Fill your board with copies of it.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "DINO_426",
+      "name": "Ritual of Life",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "text": "<b>Discover</b> a 3-Cost minion. Summon a 2/3 copy of it.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_000",
+      "name": "Ysera, Emerald Aspect",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY",
+        "START_OF_GAME_KEYWORD"
+      ],
+      "text": "[x]<b>Start of Game:</b> Increase both\nplayers'maximum Mana by 5.\n<b>Battlecry:</b> Gain 3\nMana Crystals.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_456",
+      "name": "Darkrider",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "text": "<b>Battlecry:</b> If you're holding\na Dragon, <b>Discover</b> a Dragon\nwith a <b>Dark Gift</b>.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "EDR_457",
+      "name": "Brood Keeper",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> If you're holding a\nDragon, equip a 2/2 Sword.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_463",
+      "name": "Twilight Influence",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "text": "<b>Choose One -</b> Destroy a minion with 3 or less Attack; or Summon a random 2-Cost minion.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_492",
+      "name": "Mother Duck",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> Summon three 1/1 Ducklings with <b>Rush</b>.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_844",
+      "name": "Naralex, Herald of the Flights",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "AURA"
+      ],
+      "text": "Your first Dragon\neach turn costs (1).",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_846",
+      "name": "Shaladrassil",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "mechanics": [],
+      "text": "[x]Get all 5 Dream cards.\nIf you've played a higher\nCost card while holding\nthis, corrupt them!",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "EDR_856",
+      "name": "Nightmare Lord Xavius",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "text": "<b>Battlecry:</b> <b>Discover</b> a minion from your deck. Give it a <b>Dark Gift</b>.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "END_007",
+      "name": "Press the Advantage",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "mechanics": [],
+      "text": "Deal $1 damage. Give your hero +1 Attack this turn. Draw 1 card. Gain 1 Armor.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "END_011",
+      "name": "Acceleration Aura",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "mechanics": [],
+      "text": "At the start of your turn, gain a temporary Mana Crystal. Lasts 3 turns.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "END_033",
+      "name": "Prescient Slitherdrake",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "mechanics": [
+        "ELUSIVE"
+      ],
+      "text": "[x]<b>Elusive</b>\nCosts (3) less if you're\n holding another Dragon.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "FIR_907",
+      "name": "Amirdrassil",
+      "type": "LOCATION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [],
+      "text": "[x]Summon a 1-Cost minion.\nGain 1 Armor. Draw 1 card.\nRefresh 1 Mana |4(Crystal, Crystals).\n<i>(Improves each use!)</i>",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "FIR_939",
+      "name": "Shadowflame Suffusion",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "FIR_959",
+      "name": "Fyrakk the Blazing",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Immune</b> to Fire spells.\n<b>Battlecry:</b> Cast 15 Mana\nworth of Fire spells at\nrandom enemies.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_200",
+      "name": "Infest the Scullery",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Summon two random\n3-Cost minions.\n<i>(Improved by your hero\nattacks this game.)</i>",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_201",
+      "name": "Secret Ingredient",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "text": "<b>Choose One -</b>\nGive your hero +2 Attack this turn; or get a random Druid card.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_202",
+      "name": "Spiderling",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "AURA"
+      ],
+      "text": "Your hero has +1 Attack\non your turn.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_384",
+      "name": "Chainbreaker Hogger",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD",
+        "TAUNT"
+      ],
+      "text": "[x]<b>Taunt</b>\n<b>Start of Game:</b> Duplicate\nall other <b>Legendary</b> cards\nin your deck.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_399",
+      "name": "Imp Gang Stooge",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_421",
+      "name": "Warptooth",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "text": "[x]<b>Charge</b>. If four friendly\ncharacters take damage on\none of your turns, summon\n  this from hand or deck.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_509",
+      "name": "Godfrey the Betrayer",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "text": "[x]<b>Start of Game:</b> Overdrawn\ncards return to your hand\nwhen you have space.\nThey cost (1) less.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_510",
+      "name": "Annihilation",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Destroy all minions.\nSummon any Demons\nin the bottom 3 cards\nof your deck.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_511",
+      "name": "Spire of Solitude",
+      "type": "LOCATION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Summon a Demon\nwith stats equal to your\nhand size. It attacks a\nrandom enemy minion.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_513",
+      "name": "Caged Cranium",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Gain +1 Health\n  for each card in your hand. ",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_514",
+      "name": "The Unseen Atlas",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "Draw 3 cards.\nCosts (1) less for each card in your hand.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_515",
+      "name": "Shadow Rounds",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Deal $2 damage to an\nenemy minion. If it dies,\ncast this on another\nrandom enemy minion.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_872",
+      "name": "Spider Rider",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "text": "After your hero attacks, draw a card.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_875",
+      "name": "Staff of Trickery",
+      "type": "WEAPON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "DISCOVER",
+        "TRIGGER_VISUAL"
+      ],
+      "text": "[x]After your hero attacks,\n<b>Discover</b> a Druid card.\nReduce its Cost by\nyour hero's Attack.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_912",
+      "name": "Soothsayer",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "text": "[x]<b>Prepare</b>, <b>Taunt</b>\n<b>Deathrattle:</b> Restore #6 Health\nto your hero. Summon a\n random 6-Cost minion.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "JAIL_940",
+      "name": "Undeath Sentence",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "[x]Trigger the <b>Deathrattle</b> of\na random friendly minion\nthat died this game.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "JAIL_941",
+      "name": "Holy Embrace",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "mechanics": [],
+      "text": "Restore #4 Health.\n Get a 'Dark Embrace'\n that deals 4 damage.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "MEND_046",
+      "name": "Bashana Runetotem",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Get three\n2/2 Treants. Carve 12\nMana worth of Nature\nspells into them.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "TIME_031",
+      "name": "RAFAAM LADDER!!",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "mechanics": [],
+      "text": "Draw 3 cards of different Costs.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TIME_034",
+      "name": "Stadium Announcer",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Rewind</b>\n<b>Battlecry:</b> Both players\nequip a random weapon.\nGive yours +1/+1.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "TIME_064",
+      "name": "Chrono-Lord Deios",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "mechanics": [
+        "AURA"
+      ],
+      "text": "[x]Your <b>Battlecries</b>,\n<b>Deathrattles</b>, Hero Power,\nand end of turn effects\ntrigger twice.",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TIME_701",
+      "name": "Waveshaping",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "text": "<b>Discover</b> a card from your deck. The others get put on the bottom.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TIME_702",
+      "name": "Ebb and Flow",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "mechanics": [],
+      "text": "Deal $3 damage.\nIf you played a minion while holding this,\ngain 5 Armor.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TLC_100",
+      "name": "Elise the Navigator",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "<b>Battlecry:</b> If your deck started with 10 cards of different Costs, craft a custom location.",
+      "decks": [
+        "Attack Druid"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    },
+    {
+      "card_id": "TLC_451",
+      "name": "Cursed Catacombs",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "text": "<b>Discover</b> another\ncard from your deck. Make it <b>Temporary</b>.",
+      "decks": [
+        "Mother Drake Warlock"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TLC_600",
+      "name": "Windpeak Wyrm",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "text": "[x]<b>Battlecry:</b> Deal 5 damage\nand gain 5 Armor.\n<b>Kindred:</b> Costs (3) less.",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TLC_816",
+      "name": "Gravedawn Sunbloom",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "mechanics": [],
+      "text": "Draw 2 cards. <b>Kindred:</b> This costs (2) less.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": true,
+      "status": "registered"
+    },
+    {
+      "card_id": "TLC_817",
+      "name": "Reach Equilibrium",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "mechanics": [
+        "QUEST"
+      ],
+      "text": "[x]<b>Quest:</b> Cast 4 Holy spells\n<b>Reward:</b> Life's Breath.\n<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "decks": [
+        "Quest Priest"
+      ],
+      "rules_registered": false,
+      "status": "missing_rules"
+    }
+  ],
+  "mechanics": [
+    {
+      "mechanic": "AURA",
+      "decks": [
+        "Attack Druid",
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "BATTLECRY",
+      "decks": [
+        "Attack Druid",
+        "Combo Drake Warlock",
+        "Dragon Warrior",
+        "Mother Drake Warlock",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 5
+    },
+    {
+      "mechanic": "CHARGE",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "CHOOSE_ONE",
+      "decks": [
+        "Attack Druid",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "COLOSSAL",
+      "decks": [
+        "Attack Druid"
+      ],
+      "unsupported_card_count": 1
+    },
+    {
+      "mechanic": "DEATHRATTLE",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 1
+    },
+    {
+      "mechanic": "DISCOVER",
+      "decks": [
+        "Attack Druid",
+        "Dragon Warrior",
+        "Mother Drake Warlock",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 3
+    },
+    {
+      "mechanic": "ELUSIVE",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "ImmuneToSpellpower",
+      "decks": [
+        "Dragon Warrior",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "LIFESTEAL",
+      "decks": [
+        "Combo Drake Warlock",
+        "Mother Drake Warlock",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "QUEST",
+      "decks": [
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 1
+    },
+    {
+      "mechanic": "START_OF_GAME_KEYWORD",
+      "decks": [
+        "Attack Druid",
+        "Combo Drake Warlock",
+        "Dragon Warrior",
+        "Mother Drake Warlock"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "TAUNT",
+      "decks": [
+        "Combo Drake Warlock",
+        "Dragon Warrior",
+        "Mother Drake Warlock",
+        "Quest Priest"
+      ],
+      "unsupported_card_count": 1
+    },
+    {
+      "mechanic": "TRADEABLE",
+      "decks": [
+        "Dragon Warrior"
+      ],
+      "unsupported_card_count": 0
+    },
+    {
+      "mechanic": "TRIGGER_VISUAL",
+      "decks": [
+        "Attack Druid",
+        "Combo Drake Warlock",
+        "Mother Drake Warlock"
+      ],
+      "unsupported_card_count": 1
+    }
+  ],
+  "known_limitations": [
+    "The pinned simulator has no current Standard ban list.",
+    "A matching CardDef is an implementation inventory signal, not proof of scenario correctness.",
+    "Unsupported card choices and Discover windows cannot be treated as completed games.",
+    "The deck matrix does not audit the effects of cards offered by random generation or Discover outside this five-deck pool."
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/effect_composition.v1.json",
+  "declaration_sha256": "080d358ef68ffd7be8f339197c04a1da73d8850397136559fd2e30b2ef5f556d",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
+  "cards": [
+    {
+      "card_id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "abe54bfac81e1d08069797f53510b889aea12b3af2734aa008397935a08cba4a",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "CS2_004e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "CS2_004e"
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "END_007",
+      "name": "Press the Advantage",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "3a75f8ca6695b0e4ba7bf3747fe8a2265635ecbf68ab28db3fb0b72c2c26a6a2",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [
+        "BTA_02pe"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ENCHANT",
+          "target": "HERO",
+          "id": "BTA_02pe"
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        },
+        {
+          "op": "ARMOR",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CAP_801",
+      "name": "Haunt",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "006c2aa03cb57f7e795eeea24dc845edc8b63196aa85b0bff2d8f7a594a42fa8",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "CS2_009e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "CS2_009e"
+        },
+        {
+          "op": "SET_TAG",
+          "target": "TARGET",
+          "tag": "REBORN",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "name": "Royal Librarian",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "c38c5090588571afe075e5041c28044f5a3165a149fe31301b2862e6f4f51911",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SILENCE",
+          "target": "TARGET"
+        }
+      ],
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false,
+  "training_blockers": [
+    "This package is a migration pilot, not a deck-complete proof.",
+    "Generated card scenarios and deck dependency gates remain outstanding."
+  ]
+}

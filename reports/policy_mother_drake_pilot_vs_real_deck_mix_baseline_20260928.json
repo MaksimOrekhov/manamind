@@ -1,0 +1,1017 @@
+{
+  "checkpoint": "checkpoints\\policy_mother_drake_pilot_20260927.pt",
+  "deck_config": "data\\samples\\mother_drake_combo_drake_selfplay.json",
+  "opponent": "fixed cheapest-minion/first-attack baseline",
+  "evaluation_policy": "greedy argmax",
+  "seed_start": 74001,
+  "paired_seeds": 20,
+  "summary": {
+    "games": 80,
+    "wins": 76,
+    "losses": 4,
+    "draws": 0,
+    "decisive_win_rate": 0.95,
+    "score_rate_with_half_draws": 0.95,
+    "decisive_win_rate_wilson_95": [
+      0.878375474489178,
+      0.9803867628727044
+    ],
+    "by_policy_seat": {
+      "1": {
+        "WIN": 36,
+        "LOSS": 4
+      },
+      "2": {
+        "WIN": 40
+      }
+    },
+    "by_deck_order": {
+      "original": {
+        "WIN": 37,
+        "LOSS": 3
+      },
+      "swapped": {
+        "WIN": 39,
+        "LOSS": 1
+      }
+    },
+    "mean_actions": 53.2625
+  },
+  "matches": [
+    {
+      "seed": 74001,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 83
+    },
+    {
+      "seed": 74001,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 74001,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 74001,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 40
+    },
+    {
+      "seed": 74002,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 74002,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 48
+    },
+    {
+      "seed": 74002,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 89
+    },
+    {
+      "seed": 74002,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 60
+    },
+    {
+      "seed": 74003,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 46
+    },
+    {
+      "seed": 74003,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 38
+    },
+    {
+      "seed": 74003,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 39
+    },
+    {
+      "seed": 74003,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 56
+    },
+    {
+      "seed": 74004,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 58
+    },
+    {
+      "seed": 74004,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 55
+    },
+    {
+      "seed": 74004,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 38
+    },
+    {
+      "seed": 74004,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 83
+    },
+    {
+      "seed": 74005,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 45
+    },
+    {
+      "seed": 74005,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 67
+    },
+    {
+      "seed": 74005,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 41
+    },
+    {
+      "seed": 74005,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 50
+    },
+    {
+      "seed": 74006,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 49
+    },
+    {
+      "seed": 74006,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 41
+    },
+    {
+      "seed": 74006,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 49
+    },
+    {
+      "seed": 74006,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 73
+    },
+    {
+      "seed": 74007,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 74007,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 59
+    },
+    {
+      "seed": 74007,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 36
+    },
+    {
+      "seed": 74007,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 46
+    },
+    {
+      "seed": 74008,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 52
+    },
+    {
+      "seed": 74008,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 33
+    },
+    {
+      "seed": 74008,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 54
+    },
+    {
+      "seed": 74008,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 50
+    },
+    {
+      "seed": 74009,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 74009,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 58
+    },
+    {
+      "seed": 74009,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 74009,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 46
+    },
+    {
+      "seed": 74010,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 46
+    },
+    {
+      "seed": 74010,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 61
+    },
+    {
+      "seed": 74010,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 36
+    },
+    {
+      "seed": 74010,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 91
+    },
+    {
+      "seed": 74011,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 51
+    },
+    {
+      "seed": 74011,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 74011,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 55
+    },
+    {
+      "seed": 74011,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 106
+    },
+    {
+      "seed": 74012,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 35
+    },
+    {
+      "seed": 74012,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 73
+    },
+    {
+      "seed": 74012,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 42
+    },
+    {
+      "seed": 74012,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 63
+    },
+    {
+      "seed": 74013,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 71
+    },
+    {
+      "seed": 74013,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 33
+    },
+    {
+      "seed": 74013,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 40
+    },
+    {
+      "seed": 74013,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 36
+    },
+    {
+      "seed": 74014,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 33
+    },
+    {
+      "seed": 74014,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 37
+    },
+    {
+      "seed": 74014,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 53
+    },
+    {
+      "seed": 74014,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 104
+    },
+    {
+      "seed": 74015,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 65
+    },
+    {
+      "seed": 74015,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 69
+    },
+    {
+      "seed": 74015,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 45
+    },
+    {
+      "seed": 74015,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 44
+    },
+    {
+      "seed": 74016,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 56
+    },
+    {
+      "seed": 74016,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 41
+    },
+    {
+      "seed": 74016,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 41
+    },
+    {
+      "seed": 74016,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 47
+    },
+    {
+      "seed": 74017,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 63
+    },
+    {
+      "seed": 74017,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 43
+    },
+    {
+      "seed": 74017,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 81
+    },
+    {
+      "seed": 74017,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 56
+    },
+    {
+      "seed": 74018,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "LOSS",
+      "actions": 33
+    },
+    {
+      "seed": 74018,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 28
+    },
+    {
+      "seed": 74018,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 53
+    },
+    {
+      "seed": 74018,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 28
+    },
+    {
+      "seed": 74019,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 57
+    },
+    {
+      "seed": 74019,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 40
+    },
+    {
+      "seed": 74019,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 47
+    },
+    {
+      "seed": 74019,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 64
+    },
+    {
+      "seed": 74020,
+      "policy_seat": 1,
+      "deck_order": "original",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 66
+    },
+    {
+      "seed": 74020,
+      "policy_seat": 2,
+      "deck_order": "original",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 45
+    },
+    {
+      "seed": 74020,
+      "policy_seat": 1,
+      "deck_order": "swapped",
+      "result": "PLAYER1_WIN",
+      "policy_result": "WIN",
+      "actions": 70
+    },
+    {
+      "seed": 74020,
+      "policy_seat": 2,
+      "deck_order": "swapped",
+      "result": "PLAYER2_WIN",
+      "policy_result": "WIN",
+      "actions": 71
+    }
+  ],
+  "baseline_control": {
+    "opponent": "same fixed heuristic baseline on both seats",
+    "games": 40,
+    "results": {
+      "PLAYER2_WIN": 22,
+      "PLAYER1_WIN": 18
+    },
+    "matches": [
+      {
+        "seed": 74001,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 50
+      },
+      {
+        "seed": 74001,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 34
+      },
+      {
+        "seed": 74002,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 67
+      },
+      {
+        "seed": 74002,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 48
+      },
+      {
+        "seed": 74003,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 37
+      },
+      {
+        "seed": 74003,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 53
+      },
+      {
+        "seed": 74004,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 64
+      },
+      {
+        "seed": 74004,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 32
+      },
+      {
+        "seed": 74005,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 54
+      },
+      {
+        "seed": 74005,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 37
+      },
+      {
+        "seed": 74006,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 57
+      },
+      {
+        "seed": 74006,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 66
+      },
+      {
+        "seed": 74007,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 47
+      },
+      {
+        "seed": 74007,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 42
+      },
+      {
+        "seed": 74008,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 34
+      },
+      {
+        "seed": 74008,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 43
+      },
+      {
+        "seed": 74009,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 99
+      },
+      {
+        "seed": 74009,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 58
+      },
+      {
+        "seed": 74010,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 42
+      },
+      {
+        "seed": 74010,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 33
+      },
+      {
+        "seed": 74011,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 32
+      },
+      {
+        "seed": 74011,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 66
+      },
+      {
+        "seed": 74012,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 41
+      },
+      {
+        "seed": 74012,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 64
+      },
+      {
+        "seed": 74013,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 29
+      },
+      {
+        "seed": 74013,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 33
+      },
+      {
+        "seed": 74014,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 34
+      },
+      {
+        "seed": 74014,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 61
+      },
+      {
+        "seed": 74015,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 45
+      },
+      {
+        "seed": 74015,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 95
+      },
+      {
+        "seed": 74016,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 63
+      },
+      {
+        "seed": 74016,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 72
+      },
+      {
+        "seed": 74017,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 50
+      },
+      {
+        "seed": 74017,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 49
+      },
+      {
+        "seed": 74018,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 29
+      },
+      {
+        "seed": 74018,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 27
+      },
+      {
+        "seed": 74019,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 77
+      },
+      {
+        "seed": 74019,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 62
+      },
+      {
+        "seed": 74020,
+        "policy_seat": 0,
+        "deck_order": "original",
+        "result": "PLAYER2_WIN",
+        "policy_result": "PLAYER2_WIN",
+        "actions": 37
+      },
+      {
+        "seed": 74020,
+        "policy_seat": 0,
+        "deck_order": "swapped",
+        "result": "PLAYER1_WIN",
+        "policy_result": "PLAYER1_WIN",
+        "actions": 51
+      }
+    ]
+  },
+  "limitations": [
+    "The selected Mother Drake list has focused card and combo coverage, but not exhaustive edge-case coverage.",
+    "The current Standard ban list and complete card-effect pool are not yet audited.",
+    "This weak fixed opponent and small sample do not establish ranked-play strength."
+  ]
+}

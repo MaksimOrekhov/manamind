@@ -1,0 +1,29 @@
+[
+  {
+    "id": "EX1_116",
+    "dbfId": 559,
+    "name": "Leeroy Jenkins",
+    "cost": 5,
+    "attack": 6,
+    "health": 2,
+    "type": "MINION",
+    "cardClass": "NEUTRAL",
+    "mechanics": ["CHARGE"]
+  },
+  {
+    "id": "CS2_034",
+    "dbfId": 807,
+    "name": "Fireblast",
+    "cost": 2,
+    "type": "HERO_POWER",
+    "cardClass": "MAGE"
+  },
+  {
+    "id": "CS2_102",
+    "dbfId": 725,
+    "name": "Armor Up!",
+    "cost": 2,
+    "type": "HERO_POWER",
+    "cardClass": "WARRIOR"
+  }
+]

@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "game": "Hearthstone",
+  "format": "PREVIEW",
+  "set": "BE",
+  "valid_as_of": "2026-09-27",
+  "generated_at_utc": "2026-09-27T14:55:29.823736Z",
+  "source": "HearthstoneJSON latest collectible card data",
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json",
+  "resolved_source": "https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json",
+  "source_collectible_count": 8170,
+  "preview_card_count": 4,
+  "cards": [
+    {
+      "artist": "Kevin Sidharta",
+      "attack": 12,
+      "cardClass": "NEUTRAL",
+      "collectible": true,
+      "cost": 10,
+      "dbfId": 132339,
+      "elite": true,
+      "flavor": "Flavor Text to be revealed at the arrival of The Black Empire.",
+      "health": 12,
+      "id": "BE_013",
+      "name": "C'Thun, Eye of the Empire",
+      "rarity": "LEGENDARY",
+      "set": "BE",
+      "text": "<b>Old God.</b> If you've triggered all 4 C'Thun abilities this game, this minion's abilities are tripled.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Mooncolony",
+      "attack": 9,
+      "cardClass": "NEUTRAL",
+      "collectible": true,
+      "cost": 9,
+      "dbfId": 128132,
+      "elite": true,
+      "flavor": "M.O.T.H.E.R HAS ARRIVED!",
+      "health": 7,
+      "howToEarn": "Unlocked after completing the starter quests.",
+      "howToEarnGolden": "Earnable after purchasing the <i>Reign of the Black Empire</i> Tavern Pass.",
+      "id": "BE_036",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "M.O.T.H.E.R.",
+      "rarity": "LEGENDARY",
+      "set": "BE",
+      "text": "[x]<b>Battlecry:</b> Reduce the Cost of\na card in your hand by (5). This\ncontinues to the left and right\nwith (1) less reduction.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Mooncolony",
+      "attack": 5,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 6,
+      "dbfId": 129851,
+      "elite": true,
+      "flavor": "To craft a star from nothing would require tremendous power. Thus, Isiset was created as a font of limitless magic so she may further tend to the celestial garden.",
+      "hasDiamondSkin": true,
+      "health": 5,
+      "id": "BE_259",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Isiset",
+      "rarity": "LEGENDARY",
+      "referencedTags": [
+        "FREEZE"
+      ],
+      "set": "BE",
+      "text": "[x]<b>Battlecry:</b> Summon two\n10/10 Constructs. They\nare <b>Frozen</b> until you spend\n15 Mana on spells.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Tee Fuyuan",
+      "attack": 6,
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 129945,
+      "elite": true,
+      "flavor": "Staring contest, go!",
+      "health": 4,
+      "id": "BE_703",
+      "name": "Drest’agath",
+      "rarity": "LEGENDARY",
+      "set": "BE",
+      "text": "<b>Deathrattle:</b> Draw an <b>Old God</b>. If you can't, get a random <b>Old God</b>.",
+      "type": "MINION"
+    }
+  ]
+}
