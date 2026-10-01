@@ -457,7 +457,7 @@ def write_outputs(report, tasks, extension):
     capability_path.parent.mkdir(parents=True, exist_ok=True)
     write_if_changed(capability_path, json.dumps(capability, ensure_ascii=False, indent=2) + "\n")
     counts = report["baseline"]["route_counts"]
-    lines = ["# Card support audit — 2026-09-29", "", "## Scope", "",
+    lines = ["# Card support audit — 2026-09-29", "", "Historical control inventory, not an implementation queue. Current instructions are in AGENTS.md and docs/CAPABILITY_PACKAGE_PROCESS.md.", "", "## Scope", "",
       "This is a reproducible triage inventory for five saved Standard lists plus a deterministic stratified extension sample. It does not establish metagame representativeness, rules correctness, or deck training eligibility.", "",
       f"Catalog snapshot: `{report['inputs']['catalog']}` (valid as of {report['inputs']['catalog_valid_as_of']}); saved list pool: `{report['inputs']['deck_pool']}`. RosettaStone revision status: `{report['inputs']['rosettastone_git']['status']}`.", "",
       "## Counts", "", "| Measure | Count |", "|---|---:|",
@@ -488,13 +488,8 @@ def write_outputs(report, tasks, extension):
     lines.extend(f"- {lim}" for lim in report["known_limitations"])
     lines += ["", "Raw card-by-card fields, SHA-256 fingerprints, source evidence, and the deterministic sample are in `reports/card_support_analysis_20260929.json` and `data/samples/card_support_analysis_sample_20260929.json`.", ""]
     markdown = "\n".join(lines)
-    try:
-        (ROOT / "docs/CARD_SUPPORT_ANALYSIS_20260929.md").write_text(markdown, encoding="utf-8")
-    except PermissionError:
-        # Some managed workspaces allow patch-based edits but block process writes
-        # to docs/. Keep a generated copy available rather than failing after the
-        # JSON artifacts were already updated.
-        write_if_changed(ROOT / f"reports/card_support_analysis_{STAMP}.md", markdown)
+    # Generated control inventories belong with reports, not active instructions.
+    write_if_changed(ROOT / f"reports/card_support_analysis_{STAMP}.md", markdown)
 
 
 if __name__ == "__main__":

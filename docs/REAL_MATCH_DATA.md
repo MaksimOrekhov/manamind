@@ -1,8 +1,8 @@
 # Collecting a real ranked Standard match
 
-The current model code can train and evaluate, but the existing labels come from synthetic examples and a tiny, weak RosettaStone baseline. They do not teach the value network how current Hearthstone games end. The current card catalog is ready; real match examples are the next missing input.
+This is the local data-intake guide, not a development priority or permission to train. Product/data contracts are in [README](../README.md); current card-support priorities and simulator admission are in [the package process](CAPABILITY_PACKAGE_PROCESS.md) and [Standard registry](STANDARD_REGISTRY.md). Synthetic and weak-simulator labels do not demonstrate Hearthstone strength.
 
-## What we are building now
+## Implemented intake and limitations
 
 `scripts/audit_power_log.py` checks a **single-match** local `Power.log` for three conditions: the parser identifies Ranked, identifies Standard, and sees a complete win/loss/draw result. `scripts/import_power_log.py` then converts that match into local JSONL examples: visible states immediately before top-level card-play and attack actions, from the local player's perspective, labeled with the match result. The importer never writes player names or raw replay data.
 
