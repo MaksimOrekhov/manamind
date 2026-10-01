@@ -12,7 +12,9 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_card_support_analysis import sha256, write_if_changed  # noqa: E402
 
 DECLARATION = ROOT / "integrations/rosettastone/card_rules/repeated_trigger_draw.v1.json"
-CATALOG = ROOT / "data/cards/standard_current_enUS.json"
+from standard_profile import load_profile, profile_path
+PROFILE = load_profile()
+CATALOG = profile_path(PROFILE, "catalog")
 HEADER = ROOT / "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.hpp"
 SOURCE = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.cpp"
 MANIFEST = ROOT / "integrations/rosettastone/card_rules/repeated_trigger_draw.generated.json"

@@ -6,14 +6,16 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict, deque
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_ROOTS = ROOT / "data/cards/standard_roots_20261001_enUS.json"
-DEFAULT_OUTPUT = ROOT / "data/cards/standard_registry_20261001_enUS.json"
-DEFAULT_REPORTS = ROOT / "reports/standard_registry_20261001"
+sys.path.insert(0, str(ROOT))
+from scripts.standard_profile import load_profile, profile_path, engine_identity, execution_identity
+from scripts.verification_evidence import scoped_status
+from scripts.registry_admission import training_blockers, derive_admission
 PREVIOUS_AUDIT = ROOT / "reports/card_support_analysis_20260929.json"
 CAPABILITIES = ROOT / "integrations/rosettastone/card_rules/capabilities.json"
 ALIASES = ROOT / "integrations/rosettastone/card_rules/core_aliases.generated.json"
@@ -64,7 +66,7 @@ def read_json(path: Path) -> Any:
 
 
 def sha256_bytes(value: bytes) -> str:
-    return hashlib.sha256(value).hexdigest()
+    return hashlib.sha256(value.replace(b"\r\n", b"\n")).hexdigest()
 
 
 def canonical_hash(value: Any) -> str:
@@ -179,8 +181,21 @@ def evidence_status(card_id: str, old_cards: dict[str, dict[str, Any]], current_
     return {"status": "NO_SCOPED_EVIDENCE", "historical_status": prior, "reason": "No valid scoped evidence in the historical audit."}
 
 
-def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
-    source_bytes = (ROOT / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json").read_bytes()
+def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, identity: dict | None = None) -> tuple[dict[str, Any], dict[str, Any]]:
+    profile = profile or load_profile()
+    source_identity = engine_identity()
+    identity = identity or execution_identity(profile)
+    evidence_documents = [read_json(ROOT / path) for path in profile.get("verification_evidence", []) if (ROOT / path).exists()]
+    card_evidence = {}
+    for document in evidence_documents:
+        for evidence_id in document.get("cards", {}):
+            if evidence_id in card_evidence:
+                raise ValueError(f"Conflicting evidence owners: {evidence_id}")
+            card_evidence[evidence_id] = (document, scoped_status(document, evidence_id, identity))
+    gate_path = profile.get("session_match_evidence")
+    gate_doc = read_json(ROOT / gate_path) if gate_path and (ROOT / gate_path).exists() else {}
+    session_match_current = gate_doc.get("execution_identity") == identity and gate_doc.get("scope") == "FULL_PROFILE" and gate_doc.get("session_status") == "PASS" and gate_doc.get("match_status") == "PASS"
+    source_bytes = profile_path(profile, "metadata_snapshot").read_bytes()
     resource_cards_list = read_json(CARD_RESOURCE)
     resources = {c["id"]: c for c in resource_cards_list if c.get("id")}
     all_metadata = {row["id"]: row for row in json.loads(source_bytes.decode("utf-8-sig")) if row.get("id")}
@@ -188,26 +203,19 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
     root_ids = set(root_items)
     blocks = collect_card_blocks()
     alias_doc = read_json(ALIASES) if ALIASES.exists() else {"cards": []}
-    alias_evidence_doc = read_json(CORE_ALIAS_EVIDENCE) if CORE_ALIAS_EVIDENCE.exists() else {"cards": {}}
     composition_doc = read_json(COMPOSITIONS) if COMPOSITIONS.exists() else {"cards": []}
     attack_draw_doc = read_json(AFTER_ATTACK_DRAW) if AFTER_ATTACK_DRAW.exists() else {"cards": []}
-    attack_draw_evidence_doc = read_json(AFTER_ATTACK_DRAW_EVIDENCE) if AFTER_ATTACK_DRAW_EVIDENCE.exists() else {"cards": {}}
     repeated_draw_doc = read_json(REPEATED_TRIGGER_DRAW) if REPEATED_TRIGGER_DRAW.exists() else {"cards": []}
-    repeated_draw_evidence_doc = read_json(REPEATED_TRIGGER_DRAW_EVIDENCE) if REPEATED_TRIGGER_DRAW_EVIDENCE.exists() else {"cards": {}}
     filtered_school_draw_doc = read_json(FILTERED_SCHOOL_DRAW) if FILTERED_SCHOOL_DRAW.exists() else {"cards": []}
     keyword_only_doc = read_json(KEYWORD_ONLY) if KEYWORD_ONLY.exists() else {"cards": []}
     metadata_only_doc = read_json(METADATA_ONLY) if METADATA_ONLY.exists() else {"cards": []}
-    filtered_school_draw_evidence_doc = read_json(FILTERED_SCHOOL_DRAW_EVIDENCE) if FILTERED_SCHOOL_DRAW_EVIDENCE.exists() else {"cards": {}}
-    ban_path = ROOT / "data/cards/standard_bans_20261001.json"
+    ban_path = profile_path(profile, "bans")
     ban_doc = read_json(ban_path) if ban_path.exists() else {"format_bans": {"STANDARD": []}}
     standard_bans = set(ban_doc.get("format_bans", {}).get("STANDARD", []))
     aliases = {c["card_id"]: c for c in alias_doc.get("cards", [])}
-    alias_evidence = alias_evidence_doc.get("cards", {})
     compositions = {c["card_id"]: c for c in composition_doc.get("cards", [])}
     attack_draw = {c["card_id"]: c for c in attack_draw_doc.get("cards", [])}
-    attack_draw_evidence = attack_draw_evidence_doc.get("cards", {})
     repeated_draw = {c["card_id"]: c for c in repeated_draw_doc.get("cards", [])}
-    repeated_draw_evidence = repeated_draw_evidence_doc.get("cards", {})
     filtered_school_draw = {c["card_id"]: c for c in filtered_school_draw_doc.get("cards", [])}
     keyword_only = {c["card_id"]: c for c in keyword_only_doc.get("cards", [])}
     metadata_only = {c["card_id"]: c for c in metadata_only_doc.get("cards", [])}
@@ -215,7 +223,6 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
     # Generated C++ is an output format, not independent source evidence. Parsing
     # neighboring generated IDs as literal dependencies creates false graph edges.
     blocks = {card_id: block for card_id, block in blocks.items() if card_id not in generated_card_ids}
-    filtered_school_draw_evidence = filtered_school_draw_evidence_doc.get("cards", {})
     previous = read_json(PREVIOUS_AUDIT) if PREVIOUS_AUDIT.exists() else {"cards": []}
     old_cards = {c["card_id"]: c for c in previous.get("cards", [])}
     capabilities = read_json(CAPABILITIES) if CAPABILITIES.exists() else {}
@@ -315,198 +322,19 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
         route, route_reason = route_for(meta, block, generated)
         text_hash = canonical_hash(norm_text(meta.get("text", "")))
         hist = evidence_status(card_id, old_cards, text_hash)
-        scoped_evidence = attack_draw_evidence.get(card_id)
-        if card_id in attack_draw and scoped_evidence:
-            engine_library = ROOT / "vendor/RosettaStone/build-mana-py312/lib/RosettaStone.lib"
-            engine_cmake_cache = ROOT / "vendor/RosettaStone/build-mana-py312/CMakeCache.txt"
-            bridge_module = ROOT / "integrations/rosettastone/build/python/mana_rosetta_bridge.cp312-win_amd64.pyd"
-            bridge_cmake_cache = ROOT / "integrations/rosettastone/build/CMakeCache.txt"
-            native_scenario = ROOT / "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindAfterAttackDrawTests.cpp"
-            bridge_scenario = ROOT / "scripts/verify_after_attack_draw.py"
-            generator_script = ROOT / "scripts/generate_after_attack_draw.py"
-            generated_source = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindAfterAttackDrawGen.cpp"
-            declaration = ROOT / "integrations/rosettastone/card_rules/after_attack_draw.v1.json"
-            current_fingerprints = None
-            if all(path.exists() for path in (engine_library, bridge_module, native_scenario, bridge_scenario, generator_script, generated_source, declaration)):
-                current_fingerprints = {
-                    "rules_fingerprint": canonical_hash({
-                        "rules_text_sha256": attack_draw[card_id]["rules_text_sha256"],
-                        "declaration_sha256": sha256_bytes(declaration.read_bytes()),
-                        "generator_script_sha256": sha256_bytes(generator_script.read_bytes()),
-                        "generated_source_sha256": sha256_bytes(generated_source.read_bytes()),
-                    }),
-                    "pool_membership_sha256": canonical_hash("DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC; closure out of scope"),
-                    "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
-                    "capability_fingerprint": sha256_bytes(CAPABILITIES.read_bytes()),
-                    "engine_build_fingerprint": sha256_bytes(engine_library.read_bytes()),
-                    "scenario_fingerprint": canonical_hash({
-                        "native_scenario_sha256": sha256_bytes(native_scenario.read_bytes()),
-                        "bridge_smoke_sha256": sha256_bytes(bridge_scenario.read_bytes()),
-                        "bridge_module_sha256": sha256_bytes(bridge_module.read_bytes()),
-                    }),
-                }
-            freshness = evidence_freshness(scoped_evidence, current_fingerprints or {})
-            hist = {
-                "status": "CURRENT" if freshness == "CURRENT" and scoped_evidence.get("status") == "VERIFIED_SCOPED" else "STALE_OR_INCOMPLETE",
-                "historical_status": None,
-                "reason": "Generated after-attack package evidence is tied to metadata, declaration, source, capability, binary, bridge, and scenario fingerprints.",
-                "verification_scope": scoped_evidence.get("scope"),
-                "fingerprint_status": freshness,
-                "evidence_reference": "integrations/rosettastone/card_rules/after_attack_draw.evidence.json",
-            }
+        if card_id in card_evidence:
+            _, hist = card_evidence[card_id]
         if not norm_text(meta.get("text", "")):
             rules_status = "METADATA_ONLY_CANDIDATE"
-        elif registration in {"DIRECT_SOURCE_BLOCK", "GENERATED_EFFECT_COMPOSITION", "GENERATED_CORE_ALIAS", "GENERATED_EXACT_TEXT_ALIAS", "GENERATED_AFTER_ATTACK_DRAW", "GENERATED_REPEATED_TRIGGER_DRAW", "GENERATED_FILTERED_SCHOOL_DRAW", "GENERATED_KEYWORD_ONLY", "GENERATED_METADATA_ONLY"}:
+        elif registration.startswith("GENERATED_") or registration == "DIRECT_SOURCE_BLOCK":
             rules_status = "IMPLEMENTED_UNVERIFIED"
-        elif route == "UNKNOWN":
-            rules_status = "UNKNOWN"
         else:
-            rules_status = "UNSUPPORTED"
-        if card_id in attack_draw and hist.get("status") == "CURRENT":
+            rules_status = "UNKNOWN" if route == "UNKNOWN" else "UNSUPPORTED"
+        if hist["status"] == "CURRENT":
             rules_status = "VERIFIED_SCOPED"
-        if card_id in repeated_draw and repeated_draw_evidence.get(card_id):
-            scoped_evidence = repeated_draw_evidence[card_id]
-            engine_library = ROOT / "vendor/RosettaStone/build-mana-py312/lib/RosettaStone.lib"
-            bridge_module = ROOT / "integrations/rosettastone/build/python/mana_rosetta_bridge.cp312-win_amd64.pyd"
-            native_scenario = ROOT / "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindRepeatedTriggerDrawTests.cpp"
-            bridge_scenario = ROOT / "scripts/verify_repeated_trigger_draw.py"
-            generator_script = ROOT / "scripts/generate_repeated_trigger_draw.py"
-            generated_source = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.cpp"
-            declaration = ROOT / "integrations/rosettastone/card_rules/repeated_trigger_draw.v1.json"
-            current_fingerprints = None
-            if all(path.exists() for path in (engine_library, bridge_module, native_scenario, bridge_scenario, generator_script, generated_source, declaration)):
-                current_fingerprints = {
-                    "rules_fingerprint": canonical_hash({
-                        "rules_text_sha256": repeated_draw[card_id]["rules_text_sha256"],
-                        "declaration_sha256": sha256_bytes(declaration.read_bytes()),
-                        "generator_script_sha256": sha256_bytes(generator_script.read_bytes()),
-                        "generated_source_sha256": sha256_bytes(generated_source.read_bytes()),
-                    }),
-                    "pool_membership_sha256": canonical_hash(
-                        "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC; closure out of scope"
-                        if "DRAW" in " ".join(repeated_draw[card_id]["battlecry_effects"] + repeated_draw[card_id]["deathrattle_effects"])
-                        else "NO_DYNAMIC_OUTCOME_IN_SCOPED_ARMOR_EFFECT"),
-                    "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1"
-                        if "DRAW" in " ".join(repeated_draw[card_id]["battlecry_effects"] + repeated_draw[card_id]["deathrattle_effects"])
-                        else "NO_DYNAMIC_OUTCOME_IN_SCOPED_ARMOR_EFFECT_V1",
-                    "capability_fingerprint": sha256_bytes(CAPABILITIES.read_bytes()),
-                    "engine_build_fingerprint": sha256_bytes(engine_library.read_bytes()),
-                    "scenario_fingerprint": canonical_hash({
-                        "native_scenario_sha256": sha256_bytes(native_scenario.read_bytes()),
-                        "bridge_smoke_sha256": sha256_bytes(bridge_scenario.read_bytes()),
-                        "bridge_module_sha256": sha256_bytes(bridge_module.read_bytes()),
-                    }),
-                }
-            freshness = evidence_freshness(scoped_evidence, current_fingerprints or {})
-            hist = {
-                "status": "CURRENT" if freshness == "CURRENT" and scoped_evidence.get("status") == "VERIFIED_SCOPED" else "STALE_OR_INCOMPLETE",
-                "historical_status": None,
-                "reason": "Generated repeated-trigger package evidence is tied to metadata, declaration, source, capability, binary, bridge, and scenario fingerprints.",
-                "verification_scope": scoped_evidence.get("scope"),
-                "fingerprint_status": freshness,
-                "evidence_reference": "integrations/rosettastone/card_rules/repeated_trigger_draw.evidence.json",
-            }
-            if hist["status"] == "CURRENT":
-                rules_status = "VERIFIED_SCOPED"
-        if card_id in filtered_school_draw and filtered_school_draw_evidence.get(card_id):
-            scoped_evidence = filtered_school_draw_evidence[card_id]
-            engine_library = ROOT / "vendor/RosettaStone/build-mana-py312/lib/RosettaStone.lib"
-            bridge_module = ROOT / "integrations/rosettastone/build/python/mana_rosetta_bridge.cp312-win_amd64.pyd"
-            native_scenario = ROOT / "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindFilteredSchoolDrawTests.cpp"
-            bridge_scenario = ROOT / "scripts/verify_filtered_school_draw.py"
-            generator_script = ROOT / "scripts/generate_filtered_school_draw.py"
-            generated_source = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindFilteredSchoolDrawGen.cpp"
-            declaration = ROOT / "integrations/rosettastone/card_rules/filtered_school_draw.v1.json"
-            current_fingerprints = None
-            if all(path.exists() for path in (engine_library, bridge_module, native_scenario, bridge_scenario, generator_script, generated_source, declaration)):
-                manifest_entry = filtered_school_draw[card_id]
-                current_fingerprints = {
-                    "rules_fingerprint": canonical_hash({
-                        "rules_text_sha256": manifest_entry["rules_text_sha256"],
-                        "declaration_sha256": sha256_bytes(declaration.read_bytes()),
-                        "generator_script_sha256": sha256_bytes(generator_script.read_bytes()),
-                        "generated_source_sha256": sha256_bytes(generated_source.read_bytes()),
-                    }),
-                    "pool_membership_sha256": canonical_hash({
-                        "source": "player deck at resolution", "selector": manifest_entry["spell_school"],
-                        "members": "profile/deck dependent; not closed by this pilot",
-                    }),
-                    "pool_predicate_version": "DRAW_FROM_MATCHING_DECK_SPELL_SCHOOL_V1",
-                    "capability_fingerprint": sha256_bytes(CAPABILITIES.read_bytes()),
-                    "engine_build_fingerprint": sha256_bytes(engine_library.read_bytes()),
-                    "scenario_fingerprint": canonical_hash({
-                        "native_scenario_sha256": sha256_bytes(native_scenario.read_bytes()),
-                        "bridge_verifier_sha256": sha256_bytes(bridge_scenario.read_bytes()),
-                        "bridge_module_sha256": sha256_bytes(bridge_module.read_bytes()),
-                    }),
-                }
-            freshness = evidence_freshness(scoped_evidence, current_fingerprints or {})
-            hist = {
-                "status": "CURRENT" if freshness == "CURRENT" and scoped_evidence.get("status") == "VERIFIED_SCOPED" else "STALE_OR_INCOMPLETE",
-                "historical_status": None,
-                "reason": "Filtered school-draw evidence is tied to the card text, declaration, generator, native scenario, bridge, capability and engine fingerprints.",
-                "verification_scope": scoped_evidence.get("scope"),
-                "fingerprint_status": freshness,
-                "evidence_reference": "integrations/rosettastone/card_rules/filtered_school_draw.evidence.json",
-            }
-            if hist["status"] == "CURRENT":
-                rules_status = "VERIFIED_SCOPED"
-        if card_id in aliases and alias_evidence.get(card_id):
-            scoped_evidence = alias_evidence[card_id]
-            engine_library = ROOT / "vendor/RosettaStone/build-mana-py312/lib/RosettaStone.lib"
-            bridge_module = ROOT / "integrations/rosettastone/build/python/mana_rosetta_bridge.cp312-win_amd64.pyd"
-            native_executable = ROOT / "vendor/RosettaStone/build-mana-py312/bin/UnitTests.exe"
-            native_scenario = ROOT / "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindCoreAliasCardsTests.cpp"
-            bridge_verifier = ROOT / "scripts/verify_core_alias_uld133.py"
-            generator_script = ROOT / "scripts/generate_core_card_aliases.py"
-            generated_source = ROOT / alias_doc.get("generated_source", "")
-            generated_manifest = ALIASES
-            catalog_path = ROOT / "data/cards/standard_current_enUS.json"
-            generated_header = ROOT / alias_doc.get("generated_header", "")
-            declaration = ROOT / "integrations/rosettastone/card_rules/core_aliases.v1.json"
-            relevant_paths = (engine_library, engine_cmake_cache, bridge_module, bridge_cmake_cache,
-                              native_executable, native_scenario,
-                              bridge_verifier, generator_script, generated_source, generated_header,
-                              generated_manifest, catalog_path, declaration)
-            current_fingerprints = None
-            alias_entry = aliases[card_id]
-            registry_rules_hash = hashlib.sha256(norm_text(meta.get("text", "")).encode("utf-8")).hexdigest()
-            if (all(path.exists() for path in relevant_paths)
-                    and alias_entry["rules_text_sha256"] == registry_rules_hash):
-                current_fingerprints = {
-                    "rules_fingerprint": canonical_hash({
-                        "rules_text_sha256": alias_entry["rules_text_sha256"],
-                        "catalog_sha256": sha256_bytes(catalog_path.read_bytes()),
-                        "generated_manifest_sha256": sha256_bytes(generated_manifest.read_bytes()),
-                        "declaration_sha256": sha256_bytes(declaration.read_bytes()),
-                        "generator_script_sha256": sha256_bytes(generator_script.read_bytes()),
-                        "generated_header_sha256": sha256_bytes(generated_header.read_bytes()),
-                        "generated_source_sha256": sha256_bytes(generated_source.read_bytes()),
-                    }),
-                    "pool_membership_sha256": canonical_hash("NO_DYNAMIC_OUTCOME_IN_SCOPED_CARD_EFFECT"),
-                    "pool_predicate_version": "NO_DYNAMIC_OUTCOME_IN_SCOPED_CARD_EFFECT_V1",
-                    "capability_fingerprint": sha256_bytes(CAPABILITIES.read_bytes()),
-                    "engine_build_fingerprint": sha256_bytes(engine_library.read_bytes()),
-                    "scenario_fingerprint": canonical_hash({
-                        "native_scenario_sha256": sha256_bytes(native_scenario.read_bytes()),
-                        "native_executable_sha256": sha256_bytes(native_executable.read_bytes()),
-                        "bridge_verifier_sha256": sha256_bytes(bridge_verifier.read_bytes()),
-                        "bridge_module_sha256": sha256_bytes(bridge_module.read_bytes()),
-                        "engine_cmake_cache_sha256": sha256_bytes(engine_cmake_cache.read_bytes()),
-                        "bridge_cmake_cache_sha256": sha256_bytes(bridge_cmake_cache.read_bytes()),
-                    }),
-                }
-            freshness = evidence_freshness(scoped_evidence, current_fingerprints or {})
-            hist = {
-                "status": "CURRENT" if freshness == "CURRENT" and scoped_evidence.get("status") == "VERIFIED_SCOPED" else "STALE_OR_INCOMPLETE",
-                "historical_status": None,
-                "reason": "Core alias evidence is promoted only when metadata/declaration/source, capability, built library, native executable, bridge module and scenario fingerprints match.",
-                "verification_scope": scoped_evidence.get("scope"),
-                "fingerprint_status": freshness,
-                "evidence_reference": "integrations/rosettastone/card_rules/core_aliases.evidence.json",
-            }
-            if hist["status"] == "CURRENT":
-                rules_status = "VERIFIED_SCOPED"
+        evidence_row = card_evidence.get(card_id, ({}, {}))[0].get("cards", {}).get(card_id, {})
+        if card_id in compositions and compositions[card_id].get("implementation_route") == "CUSTOM":
+            route, route_reason = "CUSTOM", "Reviewed card-specific emitter; generated registration is not a reusable capability."
         dynamic = []
         for pool_kind in dynamic_pool_hypotheses(meta.get("text", "")):
             pid = f"POOL:{card_id}:{pool_kind}"
@@ -541,11 +369,11 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
             "card_id": card_id,
             "identity": {"name": meta.get("name"), "card_class": meta.get("cardClass"), "type": meta.get("type"), "set": meta.get("set"), "dbf_id": meta.get("dbfId")},
             "metadata": {"present": True, "source_sha256": roots_doc["source_sha256"], "card_record_sha256": canonical_hash(meta), "rules_text_sha256_normalized": text_hash, "rules_text": meta.get("text", ""), "mechanics": mechanics, "collectible": meta.get("collectible") is True},
-            "legality": {"root_pool": "STANDARD_COLLECTIBLE", "membership_reason": entry["membership_reason"], "ban_snapshot": "data/cards/standard_bans_20261001.json", "ban_snapshot_as_of": ban_doc.get("format_bans_checked_at"), "banned_in_standard_snapshot": card_id in standard_bans, "deck_legal_status": "BANNED_IN_PINNED_SNAPSHOT" if card_id in standard_bans else "STANDARD_ROOT_NOT_BANNED_IN_PINNED_SNAPSHOT"},
+            "legality": {"root_pool": "STANDARD_COLLECTIBLE", "membership_reason": entry["membership_reason"], "ban_snapshot": profile["bans"], "ban_snapshot_as_of": ban_doc.get("format_bans_checked_at"), "banned_in_standard_snapshot": card_id in standard_bans, "deck_legal_status": "BANNED_IN_PINNED_SNAPSHOT" if card_id in standard_bans else "STANDARD_ROOT_NOT_BANNED_IN_PINNED_SNAPSHOT"},
             "implementation": {"route_proposal": route, "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED", "route_reason": route_reason, "registration_status": registration, "source_file": (block or {}).get("source_file"), "task_types_observed": tasks, "generated_owner": generated, "generated_manifest_entry_sha256": canonical_hash(compositions.get(card_id) or aliases.get(card_id) or attack_draw.get(card_id) or repeated_draw.get(card_id) or filtered_school_draw.get(card_id) or keyword_only.get(card_id) or metadata_only.get(card_id)) if generated else None, "required_capabilities": tasks, "semantic_contract_reviewed": False},
-            "rules_verification": {"status": rules_status, "evidence_validity": hist["status"], "evidence": hist},
+            "rules_verification": {"status": rules_status, "evidence_validity": hist["status"], "evidence": hist, "training_scope": evidence_row.get("training_scope", "SCOPED_PACKAGE_ONLY")},
             "dependencies": {"known_source_candidates": [{"to": edge["to"], "kind": edge["kind"], "evidence_status": edge["evidence_status"]} for edge in linked_edges], "dynamic_pool_ids": dynamic, "static_dependency_status": "UNREVIEWED" if linked_edges else "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE", "dynamic_dependency_status": "UNRESOLVED" if dynamic else "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"},
-            "bridge_action_support": {"status": "NOT_AUDITED", "evidence": None},
+            "bridge_action_support": {"status": evidence_row.get("bridge_action_status", "NOT_AUDITED") if hist["status"] == "CURRENT" else "NOT_AUDITED", "evidence": None},
             "classifier_features": {"mechanics": mechanics, "action_signals": action_signals, "has_trigger_mechanic_metadata": bool(set(mechanics) & {"BATTLECRY", "DEATHRATTLE", "SPELLBURST", "FRENZY", "COMBO", "QUEST", "START_OF_GAME_KEYWORD"}), "metadata_and_text_only": True},
             "blockers": [],
         }
@@ -579,6 +407,7 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
             "source_file": (block or {}).get("source_file"), "task_types_observed": sorted(set((block or {}).get("task_types", []))),
             "rules_status": "IMPLEMENTED_UNVERIFIED" if block or generated else "UNKNOWN",
             "dependency_status": "UNREVIEWED", "unresolved_dynamic_pool_ids": sorted(node_pool_ids.get(dep_id, [])),
+            "rules_verification": {"status": "VERIFIED_SCOPED" if card_evidence.get(dep_id, ({}, {}))[1].get("status") == "CURRENT" else "IMPLEMENTED_UNVERIFIED", "evidence_validity": card_evidence.get(dep_id, ({}, {}))[1].get("status", "NO_SCOPED_EVIDENCE"), "training_scope": card_evidence.get(dep_id, ({}, {}))[0].get("cards", {}).get(dep_id, {}).get("training_scope", "SCOPED_PACKAGE_ONLY")},
         }
     # Static source-reference closure is explicitly a lower bound; unresolved pools remain separate.
     closures: dict[str, dict[str, Any]] = {}
@@ -591,32 +420,31 @@ def build_registry(roots_doc: dict[str, Any]) -> tuple[dict[str, Any], dict[str,
         closure = {"known_source_candidate_ids": sorted(seen), "known_unique_closure_count_including_root": len(seen | {root_id}), "closure_completeness": "INCOMPLETE_UNRESOLVED_DYNAMIC" if unresolved_pools else "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS", "unresolved_dynamic_pool_ids": sorted(set(unresolved_pools))}
         closures[root_id] = closure
         row = card_rows[root_id]
-        blocks_for_card = []
-        if row["rules_verification"]["status"] not in {"VERIFIED_SCOPED"}:
-            blocks_for_card.append(f"rules:{row['rules_verification']['status']}")
-        if closure["unresolved_dynamic_pool_ids"]:
-            blocks_for_card.append("dependency:unresolved_dynamic_pool")
-        if any(e["evidence_status"] == "UNREVIEWED_SOURCE_CANDIDATE" for e in edges if e["from"] in reachable_known):
+        graph_fingerprint = canonical_hash({"known_ids": sorted(seen), "edges": [e for e in edges if e["from"] in reachable_known], "pools": {p: pool_defs[p] for p in closure["unresolved_dynamic_pool_ids"]}})
+        closure["graph_fingerprint"] = graph_fingerprint
+        document, validity = card_evidence.get(root_id, ({}, {}))
+        review = document.get("cards", {}).get(root_id, {}).get("dependency_review", {})
+        if (validity.get("status") == "CURRENT" and review.get("scope") == "FULL_RULES" and review.get("graph_fingerprint") == graph_fingerprint and not unresolved_pools):
+            closure["closure_completeness"] = "COMPLETE_REVIEWED"
+        blocks_for_card = training_blockers(row, closure, {**dependency_nodes, **card_rows}, session_match_current=session_match_current)
+        if any(e["evidence_status"] == "UNREVIEWED_SOURCE_CANDIDATE" for e in edges if e["from"] in reachable_known) and closure["closure_completeness"] != "COMPLETE_REVIEWED":
             blocks_for_card.append("dependency:static_edges_unreviewed")
-        if row["bridge_action_support"]["status"] != "VERIFIED_SCOPED":
-            blocks_for_card.append("bridge_action:not_audited")
-        if hist["status"] == "STALE":
-            blocks_for_card.append("evidence:stale_historical_scope")
         row["blockers"] = blocks_for_card
         row["dependency_closure"] = closure
-        row["training_eligibility"] = {"profile_id": "standard_full_20261001_v1", "status": "BLOCKED" if blocks_for_card else "ELIGIBLE", "blockers": blocks_for_card}
+        row["training_eligibility"] = {"profile_id": profile["profile_id"], "status": "BLOCKED" if blocks_for_card else "ELIGIBLE", "blockers": blocks_for_card}
+    admission = derive_admission(card_rows, profile_id=profile["profile_id"], session_match_current=session_match_current, decks=gate_doc.get("decks", []) if session_match_current else [])
 
     registry = {
         "schema_version": 1,
-        "registry_id": "standard_registry_20261001_v1",
-        "snapshot": {"format": "STANDARD", "as_of_date": roots_doc["as_of_date"], "root_manifest": "data/cards/standard_roots_20261001_enUS.json", "root_membership_sha256": roots_doc["root_membership_sha256"], "metadata_source": roots_doc["source_name"], "metadata_source_sha256": roots_doc["source_sha256"], "root_metadata_sha256": root_metadata_hash, "ban_manifest": "data/cards/standard_bans_20261001.json", "rules_engine_revision": "e10749b with local modifications; dirty working tree, full source/binary identity unavailable"},
+        "registry_id": profile["registry_id"],
+        "snapshot": {"format": "STANDARD", "as_of_date": roots_doc["as_of_date"], "root_manifest": profile["roots"], "root_membership_sha256": roots_doc["root_membership_sha256"], "metadata_source": roots_doc["source_name"], "metadata_source_sha256": roots_doc["source_sha256"], "root_metadata_sha256": root_metadata_hash, "ban_manifest": profile["bans"], "rules_engine_revision": source_identity["source_commit"], "engine_source_identity": source_identity, "execution_identity": identity},
         "ownership": {"registry_fields": "Generated consolidation only; do not hand edit generated card statuses.", "source_metadata": "HearthstoneJSON dated archive and scope manifest", "implementation_routes": "Source block scanner and generated manifests, heuristic proposals", "capability_contracts": "integrations/rosettastone/card_rules/capabilities.json; file inventory does not certify semantics", "evidence": "Historical audit preserved by reference; scoped evidence requires reproducible execution identity to become current PASS", "dependencies": "Source literals are candidates until reviewed; pool definitions require independent predicate validation"},
-        "input_fingerprints": {"root_manifest_sha256": sha256_bytes((ROOT / "data/cards/standard_roots_20261001_enUS.json").read_bytes()), "ban_snapshot_sha256": sha256_bytes(ban_path.read_bytes()) if ban_path.exists() else None, "capabilities_sha256": sha256_bytes(CAPABILITIES.read_bytes()) if CAPABILITIES.exists() else None, "alias_manifest_sha256": sha256_bytes(ALIASES.read_bytes()) if ALIASES.exists() else None, "composition_manifest_sha256": sha256_bytes(COMPOSITIONS.read_bytes()) if COMPOSITIONS.exists() else None, "after_attack_draw_manifest_sha256": sha256_bytes(AFTER_ATTACK_DRAW.read_bytes()) if AFTER_ATTACK_DRAW.exists() else None, "after_attack_draw_evidence_sha256": sha256_bytes(AFTER_ATTACK_DRAW_EVIDENCE.read_bytes()) if AFTER_ATTACK_DRAW_EVIDENCE.exists() else None, "repeated_trigger_draw_manifest_sha256": sha256_bytes(REPEATED_TRIGGER_DRAW.read_bytes()) if REPEATED_TRIGGER_DRAW.exists() else None, "repeated_trigger_draw_evidence_sha256": sha256_bytes(REPEATED_TRIGGER_DRAW_EVIDENCE.read_bytes()) if REPEATED_TRIGGER_DRAW_EVIDENCE.exists() else None, "filtered_school_draw_manifest_sha256": sha256_bytes(FILTERED_SCHOOL_DRAW.read_bytes()) if FILTERED_SCHOOL_DRAW.exists() else None, "filtered_school_draw_evidence_sha256": sha256_bytes(FILTERED_SCHOOL_DRAW_EVIDENCE.read_bytes()) if FILTERED_SCHOOL_DRAW_EVIDENCE.exists() else None, "keyword_only_manifest_sha256": sha256_bytes(KEYWORD_ONLY.read_bytes()) if KEYWORD_ONLY.exists() else None, "metadata_only_manifest_sha256": sha256_bytes(METADATA_ONLY.read_bytes()) if METADATA_ONLY.exists() else None, "core_alias_evidence_sha256": sha256_bytes(CORE_ALIAS_EVIDENCE.read_bytes()) if CORE_ALIAS_EVIDENCE.exists() else None, "pool_detector_sha256": sha256_bytes(Path(__file__).read_bytes()), "historical_audit_sha256": sha256_bytes(PREVIOUS_AUDIT.read_bytes()) if PREVIOUS_AUDIT.exists() else None},
-        "policy": {"policy_id": "standard_full_20261001_v1", "scope": "All 1,185 pinned collectible Standard roots plus recursively reachable outcomes", "require_rules_status": ["VERIFIED_SCOPED"], "require_fresh_evidence": True, "evidence_freshness_fingerprint_fields": ["rules_fingerprint", "pool_membership_sha256", "pool_predicate_version", "capability_fingerprint", "engine_build_fingerprint", "scenario_fingerprint"], "require_reviewed_dependency_closure": True, "require_no_unresolved_dynamic_pools": True, "require_bridge_action_status": "VERIFIED_SCOPED", "require_session_and_match_gates": True, "result": "BLOCKED until all stated requirements have current scoped evidence", "training_started": False},
-        "computed_admission": {"status": "BLOCKED", "eligible_roots": 0, "eligible_decks": 0, "session_match_gates_status": "NOT_MET", "blockers": ["No current VERIFIED_SCOPED full-profile rules evidence for the complete root pool.", "Static dependency edges are not reviewed and dynamic pools are unresolved.", "Bridge/action support is not audited for this registry/build identity.", "No current full-pool deck/session scenario and match gate evidence."]},
-        "evidence_invalidation": {"strategy": "Compare per-evidence fingerprints; invalidate dependents when any relevant fingerprint changes, including pool predicate version even if resolved membership stays equal. Unknown impact scope invalidates conservatively.", "available_current_evidence_fingerprints": False, "reason": "Historical scenario evidence lacks complete build/scenario/dependency fingerprints; it is retained as stale history.", "impact_inputs": ["normalized rules text", "CardDef source block", "capability contracts", "generator declaration and output", "engine source/binary identity", "scenario fixture/expectations", "pool predicate version", "resolved pool membership hash", "bridge action schema"]},
+        "input_fingerprints": {"root_manifest_sha256": sha256_bytes(profile_path(profile, "roots").read_bytes()), "ban_snapshot_sha256": sha256_bytes(ban_path.read_bytes()) if ban_path.exists() else None, "capabilities_sha256": sha256_bytes(CAPABILITIES.read_bytes()) if CAPABILITIES.exists() else None, "alias_manifest_sha256": sha256_bytes(ALIASES.read_bytes()) if ALIASES.exists() else None, "composition_manifest_sha256": sha256_bytes(COMPOSITIONS.read_bytes()) if COMPOSITIONS.exists() else None, "after_attack_draw_manifest_sha256": sha256_bytes(AFTER_ATTACK_DRAW.read_bytes()) if AFTER_ATTACK_DRAW.exists() else None, "after_attack_draw_evidence_sha256": sha256_bytes(AFTER_ATTACK_DRAW_EVIDENCE.read_bytes()) if AFTER_ATTACK_DRAW_EVIDENCE.exists() else None, "repeated_trigger_draw_manifest_sha256": sha256_bytes(REPEATED_TRIGGER_DRAW.read_bytes()) if REPEATED_TRIGGER_DRAW.exists() else None, "repeated_trigger_draw_evidence_sha256": sha256_bytes(REPEATED_TRIGGER_DRAW_EVIDENCE.read_bytes()) if REPEATED_TRIGGER_DRAW_EVIDENCE.exists() else None, "filtered_school_draw_manifest_sha256": sha256_bytes(FILTERED_SCHOOL_DRAW.read_bytes()) if FILTERED_SCHOOL_DRAW.exists() else None, "filtered_school_draw_evidence_sha256": sha256_bytes(FILTERED_SCHOOL_DRAW_EVIDENCE.read_bytes()) if FILTERED_SCHOOL_DRAW_EVIDENCE.exists() else None, "keyword_only_manifest_sha256": sha256_bytes(KEYWORD_ONLY.read_bytes()) if KEYWORD_ONLY.exists() else None, "metadata_only_manifest_sha256": sha256_bytes(METADATA_ONLY.read_bytes()) if METADATA_ONLY.exists() else None, "core_alias_evidence_sha256": sha256_bytes(CORE_ALIAS_EVIDENCE.read_bytes()) if CORE_ALIAS_EVIDENCE.exists() else None, "pool_detector_sha256": sha256_bytes(Path(__file__).read_bytes()), "historical_audit_sha256": sha256_bytes(PREVIOUS_AUDIT.read_bytes()) if PREVIOUS_AUDIT.exists() else None},
+        "policy": {"policy_id": profile["profile_id"], "scope": f"All {len(card_rows)} pinned collectible Standard roots plus recursively reachable outcomes", "require_rules_status": ["VERIFIED_SCOPED"], "require_fresh_evidence": True, "evidence_freshness_fingerprint_fields": ["rules_fingerprint", "pool_membership_sha256", "pool_predicate_version", "capability_fingerprint", "engine_build_fingerprint", "scenario_fingerprint"], "require_reviewed_dependency_closure": True, "require_no_unresolved_dynamic_pools": True, "require_bridge_action_status": "VERIFIED_SCOPED", "require_session_and_match_gates": True, "result": admission["status"], "training_started": False},
+        "computed_admission": admission,
+        "evidence_invalidation": {"strategy": "Compare per-evidence fingerprints; invalidate dependents when any relevant fingerprint changes, including pool predicate version even if resolved membership stays equal. Unknown impact scope invalidates conservatively.", "available_current_evidence_fingerprints": any(v[1]["status"] == "CURRENT" for v in card_evidence.values()), "reason": "Historical scenario evidence lacks complete build/scenario/dependency fingerprints; it is retained as stale history.", "impact_inputs": ["normalized rules text", "CardDef source block", "capability contracts", "generator declaration and output", "engine source/binary identity", "scenario fixture/expectations", "pool predicate version", "resolved pool membership hash", "bridge action schema"]},
         "classifier": {"route_vocabulary": ["AUTO", "COMPOSABLE", "MISSING_PRIMITIVE", "CUSTOM", "UNKNOWN"], "proposals_only": True, "route_counts": dict(sorted(Counter(row["implementation"]["route_proposal"] for row in card_rows.values()).items())), "route_method": "Pinned text, source-registration shape and bounded generated manifests; no route is correctness evidence.", "capability_inventory_sha256": canonical_hash(capabilities), "semantic_contract_reviewed_count": sum(bool(t.get("semantics_reviewed")) for t in capabilities.get("simple_tasks", []))},
-        "counts": {"roots": len(card_rows), "metadata_present": sum(row["metadata"]["present"] for row in card_rows.values()), "direct_source_registered": sum(row["implementation"]["registration_status"] == "DIRECT_SOURCE_BLOCK" for row in card_rows.values()), "generated_registered": sum(row["implementation"]["registration_status"].startswith("GENERATED_") for row in card_rows.values()), "text_bearing_without_detected_registration": sum(bool(norm_text(row["metadata"]["rules_text"])) and row["implementation"]["registration_status"] == "NO_DETECTED_RULE_REGISTRATION" for row in card_rows.values()), "textless_metadata_candidates": sum(row["implementation"]["registration_status"] == "TEXTLESS_METADATA" for row in card_rows.values()), "rules_verified_scoped_current": sum(row["rules_verification"]["status"] == "VERIFIED_SCOPED" and row["rules_verification"]["evidence_validity"] == "CURRENT" for row in card_rows.values()), "stale_historical_scoped_evidence": sum(row["rules_verification"]["evidence_validity"] == "STALE" for row in card_rows.values()), "unresolved_dynamic_pool_definitions": len(pool_defs), "unique_known_dependency_nodes": len({e["to"] for e in edges}), "unreviewed_static_source_edges": sum(e["evidence_status"] == "UNREVIEWED_SOURCE_CANDIDATE" for e in edges), "roots_with_complete_dependency_closure": 0, "roots_training_eligible": sum(row["training_eligibility"]["status"] == "ELIGIBLE" for row in card_rows.values())},
+        "counts": {"roots": len(card_rows), "metadata_present": sum(row["metadata"]["present"] for row in card_rows.values()), "direct_source_registered": sum(row["implementation"]["registration_status"] == "DIRECT_SOURCE_BLOCK" for row in card_rows.values()), "generated_registered": sum(row["implementation"]["registration_status"].startswith("GENERATED_") for row in card_rows.values()), "text_bearing_without_detected_registration": sum(bool(norm_text(row["metadata"]["rules_text"])) and row["implementation"]["registration_status"] == "NO_DETECTED_RULE_REGISTRATION" for row in card_rows.values()), "textless_metadata_candidates": sum(row["implementation"]["registration_status"] == "TEXTLESS_METADATA" for row in card_rows.values()), "rules_verified_scoped_current": sum(row["rules_verification"]["status"] == "VERIFIED_SCOPED" and row["rules_verification"]["evidence_validity"] == "CURRENT" for row in card_rows.values()), "stale_historical_scoped_evidence": sum(row["rules_verification"]["evidence_validity"] == "STALE" for row in card_rows.values()), "unresolved_dynamic_pool_definitions": len(pool_defs), "unique_known_dependency_nodes": len({e["to"] for e in edges}), "unreviewed_static_source_edges": sum(e["evidence_status"] == "UNREVIEWED_SOURCE_CANDIDATE" for e in edges), "roots_with_complete_dependency_closure": sum(c["closure_completeness"] == "COMPLETE_REVIEWED" for c in closures.values()), "roots_training_eligible": sum(row["training_eligibility"]["status"] == "ELIGIBLE" for row in card_rows.values())},
         "cards": card_rows,
         "dependency_graph": {"nodes": sorted(root_ids | {e["to"] for e in edges}), "dependency_node_records": dependency_nodes, "edges": edges, "pools": pool_defs, "pool_detector": {"version": "standard_pool_hypotheses_v2", "source_sha256": sha256_bytes(Path(__file__).read_bytes()), "random_board_targets_excluded": True, "fixed_named_token_summons_excluded": True, "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"}, "unique_known_nonroot_dependency_nodes": len(reachable_dependency_ids), "known_closure_is_lower_bound": True},
         "deck_legality": {"bans": "Separate dated snapshot; Standard bans are applied to root records only. Root membership is not a generated-pool legality rule.", "status": "ROOT_MEMBERSHIP_AND_PINNED_BAN_SNAPSHOT_APPLIED", "standard_ban_count": len(standard_bans), "full_deck_validation": "NOT_A_DECK_LIST; deck/session profiles require separate validation"},
@@ -650,18 +478,18 @@ def build_reports(registry: dict[str, Any], aux: dict[str, Any]) -> tuple[dict[s
     pool_root_origins = pool_origins & set(cards)
     report = {
         "schema_version": 1,
-        "report_id": "standard_registry_20261001",
+        "report_id": registry["registry_id"],
         "registry_id": registry["registry_id"],
         "snapshot": registry["snapshot"],
-        "summary": {**counts, "known_dependency_closure": "LOWER_BOUND_ONLY; static source candidates unreviewed and dynamic pools unresolved", "full_standard_training": "BLOCKED", "meta_frequency_coverage": "UNKNOWN; no current meta-frequency source attached"},
+        "summary": {**counts, "known_dependency_closure": "LOWER_BOUND_ONLY; static source candidates unreviewed and dynamic pools unresolved", "full_standard_training": registry["computed_admission"]["status"], "meta_frequency_coverage": "UNKNOWN; no current meta-frequency source attached"},
         "registration_and_rules": {"route_counts": registry["classifier"]["route_counts"], "registration_counts": {"direct_source_block": counts["direct_source_registered"], "recognized_generated_manifest": counts["generated_registered"], "missing_detected_registration_with_text": counts["text_bearing_without_detected_registration"], "textless_metadata_candidates": counts["textless_metadata_candidates"]}, "current_rules_verified": counts["rules_verified_scoped_current"], "historical_scoped_evidence_marked_stale": counts["stale_historical_scoped_evidence"]},
-        "dependencies": {"unique_known_nonroot_nodes": registry["dependency_graph"]["unique_known_nonroot_dependency_nodes"], "source_candidate_edges": len(aux["edges"]), "unreviewed_static_edges": counts["unreviewed_static_source_edges"], "unresolved_dynamic_pool_definitions": len(aux["pools"]), "pool_candidate_definitions_by_kind": pool_kind_counts, "roots_with_any_unresolved_dynamic_pool": len(pool_root_origins), "known_dependency_origins_with_pool_candidates": len(pool_origins - set(cards)), "known_closure_complete_roots": 0, "most_reused_known_nodes": shared_dependencies, "pool_candidate_detector": registry["dependency_graph"]["pool_detector"], "unknown_scope_warning": "Observed literal references and metadata heuristics are not complete rules dependencies; pool candidates are neither confirmed pools nor exhaustive."},
-        "training_admission": {"profile_id": registry["policy"]["policy_id"], "status": "BLOCKED", "eligible_roots": 0, "eligible_decks": 0, "blocker_classes": ["no current full-scope rules scenario evidence", "static source edges unreviewed", "dynamic pool definitions unresolved", "bridge/action coverage not audited against this registry", "session/match gates not current for this full pool"]},
+        "dependencies": {"unique_known_nonroot_nodes": registry["dependency_graph"]["unique_known_nonroot_dependency_nodes"], "source_candidate_edges": len(aux["edges"]), "unreviewed_static_edges": counts["unreviewed_static_source_edges"], "unresolved_dynamic_pool_definitions": len(aux["pools"]), "pool_candidate_definitions_by_kind": pool_kind_counts, "roots_with_any_unresolved_dynamic_pool": len(pool_root_origins), "known_dependency_origins_with_pool_candidates": len(pool_origins - set(cards)), "known_closure_complete_roots": counts["roots_with_complete_dependency_closure"], "most_reused_known_nodes": shared_dependencies, "pool_candidate_detector": registry["dependency_graph"]["pool_detector"], "unknown_scope_warning": "Observed literal references and metadata heuristics are not complete rules dependencies; pool candidates are neither confirmed pools nor exhaustive."},
+        "training_admission": registry["computed_admission"],
         "candidate_packages": packages,
         "missing_capability_review_queue": [p for p in packages if p["unregistered_text_root_count"]],
         "known_limitations": ["Route and action family counts are text/source heuristics, not verified mechanic counts.", "Source registration scanning does not prove the currently loaded RosettaStone binary contains those definitions.", "Dependency closure is incomplete: source literals are unreviewed and heuristic dynamic pool candidates have no exact members or runtime parity evidence; random board targets and fixed named-token summons are excluded by detector v2, but the candidate list is not exhaustive.", "Historical VERIFIED_SCOPED audit entries are retained but marked stale for current admission because reproducible build/source identity is absent.", "No 2026-10-01 meta-frequency dataset is attached, so package order cannot be described as current-meta priority.", "The bridge/action audit and session/match gates are not synthesized from old five-deck pilot claims."],
     }
-    lines = ["# Standard registry report — 2026-10-01", "", f"Registry: `{registry['registry_id']}`. Full Standard admission: **BLOCKED**.", "", "## Pool and implementation inventory", "", f"- Collectible roots: **{counts['roots']}**; metadata present: **{counts['metadata_present']}**.", f"- Source registration: **{counts['direct_source_registered']}** direct, **{counts['generated_registered']}** generated manifest entries, **{counts['text_bearing_without_detected_registration']}** text-bearing without detected registration, **{counts['textless_metadata_candidates']}** textless metadata candidates.", f"- Current rules verification: **{counts['rules_verified_scoped_current']}**; historical scoped evidence marked stale: **{counts['stale_historical_scoped_evidence']}**.", f"- Route proposals: `{json.dumps(registry['classifier']['route_counts'], ensure_ascii=False, sort_keys=True)}` (heuristic; not correctness status).", "", "## Dependency graph", "", f"- Unique known non-root nodes: **{registry['dependency_graph']['unique_known_nonroot_dependency_nodes']}**.", f"- Static literal/reference candidates: **{len(aux['edges'])}**, all requiring review or limited declaration evidence.", f"- Unresolved dynamic pool candidate signals: **{len(aux['pools'])}** across **{len(pool_root_origins)}** Standard roots and **{len(pool_origins - set(cards))}** known dependency origins; by kind: `{json.dumps(pool_kind_counts, sort_keys=True)}`.", "- Detector v2 excludes random board targets and fixed named-token summons; pool candidates remain heuristic, not a confirmed or exhaustive pool inventory.", "- Complete root closures: **0**. The known graph is a lower bound; absent edges are not proof of no dependency.", "", "## Admission blockers", "", "- No roots are admitted to `standard_full_20261001_v1`.", "- Current evidence is missing or stale, dependency edges/pools remain unresolved, bridge actions are not audited in this profile, and full session/match gates remain open.", "- This report does not authorize or start pooled training.", "", "## Candidate capability packages", "", "Priority is not inferred from metadata frequency. These are review groupings based on text signals; unlock counts remain unknown until capabilities and dependency closures are verified.", "", "| Signal | Candidate roots | Confidence |", "|---|---:|---|"]
+    lines = [f"# Standard registry report — {registry['snapshot']['as_of_date']}", "", f"Registry: `{registry['registry_id']}`. Full Standard admission: **{registry['computed_admission']['status']}**.", "", "## Pool and implementation inventory", "", f"- Collectible roots: **{counts['roots']}**; metadata present: **{counts['metadata_present']}**.", f"- Source registration: **{counts['direct_source_registered']}** direct, **{counts['generated_registered']}** generated manifest entries, **{counts['text_bearing_without_detected_registration']}** text-bearing without detected registration, **{counts['textless_metadata_candidates']}** textless metadata candidates.", f"- Current rules verification: **{counts['rules_verified_scoped_current']}**; historical scoped evidence marked stale: **{counts['stale_historical_scoped_evidence']}**.", f"- Route proposals: `{json.dumps(registry['classifier']['route_counts'], ensure_ascii=False, sort_keys=True)}` (heuristic; not correctness status).", "", "## Dependency graph", "", f"- Unique known non-root nodes: **{registry['dependency_graph']['unique_known_nonroot_dependency_nodes']}**.", f"- Static literal/reference candidates: **{len(aux['edges'])}**, all requiring review or limited declaration evidence.", f"- Unresolved dynamic pool candidate signals: **{len(aux['pools'])}** across **{len(pool_root_origins)}** Standard roots and **{len(pool_origins - set(cards))}** known dependency origins; by kind: `{json.dumps(pool_kind_counts, sort_keys=True)}`.", "- Detector v2 excludes random board targets and fixed named-token summons; pool candidates remain heuristic, not a confirmed or exhaustive pool inventory.", f"- Complete root closures: **{counts['roots_with_complete_dependency_closure']}**. The known graph is a lower bound; absent edges are not proof of no dependency.", "", "## Admission blockers", "", f"- Eligible roots: **{registry['computed_admission']['eligible_roots']}** in `{registry['policy']['policy_id']}`.", f"- Admission blockers: `{json.dumps(registry['computed_admission']['blockers'])}`.", "- This report does not authorize or start pooled training.", "", "## Candidate capability packages", "", "Priority is not inferred from metadata frequency. These are review groupings based on text signals; unlock counts remain unknown until capabilities and dependency closures are verified.", "", "| Signal | Candidate roots | Confidence |", "|---|---:|---|"]
     for package in packages:
         lines.append(f"| {package['capability_hypothesis']} | {package['candidate_root_count']} ({package['unregistered_text_root_count']} without detected rules registration) | {package['confidence']} |")
     lines += ["", "## Limits", "", *[f"- {item}" for item in report["known_limitations"]], ""]
@@ -672,29 +500,36 @@ def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(value, ensure_ascii=False, indent=2) + "\n"
     if not path.exists() or path.read_text(encoding="utf-8") != text:
-        path.write_text(text, encoding="utf-8")
+        path.write_text(text, encoding="utf-8", newline="\n")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--roots", type=Path, default=DEFAULT_ROOTS)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    parser.add_argument("--reports-dir", type=Path, default=DEFAULT_REPORTS)
+    parser.add_argument("--profile", type=Path)
+    parser.add_argument("--roots", type=Path)
+    parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument("--reports-dir", type=Path, default=None)
     args = parser.parse_args()
+    profile = load_profile(args.profile)
+    args.roots = args.roots or profile_path(profile, "roots")
+    args.output = args.output or profile_path(profile, "registry")
+    args.reports_dir = args.reports_dir or profile_path(profile, "reports")
+    if args.roots.resolve() != profile_path(profile, "roots").resolve():
+        raise ValueError("Root input must belong to the selected profile; select --profile for a different pool")
     roots_doc = read_json(args.roots)
-    registry, aux = build_registry(roots_doc)
+    registry, aux = build_registry(roots_doc, profile=profile)
     report, markdown = build_reports(registry, aux)
     write_json(args.output, registry)
     write_json(args.reports_dir / "summary.json", report)
     args.reports_dir.mkdir(parents=True, exist_ok=True)
     md_path = args.reports_dir / "summary.md"
     if not md_path.exists() or md_path.read_text(encoding="utf-8") != markdown:
-        md_path.write_text(markdown, encoding="utf-8")
+        md_path.write_text(markdown, encoding="utf-8", newline="\n")
     print(f"Registry: {args.output}")
     print(f"Report: {md_path}")
     print(f"Roots: {registry['counts']['roots']}; known non-root nodes: {registry['dependency_graph']['unique_known_nonroot_dependency_nodes']}; unresolved pools: {registry['counts']['unresolved_dynamic_pool_definitions']}")
     print(f"Registration: direct={registry['counts']['direct_source_registered']}, generated={registry['counts']['generated_registered']}, no detected text rules={registry['counts']['text_bearing_without_detected_registration']}")
-    print("Training admission: BLOCKED (expected for the current evidence and closure state)")
+    print(f"Training admission: {registry['computed_admission']['status']}")
 
 
 if __name__ == "__main__":

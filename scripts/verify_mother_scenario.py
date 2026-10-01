@@ -76,9 +76,9 @@ def verify_single_trigger() -> None:
                 after = game.observation("PLAYER1").self_hand
                 for index, (before_card, after_card) in enumerate(zip(before, after)):
                     reduction = max(0, 5 - abs(index - selected_index))
-                    old_cost = int(before_card.cost or 0)
+                    old_cost = int(before_card.effective_cost or 0)
                     expected = max(0, old_cost - reduction)
-                    actual = int(after_card.cost or 0)
+                    actual = int(after_card.effective_cost or 0)
                     if actual != expected:
                         raise AssertionError(
                             f"Hand slot {index}: expected cost {expected} "
@@ -147,9 +147,9 @@ def verify_repeated_trigger() -> None:
                         raise AssertionError("Repeated M.O.T.H.E.R. choices did not finish")
                     card = next(card for card in game.observation("PLAYER1").self_hand
                                 if card.card_id == "TLC_248")
-                    if card.cost != 1:
+                    if card.effective_cost != 1:
                         raise AssertionError(
-                            f"Brann + M.O.T.H.E.R. should reduce cost 11 to 1, got {card.cost}"
+                            f"Brann + M.O.T.H.E.R. should reduce cost 11 to 1, got {card.effective_cost}"
                         )
                     print("PASS Brann + M.O.T.H.E.R.: two sequential choices reduce 11 cost to 1")
                     return

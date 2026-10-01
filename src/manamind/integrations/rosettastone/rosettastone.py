@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import importlib.util
+import os
+from importlib.machinery import EXTENSION_SUFFIXES
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Sequence
@@ -20,22 +22,19 @@ def _load_bridge() -> ModuleType:
 
     project_root = Path(__file__).resolve().parents[4]
     bridge_root = project_root / "integrations" / "rosettastone"
-    bridge_dirs = (
-        bridge_root / "build" / "python",
-        bridge_root / "build-alt" / "python",
-        bridge_root / "build-alt2" / "python",
-        bridge_root / "build-alt3" / "python",
-    )
-    candidates = sorted(
-        (candidate for directory in bridge_dirs
-         for candidate in directory.glob("mana_rosetta_bridge*.pyd")),
-        key=lambda candidate: candidate.stat().st_mtime,
-    )
+    override = os.environ.get("MANAMIND_ROSETTA_BRIDGE")
+    candidates = [Path(override)] if override else [
+        bridge_root / "build" / "python" / ("mana_rosetta_bridge" + suffix)
+        for suffix in EXTENSION_SUFFIXES
+        if (bridge_root / "build" / "python" / ("mana_rosetta_bridge" + suffix)).is_file()
+    ]
     if not candidates:
         raise RuntimeError(
             "ManaMind's RosettaStone bridge is not built. "
             "See docs/ROSETTASTONE_INTEGRATION.md for the build command."
         )
+    if len(candidates) != 1 or not candidates[0].is_file():
+        raise RuntimeError("Select one existing native module with MANAMIND_ROSETTA_BRIDGE")
 
     spec = importlib.util.spec_from_file_location("mana_rosetta_bridge", candidates[-1])
     if spec is None or spec.loader is None:

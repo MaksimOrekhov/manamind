@@ -8,15 +8,13 @@ import json
 import os
 import tempfile
 from collections import Counter
-from datetime import datetime, timezone
+from datetime import date
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-ROOT = Path(__file__).resolve().parents[1]
+from standard_profile import load_profile, profile_path
+
 SOURCE_URL = "https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json"
-DEFAULT_SCOPE = ROOT / "data/cards/standard_scope_20261001.json"
-DEFAULT_ARCHIVE = ROOT / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json"
-DEFAULT_OUTPUT = ROOT / "data/cards/standard_roots_20261001_enUS.json"
 
 
 def read_source(source_file: Path | None) -> tuple[bytes, str]:
@@ -28,6 +26,8 @@ def read_source(source_file: Path | None) -> tuple[bytes, str]:
 
 
 def atomic_write(path: Path, content: bytes) -> None:
+    if path.exists() and path.read_bytes() == content:
+        return
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, temporary_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
     try:
@@ -44,16 +44,23 @@ def atomic_write(path: Path, content: bytes) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--scope", type=Path, default=DEFAULT_SCOPE)
+    parser.add_argument("--profile", type=Path)
+    parser.add_argument("--scope", type=Path)
     parser.add_argument("--source-file", type=Path, help="Use a previously captured full collectible-card JSON array")
-    parser.add_argument("--archive", type=Path, default=DEFAULT_ARCHIVE)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--archive", type=Path, default=None)
+    parser.add_argument("--output", type=Path, default=None)
     args = parser.parse_args()
 
+    profile = load_profile(args.profile)
+    args.scope = args.scope or profile_path(profile, "scope")
+    args.archive = args.archive or profile_path(profile, "metadata_snapshot")
+    args.output = args.output or profile_path(profile, "roots")
+    args.source_file = args.source_file or profile_path(profile, "metadata_snapshot")
     scope_bytes = args.scope.read_bytes()
     scope = json.loads(scope_bytes.decode("utf-8-sig"))
-    if scope.get("format") != "STANDARD" or scope.get("as_of_date") != "2026-10-01":
-        raise ValueError("This builder expects the approved STANDARD scope dated 2026-10-01")
+    if scope.get("format") != "STANDARD" or scope.get("as_of_date") != profile["as_of_date"]:
+        raise ValueError("Scope must match the selected Standard profile date")
+    date.fromisoformat(scope["as_of_date"])
     sets = scope.get("standard_sets")
     exceptions = scope.get("explicit_standard_card_ids")
     excluded_ids = scope.get("excluded_card_ids", [])
@@ -112,13 +119,13 @@ def main() -> None:
         "game": "Hearthstone",
         "format": "STANDARD",
         "as_of_date": scope["as_of_date"],
-        "captured_at_utc": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-        "scope_file": str(args.scope.resolve()),
+        "captured_at_utc": profile["captured_at_utc"],
+        "scope_file": profile["scope"],
         "scope_sha256": hashlib.sha256(scope_bytes).hexdigest(),
         "source_name": "HearthstoneJSON collectible card metadata",
         "source_url": SOURCE_URL,
-        "resolved_source": resolved_source,
-        "source_archive": str(args.archive.resolve()),
+        "resolved_source": profile["metadata_snapshot"],
+        "source_archive": profile["metadata_snapshot"],
         "source_sha256": source_hash,
         "source_record_count": len(source),
         "source_collectible_count": sum(row.get("collectible") is True for row in source),

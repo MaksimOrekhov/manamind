@@ -597,14 +597,14 @@ def verify_rafaam_ladder_draws_distinct_costs() -> None:
                         "RAFAAM LADDER!! should draw 3 cards after leaving the hand: "
                         f"expected {expected_hand_size} (from {cards_before}), "
                         f"got {len(after.self_hand)}; after="
-                        f"{[(card.card_id, card.cost) for card in after.self_hand]}"
+                        f"{[(card.card_id, card.effective_cost) for card in after.self_hand]}"
                     )
                 drawn_cards = after.self_hand[cards_before - 1 :]
                 if len(drawn_cards) != 3:
                     raise AssertionError(
                         f"RAFAAM LADDER!! should draw 3 cards, got {len(drawn_cards)}"
                     )
-                drawn_costs = [card.cost for card in drawn_cards]
+                drawn_costs = [card.effective_cost for card in drawn_cards]
                 if len(set(drawn_costs)) != 3:
                     raise AssertionError(
                         "RAFAAM LADDER!! must draw cards with distinct Costs: "

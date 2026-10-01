@@ -25,3 +25,5 @@ where = ["src"]
 pythonpath = ["src"]
 testpaths = ["tests"]
 
+[tool.ruff.lint]
+select = ["E9", "F"]

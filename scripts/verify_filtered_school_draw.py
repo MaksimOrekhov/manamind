@@ -26,6 +26,10 @@ CAPABILITIES = ROOT / "integrations/rosettastone/card_rules/capabilities.json"
 EVIDENCE = ROOT / "integrations/rosettastone/card_rules/filtered_school_draw.evidence.json"
 
 
+sys.path.insert(0, str(ROOT))
+from scripts.verification_evidence import record_execution
+
+
 def file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -121,6 +125,7 @@ def main() -> None:
         "training_eligible": False,
         "cards": cards,
     }
+    evidence = record_execution(evidence)
     EVIDENCE.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 

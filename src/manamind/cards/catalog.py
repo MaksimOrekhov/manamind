@@ -127,4 +127,8 @@ class CardCatalog:
             card_class=(observed.card_class if observed.card_class != "UNKNOWN_CLASS" else catalog_card.card_class),
             race=observed.race if observed.race is not None else catalog_card.race,
             mechanics=tuple(sorted(set(observed.mechanics) | set(catalog_card.mechanics))),
+            current_cost=observed.current_cost,
+            current_attack=observed.current_attack,
+            current_health=observed.current_health,
+            current_durability=observed.current_durability,
         )

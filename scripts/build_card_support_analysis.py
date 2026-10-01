@@ -90,6 +90,8 @@ VERIFIED_SCOPES = {
 
 
 def sha256(path: Path) -> str:
+    if path.suffix in {".json", ".py", ".cpp", ".hpp", ".def", ".txt"}:
+        return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
     h = hashlib.sha256()
     with path.open("rb") as f:
         for chunk in iter(lambda: f.read(1024 * 1024), b""):
@@ -101,7 +103,7 @@ def write_if_changed(path: Path, content: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     if path.exists() and path.read_text(encoding="utf-8") == content:
         return
-    path.write_text(content, encoding="utf-8")
+    path.write_text(content, encoding="utf-8", newline="\n")
 
 
 def read_json(path: Path):
@@ -365,8 +367,6 @@ def build():
     selected_cards = sample[:74]
     registered_selected_count = sum(x["verification_status"] != "UNSUPPORTED" for x in selected_cards)
     missing_selected_count = sum(x["verification_status"] == "UNSUPPORTED" and bool(norm_text(x.get("text", ""))) for x in selected_cards)
-    # Use explicit 10 missing records from the pinned audit rather than assuming its deck summaries carry IDs.
-    missing = [x for x in sample[:74] if not x["rules_registered"] and x["text"].strip()]
     # Initial static dependency graph: explicit CardDef string references only. Dynamic pools stay open/unknown.
     dep_edges = []
     for card in sample:

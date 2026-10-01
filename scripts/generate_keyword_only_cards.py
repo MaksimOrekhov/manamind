@@ -11,7 +11,9 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_card_support_analysis import norm_text, write_if_changed  # noqa: E402
 
 DECL = ROOT / "integrations/rosettastone/card_rules/keyword_only.v1.json"
-CATALOG = ROOT / "data/cards/standard_current_enUS.json"
+from standard_profile import load_profile, profile_path
+PROFILE = load_profile()
+CATALOG = profile_path(PROFILE, "catalog")
 HEADER = ROOT / "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.hpp"
 SOURCE = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.cpp"
 MANIFEST = ROOT / "integrations/rosettastone/card_rules/keyword_only.generated.json"
@@ -26,7 +28,7 @@ def main() -> None:
     d = json.loads(DECL.read_text(encoding="utf-8"))
     if set(d) != {"schema_version", "catalog_path", "catalog_sha256", "cards"} or d["schema_version"] != 1:
         raise ValueError("unexpected declaration schema")
-    if d["catalog_path"] != "data/cards/standard_current_enUS.json" or d["catalog_sha256"] != sha(CATALOG):
+    if d["catalog_path"] != PROFILE["catalog"] or d["catalog_sha256"] != sha(CATALOG):
         raise ValueError("catalog fingerprint changed; review declarations before regeneration")
     cards = {c["id"]: c for c in json.loads(CATALOG.read_text(encoding="utf-8"))["cards"] if c.get("id")}
     owned_elsewhere = set()

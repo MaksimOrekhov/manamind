@@ -53,7 +53,7 @@ def choose_baseline_action(
             continue
         card = state.self_hand[hand_index]
         if card.card_type == "MINION" and len(state.self_player.board) < 7:
-            minion_plays.append((card.cost if card.cost is not None else 99, action))
+            minion_plays.append((card.effective_cost if card.effective_cost is not None else 99, action))
     if minion_plays:
         return min(minion_plays, key=lambda item: item[0])[1]
 

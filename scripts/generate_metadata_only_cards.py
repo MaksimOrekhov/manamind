@@ -12,7 +12,9 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_card_support_analysis import collect_card_blocks, sha256, write_if_changed  # noqa: E402
 
 DECL = ROOT / "integrations/rosettastone/card_rules/metadata_only.v1.json"
-CATALOG = ROOT / "data/cards/standard_current_enUS.json"
+from standard_profile import load_profile, profile_path
+PROFILE = load_profile()
+CATALOG = profile_path(PROFILE, "catalog")
 HEADER = ROOT / "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindMetadataOnlyCardsGen.hpp"
 SOURCE = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindMetadataOnlyCardsGen.cpp"
 MANIFEST = ROOT / "integrations/rosettastone/card_rules/metadata_only.generated.json"
@@ -27,7 +29,7 @@ def main() -> None:
     declaration = json.loads(DECL.read_text(encoding="utf-8"))
     if set(declaration) != {"schema_version", "catalog_path", "catalog_sha256", "cards"} or declaration["schema_version"] != 1:
         raise ValueError("unexpected metadata-only declaration schema")
-    if declaration["catalog_path"] != "data/cards/standard_current_enUS.json" or declaration["catalog_sha256"] != sha256(CATALOG):
+    if declaration["catalog_path"] != PROFILE["catalog"] or declaration["catalog_sha256"] != sha256(CATALOG):
         raise ValueError("catalog fingerprint changed; re-review textless cards before regeneration")
     catalog = {card["id"]: card for card in json.loads(CATALOG.read_text(encoding="utf-8"))["cards"] if card.get("id")}
     own_source = SOURCE.relative_to(ROOT).as_posix()

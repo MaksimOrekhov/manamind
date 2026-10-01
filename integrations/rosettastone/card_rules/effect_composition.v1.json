@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "catalog_path": "data/cards/standard_current_enUS.json",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "cards": [
     {
       "card_id": "CAP_801",
@@ -1374,50 +1374,105 @@
     {
       "card_id": "CATA_303",
       "activation": "SPELL_PLAY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
       "dependencies": [],
       "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 5, "spell_damage": true},
-        {"op": "IF_TARGET_DIES", "outcome": "HEAL_ENEMY_HERO_5"}
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 5,
+          "spell_damage": true
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "HEAL_ENEMY_HERO_5"
+        }
       ]
     },
     {
       "card_id": "END_014",
       "activation": "SPELL_PLAY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_NONSELF_TARGET"],
-      "dependencies": ["END_014e"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_NONSELF_TARGET"
+      ],
+      "dependencies": [
+        "END_014e"
+      ],
       "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 3, "spell_damage": true},
-        {"op": "IF_TARGET_DIES", "outcome": "BUFF_RANDOM_FRIENDLY_3_3"}
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "BUFF_RANDOM_FRIENDLY_3_3"
+        }
       ]
     },
     {
       "card_id": "TLC_606",
       "activation": "BATTLECRY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET", "REQ_ENEMY_TARGET"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET"
+      ],
       "dependencies": [],
       "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 2, "spell_damage": false},
-        {"op": "IF_TARGET_DIES", "outcome": "GAIN_ARMOR_5"}
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": false
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "GAIN_ARMOR_5"
+        }
       ]
     },
     {
       "card_id": "EDR_468",
       "activation": "BATTLECRY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
-      "dependencies": ["EDR_468e"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "EDR_468e"
+      ],
       "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 1, "spell_damage": false},
-        {"op": "ENCHANT", "target": "TARGET", "id": "EDR_468e"}
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": false
+        },
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "EDR_468e"
+        }
       ]
     },
     {
       "card_id": "JAIL_376",
       "activation": "DEATHRATTLE",
       "play_requirements": [],
-      "dependencies": ["JAIL_376e"],
+      "dependencies": [
+        "JAIL_376e"
+      ],
       "effects": [
-        {"op": "BUFF_DAMAGED_FRIENDLY_MINIONS", "enchantment_id": "JAIL_376e"}
+        {
+          "op": "BUFF_DAMAGED_FRIENDLY_MINIONS",
+          "enchantment_id": "JAIL_376e"
+        }
       ]
     },
     {
@@ -1426,25 +1481,42 @@
       "play_requirements": [],
       "dependencies": [],
       "effects": [
-        {"op": "DRAW_TWO_AND_CHARGE_IF_BOTH_MINIONS"}
+        {
+          "op": "DRAW_TWO_AND_CHARGE_IF_BOTH_MINIONS"
+        }
       ]
     },
     {
       "card_id": "EDR_572",
       "activation": "DEATHRATTLE",
       "play_requirements": [],
-      "dependencies": ["EDR_572e"],
+      "dependencies": [
+        "EDR_572e"
+      ],
       "effects": [
-        {"op": "DRAW_TWO_DRAGONS_REDUCE_COST", "enchantment_id": "EDR_572e"}
+        {
+          "op": "DRAW_TWO_DRAGONS_REDUCE_COST",
+          "enchantment_id": "EDR_572e"
+        }
       ]
     },
     {
       "card_id": "TLC_633",
       "activation": "BATTLECRY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET", "REQ_ENEMY_TARGET", "REQ_TARGET_WITH_RACE"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
       "dependencies": [],
       "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 6, "spell_damage": false}
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 6,
+          "spell_damage": false
+        }
       ]
     }
   ]

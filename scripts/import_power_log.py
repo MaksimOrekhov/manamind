@@ -30,7 +30,10 @@ from hearthstone.enums import (
 from hslog import LogParser
 from hslog.packets import Block
 
-from audit_power_log import CompatibleEntityTreeExporter
+try:
+    from scripts.audit_power_log import CompatibleEntityTreeExporter
+except ModuleNotFoundError:
+    from audit_power_log import CompatibleEntityTreeExporter
 from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
 from manamind.domain.entity import BoardEntity, LocationEntity
@@ -350,7 +353,7 @@ def _card_features(entity, catalog: CardCatalog) -> CardFeatures:
         card_type = base.card_type
     return CardFeatures(
         card_id=entity.card_id or "UNKNOWN_CARD",
-        cost=_optional_int(tags.get(GameTag.COST), base.cost),
+        cost=base.cost,
         attack=(
             base.attack if base.attack is not None
             else _optional_int(tags.get(GameTag.ATK), None)
@@ -359,7 +362,11 @@ def _card_features(entity, catalog: CardCatalog) -> CardFeatures:
             base.health if base.health is not None
             else _optional_int(tags.get(GameTag.HEALTH), None)
         ),
-        durability=_optional_int(tags.get(GameTag.DURABILITY), base.durability),
+        durability=base.durability,
+        current_cost=_optional_int(tags.get(GameTag.COST), None),
+        current_attack=(_optional_int(tags.get(GameTag.ATK), None) if card_type in {"MINION", "WEAPON"} else None),
+        current_health=(_current_health(entity) if GameTag.HEALTH in tags and card_type in {"MINION", "LOCATION"} else None),
+        current_durability=(_optional_int(tags.get(GameTag.DURABILITY), None) if card_type == "WEAPON" else None),
         card_type=card_type,
         card_class=base.card_class,
         race=base.race,

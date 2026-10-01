@@ -18,6 +18,8 @@ NUMERIC_FEATURES = (
     "current_health",
     "max_health",
     "zone_position",
+    "current_cost",
+    "current_durability",
 )
 
 PRESENCE_FEATURES = tuple(f"has_{name}" for name in NUMERIC_FEATURES)
@@ -152,6 +154,12 @@ class EntityEncoder:
 
             for mechanic_index in self.vocabulary.mechanics(card.mechanics):
                 mechanics[row, mechanic_index] = 1.0
+
+            for name in ("current_cost", "current_attack", "current_health", "current_durability"):
+                column = NUMERIC_FEATURES.index(name)
+                value = getattr(card, name)
+                numeric[row, column] = _normalise(value)
+                numeric_present[row, column] = float(value is not None)
 
             entity = item.board_entity
             location = item.location_entity

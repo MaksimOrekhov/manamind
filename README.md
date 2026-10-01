@@ -68,7 +68,7 @@ python .\predict_state.py .\data\samples\example_state.json
 
 The checkpoint stores its vocabulary, card catalog snapshot, encoder schema, feature names, and normalization settings. Predictions use the catalog snapshot that trained the model, so inference remains repeatable. Optionally pass `--cards .\path\to\cards.json` to add metadata for additional IDs. Unknown IDs are reported.
 
-The current encoder schema is v5. It includes separate minion and Location zones, Location durability/cooldown state, ordered hand positions, and hero-power readiness. Older value checkpoints are rejected because their feature meanings predate these changes. Save training output to a new checkpoint filename instead of overwriting historical checkpoints.
+The current encoder schema is v6. It includes separate minion and Location zones, Location durability/cooldown state, ordered hand positions, hero-power readiness, and separate current cost/attack/health/durability for hand and weapon instances. Older value checkpoints are rejected because their feature meanings predate these changes. Save training output to a new checkpoint filename instead of overwriting historical checkpoints.
 
 ## First self-play policy
 
@@ -161,3 +161,15 @@ CPU-only machines can install the standard PyTorch wheel instead. Keep CPU infer
 The target is the win probability of the perspective player: 1 for a win, 0 for a loss, and 0.5 for a draw.
 
 Shaladrassil (`EDR_846`) generates the five classic Dream cards, or the five Corrupted versions if a higher-cost card was played while it was held. Focused C++ scenarios verify both branches and all five generated-card effects.
+
+### Pinned Standard profile and source checks
+
+`configs/standard_profile.json` selects the dated metadata archive, scope, bans, roots, generator catalog, engine overlay and evidence inputs. Rebuild shared snapshots with `python scripts/build_standard_profile.py`, then run the generators and `python scripts/build_standard_registry.py`. Each tool accepts `--profile PATH`; generators also accept `MANAMIND_STANDARD_PROFILE`. Updating a patch requires a new reviewed profile/scope/archive, not editing Python dates.
+
+Run `python scripts/check_generated_artifacts.py` to rebuild all pinned outputs and reject drift or duplicate generated ownership. GitHub Actions runs this check, Ruff correctness diagnostics and Python tests on Linux and Windows with recursive submodule checkout. Native checks are separate; no model training runs in CI.
+
+Scoped verification files use schema v2 with explicit source/profile identities, binary checksums and successful native/bridge results. Canonical registry generation does not inspect ignored build products. Old schema-v1 evidence remains historical and stale until its scenarios are rerun. Native/bridge producers check the intended local binaries; a registry evidence record alone does not inspect the process currently running.
+
+On the configured Windows native workspace, run `python scripts/build_native_identity.py` before the focused `verify_*.py` producers. Rebuild this identity after source/profile changes. `python scripts/verify_instance_observations.py` compares actual native hand/weapon instance observations with the Power.log import path.
+
+Card metadata (`cost`, `attack`, `health`, `durability`) is distinct from optional `current_cost`, `current_attack`, `current_health`, `current_durability`. Gameplay decisions use effective instance values. Encoder schema v6 adds current cost/durability channels and preserves modified hand attack/health. Older checkpoints are rejected; existing checkpoints and datasets are preserved.

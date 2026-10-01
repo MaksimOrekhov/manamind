@@ -27,6 +27,10 @@ EVIDENCE = PROJECT_ROOT / "integrations/rosettastone/card_rules/repeated_trigger
 BRIDGE = PROJECT_ROOT / "integrations/rosettastone/build/python/mana_rosetta_bridge.cp312-win_amd64.pyd"
 
 
+sys.path.insert(0, str(PROJECT_ROOT))
+from scripts.verification_evidence import record_execution
+
+
 def file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -120,6 +124,7 @@ def main() -> None:
         "bridge_smoke_sha256": bridge_scenario_hash,
         "training_eligible": False, "cards": cards,
     }
+    evidence = record_execution(evidence)
     EVIDENCE.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 

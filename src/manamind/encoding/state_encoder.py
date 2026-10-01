@@ -32,7 +32,7 @@ GLOBAL_FEATURE_NAMES = (
     *(f"opponent_{name}" for name in PLAYER_NUMERIC_FEATURE_NAMES),
     "opponent_known_cards_count",
 )
-STATE_ENCODING_SCHEMA_VERSION = 5
+STATE_ENCODING_SCHEMA_VERSION = 6
 
 
 @dataclass(frozen=True, slots=True)

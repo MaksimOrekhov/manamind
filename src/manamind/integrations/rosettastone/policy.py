@@ -62,7 +62,7 @@ def encode_policy_state(state: GameState, encoder: StateEncoder) -> np.ndarray:
     opponent_board = state.opponent.board
     self_locations = state.self_player.locations
     opponent_locations = state.opponent.locations
-    hand_costs = [card.cost for card in state.self_hand if card.cost is not None]
+    hand_costs = [card.effective_cost for card in state.self_hand if card.effective_cost is not None]
     hand_types = [card.card_type for card in state.self_hand]
     values = [
         len(self_board), sum(entity.current_attack for entity in self_board),

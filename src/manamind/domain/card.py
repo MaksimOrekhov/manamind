@@ -14,3 +14,19 @@ class CardFeatures:
     card_class: str = "UNKNOWN_CLASS"
     race: str | None = None
     mechanics: tuple[str, ...] = field(default_factory=tuple)
+    current_cost: int | None = None
+    current_attack: int | None = None
+    current_health: int | None = None
+    current_durability: int | None = None
+
+    @property
+    def effective_cost(self) -> int | None:
+        return self.cost if self.current_cost is None else self.current_cost
+
+    @property
+    def effective_attack(self) -> int | None:
+        return self.attack if self.current_attack is None else self.current_attack
+
+    @property
+    def effective_durability(self) -> int | None:
+        return self.durability if self.current_durability is None else self.current_durability

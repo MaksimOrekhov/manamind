@@ -8,6 +8,7 @@
 #include <unordered_set>
 #include <effolkronium/random.hpp>
 #include <Rosetta/PlayMode/Cards/Cards.hpp>
+#include <Rosetta/PlayMode/Actions/PlayCard.hpp>
 #include <Rosetta/PlayMode/Cards/CardDefs.hpp>
 #include <Rosetta/PlayMode/Games/Game.hpp>
 #include <Rosetta/PlayMode/Models/Character.hpp>
@@ -45,7 +46,10 @@ py::dict card_features(const Card* card, int current_cost)
 {
     py::dict result;
     result["card_id"] = card ? card->id : "UNKNOWN_CARD";
-    result["cost"] = current_cost;
+    result["cost"] = card && card->gameTags.contains(GameTag::COST)
+                         ? py::cast(card->gameTags.at(GameTag::COST))
+                         : py::none();
+    result["current_cost"] = current_cost;
     result["card_type"] = card ? std::string(EnumToStr(card->GetCardType())) : "UNKNOWN_TYPE";
     result["card_class"] = card ? std::string(EnumToStr(card->GetCardClass())) : "UNKNOWN_CLASS";
     if (card && card->gameTags.contains(GameTag::CARDRACE) &&
@@ -73,6 +77,14 @@ py::dict card_features(const Card* card, int current_cost)
 py::dict playable_features(const Playable* playable)
 {
     py::dict result = card_features(playable->card, playable->GetCost());
+    const auto tags = playable->GetGameTags();
+    const auto type = playable->card->GetCardType();
+    if (tags.contains(GameTag::ATK) && (type == CardType::MINION || type == CardType::WEAPON))
+        result["current_attack"] = playable->GetGameTag(GameTag::ATK);
+    if (tags.contains(GameTag::HEALTH) && (type == CardType::MINION || type == CardType::LOCATION))
+        result["current_health"] = playable->GetGameTag(GameTag::HEALTH) - playable->GetGameTag(GameTag::DAMAGE);
+    if (tags.contains(GameTag::DURABILITY) && type == CardType::WEAPON)
+        result["current_durability"] = playable->GetGameTag(GameTag::DURABILITY);
     result["dark_gift_id"] = tag_value(playable, GameTag::MANAMIND_DARK_GIFT_ID);
     return result;
 }
@@ -106,8 +118,8 @@ py::dict player_observation(Player* player)
     if (weapon && weapon->card)
     {
         py::dict weaponFeatures = card_features(weapon->card, weapon->GetCost());
-        weaponFeatures["attack"] = weapon->GetAttack();
-        weaponFeatures["durability"] = weapon->GetDurability();
+        weaponFeatures["current_attack"] = weapon->GetAttack();
+        weaponFeatures["current_durability"] = weapon->GetDurability();
         result["weapon"] = std::move(weaponFeatures);
     }
     else
@@ -990,6 +1002,36 @@ py::dict inspect_decks(const std::vector<std::string>& player1Deck,
     result["legal_actions"] = enumerate_legal_actions(game, self);
     return result;
 }
+py::dict make_instance_observation_fixture()
+{
+    GameConfig config;
+    config.player1Class = CardClass::WARRIOR;
+    config.player2Class = CardClass::WARRIOR;
+    config.startPlayer = PlayerType::PLAYER1;
+    config.fillCardIDs = {"CS2_182", "CS2_200", "CS2_131", "CS2_172", "CS2_122", "CS2_142", "CS2_196", "CS2_120", "CS2_168"};
+    config.doFillDecks = true;
+    config.doShuffle = false;
+    config.skipMulligan = true;
+    config.autoRun = false;
+    Cards::GetInstance();
+    Game game(config);
+    game.Start();
+    game.ProcessUntil(Step::MAIN_ACTION);
+    Player* player = game.GetPlayer1();
+    Playable* held = player->GetHandZone()->GetAll().front();
+    held->SetGameTag(GameTag::ATK, 5);
+    held->SetGameTag(GameTag::HEALTH, 5);
+    held->SetGameTag(GameTag::COST, 1);
+    auto* weapon = dynamic_cast<Weapon*>(Entity::GetFromCard(player, Cards::FindCardByID("CS2_106")));
+    Generic::PlayWeapon(player, weapon, nullptr);
+    weapon->SetAttack(5);
+    weapon->SetDurability(1);
+    py::dict result;
+    result["hand_card"] = playable_features(held);
+    result["weapon"] = player_observation(player)["weapon"];
+    return result;
+}
+
 py::dict make_sample_observation()
 {
     std::string stage = "configure game";
@@ -1073,4 +1115,6 @@ PYBIND11_MODULE(mana_rosetta_bridge, module)
     module.def("list_deck_candidates", &list_deck_candidates, py::arg("player_class"), py::arg("format") = "STANDARD", "List collectible, class-legal minions suitable for simple test decks");
     module.def("make_sample_observation", &make_sample_observation,
                "Start a deterministic sample match and export player-visible state");
+    module.def("make_instance_observation_fixture", &make_instance_observation_fixture,
+               "Diagnostic fixture for modified visible hand and weapon instances");
 }

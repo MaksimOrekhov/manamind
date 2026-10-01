@@ -12,7 +12,9 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from build_card_support_analysis import collect_card_blocks, norm_text, read_json, sha256, write_if_changed  # noqa: E402
 
 DECLARATION = ROOT / "integrations/rosettastone/card_rules/core_aliases.v1.json"
-CATALOG = ROOT / "data/cards/standard_current_enUS.json"
+from standard_profile import load_profile, profile_path
+PROFILE = load_profile()
+CATALOG = profile_path(PROFILE, "catalog")
 RESOURCE_CARDS = ROOT / "vendor/RosettaStone/Resources/cards.json"
 HEADER = ROOT / "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.hpp"
 SOURCE = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.cpp"
@@ -100,7 +102,7 @@ def validate():
     declaration = read_json(DECLARATION)
     require(set(declaration) == ROOT_FIELDS, f"unexpected declaration fields: {sorted(set(declaration) ^ ROOT_FIELDS)}")
     require(declaration["schema_version"] == 1, "unsupported schema_version")
-    require(declaration["catalog_path"] == "data/cards/standard_current_enUS.json", "catalog path is not allowlisted")
+    require(declaration["catalog_path"] == PROFILE["catalog"], "catalog path is not allowlisted")
     actual_catalog_hash = sha256(CATALOG)
     require(declaration["catalog_sha256"] == actual_catalog_hash, "catalog fingerprint changed; re-audit declarations before regeneration")
     require(isinstance(declaration["cards"], list) and declaration["cards"], "cards must be a non-empty list")

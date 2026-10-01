@@ -99,10 +99,10 @@ def verify_rushed_trial() -> None:
         for card in game.observation("PLAYER1").self_hand
         if card.card_id == "MANA_KAZAKUS_TRIAL"
     ]
-    if len(trial_cards) != 1 or trial_cards[0].cost != 7:
+    if len(trial_cards) != 1 or trial_cards[0].effective_cost != 7:
         raise AssertionError(
             "Rushed Trial should create a 7-cost custom spell in hand; "
-            f"found {[(card.card_id, card.cost) for card in trial_cards]}"
+            f"found {[(card.card_id, card.effective_cost) for card in trial_cards]}"
         )
 
     trial_played = False

@@ -232,14 +232,14 @@ def verify_medivhs_triumph_cost() -> None:
         random_seed=20260928,
     )
     initial_cost = next(
-        card.cost for card in game.observation("PLAYER1").self_hand
+        card.effective_cost for card in game.observation("PLAYER1").self_hand
         if card.card_id == "CATA_308"
     )
     end_turn(game)
     end_turn(game)
     apply_action(game, "PLAY_CARD", "CORE_EX1_012")
     reduced_cost = next(
-        card.cost for card in game.observation("PLAYER1").self_hand
+        card.effective_cost for card in game.observation("PLAYER1").self_hand
         if card.card_id == "CATA_308"
     )
     if initial_cost != 5 or reduced_cost != 1:
@@ -633,10 +633,10 @@ def verify_prescient_slitherdrake() -> None:
     )
     hand = game.observation("PLAYER1").self_hand
     card = next((held for held in hand if held.card_id == "END_033"), None)
-    if card is None or card.cost != 4:
+    if card is None or card.effective_cost != 4:
         raise AssertionError(
             "Prescient Slitherdrake should cost 4 while another Dragon is in hand; "
-            f"hand={[(held.card_id, held.cost) for held in hand]}"
+            f"hand={[(held.card_id, held.effective_cost) for held in hand]}"
         )
     print("PASS END_033: another Dragon in hand reduces cost by 3")
 
@@ -745,7 +745,7 @@ def verify_kindred_costs() -> None:
          if card.card_id == "TLC_600"),
         None,
     )
-    if wyrm is None or wyrm.cost != 5:
+    if wyrm is None or wyrm.effective_cost != 5:
         raise AssertionError("Dragon played last turn should discount Windpeak Wyrm by 3")
     print("PASS TLC_600: Dragon played last turn discounts Windpeak Wyrm")
 
@@ -782,7 +782,7 @@ def verify_kindred_costs() -> None:
          if card.card_id == "TLC_816"),
         None,
     )
-    if sunbloom is None or sunbloom.cost != 2:
+    if sunbloom is None or sunbloom.effective_cost != 2:
         raise AssertionError("Holy spell cast last turn should discount Sunbloom by 2")
     print("PASS TLC_816: Holy spell cast last turn discounts Gravedawn Sunbloom")
 
@@ -916,7 +916,7 @@ def verify_naralex_first_dragon_discount() -> None:
          if card.card_id == "CORE_NEW1_023"),
         None,
     )
-    if faerie is None or faerie.cost != 2:
+    if faerie is None or faerie.effective_cost != 2:
         raise AssertionError("Naralex's discount should end after the first Dragon is played")
     print("PASS EDR_844: only the first Dragon each turn receives the cost reduction")
 
@@ -1106,7 +1106,7 @@ def verify_brood_keeper_weapon() -> None:
         raise AssertionError("Brood Keeper should become playable during setup")
     game.apply_action(action)
     weapon = game.observation("PLAYER1").self_player.weapon
-    if weapon is None or weapon.card_id != "EDR_457t" or weapon.attack != 2 or weapon.durability != 2:
+    if weapon is None or weapon.card_id != "EDR_457t" or weapon.effective_attack != 2 or weapon.effective_durability != 2:
         raise AssertionError(f"Brood Keeper should equip its 2/2 Sword, got {weapon}")
     print("PASS EDR_457: a held Dragon makes Brood Keeper equip the 2/2 Nightmare Slicer")
 
@@ -1175,7 +1175,7 @@ def verify_twilight_influence() -> None:
         raise AssertionError("Twilight Influence should offer its random summon choice")
     summon_game.apply_action(summon_action)
     summoned = summon_game.observation("PLAYER1").self_player.board
-    if len(summoned) != 1 or summoned[0].card.cost != 2:
+    if len(summoned) != 1 or summoned[0].card.effective_cost != 2:
         raise AssertionError(f"Twilight Influence should summon one random 2-Cost minion: {summoned}")
     print("PASS EDR_463: Choose One destroys a minion at 3 Attack or less, or summons a random 2-Cost minion")
 
@@ -1375,11 +1375,11 @@ def verify_held_mana_cards() -> None:
     }
     generated_dragons = [card for card in state.self_hand if card.card_id in dragon_ids]
     if not generated_dragons or any(
-        card.cost != 1 or card.race != "DRAGON" for card in generated_dragons
+        card.effective_cost != 1 or card.race != "DRAGON" for card in generated_dragons
     ):
         raise AssertionError(
             "Merithra should fill hand with Dragons reduced to 1 after 25 held Mana; "
-            f"spent={mana_spent}, hand={[(card.card_id, card.cost, card.race) for card in state.self_hand]}"
+            f"spent={mana_spent}, hand={[(card.card_id, card.effective_cost, card.race) for card in state.self_hand]}"
         )
     print("PASS CATA_131/CATA_140: held-Mana thresholds use card and Hero Power payments")
 
@@ -1434,10 +1434,10 @@ def verify_staff_of_trickery() -> None:
         None,
     )
     expected_cost = max(0, original_cost - hero_attack)
-    if selected is None or selected.cost != expected_cost:
+    if selected is None or selected.effective_cost != expected_cost:
         raise AssertionError(
             f"Staff should reduce selected card from {original_cost} to {expected_cost}; "
-            f"got {None if selected is None else selected.cost}"
+            f"got {None if selected is None else selected.effective_cost}"
         )
     print("PASS JAIL_875: post-attack Druid Discover discounts the selected card by hero Attack")
 
@@ -1450,8 +1450,7 @@ def verify_amirdrassil() -> None:
     apply_action(game, "PLAY_CARD", "FIR_907")
     end_turn(game)
     end_turn(game)
-    initial_observation = game.observation("PLAYER1")
-    initial = initial_observation.self_player
+    game.observation("PLAYER1")
     hero_power = next(
         (action for action in game.legal_actions() if action["type"] == "HERO_POWER"),
         None,
@@ -1476,8 +1475,8 @@ def verify_amirdrassil() -> None:
         raise AssertionError("First Amirdrassil use should refresh 1 Mana and grant 1 Armor")
     if len(first_observation.self_hand) != before_activation_hand_size + 1 or len(first.board) != before_activation_board_size + 1:
         raise AssertionError("Amirdrassil should draw one card and summon one minion")
-    if first.board[-1].card.cost != 1:
-        raise AssertionError(f"Amirdrassil should summon a 1-Cost minion, got {first.board[-1].card.cost}")
+    if first.board[-1].card.effective_cost != 1:
+        raise AssertionError(f"Amirdrassil should summon a 1-Cost minion, got {first.board[-1].card.effective_cost}")
 
     end_turn(game)
     end_turn(game)
@@ -1552,10 +1551,10 @@ def verify_infest_the_scullery() -> None:
     apply_action(game, "PLAY_CARD", "JAIL_200")
     after = game.observation("PLAYER1").self_player.board
     summoned = after[len(before):]
-    if len(summoned) != 2 or any(entity.card.cost != 5 for entity in summoned):
+    if len(summoned) != 2 or any(entity.card.effective_cost != 5 for entity in summoned):
         raise AssertionError(
             "Two hero attacks should make Infest the Scullery summon two 5-Cost minions; "
-            f"got {[entity.card.cost for entity in summoned]}"
+            f"got {[entity.card.effective_cost for entity in summoned]}"
         )
     print("PASS JAIL_200: two hero attacks raise both random summon costs from 3 to 5")
 

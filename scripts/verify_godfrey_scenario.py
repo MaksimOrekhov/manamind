@@ -75,7 +75,7 @@ def main() -> None:
                 discounted_overdrawn = [
                     card
                     for card in after.self_hand
-                    if card.card_id == "Core_CS2_200" and card.cost == 5
+                    if card.card_id == "Core_CS2_200" and card.effective_cost == 5
                 ]
                 if after.self_player.hand_size != 10:
                     raise AssertionError(

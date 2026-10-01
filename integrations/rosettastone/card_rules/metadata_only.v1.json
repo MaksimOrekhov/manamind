@@ -1,10 +1,16 @@
 {
   "schema_version": 1,
   "catalog_path": "data/cards/standard_current_enUS.json",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "cards": [
-    { "card_id": "Core_CS2_200" },
-    { "card_id": "TIME_053" },
-    { "card_id": "TLC_248" }
+    {
+      "card_id": "Core_CS2_200"
+    },
+    {
+      "card_id": "TIME_053"
+    },
+    {
+      "card_id": "TLC_248"
+    }
   ]
 }

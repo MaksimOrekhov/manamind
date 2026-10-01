@@ -20,6 +20,10 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
         card_class=str(data.get("card_class", data.get("cardClass", "UNKNOWN_CLASS"))).upper(),
         race=data.get("race"),
         mechanics=tuple(str(item).upper() for item in data.get("mechanics", ())),
+        current_cost=data.get("current_cost"),
+        current_attack=data.get("current_attack"),
+        current_health=data.get("current_health"),
+        current_durability=data.get("current_durability"),
     )
 
 
@@ -57,7 +61,7 @@ def _location_entity(data: dict[str, Any]) -> LocationEntity:
         max_health=int(data.get("max_health", card.durability or health)),
         board_position=int(data.get("board_position", 0)),
         on_cooldown=bool(data.get("on_cooldown", False)),
-        can_activate=(None if "can_activate" not in data else bool(data["can_activate"])),
+        can_activate=(None if data.get("can_activate") is None else bool(data["can_activate"])),
     )
 
 
@@ -76,7 +80,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         hand_size=int(data.get("hand_size", 0)),
         fatigue=int(data.get("fatigue", 0)),
         hero_power_ready=(
-            None if "hero_power_ready" not in data
+            None if data.get("hero_power_ready") is None
             else bool(data["hero_power_ready"])
         ),
         player_class=str(data.get("player_class", "UNKNOWN_CLASS")).upper(),
