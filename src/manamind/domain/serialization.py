@@ -3,7 +3,7 @@
 from typing import Any
 
 from manamind.domain.card import CardFeatures
-from manamind.domain.entity import BoardEntity
+from manamind.domain.entity import BoardEntity, LocationEntity
 from manamind.domain.game_state import GameState, PlayerObservation
 
 
@@ -46,6 +46,21 @@ def _board_entity(data: dict[str, Any]) -> BoardEntity:
     )
 
 
+def _location_entity(data: dict[str, Any]) -> LocationEntity:
+    card = _card(data.get("card", data))
+    if card is None:
+        raise ValueError("A Location must include card features")
+    health = int(data.get("current_health", data.get("health", card.durability or 0)))
+    return LocationEntity(
+        card=card,
+        current_health=health,
+        max_health=int(data.get("max_health", card.durability or health)),
+        board_position=int(data.get("board_position", 0)),
+        on_cooldown=bool(data.get("on_cooldown", False)),
+        can_activate=(None if "can_activate" not in data else bool(data["can_activate"])),
+    )
+
+
 def _player(data: dict[str, Any]) -> PlayerObservation:
     if "hero_health" not in data:
         raise ValueError("Each player must include hero_health")
@@ -68,6 +83,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         weapon=_card(data.get("weapon")),
         hero_power=_card(data.get("hero_power")),
         board=tuple(_board_entity(item) for item in data.get("board", ())),
+        locations=tuple(_location_entity(item) for item in data.get("locations", ())),
     )
 
 

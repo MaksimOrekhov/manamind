@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "catalog_path": "data/cards/standard_current_enUS.json",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "cards": [
+    {"card_id": "CORE_GIL_558", "mechanics": ["LIFESTEAL"]},
+    {"card_id": "CORE_ULD_723", "mechanics": ["REBORN"]},
+    {"card_id": "EDR_486", "mechanics": ["LIFESTEAL", "RUSH"]},
+    {"card_id": "END_031", "mechanics": ["SPELLPOWER", "STEALTH"]},
+    {"card_id": "RLK_067", "mechanics": ["LIFESTEAL"]},
+    {"card_id": "CORE_EX1_250", "mechanics": ["OVERLOAD", "TAUNT"]}
+  ]
+}

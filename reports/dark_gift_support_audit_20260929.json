@@ -1,9 +1,18 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "generated_for": "Dark Gift rules and candidate-pool scope; not a correctness or training-eligibility claim",
   "catalog_valid_as_of": "2026-09-27",
   "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
   "deck_pool_sha256": "3ed473967d38ff70b89a07812d175d9d5bc9c2b3cfb071fc1b3fa8e9d6fa05e6",
+  "rule_source_sha256": {
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomCardTask.cpp": "5fcbf8a70995d59dc61d73373898622e499a04662ccc07b4df65affbd90f949a",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CastRandomSpellTask.cpp": "46bf6539c24bd9d07b99878a27f63c48e0a1750f8f67782e60bd34f84ad41db4",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/Loaders/CardLoader.cpp": "ee28e20e1d3277acb592a0809294162db7d77f18db5ebc6c5b50dbd7ca5a1c9d",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp": "35533a2231b31af18376bf45b826c9e978dee4c367a9afb3e92dfdb2cbe0b894",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDragonPoolCardsGen.cpp": "2a5b0740769178f65f0d7382f36d41083460febf8f7d9c2854686957cda12683",
+    "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.cpp": "37b7f22c666a7aa5dae671dafe3a21f1ed9a6551f89dd26565fa46840a3be795"
+  },
   "selected_cards": {
     "EDR_456": {
       "name": "Darkrider",
@@ -208,6 +217,3962 @@
       ]
     }
   },
+  "manual_dynamic_rule_review": {
+    "profiles": {
+      "CAP_107t": {
+        "kind": "RANDOM_BOARD_TARGET",
+        "predicate": "random enemy character currently legal for the token's 1 damage effect",
+        "card_pool_dependency": false,
+        "evidence": "CardDef uses the current opponent hero and minions; no random card selection.",
+        "correctness_status": "UNVERIFIED"
+      },
+      "CATA_140": {
+        "kind": "RANDOM_CARD_POOL",
+        "predicate": "collectible Standard minion with race DRAGON",
+        "metadata_candidate_count": 80,
+        "metadata_candidate_card_ids": [
+          "CATA_111",
+          "CATA_132",
+          "CATA_133",
+          "CATA_140",
+          "CATA_154",
+          "CATA_155",
+          "CATA_160",
+          "CATA_201",
+          "CATA_305",
+          "CATA_307",
+          "CATA_432",
+          "CATA_464",
+          "CATA_469",
+          "CATA_474",
+          "CATA_476",
+          "CATA_484",
+          "CATA_494",
+          "CATA_497",
+          "CATA_556",
+          "CATA_614",
+          "CATA_723",
+          "CATA_898",
+          "CATA_999",
+          "CORE_AT_123",
+          "CORE_DRG_079",
+          "CORE_EX1_043",
+          "CORE_EX1_189",
+          "CORE_LOOT_137",
+          "CORE_NEW1_023",
+          "CORE_UNG_848",
+          "CORE_YOP_034",
+          "CS3_035",
+          "EDR_000",
+          "EDR_256",
+          "EDR_260",
+          "EDR_451",
+          "EDR_453",
+          "EDR_459",
+          "EDR_462",
+          "EDR_465",
+          "EDR_571",
+          "EDR_572",
+          "EDR_889",
+          "EDR_890",
+          "END_006",
+          "END_010",
+          "END_018",
+          "END_021",
+          "END_022",
+          "END_030",
+          "END_032",
+          "END_033",
+          "END_034",
+          "END_035",
+          "FIR_901",
+          "FIR_927",
+          "FIR_959",
+          "FIR_960",
+          "MEND_045",
+          "TIME_003",
+          "TIME_004",
+          "TIME_024",
+          "TIME_025",
+          "TIME_028",
+          "TIME_029",
+          "TIME_032",
+          "TIME_034",
+          "TIME_045",
+          "TIME_051",
+          "TIME_052",
+          "TIME_056",
+          "TIME_063",
+          "TIME_435",
+          "TIME_714",
+          "TIME_720",
+          "TIME_852",
+          "TIME_856",
+          "TIME_871",
+          "TIME_EVENT_301",
+          "TLC_600"
+        ],
+        "registration_routes": {
+          "direct_carddef": 14,
+          "missing_carddef": 66
+        },
+        "membership_status": "METADATA_PREDICATE_ONLY_ENGINE_POOL_PARITY_UNVERIFIED",
+        "extra_runtime_behavior": "Repeatedly add random results until hand is full; set each generated card Cost to 1 when source script data records at least 25 Mana spent while held.",
+        "correctness_status": "UNVERIFIED"
+      },
+      "CATA_556": {
+        "kind": "RANDOM_CARD_POOL",
+        "predicate": "collectible Standard minion with race DRAGON and printed Cost <= 3",
+        "metadata_candidate_count": 20,
+        "metadata_candidate_card_ids": [
+          "CATA_111",
+          "CATA_464",
+          "CATA_484",
+          "CATA_556",
+          "CATA_614",
+          "CORE_EX1_189",
+          "CORE_NEW1_023",
+          "EDR_451",
+          "EDR_571",
+          "EDR_889",
+          "EDR_890",
+          "END_018",
+          "END_021",
+          "END_022",
+          "FIR_927",
+          "TIME_003",
+          "TIME_025",
+          "TIME_045",
+          "TIME_056",
+          "TIME_063"
+        ],
+        "registration_routes": {
+          "direct_carddef": 4,
+          "missing_carddef": 16
+        },
+        "membership_status": "METADATA_PREDICATE_ONLY_ENGINE_POOL_PARITY_UNVERIFIED",
+        "correctness_status": "UNVERIFIED"
+      },
+      "EDR_456": {
+        "kind": "DARK_GIFT_DISCOVER_POOL",
+        "predicate": "collectible Standard minion with race DRAGON, then gift compatibility and distinct-option constraints",
+        "metadata_candidate_count": 80,
+        "metadata_candidate_card_ids": [
+          "CATA_111",
+          "CATA_132",
+          "CATA_133",
+          "CATA_140",
+          "CATA_154",
+          "CATA_155",
+          "CATA_160",
+          "CATA_201",
+          "CATA_305",
+          "CATA_307",
+          "CATA_432",
+          "CATA_464",
+          "CATA_469",
+          "CATA_474",
+          "CATA_476",
+          "CATA_484",
+          "CATA_494",
+          "CATA_497",
+          "CATA_556",
+          "CATA_614",
+          "CATA_723",
+          "CATA_898",
+          "CATA_999",
+          "CORE_AT_123",
+          "CORE_DRG_079",
+          "CORE_EX1_043",
+          "CORE_EX1_189",
+          "CORE_LOOT_137",
+          "CORE_NEW1_023",
+          "CORE_UNG_848",
+          "CORE_YOP_034",
+          "CS3_035",
+          "EDR_000",
+          "EDR_256",
+          "EDR_260",
+          "EDR_451",
+          "EDR_453",
+          "EDR_459",
+          "EDR_462",
+          "EDR_465",
+          "EDR_571",
+          "EDR_572",
+          "EDR_889",
+          "EDR_890",
+          "END_006",
+          "END_010",
+          "END_018",
+          "END_021",
+          "END_022",
+          "END_030",
+          "END_032",
+          "END_033",
+          "END_034",
+          "END_035",
+          "FIR_901",
+          "FIR_927",
+          "FIR_959",
+          "FIR_960",
+          "MEND_045",
+          "TIME_003",
+          "TIME_004",
+          "TIME_024",
+          "TIME_025",
+          "TIME_028",
+          "TIME_029",
+          "TIME_032",
+          "TIME_034",
+          "TIME_045",
+          "TIME_051",
+          "TIME_052",
+          "TIME_056",
+          "TIME_063",
+          "TIME_435",
+          "TIME_714",
+          "TIME_720",
+          "TIME_852",
+          "TIME_856",
+          "TIME_871",
+          "TIME_EVENT_301",
+          "TLC_600"
+        ],
+        "registration_routes": {
+          "direct_carddef": 14,
+          "missing_carddef": 66
+        },
+        "membership_status": "METADATA_PREDICATE_ONLY_ENGINE_POOL_PARITY_UNVERIFIED",
+        "gift_eligibility_status": "SEE_SCOPED_DARK_GIFT_RULES; ALL_OUTCOME_RULES_UNVERIFIED",
+        "correctness_status": "UNVERIFIED"
+      },
+      "FIR_959": {
+        "kind": "RANDOM_CARD_POOL_WITH_STATE_DEPENDENT_FILTERS",
+        "predicate": "collectible Standard spell of FIRE school, not a Quest, positive printed Cost, with a legal enemy target when the spell requires a target; each cast Cost must fit the remaining 15-Mana budget",
+        "metadata_candidate_count": 33,
+        "metadata_candidate_card_ids": [
+          "CATA_303",
+          "CATA_581",
+          "CATA_582",
+          "CATA_585",
+          "CORE_CS2_029",
+          "CORE_CS2_032",
+          "CORE_CS2_062",
+          "CORE_EX1_610",
+          "CORE_GIL_836",
+          "CORE_LOOT_101",
+          "CORE_SW_108",
+          "CORE_WON_337",
+          "DINO_406",
+          "END_024",
+          "END_025",
+          "FIR_900",
+          "FIR_906",
+          "FIR_909",
+          "FIR_910",
+          "FIR_911",
+          "FIR_914",
+          "FIR_916",
+          "FIR_920",
+          "FIR_923",
+          "FIR_939",
+          "FIR_941",
+          "FIR_954",
+          "JAIL_307",
+          "JAIL_801",
+          "TLC_221",
+          "TLC_222",
+          "TLC_227",
+          "TLC_632"
+        ],
+        "registration_routes": {
+          "direct_carddef": 8,
+          "generated_core_alias": 1,
+          "missing_carddef": 24
+        },
+        "membership_status": "METADATA_PREDICATE_ONLY_ENGINE_POOL_PARITY_UNVERIFIED",
+        "extra_runtime_behavior": "Cast random eligible spells until 15 Mana is spent or no candidate remains (hard cap 30 casts); random spell effects can open further choices/pools.",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    "interpretation": "Source-reviewed predicates and catalog-derived member candidates; not proof that runtime and metadata pools match or that effects are correct."
+  },
+  "candidate_rule_inventory": [
+    {
+      "card_id": "CAP_104",
+      "name": "Blastpowder Engineer",
+      "dbf_id": 127016,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]On your turn, friendly\nPirates deal 1 more\ndamage.",
+      "mechanics": [
+        "AURA"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CAP_104",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CAP_106",
+      "name": "Captain Crowley",
+      "dbf_id": 127019,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]Your Cannoneers fire\nan additional shot.\n<b>Battlecry</b>: Summon\n two 1/1 Cannoneers.",
+      "mechanics": [
+        "AURA",
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CAP_106",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CAP_107",
+      "name": "Cannonmaster",
+      "dbf_id": 127099,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Get a 1/1\nCannoneer that deals\n1 damage to a random\nenemy at end of turn.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "CAP_107t"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "CAP_107",
+        "literal_nodes": [
+          {
+            "card_id": "CAP_107",
+            "name": "Cannonmaster",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "CAP_107t"
+            ],
+            "task_types": [
+              "CustomTask"
+            ]
+          },
+          {
+            "card_id": "CAP_107t",
+            "name": "Cannoneer",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask"
+            ]
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "CAP_107",
+            "to": "CAP_107t",
+            "kind": "CARD_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [
+          "CAP_107",
+          "CAP_107t"
+        ],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "RANDOM_TARGET_ONLY",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_111",
+      "name": "Darkscale Broodmother",
+      "dbf_id": 122500,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you're\nholding a Dragon, refresh\n2 Mana Crystals.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_111",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_132",
+      "name": "Broodwatcher",
+      "dbf_id": 122968,
+      "card_class": "DRUID",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Get two 3/3\nWhelps with <b>Taunt</b>. If you spent\n8 Mana while holding this,\nsummon them. <i>({0} left!)</i>@[x]<b>Battlecry:</b> Get two 3/3\nWhelps with <b>Taunt</b>. If you spent\n8 Mana while holding this,\nsummon them. <i>(Ready!)</i>@[x]<b>Battlecry:</b> Get two 3/3\nWhelps with <b>Taunt</b>. If you\nspent 8 Mana while holding\nthis, summon them.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_132",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_133",
+      "name": "Iridescent Flitterwing",
+      "dbf_id": 122970,
+      "card_class": "DRUID",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Elusive</b>\nAt the end of your\nturn, give your other\nminions +1/+1.",
+      "mechanics": [
+        "ELUSIVE",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_133",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_140",
+      "name": "Merithra of the Dream",
+      "dbf_id": 122978,
+      "card_class": "DRUID",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>({0} left!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding this,\nthey cost (1). <i>(Ready!)</i>@[x]<b>Battlecry:</b> Fill your hand with\nrandom Dragons. If you spent\n25 Mana while holding\nthis, they cost (1).",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CATA_140",
+        "literal_nodes": [
+          {
+            "card_id": "CATA_140",
+            "name": "Merithra of the Dream",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [
+          "CATA_140"
+        ],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "REQUIRES_RULE_REVIEW",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_150",
+      "name": "Ragnaros, the Great Fire",
+      "dbf_id": 124110,
+      "card_class": "WARRIOR",
+      "set": "CATACLYSM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Colossal +2</b>\nAt the end of your turn, trigger\n   your minions' <b>Deathrattles</b>.",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_150",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_154",
+      "name": "Sinestra",
+      "dbf_id": 125450,
+      "card_class": "ROGUE",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Colossal +2</b>\nYour spells from other classes cast twice.",
+      "mechanics": [
+        "AURA",
+        "COLOSSAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_154",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_155",
+      "name": "Arisen Onyxia",
+      "dbf_id": 124138,
+      "card_class": "DEATHKNIGHT",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Colossal +2</b>. When your\nhero would lose Health on\nyour turn, gain that much\nmax Health instead.",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_155",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_160",
+      "name": "Scorching Ravager",
+      "dbf_id": 123552,
+      "card_class": "WARRIOR",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> <b>Herald</b> {0}. Give the Soldier <b>Rush</b>.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_160",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_201",
+      "name": "Twilight Mistress",
+      "dbf_id": 123072,
+      "card_class": "ROGUE",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Return all\nenemy minions to their owner's hand.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_201",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_305",
+      "name": "Incensed Matriarch",
+      "dbf_id": 122878,
+      "card_class": "PRIEST",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "At the end of your turn,\nif this is at full Health,\ngain +3 Health.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_305",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_307",
+      "name": "Alexstrasza, Guardian of Life",
+      "dbf_id": 123146,
+      "card_class": "PRIEST",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Set your remaining\nHealth to 15. When you reach\nfull Health, deal 15 damage\nto your opponent.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_307",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_432",
+      "name": "Chromatus",
+      "dbf_id": 122401,
+      "card_class": "PALADIN",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Colossal +4</b>\n<b>Taunt</b>, <b>Lifesteal</b>, <b>Elusive</b>, <b>Divine Shield</b>",
+      "mechanics": [
+        "COLOSSAL",
+        "DIVINE_SHIELD",
+        "ELUSIVE",
+        "LIFESTEAL",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_432",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_464",
+      "name": "Blackwing Experiment",
+      "dbf_id": 122759,
+      "card_class": "DEATHKNIGHT",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Deathrattle:</b> Get a\n2-Cost spell that deals\nthis minion's Attack\ndamage.",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_464",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_469",
+      "name": "Chromatic Broodmother",
+      "dbf_id": 122771,
+      "card_class": "DEATHKNIGHT",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Rush</b>\n  Whenever this attacks,\nrefresh Mana Crystals equal\n   to this minion's Attack.",
+      "mechanics": [
+        "RUSH",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_469",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_474",
+      "name": "Spearheart Sentry",
+      "dbf_id": 123112,
+      "card_class": "PALADIN",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]At the end of your turn,\nget a random Holy spell.\nReduce its Cost by (3).",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_474",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_476",
+      "name": "Bronze Keeper",
+      "dbf_id": 123115,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]At the end of your\nturn, summon a 6/6\nElemental Dragon with\n<b>Divine Shield</b>.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_476",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_484",
+      "name": "Winterspring Whelp",
+      "dbf_id": 123398,
+      "card_class": "MAGE",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> <b>Discover</b> a\n1-Cost spell from any class.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_484",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_494",
+      "name": "Maloriak",
+      "dbf_id": 122714,
+      "card_class": "WARLOCK",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "After you discard\na minion, summon\na copy of it.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_494",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_497",
+      "name": "Ultraxion",
+      "dbf_id": 122832,
+      "card_class": null,
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> <b>Herald</b> {0}.\nReduce Deathwing's\nCost by ({1}).\n <i>(<b>Herald</b> to improve!)</i>",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_497",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_556",
+      "name": "Carrier Whelp",
+      "dbf_id": 122933,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Get a random\nDragon that costs\n(3) or less.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CATA_556",
+        "literal_nodes": [
+          {
+            "card_id": "CATA_556",
+            "name": "Carrier Whelp",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [
+          "CATA_556"
+        ],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "REQUIRES_RULE_REVIEW",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_586",
+      "name": "Destructive Blaze",
+      "dbf_id": 123166,
+      "card_class": "WARRIOR",
+      "set": "CATACLYSM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]After this survives damage,\nsummon a Destructive Blaze.\n<b>Deathrattle:</b> Deal 2 damage\nto a random enemy.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_586",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_591",
+      "name": "Commander Geddon",
+      "dbf_id": 123321,
+      "card_class": "WARRIOR",
+      "set": "CATACLYSM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Instead of drawing\neach turn, <b>Discover</b> a card\nfrom your deck. It costs (3)\n  less. Destroy the others.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_591",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_614",
+      "name": "Shadowed Informant",
+      "dbf_id": 123385,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> <b>Discover</b> a spell\nfrom your class. <i>(Swaps\nclass each turn!)</i>",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_614",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_723",
+      "name": "Drakeadon Mongrel",
+      "dbf_id": 122641,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Deathrattle:</b> Summon two random 4-Cost minions.",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_723",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_898",
+      "name": "Scaled Lancer",
+      "dbf_id": 123655,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "All enemy minions\nhave <b>Taunt</b>.",
+      "mechanics": [
+        "AURA"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_898",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_999",
+      "name": "Earthen Drake",
+      "dbf_id": 128058,
+      "card_class": "NEUTRAL",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "At the end of your turn, deal 4 damage to the enemy hero.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CATA_999",
+        "literal_nodes": [
+          {
+            "card_id": "CATA_999",
+            "name": "Earthen Drake",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "DamageTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CATA_EVENT_002",
+      "name": "Baleful Blazer",
+      "dbf_id": 126847,
+      "card_class": "WARRIOR",
+      "set": "EVENT",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you've played a Fire spell this turn, destroy a minion.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CATA_EVENT_002",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_AT_123",
+      "name": "Chillmaw",
+      "dbf_id": 120524,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> If you're holding\na Dragon, deal 3 damage\nto all minions.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_AT_123",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_BT_120",
+      "name": "Warmaul Challenger",
+      "dbf_id": 127474,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Choose\nan enemy minion.\nBattle it to the death!",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_BT_120",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_DRG_024",
+      "name": "Sky Raider",
+      "dbf_id": 127088,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Add a random Pirate to your hand.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_DRG_024",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_DRG_079",
+      "name": "Evasive Wyrm",
+      "dbf_id": 112925,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Rush</b>\n<b>Divine Shield</b>\n<b>Elusive</b>",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "ELUSIVE",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_DRG_079",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_EX1_043",
+      "name": "Twilight Drake",
+      "dbf_id": 76325,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Gain +1 Health for each card in your hand.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "CountTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "EX1_043e"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_EX1_043",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_EX1_043",
+            "name": "Twilight Drake",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "EX1_043e"
+            ],
+            "task_types": [
+              "AddEnchantmentTask",
+              "CountTask"
+            ]
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "CORE_EX1_043",
+            "to": "EX1_043e",
+            "kind": "ENCHANTMENT_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_EX1_189",
+      "name": "Brightwing",
+      "dbf_id": 69672,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Add a random <b>Legendary</b> minion to your hand.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_EX1_189",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_EX1_414",
+      "name": "Grommash Hellscream",
+      "dbf_id": 69643,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Charge</b>\nHas +6 Attack while damaged.",
+      "mechanics": [
+        "CHARGE",
+        "ENRAGED"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "EX1_414e"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_EX1_414",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_EX1_414",
+            "name": "Grommash Hellscream",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "EX1_414e"
+            ],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "CORE_EX1_414",
+            "to": "EX1_414e",
+            "kind": "ENCHANTMENT_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_EX1_604",
+      "name": "Frothing Berserker",
+      "dbf_id": 69645,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "Whenever a minion takes damage, gain +1 Attack.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "EX1_604o"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_EX1_604",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_EX1_604",
+            "name": "Frothing Berserker",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "EX1_604o"
+            ],
+            "task_types": [
+              "AddEnchantmentTask"
+            ]
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "CORE_EX1_604",
+            "to": "EX1_604o",
+            "kind": "ENCHANTMENT_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_LOOT_137",
+      "name": "Sleepy Dragon",
+      "dbf_id": 69726,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Taunt</b>",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_LOOT_137",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_LOOT_137",
+            "name": "Sleepy Dragon",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_NEW1_023",
+      "name": "Faerie Dragon",
+      "dbf_id": 76329,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Elusive</b>",
+      "mechanics": [
+        "ELUSIVE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_NEW1_023",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_NEW1_023",
+            "name": "Faerie Dragon",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_NX2_028",
+      "name": "Hookfist-3000",
+      "dbf_id": 120574,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "After your hero attacks, gain 4 Armor and\ndraw a card.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_NX2_028",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_OG_149",
+      "name": "Ravaging Ghoul",
+      "dbf_id": 120573,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Deal 1 damage to all other minions.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_OG_149",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_OG_218",
+      "name": "Bloodhoof Brave",
+      "dbf_id": 76303,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Taunt</b>\nHas +3 Attack while damaged.",
+      "mechanics": [
+        "ENRAGED",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "OG_218e"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_OG_218",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_OG_218",
+            "name": "Bloodhoof Brave",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "OG_218e"
+            ],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "CORE_OG_218",
+            "to": "OG_218e",
+            "kind": "ENCHANTMENT_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_UNG_848",
+      "name": "Primordial Drake",
+      "dbf_id": 76327,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Deal 2 damage\nto all other minions.",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "CORE_UNG_848",
+        "literal_nodes": [
+          {
+            "card_id": "CORE_UNG_848",
+            "name": "Primordial Drake",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "DamageTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_WW_329",
+      "name": "Detonation Juggernaut",
+      "dbf_id": 127469,
+      "card_class": "WARRIOR",
+      "set": "CORE",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Taunt</b>. <b>Battlecry:</b> Give <b>Taunt</b> minions in your hand +2/+2.",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_WW_329",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CORE_YOP_034",
+      "name": "Runaway Blackwing",
+      "dbf_id": 121240,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]At the end of your turn,\ndeal 10 damage to a\nrandom enemy minion.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CORE_YOP_034",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "CS3_035",
+      "name": "Nozdormu the Eternal",
+      "dbf_id": 66870,
+      "card_class": "NEUTRAL",
+      "set": "CORE",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Start of Game:</b> If this is in\nBOTH players' decks, turns\n are only 15 seconds long.",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "CS3_035",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "DINO_400",
+      "name": "Barricade Basher",
+      "dbf_id": 118403,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]Whenever you gain Armor,\n gain +2/+2 and attack a\nrandom enemy minion.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "DINO_400",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "DINO_401",
+      "name": "The Great Dracorex",
+      "dbf_id": 118404,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Rush</b>\nAfter this attacks an enemy\nminion, it damages ALL\nother enemy minions.",
+      "mechanics": [
+        "RUSH",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "DINO_401",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_000",
+      "name": "Ysera, Emerald Aspect",
+      "dbf_id": 113321,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Start of Game:</b> Increase both\nplayers'maximum Mana by 5.\n<b>Battlecry:</b> Gain 3\nMana Crystals.",
+      "mechanics": [
+        "BATTLECRY",
+        "START_OF_GAME_KEYWORD"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask",
+          "ManaCrystalTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "EDR_000",
+        "literal_nodes": [
+          {
+            "card_id": "EDR_000",
+            "name": "Ysera, Emerald Aspect",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask",
+              "ManaCrystalTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_256",
+      "name": "Dreamwarden",
+      "dbf_id": 116674,
+      "card_class": "PALADIN",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>. <b>Battlecry:</b> If there\nis a card in your deck that\ndidn't start there, draw it\nand gain +2/+2.",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_256",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_260",
+      "name": "Illusory Greenwing",
+      "dbf_id": 114884,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nShuffle two 4/5 Dragons with\n<b>Taunt</b> into your deck. They're\n   <b>Summoned When Drawn</b>.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_260",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_451",
+      "name": "Goldpetal Drake",
+      "dbf_id": 114081,
+      "card_class": "PALADIN",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry and Deathrattle:</b>\n<b>Imbue</b> your Hero Power.",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_451",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_453",
+      "name": "Briarspawn Drake",
+      "dbf_id": 114213,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]At the end of your turn,\nattack a random enemy\nminion <i>(excess damage\nhits the enemy hero)</i>.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_453",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_456",
+      "name": "Darkrider",
+      "dbf_id": 114218,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you're holding\na Dragon, <b>Discover</b> a Dragon\nwith a <b>Dark Gift</b>.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "EDR_456",
+        "literal_nodes": [
+          {
+            "card_id": "EDR_456",
+            "name": "Darkrider",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "DarkGiftDiscoverTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [
+          "EDR_456"
+        ],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "REQUIRES_RULE_REVIEW",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_457",
+      "name": "Brood Keeper",
+      "dbf_id": 114219,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you're holding a\nDragon, equip a 2/2 Sword.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": [
+          "EDR_457t"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "EDR_457",
+        "literal_nodes": [
+          {
+            "card_id": "EDR_457",
+            "name": "Brood Keeper",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "EDR_457t"
+            ],
+            "task_types": [
+              "CustomTask"
+            ]
+          },
+          {
+            "card_id": "EDR_457t",
+            "name": "Nightmare Slicer",
+            "card_type": "WEAPON",
+            "registration_route": "textless_metadata",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "EDR_457",
+            "to": "EDR_457t",
+            "kind": "CARD_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_459",
+      "name": "Afflicted Devastator",
+      "dbf_id": 114243,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Deal 3 damage\nto all other friendly minions.\n<b>Deathrattle:</b> Deal 3 damage\nto all enemy minions.",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_459",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_462",
+      "name": "Selenic Drake",
+      "dbf_id": 114308,
+      "card_class": "PRIEST",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Elusive</b>\nAt the end of your turn,\nget a random Dragon.",
+      "mechanics": [
+        "ELUSIVE",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_462",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_465",
+      "name": "Ysondre",
+      "dbf_id": 114340,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b> Summon\na random Dragon for each\ntime Ysondre has died\nthis game.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_465",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_468",
+      "name": "Eggbasher",
+      "dbf_id": 116293,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Deal 1 damage to a minion and give it\n+4 Attack.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_468",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_471",
+      "name": "Tortolla",
+      "dbf_id": 114353,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>, <b>Elusive</b>\nAfter this takes damage,\ngain 1 Armor and give\nthis minion +1 Attack.",
+      "mechanics": [
+        "ELUSIVE",
+        "TAUNT",
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_471",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_571",
+      "name": "Fae Trickster",
+      "dbf_id": 116672,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Deathrattle:</b> Draw a spell that costs (5) or more.",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_571",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_572",
+      "name": "Tormented Dreadwing",
+      "dbf_id": 116673,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Deathrattle:</b> Draw 2 Dragons. Reduce their Costs by (1).",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_572",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_889",
+      "name": "Petal Peddler",
+      "dbf_id": 115191,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]At the end of your turn,\ngive another random\n friendly Dragon +1/+1.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_889",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "EDR_890",
+      "name": "Nightmare Dragonkin",
+      "dbf_id": 114496,
+      "card_class": "DEMONHUNTER",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Deathrattle:</b> Reduce the\nCost of the right-most card in your hand by (2).",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "EDR_890",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_006",
+      "name": "Chronikar",
+      "dbf_id": 121063,
+      "card_class": "DEMONHUNTER",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Give your hero\n+3 Attack this turn, next\nturn, and the turn after.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_006",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_010",
+      "name": "Twilight Timereaver",
+      "dbf_id": 121144,
+      "card_class": null,
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Choose One -</b> Set the Attack of all other minions to 1; or Health to 1.",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_010",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_018",
+      "name": "Acolyte of Infinity",
+      "dbf_id": 121162,
+      "card_class": "WARLOCK",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Set the Cost of\na random card in your hand\nto INFINITY! <b>Deathrattle:</b>\nChange it back.",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_018",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_021",
+      "name": "Dimensional Weaponsmith",
+      "dbf_id": 121171,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Give all minions and weapons in your hand +2 Attack.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_021",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_022",
+      "name": "Time-Twisted Seer",
+      "dbf_id": 121174,
+      "card_class": null,
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "Has <b>Spell Damage +2</b> while damaged.",
+      "mechanics": [],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_022",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_030",
+      "name": "Haywire Hornswog",
+      "dbf_id": 121193,
+      "card_class": "SHAMAN",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Elusive,</b> <b>Taunt</b>\nCosts (1) less for each\nMana Crystal you've\n <b>Overloaded</b> this game.",
+      "mechanics": [
+        "ELUSIVE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_030",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_032",
+      "name": "Winged Aberration",
+      "dbf_id": 121195,
+      "card_class": null,
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Rush</b>\n<b><b>Combo:</b> Overload</b> for (2) to\ngain <b>Immune</b> this turn\nand <b>Windfury</b>.",
+      "mechanics": [
+        "COMBO",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_032",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_033",
+      "name": "Prescient Slitherdrake",
+      "dbf_id": 121196,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Elusive</b>\nCosts (3) less if you're\n holding another Dragon.",
+      "mechanics": [
+        "ELUSIVE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "END_033",
+        "literal_nodes": [
+          {
+            "card_id": "END_033",
+            "name": "Prescient Slitherdrake",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_034",
+      "name": "Crumblecrusher",
+      "dbf_id": 121197,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Destroy a\nrandom enemy minion,\nlocation, and weapon.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_034",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "END_035",
+      "name": "Omen of the End",
+      "dbf_id": 121199,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> If your deck is\nempty, destroy the top 5\n cards of the enemy deck.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "END_035",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_901",
+      "name": "Frostburn Matriarch",
+      "dbf_id": 115625,
+      "card_class": "DEATHKNIGHT",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> If you're holding\na minion with a <b>Dark Gift</b>, summon two 4/4 Dragons with <b>Taunt</b>.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "FIR_901",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_927",
+      "name": "Emberscarred Whelp",
+      "dbf_id": 115656,
+      "card_class": "SHAMAN",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> <b>Discover</b> a\n5-Cost card. Gain 1 Mana\nCrystal next turn only.",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "FIR_927",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_928",
+      "name": "Keeper of Flame",
+      "dbf_id": 115653,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Give all minions\nin your hand +3/+3. They\nare destroyed in 3 turns.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "FIR_928",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_956",
+      "name": "Dragon Turtle",
+      "dbf_id": 115755,
+      "card_class": "WARRIOR",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> If you're holding\na minion with a <b>Dark Gift</b>,\ngive your hero +3 Attack this\nturn and 6 Armor.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "FIR_956",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_959",
+      "name": "Fyrakk the Blazing",
+      "dbf_id": 115756,
+      "card_class": "NEUTRAL",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Immune</b> to Fire spells.\n<b>Battlecry:</b> Cast 15 Mana\nworth of Fire spells at\nrandom enemies.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "AddEnchantmentTask",
+          "CastRandomSpellTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": true,
+        "referenced_card_ids": [
+          "FIR_959e"
+        ]
+      },
+      "dependency_closure": {
+        "root_card_id": "FIR_959",
+        "literal_nodes": [
+          {
+            "card_id": "FIR_959",
+            "name": "Fyrakk the Blazing",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [
+              "FIR_959e"
+            ],
+            "task_types": [
+              "AddEnchantmentTask",
+              "CastRandomSpellTask"
+            ]
+          }
+        ],
+        "literal_edges": [
+          {
+            "from": "FIR_959",
+            "to": "FIR_959e",
+            "kind": "ENCHANTMENT_REFERENCE"
+          }
+        ],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [
+          "FIR_959"
+        ],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "REQUIRES_RULE_REVIEW",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "FIR_960",
+      "name": "Tending Dragonkin",
+      "dbf_id": 115960,
+      "card_class": "HUNTER",
+      "set": "EMERALD_DREAM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Copy the lowest Cost Beast in your hand.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "FIR_960",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_029",
+      "name": "Rioter",
+      "dbf_id": 126094,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "After a friendly minion survives damage,\ngive it +1 Attack.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "JAIL_029",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_311",
+      "name": "Scrappy Defender",
+      "dbf_id": 126104,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\nHas +5 Attack if your deck\nhas 25 or more cards.",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "JAIL_311",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_384",
+      "name": "Chainbreaker Hogger",
+      "dbf_id": 126002,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Start of Game:</b> Duplicate\nall other <b>Legendary</b> cards\nin your deck.",
+      "mechanics": [
+        "START_OF_GAME_KEYWORD",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "JAIL_384",
+        "literal_nodes": [
+          {
+            "card_id": "JAIL_384",
+            "name": "Chainbreaker Hogger",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_421",
+      "name": "Warptooth",
+      "dbf_id": 125803,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Charge</b>. If four friendly\ncharacters take damage on\none of your turns, summon\n  this from hand or deck.",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "CustomTask"
+        ],
+        "has_trigger": true,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "JAIL_421",
+        "literal_nodes": [
+          {
+            "card_id": "JAIL_421",
+            "name": "Warptooth",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "CustomTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_435",
+      "name": "Rampaging Hound",
+      "dbf_id": 126136,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Prepare</b>\n<b>Battlecry:</b> Force all enemy\nminions to attack this.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "JAIL_435",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "JAIL_455",
+      "name": "Disguised Watchman",
+      "dbf_id": 127260,
+      "card_class": "WARRIOR",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "Can be played on either side.\n<b>Battlecry:</b> Deal 1 damage\nto all other friendly minions, twice.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "JAIL_455",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "MEND_045",
+      "name": "Seeding Dragon",
+      "dbf_id": 123482,
+      "card_class": "DRUID",
+      "set": "CATACLYSM",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Get a random\n  Dragon. It costs (2) less.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "MEND_045",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_003",
+      "name": "Portal Vanguard",
+      "dbf_id": 119314,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Rewind</b>\n<b>Battlecry:</b> Draw a random\nminion. Give it +2/+2.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_003",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_004",
+      "name": "Conflux Crasher",
+      "dbf_id": 119317,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Rewind</b>\n<b>Battlecry:</b> Deal 7 damage\nto a random enemy.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_004",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_024",
+      "name": "Murozond, Unbounded",
+      "dbf_id": 120266,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> At the start of your next turn, set this minion's Attack to INFINITY!",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_024",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_025",
+      "name": "Twilight Timehopper",
+      "dbf_id": 120482,
+      "card_class": "WARLOCK",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Shuffle 2\nShreds of Time into your\ndeck. When drawn, deal 3\ndamage to your hero.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_025",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_028",
+      "name": "Fatebreaker",
+      "dbf_id": 120487,
+      "card_class": "WARLOCK",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Lifesteal</b>\n<b>Battlecry:</b> Cast a Shred\nof Time from your deck\nto gain +3/+3.",
+      "mechanics": [
+        "BATTLECRY",
+        "LIFESTEAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_028",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_029",
+      "name": "Ruinous Velocidrake",
+      "dbf_id": 120488,
+      "card_class": "WARLOCK",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Rush</b>\n<b>Battlecry:</b> Cast a Shred\n of Time from your deck to\n   summon a copy of this.",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_029",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_032",
+      "name": "Chronogor",
+      "dbf_id": 120491,
+      "card_class": "WARLOCK",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> You draw your\n2 highest Cost cards.\nYour opponent draws your\n2 lowest Cost cards.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_032",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_034",
+      "name": "Stadium Announcer",
+      "dbf_id": 120503,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Rewind</b>\n<b>Battlecry:</b> Both players\nequip a random weapon.\nGive yours +1/+1.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_034",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_045",
+      "name": "Whelp of the Infinite",
+      "dbf_id": 120856,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Poisonous</b>\n<b>Reborn</b>",
+      "mechanics": [
+        "POISONOUS",
+        "REBORN"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDragonPoolCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "TIME_045",
+        "literal_nodes": [
+          {
+            "card_id": "TIME_045",
+            "name": "Whelp of the Infinite",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_051",
+      "name": "Soldier of the Infinite",
+      "dbf_id": 120949,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Rush</b>\n<b>Battlecry:</b> Double this minion's Attack.",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_051",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_052",
+      "name": "Amber Warden",
+      "dbf_id": 120951,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Deathrattle:</b> Summon a\nrandom minion from\nthe past.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_052",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_056",
+      "name": "Whelp of the Bronze",
+      "dbf_id": 120961,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Lifesteal</b>\n<b>Divine Shield</b>",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "LIFESTEAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDragonPoolCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "TIME_056",
+        "literal_nodes": [
+          {
+            "card_id": "TIME_056",
+            "name": "Whelp of the Bronze",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_063",
+      "name": "Timelord Nozdormu",
+      "dbf_id": 120981,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Dormant</b> for 5 turns.\n<b>Rush</b>. After you play a card\nfrom the newest expansion,\n awaken 1 turn sooner.",
+      "mechanics": [
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_063",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_435",
+      "name": "Eternus",
+      "dbf_id": 120543,
+      "card_class": "PRIEST",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Take control of\nan enemy minion with this\n  minion's Health or less.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_435",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_714",
+      "name": "Chrono-Lord Epoch",
+      "dbf_id": 120817,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Destroy all minions that your opponent played last turn.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_714",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_720",
+      "name": "Soldier of the Bronze",
+      "dbf_id": 120847,
+      "card_class": "NEUTRAL",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Taunt</b>\n<b>Battlecry:</b> Double this minion's Health.",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_720",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_850",
+      "name": "Lo'Gosh, Blood Fighter",
+      "dbf_id": 119451,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Fabled</b>, <b>Rush</b>. <b>Deathrattle:</b>\nSummon a Blood Fighter from\nyour hand. It gains +5/+5 and\nattacks a random enemy.",
+      "mechanics": [
+        "DEATHRATTLE",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_850",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_852",
+      "name": "Azure Queen Sindragosa",
+      "dbf_id": 119524,
+      "card_class": "MAGE",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Fabled</b>\nIf you control another\nDragon, your Arcane\nspells cost (2) less.",
+      "mechanics": [
+        "AURA"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "composed",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_852",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_856",
+      "name": "Algeth'ar Instructor",
+      "dbf_id": 119632,
+      "card_class": "MAGE",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "<b>Spell Damage +2</b>",
+      "mechanics": [
+        "SPELLPOWER"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "single_effect",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDragonPoolCardsGen.cpp",
+        "task_types": [],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "TIME_856",
+        "literal_nodes": [
+          {
+            "card_id": "TIME_856",
+            "name": "Algeth'ar Instructor",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": []
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_871",
+      "name": "Heir of Hereafter",
+      "dbf_id": 119780,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Gain +2/+2 for\neach damaged minion.",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_871",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_872",
+      "name": "Undefeated Champion",
+      "dbf_id": 119783,
+      "card_class": "WARRIOR",
+      "set": "TIME_TRAVEL",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Rush</b>. <b>Battlecry:</b> Fill your\nopponent's board with\n  random 1-Cost minions.",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_872",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TIME_EVENT_301",
+      "name": "Disciple of Demise",
+      "dbf_id": 126697,
+      "card_class": "NEUTRAL",
+      "set": "EVENT",
+      "dragon_candidate": true,
+      "warrior_candidate": false,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Randomly\ndestroy another minion.\nRepeat for each Dragon\nyou're holding.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "choice_random_generated",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TIME_EVENT_301",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TLC_600",
+      "name": "Windpeak Wyrm",
+      "dbf_id": 117714,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": true,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Deal 5 damage\nand gain 5 Armor.\n<b>Kindred:</b> Costs (3) less.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "direct_carddef",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+        "task_types": [
+          "ArmorTask",
+          "DamageTask"
+        ],
+        "has_trigger": false,
+        "has_aura": true,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      },
+      "dependency_closure": {
+        "root_card_id": "TLC_600",
+        "literal_nodes": [
+          {
+            "card_id": "TLC_600",
+            "name": "Windpeak Wyrm",
+            "card_type": "MINION",
+            "registration_route": "direct_carddef",
+            "dependency_ids": [],
+            "task_types": [
+              "ArmorTask",
+              "DamageTask"
+            ]
+          }
+        ],
+        "literal_edges": [],
+        "unresolved_literal_card_ids": [],
+        "dynamic_pool_review_card_ids": [],
+        "random_target_review_card_ids": [],
+        "choice_rule_review_card_ids": [],
+        "literal_closure_status": "LITERAL_REFERENCES_RESOLVED",
+        "dynamic_pool_status": "NO_STATIC_DYNAMIC_HINT",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TLC_606",
+      "name": "Latorvian Armorer",
+      "dbf_id": 117771,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "<b>Battlecry:</b> Deal 2 damage to an enemy minion. If it dies, gain 5 Armor.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TLC_606",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TLC_623",
+      "name": "Stonecarver",
+      "dbf_id": 117918,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "At the end of your turn, give another friendly damaged minion +2/+2.",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TLC_623",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    },
+    {
+      "card_id": "TLC_624",
+      "name": "Nablya, the Watcher",
+      "dbf_id": 117919,
+      "card_class": "WARRIOR",
+      "set": "THE_LOST_CITY",
+      "dragon_candidate": false,
+      "warrior_candidate": true,
+      "card_type": "MINION",
+      "text": "[x]<b>Battlecry:</b> Summon copies\n of your damaged minions.\nGive the copies <b>Rush</b>.",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "has_rules_text": true,
+      "registration_route": "missing",
+      "triage_stratum": "triggered",
+      "rule_verification": "UNVERIFIED",
+      "transitive_dependencies": "NOT_AUDITED",
+      "source_evidence": null,
+      "dependency_closure": {
+        "root_card_id": "TLC_624",
+        "literal_closure_status": "BLOCKED_UNREGISTERED_ROOT",
+        "dynamic_pool_status": "NOT_AUDITED",
+        "correctness_status": "UNVERIFIED"
+      }
+    }
+  ],
+  "candidate_rule_inventory_summary": {
+    "total_unique_candidates": 114,
+    "by_registration_route": {
+      "direct_carddef": 22,
+      "missing": 92
+    },
+    "unregistered_by_text_stratum": {
+      "choice_random_generated": 30,
+      "composed": 6,
+      "single_effect": 10,
+      "triggered": 46
+    },
+    "all_rule_verification": "UNVERIFIED",
+    "registered_roots_with_missing_literal_dependencies": 0,
+    "registered_roots_with_dynamic_pool_review": 4,
+    "dependency_closure": "LITERAL_REFERENCES_SCANNED_FOR_REGISTERED_ROOTS; DYNAMIC_RULE_POOLS_STILL_REQUIRE_MANUAL_REVIEW"
+  },
   "pool_relationship": {
     "dragon_warrior_overlap_count": 8,
     "dragon_warrior_overlap_ids": [
@@ -225,6 +4190,8 @@
   "limitations": [
     "Candidate-pool metadata does not implement the Dark Gift choice or effect.",
     "Selected minion future behavior remains a transitive dependency; unsupported candidates cannot be hidden in strict training.",
-    "Gift-specific card behavior is not inferred from rules text or metadata by this script."
+    "Gift-specific card behavior is not inferred from rules text or metadata by this script.",
+    "Dynamic card-pool membership is derived from the pinned metadata snapshot; compare it with the engine's loaded Standard pool and current ban rules before treating it as runtime closure.",
+    "A random board target, such as CAP_107t, is not a dynamic card-pool dependency even though rules text contains the word random."
   ]
 }

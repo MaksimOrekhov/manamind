@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "package": "filtered_school_draw",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "8af066c89504ad9f75eab24a60f0c6bc4d8e25c399d090876f120c3ae5596b1e",
+  "generator_script_sha256": "51d6d6cbaa92a867129de2269f91125a70096a843f5a7ed842146567c9611b14",
+  "generated_source_sha256": "643aabe8744af0fcebf6693d8a0d385498e5cbd728a244bf3b3c16aa1a1b5f4d",
+  "capability_file_sha256": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+  "engine_library_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+  "native_scenario_sha256": "fef07da1bf334210fe4b7e5fe05d569df39c5494b691a09090bcd99028a8c87f",
+  "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210",
+  "training_eligible": false,
+  "cards": {
+    "FIR_929": {
+      "rules_fingerprint": "95e86eb6680e4e900de09ee2ca2deb5cbc4c1d05f36ec948c80aebc17a61a77b",
+      "pool_membership_sha256": "3b77a6730eabcb01ee0dba03e675e3300ed8e99595cba5ed5247751f9c4494d3",
+      "pool_predicate_version": "DRAW_FROM_MATCHING_DECK_SPELL_SCHOOL_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "scenario_fingerprint": "c6be2afbdef26f29c6e01ad2d83df12f9885be78b06c9b63026540438d94840a",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Deathrattle draws one FIRE spell from the controller's deck; available deck members and complete closure are out of scope.",
+      "native_test": "[ManaMind filtered school draw]* passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2531 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal actions passed",
+      "training_eligible": false
+    },
+    "RLK_511": {
+      "rules_fingerprint": "2292de9993ac40870bc0bec5e87d1556831e2bb9d9f32a54aee57790d80f18d4",
+      "pool_membership_sha256": "76586657c893145b406a8ed0b8bf0331a920b6a83fd2e6855619ef8c7b9ec0b9",
+      "pool_predicate_version": "DRAW_FROM_MATCHING_DECK_SPELL_SCHOOL_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "scenario_fingerprint": "c6be2afbdef26f29c6e01ad2d83df12f9885be78b06c9b63026540438d94840a",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Deathrattle draws one FROST spell from the controller's deck; available deck members and complete closure are out of scope.",
+      "native_test": "[ManaMind filtered school draw]* passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2531 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "bridge_smoke": "Standard deck legality passed; native scenario covers card effect; session setup is blocked by the known Death Knight gap.",
+      "training_eligible": false
+    }
+  }
+}

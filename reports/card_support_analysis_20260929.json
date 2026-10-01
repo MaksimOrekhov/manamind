@@ -16,13 +16,17 @@
         "sha256": "fd454733401f01c0bd3502491ad91aed503793e0df85468a8156167d72ff3ac5",
         "bytes": 614
       },
+      "data/cards/format_bans_20260929.json": {
+        "sha256": "82f7e49f8da030557e7bf6fe21b882cb45f6f0eaf6375e4c03bc6cb270c3e843",
+        "bytes": 669
+      },
       "data/samples/standard_meta_deck_pool_20260928.json": {
         "sha256": "3ed473967d38ff70b89a07812d175d9d5bc9c2b3cfb071fc1b3fa8e9d6fa05e6",
         "bytes": 7322
       },
       "reports/standard_meta_coverage_20260928.json": {
-        "sha256": "25c61aa7e0be094619f117f1886e59a89460fae69c2687cc0720a1d024aa0729",
-        "bytes": 37505
+        "sha256": "4a678b0e3f3c3778a17534c52e8471394afd0002d27589adb036cc30fae5318e",
+        "bytes": 41740
       },
       "integrations/rosettastone/card_rules/core_aliases.generated.json": {
         "sha256": "635dec7d9d806d8ebdbf131f75a75f59a32fce0d979ce5cd650637609eb992bb",
@@ -69,7 +73,7 @@
         "bytes": 5992
       }
     },
-    "rosettastone_rules_file_count": 256,
+    "rosettastone_rules_file_count": 260,
     "rosettastone_rules_fingerprints": {
       "vendor/RosettaStone/Includes/Rosetta/Common/Enums/CardEnums.hpp": {
         "sha256": "4cf1848bffa6de742cef78f8a5bc24058c64d1952b0a982d474f2517f8e2e60a",
@@ -206,6 +210,10 @@
       "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.hpp": {
         "sha256": "085ca4b2d163b7fa889a2c4feb49604bf36cc094d186a5780ea87bf23b3bb030",
         "bytes": 1491
+      },
+      "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.hpp": {
+        "sha256": "22a14f18733c35203fb170bfa404269aff0beb7082f12cd4acf295fc0d1e885f",
+        "bytes": 1004
       },
       "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyAllTask.hpp": {
         "sha256": "018a02523e4d7d1ad8b0ec388d20d971571973b2e9126ab3a4cf78961252e308",
@@ -595,6 +603,14 @@
         "sha256": "3fef49d461ff71813b22df4c589a59d3a18aed40243c39fd0a843b15ab876ad5",
         "bytes": 2099
       },
+      "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp": {
+        "sha256": "35533a2231b31af18376bf45b826c9e978dee4c367a9afb3e92dfdb2cbe0b894",
+        "bytes": 1400
+      },
+      "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDragonPoolCardsGen.cpp": {
+        "sha256": "404cce678d8d3b34ab9cad0729bc10c059ef3bf08c01ee104248ee0620510eec",
+        "bytes": 771
+      },
       "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp": {
         "sha256": "d4eaae49575a0006abdbc81ebc693deea8399f1bbdafb67230c691bf6f6b0864",
         "bytes": 3123
@@ -774,6 +790,10 @@
       "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.cpp": {
         "sha256": "839476141d18e4800201e1895508edd8ea1ba6432d3f8e968be994face09fefd",
         "bytes": 1147
+      },
+      "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.cpp": {
+        "sha256": "37b7f22c666a7aa5dae671dafe3a21f1ed9a6551f89dd26565fa46840a3be795",
+        "bytes": 6569
       },
       "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyAllTask.cpp": {
         "sha256": "2ecf2230cc2f27c2f69565f3cc9d0e1d95cbcc42f71418ab76a3fd6aa8328bc6",
@@ -1100,7 +1120,7 @@
       "revision": "e10749b5f0c08d3a6135bce317cb11d1738846ad",
       "status": "read",
       "note": null,
-      "working_tree_status_lines": 57,
+      "working_tree_status_lines": 68,
       "working_tree_status_sample": [
         " M Extensions/RosettaPython/Sources/Python/PlayMode/Enums/TriggerEnums.cpp",
         " M Includes/Rosetta/Common/Constants.hpp",
@@ -1116,6 +1136,7 @@
         " M Includes/Rosetta/PlayMode/Managers/TriggerManager.hpp",
         " M Includes/Rosetta/PlayMode/Models/Choice.hpp",
         " M Includes/Rosetta/PlayMode/Models/Player.hpp",
+        " M Includes/Rosetta/PlayMode/Tasks/SimpleTasks.hpp",
         " M Includes/Rosetta/PlayMode/Tasks/SimpleTasks/CastRandomSpellTask.hpp",
         " M Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DiscoverTask.hpp",
         " M Includes/Rosetta/RosettaStone.hpp",
@@ -1130,23 +1151,22 @@
         " M Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
         " M Sources/Rosetta/PlayMode/Cards/Card.cpp",
         " M Sources/Rosetta/PlayMode/Cards/CardDefs.cpp",
-        " M Sources/Rosetta/PlayMode/Cards/Cards.cpp",
-        " M Sources/Rosetta/PlayMode/Enchants/PlayerAuraEffects.cpp"
+        " M Sources/Rosetta/PlayMode/Cards/Cards.cpp"
       ]
     }
   },
   "baseline": {
     "selected_deck_count": 5,
     "selected_unique_card_count": 74,
-    "rules_registered_or_textless": 64,
-    "missing_text_rules_registration": 10,
+    "rules_registered_or_textless": 67,
+    "missing_text_rules_registration": 7,
     "stratified_extension_count": 26,
     "audited_card_count": 100,
     "route_counts": {
-      "AUTO": 14,
-      "COMPOSABLE": 33,
+      "AUTO": 16,
+      "COMPOSABLE": 34,
       "CUSTOM": 32,
-      "MISSING_PRIMITIVE": 19,
+      "MISSING_PRIMITIVE": 16,
       "UNKNOWN": 2
     },
     "deck_summary": [
@@ -1156,10 +1176,8 @@
         "published": "2026-09-27",
         "card_count": 30,
         "unique_card_count": 17,
-        "registered_or_textless": 14,
+        "registered_or_textless": 16,
         "unsupported_ids": [
-          "EDR_456",
-          "FIR_939",
           "TIME_034"
         ],
         "strict_gates": {
@@ -1196,10 +1214,9 @@
         "published": "2026-09-27",
         "card_count": 30,
         "unique_card_count": 17,
-        "registered_or_textless": 13,
+        "registered_or_textless": 14,
         "unsupported_ids": [
           "CAP_805",
-          "EDR_856",
           "JAIL_912",
           "TLC_817"
         ],
@@ -2506,18 +2523,27 @@
         "Dragon Warrior"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "AUTO",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Dark Gift Discover needs the exact gift-choice pool and application semantics.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "EDR_457",
@@ -2723,18 +2749,27 @@
         "Quest Priest"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "AUTO",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Discover from own deck followed by Dark Gift application needs deck-choice/gift semantics.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "END_007",
@@ -2917,18 +2952,28 @@
         "Dragon Warrior"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "COMPOSABLE",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Dark Gift Discover requires a Warrior-minion pool and a damage-then-choice continuation.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DamageTask",
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "FIR_959",
@@ -6232,7 +6277,7 @@
     ]
   },
   "capability_inventory": {
-    "simple_task_header_count": 107,
+    "simple_task_header_count": 108,
     "tasks": [
       {
         "name": "ActivateCapturedDeathrattleTask",
@@ -6504,6 +6549,15 @@
         "category_guess": "damage_healing_status",
         "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.hpp",
         "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DamageWeaponTask.cpp",
+        "test_file_candidates": [],
+        "inventory_status": "file_presence_only",
+        "semantics_reviewed": false
+      },
+      {
+        "name": "DarkGiftDiscoverTask",
+        "category_guess": "generation_choice_quest",
+        "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.hpp",
+        "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.cpp",
         "test_file_candidates": [],
         "inventory_status": "file_presence_only",
         "semantics_reviewed": false

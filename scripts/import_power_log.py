@@ -33,7 +33,7 @@ from hslog.packets import Block
 from audit_power_log import CompatibleEntityTreeExporter
 from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
-from manamind.domain.entity import BoardEntity
+from manamind.domain.entity import BoardEntity, LocationEntity
 from manamind.domain.game_state import GameState, PlayerObservation
 from manamind.training.synthetic import LabeledState
 
@@ -236,6 +236,16 @@ def _player_observation(player, entities, catalog, *, is_self: bool):
         _board_entity(entity, position, catalog)
         for position, entity in enumerate(board_entities)
     )
+    locations_entities = sorted(
+        (entity for entity in controlled
+         if entity.zone == Zone.PLAY and entity.type == CardType.LOCATION),
+        key=lambda entity: (
+            _integer(entity.tags.get(GameTag.ZONE_POSITION), 0), entity.id
+        ),
+    )
+    locations = tuple(
+        _location_entity(entity, catalog) for entity in locations_entities
+    )
     weapon_entity = next(
         (entity for entity in controlled
          if entity.zone == Zone.PLAY and entity.type == CardType.WEAPON),
@@ -245,6 +255,10 @@ def _player_observation(player, entities, catalog, *, is_self: bool):
         (entity for entity in controlled
          if entity.zone == Zone.PLAY and entity.type == CardType.HERO_POWER),
         None,
+    )
+    hero_power_ready = (
+        None if hero_power_entity is None or GameTag.EXHAUSTED not in hero_power_entity.tags
+        else not bool(hero_power_entity.tags[GameTag.EXHAUSTED])
     )
 
     max_mana, available_mana, locked = _mana_values(player.tags)
@@ -265,10 +279,12 @@ def _player_observation(player, entities, catalog, *, is_self: bool):
         deck_size=sum(1 for entity in controlled if entity.zone == Zone.DECK),
         hand_size=len(hand_entities),
         fatigue=_integer(player.tags.get(GameTag.FATIGUE), 0),
+        hero_power_ready=hero_power_ready,
         player_class=player_class,
         weapon=_card_features(weapon_entity, catalog) if weapon_entity else None,
         hero_power=_card_features(hero_power_entity, catalog) if hero_power_entity else None,
         board=board,
+        locations=locations,
     )
     return observation, hand_cards
 
@@ -291,7 +307,7 @@ def _board_entity(entity, position: int, catalog: CardCatalog) -> BoardEntity:
         current_attack=attack,
         current_health=current_health,
         max_health=max(current_health, _integer(tags.get(GameTag.HEALTH), current_health)),
-        board_position=position,
+        board_position=_integer(tags.get(GameTag.ZONE_POSITION), position),
         taunt=bool(tags.get(GameTag.TAUNT, 0)),
         divine_shield=bool(tags.get(GameTag.DIVINE_SHIELD, 0)),
         stealth=bool(tags.get(GameTag.STEALTH, 0)),
@@ -306,6 +322,21 @@ def _board_entity(entity, position: int, catalog: CardCatalog) -> BoardEntity:
         reborn=bool(tags.get(GameTag.REBORN, 0)),
         dormant=bool(tags.get(GameTag.DORMANT, 0)),
         can_attack=can_attack,
+    )
+
+
+def _location_entity(entity, catalog: CardCatalog) -> LocationEntity:
+    tags = entity.tags
+    health = _current_health(entity)
+    cooldown = bool(tags.get(GameTag.LOCATION_ACTION_COOLDOWN, 0))
+    return LocationEntity(
+        card=_card_features(entity, catalog),
+        current_health=health,
+        max_health=max(health, _integer(tags.get(GameTag.HEALTH), health)),
+        board_position=_integer(tags.get(GameTag.ZONE_POSITION), 0),
+        on_cooldown=cooldown,
+        # Power.log gives cooldown but not the engine's full turn/card-requirement predicate.
+        can_activate=None,
     )
 
 

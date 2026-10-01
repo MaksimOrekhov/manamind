@@ -3,25 +3,265 @@
   "catalog_path": "data/cards/standard_current_enUS.json",
   "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
   "cards": [
-    { "card_id": "CORE_BAR_801", "base_card_id": "BAR_801" },
-    { "card_id": "CORE_SW_108", "base_card_id": "SW_108" },
-    { "card_id": "CORE_BT_072", "base_card_id": "BT_072" },
-    { "card_id": "CORE_BAR_310", "base_card_id": "BAR_310" },
-    { "card_id": "CORE_AV_337", "base_card_id": "AV_337" },
-    { "card_id": "CORE_BAR_541", "base_card_id": "BAR_541" },
-    { "card_id": "CORE_KAR_062", "base_card_id": "KAR_062" },
-    { "card_id": "CORE_BT_156", "base_card_id": "BT_156" },
-    { "card_id": "CORE_SW_068", "base_card_id": "SW_068" },
-    { "card_id": "CORE_SW_088", "base_card_id": "SW_088" },
-    { "card_id": "CORE_EX1_131", "base_card_id": "EX1_131" },
-    { "card_id": "CORE_EX1_278", "base_card_id": "EX1_278" },
-    { "card_id": "CORE_DRG_107", "base_card_id": "DRG_107" },
-    { "card_id": "CORE_WC_701", "base_card_id": "WC_701" },
-    { "card_id": "CORE_BT_701", "base_card_id": "BT_701" },
-    { "card_id": "CORE_BAR_313", "base_card_id": "BAR_313" },
-    { "card_id": "CORE_EX1_058", "base_card_id": "EX1_058" },
-    { "card_id": "CORE_ONY_018", "base_card_id": "ONY_018" },
-    { "card_id": "CORE_SW_439", "base_card_id": "SW_439" },
-    { "card_id": "CORE_TSC_650", "base_card_id": "TSC_650" }
+    {
+      "card_id": "CORE_BAR_801",
+      "base_card_id": "BAR_801"
+    },
+    {
+      "card_id": "CORE_SW_108",
+      "base_card_id": "SW_108"
+    },
+    {
+      "card_id": "CORE_BT_072",
+      "base_card_id": "BT_072"
+    },
+    {
+      "card_id": "CORE_BAR_310",
+      "base_card_id": "BAR_310"
+    },
+    {
+      "card_id": "CORE_AV_337",
+      "base_card_id": "AV_337"
+    },
+    {
+      "card_id": "CORE_BAR_541",
+      "base_card_id": "BAR_541"
+    },
+    {
+      "card_id": "CORE_KAR_062",
+      "base_card_id": "KAR_062"
+    },
+    {
+      "card_id": "CORE_BT_156",
+      "base_card_id": "BT_156"
+    },
+    {
+      "card_id": "CORE_SW_068",
+      "base_card_id": "SW_068"
+    },
+    {
+      "card_id": "CORE_SW_088",
+      "base_card_id": "SW_088"
+    },
+    {
+      "card_id": "CORE_EX1_131",
+      "base_card_id": "EX1_131"
+    },
+    {
+      "card_id": "CORE_EX1_278",
+      "base_card_id": "EX1_278"
+    },
+    {
+      "card_id": "CORE_DRG_107",
+      "base_card_id": "DRG_107"
+    },
+    {
+      "card_id": "CORE_WC_701",
+      "base_card_id": "WC_701"
+    },
+    {
+      "card_id": "CORE_BT_701",
+      "base_card_id": "BT_701"
+    },
+    {
+      "card_id": "CORE_BAR_313",
+      "base_card_id": "BAR_313"
+    },
+    {
+      "card_id": "CORE_EX1_058",
+      "base_card_id": "EX1_058"
+    },
+    {
+      "card_id": "CORE_ONY_018",
+      "base_card_id": "ONY_018"
+    },
+    {
+      "card_id": "CORE_SW_439",
+      "base_card_id": "SW_439"
+    },
+    {
+      "card_id": "CORE_TSC_650",
+      "base_card_id": "TSC_650"
+    },
+    {
+      "card_id": "CORE_ULD_133",
+      "base_card_id": "ULD_133"
+    },
+    {
+      "card_id": "CORE_BAR_812",
+      "base_card_id": "BAR_812"
+    },
+    {
+      "card_id": "CORE_BAR_878",
+      "base_card_id": "BAR_878"
+    },
+    {
+      "card_id": "CORE_BT_510",
+      "base_card_id": "BT_510"
+    },
+    {
+      "card_id": "CORE_EX1_559",
+      "base_card_id": "EX1_559"
+    },
+    {
+      "card_id": "CORE_WC_042",
+      "base_card_id": "WC_042"
+    },
+    {
+      "card_id": "CORE_BT_120",
+      "base_card_id": "BT_120"
+    },
+    {
+      "card_id": "CORE_BT_321",
+      "base_card_id": "BT_321"
+    },
+    {
+      "card_id": "CORE_BT_493",
+      "base_card_id": "BT_493"
+    },
+    {
+      "card_id": "CORE_DAL_575",
+      "base_card_id": "DAL_575"
+    },
+    {
+      "card_id": "CORE_DAL_720",
+      "base_card_id": "DAL_720"
+    },
+    {
+      "card_id": "CORE_DRG_024",
+      "base_card_id": "DRG_024"
+    },
+    {
+      "card_id": "CORE_EX1_100",
+      "base_card_id": "EX1_100"
+    },
+    {
+      "card_id": "CORE_KAR_057",
+      "base_card_id": "KAR_057"
+    },
+    {
+      "card_id": "CORE_ONY_022",
+      "base_card_id": "ONY_022"
+    },
+    {
+      "card_id": "CORE_REV_308",
+      "base_card_id": "REV_308"
+    },
+    {
+      "card_id": "CORE_SCH_717",
+      "base_card_id": "SCH_717"
+    },
+    {
+      "card_id": "CORE_ULD_152",
+      "base_card_id": "ULD_152"
+    },
+    {
+      "card_id": "CORE_ULD_165",
+      "base_card_id": "ULD_165"
+    },
+    {
+      "card_id": "CORE_ULD_280",
+      "base_card_id": "ULD_280"
+    },
+    {
+      "card_id": "CORE_BT_292",
+      "base_card_id": "BT_292"
+    },
+    {
+      "card_id": "CORE_DRG_256",
+      "base_card_id": "DRG_256"
+    },
+    {
+      "card_id": "CORE_EX1_014",
+      "base_card_id": "EX1_014"
+    },
+    {
+      "card_id": "CORE_EX1_189",
+      "base_card_id": "EX1_189"
+    },
+    {
+      "card_id": "CORE_EX1_198",
+      "base_card_id": "EX1_198"
+    },
+    {
+      "card_id": "CORE_EX1_310",
+      "base_card_id": "EX1_310"
+    },
+    {
+      "card_id": "CORE_KAR_077",
+      "base_card_id": "KAR_077"
+    },
+    {
+      "card_id": "CORE_NEW1_022",
+      "base_card_id": "NEW1_022"
+    },
+    {
+      "card_id": "CORE_SCH_713",
+      "base_card_id": "SCH_713"
+    },
+    {
+      "card_id": "CORE_SW_072",
+      "base_card_id": "SW_072"
+    },
+    {
+      "card_id": "CORE_SW_429",
+      "base_card_id": "SW_429"
+    },
+    {
+      "card_id": "CORE_TRL_111",
+      "base_card_id": "TRL_111"
+    },
+    {
+      "card_id": "CORE_ULD_178",
+      "base_card_id": "ULD_178"
+    },
+    {
+      "card_id": "CORE_UNG_809",
+      "base_card_id": "UNG_809"
+    },
+    {
+      "card_id": "CORE_UNG_912",
+      "base_card_id": "UNG_912"
+    },
+    {
+      "card_id": "CORE_SW_442",
+      "base_card_id": "SW_442"
+    },
+    {
+      "card_id": "CORE_AT_052",
+      "base_card_id": "EX1_247"
+    },
+    {
+      "card_id": "CORE_WON_096",
+      "base_card_id": "LOE_023"
+    },
+    {
+      "card_id": "CORE_WON_337",
+      "base_card_id": "KAR_091"
+    },
+    {
+      "card_id": "Core_LOE_115",
+      "base_card_id": "LOE_115"
+    },
+    {
+      "card_id": "Core_UNG_072",
+      "base_card_id": "ULD_195"
+    },
+    {
+      "card_id": "TIME_603",
+      "base_card_id": "REV_251"
+    },
+    {
+      "card_id": "TIME_720",
+      "base_card_id": "ULD_189"
+    },
+    {
+      "card_id": "TLC_483",
+      "base_card_id": "ULD_309"
+    },
+    {
+      "card_id": "CORE_EX1_002",
+      "base_card_id": "EX1_002"
+    }
   ]
 }

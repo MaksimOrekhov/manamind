@@ -2,6 +2,15 @@
   "as_of": "2026-09-27",
   "format": "STANDARD",
   "deck_pool_path": "E:\\ManaMind\\data\\samples\\standard_meta_deck_pool_20260928.json",
+  "standard_ban_gate": {
+    "status": "PASS",
+    "snapshot_path": "E:\\ManaMind\\data\\cards\\format_bans_20260929.json",
+    "checked_at": "2026-09-29",
+    "source_url": "https://us.forums.blizzard.com/en/hearthstone/t/bans-what-and-where/151289",
+    "snapshot_sha256": "82f7e49f8da030557e7bf6fe21b882cb45f6f0eaf6375e4c03bc6cb270c3e843",
+    "standard_banned_card_ids": [],
+    "violations": {}
+  },
   "decks": [
     {
       "name": "Dragon Warrior",
@@ -15,7 +24,8 @@
       },
       "card_count": 30,
       "unique_card_count": 17,
-      "invalid_or_noncollectible_ids": []
+      "invalid_or_noncollectible_ids": [],
+      "standard_banned_ids": []
     },
     {
       "name": "Attack Druid",
@@ -29,7 +39,8 @@
       },
       "card_count": 30,
       "unique_card_count": 20,
-      "invalid_or_noncollectible_ids": []
+      "invalid_or_noncollectible_ids": [],
+      "standard_banned_ids": []
     },
     {
       "name": "Quest Priest",
@@ -43,7 +54,8 @@
       },
       "card_count": 30,
       "unique_card_count": 17,
-      "invalid_or_noncollectible_ids": []
+      "invalid_or_noncollectible_ids": [],
+      "standard_banned_ids": []
     },
     {
       "name": "Mother Drake Warlock",
@@ -54,7 +66,8 @@
       "source_stats": null,
       "card_count": 30,
       "unique_card_count": 19,
-      "invalid_or_noncollectible_ids": []
+      "invalid_or_noncollectible_ids": [],
+      "standard_banned_ids": []
     },
     {
       "name": "Combo Drake Warlock",
@@ -65,7 +78,8 @@
       "source_stats": null,
       "card_count": 30,
       "unique_card_count": 19,
-      "invalid_or_noncollectible_ids": []
+      "invalid_or_noncollectible_ids": [],
+      "standard_banned_ids": []
     }
   ],
   "deck_coverage": {
@@ -73,10 +87,8 @@
       "class": "WARRIOR",
       "card_slots": 30,
       "unique_cards": 17,
-      "rules_covered_unique_cards": 14,
+      "rules_covered_unique_cards": 16,
       "unsupported_card_ids": [
-        "EDR_456",
-        "FIR_939",
         "TIME_034"
       ]
     },
@@ -95,10 +107,9 @@
       "class": "PRIEST",
       "card_slots": 30,
       "unique_cards": 17,
-      "rules_covered_unique_cards": 13,
+      "rules_covered_unique_cards": 14,
       "unsupported_card_ids": [
         "CAP_805",
-        "EDR_856",
         "JAIL_912",
         "TLC_817"
       ]
@@ -119,8 +130,8 @@
     }
   },
   "unique_card_count": 74,
-  "registered_or_textless_unique_cards": 64,
-  "missing_rules_unique_cards": 10,
+  "registered_or_textless_unique_cards": 67,
+  "missing_rules_unique_cards": 7,
   "cards": [
     {
       "card_id": "BE_036",
@@ -136,6 +147,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -151,6 +163,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -166,6 +179,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -182,6 +196,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -195,6 +210,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "generated_effect_composition",
       "status": "registered"
     },
     {
@@ -210,6 +226,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -223,6 +240,7 @@
         "Quest Priest"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -238,6 +256,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -253,6 +272,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -269,6 +289,7 @@
         "Attack Druid"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -284,6 +305,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -297,6 +319,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -310,6 +333,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -324,6 +348,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -339,6 +364,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -352,6 +378,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -365,6 +392,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -380,6 +408,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -397,6 +426,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -413,6 +443,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -429,6 +460,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -442,6 +474,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "generated_effect_composition",
       "status": "registered"
     },
     {
@@ -456,6 +489,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -469,6 +503,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -482,6 +517,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -495,6 +531,7 @@
         "Combo Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -511,6 +548,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -524,6 +562,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -540,6 +579,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "generated_effect_composition",
       "status": "registered"
     },
     {
@@ -556,6 +596,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -570,6 +611,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -585,6 +627,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -601,6 +644,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -616,8 +660,9 @@
       "decks": [
         "Dragon Warrior"
       ],
-      "rules_registered": false,
-      "status": "missing_rules"
+      "rules_registered": true,
+      "registration_route": "direct_carddef",
+      "status": "registered"
     },
     {
       "card_id": "EDR_457",
@@ -632,6 +677,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -647,6 +693,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -662,6 +709,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -677,6 +725,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -690,6 +739,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -705,8 +755,9 @@
       "decks": [
         "Quest Priest"
       ],
-      "rules_registered": false,
-      "status": "missing_rules"
+      "rules_registered": true,
+      "registration_route": "direct_carddef",
+      "status": "registered"
     },
     {
       "card_id": "END_007",
@@ -719,6 +770,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "generated_effect_composition",
       "status": "registered"
     },
     {
@@ -732,6 +784,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -747,6 +800,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -760,6 +814,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -774,8 +829,9 @@
       "decks": [
         "Dragon Warrior"
       ],
-      "rules_registered": false,
-      "status": "missing_rules"
+      "rules_registered": true,
+      "registration_route": "direct_carddef",
+      "status": "registered"
     },
     {
       "card_id": "FIR_959",
@@ -790,6 +846,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -803,6 +860,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -818,6 +876,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -833,6 +892,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -849,6 +909,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -866,6 +927,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -881,6 +943,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -897,6 +960,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -911,6 +975,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -925,6 +990,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -942,6 +1008,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -956,6 +1023,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -970,6 +1038,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -985,6 +1054,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1001,6 +1071,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1017,6 +1088,7 @@
         "Quest Priest"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -1030,6 +1102,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1043,6 +1116,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1058,6 +1132,7 @@
         "Attack Druid"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -1072,6 +1147,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1087,6 +1163,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -1103,6 +1180,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1118,6 +1196,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1131,6 +1210,7 @@
         "Attack Druid"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1146,6 +1226,7 @@
         "Attack Druid"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     },
     {
@@ -1161,6 +1242,7 @@
         "Mother Drake Warlock"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1176,6 +1258,7 @@
         "Dragon Warrior"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1189,6 +1272,7 @@
         "Quest Priest"
       ],
       "rules_registered": true,
+      "registration_route": "direct_carddef",
       "status": "registered"
     },
     {
@@ -1204,6 +1288,7 @@
         "Quest Priest"
       ],
       "rules_registered": false,
+      "registration_route": "missing",
       "status": "missing_rules"
     }
   ],
@@ -1226,7 +1311,7 @@
         "Mother Drake Warlock",
         "Quest Priest"
       ],
-      "unsupported_card_count": 5
+      "unsupported_card_count": 3
     },
     {
       "mechanic": "CHARGE",
@@ -1267,7 +1352,7 @@
         "Mother Drake Warlock",
         "Quest Priest"
       ],
-      "unsupported_card_count": 3
+      "unsupported_card_count": 0
     },
     {
       "mechanic": "ELUSIVE",
@@ -1338,9 +1423,10 @@
     }
   ],
   "known_limitations": [
-    "The pinned simulator has no current Standard ban list.",
+    "RosettaStone does not enforce the current ban list at runtime; the audit checks the dated external snapshot in data/cards/format_bans_20260929.json.",
     "A matching CardDef is an implementation inventory signal, not proof of scenario correctness.",
     "Unsupported card choices and Discover windows cannot be treated as completed games.",
-    "The deck matrix does not audit the effects of cards offered by random generation or Discover outside this five-deck pool."
+    "The deck matrix does not audit the effects of cards offered by random generation or Discover outside this five-deck pool.",
+    "Registration route reads the direct source scan and the two generated manifests; it is not a correctness or training-eligibility result."
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/filtered_school_draw.v1.json",
+  "declaration_sha256": "8af066c89504ad9f75eab24a60f0c6bc4d8e25c399d090876f120c3ae5596b1e",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindFilteredSchoolDrawGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindFilteredSchoolDrawGen.cpp",
+  "cards": [
+    {
+      "card_id": "FIR_929",
+      "name": "Living Flame",
+      "trigger": "DEATHRATTLE",
+      "spell_school": "FIRE",
+      "amount": 1,
+      "rules_text_sha256": "d48408409d9c6f76936bc8a3983f068114c27d1866767ae70bc811fbcbe76c97",
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_511",
+      "name": "Harbinger of Winter",
+      "trigger": "DEATHRATTLE",
+      "spell_school": "FROST",
+      "amount": 1,
+      "rules_text_sha256": "f53c0f58f70c5734293c8afd6e2006106039c6e98ea8c7e00ce52b35eda7f7b1",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false,
+  "training_blockers": [
+    "Deck membership and full Standard rules/action gates remain unresolved."
+  ]
+}

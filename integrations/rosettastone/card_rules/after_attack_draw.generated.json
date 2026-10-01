@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/after_attack_draw.v1.json",
+  "declaration_sha256": "60889f7e74e0e82d9b5fdb996bec91e1a47c939d6f3751999126bd1a71b23fcd",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindAfterAttackDrawGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindAfterAttackDrawGen.cpp",
+  "cards": [
+    {
+      "card_id": "CAP_003",
+      "name": "SI:7 Supplier",
+      "trigger_source": "SELF",
+      "effects": [
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "rules_text_sha256": "c56c79374bc4838ef4c546dff7e848a8243573fe7090e3c0a29e7442540d23b3",
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_253",
+      "name": "Ursine Maul",
+      "trigger_source": "HERO",
+      "effects": [
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "rules_text_sha256": "d7a8c41abce98bb3d6e6eb704725000ce4266b4cdcb1dbeaa6abd06b898c5348",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_NX2_028",
+      "name": "Hookfist-3000",
+      "trigger_source": "HERO",
+      "effects": [
+        {
+          "op": "ARMOR",
+          "amount": 4
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "rules_text_sha256": "7e0cb03f18bce9ad9661a39e351cdadc4f905b4e1c94d42b5b6d20dc3caa1f1c",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_478",
+      "name": "Axe of the Forefathers",
+      "trigger_source": "HERO",
+      "effects": [
+        {
+          "op": "DAMAGE_ALL_MINIONS",
+          "amount": 1
+        }
+      ],
+      "rules_text_sha256": "de617e508b6cdaa27459cc126bab16d7f26666674cf6a44657d1b0b2bc455223",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_840",
+      "name": "Gorishi Tunneler",
+      "trigger_source": "SELF",
+      "effects": [
+        {
+          "op": "DAMAGE_ENEMY_HERO",
+          "amount": 2
+        }
+      ],
+      "rules_text_sha256": "11c18063d2c3ad429c54b0bafb1994bb3f0ab922d3a312b5e0176a379261d8e3",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false,
+  "training_blockers": [
+    "Only scoped trigger/effect behavior is tested; deck dependency and full-profile gates remain open."
+  ]
+}

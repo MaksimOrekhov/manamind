@@ -26,3 +26,15 @@ class BoardEntity:
     reborn: bool = False
     dormant: bool = False
     can_attack: bool = False
+
+
+@dataclass(frozen=True, slots=True)
+class LocationEntity:
+    """A Location on the shared board, with visible durability and activation state."""
+
+    card: CardFeatures
+    current_health: int
+    max_health: int
+    board_position: int
+    on_cooldown: bool = False
+    can_activate: bool | None = None

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/keyword_only.v1.json",
+  "declaration_sha256": "13a14d1e1531b7ae8f9a68ff8c883e7cdc6b90de0ae0ed5cf32ac5af4f046fc6",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.cpp",
+  "cards": [
+    {
+      "card_id": "CORE_GIL_558",
+      "name": "Swamp Leech",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "rules_text_sha256": "dbff4b70c5bb52c44f97a97aa77286ad6cde623cf53395d918138cd8435bae5a",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_ULD_723",
+      "name": "Murmy",
+      "mechanics": [
+        "REBORN"
+      ],
+      "rules_text_sha256": "231bb2031f5379960eeda4ba739a47c01e706268841a82188d1afbc7be1d14d3",
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_486",
+      "name": "Scorching Observer",
+      "mechanics": [
+        "LIFESTEAL",
+        "RUSH"
+      ],
+      "rules_text_sha256": "f074451113289a76734f1b91e23b2038e6f5a4fcc25ac0b263b472caca1b1e42",
+      "training_eligible": false
+    },
+    {
+      "card_id": "END_031",
+      "name": "Shade of the End Time",
+      "mechanics": [
+        "SPELLPOWER",
+        "STEALTH"
+      ],
+      "rules_text_sha256": "3fb843be925495c699fec329783d1a2b4dc4b46a460966cf014c52b81d69a6c1",
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_067",
+      "name": "Corrupted Ashbringer",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "rules_text_sha256": "dbff4b70c5bb52c44f97a97aa77286ad6cde623cf53395d918138cd8435bae5a",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_EX1_250",
+      "name": "Earth Elemental",
+      "mechanics": [
+        "OVERLOAD",
+        "TAUNT"
+      ],
+      "rules_text_sha256": "c7a563624c58257c0be56578eb45e5e677eb8c2f47fc25b03463260e79bad566",
+      "training_eligible": false
+    }
+  ]
+}

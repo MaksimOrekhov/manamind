@@ -319,6 +319,46 @@ def test_state_validation_and_nested_board_defaults():
     assert (parsed.current_attack, parsed.current_health, parsed.max_health) == (3, 2, 4)
 
 
+def test_locations_are_encoded_and_share_the_seven_slot_board_limit():
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding.entity_encoder import STATE_FLAG_NAMES
+
+    state = game_state_from_dict({
+        "turn_number": 3,
+        "active_player": "SELF",
+        "self_player": {
+            "hero_health": 30,
+            "board": [{"card": {"card_id": "MINION", "card_type": "MINION"}}],
+            "locations": [{
+                "card": {"card_id": "LOCATION", "card_type": "LOCATION", "durability": 3},
+                "current_health": 2,
+                "max_health": 3,
+                "board_position": 1,
+                "on_cooldown": True,
+            }],
+        },
+        "opponent": {"hero_health": 30},
+    })
+    catalog = CardCatalog([
+        CardFeatures(card_id="MINION", card_type="MINION"),
+        CardFeatures(card_id="LOCATION", card_type="LOCATION", durability=3),
+    ])
+    encoded = StateEncoder(catalog).encode(state)
+    assert encoded.self_locations.size == 1
+    assert encoded.self_locations.state_flags[0, STATE_FLAG_NAMES.index("on_cooldown")] == 1
+    assert encoded.self_locations.numeric_present[0, 5] == 1
+
+    state_data = {
+        "turn_number": 3, "active_player": "SELF",
+        "self_player": {"hero_health": 30,
+                         "board": [{} for _ in range(7)],
+                         "locations": [{"card": {"card_id": "LOC"}}]},
+        "opponent": {"hero_health": 30},
+    }
+    with np.testing.assert_raises(ValueError):
+        game_state_from_dict(state_data)
+
+
 def test_split_keeps_match_groups_together_and_dataset_round_trips(tmp_path: Path):
     from manamind.training.synthetic import load_labeled_dataset, save_synthetic_dataset
     catalog = create_synthetic_catalog(_sample_catalog())

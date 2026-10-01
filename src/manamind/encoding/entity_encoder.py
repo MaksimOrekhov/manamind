@@ -7,7 +7,7 @@ import numpy as np
 from manamind.cards.catalog import CardCatalog
 from manamind.cards.vocabulary import CardVocabulary
 from manamind.domain.card import CardFeatures
-from manamind.domain.entity import BoardEntity
+from manamind.domain.entity import BoardEntity, LocationEntity
 
 NUMERIC_FEATURES = (
     "base_cost",
@@ -37,6 +37,9 @@ STATE_FLAG_NAMES = (
     "reborn",
     "dormant",
     "can_attack",
+    "on_cooldown",
+    "can_activate",
+    "can_activate_known",
 )
 
 NUMERIC_LIMIT = 10_000.0
@@ -73,6 +76,7 @@ class EncodedZone:
 class _EntityInput:
     card: CardFeatures
     board_entity: BoardEntity | None = None
+    location_entity: LocationEntity | None = None
     zone_position: int | None = None
 
 
@@ -97,6 +101,11 @@ class EntityEncoder:
         return self.encode_entities(
             tuple(_EntityInput(entity.card, entity) for entity in entities)
         )
+
+    def encode_locations(self, entities: tuple[LocationEntity, ...]) -> EncodedZone:
+        return self.encode_entities(tuple(
+            _EntityInput(entity.card, location_entity=entity) for entity in entities
+        ))
 
     def encode_optional_card(self, card: CardFeatures | None) -> EncodedZone:
         """Encode a weapon or hero power as a one-item zone, or as an empty zone."""
@@ -145,7 +154,22 @@ class EntityEncoder:
                 mechanics[row, mechanic_index] = 1.0
 
             entity = item.board_entity
-            if entity is not None:
+            location = item.location_entity
+            if location is not None:
+                state_values = (
+                    0,
+                    location.current_health,
+                    location.max_health,
+                    location.board_position,
+                )
+                for offset, value in enumerate(state_values, start=4):
+                    numeric[row, offset] = _normalise(value)
+                    numeric_present[row, offset] = 1.0
+                state_flags[row, STATE_FLAG_NAMES.index("on_cooldown")] = float(location.on_cooldown)
+                if location.can_activate is not None:
+                    state_flags[row, STATE_FLAG_NAMES.index("can_activate")] = float(location.can_activate)
+                    state_flags[row, STATE_FLAG_NAMES.index("can_activate_known")] = 1.0
+            elif entity is not None:
                 state_values = (
                     entity.current_attack,
                     entity.current_health,
@@ -156,7 +180,7 @@ class EntityEncoder:
                     numeric[row, offset] = _normalise(value)
                     numeric_present[row, offset] = 1.0
                 for column, flag_name in enumerate(STATE_FLAG_NAMES):
-                    state_flags[row, column] = float(getattr(entity, flag_name))
+                    state_flags[row, column] = float(getattr(entity, flag_name, False))
             elif item.zone_position is not None:
                 numeric[row, 7] = _normalise(item.zone_position)
                 numeric_present[row, 7] = 1.0

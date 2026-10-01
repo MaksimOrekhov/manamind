@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-09-30",
+  "purpose": "Source-level classification of the five heuristic dynamic hints in reports/dark_gift_support_audit_20260929.json. This is not a rules-correctness or training-eligibility result.",
+  "metadata_snapshot": "data/cards/standard_current_enUS.json",
+  "runtime_pool_count_validation": {
+    "date": "2026-09-30",
+    "test_file": "vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindDragonPoolCardsTests.cpp",
+    "test_case": "[ManaMind Dragon pool] - loaded Standard pools match audited counts",
+    "status": "EXACT_MEMBER_ID_PARITY_PASSED",
+    "member_id_validation": "Focused native test compares full sorted raw candidate ID sets for the Dragon base pool used by CATA_140 and EDR_456, Dragons costing at most 3, Warrior minions, and eligible Fire spells against the pinned Standard catalog predicates.",
+    "expected_id_source": "data/cards/standard_current_enUS.json (valid_as_of 2026-09-27)",
+    "expected_and_observed": {
+      "standard_dragon_minions": 80,
+      "standard_dragon_minions_cost_at_most_3": 20,
+      "standard_warrior_minions": 42,
+      "standard_fire_spells_before_state_dependent_target_filter": 33
+    },
+    "loader_fix": "271 retired collectible records labeled CORE in the historical base database are reclassified as Legacy when absent from the current collectible Standard overlay."
+  },
+  "source_review": [
+    {
+      "card_id": "CAP_107t",
+      "classification": "RANDOM_BOARD_TARGET",
+      "source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+      "predicate": "Choose a random currently legal enemy character for the token's 1 damage end-of-turn effect.",
+      "card_pool_dependency": false,
+      "status": "SOURCE_CLASSIFIED; TARGET_SEMANTICS_UNVERIFIED"
+    },
+    {
+      "card_id": "CATA_140",
+      "classification": "RANDOM_CARD_POOL",
+      "source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp; RandomCardTask filters in vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomCardTask.cpp",
+      "predicate": "Collectible Standard minion with race DRAGON.",
+      "metadata_candidate_count": 80,
+      "metadata_candidate_reference": "candidate_pools.EDR_456.card_ids in reports/dark_gift_support_audit_20260929.json",
+      "additional_behavior": "Repeat random generation until hand is full; set each generated card's Cost to 1 when the source entity records at least 25 Mana spent while held.",
+      "status": "SOURCE_PREDICATE_REVIEWED; ENGINE_POOL_PARITY_AND_OUTCOME_CLOSURE_OPEN"
+    },
+    {
+      "card_id": "CATA_556",
+      "classification": "RANDOM_CARD_POOL",
+      "source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp",
+      "predicate": "Collectible Standard minion with race DRAGON and printed Cost at most 3.",
+      "metadata_candidate_count": 20,
+      "metadata_candidate_reference": "manual_dynamic_rule_review.profiles.CATA_556.metadata_candidate_card_ids in reports/dark_gift_support_audit_20260929.json",
+      "status": "SOURCE_PREDICATE_REVIEWED; ENGINE_POOL_PARITY_AND_OUTCOME_CLOSURE_OPEN"
+    },
+    {
+      "card_id": "EDR_456",
+      "classification": "DARK_GIFT_DISCOVER_POOL",
+      "source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp; candidate filter in vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.cpp",
+      "predicate": "Collectible Standard Dragon minions, further constrained by gift compatibility and distinct offered gift options.",
+      "metadata_candidate_count": 80,
+      "metadata_candidate_reference": "candidate_pools.EDR_456.card_ids in reports/dark_gift_support_audit_20260929.json",
+      "status": "SCOPED_ROOT_MECHANIC_TESTED; ALL_OUTCOME_RULES_AND_TRANSITIVE_CLOSURE_OPEN"
+    },
+    {
+      "card_id": "FIR_959",
+      "classification": "RANDOM_CARD_POOL_WITH_STATE_DEPENDENT_FILTERS",
+      "source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/CoreCardsGen.cpp; vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/CastRandomSpellTask.cpp",
+      "predicate": "Collectible Standard Fire spells that are not Quests, have positive printed Cost fitting the remaining 15-Mana budget, and, when they require a target, have at least one legal enemy target in the current state.",
+      "additional_behavior": "Cast random eligible spells until the Mana budget is reached or no candidate remains, with a 30-cast cap. Each spell may open additional choices or generated-card pools.",
+      "metadata_candidate_count": 33,
+      "metadata_candidate_reference": "manual_dynamic_rule_review.profiles.FIR_959.metadata_candidate_card_ids in reports/dark_gift_support_audit_20260929.json",
+      "status": "SOURCE_PREDICATE_REVIEWED; STATE_FILTERS_AND_RECURSIVE_OUTCOME_CLOSURE_OPEN"
+    }
+  ],
+  "known_scope_limits": [
+    "EDR_456's post-candidate Dark Gift compatibility filtering and distinct offer construction are not covered by the raw Dragon pool ID parity test.",
+    "CATA_140, CATA_556, and FIR_959 use the engine's loaded Standard card collection; candidate IDs derived from HearthstoneJSON alone do not certify runtime membership.",
+    "The dated ban snapshot has no Standard bans as checked on 2026-09-29, but RosettaStone does not apply that external snapshot while constructing random pools.",
+    "An outcome's registration, direct scenario coverage, transitive dependencies, and training eligibility are separate gates.",
+    "Do not restrict any random or Discover pool to registered cards to manufacture a closed pool."
+  ],
+  "next_audit_actions": [
+    "Raw candidate ID parity passed for the four reviewed pool predicates; separately test EDR_456 gift compatibility, distinct offer construction, and recursive outcomes, and refresh parity expectations when the pinned Standard catalog changes.",
+    "Expand each exact outcome into direct registration, source dependencies, generated effects, and nested dynamic pools before selecting implementation packages."
+  ]
+}

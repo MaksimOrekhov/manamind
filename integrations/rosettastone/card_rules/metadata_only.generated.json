@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/metadata_only.v1.json",
+  "declaration_sha256": "5f2f8d1e9f56a72cff3f74749106117d87d5765c771dcd465ad076bb52166d1a",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindMetadataOnlyCardsGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindMetadataOnlyCardsGen.cpp",
+  "cards": [
+    {
+      "card_id": "Core_CS2_200",
+      "name": "Boulderfist Ogre",
+      "stats": {
+        "cost": 6,
+        "attack": 6,
+        "health": 7
+      },
+      "races": [],
+      "metadata_record_sha256": "007c7fcd81b86fe4609a41a45b1b44e909c069d20b15dee8ecf0d793c848f7b7",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_053",
+      "name": "Sandmaw",
+      "stats": {
+        "cost": 3,
+        "attack": 7,
+        "health": 2
+      },
+      "races": [
+        "ELEMENTAL",
+        "BEAST"
+      ],
+      "metadata_record_sha256": "856090fe950643dbdb91e7bdaebe80cbe7af9d89394a61fbcf05101960dcc90c",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_248",
+      "name": "Ultragigasaur",
+      "stats": {
+        "cost": 11,
+        "attack": 14,
+        "health": 28
+      },
+      "races": [
+        "BEAST"
+      ],
+      "metadata_record_sha256": "d283bd13b21663f1b666853160c95206c541568361e6d311bb6e638e3f09784b",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false,
+  "training_blockers": [
+    "Textless metadata is not independent rules evidence.",
+    "Full dependency, bridge action and match gates remain outstanding."
+  ]
+}

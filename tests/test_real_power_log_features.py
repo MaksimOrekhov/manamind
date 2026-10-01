@@ -11,6 +11,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from import_power_log import (  # noqa: E402
     _board_entity,
+    _location_entity,
     _mana_values,
     _visible_hand_cards,
 )
@@ -64,3 +65,25 @@ def test_base_stats_are_separate_from_current_board_stats():
 
     assert (board_entity.card.attack, board_entity.card.health) == (2, 3)
     assert (board_entity.current_attack, board_entity.current_health, board_entity.max_health) == (6, 6, 8)
+
+
+def test_location_import_preserves_cooldown_without_guessing_full_playability():
+    catalog = CardCatalog([CardFeatures(
+        card_id="EXAMPLE_LOCATION", card_type="LOCATION", durability=3,
+    )])
+    entity = SimpleNamespace(
+        card_id="EXAMPLE_LOCATION",
+        type=CardType.LOCATION,
+        tags={
+            GameTag.HEALTH: 3,
+            GameTag.DAMAGE: 1,
+            GameTag.ZONE_POSITION: 2,
+            GameTag.LOCATION_ACTION_COOLDOWN: 1,
+        },
+    )
+
+    location = _location_entity(entity, catalog)
+
+    assert (location.current_health, location.max_health, location.board_position) == (2, 3, 2)
+    assert location.on_cooldown is True
+    assert location.can_activate is None

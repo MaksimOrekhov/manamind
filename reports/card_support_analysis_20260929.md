@@ -12,12 +12,12 @@ Catalog snapshot: `data/cards/standard_current_enUS.json` (valid as of 2026-09-2
 |---|---:|
 | Selected lists | 5 |
 | Unique selected-list cards | 74 |
-| Selected-list cards registered or textless | 64 |
-| Selected-list cards missing nonempty-text registration | 10 |
+| Selected-list cards registered or textless | 67 |
+| Selected-list cards missing nonempty-text registration | 7 |
 | Extension sample | 26 |
 | Total triaged cards | 100 |
 
-Route counts (triage hypotheses): `AUTO=14`, `COMPOSABLE=33`, `CUSTOM=32`, `MISSING_PRIMITIVE=19`, `UNKNOWN=2`.
+Route counts (triage hypotheses, refreshed 2026-09-30): `AUTO=16`, `COMPOSABLE=34`, `CUSTOM=32`, `MISSING_PRIMITIVE=16`, `UNKNOWN=2`.
 
 Legacy Core alias scan: 47 metadata-linked base definitions; 40 have equal normalized rules text and lack a direct Core CardDef. Generated aliases are accounted for separately: 20 registered by the current manifest, 20 remaining candidates. Five linked entries have different text and are excluded.
 

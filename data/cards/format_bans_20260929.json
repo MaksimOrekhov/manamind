@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source_name": "Blizzard Hearthstone Bans - What and Where",
+  "source_url": "https://us.forums.blizzard.com/en/hearthstone/t/bans-what-and-where/151289",
+  "checked_at": "2026-09-29",
+  "format_bans": {
+    "STANDARD": [],
+    "WILD": ["EDR_271", "JAIL_509"]
+  },
+  "card_names": {
+    "EDR_271": "Grove Shaper",
+    "JAIL_509": "Godfrey the Betrayer"
+  },
+  "limitations": [
+    "The source is Blizzard's live active-ban summary; refresh this snapshot when that post changes or before refreshing Standard legality.",
+    "Bans are format-specific: Grove Shaper and Godfrey the Betrayer are listed for Wild and are not Standard bans."
+  ]
+}

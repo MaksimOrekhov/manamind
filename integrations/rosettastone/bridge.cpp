@@ -141,6 +141,20 @@ py::dict player_observation(Player* player)
         board.append(std::move(entity));
     }
     result["board"] = std::move(board);
+
+    py::list locations;
+    for (Location* location : player->GetFieldZone()->GetLocations())
+    {
+        py::dict entity = card_features(location->card, location->GetCost());
+        entity["current_health"] = location->GetHealth();
+        entity["max_health"] = location->GetBaseHealth();
+        entity["board_position"] = location->GetZonePosition();
+        entity["on_cooldown"] = location->IsOnCooldown();
+        entity["can_activate"] = location->card && location->IsPlayableByPlayer() &&
+                                  location->IsPlayableByCardReq();
+        locations.append(std::move(entity));
+    }
+    result["locations"] = std::move(locations);
     return result;
 }
 

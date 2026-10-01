@@ -1,11 +1,248 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/effect_composition.v1.json",
-  "declaration_sha256": "080d358ef68ffd7be8f339197c04a1da73d8850397136559fd2e30b2ef5f556d",
+  "declaration_sha256": "79494a7f947e79e1a194df9c1d4880300f3750a7fe7712d519d511d28a5dbf19",
   "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
   "cards": [
+    {
+      "card_id": "CAP_801",
+      "name": "Haunt",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "006c2aa03cb57f7e795eeea24dc845edc8b63196aa85b0bff2d8f7a594a42fa8",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "CS2_009e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "CS2_009e"
+        },
+        {
+          "op": "SET_TAG",
+          "target": "TARGET",
+          "tag": "REBORN",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_304",
+      "name": "Injured Attendant",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "da043614b65d3d0ab1b7f02c6c9c8669e3a793f87473d65baaa784074996d1c4",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "SOURCE",
+          "amount": 4,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_475",
+      "name": "Scalebreaker Bulwark",
+      "activation": "TURN_END",
+      "rules_text_sha256": "a4e4f94bacf999fc0da4004a62d13463bfe918acf59392c674ffcc501a589535",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_485",
+      "name": "Sleet Storm",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "5aa8a1452d30e8e3bcd3fcd4d3a8d4daed0d4d50499220847af6836cde6729dd",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "hits": 1,
+          "spell_damage": true
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_612",
+      "name": "Frostbitten Imp",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "7cbce3cb4a020a1f9a7671b8c676e145fda2df5d7acda3308c8a8b36a0128631",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "FREEZE",
+          "target": "SOURCE"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "DINO_132",
+      "name": "Asphyxiodon",
+      "activation": "TURN_END",
+      "rules_text_sha256": "4e21cd903142e258c5d3e6091ca9d7185628dea9c341fb56686add5fc56dbf0c",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 5,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_RLK_083",
+      "name": "Deathchiller",
+      "activation": "AFTER_CAST",
+      "rules_text_sha256": "ba2d3bc014c5a0e2354fa2f8ea9e6d5d37fe7f160624977c608fb6bab585308c",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 1,
+          "hits": 2,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "END_026",
+      "name": "Fragment of Nothing",
+      "activation": "AFTER_CAST_ON_MINION",
+      "rules_text_sha256": "02287fa12b533c329dadf88f308e5ccbd084a8b61f9c63ae0867e7f72e7a3988",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_256",
+      "name": "Marshland Thresher",
+      "activation": "AFTER_CAST",
+      "rules_text_sha256": "e6bce7f715c4d9c7a902965f8a1e422b89eb9710c15212089ae6815b4ddfcfba",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SET_TAG",
+          "target": "SOURCE",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BOT_222",
+      "name": "Spirit Bomb",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "63b0e38b867cd766299c841bcc96c0e4828851cc28cef0b677837bfa9dda4986",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "DAMAGE",
+          "target": "HERO",
+          "amount": 4,
+          "spell_damage": true
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_BOT_451",
+      "name": "Voltaic Burst",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "7b659739c10de36c9fa85b368af4db69aa767c434074d770e5ba3c1fbb03020f",
+      "play_requirements": [],
+      "dependencies": [
+        "BOT_102t"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "BOT_102t",
+          "amount": 2
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_CFM_604",
+      "name": "Greater Healing Potion",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "0a480ec53ef4f5c129088cd611b801066c1649ca4d2c9f15dda55c9a33e97f38",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_FRIENDLY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "TARGET",
+          "amount": 12
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
     {
       "card_id": "CORE_CS2_004",
       "name": "Power Word: Shield",
@@ -27,6 +264,349 @@
         {
           "op": "DRAW",
           "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_CS2_024",
+      "name": "Frostbolt",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "98cf061c27bf55284e74e656a42f1f3c7c374c811b19faecaa3a3eb4c404681a",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "FREEZE",
+          "target": "TARGET"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_CS2_094",
+      "name": "Hammer of Wrath",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "10521ec3da2bdef16f301bf72f8cae9453a81b67518828611ba5aaaaaf816647",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_EX1_129",
+      "name": "Fan of Knives",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "4b7b0748b7414bd5fef4a4c2914ec99771743ddccaa70ef22a1c5ebaddca69c6",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_GVG_061",
+      "name": "Muster for Battle",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "4031b9a8369a366dfe537002d63429d6b46aa3b0ed2aa82c40e71a193ed1a9ba",
+      "play_requirements": [],
+      "dependencies": [
+        "CS2_101t",
+        "CS2_091"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CS2_101t",
+          "amount": 3
+        },
+        {
+          "op": "EQUIP",
+          "card_id": "CS2_091"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_LOOT_013",
+      "name": "Vulgar Homunculus",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "7f37b4d03098ef8d977785ae404a3e4fbf1d0db64b87d9ab7a06971f7221c476",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "HERO",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_LOOT_368",
+      "name": "Voidlord",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "69e18028f42e5b40a588989992ca26fb8752dbe4bbf994f9f2cac7190643fc28",
+      "play_requirements": [],
+      "dependencies": [
+        "CS2_065"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CS2_065",
+          "amount": 3
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_OG_031",
+      "name": "Hammer of Twilight",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "b49f548cef726bce09c48799f7ad245982dafeb838334c8a5fabed91d4dd6dff",
+      "play_requirements": [],
+      "dependencies": [
+        "OG_031a"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "OG_031a",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_OG_149",
+      "name": "Ravaging Ghoul",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "88cf1473710876f22503b90501b7b8afbd08eca6e77fcf4a0acb9f4091f4b361",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ALL_MINIONS_NOSOURCE",
+          "amount": 1,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_RLK_062",
+      "name": "Nerubian Swarmguard",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "f4b2e2b0e616756b72c96cb88b5cd27541e35f6980942df2f527e05cbf633462",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_RLK_062"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CORE_RLK_062",
+          "amount": 2
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "name": "Royal Librarian",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "c38c5090588571afe075e5041c28044f5a3165a149fe31301b2862e6f4f51911",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SILENCE",
+          "target": "TARGET"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_TSC_076",
+      "name": "Immortalized in Stone",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "99836b7bcb3846f3af68ddee0a9fca3ce635bfb8d877dca51b4ca8ad7b02c343",
+      "play_requirements": [],
+      "dependencies": [
+        "TSC_076t",
+        "TSC_076t2",
+        "TSC_076t3"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t3",
+          "amount": 1
+        },
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t2",
+          "amount": 1
+        },
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_UNG_084",
+      "name": "Fire Plume Phoenix",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "bc830465c46218c95792eac691b8db4390ac3bb04e81d58e39a077ec81f09869",
+      "play_requirements": [
+        "REQ_TARGET_IF_AVAILABLE",
+        "REQ_NONSELF_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_YOP_034",
+      "name": "Runaway Blackwing",
+      "activation": "TURN_END",
+      "rules_text_sha256": "05c4d95c17a1029c453c7a3eada71eab4580db9c92d5635c86ee78b9ed7cdb2e",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 10,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_110",
+      "name": "Sporegnasher",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "0108a610104b6de092cc6d0476bba64644229202010b749c88c2fb8fc299130e",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_459",
+      "name": "Afflicted Devastator",
+      "activation": "BATTLECRY_AND_DEATHRATTLE",
+      "rules_text_sha256": "4bd0e0cde42f542b8e5a7f6d638c111c14154ff997bf4f3178b06b3233e367be",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "BATTLECRY_DAMAGE",
+          "target": "MINIONS_NOSOURCE",
+          "amount": 3,
+          "spell_damage": false
+        },
+        {
+          "op": "DEATHRATTLE_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 3,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_476",
+      "name": "Moonwell",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "c64fbf032c9459dc856dc48fa37661acb62ad4bb715c9e1a59cbeef153ecb63b",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "HEAL",
+          "target": "FRIENDS",
+          "amount": 4
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_971",
+      "name": "Critter Caretaker",
+      "activation": "TURN_END",
+      "rules_text_sha256": "71b9b37b12b1018e8d42c8de1db8faf4716d9c28b5bb5aff5e43063ea5127765",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "HEROES",
+          "amount": 3
         }
       ],
       "training_eligible": false
@@ -66,37 +646,68 @@
       "training_eligible": false
     },
     {
-      "card_id": "CAP_801",
-      "name": "Haunt",
-      "activation": "SPELL_PLAY",
-      "rules_text_sha256": "006c2aa03cb57f7e795eeea24dc845edc8b63196aa85b0bff2d8f7a594a42fa8",
-      "play_requirements": [
-        "REQ_TARGET_TO_PLAY",
-        "REQ_MINION_TARGET"
-      ],
-      "dependencies": [
-        "CS2_009e"
-      ],
+      "card_id": "FIR_778",
+      "name": "Avatar of Destruction",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "0462f341ffedacf8e71c25d1bedd7369ffbeb1b13119e99be1e14ff92aebf043",
+      "play_requirements": [],
+      "dependencies": [],
       "effects": [
         {
-          "op": "ENCHANT",
-          "target": "TARGET",
-          "id": "CS2_009e"
-        },
-        {
-          "op": "SET_TAG",
-          "target": "TARGET",
-          "tag": "REBORN",
-          "value": 1
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 9,
+          "spell_damage": false
         }
       ],
       "training_eligible": false
     },
     {
-      "card_id": "CORE_SW_066",
-      "name": "Royal Librarian",
-      "activation": "BATTLECRY",
-      "rules_text_sha256": "c38c5090588571afe075e5041c28044f5a3165a149fe31301b2862e6f4f51911",
+      "card_id": "FIR_909",
+      "name": "Bursting Shot",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "c5c6bd1737ef111473d89cf1e5562ae44056f88f436ee40650126247d7925dee",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "hits": 3,
+          "spell_damage": true
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_007",
+      "name": "Sewer Imp",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "e5d2aeb6b2bf02a7b49cdab67dfbbd210b24628bc0877617fbdd0c767fb29fab",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 2,
+          "spell_damage": false
+        },
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_HERO",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_024",
+      "name": "Death Strike",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "948722222e9c468096aa7e38a8edb403856fc10fac4643155b3ecd83dd7b8cc8",
       "play_requirements": [
         "REQ_TARGET_TO_PLAY",
         "REQ_MINION_TARGET"
@@ -104,8 +715,1085 @@
       "dependencies": [],
       "effects": [
         {
-          "op": "SILENCE",
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 6,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_709",
+      "name": "Remorseless Winter",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "9dc930e5ad431a9de82878e8690383f856ad52e665f13c09ec7c8a4e61872a54",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_215",
+      "name": "Thunderquake",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "07781a47d9f897633574a96b71cee993dbec3e83677f415b09e6afa0e7ef41ff",
+      "play_requirements": [],
+      "dependencies": [
+        "TIME_218"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ALL_MINIONS_NOSOURCE",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ADD_TO_HAND",
+          "card_id": "TIME_218",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_218",
+      "name": "Static Shock",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "a7c9efc79f10004c2a5cd425fad184078d3f08ceeebf382b569aa86ef0a0b115",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "BTA_02pe"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ENCHANT",
+          "target": "HERO",
+          "id": "BTA_02pe"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_225",
+      "name": "Cinderfin",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "3717092a8c50551e87604cb510f7a108250273557f8655879b935c35f167c8a2",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_249"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "TLC_249",
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_249",
+      "name": "Sizzling Cinder",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "5fd1425a03c6b0f628d3fbe501e3a599531634b4dcaa7aa928146742dfb28951",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_SPLIT_DAMAGE",
+          "amount": 2
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_620",
+      "name": "Fortify",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "cd2e7a8f2d2776d8fd1bb743b61efba7708dd3bbb2cb176c0e1ae9d6acd167d1",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "ARMOR",
+          "amount": 3
+        },
+        {
+          "op": "ARMOR_DAMAGE",
           "target": "TARGET"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_015",
+      "name": "Hardlight Protector",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "38733b3c7ce53a5c7a0873fcda39996f92a84d142b39fa8c40121790c8e12a77",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "HERO",
+          "amount": 3
+        },
+        {
+          "op": "SET_TAG",
+          "target": "HERO",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_401",
+      "name": "Bonechill Stegodon",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "db7127632cb80993bfeaa6f654a5bca2ec23565abb4b21c49888b5d2bb799ce0",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 6,
+          "hits": 3,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_223",
+      "name": "Thassarian",
+      "activation": "BATTLECRY_AND_DEATHRATTLE",
+      "rules_text_sha256": "feb2c8c6157fdcd48b929f3431fa7cca8ae82ef515573b0f8a3caf55f896d27a",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_ICC_210",
+      "name": "Shadow Ascendant",
+      "activation": "TURN_END",
+      "rules_text_sha256": "b8534b78b9dda8315726f11192f3fa3a90a80156551e943737097ec0080e7d65",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_FRIENDLY_BUFF",
+          "enchantment_id": "ICC_210e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_AT_062",
+      "name": "Ball of Spiders",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "ce0c6ddab9d0755df3bc13d7a3f47b8aff2e6d1c8ade0c64d7d598fc8fc0ad14",
+      "play_requirements": [],
+      "dependencies": [
+        "FP1_011"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "FP1_011",
+          "amount": 3
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_942",
+      "name": "Curious Cumulus",
+      "activation": "TURN_END",
+      "rules_text_sha256": "350d1d828e03fcfbf7bf4ef6f26d7e4396092ac8424557b7c3113f22c83f54a1",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SET_TAG",
+          "target": "HERO",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_100",
+      "name": "Hourglass Attendant",
+      "activation": "TURN_END",
+      "rules_text_sha256": "379f2e486590c0076c9e4f7b4409f68fdedec5addb9bd3d8e160ec3d62d26053",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS",
+          "enchantment_id": "ICC_210e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_889",
+      "name": "Petal Peddler",
+      "activation": "TURN_END",
+      "rules_text_sha256": "c8786c68307abe971dff14c16a5d690081b6e76beb135aefb01b5408e418d81a",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_FRIENDLY_BUFF",
+          "enchantment_id": "ICC_210e",
+          "race": "DRAGON"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_GVG_059",
+      "name": "Coghammer",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "76144d503e147f4f363c1a7d1f0e7b888b637e18d0f58100c53f4554501f63af",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_KEYWORDS",
+          "tags": [
+            "DIVINE_SHIELD",
+            "TAUNT"
+          ]
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_ICC_214",
+      "name": "Obsidian Statue",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "560697916d75a39af21c77571a4c989301c50ca4598342cb7890c10239247a6b",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DESTROY_ENEMY_MINION"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_EVENT_402",
+      "name": "Staff of the Endbringer",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "131051b6896fc6c009560a227d3c44d6e4a81e20b184a76509ed3621d985ce61",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_ALL_MINIONS"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_KAR_061",
+      "name": "The Curator",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "842a7be7f673958f0ff86d7b8aaa00a803ac8fa06545133e45439d1ef409c766",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_RACES",
+          "races": [
+            "BEAST",
+            "DRAGON",
+            "MURLOC"
+          ]
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_GVG_103",
+      "name": "Micro Machine",
+      "activation": "TURN_START_EACH",
+      "rules_text_sha256": "90961627eddc690071a8cffa27885b713d20104e4cb8068b70663096034b7ba6",
+      "play_requirements": [],
+      "dependencies": [
+        "EX1_162o"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_SOURCE_ATTACK_EACH_TURN",
+          "enchantment_id": "EX1_162o"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_816",
+      "name": "Monstrous Mosquito",
+      "activation": "TURN_END",
+      "rules_text_sha256": "4c924836e706a2c4b5d72e05f9eb6dbb2eafa73c2f85e02bb68d1336de65a033",
+      "play_requirements": [],
+      "dependencies": [
+        "EX1_162o"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_OTHER_MINIONS_ATTACK",
+          "enchantment_id": "EX1_162o"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_428",
+      "name": "Yesterloc",
+      "activation": "TURN_END",
+      "rules_text_sha256": "b9cfd71a1f8add5fd41d956e8dca1569023735ea92aef3c660c68e2ee6eedd44",
+      "play_requirements": [],
+      "dependencies": [
+        "DRG_057e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_OTHER_MINIONS_HEALTH",
+          "enchantment_id": "DRG_057e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_OG_211",
+      "name": "Call of the Wild",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "f1a491dc3c12fbe82e262ddc60d0471e10dd1652d15d14e5a87d7001ced1de54",
+      "play_requirements": [],
+      "dependencies": [
+        "NEW1_032",
+        "NEW1_033",
+        "NEW1_034"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON_ANIMAL_COMPANIONS",
+          "card_ids": [
+            "NEW1_032",
+            "NEW1_033",
+            "NEW1_034"
+          ]
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_GIL_534",
+      "name": "Hench-Clan Thug",
+      "activation": "AFTER_HERO_ATTACK",
+      "rules_text_sha256": "a7aaf762ed8059b78344968ec9616376ed707896ee20dd6ce27ece3e4771e9c8",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_SOURCE_AFTER_HERO_ATTACK",
+          "enchantment_id": "ICC_210e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_329",
+      "name": "Truth Seeker",
+      "activation": "AFTER_HERO_ATTACK",
+      "rules_text_sha256": "0410984755a9ee02529f25b122ce0fac2581cfcde230bbf10b155b46e9b2665e",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_PALADINS_AFTER_HERO_ATTACK",
+          "enchantment_id": "ICC_210e",
+          "amount": 2
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_212",
+      "name": "Lightning Rod",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "04ce114ff96e6971a6bcc92cbf3755e8bbb670b9e8959cdb8ab915e41e6c12fa",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 4,
+          "hits": 1,
+          "spell_damage": true
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "DINO_406",
+      "name": "Fire Breath",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "caefbc1c47a60757180bb4a35cae01766ed276983be67f36f01746557eab5ff3",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "BUFF_FRIENDLY_ELEMENTALS",
+          "enchantment_id": "ICC_210e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_201",
+      "name": "Twilight Mistress",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "2c4547f6ac839dc13f3a3bef62fabb3359c5094ce779355315c8b833db15f748",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RETURN_ENEMY_MINIONS"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_441",
+      "name": "Drink Blood",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "eaa7f0e0a6e13fdc46bc315064b1ca3ab184a8737dc333407f1f8fd0a1d96f37",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "REFRESH_HERO_POWER"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_203",
+      "name": "Garona's Last Stand",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "385518c796264a4b39640b8fd87ae2836890cca32c1dd937c785f273085e6584",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_LEGENDARY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_LEGENDARY_TARGET"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_485",
+      "name": "Rotheart Dryad",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "7cb2b45f680d4351f116fdbe0cf5858d17a5b762d6007e986d54b1b974045874",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_MINION_MIN_COST",
+          "min_cost": 7,
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_571",
+      "name": "Fae Trickster",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "88faca94d8c2f0b2459bbab906d5c737049120b3e455de9e7661e76036066708",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_SPELL_MIN_COST",
+          "min_cost": 5,
+          "amount": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "FIR_954",
+      "name": "Conflagrate",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "f3855e3c358f761c0cae5408cb224c7a0c49ebd57af75556529c781baa14c876",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE_THEN_TARGET_OWNER_DRAWS",
+          "amount": 5,
+          "spell_damage": true
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_467",
+      "name": "Command Claw",
+      "activation": "AFTER_HERO_ATTACK",
+      "rules_text_sha256": "326a08f56a9018e2cc2fa32695649c7939554acc2616ca105aa61ec3f5f048ab",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_467e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_ATTACK_BUFF",
+          "enchantment_id": "CATA_467e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_DRG_403",
+      "name": "Blowtorch Saboteur",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "993ca44f35cb56a08b9a008f8b1860e0cc6422cba3a916422e349f045eefed7d",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_DRG_403e"
+      ],
+      "effects": [
+        {
+          "op": "OPPONENT_HERO_POWER_SET_COST",
+          "cost": 2,
+          "enchantment_id": "CORE_DRG_403e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_305",
+      "name": "Incensed Matriarch",
+      "activation": "TURN_END",
+      "rules_text_sha256": "94a7b5faa135700b66bfbd175e749e78bcae474d0bd4543048127536aefb438b",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_305e"
+      ],
+      "effects": [
+        {
+          "op": "INCREASE_SOURCE_HEALTH_IF_UNDAMAGED",
+          "enchantment_id": "CATA_305e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_CFM_753",
+      "name": "Grimestreet Outfitter",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "1244a92a262c5c50cc90eb1ef63f3cb1272b92e14184928300a3fe01e0010597",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS",
+          "enchantment_id": "ICC_210e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_WW_329",
+      "name": "Detonation Juggernaut",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "3d7003a0eb0a8f7fea97eba1a8f2f636871d7a98e866b15a3597f08ac610829a",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_WW_329e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_TAUNT_MINIONS",
+          "enchantment_id": "CORE_WW_329e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_037",
+      "name": "Disciple of the Dove",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "a45577e324fb898118bc7871c8aebdc95bd3d4b3edc45e880481ed7bafff73fb",
+      "play_requirements": [],
+      "dependencies": [
+        "TIME_037e"
+      ],
+      "effects": [
+        {
+          "op": "DRAW_MINION_AND_BUFF_HAND_HEALTH",
+          "enchantment_id": "TIME_037e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_387",
+      "name": "Release the Beasts",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "7310be6dd43e0782ffc24e10ba17dc0c07736240daf061c0947c438abe5fde3c",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e",
+        "JAIL_387e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS_AND_LEGENDARIES",
+          "base_enchantment_id": "ICC_210e",
+          "legendary_enchantment_id": "JAIL_387e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_828",
+      "name": "Supreme Dinomancy",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "e9746040a9a1b752dff6453ee4f71452fb0379487e44f7870c528c1a8a84939b",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_828e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_BEASTS_ALL_ZONES",
+          "enchantment_id": "TLC_828e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "END_021",
+      "name": "Dimensional Weaponsmith",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "5c9196ee290f24abf5d2c86bac5d3907b058fcb6fd22fdef5237e4ef5468f6df",
+      "play_requirements": [],
+      "dependencies": [
+        "END_021e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS_AND_WEAPONS_ATTACK",
+          "enchantment_id": "END_021e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "MEND_305",
+      "name": "Nurturing Nature",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "3ebd8b657352483397f59e24adc40e5681438e66d468e4c4127063db29f07c07",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
+      "dependencies": [
+        "MEND_305e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_BEAST_HAND_BUFF",
+          "enchantment_id": "MEND_305e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "DINO_419",
+      "name": "Herbivore Assistant",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "e045f18f00c299c412a2452f77c16b023d20024dcdce167d9bf01d345dc30eea",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
+      "dependencies": [
+        "DINO_419e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "DINO_419e"
+        },
+        {
+          "op": "SET_TAG",
+          "target": "TARGET",
+          "tag": "RUSH",
+          "value": 1
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_861",
+      "name": "Tranquil Treant",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "8a1a73008e70c8226a2f8e7dfc8ad8ab187a6056a24f2f00f7f7bb032183417e",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "BOTH_PLAYERS_GAIN_EMPTY_CRYSTAL"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_621",
+      "name": "Willful Watcher",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "e489591ff29534f563a285c39ccdf242466594246bd803c0323f829600db9991",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_TOP_THREE_OWN_DECK"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_623",
+      "name": "Stonecarver",
+      "activation": "TURN_END",
+      "rules_text_sha256": "e98a4802444c89209109c1cf108bd0f6a3b2cebb3c7b0e1342dd348bad46d3f5",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_623e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_DAMAGED_FRIENDLY_MINION_BUFF",
+          "enchantment_id": "TLC_623e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_458",
+      "name": "Archmage Kalec",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "33166c2b9e3a6a4e700004bc0e84d32e11fada46ae30d3109f1d8d6e6f69c403",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_458e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_ALL_SPELLS_HAND_DECK_SPELLPOWER",
+          "enchantment_id": "CATA_458e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_377",
+      "name": "Holy Bola!",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "49bd6bed774c22cb93c17dfaa289074de087e4c9f2f59ed299538f5bb4f4a27e",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_ANOTHER_IF_FIRST_COST_AT_MOST_2"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_456",
+      "name": "P1CK-P0K3T",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "d9416dc8e4aab897a1e4105e2e9530e7a86f2549e35e3aede1051e946c7e3556",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_IF_DECK_HAS_AT_LEAST_25"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "CATA_303",
+      "name": "Purifying Breath",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "5ea468985cdf114a3fd7bdd6d43b91c4dab739a87425919d898feba4df4b5273",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 5,
+          "spell_damage": true
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "HEAL_ENEMY_HERO_5"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "END_014",
+      "name": "Synchronized Spark",
+      "activation": "SPELL_PLAY",
+      "rules_text_sha256": "7498119a18ff8f851180972b95ad3f42a41589ae9e6fb6e3d946aa7306baa37f",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_NONSELF_TARGET"
+      ],
+      "dependencies": [
+        "END_014e"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "BUFF_RANDOM_FRIENDLY_3_3"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_606",
+      "name": "Latorvian Armorer",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "b651fb1a5291fe8bf94291ab914ae793162ff1d860d711e9fa541e1aac3cfa36",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": false
+        },
+        {
+          "op": "IF_TARGET_DIES",
+          "outcome": "GAIN_ARMOR_5"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_468",
+      "name": "Eggbasher",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "8c8987af708f6f260564f299ce8d800f0a93674fcc630fcb8d31621a2e825f57",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "EDR_468e"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": false
+        },
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "EDR_468e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_376",
+      "name": "Ball and Chain",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "dd34fa264d18ea4c69b4b168d1502fe7485353bdffa8a507664a3f191b798016",
+      "play_requirements": [],
+      "dependencies": [
+        "JAIL_376e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_DAMAGED_FRIENDLY_MINIONS",
+          "enchantment_id": "JAIL_376e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "JAIL_462",
+      "name": "Getaway Hogdriver",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "8a8c1b501284e4be310a59c29dce0dbc6f2d615f368cce263e0e7021cd80e1b0",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_TWO_AND_CHARGE_IF_BOTH_MINIONS"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_572",
+      "name": "Tormented Dreadwing",
+      "activation": "DEATHRATTLE",
+      "rules_text_sha256": "0f25bedee0f860f996823798b1a4027f660d63422ab9b4597d12e47687b17970",
+      "play_requirements": [],
+      "dependencies": [
+        "EDR_572e"
+      ],
+      "effects": [
+        {
+          "op": "DRAW_TWO_DRAGONS_REDUCE_COST",
+          "enchantment_id": "EDR_572e"
+        }
+      ],
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_633",
+      "name": "Bugsquasher",
+      "activation": "BATTLECRY",
+      "rules_text_sha256": "baa330fa0b278ec618d23da8194f6abbfed99c108beba4243c81adb92d19b517",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 6,
+          "spell_damage": false
         }
       ],
       "training_eligible": false

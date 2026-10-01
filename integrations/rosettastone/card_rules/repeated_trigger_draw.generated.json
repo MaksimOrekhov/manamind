@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "declaration": "integrations/rosettastone/card_rules/repeated_trigger_draw.v1.json",
+  "declaration_sha256": "1ec422ff08d537c328b7f166fb864dce0652e1b63c33632e96b6608444cf9c0a",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.cpp",
+  "cards": [
+    {
+      "card_id": "CORE_DMF_067",
+      "name": "Prize Vendor",
+      "battlecry_effects": [
+        "DRAW_SELF",
+        "DRAW_OPPONENT"
+      ],
+      "deathrattle_effects": [
+        "DRAW_SELF",
+        "DRAW_OPPONENT"
+      ],
+      "rules_text_sha256": "8d83755158913eb34d951b02df0d553a228e0683d31b9fa730545d6e7c290eea",
+      "training_eligible": false
+    },
+    {
+      "card_id": "RLK_708",
+      "name": "Chillfallen Baron",
+      "battlecry_effects": [
+        "DRAW_SELF"
+      ],
+      "deathrattle_effects": [
+        "DRAW_SELF"
+      ],
+      "rules_text_sha256": "0f624d9a7c2834820506a9bb9a355740666a475549de81f87c315b773998ddba",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_RLK_657",
+      "name": "Underking",
+      "battlecry_effects": [
+        "ARMOR_SELF_6"
+      ],
+      "deathrattle_effects": [
+        "ARMOR_SELF_6"
+      ],
+      "rules_text_sha256": "faa14261c1538b7202d9d7f27312aeff7fec894b2df13e1b231eb2c64e9de07f",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false,
+  "training_blockers": [
+    "This package does not close deck-dependent draw outcomes or full profile gates."
+  ]
+}

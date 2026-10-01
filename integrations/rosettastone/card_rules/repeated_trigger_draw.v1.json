@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "catalog_path": "data/cards/standard_current_enUS.json",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "cards": [
+    {
+      "card_id": "CORE_DMF_067",
+      "battlecry_effects": [
+        "DRAW_SELF",
+        "DRAW_OPPONENT"
+      ],
+      "deathrattle_effects": [
+        "DRAW_SELF",
+        "DRAW_OPPONENT"
+      ]
+    },
+    {
+      "card_id": "RLK_708",
+      "battlecry_effects": [
+        "DRAW_SELF"
+      ],
+      "deathrattle_effects": [
+        "DRAW_SELF"
+      ]
+    },
+    {
+      "card_id": "CORE_RLK_657",
+      "battlecry_effects": [
+        "ARMOR_SELF_6"
+      ],
+      "deathrattle_effects": [
+        "ARMOR_SELF_6"
+      ]
+    }
+  ]
+}

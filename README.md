@@ -68,7 +68,7 @@ python .\predict_state.py .\data\samples\example_state.json
 
 The checkpoint stores its vocabulary, card catalog snapshot, encoder schema, feature names, and normalization settings. Predictions use the catalog snapshot that trained the model, so inference remains repeatable. Optionally pass `--cards .\path\to\cards.json` to add metadata for additional IDs. Unknown IDs are reported.
 
-The current encoder schema is v4. Older value checkpoints are rejected because their feature meanings predate ordered hand positions and hero-power readiness. Save training output to a new checkpoint filename instead of overwriting historical checkpoints.
+The current encoder schema is v5. It includes separate minion and Location zones, Location durability/cooldown state, ordered hand positions, and hero-power readiness. Older value checkpoints are rejected because their feature meanings predate these changes. Save training output to a new checkpoint filename instead of overwriting historical checkpoints.
 
 ## First self-play policy
 

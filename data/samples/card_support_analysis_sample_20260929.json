@@ -1254,18 +1254,27 @@
         "Dragon Warrior"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "AUTO",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Dark Gift Discover needs the exact gift-choice pool and application semantics.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "EDR_457",
@@ -1471,18 +1480,27 @@
         "Quest Priest"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "AUTO",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Discover from own deck followed by Dark Gift application needs deck-choice/gift semantics.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source appears metadata-only or uses a single task; validate exact contract before declarative inclusion.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "END_007",
@@ -1665,18 +1683,28 @@
         "Dragon Warrior"
       ],
       "metadata_present": true,
-      "rules_registered": false,
-      "registration_status": "MISSING_RULES",
+      "rules_registered": true,
+      "registration_status": "DIRECT",
       "equivalent_base_rules_id": null,
-      "route": "MISSING_PRIMITIVE",
+      "route": "COMPOSABLE",
       "route_confidence": "source_heuristic_needs_manual_review",
-      "route_reason": "Dark Gift Discover requires a Warrior-minion pool and a damage-then-choice continuation.",
-      "verification_status": "UNSUPPORTED",
+      "route_reason": "Registered source uses existing task/trigger/aura composition; classify route only, not correctness.",
+      "verification_status": "IMPLEMENTED_UNVERIFIED",
       "verification_evidence": null,
       "generated_effect_ir": null,
       "dependency_status": "UNRESOLVED",
       "bridge_action_status": "NOT_AUDITED",
-      "source_evidence": {}
+      "source_evidence": {
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindDarkGiftCardsGen.cpp",
+        "task_types": [
+          "DamageTask",
+          "DarkGiftDiscoverTask"
+        ],
+        "has_trigger": false,
+        "has_aura": false,
+        "has_enchantment": false,
+        "referenced_card_ids": []
+      }
     },
     {
       "card_id": "FIR_959",

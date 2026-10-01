@@ -4,44 +4,1447 @@
   "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
   "cards": [
     {
-      "card_id": "CORE_CS2_004",
-      "activation": "SPELL_PLAY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
-      "dependencies": ["CS2_004e"],
-      "effects": [
-        {"op": "ENCHANT", "target": "TARGET", "id": "CS2_004e"},
-        {"op": "DRAW", "amount": 1}
-      ]
-    },
-    {
-      "card_id": "END_007",
-      "activation": "SPELL_PLAY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY"],
-      "dependencies": ["BTA_02pe"],
-      "effects": [
-        {"op": "DAMAGE", "target": "TARGET", "amount": 1, "spell_damage": true},
-        {"op": "ENCHANT", "target": "HERO", "id": "BTA_02pe"},
-        {"op": "DRAW", "amount": 1},
-        {"op": "ARMOR", "amount": 1}
-      ]
-    },
-    {
       "card_id": "CAP_801",
       "activation": "SPELL_PLAY",
-      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
-      "dependencies": ["CS2_009e"],
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "CS2_009e"
+      ],
       "effects": [
-        {"op": "ENCHANT", "target": "TARGET", "id": "CS2_009e"},
-        {"op": "SET_TAG", "target": "TARGET", "tag": "REBORN", "value": 1}
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "CS2_009e"
+        },
+        {
+          "op": "SET_TAG",
+          "target": "TARGET",
+          "tag": "REBORN",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_304",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "SOURCE",
+          "amount": 4,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_475",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_485",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "hits": 1,
+          "spell_damage": true
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_612",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "FREEZE",
+          "target": "SOURCE"
+        }
+      ]
+    },
+    {
+      "card_id": "DINO_132",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 5,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_RLK_083",
+      "activation": "AFTER_CAST",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 1,
+          "hits": 2,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "END_026",
+      "activation": "AFTER_CAST_ON_MINION",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_256",
+      "activation": "AFTER_CAST",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SET_TAG",
+          "target": "SOURCE",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_BOT_222",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "DAMAGE",
+          "target": "HERO",
+          "amount": 4,
+          "spell_damage": true
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_BOT_451",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "BOT_102t"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "BOT_102t",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_CFM_604",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_FRIENDLY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "TARGET",
+          "amount": 12
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "CS2_004e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "CS2_004e"
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_024",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "FREEZE",
+          "target": "TARGET"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_094",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_EX1_129",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_GVG_061",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "CS2_101t",
+        "CS2_091"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CS2_101t",
+          "amount": 3
+        },
+        {
+          "op": "EQUIP",
+          "card_id": "CS2_091"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_LOOT_013",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "HERO",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_LOOT_368",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [
+        "CS2_065"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CS2_065",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_OG_031",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [
+        "OG_031a"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "OG_031a",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_OG_149",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ALL_MINIONS_NOSOURCE",
+          "amount": 1,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_RLK_062",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_RLK_062"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "CORE_RLK_062",
+          "amount": 2
+        }
       ]
     },
     {
       "card_id": "CORE_SW_066",
       "activation": "BATTLECRY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SILENCE",
+          "target": "TARGET"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_TSC_076",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "TSC_076t",
+        "TSC_076t2",
+        "TSC_076t3"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t3",
+          "amount": 1
+        },
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t2",
+          "amount": 1
+        },
+        {
+          "op": "SUMMON",
+          "card_id": "TSC_076t",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_UNG_084",
+      "activation": "BATTLECRY",
+      "play_requirements": [
+        "REQ_TARGET_IF_AVAILABLE",
+        "REQ_NONSELF_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_YOP_034",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 10,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_110",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_459",
+      "activation": "BATTLECRY_AND_DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "BATTLECRY_DAMAGE",
+          "target": "MINIONS_NOSOURCE",
+          "amount": 3,
+          "spell_damage": false
+        },
+        {
+          "op": "DEATHRATTLE_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 3,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_476",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "HEAL",
+          "target": "FRIENDS",
+          "amount": 4
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_971",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "HEROES",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "card_id": "END_007",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [
+        "BTA_02pe"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ENCHANT",
+          "target": "HERO",
+          "id": "BTA_02pe"
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        },
+        {
+          "op": "ARMOR",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "FIR_778",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 9,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "FIR_909",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "hits": 3,
+          "spell_damage": true
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_007",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 2,
+          "spell_damage": false
+        },
+        {
+          "op": "DAMAGE",
+          "target": "ENEMY_HERO",
+          "amount": 2,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "RLK_024",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 6,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "RLK_709",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "DRAW",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_215",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "TIME_218"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "ALL_MINIONS_NOSOURCE",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ADD_TO_HAND",
+          "card_id": "TIME_218",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_218",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [
+        "BTA_02pe"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 1,
+          "spell_damage": true
+        },
+        {
+          "op": "ENCHANT",
+          "target": "HERO",
+          "id": "BTA_02pe"
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_225",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_249"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "TLC_249",
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_249",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_SPLIT_DAMAGE",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_620",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_ENEMY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "ARMOR",
+          "amount": 3
+        },
+        {
+          "op": "ARMOR_DAMAGE",
+          "target": "TARGET"
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_015",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "HEAL",
+          "target": "HERO",
+          "amount": 3
+        },
+        {
+          "op": "SET_TAG",
+          "target": "HERO",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_401",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 6,
+          "hits": 3,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "RLK_223",
+      "activation": "BATTLECRY_AND_DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMIES",
+          "amount": 2,
+          "hits": 1,
+          "spell_damage": false
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_ICC_210",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_FRIENDLY_BUFF",
+          "enchantment_id": "ICC_210e"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_AT_062",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "FP1_011"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON",
+          "card_id": "FP1_011",
+          "amount": 3
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_942",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "SET_TAG",
+          "target": "HERO",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_100",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS",
+          "enchantment_id": "ICC_210e"
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_889",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_FRIENDLY_BUFF",
+          "enchantment_id": "ICC_210e",
+          "race": "DRAGON"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_GVG_059",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_KEYWORDS",
+          "tags": [
+            "DIVINE_SHIELD",
+            "TAUNT"
+          ]
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_ICC_214",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RANDOM_DESTROY_ENEMY_MINION"
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_EVENT_402",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_ALL_MINIONS"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_KAR_061",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_RACES",
+          "races": [
+            "BEAST",
+            "DRAGON",
+            "MURLOC"
+          ]
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_GVG_103",
+      "activation": "TURN_START_EACH",
+      "play_requirements": [],
+      "dependencies": [
+        "EX1_162o"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_SOURCE_ATTACK_EACH_TURN",
+          "enchantment_id": "EX1_162o"
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_816",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "EX1_162o"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_OTHER_MINIONS_ATTACK",
+          "enchantment_id": "EX1_162o"
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_428",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "DRG_057e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_OTHER_MINIONS_HEALTH",
+          "enchantment_id": "DRG_057e"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_OG_211",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "NEW1_032",
+        "NEW1_033",
+        "NEW1_034"
+      ],
+      "effects": [
+        {
+          "op": "SUMMON_ANIMAL_COMPANIONS",
+          "card_ids": [
+            "NEW1_032",
+            "NEW1_033",
+            "NEW1_034"
+          ]
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_GIL_534",
+      "activation": "AFTER_HERO_ATTACK",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_SOURCE_AFTER_HERO_ATTACK",
+          "enchantment_id": "ICC_210e"
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_329",
+      "activation": "AFTER_HERO_ATTACK",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_PALADINS_AFTER_HERO_ATTACK",
+          "enchantment_id": "ICC_210e",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_212",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 2,
+          "spell_damage": true
+        },
+        {
+          "op": "RANDOM_DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 4,
+          "hits": 1,
+          "spell_damage": true
+        }
+      ]
+    },
+    {
+      "card_id": "DINO_406",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY"
+      ],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 4,
+          "spell_damage": true
+        },
+        {
+          "op": "BUFF_FRIENDLY_ELEMENTALS",
+          "enchantment_id": "ICC_210e"
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_201",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "RETURN_ENEMY_MINIONS"
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_441",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE",
+          "target": "TARGET",
+          "amount": 3,
+          "spell_damage": true
+        },
+        {
+          "op": "REFRESH_HERO_POWER"
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_203",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_LEGENDARY_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_LEGENDARY_TARGET"
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_485",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_MINION_MIN_COST",
+          "min_cost": 7,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_571",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_SPELL_MIN_COST",
+          "min_cost": 5,
+          "amount": 1
+        }
+      ]
+    },
+    {
+      "card_id": "FIR_954",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET"
+      ],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DAMAGE_THEN_TARGET_OWNER_DRAWS",
+          "amount": 5,
+          "spell_damage": true
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_467",
+      "activation": "AFTER_HERO_ATTACK",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_467e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_ATTACK_BUFF",
+          "enchantment_id": "CATA_467e"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_DRG_403",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_DRG_403e"
+      ],
+      "effects": [
+        {
+          "op": "OPPONENT_HERO_POWER_SET_COST",
+          "cost": 2,
+          "enchantment_id": "CORE_DRG_403e"
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_305",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_305e"
+      ],
+      "effects": [
+        {
+          "op": "INCREASE_SOURCE_HEALTH_IF_UNDAMAGED",
+          "enchantment_id": "CATA_305e"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_CFM_753",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS",
+          "enchantment_id": "ICC_210e"
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_WW_329",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "CORE_WW_329e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_TAUNT_MINIONS",
+          "enchantment_id": "CORE_WW_329e"
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_037",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "TIME_037e"
+      ],
+      "effects": [
+        {
+          "op": "DRAW_MINION_AND_BUFF_HAND_HEALTH",
+          "enchantment_id": "TIME_037e"
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_387",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "ICC_210e",
+        "JAIL_387e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS_AND_LEGENDARIES",
+          "base_enchantment_id": "ICC_210e",
+          "legendary_enchantment_id": "JAIL_387e"
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_828",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_828e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_BEASTS_ALL_ZONES",
+          "enchantment_id": "TLC_828e"
+        }
+      ]
+    },
+    {
+      "card_id": "END_021",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "END_021e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_HAND_MINIONS_AND_WEAPONS_ATTACK",
+          "enchantment_id": "END_021e"
+        }
+      ]
+    },
+    {
+      "card_id": "MEND_305",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
+      "dependencies": [
+        "MEND_305e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_FRIENDLY_BEAST_HAND_BUFF",
+          "enchantment_id": "MEND_305e"
+        }
+      ]
+    },
+    {
+      "card_id": "DINO_419",
+      "activation": "BATTLECRY",
+      "play_requirements": [
+        "REQ_TARGET_TO_PLAY",
+        "REQ_MINION_TARGET",
+        "REQ_FRIENDLY_TARGET",
+        "REQ_TARGET_WITH_RACE"
+      ],
+      "dependencies": [
+        "DINO_419e"
+      ],
+      "effects": [
+        {
+          "op": "ENCHANT",
+          "target": "TARGET",
+          "id": "DINO_419e"
+        },
+        {
+          "op": "SET_TAG",
+          "target": "TARGET",
+          "tag": "RUSH",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_861",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "BOTH_PLAYERS_GAIN_EMPTY_CRYSTAL"
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_621",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DESTROY_TOP_THREE_OWN_DECK"
+        }
+      ]
+    },
+    {
+      "card_id": "TLC_623",
+      "activation": "TURN_END",
+      "play_requirements": [],
+      "dependencies": [
+        "TLC_623e"
+      ],
+      "effects": [
+        {
+          "op": "RANDOM_OTHER_DAMAGED_FRIENDLY_MINION_BUFF",
+          "enchantment_id": "TLC_623e"
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_458",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [
+        "CATA_458e"
+      ],
+      "effects": [
+        {
+          "op": "BUFF_ALL_SPELLS_HAND_DECK_SPELLPOWER",
+          "enchantment_id": "CATA_458e"
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_377",
+      "activation": "SPELL_PLAY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_ANOTHER_IF_FIRST_COST_AT_MOST_2"
+        }
+      ]
+    },
+    {
+      "card_id": "JAIL_456",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {
+          "op": "DRAW_IF_DECK_HAS_AT_LEAST_25"
+        }
+      ]
+    },
+    {
+      "card_id": "CATA_303",
+      "activation": "SPELL_PLAY",
       "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
       "dependencies": [],
       "effects": [
-        {"op": "SILENCE", "target": "TARGET"}
+        {"op": "DAMAGE", "target": "TARGET", "amount": 5, "spell_damage": true},
+        {"op": "IF_TARGET_DIES", "outcome": "HEAL_ENEMY_HERO_5"}
+      ]
+    },
+    {
+      "card_id": "END_014",
+      "activation": "SPELL_PLAY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_NONSELF_TARGET"],
+      "dependencies": ["END_014e"],
+      "effects": [
+        {"op": "DAMAGE", "target": "TARGET", "amount": 3, "spell_damage": true},
+        {"op": "IF_TARGET_DIES", "outcome": "BUFF_RANDOM_FRIENDLY_3_3"}
+      ]
+    },
+    {
+      "card_id": "TLC_606",
+      "activation": "BATTLECRY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET", "REQ_ENEMY_TARGET"],
+      "dependencies": [],
+      "effects": [
+        {"op": "DAMAGE", "target": "TARGET", "amount": 2, "spell_damage": false},
+        {"op": "IF_TARGET_DIES", "outcome": "GAIN_ARMOR_5"}
+      ]
+    },
+    {
+      "card_id": "EDR_468",
+      "activation": "BATTLECRY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET"],
+      "dependencies": ["EDR_468e"],
+      "effects": [
+        {"op": "DAMAGE", "target": "TARGET", "amount": 1, "spell_damage": false},
+        {"op": "ENCHANT", "target": "TARGET", "id": "EDR_468e"}
+      ]
+    },
+    {
+      "card_id": "JAIL_376",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": ["JAIL_376e"],
+      "effects": [
+        {"op": "BUFF_DAMAGED_FRIENDLY_MINIONS", "enchantment_id": "JAIL_376e"}
+      ]
+    },
+    {
+      "card_id": "JAIL_462",
+      "activation": "BATTLECRY",
+      "play_requirements": [],
+      "dependencies": [],
+      "effects": [
+        {"op": "DRAW_TWO_AND_CHARGE_IF_BOTH_MINIONS"}
+      ]
+    },
+    {
+      "card_id": "EDR_572",
+      "activation": "DEATHRATTLE",
+      "play_requirements": [],
+      "dependencies": ["EDR_572e"],
+      "effects": [
+        {"op": "DRAW_TWO_DRAGONS_REDUCE_COST", "enchantment_id": "EDR_572e"}
+      ]
+    },
+    {
+      "card_id": "TLC_633",
+      "activation": "BATTLECRY",
+      "play_requirements": ["REQ_TARGET_TO_PLAY", "REQ_MINION_TARGET", "REQ_ENEMY_TARGET", "REQ_TARGET_WITH_RACE"],
+      "dependencies": [],
+      "effects": [
+        {"op": "DAMAGE", "target": "TARGET", "amount": 6, "spell_damage": false}
       ]
     }
   ]

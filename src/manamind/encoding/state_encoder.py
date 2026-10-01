@@ -32,7 +32,7 @@ GLOBAL_FEATURE_NAMES = (
     *(f"opponent_{name}" for name in PLAYER_NUMERIC_FEATURE_NAMES),
     "opponent_known_cards_count",
 )
-STATE_ENCODING_SCHEMA_VERSION = 4
+STATE_ENCODING_SCHEMA_VERSION = 5
 
 
 @dataclass(frozen=True, slots=True)
@@ -45,6 +45,8 @@ class EncodedGameState:
     self_hand: EncodedZone
     self_board: EncodedZone
     opponent_board: EncodedZone
+    self_locations: EncodedZone
+    opponent_locations: EncodedZone
     opponent_known_cards: EncodedZone
     self_weapon: EncodedZone
     opponent_weapon: EncodedZone
@@ -103,6 +105,8 @@ class StateEncoder:
             self_hand=self.entity_encoder.encode_zone(state.self_hand, ordered=True),
             self_board=self.entity_encoder.encode_board(state.self_player.board),
             opponent_board=self.entity_encoder.encode_board(state.opponent.board),
+            self_locations=self.entity_encoder.encode_locations(state.self_player.locations),
+            opponent_locations=self.entity_encoder.encode_locations(state.opponent.locations),
             opponent_known_cards=self.entity_encoder.encode_zone(state.opponent_known_cards),
             self_weapon=self.entity_encoder.encode_optional_card(state.self_player.weapon),
             opponent_weapon=self.entity_encoder.encode_optional_card(state.opponent.weapon),

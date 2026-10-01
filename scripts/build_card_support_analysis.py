@@ -241,7 +241,11 @@ def build():
             "reason_excluded": None if equal_text else "Core text differs from base; copying it would omit a current effect."})
     alias_by_id = {x["core_card_id"]: x for x in alias_pairs}
     remaining_alias_candidates = sum(x["candidate_for_alias"] for x in alias_pairs)
-    alias_candidate_count = remaining_alias_candidates + len(generated_aliases)
+    generated_core_alias_count = sum(entry.get("match_basis") != "EXPLICIT_EXACT_RULES_TEXT_MATCH"
+                                     for entry in alias_manifest.get("cards", [])) if alias_manifest_path.exists() else 0
+    exact_text_alias_count = sum(entry.get("match_basis") == "EXPLICIT_EXACT_RULES_TEXT_MATCH"
+                                 for entry in alias_manifest.get("cards", [])) if alias_manifest_path.exists() else 0
+    alias_candidate_count = remaining_alias_candidates + generated_core_alias_count
     target_ids = {c["card_id"] for c in coverage["cards"]}
     extension = stable_sample(catalog_doc["cards"], target_ids)
     sample = []
@@ -305,7 +309,7 @@ def build():
         })
     route_counts = Counter(x["route"] for x in sample)
     source_roots = [
-        "data/cards/standard_current_enUS.json", "data/cards/standard_sets.json", POOL_PATH, COVERAGE_PATH,
+        "data/cards/standard_current_enUS.json", "data/cards/standard_sets.json", "data/cards/format_bans_20260929.json", POOL_PATH, COVERAGE_PATH,
         CORE_ALIAS_MANIFEST, "integrations/rosettastone/card_rules/core_aliases.v1.json", "scripts/generate_core_card_aliases.py",
         "integrations/rosettastone/card_rules/effect_composition.generated.json", "integrations/rosettastone/card_rules/effect_composition.v1.json", "scripts/generate_effect_composition.py",
         "vendor/RosettaStone/Resources/cards.standard_current.json", "vendor/RosettaStone/Resources/cards.json",
@@ -391,7 +395,8 @@ def build():
                      "route_counts": dict(sorted(route_counts.items())), "deck_summary": deck_summary,
                      "core_alias_metadata_pairs": len(alias_pairs), "core_alias_candidates": alias_candidate_count,
                      "core_aliases_exact_text_missing_direct_definition": alias_candidate_count,
-                     "generated_core_alias_count": len(generated_aliases),
+                     "generated_core_alias_count": generated_core_alias_count,
+                     "generated_exact_text_alias_count": exact_text_alias_count,
                      "generated_effect_composition_count": len(generated_compositions),
                      "remaining_core_alias_candidates": remaining_alias_candidates},
         "route_definitions": ROUTE_GUIDANCE, "cards": sample, "dependency_graph": graph,

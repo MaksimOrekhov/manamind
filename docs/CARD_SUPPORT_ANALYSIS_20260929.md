@@ -1,58 +1,113 @@
 # Card support audit — 2026-09-29
 
-This audit covers five saved Standard lists (74 unique cards) and a deterministic stratified extension sample of 26 collectible Standard cards. It is a triage inventory, not a claim of current metagame representation, complete rules correctness, or deck eligibility.
+## Scope
 
-## Results
+This is a reproducible triage inventory for five saved Standard lists plus a deterministic stratified extension sample. It does not establish metagame representativeness, rules correctness, or deck training eligibility.
+
+Catalog snapshot: `data/cards/standard_current_enUS.json` (valid as of 2026-09-27); saved list pool: `data/samples/standard_meta_deck_pool_20260928.json`. RosettaStone revision status: `read`.
+
+## Counts
 
 | Measure | Count |
 |---|---:|
 | Selected lists | 5 |
-| Selected-list cards registered or textless | 64 / 74 |
-| Selected-list cards missing nonempty-text registrations | 10 |
+| Unique selected-list cards | 74 |
+| Selected-list cards registered or textless | 67 |
+| Selected-list cards missing nonempty-text registration | 7 |
 | Extension sample | 26 |
 | Total triaged cards | 100 |
 
-Route hypotheses: **AUTO 15**, **COMPOSABLE 32**, **MISSING_PRIMITIVE 19**, **CUSTOM 32**, **UNKNOWN 2**. AUTO and COMPOSABLE describe a possible implementation route; they do not indicate verified behavior.
+Route counts (triage hypotheses): `AUTO=16`, `COMPOSABLE=34`, `CUSTOM=32`, `MISSING_PRIMITIVE=16`, `UNKNOWN=2`.
 
-The five saved lists remain blocked by the stricter training gate. Dragon Warrior is 14/17 registered or textless, Attack Druid 17/20, Quest Priest 13/17. Mother Drake and Combo Drake Warlock are 19/19 by direct registration and have historical pilot matches, but their scenario and dependency gates have not been re-run under the stricter audit.
+Legacy Core alias scan: 47 metadata-linked base definitions; 40 have equal normalized rules text and lack a direct Core CardDef. Generated aliases are accounted for separately: 20 registered by the current manifest, 20 remaining candidates. Five linked entries have different text and are excluded.
 
-The first alias batches add 20 generated registrations, but none of the 10 missing IDs in the five selected lists is one of these aliases. Thus selected-list registration coverage remains 64/74; the alias work expands the broader Core pool and validates the generator path, not the selected-deck gate.
+AUTO means a possible constrained declaration route, not proven correctness. COMPOSABLE means current RosettaStone constructs appear usable. MISSING_PRIMITIVE names a shared contract or mechanic that needs work. CUSTOM indicates named native handling is likely simpler. UNKNOWN preserves unresolved rules questions.
 
-## Reusable Core alias finding
+## Selected decks
 
-The current Standard catalog contains **47** Core IDs with a legacy CardDef source, matching `countAsCopyOfDbfId`, and a stripped ID. **42** have equal normalized rules text; **40** of those lack a direct Core definition, while two already have one. Five metadata-linked entries have different rules text and are excluded.
+| Deck | Class | Unique | Registered/textless | Missing IDs | Strict training gate |
+|---|---|---:|---:|---|---|
+| Dragon Warrior | WARRIOR | 17 | 16 | `TIME_034` | not eligible |
+| Attack Druid | DRUID | 20 | 17 | `CATA_139`, `MEND_046`, `TLC_100` | not eligible |
+| Quest Priest | PRIEST | 17 | 14 | `CAP_805`, `JAIL_912`, `TLC_817` | not eligible |
+| Mother Drake Warlock | WARLOCK | 19 | 19 | — | not eligible |
+| Combo Drake Warlock | WARLOCK | 19 | 19 | — | not eligible |
 
-The first implementation package is a deterministic alias declaration generator for these eight IDs:
+## Missing registrations in selected lists
 
-| Current Core ID | Existing base definition | Effect coverage in the package |
-|---|---|---|
-| `CORE_BAR_801` | `BAR_801` | Targeted damage and fixed Rush token |
-| `CORE_SW_108` | `SW_108` | Damage and add a fixed card to hand |
-| `CORE_BT_072` | `BT_072` | Freeze and summon |
-| `CORE_BAR_310` | `BAR_310` | Deathrattle healing |
-| `CORE_AV_337` | `AV_337` | Deathrattle token summons |
-| `CORE_BAR_541` | `BAR_541` | Damage and Discover |
-| `CORE_KAR_062` | `KAR_062` | Conditional Battlecry and Discover |
-| `CORE_BT_156` | `BT_156` | Dormant timing and Rush metadata |
+| ID | Card | Route | Reason |
+|---|---|---|---|
+| `CAP_805` | Slime 'em! | MISSING_PRIMITIVE | Must preserve the set of each player's destroyed minions and produce per-player resummon spells. |
+| `CATA_139` | Wickerfang | MISSING_PRIMITIVE | Colossal appendages exist as a property, but stat changes must propagate to the correct parent entity. |
+| `JAIL_912` | Soothsayer | MISSING_PRIMITIVE | Prepare semantics and subsequent Deathrattle need an independently verified timing contract. |
+| `MEND_046` | Bashana Runetotem | CUSTOM | Carve embeds 12 Mana of Nature spells into three generated Treants; likely requires a named stateful native handler. |
+| `TIME_034` | Stadium Announcer | MISSING_PRIMITIVE | Rewind setup plus independent random weapon generation for both players needs timing and pool verification. |
+| `TLC_100` | Elise the Navigator | CUSTOM | Builds a custom Location from the deck's starting cost distribution; dynamic output is card-specific. |
+| `TLC_817` | Reach Equilibrium | MISSING_PRIMITIVE | Two sequential school-specific Quest conditions and rewards require progression/order support. |
 
-Matching text and metadata provide a candidate relationship only. Three bounded additions now register 20 aliases. The validator checks metadata links, normalized text, dependencies and duplicate registrations. A parity scenario checks base and Core `CardDef` properties and task counts for all 20 IDs; four independent game scenarios check damage-plus-add-card, damage-plus-token, damage-plus-Taunt-tokens, and damage-plus-draw. The bridge smoke checked deck validation, state observation and legal actions for four representative Core cards. These tests establish only the stated scopes. Two aliases include Discover with a dynamic pool, and remain ineligible for strict training. The other 20 equal-text candidates remain queued pending measurement of the separate effect-composition generator pilot.
+## Extension sample
 
-## Effect composition pilot
+The sampling strata are text heuristics only. Each route below is a manual engineering hypothesis to verify against source and rulings.
 
-A second generator, [generate_effect_composition.py](../scripts/generate_effect_composition.py), compiles a strict allowlisted IR into ordinary C++ Tasks. Four pre-existing definitions were migrated: `CORE_CS2_004` (enchant then draw), `END_007` (damage, temporary hero attack, draw, armor), `CAP_801` (enchant then Reborn), and `CORE_SW_066` (Battlecry Silence). Four independent scenario tests passed (20 assertions), and bridge smoke accepted all four deck lists and returned observations/legal actions. `CATA_302` remains manual because its implementation heals by the amount of damage taken; substituting a generic full heal could change modifier and source behavior. See `integrations/rosettastone/card_rules/effect_composition.generated.json` and `vendor/RosettaStone/Tests/UnitTests/PlayMode/CardSets/ManaMindEffectCompositionTests.cpp`.
+| ID | Name | Stratum | Route | Next question |
+|---|---|---|---|---|
+| `TIME_436` | Past Conflux | choice_random_generated | UNKNOWN | Advance to the Present is a named mechanic whose state transition needs ruling/source inspection. |
+| `TIME_712` | Dethrone | choice_random_generated | COMPOSABLE | Destroy plus Combo random-minion generation; verify Combo hook and exact pool. |
+| `EDR_570` | Ominous Nightmares | choice_random_generated | COMPOSABLE | Choose One effects appear expressible with existing destroy/summon operations. |
+| `TLC_438` | Violet Treasuregill | choice_random_generated | MISSING_PRIMITIVE | Randomly select from own deck by cost and cast onto this minion; target and card-zone semantics need a contract. |
+| `CORE_KAR_062` | Netherspite Historian | choice_random_generated | COMPOSABLE | Generated Core alias is registered; confirm runtime rules and dependencies before admission. |
+| `CATA_498` | Rafaams' Last Stand | choice_random_generated | MISSING_PRIMITIVE | Repeated random target damage with an upgrade/state counter across turns. |
+| `CORE_RLK_116` | Necrotic Mortician | choice_random_generated | MISSING_PRIMITIVE | Requires game-history tracking for friendly Undead deaths and rune-filtered Discover. |
+| `CORE_WC_042` | Wailing Vapor | triggered | COMPOSABLE | After-Elemental-play trigger plus permanent Attack gain; verify event source and turn scope. |
+| `EDR_845` | Hamuul Runetotem | triggered | MISSING_PRIMITIVE | Start-of-game deck condition plus repeated Imbue progress from Nature spells. |
+| `CORE_CATA_001` | Tichondrius | triggered | COMPOSABLE | Battlecry plus a same-turn cost aura for the next Demon; verify hand-zone aura lifetime. |
+| `CATA_553` | Ebyssian | triggered | CUSTOM | Game-long Dragon Rush effect and conditional transformation of cards in hand require coordinated state handling. |
+| `MEND_506` | Mystic Runesaber | triggered | MISSING_PRIMITIVE | Changes Leyline effects for the rest of the game; enumerate affected spell families first. |
+| `CORE_EDR_003` | Falric | triggered | MISSING_PRIMITIVE | Corpse resource gain multiplier and an alternate corpse-spend draw action. |
+| `CATA_724` | Stormbinder | triggered | COMPOSABLE | Deathrattle unlocks overloaded mana and applies Overload; verify timing and resource semantics. |
+| `TIME_443` | Hounds of Fury | composed | CUSTOM | Summon two Hounds and force an attack selected by lowest enemy Health when deck has no minions. |
+| `CATA_479` | Flight Maneuvers | composed | MISSING_PRIMITIVE | Shatter keyword and its summon/buff interaction need source and timing review. |
+| `DINO_432` | Panther Mask | composed | COMPOSABLE | Set stats, grant Stealth, then draw; verify silence/stat reset behavior. |
+| `CATA_452` | Spellweaver's Brilliance | composed | MISSING_PRIMITIVE | Discount depends on spell damage actually dealt this turn, requiring event history and cost recalculation. |
+| `TLC_819` | Gladesong Siren | composed | MISSING_PRIMITIVE | Discount checks whether both Holy and Shadow spells were cast this turn. |
+| `CORE_BAR_801` | Wound Prey | composed | COMPOSABLE | Generated Core alias is registered; confirm runtime rules and dependencies before admission. |
+| `CORE_EX1_145` | Preparation | single_effect | COMPOSABLE | Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission. |
+| `CORE_EX1_010` | Worgen Infiltrator | single_effect | AUTO | Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission. |
+| `CORE_LOOT_044` | Bladed Gauntlet | single_effect | MISSING_PRIMITIVE | Weapon Attack follows Armor dynamically and cannot attack heroes. |
+| `TIME_027` | Tachyon Barrage | single_effect | MISSING_PRIMITIVE | Split damage plus shuffle generated Shreds of Time into deck. |
+| `TIME_044` | Past Gnomeregan | single_effect | UNKNOWN | Advance to the Present has no resolved source contract in this audit. |
+| `CS3_007` | Novice Zapper | single_effect | AUTO | Direct Core-ID CardDef exists; confirm runtime rules and dependencies before admission. |
 
-Neither generator changes the selected-deck missing count: it remains 10/74. The alias and composition pilots validate implementation routes in the wider current Core pool; they do not yet complete the five chosen decks or establish training eligibility.
+## Dependency graph and capability inventory
 
-## Capability and dependency inventory
+The initial source scan found 25 literal CardDef references among audited registrations. They are unverified edges. It also lists 29 dynamic pool candidates as `UNKNOWN_POOL`; this is not dependency closure.
 
-The checkout contains 107 SimpleTasks headers. Source contracts and limitations were inspected for DamageTask, HealFullTask, DrawTask, SummonTask, DestroyTask, DiscoverTask, RandomMinionTask, AddEnchantmentTask, and QuestProgressTask. Random/Discover candidates that cannot be resolved to an exact pool remain `UNKNOWN_POOL`. Literal generated-card and enchantment references are recorded as unverified dependency edges.
+Fixed references include generated tokens, enchantments, and choice objects. Their destination type and collectible status are in the JSON graph; each edge remains unverified until both definition and runtime path are checked. Dynamic Discover/random filters remain unresolved unless an exact predicate is recorded.
 
-See the complete generated Markdown copy at [reports/card_support_analysis_20260929.md](../reports/card_support_analysis_20260929.md), per-card evidence and SHA-256 source manifests in [reports/card_support_analysis_20260929.json](../reports/card_support_analysis_20260929.json), and the fixed 100-card sample in [data/samples/card_support_analysis_sample_20260929.json](../data/samples/card_support_analysis_sample_20260929.json). The task/capability file inventory is [integrations/rosettastone/card_rules/capabilities.json](../integrations/rosettastone/card_rules/capabilities.json).
+The inventory enumerates 108 SimpleTasks headers. Source contracts were inspected for 9 high-use capabilities; summarized contracts and limitations are in `integrations/rosettastone/card_rules/capabilities.json`. Header, implementation, and test-file presence are not semantic contracts.
 
-Rebuild these artifacts from the repository root with:
+The five deck inventories are complete against the pinned catalog. Scenario and dependency gates remain false. Alias registration changes the missing-ID count but does not complete those gates. The Warlock lists have historical match-smoke evidence, but do not pass the stricter gates; all five lists remain ineligible for training from this audit.
 
-```powershell
-.\.venv\Scripts\python.exe .\scripts\build_card_support_analysis.py
-```
+## Current outcome-card work (2026-09-30)
 
-The saved catalog is valid as of 2026-09-27, and the selected list pool is dated 2026-09-28. The source fingerprint records RosettaStone revision `e10749b5f0c08d3a6135bce317cb11d1738846ad` and the local modifications present at audit time. No build, match, training, or model evaluation is part of this audit.
+Three Dragon outcomes from the audited Dark Gift pool now have direct CardDefs: `TIME_045` Whelp of the Infinite and `TIME_056` Whelp of the Bronze use existing Poisonous, Reborn, Lifesteal, and Divine Shield support; `TIME_856` Algeth'ar Instructor receives its static Spell Damage from metadata. Focused native tests confirm metadata, stats, keywords, registration, and exact membership in four top-level runtime pools (41 assertions). This is narrow implementation evidence, not full random-pool or Dark Gift interaction closure.
+
+`CORE_DRG_079` Evasive Wyrm was deliberately left out: the current RosettaStone checkout has no Elusive `GameTag` or targeting contract, and the legacy `DRG_079` rules differ. Do not alias or mark it supported until Elusive is implemented and tested. The new registrations do not change the seven missing rules registrations in the five selected lists.
+
+## First implementation package
+
+The audit found a high-value reuse path before introducing operation-by-operation CardDefs: current Core IDs can point to a legacy card ID in metadata while RosettaStone only registers the legacy ID. A strict alias candidate must have a registered stripped-ID base, matching `countAsCopyOfDbfId`, and equal normalized rules text. Forty current Standard Core IDs meet this test and lack a direct Core definition. Five more metadata-linked copies have different text and are excluded.
+
+Start with eight alias declarations to cover token summon, damage, add-card, freeze, Deathrattle, healing, Discover, and Dormant: `CORE_BAR_801 → BAR_801`, `CORE_SW_108 → SW_108`, `CORE_BT_072 → BT_072`, `CORE_BAR_310 → BAR_310`, `CORE_AV_337 → AV_337`, `CORE_BAR_541 → BAR_541`, `CORE_KAR_062 → KAR_062`, `CORE_BT_156 → BT_156`. Generate aliases only after validating each pair and checking duplicate IDs, task references, and dependencies. Keep the other 32 candidates queued until correctness and measured package cost support expansion.
+
+The current generated alias manifest contains 20 aliases from three additions (8 + 7 + 5); 20 candidates remain. A separate allowlisted effect-composition IR now generates four migrated cards (`CORE_CS2_004`, `END_007`, `CAP_801`, `CORE_SW_066`) using ordered existing Tasks and explicit play requirements. `CATA_302` stays manual because its current CustomTask heals only the damage taken and needs a dedicated semantic contract. Scoped scenarios are recorded per card in the JSON report; no selected-deck training gate has changed.
+
+## Limits and provenance
+
+- Five fixed published lists are a selected target pool, not a current meta-frequency sample.
+- The 26 extension cards are a deterministic stratified sample selected by text heuristics; strata do not describe implementation complexity.
+- Routes are triage hypotheses. Rules correctness, dependency closure, bridge actions, and match eligibility remain separate gates.
+- Source regex captures literal ID strings and nearby task names; it does not resolve generated entities, runtime pools, or all C++ control flow.
+- Dynamic Discover/random pools are explicitly UNKNOWN until predicates and format membership are resolved.
+
+Raw card-by-card fields, SHA-256 fingerprints, source evidence, and the deterministic sample are in `reports/card_support_analysis_20260929.json` and `data/samples/card_support_analysis_sample_20260929.json`.

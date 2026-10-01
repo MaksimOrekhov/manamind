@@ -290,6 +290,15 @@
       "semantics_reviewed": false
     },
     {
+      "name": "DarkGiftDiscoverTask",
+      "category_guess": "generation_choice_quest",
+      "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.hpp",
+      "implementation": "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/DarkGiftDiscoverTask.cpp",
+      "test_file_candidates": [],
+      "inventory_status": "file_presence_only",
+      "semantics_reviewed": false
+    },
+    {
       "name": "DestroyAllTask",
       "category_guess": "summon_destroy_transform",
       "header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/SimpleTasks/DestroyAllTask.hpp",
@@ -1012,6 +1021,17 @@
     }
   ],
   "source_contract_reviews": [
+    {
+      "capability": "EnqueueTask+DamageRandomTargets",
+      "status": "source_contract_reviewed",
+      "evidence": [
+        "vendor/RosettaStone/Includes/Rosetta/PlayMode/Tasks/ComplexTask.hpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/RandomTask.cpp",
+        "vendor/RosettaStone/Sources/Rosetta/PlayMode/Tasks/SimpleTasks/EnqueueTask.cpp"
+      ],
+      "contract": "DamageRandomTargets with one target selects independently from the requested current enemy set; EnqueueTask repeats the nested task sequence the requested number of times.",
+      "limits": "This supports repeated random pings with replacement for explicitly allowlisted SPELL_PLAY, TURN_END, and DEATHRATTLE rows. It does not model a single shared random split selector, dynamic damage counts, or damage-trigger interactions beyond focused scenarios."
+    },
     {
       "capability": "DamageTask",
       "status": "source_contract_reviewed",

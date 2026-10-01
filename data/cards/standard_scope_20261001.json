@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "format": "STANDARD",
+  "as_of_date": "2026-10-01",
+  "standard_sets": [
+    "CORE",
+    "EVENT",
+    "EMERALD_DREAM",
+    "THE_LOST_CITY",
+    "TIME_TRAVEL",
+    "CATACLYSM",
+    "ESCAPEFROM_VIOLET_HOLD"
+  ],
+  "explicit_standard_card_ids": [
+    "BE_036"
+  ],
+  "excluded_card_ids": [
+    "BE_EVENT_100",
+    "BE_EVENT_101",
+    "BE_EVENT_102"
+  ],
+  "explicit_exclusions": [
+    {
+      "card_id": "BE_EVENT_100",
+      "reason": "The War of Old & New event starts October 6; card unavailable on the snapshot date.",
+      "source_url": "https://hearthstone.blizzard.com/en-us/news/24294373/patchnotes-zu-36-6"
+    },
+    {
+      "card_id": "BE_EVENT_101",
+      "reason": "The War of Old & New event starts October 6; card unavailable on the snapshot date.",
+      "source_url": "https://hearthstone.blizzard.com/en-us/news/24294373/patchnotes-zu-36-6"
+    },
+    {
+      "card_id": "BE_EVENT_102",
+      "reason": "The War of Old & New event starts October 6; card unavailable on the snapshot date.",
+      "source_url": "https://hearthstone.blizzard.com/en-us/news/24294373/patchnotes-zu-36-6"
+    }
+  ],
+  "exclusion_policy": {
+    "collectible": "Only source records with collectible=true are roots.",
+    "future_releases": "Exclude unreleased sets and preview/event cards until they are usable in Standard on the as_of_date, except explicit card IDs above; apply explicit excluded_card_ids even when metadata assigns a current set.",
+    "tokens_and_generated_cards": "Not roots; add them later only through reachable dependency analysis.",
+    "bans": "Deckbuilding bans are a separate legality axis and do not remove cards from the collectible Standard root pool or generation pools."
+  },
+  "sources": [
+    {
+      "source_name": "Blizzard Card Sets page",
+      "url": "https://hearthstone.blizzard.com/en-us/expansions-adventures",
+      "observed_date": "2026-10-01",
+      "claim": "Year of the Scarab (2026) and Year of the Raptor (2025) sets are in Standard & Wild; the October 2026 expansion is listed as upcoming."
+    },
+    {
+      "source_name": "Blizzard 35.0 Patch Notes",
+      "url": "https://hearthstone.blizzard.com/en-us/news/24267727/35-0-patch-notes",
+      "published_date": "2026-03-09",
+      "claim": "CATACLYSM starts Year of the Scarab; Year of the Pegasus rotates out; Core and Event Set pools update."
+    },
+    {
+      "source_name": "Blizzard 36.4 Patch Notes",
+      "url": "https://hearthstone.blizzard.com/en-us/news/24293283/364-patch-notes",
+      "published_date": "2026-08-24",
+      "claim": "Escape from Violet Hold Class Sets release on August 25; Arena pool lists Escape from Violet Hold, CATACLYSM, Across the Timeways, The Lost City of Un'Goro, Into the Emerald Dream, and Event Set."
+    },
+    {
+      "source_name": "Blizzard 36.6 Patch Notes",
+      "url": "https://hearthstone.blizzard.com/en-us/news/24294373/patchnotes-zu-36-6",
+      "published_date": "2026-09-15",
+      "claim": "Reign of the Black Empire launches October 20; M.O.T.H.E.R. (BE_036) is granted early. Future event cards are scheduled for October 6."
+    },
+    {
+      "source_name": "Blizzard active bans forum post",
+      "url": "https://us.forums.blizzard.com/en/hearthstone/t/bans-what-and-where/151289",
+      "observed_date": "2026-10-01",
+      "claim": "Active Standard/Wild ban list contains only Grove Shaper and Godfrey the Betrayer under Wild; Standard list is empty."
+    }
+  ],
+  "notes": [
+    "Set IDs are the project's HearthstoneJSON/RosettaStone identifiers. Their membership must be reconciled with the dated source snapshot before accepting generated root counts.",
+    "BE_036 is retained as the project's documented one-card early-access Standard exception; no other BE cards are included on this date."
+  ]
+}

@@ -17,6 +17,11 @@ set_target_properties(RosettaStone PROPERTIES
 )
 
 pybind11_add_module(mana_rosetta_bridge bridge.cpp)
+set(PYTHON312_DEV_DIR "${ROSETTA_SOURCE_DIR}/build-mana-ninja/python312-dev")
+if(NOT EXISTS "${PYTHON312_DEV_DIR}/include/Python.h")
+    message(FATAL_ERROR "Python 3.12 development headers are missing: ${PYTHON312_DEV_DIR}/include/Python.h")
+endif()
+target_include_directories(mana_rosetta_bridge PRIVATE "${PYTHON312_DEV_DIR}/include")
 target_link_libraries(mana_rosetta_bridge PRIVATE RosettaStone effolkronium_random nlohmann_json::nlohmann_json)
 target_compile_features(mana_rosetta_bridge PRIVATE cxx_std_23)
 set_target_properties(mana_rosetta_bridge PROPERTIES

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "package": "repeated_trigger_draw",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "1ec422ff08d537c328b7f166fb864dce0652e1b63c33632e96b6608444cf9c0a",
+  "generator_script_sha256": "3d182b9a9914afba3cb8972ad4451c1b19747edb0ab33153d10ae22867387854",
+  "generated_source_sha256": "f45f08b18223ee43a61465b138c1b0643133745bdcff543d99d918878c2d960b",
+  "capability_file_sha256": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+  "engine_library_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+  "native_scenario_sha256": "89c8cdd01a54d81a2c976f73f8187e85f000494cd56e01cf191143dfe0676158",
+  "bridge_smoke_sha256": "afff0c87d982d60b75f612bebdf3859074d83c823a16e3a0d16d0743402bf5fb",
+  "training_eligible": false,
+  "cards": {
+    "CORE_DMF_067": {
+      "rules_fingerprint": "dc15474c354a5a268277b7c1ca669e4f307b0b4c9980f947f0ba8052d37aadf1",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind repeated trigger draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+    },
+    "RLK_708": {
+      "rules_fingerprint": "971418814457b3494055d092499c92e8fa5a6562bfe37227ec092b245aa32938",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind repeated trigger draw]* passed",
+      "bridge_smoke": "Standard deck legality passed; session creation is blocked by the known Death Knight setup gap.",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+    },
+    "CORE_RLK_657": {
+      "rules_fingerprint": "a0059e9c5dd2dfffd7239fd3a7e56dd7afe9ad57aec177ccd24e28cf1acb21ee",
+      "pool_membership_sha256": "776e272d0c383d094f9da52c9ec88e81d49139df28cbac4ad6b32f06eff4cc8c",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_IN_SCOPED_ARMOR_EFFECT_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind repeated trigger draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+    }
+  }
+}

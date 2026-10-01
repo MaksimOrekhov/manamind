@@ -16,8 +16,10 @@ POLICY_STATE_FEATURE_NAMES = (
     *GLOBAL_FEATURE_NAMES,
     "self_board_count", "self_board_attack", "self_board_health",
     "self_ready_attackers", "self_taunts",
+    "self_location_count", "self_location_health", "self_ready_locations",
     "opponent_board_count", "opponent_board_attack", "opponent_board_health",
     "opponent_ready_attackers", "opponent_taunts",
+    "opponent_location_count", "opponent_location_health", "opponent_ready_locations",
     "self_hand_mean_cost", "self_hand_minions", "self_hand_spells", "self_hand_weapons",
 )
 
@@ -58,6 +60,8 @@ def encode_policy_state(state: GameState, encoder: StateEncoder) -> np.ndarray:
     """Encode public board totals and the viewed player's own hand, without hidden IDs."""
     self_board = state.self_player.board
     opponent_board = state.opponent.board
+    self_locations = state.self_player.locations
+    opponent_locations = state.opponent.locations
     hand_costs = [card.cost for card in state.self_hand if card.cost is not None]
     hand_types = [card.card_type for card in state.self_hand]
     values = [
@@ -65,10 +69,14 @@ def encode_policy_state(state: GameState, encoder: StateEncoder) -> np.ndarray:
         sum(entity.current_health for entity in self_board),
         sum(entity.can_attack for entity in self_board),
         sum(entity.taunt for entity in self_board),
+        len(self_locations), sum(item.current_health for item in self_locations),
+        sum(item.can_activate is True for item in self_locations),
         len(opponent_board), sum(entity.current_attack for entity in opponent_board),
         sum(entity.current_health for entity in opponent_board),
         sum(entity.can_attack for entity in opponent_board),
         sum(entity.taunt for entity in opponent_board),
+        len(opponent_locations), sum(item.current_health for item in opponent_locations),
+        sum(item.can_activate is True for item in opponent_locations),
         (sum(hand_costs) / len(hand_costs)) if hand_costs else 0.0,
         sum(card_type == "MINION" for card_type in hand_types),
         sum(card_type == "SPELL" for card_type in hand_types),

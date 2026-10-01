@@ -14,6 +14,8 @@ ZONE_NAMES = (
     "self_hand",
     "self_board",
     "opponent_board",
+    "self_locations",
+    "opponent_locations",
     "opponent_known_cards",
     "self_weapon",
     "opponent_weapon",
@@ -111,4 +113,3 @@ def collate_encoded_states(
         ),
         zones=zones,
     )
-

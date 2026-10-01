@@ -1,0 +1,312 @@
+{
+  "schema_version": 1,
+  "package": "core_aliases",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "2cd819721cf409cf44a20411920c897bd830f8d70a0122a8ed05dd22ee298201",
+  "generator_script_sha256": "bb8ec72a9f95b720baf04357510fe244b8b6781c799361293cdded939a547edb",
+  "generated_source_sha256": "538a3a40341f8847bd2c5535d67b9a5fb05fb84a314c850769de650a27590049",
+  "generated_header_sha256": "82476ec4a8a818a532b4283329cd6f954d37db746909642ec1ec653dfd9361db",
+  "capability_file_sha256": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+  "engine_library_sha256": "c3356f2b3d5430f9762aea3b56dbe44bfaacfe0e63f7bc76016adeb36059ebed",
+  "engine_cmake_cache_sha256": "f1cdac4f9bb9314764738641fcf09d0298823a10229ac30a6f64d6145ac046a7",
+  "bridge_cmake_cache_sha256": "13a4b0d990d5f0489a97b5aa6f48ee59fd3031721524e794f3270969f1fc3480",
+  "native_scenario_sha256": "1c4407e3c52237e35967ae31ef7ec4d7ab6d5ef30ca6170dcc0ae233a8b49802",
+  "native_executable_sha256": "b5d7cc68104f8955c0080a838316b69d53ea9a70acd0ecec11177a3a5d6386fd",
+  "bridge_verifier_sha256": "fe9b79f47f155a221e55dc533e39d9dc5c6e653653123b0f5a1bca59ca65ffd8",
+  "bridge_module_sha256": "82bac7d6d1b54895e1ecac2e78717acff492b86920524d0eeee6e1f764b0e6ee",
+  "execution_identity": {
+    "git_revision": "e559007805d01798134791078122997d4f26a1c9",
+    "working_tree_state": "dirty",
+    "engine_library_sha256": "c3356f2b3d5430f9762aea3b56dbe44bfaacfe0e63f7bc76016adeb36059ebed",
+    "engine_cmake_cache_sha256": "f1cdac4f9bb9314764738641fcf09d0298823a10229ac30a6f64d6145ac046a7",
+    "native_executable_sha256": "b5d7cc68104f8955c0080a838316b69d53ea9a70acd0ecec11177a3a5d6386fd",
+    "bridge_module_sha256": "82bac7d6d1b54895e1ecac2e78717acff492b86920524d0eeee6e1f764b0e6ee",
+    "bridge_cmake_cache_sha256": "13a4b0d990d5f0489a97b5aa6f48ee59fd3031721524e794f3270969f1fc3480",
+    "toolchain_identity": "MSVC 14.44.35207 x64; CMake/Ninja configuration recorded in local build cache"
+  },
+  "training_eligible": false,
+  "batch_bridge_smokes": [
+    {
+      "card_id": "CORE_ULD_133",
+      "player_class": "DRUID",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BAR_812",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BAR_878",
+      "player_class": "PALADIN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BT_510",
+      "player_class": "DEMONHUNTER",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_559",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_WC_042",
+      "player_class": "SHAMAN",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BT_120",
+      "player_class": "WARRIOR",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BT_321",
+      "player_class": "DEMONHUNTER",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BT_493",
+      "player_class": "DEMONHUNTER",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_DAL_575",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_DAL_720",
+      "player_class": "ROGUE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_DRG_024",
+      "player_class": "WARRIOR",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_100",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_KAR_057",
+      "player_class": "PALADIN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_ONY_022",
+      "player_class": "PALADIN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_REV_308",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_SCH_717",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_ULD_152",
+      "player_class": "HUNTER",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_ULD_165",
+      "player_class": "WARLOCK",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_ULD_280",
+      "player_class": "ROGUE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_BT_292",
+      "player_class": "PALADIN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_DRG_256",
+      "player_class": "HUNTER",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_014",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_189",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_198",
+      "player_class": "PRIEST",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_EX1_310",
+      "player_class": "WARLOCK",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_KAR_077",
+      "player_class": "PALADIN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_NEW1_022",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_SCH_713",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_SW_072",
+      "player_class": "MAGE",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_SW_429",
+      "player_class": "DRUID",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_TRL_111",
+      "player_class": "HUNTER",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_ULD_178",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_UNG_809",
+      "player_class": "MAGE",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_UNG_912",
+      "player_class": "HUNTER",
+      "legal_action_count": 5,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_SW_442",
+      "player_class": "PRIEST",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_AT_052",
+      "player_class": "SHAMAN",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_WON_096",
+      "player_class": "WARLOCK",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "CORE_WON_337",
+      "player_class": "WARRIOR",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "Core_LOE_115",
+      "player_class": "DRUID",
+      "legal_action_count": 6,
+      "status": "PASS"
+    },
+    {
+      "card_id": "Core_UNG_072",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "TIME_603",
+      "player_class": "HUNTER",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "TIME_720",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    },
+    {
+      "card_id": "TLC_483",
+      "player_class": "MAGE",
+      "legal_action_count": 4,
+      "status": "PASS"
+    }
+  ],
+  "cards": {
+    "CORE_ULD_133": {
+      "rules_fingerprint": "435aeab423361b1f5f114061870e1009153ab3a1e19eddb446cc390a3e15e537",
+      "pool_membership_sha256": "d55f9019a48c6f26b24d8134989690ad08458de16b1b7c249ddbe505e20dba0d",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_IN_SCOPED_CARD_EFFECT_V1",
+      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
+      "engine_build_fingerprint": "c3356f2b3d5430f9762aea3b56dbe44bfaacfe0e63f7bc76016adeb36059ebed",
+      "scenario_fingerprint": "794554a6c86933ac306997d69da64b3460bd01ee17f46eccae0b1aeb6c8d51b2",
+      "status": "VERIFIED_SCOPED",
+      "scope": "Core CardDef parity for the allowlisted alias package; Crystal Merchant trigger condition and draw count in the focused native scenario; Standard deck validation, bridge session, visible card identity and legal-action enumeration. No closure or training claim.",
+      "native_test": "[ManaMind Core aliases]* passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2554 skipped\n[doctest] assertions: 768 | 768 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "bridge_smoke": "Standard deck validation, session creation, visible opening hand and legal-action enumeration passed for 44 cards in the batch",
+      "binary_sha256": "c3356f2b3d5430f9762aea3b56dbe44bfaacfe0e63f7bc76016adeb36059ebed",
+      "bridge_module_sha256": "82bac7d6d1b54895e1ecac2e78717acff492b86920524d0eeee6e1f764b0e6ee",
+      "training_eligible": false
+    }
+  }
+}

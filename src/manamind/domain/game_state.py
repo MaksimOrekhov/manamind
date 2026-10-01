@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from .card import CardFeatures
-from .entity import BoardEntity
+from .entity import BoardEntity, LocationEntity
 
 
 @dataclass(frozen=True, slots=True)
@@ -24,6 +24,7 @@ class PlayerObservation:
     weapon: CardFeatures | None = None
     hero_power: CardFeatures | None = None
     board: tuple[BoardEntity, ...] = field(default_factory=tuple)
+    locations: tuple[LocationEntity, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         for name in (
@@ -53,7 +54,8 @@ class GameState:
             raise ValueError("active_player must be 'SELF' or 'OPPONENT'")
         if self.self_hand_known_count is not None and self.self_hand_known_count < 0:
             raise ValueError("self_hand_known_count cannot be negative")
-        if len(self.self_player.board) > 7 or len(self.opponent.board) > 7:
+        if (len(self.self_player.board) + len(self.self_player.locations) > 7 or
+                len(self.opponent.board) + len(self.opponent.locations) > 7):
             raise ValueError("A board cannot contain more than seven entities")
         if self.self_hand_known_count is None:
             object.__setattr__(self, "self_hand_known_count", len(self.self_hand))

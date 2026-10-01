@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "catalog_path": "data/cards/standard_current_enUS.json",
+  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "cards": [
+    {
+      "card_id": "FIR_929",
+      "spell_school": "FIRE",
+      "amount": 1
+    },
+    {
+      "card_id": "RLK_511",
+      "spell_school": "FROST",
+      "amount": 1
+    }
+  ]
+}
