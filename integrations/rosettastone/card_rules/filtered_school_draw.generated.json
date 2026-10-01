@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/filtered_school_draw.v1.json",
-  "declaration_sha256": "8af066c89504ad9f75eab24a60f0c6bc4d8e25c399d090876f120c3ae5596b1e",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "fa114f213f3e0318c5c1fd3671176104c50bc6756327626bba26b96fb9f2449a",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindFilteredSchoolDrawGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindFilteredSchoolDrawGen.cpp",
   "cards": [

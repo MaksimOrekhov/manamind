@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/effect_composition.v1.json",
-  "declaration_sha256": "79494a7f947e79e1a194df9c1d4880300f3750a7fe7712d519d511d28a5dbf19",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "b601737b6ba058fd179e8a8fee72fbfb79f3a574c92419949ce66c76d062d111",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
   "cards": [
@@ -31,7 +31,8 @@
           "value": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CATA_304",
@@ -48,7 +49,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CATA_475",
@@ -65,7 +67,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CATA_485",
@@ -91,7 +94,8 @@
           "spell_damage": true
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CATA_612",
@@ -106,7 +110,8 @@
           "target": "SOURCE"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "DINO_132",
@@ -124,7 +129,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_RLK_083",
@@ -142,7 +148,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "END_026",
@@ -157,7 +164,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TLC_256",
@@ -174,7 +182,8 @@
           "value": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_BOT_222",
@@ -200,7 +209,8 @@
           "spell_damage": true
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_BOT_451",
@@ -218,7 +228,8 @@
           "amount": 2
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_CFM_604",
@@ -241,7 +252,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_CS2_004",
@@ -266,7 +278,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_CS2_024",
@@ -289,7 +302,8 @@
           "target": "TARGET"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_CS2_094",
@@ -312,7 +326,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_EX1_129",
@@ -333,7 +348,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_GVG_061",
@@ -356,7 +372,8 @@
           "card_id": "CS2_091"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_LOOT_013",
@@ -373,7 +390,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_LOOT_368",
@@ -391,7 +409,8 @@
           "amount": 3
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_OG_031",
@@ -409,7 +428,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_OG_149",
@@ -426,7 +446,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_RLK_062",
@@ -444,7 +465,8 @@
           "amount": 2
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_SW_066",
@@ -462,7 +484,8 @@
           "target": "TARGET"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_TSC_076",
@@ -492,7 +515,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_UNG_084",
@@ -512,7 +536,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_YOP_034",
@@ -530,7 +555,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "EDR_110",
@@ -548,7 +574,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "EDR_459",
@@ -571,7 +598,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "EDR_476",
@@ -593,7 +621,8 @@
           "amount": 4
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "EDR_971",
@@ -609,7 +638,8 @@
           "amount": 3
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "END_007",
@@ -643,7 +673,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "FIR_778",
@@ -660,7 +691,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "FIR_909",
@@ -678,7 +710,8 @@
           "spell_damage": true
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "JAIL_007",
@@ -701,7 +734,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "RLK_024",
@@ -721,7 +755,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "RLK_709",
@@ -742,7 +777,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TIME_215",
@@ -766,7 +802,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TIME_218",
@@ -793,7 +830,8 @@
           "id": "BTA_02pe"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TLC_225",
@@ -811,7 +849,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TLC_249",
@@ -826,7 +865,8 @@
           "amount": 2
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_620",
@@ -849,7 +889,8 @@
           "target": "TARGET"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TIME_015",
@@ -871,7 +912,8 @@
           "value": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TLC_401",
@@ -889,7 +931,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "RLK_223",
@@ -907,7 +950,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "CORE_ICC_210",
@@ -924,7 +968,8 @@
           "enchantment_id": "ICC_210e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_AT_062",
@@ -942,7 +987,8 @@
           "amount": 3
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "EDR_942",
@@ -959,7 +1005,8 @@
           "value": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "TIME_100",
@@ -976,7 +1023,8 @@
           "enchantment_id": "ICC_210e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_889",
@@ -994,7 +1042,8 @@
           "race": "DRAGON"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_GVG_059",
@@ -1012,7 +1061,8 @@
           ]
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_ICC_214",
@@ -1026,7 +1076,8 @@
           "op": "RANDOM_DESTROY_ENEMY_MINION"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_EVENT_402",
@@ -1040,7 +1091,8 @@
           "op": "DESTROY_ALL_MINIONS"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_KAR_061",
@@ -1059,7 +1111,8 @@
           ]
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_GVG_103",
@@ -1076,7 +1129,8 @@
           "enchantment_id": "EX1_162o"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_816",
@@ -1093,7 +1147,8 @@
           "enchantment_id": "EX1_162o"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TIME_428",
@@ -1110,7 +1165,8 @@
           "enchantment_id": "DRG_057e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_OG_211",
@@ -1133,7 +1189,8 @@
           ]
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_GIL_534",
@@ -1150,7 +1207,8 @@
           "enchantment_id": "ICC_210e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_329",
@@ -1168,7 +1226,8 @@
           "amount": 2
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TIME_212",
@@ -1196,7 +1255,8 @@
           "spell_damage": true
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "COMPOSABLE"
     },
     {
       "card_id": "DINO_406",
@@ -1221,7 +1281,8 @@
           "enchantment_id": "ICC_210e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_201",
@@ -1235,7 +1296,8 @@
           "op": "RETURN_ENEMY_MINIONS"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_441",
@@ -1258,7 +1320,8 @@
           "op": "REFRESH_HERO_POWER"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_203",
@@ -1276,7 +1339,8 @@
           "op": "DESTROY_LEGENDARY_TARGET"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_485",
@@ -1292,7 +1356,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_571",
@@ -1308,7 +1373,8 @@
           "amount": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "FIR_954",
@@ -1327,7 +1393,8 @@
           "spell_damage": true
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_467",
@@ -1344,7 +1411,8 @@
           "enchantment_id": "CATA_467e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_DRG_403",
@@ -1362,7 +1430,8 @@
           "enchantment_id": "CORE_DRG_403e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_305",
@@ -1379,7 +1448,8 @@
           "enchantment_id": "CATA_305e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_CFM_753",
@@ -1396,7 +1466,8 @@
           "enchantment_id": "ICC_210e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CORE_WW_329",
@@ -1413,7 +1484,8 @@
           "enchantment_id": "CORE_WW_329e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TIME_037",
@@ -1430,7 +1502,8 @@
           "enchantment_id": "TIME_037e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_387",
@@ -1449,7 +1522,8 @@
           "legendary_enchantment_id": "JAIL_387e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_828",
@@ -1466,7 +1540,8 @@
           "enchantment_id": "TLC_828e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "END_021",
@@ -1483,7 +1558,8 @@
           "enchantment_id": "END_021e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "MEND_305",
@@ -1505,7 +1581,8 @@
           "enchantment_id": "MEND_305e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "DINO_419",
@@ -1534,7 +1611,8 @@
           "value": 1
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_861",
@@ -1548,7 +1626,8 @@
           "op": "BOTH_PLAYERS_GAIN_EMPTY_CRYSTAL"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_621",
@@ -1562,7 +1641,8 @@
           "op": "DESTROY_TOP_THREE_OWN_DECK"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_623",
@@ -1579,7 +1659,8 @@
           "enchantment_id": "TLC_623e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_458",
@@ -1596,7 +1677,8 @@
           "enchantment_id": "CATA_458e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_377",
@@ -1610,7 +1692,8 @@
           "op": "DRAW_ANOTHER_IF_FIRST_COST_AT_MOST_2"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_456",
@@ -1624,7 +1707,8 @@
           "op": "DRAW_IF_DECK_HAS_AT_LEAST_25"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "CATA_303",
@@ -1648,7 +1732,8 @@
           "outcome": "HEAL_ENEMY_HERO_5"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "END_014",
@@ -1674,7 +1759,8 @@
           "outcome": "BUFF_RANDOM_FRIENDLY_3_3"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_606",
@@ -1699,7 +1785,8 @@
           "outcome": "GAIN_ARMOR_5"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_468",
@@ -1726,7 +1813,8 @@
           "id": "EDR_468e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_376",
@@ -1743,7 +1831,8 @@
           "enchantment_id": "JAIL_376e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "JAIL_462",
@@ -1757,7 +1846,8 @@
           "op": "DRAW_TWO_AND_CHARGE_IF_BOTH_MINIONS"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "EDR_572",
@@ -1774,7 +1864,8 @@
           "enchantment_id": "EDR_572e"
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     },
     {
       "card_id": "TLC_633",
@@ -1796,7 +1887,8 @@
           "spell_damage": false
         }
       ],
-      "training_eligible": false
+      "training_eligible": false,
+      "implementation_route": "CUSTOM"
     }
   ],
   "training_eligible": false,

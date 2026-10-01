@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/core_aliases.v1.json",
-  "declaration_sha256": "b594db497834022389eb38ef2dead845be41b87833a8f1e959cd442e80c032f7",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindCoreAliasCardsGen.cpp",
   "cards": [

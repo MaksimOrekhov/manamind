@@ -6,8 +6,8 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 
 - Collectible roots: **1185**; metadata present: **1185**.
 - Source registration: **167** direct, **176** generated manifest entries, **842** text-bearing without detected registration, **0** textless metadata candidates.
-- Current rules verification: **0**; historical scoped evidence marked stale: **5**.
-- Route proposals: `{"AUTO": 83, "COMPOSABLE": 231, "CUSTOM": 29, "UNKNOWN": 842}` (heuristic; not correctness status).
+- Current rules verification: **11**; historical scoped evidence marked stale: **5**.
+- Route proposals: `{"AUTO": 83, "COMPOSABLE": 184, "CUSTOM": 76, "UNKNOWN": 842}` (heuristic; not correctness status).
 
 ## Dependency graph
 
@@ -19,8 +19,8 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 
 ## Admission blockers
 
-- No roots are admitted to `standard_full_20261001_v1`.
-- Current evidence is missing or stale, dependency edges/pools remain unresolved, bridge actions are not audited in this profile, and full session/match gates remain open.
+- Eligible roots: **0** in `standard_full_20261001_v1`.
+- Admission blockers: `["bridge_action:not_audited", "dependency:closure_not_reviewed_complete", "dependency:reachable_rules_not_verified", "dependency:static_edges_unreviewed", "dependency:unresolved_dynamic_pool", "evidence:missing_or_incomplete", "evidence:stale_historical_scope", "rules:IMPLEMENTED_UNVERIFIED", "rules:METADATA_ONLY_CANDIDATE", "rules:UNKNOWN", "rules:scope_not_full_profile", "session_match:not_current"]`.
 - This report does not authorize or start pooled training.
 
 ## Candidate capability packages

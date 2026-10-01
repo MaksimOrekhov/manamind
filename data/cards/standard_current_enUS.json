@@ -2,26 +2,11 @@
   "schema_version": 1,
   "game": "Hearthstone",
   "format": "STANDARD",
-  "valid_as_of": "2026-09-27",
-  "generated_at_utc": "2026-09-27T14:51:46.007099Z",
-  "source": "HearthstoneJSON latest collectible card data",
-  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json",
-  "resolved_source": "https://api.hearthstonejson.com/v1/latest/enUS/cards.collectible.json",
-  "manifest": "E:\\ManaMind\\data\\cards\\standard_sets.json",
-  "standard_sets": [
-    "CATACLYSM",
-    "CORE",
-    "EMERALD_DREAM",
-    "ESCAPEFROM_VIOLET_HOLD",
-    "EVENT",
-    "THE_LOST_CITY",
-    "TIME_TRAVEL"
-  ],
-  "standard_card_ids": [
-    "BE_036"
-  ],
-  "source_collectible_count": 8170,
-  "standard_card_count": 1188,
+  "valid_as_of": "2026-10-01",
+  "profile_id": "standard_full_20261001_v1",
+  "source": "HearthstoneJSON collectible card metadata",
+  "source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+  "root_membership_sha256": "68c0bab2857f10638f1f11f4fd79974d14453a28150122978d6073092782efaa",
   "cards": [
     {
       "artist": "Mooncolony",
@@ -44,60 +29,6 @@
       "set": "BE",
       "text": "[x]<b>Battlecry:</b> Reduce the Cost of\na card in your hand by (5). This\ncontinues to the left and right\nwith (1) less reduction.",
       "type": "MINION"
-    },
-    {
-      "artist": "Luke Mancini",
-      "cardClass": "DEATHKNIGHT",
-      "collectible": true,
-      "cost": 5,
-      "dbfId": 132669,
-      "flavor": "It started when a Void creation did what it did.\nAnd stuck itself upon her planet with evil that it hid.\nNow her worlds under their powers, she's no ordinary kid.\nShe's Azeroth.",
-      "howToEarn": "Obtainable by participating in a special event.",
-      "howToEarnGolden": "Obtainable by participating in a special event.",
-      "id": "BE_EVENT_100",
-      "name": "Arrival of the Old Gods",
-      "rarity": "EPIC",
-      "set": "EVENT",
-      "spellSchool": "SHADOW",
-      "text": "Draw 2 minions. Refresh 5 Mana Crystals. You can only play minions for the rest of the turn.",
-      "type": "SPELL"
-    },
-    {
-      "artist": "Mooncolony",
-      "cardClass": "MAGE",
-      "collectible": true,
-      "cost": 6,
-      "dbfId": 132671,
-      "flavor": "\"Hey guys check this out, they just lost their fifth game in a row!\"",
-      "howToEarn": "Obtainable by participating in a special event.",
-      "howToEarnGolden": "Obtainable by participating in a special event.",
-      "id": "BE_EVENT_101",
-      "name": "Arrival of the Titans",
-      "rarity": "EPIC",
-      "set": "EVENT",
-      "spellSchool": "ARCANE",
-      "text": "Draw 2 spells. Refresh 6 Mana Crystals. You can only play spells for the rest of the turn.",
-      "type": "SPELL"
-    },
-    {
-      "artist": "Ian Ameling",
-      "cardClass": "PRIEST",
-      "collectible": true,
-      "cost": 5,
-      "dbfId": 132673,
-      "flavor": "Hmm, you know what it's missing? Another Obelisk right in that corner over there.",
-      "howToEarn": "Obtainable by participating in a special event.",
-      "howToEarnGolden": "Obtainable by participating in a special event.",
-      "id": "BE_EVENT_102",
-      "mechanics": [
-        "ImmuneToSpellpower"
-      ],
-      "name": "Dark Terraforming",
-      "rarity": "EPIC",
-      "set": "EVENT",
-      "spellSchool": "SHADOW",
-      "text": "Deal $5 damage to a minion. This continues to the left and right with\n1 less damage.",
-      "type": "SPELL"
     },
     {
       "artist": "Juan Calle",

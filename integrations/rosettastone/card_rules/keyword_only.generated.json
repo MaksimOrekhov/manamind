@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/keyword_only.v1.json",
-  "declaration_sha256": "13a14d1e1531b7ae8f9a68ff8c883e7cdc6b90de0ae0ed5cf32ac5af4f046fc6",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "9a7eb3f8a94f10bb7c53be93ed32509ebe8ddae5e34e0bbb4301035d1a367d85",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindKeywordOnlyCardsGen.cpp",
   "cards": [

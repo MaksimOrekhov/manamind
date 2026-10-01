@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "report_id": "standard_registry_20261001",
+  "report_id": "standard_registry_20261001_v1",
   "registry_id": "standard_registry_20261001_v1",
   "snapshot": {
     "format": "STANDARD",
@@ -11,7 +11,21 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "e10749b with local modifications; dirty working tree, full source/binary identity unavailable"
+    "rules_engine_revision": "54c4fd89ae58a941e1aba59696067d97a8751a44",
+    "engine_source_identity": {
+      "source_commit": "54c4fd89ae58a941e1aba59696067d97a8751a44",
+      "source_tree_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b"
+    },
+    "execution_identity": {
+      "profile_id": "standard_full_20261001_v1",
+      "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
+      "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
+      "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
+      "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
+      "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
+      "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+      "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+    }
   },
   "summary": {
     "roots": 1185,
@@ -20,7 +34,7 @@
     "generated_registered": 176,
     "text_bearing_without_detected_registration": 842,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 0,
+    "rules_verified_scoped_current": 11,
     "stale_historical_scoped_evidence": 5,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_dependency_nodes": 193,
@@ -34,8 +48,8 @@
   "registration_and_rules": {
     "route_counts": {
       "AUTO": 83,
-      "COMPOSABLE": 231,
-      "CUSTOM": 29,
+      "COMPOSABLE": 184,
+      "CUSTOM": 76,
       "UNKNOWN": 842
     },
     "registration_counts": {
@@ -44,7 +58,7 @@
       "missing_detected_registration_with_text": 842,
       "textless_metadata_candidates": 0
     },
-    "current_rules_verified": 0,
+    "current_rules_verified": 11,
     "historical_scoped_evidence_marked_stale": 5
   },
   "dependencies": {
@@ -239,7 +253,7 @@
     ],
     "pool_candidate_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "9605b1c5e9a07d99d280533ed0d53afcc4421326ea0d71a3541332f807dbe281",
+      "source_sha256": "f52b56847066439f5b7e8c9cae450b66ef2a4bd13a4c0c4757c5642098168a69",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"
@@ -251,12 +265,20 @@
     "status": "BLOCKED",
     "eligible_roots": 0,
     "eligible_decks": 0,
-    "blocker_classes": [
-      "no current full-scope rules scenario evidence",
-      "static source edges unreviewed",
-      "dynamic pool definitions unresolved",
-      "bridge/action coverage not audited against this registry",
-      "session/match gates not current for this full pool"
+    "session_match_gates_status": "NOT_MET",
+    "blockers": [
+      "bridge_action:not_audited",
+      "dependency:closure_not_reviewed_complete",
+      "dependency:reachable_rules_not_verified",
+      "dependency:static_edges_unreviewed",
+      "dependency:unresolved_dynamic_pool",
+      "evidence:missing_or_incomplete",
+      "evidence:stale_historical_scope",
+      "rules:IMPLEMENTED_UNVERIFIED",
+      "rules:METADATA_ONLY_CANDIDATE",
+      "rules:UNKNOWN",
+      "rules:scope_not_full_profile",
+      "session_match:not_current"
     ]
   },
   "candidate_packages": [

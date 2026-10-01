@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "declaration": "integrations/rosettastone/card_rules/repeated_trigger_draw.v1.json",
-  "declaration_sha256": "1ec422ff08d537c328b7f166fb864dce0652e1b63c33632e96b6608444cf9c0a",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
+  "declaration_sha256": "ff02908c2356d25dc55171083e50cec5bbf30aa42c031d455e0c0f0758c4e20e",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
   "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.hpp",
   "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindRepeatedTriggerDrawGen.cpp",
   "cards": [

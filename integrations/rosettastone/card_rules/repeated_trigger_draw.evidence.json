@@ -1,60 +1,85 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "package": "repeated_trigger_draw",
-  "catalog_sha256": "03ea4df3b30fb045d5de1b5e1f0e23c52d066614505c8b191b71228c01486572",
-  "declaration_sha256": "1ec422ff08d537c328b7f166fb864dce0652e1b63c33632e96b6608444cf9c0a",
-  "generator_script_sha256": "3d182b9a9914afba3cb8972ad4451c1b19747edb0ab33153d10ae22867387854",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "declaration_sha256": "ff02908c2356d25dc55171083e50cec5bbf30aa42c031d455e0c0f0758c4e20e",
+  "generator_script_sha256": "0dcd5abc431f310a2f1ca3f28e53b05bd276c6448a7b6bef7d58b85c9c074f0e",
   "generated_source_sha256": "f45f08b18223ee43a61465b138c1b0643133745bdcff543d99d918878c2d960b",
-  "capability_file_sha256": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
-  "engine_library_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
+  "capability_file_sha256": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+  "engine_library_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
   "native_scenario_sha256": "89c8cdd01a54d81a2c976f73f8187e85f000494cd56e01cf191143dfe0676158",
-  "bridge_smoke_sha256": "afff0c87d982d60b75f612bebdf3859074d83c823a16e3a0d16d0743402bf5fb",
+  "bridge_smoke_sha256": "36d1e40b59284c0475aa6773161812a29b726957f83782951b5d3ff7519424e1",
   "training_eligible": false,
   "cards": {
     "CORE_DMF_067": {
-      "rules_fingerprint": "dc15474c354a5a268277b7c1ca669e4f307b0b4c9980f947f0ba8052d37aadf1",
+      "rules_fingerprint": "15285bf993904643b19e21e6128ef681a2f80bd260ee513dd5c6557a50e0e896",
       "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
       "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
-      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
-      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "6eddc11d8ea506019d12e400f76103dade563b5d158610ad8eda33b38e376a33",
       "status": "VERIFIED_SCOPED",
       "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
       "native_test": "[ManaMind repeated trigger draw]* passed",
       "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
-      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2588 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
     },
     "RLK_708": {
-      "rules_fingerprint": "971418814457b3494055d092499c92e8fa5a6562bfe37227ec092b245aa32938",
+      "rules_fingerprint": "154fbe479f10feae4dc1d0d8dcb50d92c0308a703d16d8c546acb0e55b27d323",
       "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
       "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
-      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
-      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "6eddc11d8ea506019d12e400f76103dade563b5d158610ad8eda33b38e376a33",
       "status": "VERIFIED_SCOPED",
       "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
       "native_test": "[ManaMind repeated trigger draw]* passed",
       "bridge_smoke": "Standard deck legality passed; session creation is blocked by the known Death Knight setup gap.",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
-      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2588 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
     },
     "CORE_RLK_657": {
-      "rules_fingerprint": "a0059e9c5dd2dfffd7239fd3a7e56dd7afe9ad57aec177ccd24e28cf1acb21ee",
+      "rules_fingerprint": "26151c680eabd11b00e1d46706e0f93af2a057fe0929c3c0a49da6aa0b4930fa",
       "pool_membership_sha256": "776e272d0c383d094f9da52c9ec88e81d49139df28cbac4ad6b32f06eff4cc8c",
       "pool_predicate_version": "NO_DYNAMIC_OUTCOME_IN_SCOPED_ARMOR_EFFECT_V1",
-      "capability_fingerprint": "e11bb96803e0d8c165c75011ab219c9e216ce304abc4835234c11efafdd3885a",
-      "engine_build_fingerprint": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "scenario_fingerprint": "02e7a20cb7af3bfa2faffabf99a8dbdafd4c6bf7dd3a0803596f1b019413d80f",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "6eddc11d8ea506019d12e400f76103dade563b5d158610ad8eda33b38e376a33",
       "status": "VERIFIED_SCOPED",
       "scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
       "native_test": "[ManaMind repeated trigger draw]* passed",
       "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2530 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
-      "binary_sha256": "744439b30e17b86b23cc06da5c37013d89ff428704af5d1c38b7b44d6924c4c8",
-      "bridge_module_sha256": "33b3cf75058e603d79b55df69890290ae32ab685b2135d5dfbc4abc42b3f4210"
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  4 |  4 passed | 0 failed | 2588 skipped\n[doctest] assertions: 34 | 34 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
     }
+  },
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
+    "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
+    "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
+    "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
+    "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
+    "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48"
+    },
+    "native_tests": {
+      "sha256": "de765f79805b9caad8b9d3238a4b954d14ffd5f0cef5449086e24ec98e0af699"
+    },
+    "bridge_module": {
+      "sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
   }
 }
