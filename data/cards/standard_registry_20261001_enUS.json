@@ -10,9 +10,9 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "54c4fd89ae58a941e1aba59696067d97a8751a44",
+    "rules_engine_revision": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
     "engine_source_identity": {
-      "source_commit": "54c4fd89ae58a941e1aba59696067d97a8751a44",
+      "source_commit": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
       "source_tree_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b"
     },
     "execution_identity": {
