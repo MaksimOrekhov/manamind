@@ -1,0 +1,777 @@
+{
+  "audit_date": "2026-10-02",
+  "profile_id": "standard_full_20261001_v1",
+  "registry_id": "standard_registry_20261001_v1",
+  "registry_sha256": "c8d2c22b2d5a87a0a01b06d945cfc79af7e08e64d5f43215eafa7854ad95d7c2",
+  "registry_counts": {
+    "roots": 1185,
+    "metadata_present": 1185,
+    "direct_source_registered": 167,
+    "generated_registered": 176,
+    "text_bearing_without_detected_registration": 842,
+    "textless_metadata_candidates": 0,
+    "rules_verified_scoped_current": 11,
+    "stale_historical_scoped_evidence": 5,
+    "unresolved_dynamic_pool_definitions": 318,
+    "unique_known_dependency_nodes": 193,
+    "unreviewed_static_source_edges": 174,
+    "roots_with_complete_dependency_closure": 0,
+    "roots_training_eligible": 0
+  },
+  "scope": "Review of pinned texts and existing primitives; not native rules verification; shortlist not exhaustive capability census",
+  "groups": {
+    "minion_set_enchant_v1": {
+      "new": [
+        {
+          "card_id": "RLK_048",
+          "identity": {
+            "name": "Anti-Magic Shell",
+            "card_class": "DEATHKNIGHT",
+            "type": "SPELL",
+            "set": "CORE",
+            "dbf_id": 78342
+          },
+          "rules_text": "Give your minions +1/+1 and <b>Elusive</b>.",
+          "metadata_sha256": "33bd2192cc093f47f9d022889d9af5ce65dd2077d73c9f9b3e1e7c66d504ed13",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TLC_233",
+          "identity": {
+            "name": "Hatchery Helper",
+            "card_class": "DRUID",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 117652
+          },
+          "rules_text": "[x]<b>Battlecry:</b> Give your\nother minions with 2 or less\nAttack +1/+1 and <b>Taunt</b>.",
+          "metadata_sha256": "d712a33728438af14557c5bb08015595924f687f0b3bfab9227c2924ee491564",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TIME_447",
+          "identity": {
+            "name": "Power Word: Barrier",
+            "card_class": "PRIEST",
+            "type": "SPELL",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 121005
+          },
+          "rules_text": "Give a character <b>Divine Shield</b>. Give minions in your hand +2 Health.",
+          "metadata_sha256": "76e28f5c7e93b56f17312ff4593fc0a98235e0613b051ef46cbc58ccc1e2f8ec",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        }
+      ],
+      "controls": [
+        {
+          "card_id": "CAP_801",
+          "identity": {
+            "name": "Haunt",
+            "card_class": "PRIEST",
+            "type": "SPELL",
+            "set": "ESCAPEFROM_VIOLET_HOLD",
+            "dbf_id": 127061
+          },
+          "rules_text": "Give a minion +2/+3,\n<b>Reborn</b>, and <b>Taunt</b>.",
+          "metadata_sha256": "364a1a6a9d4cc6c250f9892772c92d53c97dabc5bc1f39231aa7b9b1841a07a6",
+          "registration_status": "GENERATED_EFFECT_COMPOSITION",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [
+              {
+                "to": "CS2_009e",
+                "kind": "enchantment_or_object_reference",
+                "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+              }
+            ],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "UNREVIEWED",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "controls"
+        },
+        {
+          "card_id": "CORE_CS2_009",
+          "identity": {
+            "name": "Mark of the Wild",
+            "card_class": "DRUID",
+            "type": "SPELL",
+            "set": "CORE",
+            "dbf_id": 69511
+          },
+          "rules_text": "Give a minion <b>Taunt</b> and +2/+3.<i>\n(+2 Attack/+3 Health)</i>",
+          "metadata_sha256": "ff1335f077843dbe34b166b512b70865fc44b3c13401e4c46da895b8da5cdbb5",
+          "registration_status": "DIRECT_SOURCE_BLOCK",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [
+              {
+                "to": "CS2_009e",
+                "kind": "enchantment_or_object_reference",
+                "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+              }
+            ],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "UNREVIEWED",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "controls"
+        },
+        {
+          "card_id": "CORE_ULD_191",
+          "identity": {
+            "name": "Beaming Sidekick",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 76318
+          },
+          "rules_text": "<b>Battlecry:</b> Give a friendly minion +2 Health.",
+          "metadata_sha256": "3ec17f90957830b71fd3da149b2b3a69a6ecb78e2355f3b72253c1c1b318dc01",
+          "registration_status": "DIRECT_SOURCE_BLOCK",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [
+              {
+                "to": "ULD_191e",
+                "kind": "enchantment_or_object_reference",
+                "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+              }
+            ],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "UNREVIEWED",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "controls"
+        },
+        {
+          "card_id": "CORE_CFM_753",
+          "identity": {
+            "name": "Grimestreet Outfitter",
+            "card_class": "PALADIN",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 102196
+          },
+          "rules_text": "<b>Battlecry:</b> Give all minions in your hand +1/+1.",
+          "metadata_sha256": "543ca7d0019609cf38a160af09e32f604af61242dfcba80fa06c1bc3cc5611de",
+          "registration_status": "GENERATED_EFFECT_COMPOSITION",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [
+              {
+                "to": "ICC_210e",
+                "kind": "enchantment_or_object_reference",
+                "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+              }
+            ],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "UNREVIEWED",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "controls"
+        }
+      ],
+      "outliers": [
+        {
+          "card_id": "RLK_958",
+          "identity": {
+            "name": "Skeletal Sidekick",
+            "card_class": "DEATHKNIGHT",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 86190
+          },
+          "rules_text": "<b>Battlecry:</b> Give a friendly Undead +2 Attack.",
+          "metadata_sha256": "0a62667f525968bd7c0bb004fbd8468a12db6f34d24b68ab91c19274f66b6e9f",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "CORE_BOT_576",
+          "identity": {
+            "name": "Crazed Chemist",
+            "card_class": "ROGUE",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 130525
+          },
+          "rules_text": "<b>Combo:</b> Give a friendly minion +4 Attack.",
+          "metadata_sha256": "a1ed7a6f433fe7ee6d1129d9df58b09d70a1718084e589b658cdbea0803ab8dc",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "CORE_UNG_952",
+          "identity": {
+            "name": "Spikeridged Steed",
+            "card_class": "PALADIN",
+            "type": "SPELL",
+            "set": "CORE",
+            "dbf_id": 111369
+          },
+          "rules_text": "Give a minion +2/+6 and <b>Taunt</b>. When it dies, summon a Stegodon.",
+          "metadata_sha256": "d938bd42c0903fcae7d88dfce6ca10022f0d4d33fa5617efafca085464176c08",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "CATA_138",
+          "identity": {
+            "name": "Forest's Gift",
+            "card_class": "DRUID",
+            "type": "SPELL",
+            "set": "CATACLYSM",
+            "dbf_id": 122988
+          },
+          "rules_text": "Give a friendly minion +1/+1 for each minion you control.",
+          "metadata_sha256": "50c7a64c968bf1a9012214cc0ccb070977b81906f1af4164d0b1eaabf3d0e2f3",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "TLC_477",
+          "identity": {
+            "name": "Threshrider's Blessing",
+            "card_class": "PALADIN",
+            "type": "SPELL",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 119587
+          },
+          "rules_text": "Give a friendly minion +4/+4 and \"<b>Deathrattle:</b> Summon a random 4-Cost minion.\"",
+          "metadata_sha256": "6fa9abfc5748f7e4b74328c858bf4c0dcafb434e2014c0b0d992cd0df6190072",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [
+              "POOL:TLC_477:random_card_or_pool"
+            ],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "UNRESOLVED"
+          },
+          "role": "outliers"
+        }
+      ],
+      "unsupported_count": 3
+    },
+    "held_card_gate_fixed_battlecry_v1": {
+      "new": [
+        {
+          "card_id": "CATA_111",
+          "identity": {
+            "name": "Darkscale Broodmother",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "CATACLYSM",
+            "dbf_id": 122500
+          },
+          "rules_text": "<b>Battlecry:</b> If you're\nholding a Dragon, refresh\n2 Mana Crystals.",
+          "metadata_sha256": "d7c5c5e8457821deb3d2904f46d18481f8abe02efc45e88ebf5666aacfaece1e",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TIME_062",
+          "identity": {
+            "name": "Chronicle Keeper",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 120979
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding a Dragon, gain <b>Taunt</b> and <b>Divine Shield</b>.",
+          "metadata_sha256": "5bd3ee8d5bc1e0ab5f67c059eda13d5e06880f5c699d4838e7c3138ee13c0ecf",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "CORE_RLK_814",
+          "identity": {
+            "name": "Crystalsmith Cultist",
+            "card_class": "PRIEST",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 129166
+          },
+          "rules_text": "<b>Battlecry:</b> If you're\nholding a Shadow spell, gain +1/+1.",
+          "metadata_sha256": "d5de58fd377119141051695d1a1c18bd604a35e207fae774903647194eae05d5",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "FIR_961",
+          "identity": {
+            "name": "Ashleaf Pixie",
+            "card_class": "PALADIN",
+            "type": "MINION",
+            "set": "EMERALD_DREAM",
+            "dbf_id": 115972
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding a spell that costs (5) or more, gain <b>Divine Shield</b> and <b>Lifesteal</b>.",
+          "metadata_sha256": "6c7ef9a306ab055d94511cd027edb0e1ba3c4fa2c1cab6157295e409df46aaf2",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "EDR_472",
+          "identity": {
+            "name": "Weaver of the Cycle",
+            "card_class": "PRIEST",
+            "type": "MINION",
+            "set": "EMERALD_DREAM",
+            "dbf_id": 114373
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding a spell that costs (5) or more, deal 3 damage.",
+          "metadata_sha256": "afb1bf6c59d3ed61beeafa006452c9a0e252b3b624da57d15a748c58959575fd",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        }
+      ],
+      "controls": [],
+      "outliers": [
+        {
+          "card_id": "FIR_901",
+          "identity": {
+            "name": "Frostburn Matriarch",
+            "card_class": "DEATHKNIGHT",
+            "type": "MINION",
+            "set": "EMERALD_DREAM",
+            "dbf_id": 115625
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding\na minion with a <b>Dark Gift</b>, summon two 4/4 Dragons with <b>Taunt</b>.",
+          "metadata_sha256": "6498d009ed0be65be7e5269c4c56a230e8c8fc1bb4e87d6e216b4fe71d937a0d",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "FIR_922",
+          "identity": {
+            "name": "Cindersword",
+            "card_class": "ROGUE",
+            "type": "WEAPON",
+            "set": "EMERALD_DREAM",
+            "dbf_id": 115649
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding a minion with\na <b>Dark Gift</b>, gain +3 Attack.",
+          "metadata_sha256": "5b30b1854d234b3e82448b75c8f776f7d0d795a73065928c157f5a07195586a4",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "FIR_956",
+          "identity": {
+            "name": "Dragon Turtle",
+            "card_class": "WARRIOR",
+            "type": "MINION",
+            "set": "EMERALD_DREAM",
+            "dbf_id": 115755
+          },
+          "rules_text": "[x]<b>Battlecry:</b> If you're holding\na minion with a <b>Dark Gift</b>,\ngive your hero +3 Attack this\nturn and 6 Armor.",
+          "metadata_sha256": "7eabb37aa809c0a186978274dcaa010fca7883f2ca161163288e7d91cf380147",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "TIME_213",
+          "identity": {
+            "name": "Primordial Overseer",
+            "card_class": "SHAMAN",
+            "type": "MINION",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 120437
+          },
+          "rules_text": "[x]<b>Battlecry:</b> If you've cast a\nNature spell while holding\nthis, gain +1/+1 and\ndraw a card.",
+          "metadata_sha256": "2bf291b2449c643502c5bc77b24d169ff726e29fc955bc1f0bb7df1f40f63fc6",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "CORE_KAR_062",
+          "identity": {
+            "name": "Netherspite Historian",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 120172
+          },
+          "rules_text": "<b>Battlecry:</b> If you're holding a Dragon, <b>Discover</b>\na Dragon.",
+          "metadata_sha256": "4ae4fc9a666c585a2dcd1ce9c7659c5e9a2c5fb57e6ab8e8e082472f8ef3971b",
+          "registration_status": "GENERATED_CORE_ALIAS",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [
+              {
+                "to": "KAR_062",
+                "kind": "generated_core_alias_base",
+                "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED"
+              }
+            ],
+            "dynamic_pool_ids": [
+              "POOL:CORE_KAR_062:discover"
+            ],
+            "static_dependency_status": "UNREVIEWED",
+            "dynamic_dependency_status": "UNRESOLVED"
+          },
+          "role": "outliers"
+        }
+      ],
+      "unsupported_count": 5
+    },
+    "fixed_token_summon_v1": {
+      "new": [
+        {
+          "card_id": "TIME_017",
+          "identity": {
+            "name": "Tankgineer",
+            "card_class": "PALADIN",
+            "type": "MINION",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 119965
+          },
+          "rules_text": "[x]<b>Divine Shield</b>\n<b>Deathrattle:</b> Summon a 7/7\nTank with <b>Divine Shield</b>.",
+          "metadata_sha256": "fae82e0056c39b0dc4612dbdc436235340e8f3818eab5e945b2133f4995cbe70",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TIME_059",
+          "identity": {
+            "name": "Living Paradox",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 120966
+          },
+          "rules_text": "<b>Elusive</b>\n<b>Battlecry:</b> Summon two\n2/1 Living Paradoxes with <b>Elusive</b>.",
+          "metadata_sha256": "154ec23ece0cfba427d717d3540f65d656d35f009c3d0708e70fb32eac10f70c",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TLC_237",
+          "identity": {
+            "name": "Skyscreamer Eggs",
+            "card_class": "DRUID",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 117657
+          },
+          "rules_text": "<b>Deathrattle:</b> Summon four 2/1 Hatchlings.",
+          "metadata_sha256": "263dd59402cc2d76e5d415e9aa657c111d5a99132c3b8a491c7c8f05d37ff982",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TLC_443",
+          "identity": {
+            "name": "Reluctant Wrangler",
+            "card_class": "DEATHKNIGHT",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 117666
+          },
+          "rules_text": "[x]<b>Reborn</b>\n<b>Deathrattle:</b> Summon a 2/2\nUndead Beast with <b>Taunt</b>.",
+          "metadata_sha256": "8dd89e0c9cb5d2b7eab2aa2a148e890f09cdab55d8b4556dea169d4b47dabe66",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        },
+        {
+          "card_id": "TLC_468",
+          "identity": {
+            "name": "Blob of Tar",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 118279
+          },
+          "rules_text": "[x]<b>Poisonous</b>, <b>Taunt</b>\n<b>Deathrattle:</b> Summon a 2/2\nBlob with <b>Poisonous</b> and a\n2/2 Blob with <b>Taunt</b>.",
+          "metadata_sha256": "684054037468f43c47e4d3edba9c475a1bc92b6d043e17ebab30d361b235d8f1",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "new"
+        }
+      ],
+      "controls": [
+        {
+          "card_id": "CORE_RLK_062",
+          "identity": {
+            "name": "Nerubian Swarmguard",
+            "card_class": "DEATHKNIGHT",
+            "type": "MINION",
+            "set": "CORE",
+            "dbf_id": 111319
+          },
+          "rules_text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Summon two\ncopies of this minion.",
+          "metadata_sha256": "695693ad56c1905e865541c09cbd26e663a8f1f41692ffa077babf8defcab631",
+          "registration_status": "GENERATED_EFFECT_COMPOSITION",
+          "rule_status": "IMPLEMENTED_UNVERIFIED",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "controls"
+        }
+      ],
+      "outliers": [
+        {
+          "card_id": "TLC_234",
+          "identity": {
+            "name": "Eternal Bloodpetal",
+            "card_class": "DRUID",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 117653
+          },
+          "rules_text": "<b>Deathrattle:</b> Summon a 0/1 Eternal Seedling.",
+          "metadata_sha256": "0cdcf591fad4f96dd2199562a3a74f201d62a3aedd6493696eb076e8e36a4026",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "TLC_622",
+          "identity": {
+            "name": "City Defenses",
+            "card_class": "WARRIOR",
+            "type": "SPELL",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 117917
+          },
+          "rules_text": "Summon two 0/6 Security with <b>Taunt</b>.\nThey gain +1 Attack\nwhen damaged.",
+          "metadata_sha256": "801a7a0f0c6e2a4272a5cbb47a25edfbfd0234cca3e43ad9bb64839c2a8c3180",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "DINO_410",
+          "identity": {
+            "name": "The Egg of Khelos",
+            "card_class": "NEUTRAL",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 118487
+          },
+          "rules_text": "[x]<b>Deathrattle:</b> Summon a\nslightly cracked Egg. <i>(Break\n5 times to hatch a 20/20\nBeast with <b>Taunt</b>!)</i>",
+          "metadata_sha256": "e6249a4c7e8cd43fac69d3ab57c33985915c75e8eb44173a2cfac0c923708a48",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "DINO_130",
+          "identity": {
+            "name": "Longneck Egg",
+            "card_class": "DRUID",
+            "type": "MINION",
+            "set": "THE_LOST_CITY",
+            "dbf_id": 118490
+          },
+          "rules_text": "<b>Deathrattle:</b> Summon a 3/3 Beast. Give your minions +1/+1.",
+          "metadata_sha256": "7967bc670500d5ce290138f2bef6eaec42aa9482e985325ad0842e44f580247f",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        },
+        {
+          "card_id": "TIME_700",
+          "identity": {
+            "name": "Chronological Aura",
+            "card_class": "PALADIN",
+            "type": "SPELL",
+            "set": "TIME_TRAVEL",
+            "dbf_id": 120644
+          },
+          "rules_text": "At the end of your turn, summon a 3/5 Dragon with <b>Taunt</b>.\nLasts 3 turns.",
+          "metadata_sha256": "84faac198d2ec71a47634589c32bb1b87d7cd833d11fd7524d136e5774dbebd4",
+          "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+          "rule_status": "UNKNOWN",
+          "heuristic_dependencies": {
+            "known_source_candidates": [],
+            "dynamic_pool_ids": [],
+            "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+            "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
+          },
+          "role": "outliers"
+        }
+      ],
+      "unsupported_count": 5
+    }
+  }
+}

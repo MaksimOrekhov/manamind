@@ -1,0 +1,8 @@
+{
+  "elapsed_seconds": 19.39896845817566,
+  "exit_code": 0,
+  "command": [
+    "vendor/RosettaStone/build-mana-py312/bin/UnitTests.exe",
+    "--test-case=*CS2_122*,*CS2_222*,*NEW1_023*,*CS2_087*,*CS2_004*,[ManaMind effect composition]*,[ManaMind locations]*"
+  ]
+}

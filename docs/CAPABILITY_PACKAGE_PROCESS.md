@@ -16,7 +16,10 @@ The proposal is a required design record, not a new mandatory user-confirmation 
 
 ## Technical classification
 
-The following is a proposed metadata design, not a migration of today's registry or an existing API.
+The table defines the classification design; it is not a migration of all legacy
+generators. The first bounded implementation, `minion_set_enchant_v1`, validates
+contract/package/version/kind fields and exposes them through its generated
+manifest and canonical registry consumer. Other schemas remain unchanged.
 
 | `implementation_kind` | Contract | Implementation boundary | Extension criterion |
 |---|---|---|---|
@@ -41,7 +44,7 @@ test_evidence: <independent family expectations and their scope>
 limitations: <unsupported interactions and dependencies>
 ```
 
-For CUSTOM also record explicit `custom_card_ids` and the reason for the exception. Declarations and generated manifests should carry the contract identity/version and implementation kind so classification is traceable. Do not infer these new fields by blindly renaming current COMPOSABLE routes; existing consumers need a contract review.
+For CUSTOM also record explicit `custom_card_ids` and the reason for the exception. New-package schemas should introduce contract identity/version, package identity and implementation kind together with their validation and consumer support. These fields are not installed in all current declarations/manifests. Do not infer them by blindly renaming current COMPOSABLE routes or migrate every historical manifest as a prerequisite. Existing consumers need a contract review; the current CUSTOM route/list remains the operational boundary until a separate migration is justified.
 
 ### One current consumer
 
@@ -49,16 +52,20 @@ A generic contract can have one currently reviewed card. Consumer count alone do
 
 Likewise, multiple cards sharing a Python branch do not establish REUSABLE_CAPABILITY if the handler dispatches different behavior by card ID. Validate semantic equivalence, not just the number of consumers.
 
-## Proposed automated guardrail
+## Automated source guardrail
 
-Add a small source-only `scripts/check_generic_card_branches.py` check before generation in the existing Linux/Windows CI workflow. This checker is proposed here; it is not installed by this documentation change.
+`scripts/check_generic_card_branches.py` runs before generation in the Linux/Windows source CI workflow. It parses source ASTs without importing generators or executing declarations. Run it locally with:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/check_generic_card_branches.py
+```
 
 ### Initial scope
 
-- Inspect Python ASTs under `scripts/generate_*.py` and `scripts/card_rules/`, with explicit entrypoint ownership for generic rendering, shared capability handlers, metadata validation, custom routing and custom emitters.
-- Do not exempt an entire generator or validator file: those files can mix metadata validation with behavioral emission. Track the function/block's role.
-- Inspect `if`, conditional expressions, `match`, membership tests and literal dictionary dispatch for comparisons/lookups involving `card_id`, `card['card_id']`, `card['id']` or recognized local aliases. Detect literal card IDs and ID allowlist dispatch, not just the spelling `card_id == "X"`.
-- Report filename, line, enclosing function, detected IDs and classification. Reject new unclassified identity-based behavior in GENERIC/REUSABLE_CAPABILITY entrypoints.
+- Inspect Python ASTs under `scripts/generate_*.py` and `scripts/card_rules/`. New detected identity logic fails by default, including in custom files; no whole-file exemption exists.
+- Inspect `if`, conditional expressions, `match`, comparisons (also in assertions/comprehensions), ID-indexed lookups and `.get(ID)`. Recognize conventional ID variables, simple assignment aliases, ID fields and literal ID allowlists.
+- Report filename, line, enclosing function and detected IDs. Existing exceptions in `configs/generator_branch_policy.json` pin the function, AST hash, IDs and occurrence count, with a reviewed role and reason. Adding an identical branch also changes its count and fails.
+- Exception roles are `METADATA_VALIDATION`, `CUSTOM_ROUTING` and `CUSTOM`. They describe a narrow source exception, not rules-verification status or a new registry API. No GENERIC/REUSABLE_CAPABILITY behavior exemption is provided.
 
 ### Allowed outcomes
 
@@ -66,14 +73,16 @@ Add a small source-only `scripts/check_generic_card_branches.py` check before ge
 2. Move behavior into an explicitly owned CUSTOM handler/emitter and classify all affected declarations/manifests CUSTOM. Check that those IDs cannot be emitted as generic/family behavior; the current `implementation_route` custom boundary can be an initial integration point.
 3. For metadata validation/allowlists, require a narrow documented validation role. Checking source fingerprints or permitted declaration IDs can be valid; choosing different effects by ID cannot be exempted as validation.
 
-Start with a reviewed baseline of the existing validator/custom branches. Baseline entries should identify AST structure/function, IDs and reason rather than line numbers alone. CI should detect new or changed branches; enlarging the baseline is a reviewed exception, not an automatic bypass. Existing custom behavior must remain honestly classified, and old metadata guards need not be rewritten just to introduce this check.
+The baseline preserves existing metadata restrictions and exceptional emitters. Changing it requires source/semantic review; do not regenerate it automatically to make CI green. CUSTOM exceptions list owning generated cards. The checker requires unique generated owners and current `implementation_route: CUSTOM` (and CUSTOM implementation kind when present) for those owners and the existing `CUSTOM_EMITTER_CARD_IDS` list. Dependency IDs such as enchantments can differ from their owning root IDs. This ownership check does not establish correctness or inspect every native definition.
 
-### Guardrail fixtures and limits
+### Limits and future verification
 
-When implementing the checker, add fixtures for equality with reversed operands, set membership, conditional expressions, match cases, dictionary dispatch, a simple ID-variable alias, an allowed source-fingerprint guard, and a correctly classified CUSTOM emitter. Include a failure fixture where a custom ID is labelled GENERIC in the manifest.
+The checker has been run on current repository sources; dedicated regression fixtures remain follow-up work. Cover reversed equality, membership, conditional expressions, match cases, dictionary dispatch, simple aliases, duplicate occurrences, permitted metadata checks and CUSTOM ownership rejection when verification work is requested.
 
-AST scanning is a practical regression detector, not proof of reusable semantics. Indirect dispatch, computed IDs, helper calls and embedded C++ can evade simple analysis. Extend recognized cases when encountered and retain source review. Native shared handlers still require contract review; a Python check does not certify their C++ semantics.
+AST scanning is a practical regression detector, not proof of reusable semantics. Computed IDs, interprocedural dataflow, aliases hidden in annotated/walrus assignments, function defaults/decorators and embedded C++ are not comprehensively tracked. Extend recognized cases when encountered and retain source review. Native shared handlers still require contract review; a Python check does not certify their C++ semantics.
 
 ## Unlock accounting
 
 `expected unlock count` must list unique reviewed Standard root IDs, dependency/outcome IDs separately, and unresolved candidates with assumptions. Distinguish newly registerable roots from roots whose full closure and action/scenario gates could become verified. Do not claim that registering N cards creates N training-eligible cards. If a dependency pool is unresolved, state the uncertainty instead of inventing a precise closure benefit.
+
+For each completed package, record declarations delivered without card-specific generator/native changes, cards requiring custom code, shared contract changes, correction cycles and authoring/review/debug/build effort. Compare before/after closure and admission as well as registration. Prove reuse with a matching declaration requiring no shared code change; shared file placement alone is insufficient. A declaration-only package using an existing contract can have zero new shared changes; report that directly rather than an undefined automation ratio. Measure the first real package before promising throughput or completion dates.

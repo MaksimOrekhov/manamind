@@ -1,0 +1,18 @@
+{
+  "started_utc": "2026-10-02 16:25:04 UTC",
+  "counts": {
+    "roots": 1185,
+    "metadata_present": 1185,
+    "direct_source_registered": 167,
+    "generated_registered": 176,
+    "text_bearing_without_detected_registration": 842,
+    "textless_metadata_candidates": 0,
+    "rules_verified_scoped_current": 11,
+    "stale_historical_scoped_evidence": 5,
+    "unresolved_dynamic_pool_definitions": 318,
+    "unique_known_dependency_nodes": 193,
+    "unreviewed_static_source_edges": 174,
+    "roots_with_complete_dependency_closure": 0,
+    "roots_training_eligible": 0
+  }
+}

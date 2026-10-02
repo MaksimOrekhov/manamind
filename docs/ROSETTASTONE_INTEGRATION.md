@@ -63,6 +63,19 @@ Generic hand-choice windows and reviewed special choices are exposed; other choi
 
 Observations contain SELF hand and public board/resources/Locations/weapons/hero powers, with current instance stats separate from base metadata. Opponent hidden hand and deck identities remain absent. Engine entity IDs are action handles only.
 
+Encoder schema v7 includes visible `hero_divine_shield` and the two board-minion
+target protections (`cant_be_targeted_by_spells`, `cant_be_targeted_by_hero_powers`).
+Absent import fields remain unknown, distinct from false. Hero Shield is ternary
+in player features; each minion protection has its own known mask. Old value
+checkpoints are preserved and rejected, not reinterpreted as v7.
+
+`make_minion_set_enchant_fixture(...)` is a controlled diagnostic fixture using
+registered powers, production serializers and legal-action enumeration. Its
+entity IDs are diagnostic/action handles, never observation features. Use
+`scripts/verify_minion_set_enchant.py` for independent numeric, target, transfer,
+import and encoding checks. Fixture games do not establish competitive deck
+coverage or full-profile training readiness.
+
 ## Current limitations
 
 Read the profile-selected report for card/closure/evidence/admission counts. Full Standard remains unadmitted; historical Mother Drake and five-list results do not establish readiness.

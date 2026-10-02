@@ -1,0 +1,554 @@
+[1/351] Generating E:/ManaMind/vendor/RosettaStone/Includes/RosettaStone.hpp
+[2/351] Scanning E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp for CXX dependencies
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\Utils/CardSetHeaders.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\doctest/doctest.h
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\Utils/TestUtils.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Cards/Card.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardEnums.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\string
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\yvals_core.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\sal.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\concurrencysal.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vadefs.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xkeycheck.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xstring
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_sanitizer_annotate_container.hpp
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_string_view.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iosfwd
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\yvals.h
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\crtdbg.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_new_debug.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_new.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\crtdefs.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\use_ansi.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdio
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stdio.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstdio.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_stdio_config.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstring
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\string.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_memory.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_memcpy_s.h
+Примечание: включение файла:              C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\errno.h
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_string.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstring.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cwchar
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\wchar.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wconio.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wctype.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wdirect.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wio.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_share.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wprocess.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstdlib.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wtime.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\sys/stat.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\sys/types.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin0.inl.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\setjmp.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\immintrin.h
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\wmmintrin.h
+Примечание: включение файла:               C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\nmmintrin.h
+Примечание: включение файла:                C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\smmintrin.h
+Примечание: включение файла:                 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\tmmintrin.h
+Примечание: включение файла:                  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pmmintrin.h
+Примечание: включение файла:                   C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\emmintrin.h
+Примечание: включение файла:                    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xmmintrin.h
+Примечание: включение файла:                     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\mmintrin.h
+Примечание: включение файла:                     C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\malloc.h
+Примечание: включение файла:                      C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_malloc.h
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\zmmintrin.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ammintrin.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtr1common
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xutility
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_iter_core.hpp
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\initializer_list
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef
+Примечание: включение файла:              C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stddef.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdint
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\stdint.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\compare
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\concepts
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdlib
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\math.h
+Примечание: включение файла:              C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_math.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stdlib.h
+Примечание: включение файла:              C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_search.h
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\limits.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\climits
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xmemory
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\limits
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cfloat
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\float.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin0.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\new
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\exception
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_exception.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\eh.h
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_terminate.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xatomic.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\tuple
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xpolymorphic_allocator.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cctype
+Примечание: включение файла:        C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\ctype.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\string_view
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardClass.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardClass.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/MultiClassGroup.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/MultiClassGroup.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardSet.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardSet.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardType.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardType.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Faction.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Faction.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTag.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTagCustom.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTag.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTagCustom.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReq.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReqCustom.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReq.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReqCustom.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Race.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Race.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Rarity.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Rarity.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/SpellSchool.def
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/SpellSchool.def
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TargetingEnums.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TaskEnums.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Power.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/Aura.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/AuraEnums.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TriggerEnums.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/PriorityQueue.hpp
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_heap_algorithms.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_minmax.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\optional
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xsmf_control.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\map
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtree
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xnode_handle.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ranges
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_int128.hpp
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_bit_utils.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ranges_to.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iterator
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\span
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\array
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\bit
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\stdexcept
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/AuraUpdateInstruction.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/IAura.hpp
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\typeinfo
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_typeinfo.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\atomic
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xatomic_wait.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xthreads.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_threads_core.hpp
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtimec.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ctime
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\time.h
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Conditions/SelfCondition.hpp
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\functional
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xhash
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cmath
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\list
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_formatter.hpp
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xbit_ops.h
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Enchant.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Effect.hpp
+Примечание: включение файла:         E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/IEffect.hpp
+Примечание: включение файла:         E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/PlayerAuraEffects.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Triggers/Trigger.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/ConditionEnums.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Managers/TriggerEventHandler.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Loaders/TargetingPredicates.hpp
+Примечание: включение файла:   C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iostream
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\istream
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ostream.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ios
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocnum
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\streambuf
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xiosbase
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\share.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\system_error
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_system_error_abi.hpp
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cerrno
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcall_once.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xerrc.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocale
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xfacet
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocinfo
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_xlocinfo_types.hpp
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\clocale
+Примечание: включение файла:             C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\locale.h
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ostream
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_filebuf.hpp
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_print.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xfilesystem_abi.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\format
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_format_ucd_tables.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ranges_tuple_formatter.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\charconv
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_ryu.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_ryu_tables.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_tables.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\locale
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocbuf
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocmes
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocmon
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xloctime
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Actions/Choose.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Choice.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/ChoiceEnums.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Entity.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/AuraEffects.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Managers/CostManager.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/AdaptiveCostEffect.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/IZone.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/DarkGift.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\random
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Player.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameEnums.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Logs/PlayHistory.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Playable.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Hero.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Character.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Managers/TriggerEvent.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/HeroPower.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Weapon.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Actions/Draw.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Actions/Generic.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Minion.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Cards/Cards.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Constants.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Games/Game.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Games/GameConfig.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Managers/TriggerManager.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/EventMetaData.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/TaskQueue.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/ITask.hpp
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\queue
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\deque
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\stack
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/TaskStack.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Enchantment.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/AttackTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/ChooseTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/EndTurnTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/HeroPowerTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/PlayCardTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/PlayerTasks/PlayLocationTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/SimpleTasks/AddCardTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/SimpleTasks/DrawTask.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Utils/DeckCode.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Decks/Deck.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/DeckZone.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/Zone.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/FieldZone.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/AdjacentAura.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Location.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/HandZone.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Zones/SecretZone.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Models/Spell.hpp
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Actions/Summon.hpp
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Actions/Copy.hpp
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/SimpleTasks/AddEnchantmentTask.hpp
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Tasks/SimpleTasks/ReturnHandTask.hpp
+[3/351] Scanning E:\ManaMind\vendor\RosettaStone\Sources\Rosetta\PlayMode\Loaders\CardLoader.cpp for CXX dependencies
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Utils.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\effolkronium/random.hpp
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\random
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\yvals_core.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\sal.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\concurrencysal.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vadefs.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xkeycheck.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_int128.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_bit_utils.hpp
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\climits
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\limits.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtr1common
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin0.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin0.inl.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdint
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\stdint.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\limits
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cfloat
+Примечание: включение файла:        C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\float.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cwchar
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdio
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stdio.h
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstdio.h
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_stdio_config.h
+Примечание: включение файла:        C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\wchar.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_memcpy_s.h
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\errno.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_string.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wconio.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wctype.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wdirect.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wio.h
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_share.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wprocess.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstdlib.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wstring.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_wtime.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\sys/stat.h
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\sys/types.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\intrin.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\setjmp.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\immintrin.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\wmmintrin.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\nmmintrin.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\smmintrin.h
+Примечание: включение файла:              C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\tmmintrin.h
+Примечание: включение файла:               C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\pmmintrin.h
+Примечание: включение файла:                C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\emmintrin.h
+Примечание: включение файла:                 C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xmmintrin.h
+Примечание: включение файла:                  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\mmintrin.h
+Примечание: включение файла:                  C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\malloc.h
+Примечание: включение файла:                   C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_malloc.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\zmmintrin.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ammintrin.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\type_traits
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstddef
+Примечание: включение файла:        C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stddef.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstring
+Примечание: включение файла:        C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\string.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_memory.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\compare
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\concepts
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_new.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\algorithm
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_heap_algorithms.hpp
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xutility
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\yvals.h
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\crtdbg.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_new_debug.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\crtdefs.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\use_ansi.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_iter_core.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\utility
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\initializer_list
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cstdlib
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\math.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_math.h
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\stdlib.h
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_search.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_minmax.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xmemory
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\new
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\exception
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_exception.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\eh.h
+Примечание: включение файла:           C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\corecrt_terminate.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xatomic.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\tuple
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\optional
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xsmf_control.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cmath
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ios
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocnum
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iterator
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iosfwd
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\streambuf
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xiosbase
+Примечание: включение файла:         C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\share.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\system_error
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_system_error_abi.hpp
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cerrno
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\stdexcept
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xstring
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_sanitizer_annotate_container.hpp
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_string_view.hpp
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xpolymorphic_allocator.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcall_once.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xerrc.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\atomic
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xatomic_wait.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xthreads.h
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_threads_core.hpp
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtimec.h
+Примечание: включение файла:             C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ctime
+Примечание: включение файла:              C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\time.h
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocale
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\memory
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\typeinfo
+Примечание: включение файла:            C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vcruntime_typeinfo.h
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xfacet
+Примечание: включение файла:          C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocinfo
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_xlocinfo_types.hpp
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cctype
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\ctype.h
+Примечание: включение файла:           C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\clocale
+Примечание: включение файла:            C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\locale.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\vector
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_formatter.hpp
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xbit_ops.h
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\chrono
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_chrono.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ratio
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xfilesystem_abi.h
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_tzdb.hpp
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\format
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_format_ucd_tables.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_print.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ranges_tuple_formatter.hpp
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\bit
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\charconv
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_ryu.h
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_ryu_tables.h
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xcharconv_tables.h
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\locale
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocbuf
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocmes
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xlocmon
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xloctime
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\forward_list
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\iomanip
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\istream
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ostream.hpp
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\sstream
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\string
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cassert
+Примечание: включение файла:     C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\assert.h
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ostream
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_filebuf.hpp
+Примечание: включение файла:   C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\functional
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_map
+Примечание: включение файла:     C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xhash
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\list
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xnode_handle.h
+Примечание: включение файла:   C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\span
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Constants.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardEnums.hpp
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\string_view
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardClass.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardClass.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/MultiClassGroup.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/MultiClassGroup.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardSet.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardSet.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardType.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/CardType.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Faction.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Faction.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTag.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTagCustom.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTag.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/GameTagCustom.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReq.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReqCustom.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReq.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/PlayReqCustom.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Race.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Race.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Rarity.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/Rarity.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/SpellSchool.def
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/SpellSchool.def
+Примечание: включение файла:   C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\array
+Примечание: включение файла:  E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Loaders/CardLoader.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Cards/Card.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TargetingEnums.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TaskEnums.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Power.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/Aura.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/AuraEnums.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/TriggerEnums.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/PriorityQueue.hpp
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\map
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\xtree
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\ranges
+Примечание: включение файла:        C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\__msvc_ranges_to.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/AuraUpdateInstruction.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Auras/IAura.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Conditions/SelfCondition.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Enchant.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/Effect.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/IEffect.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Enchants/PlayerAuraEffects.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Triggers/Trigger.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/Common/Enums/ConditionEnums.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Managers/TriggerEventHandler.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\Includes\Rosetta/PlayMode/Loaders/TargetingPredicates.hpp
+Примечание: включение файла:   E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/json.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/adl_serializer.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/abi_macros.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/conversions/from_json.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\valarray
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/exceptions.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/value_t.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/macro_scope.hpp
+Примечание: включение файла:         E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/detected.hpp
+Примечание: включение файла:          E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/void_t.hpp
+Примечание: включение файла:         E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/thirdparty/hedley/hedley.hpp
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\version
+Примечание: включение файла:         C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\cassert
+Примечание: включение файла:          C:\Program Files (x86)\Windows Kits\10\include\10.0.26100.0\ucrt\assert.h
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/string_escape.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/position_t.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/cpp_future.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/type_traits.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/iterator_traits.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/call_std/begin.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/call_std/end.hpp
+Примечание: включение файла:        E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/json_fwd.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/string_concat.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/identity_tag.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/std_fs.hpp
+Примечание: включение файла:       C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\filesystem
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/conversions/to_json.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/iteration_proxy.hpp
+Примечание: включение файла:       E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/string_utils.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/byte_container_with_subtype.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/hash.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/binary_reader.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/input_adapters.hpp
+Примечание: включение файла:      C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\numeric
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/json_sax.hpp
+Примечание: включение файла:      E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/lexer.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/meta/is_sax.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/input/parser.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/internal_iterator.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/primitive_iterator.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/iter_impl.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/iterators/json_reverse_iterator.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/json_custom_base_class.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/json_pointer.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/json_ref.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/output/binary_writer.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/output/output_adapters.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/output/serializer.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/conversions/to_chars.hpp
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/ordered_map.hpp
+Примечание: включение файла:    C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\any
+Примечание: включение файла:    E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/detail/macro_unscope.hpp
+Примечание: включение файла:     E:\ManaMind\vendor\RosettaStone\build-mana-ninja\vcpkg_installed\x64-windows\include\nlohmann/thirdparty/hedley/hedley_undef.hpp
+Примечание: включение файла:  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\fstream
+Примечание: включение файла:  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\regex
+Примечание: включение файла:  C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Tools\MSVC\14.44.35207\include\unordered_set
+[4/351] Generating CXX dyndep file Tests\UnitTests\CMakeFiles\UnitTests.dir\CXX.dd
+[5/269] Generating CXX dyndep file Sources\Rosetta\CMakeFiles\RosettaStone.dir\CXX.dd
+[6/9] Building CXX object Tests\UnitTests\CMakeFiles\UnitTests.dir\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp.obj
+[7/9] Building CXX object Sources\Rosetta\CMakeFiles\RosettaStone.dir\PlayMode\Loaders\CardLoader.cpp.obj
+[8/9] Linking CXX static library lib\RosettaStone.lib
+[9/9] Linking CXX executable bin\UnitTests.exe
+
+[1/1] Linking CXX shared module python\mana_rosetta_bridge.cp312-win_amd64.pyd

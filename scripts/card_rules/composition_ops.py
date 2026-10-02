@@ -29,8 +29,9 @@ def task_expression(effect: dict) -> str:
     if op == "RANDOM_DAMAGE":
         return (f'std::make_shared<EnqueueTask>(ComplexTask::DamageRandomTargets({TARGETS[effect["target"]]}, '
                 f'1, {effect["amount"]}, {str(effect["spell_damage"]).lower()}), {effect["hits"]})')
-    raise ValueError("ARMOR_DAMAGE emits a reviewed task sequence")
-    raise ValueError(op)
+    if op == "ARMOR_DAMAGE":
+        raise ValueError("ARMOR_DAMAGE is not a generic task; use reviewed custom routing")
+    raise ValueError(f"Unsupported generic operation: {op}")
 
 
 

@@ -13,16 +13,16 @@
     "rules_engine_revision": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
     "engine_source_identity": {
       "source_commit": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
-      "source_tree_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b"
+      "source_tree_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
-      "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
-      "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
-      "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
-      "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
-      "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
-      "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+      "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
+      "engine_source_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51",
+      "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
+      "observation_source_sha256": "6a8f2c8acf3c85f3c57d5a8b0c5b5c1cd09dfb9872133ed000f450bfaf8943a2",
+      "rules_source_sha256": "1150db5018f7e5b1cf0af09cc69bb54ed2a9bbafbf693bd89f72d9a8146bfb3b",
+      "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -41,15 +41,15 @@
     "alias_manifest_sha256": "131e820e6b114ea16f7d27a2a27cb491280f421b7b8998cef0af63cafa839220",
     "composition_manifest_sha256": "c136edacda5515ad1bf0832a8740a575783f2967631894473e82506dd6da887e",
     "after_attack_draw_manifest_sha256": "905a545a2c16ec3d2ed54bcb705f99ead31869d1d693d8b6a51588cd8fc29046",
-    "after_attack_draw_evidence_sha256": "205a8cee0420b15bd19033b8a6fe525f771ab9f90d3848df01a52645a899fcde",
+    "after_attack_draw_evidence_sha256": "6bcc0037e0eb588cdfe4050c8ca14501a772cb96dc97d06ddf9421a0a4ca374d",
     "repeated_trigger_draw_manifest_sha256": "651ceb6100b976b2df7d39dadcb3d1a0780ed91722dcab4f8ece126834aaed8a",
-    "repeated_trigger_draw_evidence_sha256": "37a792556fbcd8ffa1e69dd2611e9382848ee5378af3967a3405f169d01252ee",
+    "repeated_trigger_draw_evidence_sha256": "4ac2c3ebee4fffe8934b10202980aaec3f210c534e5cdbf8448f0a011fb26475",
     "filtered_school_draw_manifest_sha256": "e25fe3ed83ca8ec3795a3709ca809c21e7b63ea3ba5ed3f7f0d8b81234f2d48a",
-    "filtered_school_draw_evidence_sha256": "d921d1153be08664fec6ae30006b23154801633e577ef70fac84b8ba6c0a9593",
+    "filtered_school_draw_evidence_sha256": "6f4be18fe9446d43e356e2f5ba1aef2feb18264b6c4a72199377f041eb7da89c",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "3869886f8799c1fdb51079eab3c1c61d8d64cb665284386928ac2a0af3c8217d",
-    "pool_detector_sha256": "f52b56847066439f5b7e8c9cae450b66ef2a4bd13a4c0c4757c5642098168a69",
+    "core_alias_evidence_sha256": "0f081ee0ed2a687df52bf16daadfca223c3436f78d5acc3c40d78ad96b28801a",
+    "pool_detector_sha256": "e73fc601a889c9261ff635ad40a6c032a528a1f336e81ecbc07300d14b6fd8fd",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },
   "policy": {
@@ -122,9 +122,9 @@
     "proposals_only": true,
     "route_counts": {
       "AUTO": 83,
-      "COMPOSABLE": 184,
+      "COMPOSABLE": 187,
       "CUSTOM": 76,
-      "UNKNOWN": 842
+      "UNKNOWN": 839
     },
     "route_method": "Pinned text, source-registration shape and bounded generated manifests; no route is correctness evidence.",
     "capability_inventory_sha256": "943656b80042def4a2cfa09c03c3e18d3f7b84f34da10611a535116476e546f8",
@@ -134,15 +134,15 @@
     "roots": 1185,
     "metadata_present": 1185,
     "direct_source_registered": 167,
-    "generated_registered": 176,
-    "text_bearing_without_detected_registration": 842,
+    "generated_registered": 179,
+    "text_bearing_without_detected_registration": 839,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 11,
+    "rules_verified_scoped_current": 14,
     "stale_historical_scoped_evidence": 5,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_dependency_nodes": 193,
-    "unreviewed_static_source_edges": 174,
-    "roots_with_complete_dependency_closure": 0,
+    "unreviewed_static_source_edges": 177,
+    "roots_with_complete_dependency_closure": 3,
     "roots_training_eligible": 0
   },
   "cards": {
@@ -92295,35 +92295,54 @@
         "deck_legal_status": "STANDARD_ROOT_NOT_BANNED_IN_PINNED_SNAPSHOT"
       },
       "implementation": {
-        "route_proposal": "UNKNOWN",
+        "route_proposal": "COMPOSABLE",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
-        "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "route_reason": "Versioned reusable minion-set contract; rules, closure and actions require independent current evidence.",
+        "registration_status": "GENERATED_MINION_SET_ENCHANT",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "AddEnchantmentTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "generated_owner": "minion_set_enchant",
+        "generated_manifest_entry_sha256": "0a4ba29cb764538c80f60358c58d785aae61af435c5828b9533df3c4887056da",
+        "required_capabilities": [
+          "AddEnchantmentTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "minion_set_enchant",
+        "contract_version": 1,
+        "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
       "dependencies": {
-        "known_source_candidates": [],
+        "known_source_candidates": [
+          {
+            "to": "ICC_210e",
+            "kind": "enchantment_or_object_reference",
+            "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+          }
+        ],
         "dynamic_pool_ids": [],
-        "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+        "static_dependency_status": "UNREVIEWED",
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -92333,29 +92352,25 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
-        "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
+        "dependency:reachable_rules_not_verified",
         "session_match:not_current"
       ],
       "dependency_closure": {
-        "known_source_candidate_ids": [],
-        "known_unique_closure_count_including_root": 1,
-        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
+        "known_source_candidate_ids": [
+          "ICC_210e"
+        ],
+        "known_unique_closure_count_including_root": 2,
+        "closure_completeness": "COMPLETE_REVIEWED",
         "unresolved_dynamic_pool_ids": [],
-        "graph_fingerprint": "5c4ad643bc1fc256b0303c78e41db8b651f3a4d1f9d8dcc083bd7f272384b3a7"
+        "graph_fingerprint": "09dedc1cc618d3349356b5160079c5a07e03bde004d9b2517ca8d4ffd700d769"
       },
       "training_eligibility": {
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
-          "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
+          "dependency:reachable_rules_not_verified",
           "session_match:not_current"
         ]
       }
@@ -102641,35 +102656,54 @@
         "deck_legal_status": "STANDARD_ROOT_NOT_BANNED_IN_PINNED_SNAPSHOT"
       },
       "implementation": {
-        "route_proposal": "UNKNOWN",
+        "route_proposal": "COMPOSABLE",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
-        "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "route_reason": "Versioned reusable minion-set contract; rules, closure and actions require independent current evidence.",
+        "registration_status": "GENERATED_MINION_SET_ENCHANT",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "AddEnchantmentTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "generated_owner": "minion_set_enchant",
+        "generated_manifest_entry_sha256": "c3853fd9c044f26b09d7a54cff64d351714b2703bc3559dd2be7eae6e5acc4a3",
+        "required_capabilities": [
+          "AddEnchantmentTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "minion_set_enchant",
+        "contract_version": 1,
+        "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
       "dependencies": {
-        "known_source_candidates": [],
+        "known_source_candidates": [
+          {
+            "to": "ULD_191e",
+            "kind": "enchantment_or_object_reference",
+            "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+          }
+        ],
         "dynamic_pool_ids": [],
-        "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+        "static_dependency_status": "UNREVIEWED",
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -102681,29 +102715,25 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
-        "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
+        "dependency:reachable_rules_not_verified",
         "session_match:not_current"
       ],
       "dependency_closure": {
-        "known_source_candidate_ids": [],
-        "known_unique_closure_count_including_root": 1,
-        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
+        "known_source_candidate_ids": [
+          "ULD_191e"
+        ],
+        "known_unique_closure_count_including_root": 2,
+        "closure_completeness": "COMPLETE_REVIEWED",
         "unresolved_dynamic_pool_ids": [],
-        "graph_fingerprint": "5c4ad643bc1fc256b0303c78e41db8b651f3a4d1f9d8dcc083bd7f272384b3a7"
+        "graph_fingerprint": "f180a421087aae85aabfb68548201054f281af50a02d0b3a2308266679851b6b"
       },
       "training_eligibility": {
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
-          "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
+          "dependency:reachable_rules_not_verified",
           "session_match:not_current"
         ]
       }
@@ -111124,35 +111154,56 @@
         "deck_legal_status": "STANDARD_ROOT_NOT_BANNED_IN_PINNED_SNAPSHOT"
       },
       "implementation": {
-        "route_proposal": "UNKNOWN",
+        "route_proposal": "COMPOSABLE",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
-        "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "route_reason": "Versioned reusable minion-set contract; rules, closure and actions require independent current evidence.",
+        "registration_status": "GENERATED_MINION_SET_ENCHANT",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "AddEnchantmentTask",
+          "FilterStackTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "generated_owner": "minion_set_enchant",
+        "generated_manifest_entry_sha256": "dcfb29926f0c7aaba75ef3cd57a794b1a6eb30a915785ef8de6ccd61295f9d72",
+        "required_capabilities": [
+          "AddEnchantmentTask",
+          "FilterStackTask",
+          "IncludeTask",
+          "SetGameTagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "minion_set_enchant",
+        "contract_version": 1,
+        "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
       "dependencies": {
-        "known_source_candidates": [],
+        "known_source_candidates": [
+          {
+            "to": "ICC_210e",
+            "kind": "enchantment_or_object_reference",
+            "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+          }
+        ],
         "dynamic_pool_ids": [],
-        "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+        "static_dependency_status": "UNREVIEWED",
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -111167,29 +111218,25 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
-        "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
+        "dependency:reachable_rules_not_verified",
         "session_match:not_current"
       ],
       "dependency_closure": {
-        "known_source_candidate_ids": [],
-        "known_unique_closure_count_including_root": 1,
-        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
+        "known_source_candidate_ids": [
+          "ICC_210e"
+        ],
+        "known_unique_closure_count_including_root": 2,
+        "closure_completeness": "COMPLETE_REVIEWED",
         "unresolved_dynamic_pool_ids": [],
-        "graph_fingerprint": "5c4ad643bc1fc256b0303c78e41db8b651f3a4d1f9d8dcc083bd7f272384b3a7"
+        "graph_fingerprint": "55ca60d3182c8b998269dcfbb8b87839f606cc1eb47a5be4e897d93e13e3a7eb"
       },
       "training_eligibility": {
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
-          "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
+          "dependency:reachable_rules_not_verified",
           "session_match:not_current"
         ]
       }
@@ -127878,16 +127925,24 @@
         "type": "ENCHANTMENT",
         "collectible": null,
         "is_standard_root": false,
-        "registration_status": "NO_DETECTED_REGISTRATION",
-        "source_file": null,
+        "registration_status": "DECLARED_EXISTING_FIXED_ENCHANT_OWNER",
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
         "task_types_observed": [],
         "rules_status": "UNKNOWN",
         "dependency_status": "UNREVIEWED",
         "unresolved_dynamic_pool_ids": [],
         "rules_verification": {
-          "status": "IMPLEMENTED_UNVERIFIED",
-          "evidence_validity": "NO_SCOPED_EVIDENCE",
+          "status": "VERIFIED_SCOPED",
+          "evidence_validity": "CURRENT",
           "training_scope": "SCOPED_PACKAGE_ONLY"
+        },
+        "reviewed_contract": {
+          "contract": "FIXED_STATS_ENCHANT_V1",
+          "attack_delta": 1,
+          "health_delta": 1,
+          "metadata_sha256": "1925a94752b4c96499b8d6fd90e3a4a9db08b306f8c1f7092835bb5e963bc2e1",
+          "source_owner": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
+          "owner_sha256": "667f6288ee7d43b6f4c27b3b8543aaadde50696ad9004cc329cc9d95cfc2d351"
         }
       },
       "JAIL_376e": {
@@ -129298,16 +129353,24 @@
         "type": "ENCHANTMENT",
         "collectible": null,
         "is_standard_root": false,
-        "registration_status": "DIRECT_SOURCE_BLOCK",
+        "registration_status": "DECLARED_EXISTING_FIXED_ENCHANT_OWNER",
         "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/UldumCardsGen.cpp",
         "task_types_observed": [],
         "rules_status": "IMPLEMENTED_UNVERIFIED",
         "dependency_status": "UNREVIEWED",
         "unresolved_dynamic_pool_ids": [],
         "rules_verification": {
-          "status": "IMPLEMENTED_UNVERIFIED",
-          "evidence_validity": "NO_SCOPED_EVIDENCE",
+          "status": "VERIFIED_SCOPED",
+          "evidence_validity": "CURRENT",
           "training_scope": "SCOPED_PACKAGE_ONLY"
+        },
+        "reviewed_contract": {
+          "contract": "FIXED_STATS_ENCHANT_V1",
+          "attack_delta": 0,
+          "health_delta": 2,
+          "metadata_sha256": "d69aa9c220420b32d62c6f54c310da7d6fa4931b4ef08ab46b278ec245151a43",
+          "source_owner": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/UldumCardsGen.cpp",
+          "owner_sha256": "2fc29721aeefa9410618f50b70c7f55c77f9a9f4249a646b39d14debd5a27dfd"
         }
       },
       "ULD_195": {
@@ -132045,6 +132108,18 @@
         "destination_is_standard_root": false
       },
       {
+        "from": "RLK_048",
+        "to": "ICC_210e",
+        "kind": "enchantment_or_object_reference",
+        "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+        "evidence_source": "generated_manifest",
+        "destination_known": true,
+        "destination_name": "Ascended",
+        "destination_type": "ENCHANTMENT",
+        "destination_collectible": null,
+        "destination_is_standard_root": false
+      },
+      {
         "from": "SCH_713",
         "to": "SCH_713e",
         "kind": "enchantment_or_object_reference",
@@ -132189,6 +132264,18 @@
         "destination_is_standard_root": false
       },
       {
+        "from": "TIME_447",
+        "to": "ULD_191e",
+        "kind": "enchantment_or_object_reference",
+        "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+        "evidence_source": "generated_manifest",
+        "destination_known": true,
+        "destination_name": "Assisting!",
+        "destination_type": "ENCHANTMENT",
+        "destination_collectible": null,
+        "destination_is_standard_root": false
+      },
+      {
         "from": "TIME_603",
         "to": "REV_251",
         "kind": "generated_exact_text_alias_base",
@@ -132235,6 +132322,18 @@
         "destination_type": "MINION",
         "destination_collectible": true,
         "destination_is_standard_root": true
+      },
+      {
+        "from": "TLC_233",
+        "to": "ICC_210e",
+        "kind": "enchantment_or_object_reference",
+        "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+        "evidence_source": "generated_manifest",
+        "destination_known": true,
+        "destination_name": "Ascended",
+        "destination_type": "ENCHANTMENT",
+        "destination_collectible": null,
+        "destination_is_standard_root": false
       },
       {
         "from": "TLC_483",
@@ -136531,7 +136630,7 @@
     },
     "pool_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "f52b56847066439f5b7e8c9cae450b66ef2a4bd13a4c0c4757c5642098168a69",
+      "source_sha256": "e73fc601a889c9261ff635ad40a6c032a528a1f336e81ecbc07300d14b6fd8fd",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "package_id": "minion_set_enchant_v1",
+  "contract_id": "minion_set_enchant",
+  "contract_version": 1,
+  "implementation_kind": "REUSABLE_CAPABILITY",
+  "dependencies": {
+    "ICC_210e": {
+      "contract": "FIXED_STATS_ENCHANT_V1",
+      "attack_delta": 1,
+      "health_delta": 1,
+      "metadata_sha256": "1925a94752b4c96499b8d6fd90e3a4a9db08b306f8c1f7092835bb5e963bc2e1",
+      "source_owner": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindEffectCompositionGen.cpp",
+      "owner_sha256": "667f6288ee7d43b6f4c27b3b8543aaadde50696ad9004cc329cc9d95cfc2d351"
+    },
+    "ULD_191e": {
+      "contract": "FIXED_STATS_ENCHANT_V1",
+      "attack_delta": 0,
+      "health_delta": 2,
+      "metadata_sha256": "d69aa9c220420b32d62c6f54c310da7d6fa4931b4ef08ab46b278ec245151a43",
+      "source_owner": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/UldumCardsGen.cpp",
+      "owner_sha256": "2fc29721aeefa9410618f50b70c7f55c77f9a9f4249a646b39d14debd5a27dfd"
+    }
+  },
+  "declaration": "integrations/rosettastone/card_rules/minion_set_enchant.v1.json",
+  "declaration_sha256": "165caeacd1d595e28b62b3f726153405cbca562a51e4ecfc5eccaaefddf9f098",
+  "expected_semantics_sha256": "6f5141f43108571184d1dc3d2ecf71cd592a108aedaf9b394f5d628b9e976777",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "renderer_sha256": "b41624aed1c68164d9b275c8d38c0b2292d3748acbab9aaf1e26ef6f046c5587",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindMinionSetEnchantGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindMinionSetEnchantGen.cpp",
+  "cards": [
+    {
+      "card_id": "RLK_048",
+      "metadata_sha256": "33bd2192cc093f47f9d022889d9af5ce65dd2077d73c9f9b3e1e7c66d504ed13",
+      "activation": "SPELL",
+      "effects": [
+        {
+          "op": "MINION_SET_ENCHANT",
+          "selector": "OWN_BOARD_MINIONS",
+          "enchantment_ref": "ICC_210e",
+          "keywords": [
+            "ELUSIVE"
+          ]
+        }
+      ],
+      "rules_text_sha256": "8c15839bfcef312775b3a216abf96735179f122ed80c8e7cd57d57de2789feda",
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "task_types": [
+        "AddEnchantmentTask",
+        "IncludeTask",
+        "SetGameTagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_447",
+      "metadata_sha256": "76e28f5c7e93b56f17312ff4593fc0a98235e0613b051ef46cbc58ccc1e2f8ec",
+      "activation": "SPELL",
+      "effects": [
+        {
+          "op": "TARGET_CHARACTER_DIVINE_SHIELD"
+        },
+        {
+          "op": "MINION_SET_ENCHANT",
+          "selector": "OWN_HAND_MINIONS",
+          "enchantment_ref": "ULD_191e",
+          "keywords": []
+        }
+      ],
+      "rules_text_sha256": "aa78042d68600f123be4bc921f80dbdb73263de33a4b82df3c05499b159655b3",
+      "dependencies": [
+        "ULD_191e"
+      ],
+      "task_types": [
+        "AddEnchantmentTask",
+        "IncludeTask",
+        "SetGameTagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TLC_233",
+      "metadata_sha256": "d712a33728438af14557c5bb08015595924f687f0b3bfab9227c2924ee491564",
+      "activation": "BATTLECRY",
+      "effects": [
+        {
+          "op": "MINION_SET_ENCHANT",
+          "selector": "OWN_BOARD_MINIONS_EXCLUDING_SOURCE",
+          "enchantment_ref": "ICC_210e",
+          "keywords": [
+            "TAUNT"
+          ],
+          "max_current_attack": 2
+        }
+      ],
+      "rules_text_sha256": "fa2f7fe4512e4cb22c1348df6140bf525b8ba11c6285bd59e45de595191f9f4a",
+      "dependencies": [
+        "ICC_210e"
+      ],
+      "task_types": [
+        "AddEnchantmentTask",
+        "FilterStackTask",
+        "IncludeTask",
+        "SetGameTagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false
+}

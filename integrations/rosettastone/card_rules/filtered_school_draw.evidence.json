@@ -6,9 +6,9 @@
   "generator_script_sha256": "482aa0dff3bfdf734ec09aa7507de2b398c4366e62ebf0739a72b8c3c0f2a6e3",
   "generated_source_sha256": "643aabe8744af0fcebf6693d8a0d385498e5cbd728a244bf3b3c16aa1a1b5f4d",
   "capability_file_sha256": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-  "engine_library_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+  "engine_library_sha256": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
   "native_scenario_sha256": "fef07da1bf334210fe4b7e5fe05d569df39c5494b691a09090bcd99028a8c87f",
-  "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c",
+  "bridge_module_sha256": "94b987c2c57a387aa1c23e2b0ac89472f5ad83beed71a9c282ebeaaf453562e2",
   "training_eligible": false,
   "cards": {
     "FIR_929": {
@@ -16,12 +16,12 @@
       "pool_membership_sha256": "3b77a6730eabcb01ee0dba03e675e3300ed8e99595cba5ed5247751f9c4494d3",
       "pool_predicate_version": "DRAW_FROM_MATCHING_DECK_SPELL_SCHOOL_V1",
       "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
-      "scenario_fingerprint": "f7d500fbcadb4e6f7809648ac478a6449fd287ce5cd8620db9d7c585a867034c",
+      "engine_build_fingerprint": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
+      "scenario_fingerprint": "a58126fa030d9f59509723c4683f1036ac379fec8d5ce57ad63b13e479a2a744",
       "status": "VERIFIED_SCOPED",
       "scope": "Deathrattle draws one FIRE spell from the controller's deck; available deck members and complete closure are out of scope.",
       "native_test": "[ManaMind filtered school draw]* passed",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2589 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2606 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
       "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal actions passed",
       "training_eligible": false
     },
@@ -30,35 +30,35 @@
       "pool_membership_sha256": "76586657c893145b406a8ed0b8bf0331a920b6a83fd2e6855619ef8c7b9ec0b9",
       "pool_predicate_version": "DRAW_FROM_MATCHING_DECK_SPELL_SCHOOL_V1",
       "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
-      "scenario_fingerprint": "f7d500fbcadb4e6f7809648ac478a6449fd287ce5cd8620db9d7c585a867034c",
+      "engine_build_fingerprint": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
+      "scenario_fingerprint": "a58126fa030d9f59509723c4683f1036ac379fec8d5ce57ad63b13e479a2a744",
       "status": "VERIFIED_SCOPED",
       "scope": "Deathrattle draws one FROST spell from the controller's deck; available deck members and complete closure are out of scope.",
       "native_test": "[ManaMind filtered school draw]* passed",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2589 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2606 skipped\n[doctest] assertions: 27 | 27 passed | 0 failed |\n[doctest] Status: SUCCESS!",
       "bridge_smoke": "Standard deck legality passed; native scenario covers card effect; session setup is blocked by the known Death Knight gap.",
       "training_eligible": false
     }
   },
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
-    "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
-    "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
-    "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
-    "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
-    "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
-    "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+    "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
+    "engine_source_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51",
+    "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
+    "observation_source_sha256": "6a8f2c8acf3c85f3c57d5a8b0c5b5c1cd09dfb9872133ed000f450bfaf8943a2",
+    "rules_source_sha256": "1150db5018f7e5b1cf0af09cc69bb54ed2a9bbafbf693bd89f72d9a8146bfb3b",
+    "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
     "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
   },
   "artifacts": {
     "engine_library": {
-      "sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48"
+      "sha256": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b"
     },
     "native_tests": {
-      "sha256": "de765f79805b9caad8b9d3238a4b954d14ffd5f0cef5449086e24ec98e0af699"
+      "sha256": "50d7d00068ac658db32a51661865ffd5d1e9983bb94c01306fbf1182fb93808c"
     },
     "bridge_module": {
-      "sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+      "sha256": "94b987c2c57a387aa1c23e2b0ac89472f5ad83beed71a9c282ebeaaf453562e2"
     }
   },
   "execution_result": {

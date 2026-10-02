@@ -16,6 +16,9 @@ from manamind.integrations.rosettastone.rosettastone import _load_bridge
 
 def main() -> None:
     raw = _load_bridge().make_instance_observation_fixture()
+    protected = raw["intrinsic_protection"][0]
+    assert protected["cant_be_targeted_by_spells"] is True
+    assert protected["cant_be_targeted_by_hero_powers"] is True
     for key, kind, tags in (
         ("hand_card", CardType.MINION, {GameTag.COST: 1, GameTag.ATK: 5, GameTag.HEALTH: 5}),
         ("weapon", CardType.WEAPON, {GameTag.COST: 3, GameTag.ATK: 5, GameTag.DURABILITY: 1}),

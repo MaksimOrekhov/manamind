@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-10-02",
+  "python_suite": {
+    "command": "python -m pytest -q --basetemp E:/ManaMind/.pytest-tmp-review-20261002-a",
+    "passed": 44,
+    "failed": 0,
+    "duration_seconds": 8.27,
+    "warning": "pytest cache ACL; initial default temporary-directory run had setup ACL errors"
+  },
+  "build_identity_command": "python scripts/build_native_identity.py",
+  "native_total_cases": 13,
+  "native_total_assertions": 883,
+  "packages": [
+    {
+      "package": "after_attack_draw",
+      "cards": [
+        "CAP_003",
+        "EDR_253",
+        "CORE_NX2_028",
+        "TLC_478",
+        "TLC_840"
+      ],
+      "changed_execution_identity_keys": [
+        "rules_source_sha256"
+      ],
+      "artifacts_unchanged": true,
+      "card_evidence_unchanged": true,
+      "semantic_impact": "NO_CHANGE_TO_PACKAGE_EFFECTS_OR_SCENARIOS; composition renderer error handling only",
+      "actual_reexecution": {
+        "native_cases": 5,
+        "assertions": 42,
+        "result": "PASS"
+      },
+      "evidence_sha256": "22eee75cd7143dab067788e710ad8c785c885bc934c66d700d650f4fece51511"
+    },
+    {
+      "package": "repeated_trigger_draw",
+      "cards": [
+        "CORE_DMF_067",
+        "RLK_708",
+        "CORE_RLK_657"
+      ],
+      "changed_execution_identity_keys": [
+        "rules_source_sha256"
+      ],
+      "artifacts_unchanged": true,
+      "card_evidence_unchanged": true,
+      "semantic_impact": "NO_CHANGE_TO_PACKAGE_EFFECTS_OR_SCENARIOS; composition renderer error handling only",
+      "actual_reexecution": {
+        "native_cases": 4,
+        "assertions": 34,
+        "result": "PASS"
+      },
+      "evidence_sha256": "f299e9a0d9cb1be3b908a0ea7718726688919f63c001a84e8dabd0bb5e480939"
+    },
+    {
+      "package": "filtered_school_draw",
+      "cards": [
+        "FIR_929",
+        "RLK_511"
+      ],
+      "changed_execution_identity_keys": [
+        "rules_source_sha256"
+      ],
+      "artifacts_unchanged": true,
+      "card_evidence_unchanged": true,
+      "semantic_impact": "NO_CHANGE_TO_PACKAGE_EFFECTS_OR_SCENARIOS; composition renderer error handling only",
+      "actual_reexecution": {
+        "native_cases": 3,
+        "assertions": 27,
+        "result": "PASS"
+      },
+      "evidence_sha256": "7c45cad29bee010d2562972aebfb0d1a722b36e05db45ba3fe08553e50100324"
+    },
+    {
+      "package": "core_aliases",
+      "cards": [
+        "CORE_ULD_133"
+      ],
+      "changed_execution_identity_keys": [
+        "rules_source_sha256"
+      ],
+      "artifacts_unchanged": true,
+      "card_evidence_unchanged": true,
+      "semantic_impact": "NO_CHANGE_TO_PACKAGE_EFFECTS_OR_SCENARIOS; composition renderer error handling only",
+      "actual_reexecution": {
+        "native_cases": 1,
+        "assertions": 780,
+        "result": "PASS"
+      },
+      "evidence_sha256": "775b30b62d08e195d1396f32f95dd1df57a4cf640235eab0c0d48b7905436583"
+    }
+  ],
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
+    "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
+    "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
+    "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
+    "rules_source_sha256": "d0e8baa05843871972765f9abc32c54854b2d51868c34ccef26a6a21a015d6fe",
+    "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "admission_claim": "SCOPED_ONLY; no new cards, closure or training authorization",
+  "final_source_checks": {
+    "ruff": "PASS",
+    "generator_identity_guard": "PASS",
+    "git_diff_check": "PASS",
+    "pinned_outputs_reproduced": 27,
+    "unique_generated_ownership": "PASS"
+  },
+  "current_rules_scoped_rows": 11,
+  "unchanged_stale_historical_ids": [
+    "CAP_801",
+    "CORE_BAR_801",
+    "CORE_CS2_004",
+    "CORE_SW_066",
+    "END_007"
+  ],
+  "training_eligible_roots": 0
+}

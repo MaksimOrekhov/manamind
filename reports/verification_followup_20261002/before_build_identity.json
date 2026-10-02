@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
+    "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
+    "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
+    "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
+    "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
+    "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48"
+    },
+    "native_tests": {
+      "sha256": "de765f79805b9caad8b9d3238a4b954d14ffd5f0cef5449086e24ec98e0af699"
+    },
+    "bridge_module": {
+      "sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    }
+  },
+  "build_result": "PASS",
+  "commands": [
+    [
+      "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe",
+      "--build",
+      "E:\\ManaMind\\vendor\\RosettaStone\\build-mana-py312",
+      "--target",
+      "RosettaStone",
+      "UnitTests"
+    ],
+    [
+      "C:/Program Files (x86)/Microsoft Visual Studio/2022/BuildTools/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe",
+      "--build",
+      "E:\\ManaMind\\integrations\\rosettastone\\build",
+      "--target",
+      "mana_rosetta_bridge"
+    ]
+  ]
+}

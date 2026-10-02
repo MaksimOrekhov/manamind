@@ -5,17 +5,17 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 ## Pool and implementation inventory
 
 - Collectible roots: **1185**; metadata present: **1185**.
-- Source registration: **167** direct, **176** generated manifest entries, **842** text-bearing without detected registration, **0** textless metadata candidates.
-- Current rules verification: **11**; historical scoped evidence marked stale: **5**.
-- Route proposals: `{"AUTO": 83, "COMPOSABLE": 184, "CUSTOM": 76, "UNKNOWN": 842}` (heuristic; not correctness status).
+- Source registration: **167** direct, **179** generated manifest entries, **839** text-bearing without detected registration, **0** textless metadata candidates.
+- Current rules verification: **14**; historical scoped evidence marked stale: **5**.
+- Route proposals: `{"AUTO": 83, "COMPOSABLE": 187, "CUSTOM": 76, "UNKNOWN": 839}` (heuristic; not correctness status).
 
 ## Dependency graph
 
 - Unique known non-root nodes: **191**.
-- Static literal/reference candidates: **239**, all requiring review or limited declaration evidence.
+- Static literal/reference candidates: **242**, all requiring review or limited declaration evidence.
 - Unresolved dynamic pool candidate signals: **318** across **282** Standard roots and **20** known dependency origins; by kind: `{"discover": 100, "generated_card": 68, "random_card_or_pool": 150}`.
 - Detector v2 excludes random board targets and fixed named-token summons; pool candidates remain heuristic, not a confirmed or exhaustive pool inventory.
-- Complete root closures: **0**. The known graph is a lower bound; absent edges are not proof of no dependency.
+- Complete root closures: **3**. The known graph is a lower bound; absent edges are not proof of no dependency.
 
 ## Admission blockers
 
@@ -29,8 +29,8 @@ Priority is not inferred from metadata frequency. These are review groupings bas
 
 | Signal | Candidate roots | Confidence |
 |---|---:|---|
-| triggered | 693 (508 without detected rules registration) | LOW |
-| resource_cost | 372 (275 without detected rules registration) | LOW |
+| triggered | 693 (507 without detected rules registration) | LOW |
+| resource_cost | 372 (273 without detected rules registration) | LOW |
 | damage | 212 (117 without detected rules registration) | LOW |
 | summon | 212 (173 without detected rules registration) | LOW |
 | discover_choice | 146 (115 without detected rules registration) | LOW |

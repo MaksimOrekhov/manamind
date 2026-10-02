@@ -283,6 +283,7 @@ def _player_observation(player, entities, catalog, *, is_self: bool):
         hand_size=len(hand_entities),
         fatigue=_integer(player.tags.get(GameTag.FATIGUE), 0),
         hero_power_ready=hero_power_ready,
+        hero_divine_shield=(bool(hero.tags[GameTag.DIVINE_SHIELD]) if hero and GameTag.DIVINE_SHIELD in hero.tags else None),
         player_class=player_class,
         weapon=_card_features(weapon_entity, catalog) if weapon_entity else None,
         hero_power=_card_features(hero_power_entity, catalog) if hero_power_entity else None,
@@ -325,6 +326,8 @@ def _board_entity(entity, position: int, catalog: CardCatalog) -> BoardEntity:
         reborn=bool(tags.get(GameTag.REBORN, 0)),
         dormant=bool(tags.get(GameTag.DORMANT, 0)),
         can_attack=can_attack,
+        cant_be_targeted_by_spells=(bool(tags[GameTag.CANT_BE_TARGETED_BY_SPELLS]) if GameTag.CANT_BE_TARGETED_BY_SPELLS in tags else None),
+        cant_be_targeted_by_hero_powers=(bool(tags[GameTag.CANT_BE_TARGETED_BY_HERO_POWERS]) if GameTag.CANT_BE_TARGETED_BY_HERO_POWERS in tags else None),
     )
 
 

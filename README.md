@@ -36,7 +36,7 @@ The current priority is reusable capability packages for the full pinned Standar
 - `hero_power_ready` represents observed exhaustion state, not a complete legal-use predicate; missing log tags remain unknown. Location activation is unknown unless the source can establish it.
 - The Value Network shares an entity encoder, uses masked mean/max zone pooling and a global-feature MLP, then returns a win/loss logit. Sigmoid estimates `P(SELF eventually wins | visible GameState)`; targets are win 1.0, loss 0.0, draw 0.5.
 - Unknown/new IDs must still encode/infer using structured features and the unknown vocabulary token. Report unknown IDs to callers.
-- Encoder schema is currently **v6**; the constant in `src/manamind/encoding/state_encoder.py` is authoritative. Older value checkpoints are rejected. Checkpoints store vocabulary/catalog, model config/weights, feature names, normalization and schema. Inference uses the saved catalog; added metadata cannot reorder trained vocabulary.
+- Encoder schema is currently **v7**; the constant in `src/manamind/encoding/state_encoder.py` is authoritative. Older value checkpoints are rejected. Checkpoints store vocabulary/catalog, model config/weights, feature names, normalization and schema. Inference uses the saved catalog; added metadata cannot reorder trained vocabulary.
 - The separate policy scores currently legal actions from visible state, ordered hand and semantic action descriptors. Engine entity IDs only apply actions. Both seats share the stochastic policy; terminal rewards are +1/-1/0. Policy checkpoints and compatibility rules are separate from the Value Network.
 
 ### Data and result interpretation

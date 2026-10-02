@@ -14,16 +14,16 @@
     "rules_engine_revision": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
     "engine_source_identity": {
       "source_commit": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
-      "source_tree_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b"
+      "source_tree_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
-      "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
-      "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
-      "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
-      "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
-      "rules_source_sha256": "bc8ccf2fb58992c43f344e2f5901fb8c8be5911e2d8ff4d950337253a45f82bc",
-      "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+      "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
+      "engine_source_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51",
+      "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
+      "observation_source_sha256": "6a8f2c8acf3c85f3c57d5a8b0c5b5c1cd09dfb9872133ed000f450bfaf8943a2",
+      "rules_source_sha256": "1150db5018f7e5b1cf0af09cc69bb54ed2a9bbafbf693bd89f72d9a8146bfb3b",
+      "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -31,15 +31,15 @@
     "roots": 1185,
     "metadata_present": 1185,
     "direct_source_registered": 167,
-    "generated_registered": 176,
-    "text_bearing_without_detected_registration": 842,
+    "generated_registered": 179,
+    "text_bearing_without_detected_registration": 839,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 11,
+    "rules_verified_scoped_current": 14,
     "stale_historical_scoped_evidence": 5,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_dependency_nodes": 193,
-    "unreviewed_static_source_edges": 174,
-    "roots_with_complete_dependency_closure": 0,
+    "unreviewed_static_source_edges": 177,
+    "roots_with_complete_dependency_closure": 3,
     "roots_training_eligible": 0,
     "known_dependency_closure": "LOWER_BOUND_ONLY; static source candidates unreviewed and dynamic pools unresolved",
     "full_standard_training": "BLOCKED",
@@ -48,23 +48,23 @@
   "registration_and_rules": {
     "route_counts": {
       "AUTO": 83,
-      "COMPOSABLE": 184,
+      "COMPOSABLE": 187,
       "CUSTOM": 76,
-      "UNKNOWN": 842
+      "UNKNOWN": 839
     },
     "registration_counts": {
       "direct_source_block": 167,
-      "recognized_generated_manifest": 176,
-      "missing_detected_registration_with_text": 842,
+      "recognized_generated_manifest": 179,
+      "missing_detected_registration_with_text": 839,
       "textless_metadata_candidates": 0
     },
-    "current_rules_verified": 11,
+    "current_rules_verified": 14,
     "historical_scoped_evidence_marked_stale": 5
   },
   "dependencies": {
     "unique_known_nonroot_nodes": 191,
-    "source_candidate_edges": 239,
-    "unreviewed_static_edges": 174,
+    "source_candidate_edges": 242,
+    "unreviewed_static_edges": 177,
     "unresolved_dynamic_pool_definitions": 318,
     "pool_candidate_definitions_by_kind": {
       "discover": 100,
@@ -73,13 +73,13 @@
     },
     "roots_with_any_unresolved_dynamic_pool": 282,
     "known_dependency_origins_with_pool_candidates": 20,
-    "known_closure_complete_roots": 0,
+    "known_closure_complete_roots": 3,
     "most_reused_known_nodes": [
       {
         "card_id": "ICC_210e",
-        "known_roots_reaching_node": 8,
+        "known_roots_reaching_node": 10,
         "metadata_status": "PRESENT",
-        "registration_status": "NO_DETECTED_REGISTRATION",
+        "registration_status": "DECLARED_EXISTING_FIXED_ENCHANT_OWNER",
         "priority": "REVIEW_CANDIDATE_ONLY"
       },
       {
@@ -157,6 +157,13 @@
         "known_roots_reaching_node": 2,
         "metadata_status": "PRESENT",
         "registration_status": "DIRECT_SOURCE_BLOCK",
+        "priority": "REVIEW_CANDIDATE_ONLY"
+      },
+      {
+        "card_id": "ULD_191e",
+        "known_roots_reaching_node": 2,
+        "metadata_status": "PRESENT",
+        "registration_status": "DECLARED_EXISTING_FIXED_ENCHANT_OWNER",
         "priority": "REVIEW_CANDIDATE_ONLY"
       },
       {
@@ -242,18 +249,11 @@
         "metadata_status": "PRESENT",
         "registration_status": "DIRECT_SOURCE_BLOCK",
         "priority": "REVIEW_CANDIDATE_ONLY"
-      },
-      {
-        "card_id": "BAR_310",
-        "known_roots_reaching_node": 1,
-        "metadata_status": "PRESENT",
-        "registration_status": "DIRECT_SOURCE_BLOCK",
-        "priority": "REVIEW_CANDIDATE_ONLY"
       }
     ],
     "pool_candidate_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "f52b56847066439f5b7e8c9cae450b66ef2a4bd13a4c0c4757c5642098168a69",
+      "source_sha256": "e73fc601a889c9261ff635ad40a6c032a528a1f336e81ecbc07300d14b6fd8fd",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"
@@ -980,7 +980,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 508,
+      "unregistered_text_root_count": 507,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -1431,7 +1431,6 @@
         "TLC_224",
         "TLC_226",
         "TLC_232",
-        "TLC_233",
         "TLC_234",
         "TLC_237",
         "TLC_240",
@@ -1878,7 +1877,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 275,
+      "unregistered_text_root_count": 273,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -2084,7 +2083,6 @@
         "TIME_431",
         "TIME_435",
         "TIME_443",
-        "TIME_447",
         "TIME_448",
         "TIME_449",
         "TIME_602",
@@ -2112,7 +2110,6 @@
         "TLC_227",
         "TLC_230",
         "TLC_231",
-        "TLC_233",
         "TLC_235",
         "TLC_236",
         "TLC_241",
@@ -4449,7 +4446,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 508,
+      "unregistered_text_root_count": 507,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -4900,7 +4897,6 @@
         "TLC_224",
         "TLC_226",
         "TLC_232",
-        "TLC_233",
         "TLC_234",
         "TLC_237",
         "TLC_240",
@@ -5347,7 +5343,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 275,
+      "unregistered_text_root_count": 273,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -5553,7 +5549,6 @@
         "TIME_431",
         "TIME_435",
         "TIME_443",
-        "TIME_447",
         "TIME_448",
         "TIME_449",
         "TIME_602",
@@ -5581,7 +5576,6 @@
         "TLC_227",
         "TLC_230",
         "TLC_231",
-        "TLC_233",
         "TLC_235",
         "TLC_236",
         "TLC_241",

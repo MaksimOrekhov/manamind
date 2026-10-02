@@ -42,6 +42,10 @@ STATE_FLAG_NAMES = (
     "on_cooldown",
     "can_activate",
     "can_activate_known",
+    "cant_be_targeted_by_spells",
+    "cant_be_targeted_by_spells_known",
+    "cant_be_targeted_by_hero_powers",
+    "cant_be_targeted_by_hero_powers_known",
 )
 
 NUMERIC_LIMIT = 10_000.0
@@ -188,7 +192,10 @@ class EntityEncoder:
                     numeric[row, offset] = _normalise(value)
                     numeric_present[row, offset] = 1.0
                 for column, flag_name in enumerate(STATE_FLAG_NAMES):
-                    state_flags[row, column] = float(getattr(entity, flag_name, False))
+                    value = getattr(entity, flag_name, False)
+                    state_flags[row, column] = float(value) if value is not None else 0.0
+                for name in ("cant_be_targeted_by_spells", "cant_be_targeted_by_hero_powers"):
+                    state_flags[row, STATE_FLAG_NAMES.index(name + "_known")] = float(getattr(entity, name) is not None)
             elif item.zone_position is not None:
                 numeric[row, 7] = _normalise(item.zone_position)
                 numeric_present[row, 7] = 1.0

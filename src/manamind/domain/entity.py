@@ -26,6 +26,8 @@ class BoardEntity:
     reborn: bool = False
     dormant: bool = False
     can_attack: bool = False
+    cant_be_targeted_by_spells: bool | None = None
+    cant_be_targeted_by_hero_powers: bool | None = None
 
 
 @dataclass(frozen=True, slots=True)

@@ -16,7 +16,8 @@
     "integrations/rosettastone/card_rules/after_attack_draw.evidence.json",
     "integrations/rosettastone/card_rules/repeated_trigger_draw.evidence.json",
     "integrations/rosettastone/card_rules/filtered_school_draw.evidence.json",
-    "integrations/rosettastone/card_rules/core_aliases.evidence.json"
+    "integrations/rosettastone/card_rules/core_aliases.evidence.json",
+    "integrations/rosettastone/card_rules/minion_set_enchant.evidence.json"
   ],
   "session_match_evidence": null
 }

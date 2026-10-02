@@ -49,3 +49,13 @@ IDs, semantic differences, explicit custom owners and reasons for exclusion/defe
 ## Completion record
 
 Actual shared changes, all delivered/deferred declarations, family evidence, registry/closure delta, correction cycles and measured effort. Compare expected and actual unlocks without conflating registration with verified behavior or training readiness.
+
+| Measurement | Before/forecast | Actual after package |
+|---|---|---|
+| Unique registered roots / verified closures / eligible roots | <separate counts> | <separate counts> |
+| Declaration-only consumers / consumers requiring custom changes | <reviewed candidates> | <IDs and counts> |
+| Shared contract/renderer/native changes | <planned changes> | <actual changes> |
+| Authoring / review / debugging / build effort | <estimate or UNKNOWN> | <measured time; measurement limits> |
+| Correction cycles and check/build runs | <plan> | <actual counts> |
+
+Record an independent declaration/control variation demonstrating reuse without generator changes. If the package reuses an existing contract with zero shared changes, report zero; do not invent a ratio with a zero denominator. Deferred dependency gates remain blockers even when every declaration is delivered.

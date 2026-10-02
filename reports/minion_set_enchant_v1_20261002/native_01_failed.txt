@@ -1,0 +1,37 @@
+[doctest] doctest version is "2.5.3"
+[doctest] run with "--help" for options
+===============================================================================
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(83):
+TEST CASE:  [ManaMind minion set enchant] Helper aura uses current rather than printed attack
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(90): ERROR: CHECK_EQ( low->GetAttack(), 3 ) is NOT correct!
+  values: CHECK_EQ( 4, 3 )
+
+===============================================================================
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(103):
+TEST CASE:  [ManaMind minion set enchant] Shell repeat copy and bounce reset
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(114): ERROR: CHECK_EQ( m->GetGameTag(GameTag::CANT_BE_TARGETED_BY_SPELLS), 0 ) is NOT correct!
+  values: CHECK_EQ( 1, 0 )
+
+===============================================================================
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(161):
+TEST CASE:  [ManaMind minion set enchant] Barrier missing and protected targets fail
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(165): ERROR: CHECK_FALSE( Contains(barrier->GetValidPlayTargets(f.own), own) ) is NOT correct!
+  values: CHECK_FALSE( true )
+
+===============================================================================
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(178):
+TEST CASE:  [ManaMind minion set enchant] Elusive spells powers attacks and Battlecry
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(181): ERROR: CHECK_FALSE( Contains(Cards::FindCardByID("CS2_029")->GetValidPlayTargets(f.enemy), m) ) is NOT correct!
+  values: CHECK_FALSE( true )
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\ManaMindMinionSetEnchantTests.cpp(182): ERROR: CHECK_FALSE( Contains(f.enemy->GetHero()->heroPower->card->GetValidPlayTargets(f.enemy), m) ) is NOT correct!
+  values: CHECK_FALSE( true )
+
+===============================================================================
+[doctest] test cases:  13 |   9 passed | 4 failed | 2592 skipped
+[doctest] assertions: 170 | 165 passed | 5 failed |
+[doctest] Status: FAILURE!

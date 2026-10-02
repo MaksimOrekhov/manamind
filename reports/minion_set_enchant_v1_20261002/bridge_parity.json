@@ -1,0 +1,20 @@
+{
+  "RLK_048": {
+    "fixture_cases": 1,
+    "parity": "PASS",
+    "deck_legality": "PASS",
+    "session": "BLOCKED_DK_HERO_SETUP"
+  },
+  "TLC_233": {
+    "fixture_cases": 1,
+    "parity": "PASS",
+    "deck_legality": "PASS",
+    "session": "OPENING_AND_HANDLE_REJECTION_PASS"
+  },
+  "TIME_447": {
+    "fixture_cases": 7,
+    "parity": "PASS",
+    "deck_legality": "PASS",
+    "session": "OPENING_AND_HANDLE_REJECTION_PASS"
+  }
+}

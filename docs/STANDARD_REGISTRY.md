@@ -32,6 +32,8 @@ Audit tokens, enchantments, choice options, appendages, transforms, rewards, gen
 
 Dynamic pools need a versioned predicate, source-rules identity, snapshot membership/hash and parity evidence. Reuse pool definitions across consumers. For state/history-dependent pools, record an exact filter and a reviewed upper bound where possible; an upper bound alone does not prove runtime selection correctness. Missing membership/filter/recursive coverage stays unresolved.
 
+Implement shared dynamic pools when a reviewed package or profile actually needs them. Do not build every possible pool before that demand exists. Preserve the distinction between heuristic/source candidate edges, reviewed rule edges and runtime parity evidence; candidate graph growth does not itself close a dependency.
+
 Handle cycles with a fixed-point/SCC or equivalent deduplicated traversal. A cycle is not automatically invalid; every required node and outgoing outcome must be supported. Resource/depth limits produce INCOMPLETE, not a successful closure.
 
 Report unique-root closure coverage, unique dependency counts, unresolved graph scope and blocker paths. Edge percentages alone can be misleading for shared pools. The known graph is a lower bound until reviewed completeness is established.
@@ -56,7 +58,34 @@ Changes to rules/metadata, capabilities, declarations/output, native/bridge/acti
 
 Training data quality remains a separate requirement: valid complete episodes, reviewed sampling/deck distribution, diverse states, match-level splits and held-out evaluation. Scoped correctness or a weak baseline win rate is not established game strength.
 
+### Proposed bounded training profile
+
+A separately pinned, fully verified training profile can precede full Standard completion. This is a strategy proposal, not an existing dedicated profile or authorization to select decks/start training. The full Standard target remains active. If the user approves this direction, define a finite deck/root scope, legality snapshot and sampling purpose, then include **all actually reachable outcomes** transitively. Prefer a scope with manageable dependencies; do not alter real card rules or silently narrow random/Discover pools. A bounded deck scope with exact rules differs from an approximate restricted-outcome pilot, which must be labelled separately.
+
+Apply the same rules, closure, action/observation and session/match gates to the entire selected profile. Record class/hero/hero-power initialization, legal action progression, turn transitions and termination/results, relevant interactions, hidden-information checks, loaded build/bridge identity, profile fingerprints, run/seed coverage and incomplete/invalid episode rates. Successful games alone do not prove all required rules. Evidence producers and profile tooling must support that explicit scope before it can be admitted; an old full-Standard report or a manually selected deck list is insufficient.
+
+Choose the first scope from reviewed capability coverage and dependency cost, not a fixed number of decks/cards. Measure package and match-gate work before estimating a date. Existing Value/Policy plumbing can then be assessed on valid data and held-out matches; this proposal does not require a new model architecture or authorize evaluation now.
+
 ## Rebuild and update
+
+The `minion_set_enchant.v1.json` declaration installs a bounded validated schema
+for its package/contract identity, implementation kind, finite effects and two
+existing fixed-enchantment owners. Its generated manifest is recognized by the
+canonical registry. Matching explicit execution evidence controls contract
+review, scoped rules/actions and reviewed closure; the manifest alone does not
+upgrade those gates. This is not a migration of legacy generator schemas.
+
+```powershell
+.\.venv\Scripts\python.exe scripts/generate_minion_set_enchant.py
+.\.venv\Scripts\python.exe scripts/build_native_identity.py
+.\.venv\Scripts\python.exe scripts/verify_minion_set_enchant.py
+```
+
+Configure the existing native build first when adding its new source/test files.
+The verifier's approved card/dependency scope is fixed independently of renderer
+reuse. Additional declarations require new reviewed expectations/evidence; they
+are never automatically verified by an existing producer. Its controlled
+fixtures and Druid/Priest opening checks do not close full session/match gates.
 
 For unchanged pinned inputs:
 

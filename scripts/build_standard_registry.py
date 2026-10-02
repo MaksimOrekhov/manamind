@@ -29,6 +29,7 @@ FILTERED_SCHOOL_DRAW = ROOT / "integrations/rosettastone/card_rules/filtered_sch
 FILTERED_SCHOOL_DRAW_EVIDENCE = ROOT / "integrations/rosettastone/card_rules/filtered_school_draw.evidence.json"
 KEYWORD_ONLY = ROOT / "integrations/rosettastone/card_rules/keyword_only.generated.json"
 METADATA_ONLY = ROOT / "integrations/rosettastone/card_rules/metadata_only.generated.json"
+MINION_SET_ENCHANT = ROOT / "integrations/rosettastone/card_rules/minion_set_enchant.generated.json"
 CARD_RESOURCE = ROOT / "vendor/RosettaStone/Resources/cards.json"
 SOURCE_DIR = ROOT / "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets"
 
@@ -148,6 +149,8 @@ def route_for(meta: dict[str, Any], block: dict[str, Any] | None, generated: str
         return "COMPOSABLE", "Present in the narrow Battlecry/Deathrattle draw manifest; scoped tests and deck-dependent draw outcomes remain separate gates."
     if generated == "filtered_school_draw":
         return "COMPOSABLE", "Present in the allowlisted Deathrattle spell-school draw package; deck membership and full profile gates remain separate."
+    if generated == "minion_set_enchant":
+        return "COMPOSABLE", "Versioned reusable minion-set contract; rules, closure and actions require independent current evidence."
     if generated == "keyword_only":
         return "AUTO", "Present in the strict keyword-only CardDef generator; keyword behavior and bridge actions remain separate verification gates."
     if generated == "metadata_only":
@@ -209,6 +212,7 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
     filtered_school_draw_doc = read_json(FILTERED_SCHOOL_DRAW) if FILTERED_SCHOOL_DRAW.exists() else {"cards": []}
     keyword_only_doc = read_json(KEYWORD_ONLY) if KEYWORD_ONLY.exists() else {"cards": []}
     metadata_only_doc = read_json(METADATA_ONLY) if METADATA_ONLY.exists() else {"cards": []}
+    minion_set_doc = read_json(MINION_SET_ENCHANT) if MINION_SET_ENCHANT.exists() else {"cards": []}
     ban_path = profile_path(profile, "bans")
     ban_doc = read_json(ban_path) if ban_path.exists() else {"format_bans": {"STANDARD": []}}
     standard_bans = set(ban_doc.get("format_bans", {}).get("STANDARD", []))
@@ -219,7 +223,8 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
     filtered_school_draw = {c["card_id"]: c for c in filtered_school_draw_doc.get("cards", [])}
     keyword_only = {c["card_id"]: c for c in keyword_only_doc.get("cards", [])}
     metadata_only = {c["card_id"]: c for c in metadata_only_doc.get("cards", [])}
-    generated_card_ids = set(aliases) | set(compositions) | set(attack_draw) | set(repeated_draw) | set(filtered_school_draw) | set(keyword_only) | set(metadata_only)
+    minion_set = {c["card_id"]: c for c in minion_set_doc.get("cards", [])}
+    generated_card_ids = set(aliases) | set(compositions) | set(attack_draw) | set(repeated_draw) | set(filtered_school_draw) | set(keyword_only) | set(metadata_only) | set(minion_set)
     # Generated C++ is an output format, not independent source evidence. Parsing
     # neighboring generated IDs as literal dependencies creates false graph edges.
     blocks = {card_id: block for card_id, block in blocks.items() if card_id not in generated_card_ids}
@@ -240,6 +245,8 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
             generated_deps.extend(d.get("card_id") for d in aliases[source_id].get("dependencies", []) if d.get("card_id"))
         if source_id in compositions:
             generated_deps.extend(compositions[source_id].get("dependencies", []))
+        if source_id in minion_set:
+            generated_deps.extend(minion_set[source_id].get("dependencies", []))
         for dep_id in ((block or {}).get("referenced_card_ids", []) + generated_deps):
             if dep_id == source_id:
                 continue
@@ -307,6 +314,7 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
             ("filtered_school_draw", filtered_school_draw),
             ("keyword_only", keyword_only),
             ("metadata_only", metadata_only),
+            ("minion_set_enchant", minion_set),
         ) if card_id in entries), None)
         generated = generated_owner
         registration = {
@@ -318,6 +326,7 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
             "filtered_school_draw": "GENERATED_FILTERED_SCHOOL_DRAW",
             "keyword_only": "GENERATED_KEYWORD_ONLY",
             "metadata_only": "GENERATED_METADATA_ONLY",
+            "minion_set_enchant": "GENERATED_MINION_SET_ENCHANT",
         }.get(generated_owner, "DIRECT_SOURCE_BLOCK" if block else ("NO_DETECTED_RULE_REGISTRATION" if norm_text(meta.get("text", "")) else "TEXTLESS_METADATA"))
         route, route_reason = route_for(meta, block, generated)
         text_hash = canonical_hash(norm_text(meta.get("text", "")))
@@ -363,6 +372,8 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
                             for effect in repeated_draw[card_id].get(slot, [])})
         if card_id in filtered_school_draw:
             tasks = ["DrawSpellTask"]
+        if card_id in minion_set:
+            tasks = minion_set[card_id]["task_types"]
         mechanics = meta.get("mechanics", []) or []
         action_signals = sorted(key for key, pattern in ACTION_PATTERNS.items() if pattern.search(meta.get("text", "")))
         card_rows[card_id] = {
@@ -377,6 +388,15 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
             "classifier_features": {"mechanics": mechanics, "action_signals": action_signals, "has_trigger_mechanic_metadata": bool(set(mechanics) & {"BATTLECRY", "DEATHRATTLE", "SPELLBURST", "FRENZY", "COMBO", "QUEST", "START_OF_GAME_KEYWORD"}), "metadata_and_text_only": True},
             "blockers": [],
         }
+        if card_id in minion_set:
+            implementation = card_rows[card_id]["implementation"]
+            implementation.update({"implementation_kind": minion_set_doc["implementation_kind"],
+                                   "contract_id": minion_set_doc["contract_id"],
+                                   "contract_version": minion_set_doc["contract_version"],
+                                   "package_id": minion_set_doc["package_id"],
+                                   "generated_manifest_entry_sha256": canonical_hash(minion_set[card_id]),
+                                   "semantic_contract_reviewed": hist["status"] == "CURRENT" and evidence_row.get("contract_review") == {
+                                       "contract_id": minion_set_doc["contract_id"], "contract_version": minion_set_doc["contract_version"]}})
 
     edges = sorted(edge_map.values(), key=lambda e: (e["from"], e["to"], e["kind"]))
     adjacency: dict[str, list[str]] = defaultdict(list)
@@ -409,6 +429,11 @@ def build_registry(roots_doc: dict[str, Any], *, profile: dict | None = None, id
             "dependency_status": "UNREVIEWED", "unresolved_dynamic_pool_ids": sorted(node_pool_ids.get(dep_id, [])),
             "rules_verification": {"status": "VERIFIED_SCOPED" if card_evidence.get(dep_id, ({}, {}))[1].get("status") == "CURRENT" else "IMPLEMENTED_UNVERIFIED", "evidence_validity": card_evidence.get(dep_id, ({}, {}))[1].get("status", "NO_SCOPED_EVIDENCE"), "training_scope": card_evidence.get(dep_id, ({}, {}))[0].get("cards", {}).get(dep_id, {}).get("training_scope", "SCOPED_PACKAGE_ONLY")},
         }
+        dependency_contract = minion_set_doc.get("dependencies", {}).get(dep_id)
+        if dependency_contract:
+            dependency_nodes[dep_id]["registration_status"] = "DECLARED_EXISTING_FIXED_ENCHANT_OWNER"
+            dependency_nodes[dep_id]["source_file"] = dependency_contract["source_owner"]
+            dependency_nodes[dep_id]["reviewed_contract"] = dependency_contract
     # Static source-reference closure is explicitly a lower bound; unresolved pools remain separate.
     closures: dict[str, dict[str, Any]] = {}
     for root_id in sorted(root_ids):

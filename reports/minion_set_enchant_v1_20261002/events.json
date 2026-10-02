@@ -1,0 +1,20 @@
+{
+  "started_utc": "2026-10-02 16:25:04 UTC",
+  "builds_completed": 7,
+  "failed_compile_builds": 1,
+  "native_family_runs": 6,
+  "native_family_failed_runs": 1,
+  "python_full_suite_runs": 3,
+  "python_full_suite_passed": 68,
+  "corrections": [
+    "Prebuild interface review: native Battlecry uses AddPowerTask; SelfCondition requires wrapping.",
+    "Build 1: CardProperty requirement namespace and base Card tag API.",
+    "Native family run 1: shared targeting, reset and additive aura bugs.",
+    "Boundary run 1: absent-target diagnostic collides with valid hero entity ID 0; test assertion corrected.",
+    "Intrinsic protection control exposed incorrect existing ELUSIVE loader mapping; fixed generic keyword semantics, no new card owner."
+  ],
+  "boundary_failed_runs": 1,
+  "correction_rounds_after_failing_executions": 4,
+  "checks_completed_utc": "2026-10-02 17:17:13 UTC",
+  "intrinsic_protection_boundary_failed_runs": 1
+}

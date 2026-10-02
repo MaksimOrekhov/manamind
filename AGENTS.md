@@ -29,7 +29,7 @@ Follow **Registry → capability grouping → package ranking → CAPABILITY PAC
 
 Before engine/generic-generator changes for new support, record the proposal's semantic contract, existing primitives, candidates, dependencies, changes, expected unlocks, test strategy and custom outliers. Aim for one implementation serving many declarations. A new card-ID behavior branch is CUSTOM first. A single-consumer generic operation needs a universal parameter contract and an independent second declaration/control variation requiring no generator code changes.
 
-GENERIC / REUSABLE_CAPABILITY / CUSTOM describe implementation kind, independently of triage and correctness. Their proposed metadata and AST guardrail are documented in the process guide; do not claim they are installed APIs. Major refactors need a written design and measured benefit. Record authoring/review/debug/build effort and correction cycles per package; do not promise an automation percentage.
+GENERIC / REUSABLE_CAPABILITY / CUSTOM describe implementation kind, independently of triage and correctness. Their metadata remains proposed; the source AST guardrail is implemented in `scripts/check_generic_card_branches.py` with reviewed exceptions in `configs/generator_branch_policy.json`. See the process guide for its limits. Major refactors need a written design and measured benefit. Record authoring/review/debug/build effort and correction cycles per package; do not promise an automation percentage.
 
 ## Rules, dependencies and admission
 

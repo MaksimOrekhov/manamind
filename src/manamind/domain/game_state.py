@@ -25,6 +25,8 @@ class PlayerObservation:
     hero_power: CardFeatures | None = None
     board: tuple[BoardEntity, ...] = field(default_factory=tuple)
     locations: tuple[LocationEntity, ...] = field(default_factory=tuple)
+    hero_divine_shield: bool | None = None
+    hero_divine_shield: bool | None = None
 
     def __post_init__(self) -> None:
         for name in (

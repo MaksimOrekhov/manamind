@@ -47,6 +47,8 @@ def _board_entity(data: dict[str, Any]) -> BoardEntity:
         max_health=max_health,
         board_position=int(data.get("board_position", 0)),
         **{name: bool(data.get(name, False)) for name in flag_names},
+        **{name: None if data.get(name) is None else bool(data[name]) for name in (
+            "cant_be_targeted_by_spells", "cant_be_targeted_by_hero_powers")},
     )
 
 
@@ -72,6 +74,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         hero_health=int(data.get("hero_health", 0)),
         armor=int(data.get("armor", 0)),
         hero_attack=int(data.get("hero_attack", 0)),
+        hero_divine_shield=(None if data.get("hero_divine_shield") is None else bool(data["hero_divine_shield"])),
         max_mana=int(data.get("max_mana", 0)),
         available_mana=int(data.get("available_mana", 0)),
         overloaded_mana=int(data.get("overloaded_mana", 0)),

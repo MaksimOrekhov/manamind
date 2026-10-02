@@ -11,7 +11,7 @@ from pathlib import Path
 
 from standard_profile import ROOT, load_profile, profile_path
 
-GENERATORS = ("core_card_aliases", "effect_composition", "after_attack_draw", "repeated_trigger_draw", "filtered_school_draw", "keyword_only_cards", "metadata_only_cards")
+GENERATORS = ("core_card_aliases", "effect_composition", "after_attack_draw", "repeated_trigger_draw", "filtered_school_draw", "keyword_only_cards", "metadata_only_cards", "minion_set_enchant")
 
 
 def check_ownership() -> None:

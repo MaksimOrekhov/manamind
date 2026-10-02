@@ -50,7 +50,7 @@ def test_encoder_keeps_unknown_card_properties_and_excludes_hidden_hand():
     encoder = StateEncoder(_sample_catalog())
     encoded = encoder.encode(_sample_state())
 
-    assert encoded.global_features.shape == (27,)
+    assert encoded.global_features.shape == (29,)
     assert encoded.self_hand.card_ids.tolist() == [4, 1]
     assert encoded.self_hand.numeric[1, 0] > 0
     assert encoded.opponent_known_cards.size == 0
@@ -411,3 +411,9 @@ def test_checkpoint_restores_exact_catalog_and_rejects_old_format(tmp_path: Path
     torch.save(schema_two_payload, schema_two_path)
     with np.testing.assert_raises_regex(ValueError, "state_encoding_schema_version"):
         load_checkpoint(schema_two_path)
+    schema_six_payload = torch.load(path, weights_only=True)
+    schema_six_payload["state_encoding_schema_version"] = 6
+    schema_six_path = tmp_path / "schema-six.pt"
+    torch.save(schema_six_payload, schema_six_path)
+    with np.testing.assert_raises_regex(ValueError, "state_encoding_schema_version"):
+        load_checkpoint(schema_six_path)

@@ -9,6 +9,8 @@
 #include <effolkronium/random.hpp>
 #include <Rosetta/PlayMode/Cards/Cards.hpp>
 #include <Rosetta/PlayMode/Actions/PlayCard.hpp>
+#include <Rosetta/PlayMode/Actions/Draw.hpp>
+#include <Rosetta/PlayMode/Actions/Summon.hpp>
 #include <Rosetta/PlayMode/Cards/CardDefs.hpp>
 #include <Rosetta/PlayMode/Games/Game.hpp>
 #include <Rosetta/PlayMode/Models/Character.hpp>
@@ -96,6 +98,7 @@ py::dict player_observation(Player* player)
     result["hero_health"] = std::max(0, hero->GetHealth());
     result["armor"] = tag_value(hero, GameTag::ARMOR);
     result["hero_attack"] = hero->GetAttack();
+    result["hero_divine_shield"] = tag_value(hero, GameTag::DIVINE_SHIELD) != 0;
     result["max_mana"] = player->GetTotalMana();
     result["available_mana"] = std::max(0, player->GetRemainingMana());
     result["overloaded_mana"] = player->GetOverloadLocked();
@@ -150,6 +153,8 @@ py::dict player_observation(Player* player)
         entity["dark_gift_id"] = tag_value(minion, GameTag::MANAMIND_DARK_GIFT_ID);
         entity["dormant"] = tag_value(minion, GameTag::DORMANT) != 0;
         entity["can_attack"] = minion->CanAttack();
+        entity["cant_be_targeted_by_spells"] = minion->GetGameTag(GameTag::CANT_BE_TARGETED_BY_SPELLS) != 0;
+        entity["cant_be_targeted_by_hero_powers"] = minion->GetGameTag(GameTag::CANT_BE_TARGETED_BY_HERO_POWERS) != 0;
         board.append(std::move(entity));
     }
     result["board"] = std::move(board);
@@ -1029,6 +1034,82 @@ py::dict make_instance_observation_fixture()
     py::dict result;
     result["hand_card"] = playable_features(held);
     result["weapon"] = player_observation(player)["weapon"];
+    auto* protectedMinion = dynamic_cast<Minion*>(Entity::GetFromCard(player, Cards::FindCardByID("CORE_NEW1_023")));
+    Generic::Summon(protectedMinion, -1, nullptr);
+    result["intrinsic_protection"] = player_observation(player)["board"];
+    return result;
+}
+
+// Controlled verification fixture. Uses ordinary registered powers and the
+// production serializers/action enumeration; it is not a playable deck gate.
+py::dict make_minion_set_enchant_fixture(const std::string& cardId,
+                                       const std::string& playerClass,
+                                       int targetKind)
+{
+    Cards::GetInstance();
+    GameConfig config;
+    config.player1Class = StrToEnum<CardClass>(playerClass);
+    config.player2Class = CardClass::MAGE;
+    config.startPlayer = PlayerType::PLAYER1;
+    config.doShuffle = false; config.skipMulligan = true; config.autoRun = false;
+    for (int i = 0; i < 30; ++i) {
+        config.player1Deck[i] = Cards::FindCardByID("CS2_182");
+        config.player2Deck[i] = Cards::FindCardByID("CS2_182");
+    }
+    Game game(config); game.Start(); game.ProcessUntil(Step::MAIN_ACTION);
+    auto* own = game.GetPlayer1(); auto* enemy = game.GetPlayer2();
+    own->SetTotalMana(10); own->SetUsedMana(0);
+    auto* friendly = dynamic_cast<Minion*>(Entity::GetFromCard(own, Cards::FindCardByID("CS2_182")));
+    auto* opposing = dynamic_cast<Minion*>(Entity::GetFromCard(enemy, Cards::FindCardByID("CS2_182")));
+    Generic::Summon(friendly, -1, nullptr); Generic::Summon(opposing, -1, nullptr);
+    friendly->SetAttack(2);
+    auto* location = Entity::GetFromCard(own, Cards::FindCardByID("REV_990"));
+    own->GetFieldZone()->Add(location);
+    auto* held = Generic::DrawCard(own, Cards::FindCardByID("CS2_182"));
+    Generic::DrawCard(own, Cards::FindCardByID("CS2_029"));
+    Generic::DrawCard(own, Cards::FindCardByID("CS2_106"));
+    auto* consumer = Generic::DrawCard(own, Cards::FindCardByID(cardId));
+    if (!consumer || consumer->card->id != cardId)
+        throw std::invalid_argument("Unknown fixture consumer");
+    Character* target = nullptr;
+    switch (targetKind) {
+        case 0: target = own->GetHero(); break;
+        case 1: target = enemy->GetHero(); break;
+        case 2: target = friendly; break;
+        case 3: target = opposing; break;
+        case 5: friendly->SetGameTag(GameTag::CANT_BE_TARGETED_BY_SPELLS, 1); target = friendly; break;
+        case 6: opposing->SetGameTag(GameTag::STEALTH, 1); target = opposing; break;
+        case 4: break;
+        default: throw std::invalid_argument("Unknown fixture target kind");
+    }
+    const auto snapshot = [&]() {
+        py::dict state;
+        state["turn_number"] = game.GetTurn(); state["active_player"] = "SELF";
+        state["self_player"] = player_observation(own); state["opponent"] = player_observation(enemy);
+        py::list hand;
+        for (auto* card : own->GetHandZone()->GetAll()) hand.append(playable_features(card));
+        state["self_hand"] = hand; state["self_hand_known_count"] = own->GetHandZone()->GetCount();
+        state["opponent_known_cards"] = py::list();
+        return state;
+    };
+    py::dict result;
+    result["before"] = snapshot();
+    result["legal_before"] = enumerate_legal_actions(game, own);
+    result["source_entity_id"] = consumer->GetGameTag(GameTag::ENTITY_ID);
+    result["target_entity_id"] = target ? target->GetGameTag(GameTag::ENTITY_ID) : 0;
+    result["friendly_entity_id"] = friendly->GetGameTag(GameTag::ENTITY_ID);
+    result["location_entity_id"] = location->GetGameTag(GameTag::ENTITY_ID);
+    result["held_before"] = playable_features(held);
+    if (consumer->card->GetCardType() == CardType::MINION)
+        game.Process(own, PlayerTasks::PlayCardTask::Minion(consumer));
+    else if (target)
+        game.Process(own, PlayerTasks::PlayCardTask::SpellTarget(consumer, target));
+    else game.Process(own, PlayerTasks::PlayCardTask::Spell(consumer));
+    result["after"] = snapshot(); result["legal_after"] = enumerate_legal_actions(game, own);
+    result["held_after"] = playable_features(held);
+    own->SetUsedMana(0);
+    game.Process(own, PlayerTasks::PlayCardTask::Minion(held));
+    result["after_transfer"] = snapshot();
     return result;
 }
 
@@ -1117,4 +1198,7 @@ PYBIND11_MODULE(mana_rosetta_bridge, module)
                "Start a deterministic sample match and export player-visible state");
     module.def("make_instance_observation_fixture", &make_instance_observation_fixture,
                "Diagnostic fixture for modified visible hand and weapon instances");
+    module.def("make_minion_set_enchant_fixture", &make_minion_set_enchant_fixture,
+               py::arg("card_id"), py::arg("player_class"), py::arg("target_kind") = 4,
+               "Controlled native family fixture with production observations and legal actions");
 }

@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "package": "after_attack_draw",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "declaration_sha256": "b95d7771be8dc1a414eb046d2597ab7eda12efe33563ed5218cd673890f23ca1",
+  "generator_script_sha256": "84dc5f1d1c85ae6a7af6889e492b6ad6fa35e12fe4292a072ab34577ab0a1a2e",
+  "generated_source_sha256": "a5a087016167ca3cb17fa8e073f385b1dc4638e502e7f8ba80c0aa8b899d106c",
+  "capability_file_sha256": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+  "engine_library_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+  "native_scenario_sha256": "31be4f75d247ca26d1e2bf5b56d646d50a02fd56858b194ecccefd28891717bb",
+  "bridge_smoke_sha256": "756bc31b99b0b4589aa9f1a13cddf5c670e913d0a4ccc04ea9c58a04d99cf79c",
+  "training_eligible": false,
+  "cards": {
+    "CAP_003": {
+      "rules_fingerprint": "bf742e702e52f65fb3bf96fb59248200e1f437569ae61c19b5a1921dbd8d6844",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "0ff3c0d617ec41de596fd3df4d8ab27a4bbd11439088bb6a946660e24a00f6c9",
+      "status": "VERIFIED_SCOPED",
+      "scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind after attack draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  5 |  5 passed | 0 failed | 2587 skipped\n[doctest] assertions: 42 | 42 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    },
+    "EDR_253": {
+      "rules_fingerprint": "6f4e0b2dc8e81cc5dd0a55497a0ff15c7a10a6c336b61d4a485dc820bbbdbf6b",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "0ff3c0d617ec41de596fd3df4d8ab27a4bbd11439088bb6a946660e24a00f6c9",
+      "status": "VERIFIED_SCOPED",
+      "scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind after attack draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  5 |  5 passed | 0 failed | 2587 skipped\n[doctest] assertions: 42 | 42 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    },
+    "CORE_NX2_028": {
+      "rules_fingerprint": "8c034caace4d3f402e7ac03d63e9168c5608a09d1404193bd1c4430a4b7a4445",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "0ff3c0d617ec41de596fd3df4d8ab27a4bbd11439088bb6a946660e24a00f6c9",
+      "status": "VERIFIED_SCOPED",
+      "scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind after attack draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  5 |  5 passed | 0 failed | 2587 skipped\n[doctest] assertions: 42 | 42 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    },
+    "TLC_478": {
+      "rules_fingerprint": "cfeb972a3a59baceb45d24cfc419a61f1f20c0d627d51f49ca1ca1e5b76258e4",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "0ff3c0d617ec41de596fd3df4d8ab27a4bbd11439088bb6a946660e24a00f6c9",
+      "status": "VERIFIED_SCOPED",
+      "scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind after attack draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  5 |  5 passed | 0 failed | 2587 skipped\n[doctest] assertions: 42 | 42 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    },
+    "TLC_840": {
+      "rules_fingerprint": "05520f569b1272b24845f4766dda6db7af656523e75115ced0cee82147aad7aa",
+      "pool_membership_sha256": "89e082c5cfcb21cb8b8ac1bb344be56c99b698a44681ce400ccd1f13d3715b68",
+      "pool_predicate_version": "DECK_DRAW_OUTCOMES_PROFILE_SPECIFIC_V1",
+      "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
+      "engine_build_fingerprint": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "scenario_fingerprint": "0ff3c0d617ec41de596fd3df4d8ab27a4bbd11439088bb6a946660e24a00f6c9",
+      "status": "VERIFIED_SCOPED",
+      "scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
+      "native_test": "[ManaMind after attack draw]* passed",
+      "bridge_smoke": "Standard deck validation, session creation, visible hand, and legal action enumeration passed",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  5 |  5 passed | 0 failed | 2587 skipped\n[doctest] assertions: 42 | 42 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "binary_sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48",
+      "bridge_module_sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    }
+  },
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "c87fddb36ed2a1ff6e88d3618017312ab6aee38bf178e3db942748dde6582324",
+    "engine_source_sha256": "9e6f9fba68636b3cef3f3b6c2e919c9b67203bdbf344f449a70caa50d893742b",
+    "bridge_source_sha256": "f1f84b31655794fdd98ba49cb7e0ca5abbd5dd6f3dbf264b1a67c0f49b4db51d",
+    "observation_source_sha256": "00139550b38a0608e85fd5152e4cfaadc7fdb9e9ef663808a0dc394ba5274f2d",
+    "rules_source_sha256": "d0e8baa05843871972765f9abc32c54854b2d51868c34ccef26a6a21a015d6fe",
+    "scenario_source_sha256": "5d23400db28a87b477dddd51296fb4160a56b0e5bca358d0f2c6f998955bf996",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "e0bbe0cc651b3dac59c34a8b0c48d640d79fad248b3377f49240b521465c1e48"
+    },
+    "native_tests": {
+      "sha256": "de765f79805b9caad8b9d3238a4b954d14ffd5f0cef5449086e24ec98e0af699"
+    },
+    "bridge_module": {
+      "sha256": "de6caf87310efa980e9b5c5b68ee7b1cc8d04c3f145d0f23daf08e7962e4416c"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
+  }
+}
