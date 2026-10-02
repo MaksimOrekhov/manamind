@@ -1113,6 +1113,54 @@ py::dict make_minion_set_enchant_fixture(const std::string& cardId,
     return result;
 }
 
+// Read-only target/action parity fixture for current-hand gated Battlecries.
+// Card/effect semantics are supplied by registered definitions; this fixture
+// only varies the held card's effective cost and compares two native surfaces.
+py::dict inspect_held_card_gate_targets(const std::string& cardId,
+                                        const std::string& heldCardId,
+                                        int heldCurrentCost)
+{
+    Cards::GetInstance();
+    GameConfig config;
+    config.player1Class = CardClass::PRIEST; config.player2Class = CardClass::MAGE;
+    config.startPlayer = PlayerType::PLAYER1; config.doShuffle = false;
+    config.skipMulligan = true; config.autoRun = false;
+    for (int i = 0; i < 30; ++i) {
+        config.player1Deck[i] = Cards::FindCardByID("CS2_182");
+        config.player2Deck[i] = Cards::FindCardByID("CS2_182");
+    }
+    Game game(config); game.Start(); game.ProcessUntil(Step::MAIN_ACTION);
+    auto* own = game.GetPlayer1(); auto* enemy = game.GetPlayer2();
+    own->SetTotalMana(10); own->SetUsedMana(0);
+    auto* friendly = dynamic_cast<Minion*>(Entity::GetFromCard(own, Cards::FindCardByID("CS2_182")));
+    auto* opposing = dynamic_cast<Minion*>(Entity::GetFromCard(enemy, Cards::FindCardByID("CS2_182")));
+    Generic::Summon(friendly, -1, nullptr); Generic::Summon(opposing, -1, nullptr);
+    auto* held = Generic::DrawCard(own, Cards::FindCardByID(heldCardId));
+    held->SetCost(heldCurrentCost);
+    auto* consumer = Generic::DrawCard(own, Cards::FindCardByID(cardId));
+    if (!consumer || consumer->card->id != cardId)
+        throw std::invalid_argument("Unknown held-card-gate fixture card");
+    py::list directTargets;
+    for (auto* target : consumer->card->GetValidPlayTargets(own))
+        directTargets.append(target->GetGameTag(GameTag::ENTITY_ID));
+    py::list actionTargets;
+    py::dict result;
+    result["legal_actions"] = enumerate_legal_actions(game, own);
+    for (const auto& action : result["legal_actions"].cast<py::list>()) {
+        const auto row = action.cast<py::dict>();
+        if (row.contains("card_id") && row["card_id"].cast<std::string>() == cardId &&
+            !row["target_entity_id"].is_none())
+            actionTargets.append(row["target_entity_id"]);
+    }
+    result["direct_target_entity_ids"] = directTargets;
+    result["action_target_entity_ids"] = actionTargets;
+    result["held_card_id"] = heldCardId;
+    result["held_current_cost"] = held->GetCost();
+    result["self_player"] = player_observation(own);
+    result["opponent"] = player_observation(enemy);
+    return result;
+}
+
 py::dict make_sample_observation()
 {
     std::string stage = "configure game";
@@ -1201,4 +1249,7 @@ PYBIND11_MODULE(mana_rosetta_bridge, module)
     module.def("make_minion_set_enchant_fixture", &make_minion_set_enchant_fixture,
                py::arg("card_id"), py::arg("player_class"), py::arg("target_kind") = 4,
                "Controlled native family fixture with production observations and legal actions");
+    module.def("inspect_held_card_gate_targets", &inspect_held_card_gate_targets,
+               py::arg("card_id"), py::arg("held_card_id"), py::arg("held_current_cost"),
+               "Compare native valid targets with bridge legal-action target handles");
 }

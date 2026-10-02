@@ -1,0 +1,153 @@
+{
+  "schema_version": 1,
+  "package_id": "held_card_gate_fixed_battlecry_v1",
+  "contract_id": "held_card_gate_fixed_battlecry",
+  "contract_version": 1,
+  "implementation_kind": "REUSABLE_CAPABILITY",
+  "dependencies": [
+    "BRM_033e"
+  ],
+  "declaration": "integrations/rosettastone/card_rules/held_card_gate_fixed_battlecry.v1.json",
+  "declaration_sha256": "5f88ff397287e1b02470797e48158e4f34d7192b29c9a9d7f53fa8f0bae5febf",
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "renderer_sha256": "1e8269ce27389f16886f1aab4094d768d021c61dcb24470bb1c45e5c012c4057",
+  "generated_header": "vendor/RosettaStone/Includes/Rosetta/PlayMode/CardSets/ManaMindHeldCardGateFixedBattlecryGen.hpp",
+  "generated_source": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/ManaMindHeldCardGateFixedBattlecryGen.cpp",
+  "cards": [
+    {
+      "card_id": "CATA_111",
+      "metadata_sha256": "d7c5c5e8457821deb3d2904f46d18481f8abe02efc45e88ebf5666aacfaece1e",
+      "predicate": {
+        "kind": "MINION_HAS_RACE",
+        "race": "DRAGON"
+      },
+      "effects": [
+        {
+          "op": "REFRESH_MANA",
+          "amount": 2
+        }
+      ],
+      "rules_text_sha256": "286bab975c55463ceb3be55c05fec63758699e86fa571f6fdbdd633e77677c80",
+      "dependencies": [],
+      "task_types": [
+        "ConditionTask",
+        "FlagTask",
+        "RefreshManaTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "CORE_RLK_814",
+      "metadata_sha256": "d5de58fd377119141051695d1a1c18bd604a35e207fae774903647194eae05d5",
+      "predicate": {
+        "kind": "SPELL_HAS_SCHOOL",
+        "school": "SHADOW"
+      },
+      "effects": [
+        {
+          "op": "ADD_SELF_ENCHANT",
+          "enchantment_ref": "BRM_033e"
+        }
+      ],
+      "rules_text_sha256": "5490225892bfa302f394210ca213b08a60b239cb8702ecf38b7eaea3495743fb",
+      "dependencies": [
+        "BRM_033e"
+      ],
+      "task_types": [
+        "AddEnchantmentTask",
+        "ConditionTask",
+        "FlagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "EDR_472",
+      "metadata_sha256": "afb1bf6c59d3ed61beeafa006452c9a0e252b3b624da57d15a748c58959575fd",
+      "predicate": {
+        "kind": "SPELL_CURRENT_COST_AT_LEAST",
+        "minimum_cost": 5
+      },
+      "effects": [
+        {
+          "op": "DAMAGE_TARGET",
+          "amount": 3
+        }
+      ],
+      "targeting": {
+        "mode": "OPTIONAL_WHEN_PREDICATE_TRUE",
+        "predicate_ref": "same",
+        "target_type": "CHARACTER"
+      },
+      "rules_text_sha256": "8956f5be4b73b99a55664cd84b0f4e7b3f482c2f783f2c8bf3fbb57e39ef49fd",
+      "dependencies": [],
+      "task_types": [
+        "ConditionTask",
+        "DamageTask",
+        "FlagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "FIR_961",
+      "metadata_sha256": "6c7ef9a306ab055d94511cd027edb0e1ba3c4fa2c1cab6157295e409df46aaf2",
+      "predicate": {
+        "kind": "SPELL_CURRENT_COST_AT_LEAST",
+        "minimum_cost": 5
+      },
+      "effects": [
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        },
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "LIFESTEAL",
+          "value": 1
+        }
+      ],
+      "rules_text_sha256": "138fd520b84f66188d24e2129918a022fb1d84f7c1ad7f8eaa20471eae0947a0",
+      "dependencies": [],
+      "task_types": [
+        "ConditionTask",
+        "FlagTask",
+        "SetGameTagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    },
+    {
+      "card_id": "TIME_062",
+      "metadata_sha256": "5bd3ee8d5bc1e0ab5f67c059eda13d5e06880f5c699d4838e7c3138ee13c0ecf",
+      "predicate": {
+        "kind": "MINION_HAS_RACE",
+        "race": "DRAGON"
+      },
+      "effects": [
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "TAUNT",
+          "value": 1
+        },
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ],
+      "rules_text_sha256": "9f628a703cdb8603c4e5d8af26f6e4e8312d80f838bf3507fbc25f67e3e6daba",
+      "dependencies": [],
+      "task_types": [
+        "ConditionTask",
+        "FlagTask",
+        "SetGameTagTask"
+      ],
+      "implementation_kind": "REUSABLE_CAPABILITY",
+      "training_eligible": false
+    }
+  ],
+  "training_eligible": false
+}

@@ -10,19 +10,19 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "15d854c22995f0723e065558ae8248696c911ca2",
+    "rules_engine_revision": "9562c889d9bee228cf9d40ecb99ece9558669740",
     "engine_source_identity": {
-      "source_commit": "15d854c22995f0723e065558ae8248696c911ca2",
-      "source_tree_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1"
+      "source_commit": "9562c889d9bee228cf9d40ecb99ece9558669740",
+      "source_tree_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
-      "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
-      "engine_source_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1",
-      "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
+      "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+      "engine_source_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd",
+      "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
-      "rules_source_sha256": "8879a30cae4b8e78d0ef6d857da97753fd4767d155f4205d36eab5a2eb112537",
-      "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
+      "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
+      "scenario_source_sha256": "0404de18ecb6ea473debd99dc19af66850c13597a0256fb786c924cdc029a511",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -46,10 +46,12 @@
     "repeated_trigger_draw_evidence_sha256": "630558c9110236816334b9503cbafbfafce8af9025adc58b3a44069c6e9937f8",
     "filtered_school_draw_manifest_sha256": "e25fe3ed83ca8ec3795a3709ca809c21e7b63ea3ba5ed3f7f0d8b81234f2d48a",
     "filtered_school_draw_evidence_sha256": "44966615ed819da19d278a98a9ac87ded90ca407e0ce6edaa43bbb5bbfb2d15b",
+    "held_card_gate_manifest_sha256": "f24bca3afaedf62e52cd0fa3c85aa99f05c2e849dc971af476de7830dc475817",
+    "held_card_gate_evidence_sha256": "894f42b20bdc69e3f7033727a7513e9f5a7fb9d95a3a71ad157b1c4c71759239",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
     "core_alias_evidence_sha256": "32541da3835949999eae7e203d2e15f79da2e14ac26c4fb3c2fc6cef9093f74c",
-    "pool_detector_sha256": "a43ca77039b01bb28cecdb5937f56ad9f08bfb9ec8b9be757201adb793bccab4",
+    "pool_detector_sha256": "46d623dcda05b043f2a244fe0d402c2ffbd8f97247ff5b62f19327d01ab80636",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },
   "policy": {
@@ -134,15 +136,15 @@
     "roots": 1185,
     "metadata_present": 1185,
     "direct_source_registered": 167,
-    "generated_registered": 179,
-    "text_bearing_without_detected_registration": 839,
+    "generated_registered": 184,
+    "text_bearing_without_detected_registration": 834,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 14,
-    "stale_historical_scoped_evidence": 5,
+    "rules_verified_scoped_current": 5,
+    "stale_historical_scoped_evidence": 19,
     "unresolved_dynamic_pool_definitions": 318,
-    "unique_known_edge_target_nodes_including_roots": 193,
+    "unique_known_edge_target_nodes_including_roots": 194,
     "unreviewed_static_source_edges": 177,
-    "roots_with_complete_dependency_closure": 3,
+    "roots_with_complete_dependency_closure": 0,
     "roots_training_eligible": 0
   },
   "cards": {
@@ -609,13 +611,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -642,6 +644,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -658,6 +662,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -3321,21 +3327,34 @@
         "route_proposal": "UNKNOWN",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
         "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "registration_status": "GENERATED_HELD_CARD_GATE_FIXED_BATTLECRY",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "ConditionTask",
+          "FlagTask",
+          "RefreshManaTask"
+        ],
+        "generated_owner": "held_card_gate_fixed_battlecry",
+        "generated_manifest_entry_sha256": "04854d174cef264200d36f55248b5366bd0ce628cc50ffd4e0d3d4a47bd9c419",
+        "required_capabilities": [
+          "ConditionTask",
+          "FlagTask",
+          "RefreshManaTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1,
+        "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -3346,7 +3365,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -3361,11 +3380,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -3379,11 +3395,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -26069,13 +26082,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -26102,6 +26115,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -26118,6 +26133,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -37805,13 +37822,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -37838,6 +37855,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -37854,6 +37873,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -40511,13 +40532,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -40545,6 +40566,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -40561,6 +40584,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -40911,32 +40936,51 @@
         "route_proposal": "UNKNOWN",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
         "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "registration_status": "GENERATED_HELD_CARD_GATE_FIXED_BATTLECRY",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "AddEnchantmentTask",
+          "ConditionTask",
+          "FlagTask"
+        ],
+        "generated_owner": "held_card_gate_fixed_battlecry",
+        "generated_manifest_entry_sha256": "7882841c9603f372ed3ba4bb526ad9be1b8867f93211bae864b0730ccfd376c3",
+        "required_capabilities": [
+          "AddEnchantmentTask",
+          "ConditionTask",
+          "FlagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1,
+        "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
       "dependencies": {
-        "known_source_candidates": [],
+        "known_source_candidates": [
+          {
+            "to": "BRM_033e",
+            "kind": "enchantment_or_object_reference",
+            "evidence_status": "DECLARATION_ALLOWLISTED_FIXED_ENCHANT_CONTRACT"
+          }
+        ],
         "dynamic_pool_ids": [],
-        "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+        "static_dependency_status": "UNREVIEWED",
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -40950,29 +40994,27 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
+        "dependency:reachable_rules_not_verified",
         "session_match:not_current"
       ],
       "dependency_closure": {
-        "known_source_candidate_ids": [],
-        "known_unique_closure_count_including_root": 1,
+        "known_source_candidate_ids": [
+          "BRM_033e"
+        ],
+        "known_unique_closure_count_including_root": 2,
         "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
         "unresolved_dynamic_pool_ids": [],
-        "graph_fingerprint": "5c4ad643bc1fc256b0303c78e41db8b651f3a4d1f9d8dcc083bd7f272384b3a7"
+        "graph_fingerprint": "a7d744732b6890fcb9e2388240a0b546014973cbf09c88b755c8e10aaf29eea2"
       },
       "training_eligibility": {
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
+          "dependency:reachable_rules_not_verified",
           "session_match:not_current"
         ]
       }
@@ -43682,13 +43724,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Core CardDef parity for the allowlisted alias package; Crystal Merchant trigger condition and draw count in the focused native scenario; Standard deck validation, bridge session, visible card identity and legal-action enumeration. No closure or training claim.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -43721,6 +43763,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
@@ -43740,6 +43784,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
@@ -53722,13 +53768,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -53754,6 +53800,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -53770,6 +53818,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -57576,21 +57626,34 @@
         "route_proposal": "UNKNOWN",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
         "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "registration_status": "GENERATED_HELD_CARD_GATE_FIXED_BATTLECRY",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "ConditionTask",
+          "DamageTask",
+          "FlagTask"
+        ],
+        "generated_owner": "held_card_gate_fixed_battlecry",
+        "generated_manifest_entry_sha256": "6c2d432936f0a8efc0e021308f3c476369136668747757d80c243bb11ad8b87c",
+        "required_capabilities": [
+          "ConditionTask",
+          "DamageTask",
+          "FlagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1,
+        "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -57601,7 +57664,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -57616,11 +57679,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -57634,11 +57694,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -73391,13 +73448,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Deathrattle draws one FIRE spell from the controller's deck; available deck members and complete closure are out of scope.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -73423,6 +73480,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -73439,6 +73498,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -74757,21 +74818,34 @@
         "route_proposal": "UNKNOWN",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
         "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "registration_status": "GENERATED_HELD_CARD_GATE_FIXED_BATTLECRY",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "ConditionTask",
+          "FlagTask",
+          "SetGameTagTask"
+        ],
+        "generated_owner": "held_card_gate_fixed_battlecry",
+        "generated_manifest_entry_sha256": "20c77284cce8b1b81c87e16a3a4364f3a5d15ff06892b10cb696f8d28299070b",
+        "required_capabilities": [
+          "ConditionTask",
+          "FlagTask",
+          "SetGameTagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1,
+        "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -74782,7 +74856,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -74796,11 +74870,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -74814,11 +74885,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -92312,20 +92380,20 @@
           "IncludeTask",
           "SetGameTagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "minion_set_enchant",
         "contract_version": 1,
         "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -92342,7 +92410,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -92352,16 +92420,21 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
+        "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "session_match:not_current"
+        "bridge_action:not_audited",
+        "session_match:not_current",
+        "dependency:static_edges_unreviewed"
       ],
       "dependency_closure": {
         "known_source_candidate_ids": [
           "ICC_210e"
         ],
         "known_unique_closure_count_including_root": 2,
-        "closure_completeness": "COMPLETE_REVIEWED",
+        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
         "unresolved_dynamic_pool_ids": [],
         "graph_fingerprint": "09dedc1cc618d3349356b5160079c5a07e03bde004d9b2517ca8d4ffd700d769"
       },
@@ -92369,9 +92442,14 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
+          "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "session_match:not_current"
+          "bridge_action:not_audited",
+          "session_match:not_current",
+          "dependency:static_edges_unreviewed"
         ]
       }
     },
@@ -92925,13 +93003,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Deathrattle draws one FROST spell from the controller's deck; available deck members and complete closure are out of scope.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -92957,6 +93035,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -92973,6 +93053,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -93126,13 +93208,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Battlecry and Deathrattle draw recipient/count for the tested cases; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -93159,6 +93241,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -93175,6 +93259,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -99532,21 +99618,34 @@
         "route_proposal": "UNKNOWN",
         "route_confidence": "HEURISTIC_SOURCE_AND_METADATA_REVIEW_REQUIRED",
         "route_reason": "No direct source CardDef block or recognized generated registration was found by the source inventory.",
-        "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+        "registration_status": "GENERATED_HELD_CARD_GATE_FIXED_BATTLECRY",
         "source_file": null,
-        "task_types_observed": [],
-        "generated_owner": null,
-        "generated_manifest_entry_sha256": null,
-        "required_capabilities": [],
-        "semantic_contract_reviewed": false
+        "task_types_observed": [
+          "ConditionTask",
+          "FlagTask",
+          "SetGameTagTask"
+        ],
+        "generated_owner": "held_card_gate_fixed_battlecry",
+        "generated_manifest_entry_sha256": "f820f4c7d503873d376242a2dd9bdb7803834f7e202069c233662897a8808562",
+        "required_capabilities": [
+          "ConditionTask",
+          "FlagTask",
+          "SetGameTagTask"
+        ],
+        "semantic_contract_reviewed": true,
+        "implementation_kind": "REUSABLE_CAPABILITY",
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1,
+        "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "UNKNOWN",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -99557,7 +99656,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -99571,11 +99670,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:UNKNOWN",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
-        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -99589,11 +99685,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:UNKNOWN",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
-          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -102673,20 +102766,20 @@
           "IncludeTask",
           "SetGameTagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "minion_set_enchant",
         "contract_version": 1,
         "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -102703,7 +102796,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -102715,16 +102808,21 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
+        "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "session_match:not_current"
+        "bridge_action:not_audited",
+        "session_match:not_current",
+        "dependency:static_edges_unreviewed"
       ],
       "dependency_closure": {
         "known_source_candidate_ids": [
           "ULD_191e"
         ],
         "known_unique_closure_count_including_root": 2,
-        "closure_completeness": "COMPLETE_REVIEWED",
+        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
         "unresolved_dynamic_pool_ids": [],
         "graph_fingerprint": "f180a421087aae85aabfb68548201054f281af50a02d0b3a2308266679851b6b"
       },
@@ -102732,9 +102830,14 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
+          "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "session_match:not_current"
+          "bridge_action:not_audited",
+          "session_match:not_current",
+          "dependency:static_edges_unreviewed"
         ]
       }
     },
@@ -111173,20 +111276,20 @@
           "IncludeTask",
           "SetGameTagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "minion_set_enchant",
         "contract_version": 1,
         "package_id": "minion_set_enchant_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "Full fixed effect family including lifetime, target legality and observed state; scoped package, no full-profile match gate.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -111203,7 +111306,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -111218,16 +111321,21 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
+        "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "session_match:not_current"
+        "bridge_action:not_audited",
+        "session_match:not_current",
+        "dependency:static_edges_unreviewed"
       ],
       "dependency_closure": {
         "known_source_candidate_ids": [
           "ICC_210e"
         ],
         "known_unique_closure_count_including_root": 2,
-        "closure_completeness": "COMPLETE_REVIEWED",
+        "closure_completeness": "INCOMPLETE_UNREVIEWED_STATIC_AND_DYNAMIC_HEURISTICS",
         "unresolved_dynamic_pool_ids": [],
         "graph_fingerprint": "55ca60d3182c8b998269dcfbb8b87839f606cc1eb47a5be4e897d93e13e3a7eb"
       },
@@ -111235,9 +111343,14 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
+          "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "session_match:not_current"
+          "bridge_action:not_audited",
+          "session_match:not_current",
+          "dependency:static_edges_unreviewed"
         ]
       }
     },
@@ -117745,13 +117858,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -117777,6 +117890,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -117793,6 +117908,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -123218,13 +123335,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "AFTER_ATTACK trigger actor and declared fixed effects; deck-draw outcome closure is not verified.",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -123251,6 +123368,8 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "bridge_action:not_audited",
@@ -123267,6 +123386,8 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "bridge_action:not_audited",
@@ -124311,6 +124432,7 @@
       "BAR_878t",
       "BE_036",
       "BOT_102t",
+      "BRM_033e",
       "BTA_02pe",
       "BT_035e",
       "BT_072",
@@ -125974,6 +126096,25 @@
         "source_file": null,
         "task_types_observed": [],
         "rules_status": "UNKNOWN",
+        "dependency_status": "UNREVIEWED",
+        "unresolved_dynamic_pool_ids": [],
+        "rules_verification": {
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_validity": "NO_SCOPED_EVIDENCE",
+          "training_scope": "SCOPED_PACKAGE_ONLY"
+        }
+      },
+      "BRM_033e": {
+        "card_id": "BRM_033e",
+        "metadata_status": "PRESENT",
+        "name": "Dragon Blood",
+        "type": "ENCHANTMENT",
+        "collectible": null,
+        "is_standard_root": false,
+        "registration_status": "DIRECT_SOURCE_BLOCK",
+        "source_file": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/BrmCardsGen.cpp",
+        "task_types_observed": [],
+        "rules_status": "IMPLEMENTED_UNVERIFIED",
         "dependency_status": "UNREVIEWED",
         "unresolved_dynamic_pool_ids": [],
         "rules_verification": {
@@ -127932,8 +128073,8 @@
         "dependency_status": "UNREVIEWED",
         "unresolved_dynamic_pool_ids": [],
         "rules_verification": {
-          "status": "VERIFIED_SCOPED",
-          "evidence_validity": "CURRENT",
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_validity": "STALE",
           "training_scope": "SCOPED_PACKAGE_ONLY"
         },
         "reviewed_contract": {
@@ -129360,8 +129501,8 @@
         "dependency_status": "UNREVIEWED",
         "unresolved_dynamic_pool_ids": [],
         "rules_verification": {
-          "status": "VERIFIED_SCOPED",
-          "evidence_validity": "CURRENT",
+          "status": "IMPLEMENTED_UNVERIFIED",
+          "evidence_validity": "STALE",
           "training_scope": "SCOPED_PACKAGE_ONLY"
         },
         "reviewed_contract": {
@@ -131035,6 +131176,18 @@
         "evidence_source": "nearest_CardDef_source_block",
         "destination_known": true,
         "destination_name": "Sinfall Boon",
+        "destination_type": "ENCHANTMENT",
+        "destination_collectible": null,
+        "destination_is_standard_root": false
+      },
+      {
+        "from": "CORE_RLK_814",
+        "to": "BRM_033e",
+        "kind": "enchantment_or_object_reference",
+        "evidence_status": "DECLARATION_ALLOWLISTED_FIXED_ENCHANT_CONTRACT",
+        "evidence_source": "generated_manifest",
+        "destination_known": true,
+        "destination_name": "Dragon Blood",
         "destination_type": "ENCHANTMENT",
         "destination_collectible": null,
         "destination_is_standard_root": false
@@ -136630,12 +136783,12 @@
     },
     "pool_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "a43ca77039b01bb28cecdb5937f56ad9f08bfb9ec8b9be757201adb793bccab4",
+      "source_sha256": "46d623dcda05b043f2a244fe0d402c2ffbd8f97247ff5b62f19327d01ab80636",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"
     },
-    "unique_known_nonroot_dependency_nodes": 191,
+    "unique_known_nonroot_dependency_nodes": 192,
     "known_closure_is_lower_bound": true
   },
   "deck_legality": {

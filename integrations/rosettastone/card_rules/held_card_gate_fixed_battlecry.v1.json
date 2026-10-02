@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "package_id": "held_card_gate_fixed_battlecry_v1",
+  "contract_id": "held_card_gate_fixed_battlecry",
+  "contract_version": 1,
+  "implementation_kind": "REUSABLE_CAPABILITY",
+  "reviewed_card_ids": [
+    "CATA_111",
+    "TIME_062",
+    "CORE_RLK_814",
+    "FIR_961",
+    "EDR_472"
+  ],
+  "dependencies": [
+    "BRM_033e"
+  ],
+  "cards": [
+    {
+      "card_id": "CATA_111",
+      "metadata_sha256": "d7c5c5e8457821deb3d2904f46d18481f8abe02efc45e88ebf5666aacfaece1e",
+      "predicate": {
+        "kind": "MINION_HAS_RACE",
+        "race": "DRAGON"
+      },
+      "effects": [
+        {
+          "op": "REFRESH_MANA",
+          "amount": 2
+        }
+      ]
+    },
+    {
+      "card_id": "TIME_062",
+      "metadata_sha256": "5bd3ee8d5bc1e0ab5f67c059eda13d5e06880f5c699d4838e7c3138ee13c0ecf",
+      "predicate": {
+        "kind": "MINION_HAS_RACE",
+        "race": "DRAGON"
+      },
+      "effects": [
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "TAUNT",
+          "value": 1
+        },
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "CORE_RLK_814",
+      "metadata_sha256": "d5de58fd377119141051695d1a1c18bd604a35e207fae774903647194eae05d5",
+      "predicate": {
+        "kind": "SPELL_HAS_SCHOOL",
+        "school": "SHADOW"
+      },
+      "effects": [
+        {
+          "op": "ADD_SELF_ENCHANT",
+          "enchantment_ref": "BRM_033e"
+        }
+      ]
+    },
+    {
+      "card_id": "FIR_961",
+      "metadata_sha256": "6c7ef9a306ab055d94511cd027edb0e1ba3c4fa2c1cab6157295e409df46aaf2",
+      "predicate": {
+        "kind": "SPELL_CURRENT_COST_AT_LEAST",
+        "minimum_cost": 5
+      },
+      "effects": [
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "DIVINE_SHIELD",
+          "value": 1
+        },
+        {
+          "op": "SET_SELF_TAG",
+          "tag": "LIFESTEAL",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "card_id": "EDR_472",
+      "metadata_sha256": "afb1bf6c59d3ed61beeafa006452c9a0e252b3b624da57d15a748c58959575fd",
+      "predicate": {
+        "kind": "SPELL_CURRENT_COST_AT_LEAST",
+        "minimum_cost": 5
+      },
+      "effects": [
+        {
+          "op": "DAMAGE_TARGET",
+          "amount": 3
+        }
+      ],
+      "targeting": {
+        "mode": "OPTIONAL_WHEN_PREDICATE_TRUE",
+        "predicate_ref": "same",
+        "target_type": "CHARACTER"
+      }
+    }
+  ]
+}

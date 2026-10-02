@@ -1,0 +1,102 @@
+{
+  "package_id": "held_card_gate_fixed_battlecry_v1",
+  "contract_id": "held_card_gate_fixed_battlecry",
+  "contract_version": 1,
+  "scope": "SCOPED_PACKAGE_ONLY",
+  "cards": {
+    "CATA_111": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "contract_review": {
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1
+      },
+      "scenario_fingerprint": "e46d3acb26d14f204df4647cb58ba4b57ee9d6d6e82139356207f21483803c57"
+    },
+    "TIME_062": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "contract_review": {
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1
+      },
+      "scenario_fingerprint": "c3d663d0f07bbdc1e300ec1b3f6d2aff9126903f07d34449ab7a413790eb85f1"
+    },
+    "CORE_RLK_814": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "contract_review": {
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1
+      },
+      "scenario_fingerprint": "73da5db7264b353ae12d626a5b724d3d2cfa0fcfd83b8b144441ae88d9a43a08"
+    },
+    "FIR_961": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "contract_review": {
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1
+      },
+      "scenario_fingerprint": "76bfd248b8b667635e0fbd728bc80cc32fe798458fdfb13326458e59c9cc765b"
+    },
+    "EDR_472": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "contract_review": {
+        "contract_id": "held_card_gate_fixed_battlecry",
+        "contract_version": 1
+      },
+      "scenario_fingerprint": "dbd5b4229b98256b3e0bc57465681ccef57a6e08324e68a6844b8b929c2e6be7"
+    }
+  },
+  "family_tests": "PASS",
+  "bridge_target_parity": {
+    "4": {
+      "target_count": 0,
+      "direct_action_parity": "PASS"
+    },
+    "5": {
+      "target_count": 4,
+      "direct_action_parity": "PASS"
+    }
+  },
+  "known_baseline_native_failure": "[Druid : Minion] - CORE_OG_044 : Fandral Staghelmh",
+  "training_eligible": false,
+  "schema_version": 2,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+    "engine_source_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd",
+    "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
+    "scenario_source_sha256": "0404de18ecb6ea473debd99dc19af66850c13597a0256fb786c924cdc029a511",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "abc6380e9fa2de005d593802044a0131c7b17859b295259ac47f9885231433a4"
+    },
+    "native_tests": {
+      "sha256": "1f4170c26cf7a17e84cd3eb1c8c2bf3ec38a30de7883f24db6bee41315e4f3b3"
+    },
+    "bridge_module": {
+      "sha256": "6719ec5269217c4c096a5193dc7428dbeed539e2a7feb641cb236a17a435338a"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
+  }
+}

@@ -11,19 +11,19 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "15d854c22995f0723e065558ae8248696c911ca2",
+    "rules_engine_revision": "9562c889d9bee228cf9d40ecb99ece9558669740",
     "engine_source_identity": {
-      "source_commit": "15d854c22995f0723e065558ae8248696c911ca2",
-      "source_tree_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1"
+      "source_commit": "9562c889d9bee228cf9d40ecb99ece9558669740",
+      "source_tree_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
-      "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
-      "engine_source_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1",
-      "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
+      "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+      "engine_source_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd",
+      "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
-      "rules_source_sha256": "8879a30cae4b8e78d0ef6d857da97753fd4767d155f4205d36eab5a2eb112537",
-      "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
+      "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
+      "scenario_source_sha256": "0404de18ecb6ea473debd99dc19af66850c13597a0256fb786c924cdc029a511",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -31,15 +31,15 @@
     "roots": 1185,
     "metadata_present": 1185,
     "direct_source_registered": 167,
-    "generated_registered": 179,
-    "text_bearing_without_detected_registration": 839,
+    "generated_registered": 184,
+    "text_bearing_without_detected_registration": 834,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 14,
-    "stale_historical_scoped_evidence": 5,
+    "rules_verified_scoped_current": 5,
+    "stale_historical_scoped_evidence": 19,
     "unresolved_dynamic_pool_definitions": 318,
-    "unique_known_edge_target_nodes_including_roots": 193,
+    "unique_known_edge_target_nodes_including_roots": 194,
     "unreviewed_static_source_edges": 177,
-    "roots_with_complete_dependency_closure": 3,
+    "roots_with_complete_dependency_closure": 0,
     "roots_training_eligible": 0,
     "known_dependency_closure": "LOWER_BOUND_ONLY; static source candidates unreviewed and dynamic pools unresolved",
     "full_standard_training": "BLOCKED",
@@ -54,16 +54,16 @@
     },
     "registration_counts": {
       "direct_source_block": 167,
-      "recognized_generated_manifest": 179,
-      "missing_detected_registration_with_text": 839,
+      "recognized_generated_manifest": 184,
+      "missing_detected_registration_with_text": 834,
       "textless_metadata_candidates": 0
     },
-    "current_rules_verified": 14,
-    "historical_scoped_evidence_marked_stale": 5
+    "current_rules_verified": 5,
+    "historical_scoped_evidence_marked_stale": 19
   },
   "dependencies": {
-    "unique_known_nonroot_dependency_nodes": 191,
-    "source_candidate_edges": 242,
+    "unique_known_nonroot_dependency_nodes": 192,
+    "source_candidate_edges": 243,
     "unreviewed_static_edges": 177,
     "unresolved_dynamic_pool_definitions": 318,
     "pool_candidate_definitions_by_kind": {
@@ -73,7 +73,7 @@
     },
     "roots_with_any_unresolved_dynamic_pool": 282,
     "known_dependency_origins_with_pool_candidates": 20,
-    "known_closure_complete_roots": 3,
+    "known_closure_complete_roots": 0,
     "most_reused_known_nodes": [
       {
         "card_id": "ICC_210e",
@@ -253,7 +253,7 @@
     ],
     "pool_candidate_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "a43ca77039b01bb28cecdb5937f56ad9f08bfb9ec8b9be757201adb793bccab4",
+      "source_sha256": "46d623dcda05b043f2a244fe0d402c2ffbd8f97247ff5b62f19327d01ab80636",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"
@@ -980,7 +980,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 507,
+      "unregistered_text_root_count": 502,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -991,7 +991,6 @@
         "CAP_401",
         "CAP_406",
         "CAP_803",
-        "CATA_111",
         "CATA_130",
         "CATA_132",
         "CATA_133",
@@ -1094,7 +1093,6 @@
         "CORE_RLK_506",
         "CORE_RLK_706",
         "CORE_RLK_745",
-        "CORE_RLK_814",
         "CORE_SCH_181",
         "CORE_SW_047",
         "CORE_TRL_240",
@@ -1153,7 +1151,6 @@
         "EDR_469",
         "EDR_470",
         "EDR_471",
-        "EDR_472",
         "EDR_481",
         "EDR_484",
         "EDR_488",
@@ -1243,7 +1240,6 @@
         "FIR_956",
         "FIR_958",
         "FIR_960",
-        "FIR_961",
         "JAIL_029",
         "JAIL_030",
         "JAIL_035",
@@ -1374,7 +1370,6 @@
         "TIME_058",
         "TIME_059",
         "TIME_061",
-        "TIME_062",
         "TIME_063",
         "TIME_101",
         "TIME_102",
@@ -1877,7 +1872,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 273,
+      "unregistered_text_root_count": 272,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -1885,7 +1880,6 @@
         "CAP_800",
         "CAP_803",
         "CAP_805",
-        "CATA_111",
         "CATA_130",
         "CATA_132",
         "CATA_135",
@@ -2380,7 +2374,7 @@
         "TLC_902",
         "TLC_987"
       ],
-      "unregistered_text_root_count": 117,
+      "unregistered_text_root_count": 116,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_006",
@@ -2420,7 +2414,6 @@
         "EDR_421",
         "EDR_430",
         "EDR_460",
-        "EDR_472",
         "EDR_480",
         "EDR_482",
         "EDR_525",
@@ -4446,7 +4439,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 507,
+      "unregistered_text_root_count": 502,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -4457,7 +4450,6 @@
         "CAP_401",
         "CAP_406",
         "CAP_803",
-        "CATA_111",
         "CATA_130",
         "CATA_132",
         "CATA_133",
@@ -4560,7 +4552,6 @@
         "CORE_RLK_506",
         "CORE_RLK_706",
         "CORE_RLK_745",
-        "CORE_RLK_814",
         "CORE_SCH_181",
         "CORE_SW_047",
         "CORE_TRL_240",
@@ -4619,7 +4610,6 @@
         "EDR_469",
         "EDR_470",
         "EDR_471",
-        "EDR_472",
         "EDR_481",
         "EDR_484",
         "EDR_488",
@@ -4709,7 +4699,6 @@
         "FIR_956",
         "FIR_958",
         "FIR_960",
-        "FIR_961",
         "JAIL_029",
         "JAIL_030",
         "JAIL_035",
@@ -4840,7 +4829,6 @@
         "TIME_058",
         "TIME_059",
         "TIME_061",
-        "TIME_062",
         "TIME_063",
         "TIME_101",
         "TIME_102",
@@ -5343,7 +5331,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 273,
+      "unregistered_text_root_count": 272,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -5351,7 +5339,6 @@
         "CAP_800",
         "CAP_803",
         "CAP_805",
-        "CATA_111",
         "CATA_130",
         "CATA_132",
         "CATA_135",
@@ -5846,7 +5833,7 @@
         "TLC_902",
         "TLC_987"
       ],
-      "unregistered_text_root_count": 117,
+      "unregistered_text_root_count": 116,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_006",
@@ -5886,7 +5873,6 @@
         "EDR_421",
         "EDR_430",
         "EDR_460",
-        "EDR_472",
         "EDR_480",
         "EDR_482",
         "EDR_525",
