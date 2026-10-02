@@ -86,7 +86,7 @@ class ManaMindMinionSetEnchantGen {
 }
 '''
     blocks = []
-    for row in rows:
+    for row in sorted(rows, key=lambda item: item["card_id"]):
         cid = row["card_id"]
         lines = [f'    if (cards.contains("{cid}")) throw std::logic_error("duplicate generated CardDef: {cid}");',
                  "    {", "        CardDef cardDef;", "        cardDef.ClearData();"]

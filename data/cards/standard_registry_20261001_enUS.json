@@ -10,18 +10,18 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
+    "rules_engine_revision": "15d854c22995f0723e065558ae8248696c911ca2",
     "engine_source_identity": {
-      "source_commit": "2d4f89e3f26f691683d445fefae34de36bbf2d26",
-      "source_tree_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51"
+      "source_commit": "15d854c22995f0723e065558ae8248696c911ca2",
+      "source_tree_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
-      "engine_source_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51",
+      "engine_source_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1",
       "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
-      "observation_source_sha256": "6a8f2c8acf3c85f3c57d5a8b0c5b5c1cd09dfb9872133ed000f450bfaf8943a2",
-      "rules_source_sha256": "1150db5018f7e5b1cf0af09cc69bb54ed2a9bbafbf693bd89f72d9a8146bfb3b",
+      "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+      "rules_source_sha256": "8879a30cae4b8e78d0ef6d857da97753fd4767d155f4205d36eab5a2eb112537",
       "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
@@ -41,15 +41,15 @@
     "alias_manifest_sha256": "131e820e6b114ea16f7d27a2a27cb491280f421b7b8998cef0af63cafa839220",
     "composition_manifest_sha256": "c136edacda5515ad1bf0832a8740a575783f2967631894473e82506dd6da887e",
     "after_attack_draw_manifest_sha256": "905a545a2c16ec3d2ed54bcb705f99ead31869d1d693d8b6a51588cd8fc29046",
-    "after_attack_draw_evidence_sha256": "6bcc0037e0eb588cdfe4050c8ca14501a772cb96dc97d06ddf9421a0a4ca374d",
+    "after_attack_draw_evidence_sha256": "7c4102ed96406c43ab85e2a2a9b7d8870f3c9f0190746e86480904a4338bbbaf",
     "repeated_trigger_draw_manifest_sha256": "651ceb6100b976b2df7d39dadcb3d1a0780ed91722dcab4f8ece126834aaed8a",
-    "repeated_trigger_draw_evidence_sha256": "4ac2c3ebee4fffe8934b10202980aaec3f210c534e5cdbf8448f0a011fb26475",
+    "repeated_trigger_draw_evidence_sha256": "630558c9110236816334b9503cbafbfafce8af9025adc58b3a44069c6e9937f8",
     "filtered_school_draw_manifest_sha256": "e25fe3ed83ca8ec3795a3709ca809c21e7b63ea3ba5ed3f7f0d8b81234f2d48a",
-    "filtered_school_draw_evidence_sha256": "6f4be18fe9446d43e356e2f5ba1aef2feb18264b6c4a72199377f041eb7da89c",
+    "filtered_school_draw_evidence_sha256": "44966615ed819da19d278a98a9ac87ded90ca407e0ce6edaa43bbb5bbfb2d15b",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "0f081ee0ed2a687df52bf16daadfca223c3436f78d5acc3c40d78ad96b28801a",
-    "pool_detector_sha256": "e73fc601a889c9261ff635ad40a6c032a528a1f336e81ecbc07300d14b6fd8fd",
+    "core_alias_evidence_sha256": "32541da3835949999eae7e203d2e15f79da2e14ac26c4fb3c2fc6cef9093f74c",
+    "pool_detector_sha256": "a43ca77039b01bb28cecdb5937f56ad9f08bfb9ec8b9be757201adb793bccab4",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },
   "policy": {
@@ -140,7 +140,7 @@
     "rules_verified_scoped_current": 14,
     "stale_historical_scoped_evidence": 5,
     "unresolved_dynamic_pool_definitions": 318,
-    "unique_known_dependency_nodes": 193,
+    "unique_known_edge_target_nodes_including_roots": 193,
     "unreviewed_static_source_edges": 177,
     "roots_with_complete_dependency_closure": 3,
     "roots_training_eligible": 0
@@ -136630,7 +136630,7 @@
     },
     "pool_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "e73fc601a889c9261ff635ad40a6c032a528a1f336e81ecbc07300d14b6fd8fd",
+      "source_sha256": "a43ca77039b01bb28cecdb5937f56ad9f08bfb9ec8b9be757201adb793bccab4",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"

@@ -7,20 +7,20 @@
   "generated_source_sha256": "b1fabba9ea68e80cdbd5f0c757b64d555c6cf1825f73a265931b2b7881b82da4",
   "generated_header_sha256": "82476ec4a8a818a532b4283329cd6f954d37db746909642ec1ec653dfd9361db",
   "capability_file_sha256": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-  "engine_library_sha256": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
+  "engine_library_sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
   "engine_cmake_cache_sha256": "f1cdac4f9bb9314764738641fcf09d0298823a10229ac30a6f64d6145ac046a7",
   "bridge_cmake_cache_sha256": "13a4b0d990d5f0489a97b5aa6f48ee59fd3031721524e794f3270969f1fc3480",
   "native_scenario_sha256": "1ce7f383f5cc18c15d8a132668b94f85b08dea144bb402b30f2e18c8841a8f2f",
-  "native_executable_sha256": "50d7d00068ac658db32a51661865ffd5d1e9983bb94c01306fbf1182fb93808c",
+  "native_executable_sha256": "58d2bb95b243dbe7a557935296dd8f27a161746ade0ad473b6250495e5f05794",
   "bridge_verifier_sha256": "f06d0aaf0a30c4ae26d8a24792eb84b498d820c23d2dd51ae0d43b1769f71927",
-  "bridge_module_sha256": "94b987c2c57a387aa1c23e2b0ac89472f5ad83beed71a9c282ebeaaf453562e2",
+  "bridge_module_sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99",
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
-    "engine_source_sha256": "001a597d3e05675a9403d8291a70e2ee47b901742ce8db622703433303915f51",
+    "engine_source_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1",
     "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
-    "observation_source_sha256": "6a8f2c8acf3c85f3c57d5a8b0c5b5c1cd09dfb9872133ed000f450bfaf8943a2",
-    "rules_source_sha256": "1150db5018f7e5b1cf0af09cc69bb54ed2a9bbafbf693bd89f72d9a8146bfb3b",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "8879a30cae4b8e78d0ef6d857da97753fd4767d155f4205d36eab5a2eb112537",
     "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
     "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
   },
@@ -303,27 +303,27 @@
       "pool_membership_sha256": "d55f9019a48c6f26b24d8134989690ad08458de16b1b7c249ddbe505e20dba0d",
       "pool_predicate_version": "NO_DYNAMIC_OUTCOME_IN_SCOPED_CARD_EFFECT_V1",
       "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-      "engine_build_fingerprint": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
-      "scenario_fingerprint": "e10860f1aa6d91c43f88dc338f51b4bb7e978dc834b252e2900d460575cdc0c0",
+      "engine_build_fingerprint": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
+      "scenario_fingerprint": "561b6ed24bce43c26d0129c2b1fa214faa8436ded31082bcd853d6171559c36d",
       "status": "VERIFIED_SCOPED",
       "scope": "Core CardDef parity for the allowlisted alias package; Crystal Merchant trigger condition and draw count in the focused native scenario; Standard deck validation, bridge session, visible card identity and legal-action enumeration. No closure or training claim.",
       "native_test": "[ManaMind Core aliases]* passed",
-      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2608 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+      "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2609 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!",
       "bridge_smoke": "Standard deck validation, session creation, visible opening hand and legal-action enumeration passed for 45 cards in the batch",
-      "binary_sha256": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b",
-      "bridge_module_sha256": "94b987c2c57a387aa1c23e2b0ac89472f5ad83beed71a9c282ebeaaf453562e2",
+      "binary_sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
+      "bridge_module_sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99",
       "training_eligible": false
     }
   },
   "artifacts": {
     "engine_library": {
-      "sha256": "17ea7f3b9744c46179aa9388a766d4afacbe9b6f9cc8ae8581e92f913280112b"
+      "sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7"
     },
     "native_tests": {
-      "sha256": "50d7d00068ac658db32a51661865ffd5d1e9983bb94c01306fbf1182fb93808c"
+      "sha256": "58d2bb95b243dbe7a557935296dd8f27a161746ade0ad473b6250495e5f05794"
     },
     "bridge_module": {
-      "sha256": "94b987c2c57a387aa1c23e2b0ac89472f5ad83beed71a9c282ebeaaf453562e2"
+      "sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99"
     }
   },
   "execution_result": {

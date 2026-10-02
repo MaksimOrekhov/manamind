@@ -25,7 +25,7 @@ def test_all_three_consumers_deterministic_and_no_behavior_ids(inputs):
     declaration, catalog, resources = inputs
     rows = validate(declaration, catalog, resources)
     assert len(rows) == 3
-    assert generate(rows) == generate(list(reversed(list(reversed(rows)))))
+    assert generate(rows) == generate(list(reversed(rows)))
     assert not [r for r in inventory(ROOT) if r["path"] == "scripts/card_rules/minion_set_enchant.py"]
     # Independent second parameterization, not a new root implementation.
     effect = {"op": "MINION_SET_ENCHANT", "selector": "TARGET_MINION",

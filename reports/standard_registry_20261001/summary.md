@@ -11,7 +11,7 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 
 ## Dependency graph
 
-- Unique known non-root nodes: **191**.
+- Unique edge-target nodes, including Standard roots: **193**; unique known non-root dependency nodes: **191**.
 - Static literal/reference candidates: **242**, all requiring review or limited declaration evidence.
 - Unresolved dynamic pool candidate signals: **318** across **282** Standard roots and **20** known dependency origins; by kind: `{"discover": 100, "generated_card": 68, "random_card_or_pool": 150}`.
 - Detector v2 excludes random board targets and fixed named-token summons; pool candidates remain heuristic, not a confirmed or exhaustive pool inventory.
