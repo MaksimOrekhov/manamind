@@ -1,0 +1,91 @@
+{
+  "backends": {
+    "ManaEngine": {
+      "apply_action_end_turn": {
+        "iterations": 25,
+        "median_ms": 0.0659,
+        "p95_ms": 0.1249
+      },
+      "clone": {
+        "iterations": 500,
+        "median_ms": 0.0055,
+        "p95_ms": 0.0115
+      },
+      "legal_actions": {
+        "iterations": 250,
+        "median_ms": 0.04355,
+        "p95_ms": 0.1028
+      },
+      "pass_only_complete_games": {
+        "games_per_second": 32.13555548522072,
+        "iterations": 10,
+        "mean_transitions_per_game": 67.0,
+        "results": [
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN"
+        ],
+        "transitions_per_second": 2153.0822175097883
+      },
+      "session_creation": {
+        "iterations": 25,
+        "median_ms": 14.9319,
+        "p95_ms": 15.9827
+      },
+      "working_set_delta_bytes_per_session_estimate": 25559
+    },
+    "RosettaStone": {
+      "apply_action_end_turn": {
+        "iterations": 25,
+        "median_ms": 0.3113,
+        "p95_ms": 0.4646
+      },
+      "clone": null,
+      "legal_actions": {
+        "iterations": 250,
+        "median_ms": 0.0327,
+        "p95_ms": 0.0665
+      },
+      "pass_only_complete_games": {
+        "games_per_second": 15.983224008169897,
+        "iterations": 10,
+        "mean_transitions_per_game": 67.0,
+        "results": [
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN"
+        ],
+        "transitions_per_second": 1070.8760085473832
+      },
+      "session_creation": {
+        "iterations": 25,
+        "median_ms": 1.4573,
+        "p95_ms": 2.4386
+      },
+      "working_set_delta_bytes_per_session_estimate": 202997
+    }
+  },
+  "build_type": "Release (CMake Ninja)",
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "iterations": 25,
+  "os": "Windows-11-10.0.26200-SP0",
+  "scenarios": {
+    "ManaEngine": "30-card supported Mage stress fixture (CORE_DRG_107 x30); seeded, no shuffle; pass-only matches reach fatigue terminal; not a deck-validity claim",
+    "RosettaStone": "30-card Rosetta-validated Mage reference fixture; seeded, no shuffle; pass-only matches reach fatigue terminal"
+  },
+  "seed": 7
+}

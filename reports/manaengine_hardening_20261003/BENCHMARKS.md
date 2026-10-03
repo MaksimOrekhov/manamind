@@ -24,6 +24,22 @@ Clone remains approximately 4.9 microseconds per copy in this run. Full value-co
 
 The newly recorded Rosetta values were session creation 1.135 ms, `legal_actions` 0.0262 ms, end turn 0.2032 ms, estimated working-set delta 223,641 B, and 1,325.2 pass-only transitions/sec. These are not directly compared to ManaEngine because of the fixture difference. Rosetta cloning is not exposed by this benchmark.
 
+## Repeated measurements after held-card progression
+
+Two additional Release runs were recorded in [benchmarks_after_held_progress.json](benchmarks_after_held_progress.json) and [benchmarks_after_held_progress_repeat.json](benchmarks_after_held_progress_repeat.json). Both use the same 30× Violet Spellwing synthetic ManaEngine deck, seed and pass-only workload; each produced 10 fatigue-terminal games. The run medians were:
+
+| Metric | Run 1 | Run 2 |
+|---|---:|---:|
+| Session creation | 15.53 ms | 14.93 ms |
+| `legal_actions` | 0.0408 ms | 0.0436 ms |
+| `apply_action` (end turn) | 0.0433 ms | 0.0659 ms |
+| `clone` | 0.0058 ms | 0.0055 ms |
+| Working-set delta/session estimate | 2,184 B | 25,559 B |
+| Pass-only transitions/sec | 2,382.9 | 2,153.1 |
+| Pass-only complete games/sec | 35.57 | 32.14 |
+
+The working-set estimate and turn timings vary substantially across these short process-level runs. They are retained as observations, not as a performance verdict or evidence that the held-card hook caused a regression. No numeric performance budget has been defined.
+
 ## Limits
 
 - No performance threshold had been defined, so the results do not label the prototype as passing/failing a numeric regression budget.

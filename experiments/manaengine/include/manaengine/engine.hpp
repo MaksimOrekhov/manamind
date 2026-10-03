@@ -10,7 +10,7 @@
 #include <unordered_map>
 #include <vector>
 namespace manaengine {
-enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack };
+enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
 enum class TargetSelector { ExplicitCharacter, ExplicitMinion, EnemyMinions, AllCharacters, Self };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; };
 class UnsupportedSimulationError : public std::runtime_error {
@@ -22,6 +22,7 @@ struct CardDefinition {
     std::string ability="NONE", generated_card, support_state="UNSUPPORTED";
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
+    int spell_cost_reduction_per_cast=0;
     bool rush=false, taunt=false;
 };
 class CardCatalog {
@@ -100,7 +101,7 @@ private:
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush,
-      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture };
+      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle };
     enum class ContinuationKind { BuffSelectedMinion };
     enum class Zone { Deck, Hand, Board, Weapon, Graveyard };
@@ -138,6 +139,7 @@ private:
     void draw(int owner,int count=1); void damage_character(int target_id,int amount); void damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
     void resolve_effects(const CardDefinition& def,int owner,int target_id);
+    void update_held_card_spell_progress(int owner);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);
     int random_index(std::size_t count); void update_result();
     std::uint64_t next_u64(); std::size_t bounded_random(std::size_t bound);

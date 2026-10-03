@@ -11,14 +11,18 @@
 | Layer | Result | Scope |
 |---|---:|---|
 | ManaEngine Release native build | PASS | core, pybind module and native test executable |
-| CTest | PASS, 1/1 | 19 scenario groups, 343 assertions |
+| CTest | PASS, 1/1 | 20 scenario groups, 354 assertions |
 | Bounded invariant/action smoke | PASS | 250 seeds × up to 40 transitions; every currently advertised action is applied on a clone and checked before the selected action is advanced |
 | Adapter + policy + schema tests | PASS, 20 | `experiments/manaengine/tests/test_adapter.py`, `tests/test_pipeline.py`, and schema version regression |
 | Python tests without Rosetta submodule-dependent modules | PASS, 39 | Remaining repository Python tests after excluding the four modules that require the missing checkout resource |
 | Ruff | PASS | all changed Python modules/scripts listed in the command output |
 | Rosetta shared-contract parity | PASS, 2 checkpoints | opening state/actions; after Violet Spellwing state/actions |
-| ManaEngine hosted CI | PASS | Windows, Ubuntu and macOS jobs passed at `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b`; Actions run `37137664188` |
-| Source CI | PENDING | Must pass on Windows and Ubuntu after re-verification artifacts and bridge configuration are pushed; pytest must execute after artifact check |
+| ManaEngine hosted CI | PASS on prior commit | Windows, Ubuntu and macOS jobs passed at `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b`; Actions run `37137664188`. Final hardening delta requires a fresh run |
+| Source CI | PASS on prior commit | Windows and Ubuntu run `37139299398`; artifact check completed and pytest executed successfully. Final hardening delta requires a fresh run |
+| Local full Python suite | PASS, 81 | `python -m pytest -q -p no:cacheprovider --basetemp E:\\ManaMind\\.tmp\\pytest-manaengine-hardening` |
+| ManaEngine adapter tests | PASS, 2 | Includes held per-instance progression, newly drawn instance and clone divergence fixture |
+| Direct held-card scenario | PASS | Two independent copies progress; subsequent draw starts at zero; effective cost, legal actions and clone branches agree |
+| Direct native executable | PASS, 20 groups / 354 assertions | Includes standalone targeted `FREEZE` composition, Frostbolt's `DAMAGE → FREEZE` sequence and invalid selector/amount rejection |
 
 The unfiltered Python suite was attempted with a writable ignored temp root: **52 passed, 3 failed, 26 errored**. All 29 failures/errors are in registry/profile/card-family modules that read the unpopulated `vendor/RosettaStone/Resources/cards.json` in this isolated worktree; no ManaEngine test failed. The available subset and changed schema were rerun separately. The schema assertion still expecting encoder version 7 was corrected to 8; its targeted test passes.
 
@@ -39,7 +43,7 @@ Independent assertions (expected values are encoded in the native scenarios; Ros
 
 ## Parity boundary
 
-The direct comparison checks only fields both backends actually export. Rosetta's current bridge lacks `hero_frozen`; it reports some unsupported/unknown flags as `False`; ManaEngine preserves unknown as `None`. Those fields are excluded from the shared-contract comparator. Current durability remains compared where it applies to a Weapon. A parity pass is scoped evidence for these two snapshots, not proof for all 18 roots or every lifecycle path.
+The direct comparison checks only fields both backends actually export. Rosetta's current bridge lacks `hero_frozen`; it reports some unsupported/unknown flags as `False`; ManaEngine preserves unknown as `None`. Those fields are excluded from the shared-contract comparator. Current durability remains compared where it applies to a Weapon. A parity pass is scoped evidence for these two snapshots, not proof for all 18 roots or every lifecycle path. The held-card fixture is tested inside ManaEngine; it is not a parity case or profile-root support evidence.
 
 ## 2026-10-03 pinned-source re-verification
 

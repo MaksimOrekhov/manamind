@@ -40,3 +40,50 @@ def test_exports_existing_game_state_and_policy_compatible_card_actions() -> Non
     assert result_state.self_player.available_mana == 1
     assert len(result_state.self_hand) == 3
     assert clone.observation() == state
+
+
+def test_held_spell_progress_is_per_card_instance_and_clone_safe() -> None:
+    deck = [
+        "TEST_HELD_TRACKER", "TEST_HELD_TRACKER", "CORE_EX1_129",
+        "TEST_HELD_TRACKER", "CORE_EX1_129", "TEST_HELD_TRACKER",
+        *(["TEST_HELD_TRACKER"] * 24),
+    ]
+    session = ManaEngineSession(
+        deck,
+        deck,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+        random_seed=41,
+    )
+
+    for _ in range(2):
+        end_turn = next(action for action in session.legal_actions() if action["type"] == "END_TURN")
+        session.apply_action(end_turn)
+    first_fan = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_EX1_129")
+    progressed = session.apply_action(first_fan)
+    tracker_costs = sorted(
+        card.current_cost for card in progressed.self_hand if card.card_id == "TEST_HELD_TRACKER"
+    )
+    assert tracker_costs == [1, 1, 1, 2]
+
+    branch = session.clone()
+    assert sorted(
+        card.current_cost for card in branch.observation().self_hand if card.card_id == "TEST_HELD_TRACKER"
+    ) == tracker_costs
+
+    for _ in range(2):
+        end_turn = next(action for action in session.legal_actions() if action["type"] == "END_TURN")
+        session.apply_action(end_turn)
+    second_fan = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_EX1_129")
+    after_branch = session.apply_action(second_fan)
+    assert sorted(
+        card.current_cost for card in after_branch.self_hand if card.card_id == "TEST_HELD_TRACKER"
+    ) == [0, 0, 0, 1, 1, 2]
+    assert sorted(
+        card.current_cost for card in branch.observation().self_hand if card.card_id == "TEST_HELD_TRACKER"
+    ) == tracker_costs
+    assert any(
+        action.get("card_id") == "TEST_HELD_TRACKER" and action.get("card_cost") == 0
+        for action in session.legal_actions()
+    )

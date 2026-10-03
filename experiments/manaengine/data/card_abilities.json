@@ -5,7 +5,7 @@
     "CATA_475": {"ability":"END_TURN_ENEMY_AREA_DAMAGE","support_state":"SUPPORTED","damage":2},
     "CATA_999": {"ability":"END_TURN_ENEMY_HERO_DAMAGE","support_state":"SUPPORTED","damage":4},
     "CORE_BT_416": {"ability":"NEXT_DEMON_DISCOUNT","support_state":"SUPPORTED"},
-    "CORE_CS2_024": {"ability":"FREEZE_DAMAGE","support_state":"SUPPORTED","damage":3},
+    "CORE_CS2_024": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":3},{"kind":"FREEZE","target":"EXPLICIT_CHARACTER","amount":0}]},
     "CORE_CS2_029": {"ability":"TARGET_DAMAGE","support_state":"SUPPORTED","damage":6},
     "CORE_CS2_062": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"ALL_CHARACTERS","amount":3}]},
     "CORE_CS2_072": {"ability":"BACKSTAB","support_state":"SUPPORTED","damage":2},
@@ -23,6 +23,7 @@
     "TIME_218": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_MINION","amount":1},{"kind":"MODIFY_HERO_ATTACK","target":"SELF","amount":1}]},
     "EX1_277": {"ability":"RANDOM_MISSILES","support_state":"SUPPORTED","damage":3},
     "SW_108t": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2},
-    "CORE_SW_108t": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2}
+    "CORE_SW_108t": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2},
+    "TEST_HELD_TRACKER": {"ability":"HELD_SPELL_COST_REDUCTION","support_state":"SUPPORTED","spell_cost_reduction_per_cast":1}
   }
 }

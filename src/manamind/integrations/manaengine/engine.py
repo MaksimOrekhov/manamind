@@ -63,13 +63,14 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         "EX1_277": CardFeatures(card_id="EX1_277", cost=1, card_type="SPELL", card_class="MAGE"),
         "SW_108t": CardFeatures(card_id="SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
         "CORE_SW_108t": CardFeatures(card_id="CORE_SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
+        "TEST_HELD_TRACKER": CardFeatures(card_id="TEST_HELD_TRACKER", cost=2, attack=4, health=4, card_type="MINION", card_class="MAGE"),
         "HERO_08bp": CardFeatures(card_id="HERO_08bp", cost=2, attack=0, health=0, durability=0, card_type="HERO_POWER", card_class="MAGE"),
     }
     records = {c.card_id: c for c in catalog}
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
-    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK"}
+    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE"}
     target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ALL_CHARACTERS", "SELF"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
