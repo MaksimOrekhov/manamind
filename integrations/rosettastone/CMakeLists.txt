@@ -8,6 +8,14 @@ endif()
 
 find_package(effolkronium_random CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
+set(PYBIND11_FINDPYTHON ON)
+find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
+# The project uses a regular (non-debug) Python build. On Windows, FindPython
+# may otherwise pair its release import library with vcpkg's unrelated
+# python314_d.lib for Debug configurations.
+if(WIN32 AND TARGET Python::Module)
+    set_property(TARGET Python::Module PROPERTY MAP_IMPORTED_CONFIG_DEBUG Release)
+endif()
 find_package(pybind11 CONFIG REQUIRED)
 
 add_library(RosettaStone STATIC IMPORTED GLOBAL)

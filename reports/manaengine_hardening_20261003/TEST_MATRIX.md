@@ -17,7 +17,8 @@
 | Python tests without Rosetta submodule-dependent modules | PASS, 39 | Remaining repository Python tests after excluding the four modules that require the missing checkout resource |
 | Ruff | PASS | all changed Python modules/scripts listed in the command output |
 | Rosetta shared-contract parity | PASS, 2 checkpoints | opening state/actions; after Violet Spellwing state/actions |
-| Ubuntu / macOS native CI | PENDING | workflow is added but has not run on GitHub yet |
+| ManaEngine hosted CI | PASS | Windows, Ubuntu and macOS jobs passed at `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b`; Actions run `37137664188` |
+| Source CI | PENDING | Must pass on Windows and Ubuntu after re-verification artifacts and bridge configuration are pushed; pytest must execute after artifact check |
 
 The unfiltered Python suite was attempted with a writable ignored temp root: **52 passed, 3 failed, 26 errored**. All 29 failures/errors are in registry/profile/card-family modules that read the unpopulated `vendor/RosettaStone/Resources/cards.json` in this isolated worktree; no ManaEngine test failed. The available subset and changed schema were rerun separately. The schema assertion still expecting encoder version 7 was corrected to 8; its targeted test passes.
 
@@ -40,6 +41,14 @@ Independent assertions (expected values are encoded in the native scenarios; Ros
 
 The direct comparison checks only fields both backends actually export. Rosetta's current bridge lacks `hero_frozen`; it reports some unsupported/unknown flags as `False`; ManaEngine preserves unknown as `None`. Those fields are excluded from the shared-contract comparator. Current durability remains compared where it applies to a Weapon. A parity pass is scoped evidence for these two snapshots, not proof for all 18 roots or every lifecycle path.
 
+## 2026-10-03 pinned-source re-verification
+
+- ManaMind revision: `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b`; pinned RosettaStone source: `f34da0d3fcb5ad312f7e2acf634d0536b044d29a`.
+- Rebuilt RosettaStone `RosettaStone` and `UnitTests` targets in the hardening checkout, then rebuilt `mana_rosetta_bridge` against that library and CPython 3.12. `scripts/build_native_identity.py` recorded source and artifact hashes after both builds.
+- `scripts/audit_profile_core_aliases.py`: **PASS**. Four focused native filters passed (definition aliases, Violet Spellwing, Rustrot Viper, First Flame); three bridge sessions passed Standard deck validation, visible SELF hand identity and legal-action enumeration. The verifier wrote explicit evidence for `CORE_DRG_107`, `CORE_SW_072`, and `CORE_SW_108`.
+- Canonical regeneration updated bridge/observation fingerprints and the evidence digest. All three roots remain current `VERIFIED_SCOPED`; no status was retained by copying old fingerprints. `scripts/check_generated_artifacts.py` subsequently reproduced all 36 pinned outputs.
+- Bridge configuration maps the Debug Python module target to the configured regular Python 3.12 import library. Without this, vcpkg selected its unrelated `python314_d.lib` and the local bridge link failed.
+
 ## CI added
 
-`.github/workflows/manaengine-experimental.yml` runs the same Release CMake build, native CTest, Python adapter, policy and golden RNG tests on `windows-latest`, `ubuntu-latest`, and `macos-latest`. Its hosted result is a required follow-up before Phase 2 acceptance can change from `KEEP_EXPERIMENTAL`.
+`.github/workflows/manaengine-experimental.yml` runs the same Release CMake build, native CTest, Python adapter, policy and golden RNG tests on `windows-latest`, `ubuntu-latest`, and `macos-latest`; all three hosted jobs passed. The separate Source CI still needs a green Windows and Ubuntu run with pytest observed after artifact regeneration.

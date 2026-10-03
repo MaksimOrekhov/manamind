@@ -19,8 +19,8 @@
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
       "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
-      "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
-      "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+      "bridge_source_sha256": "7e907fc30681fb29a341b070fd7f6aabeaa7602f135df45aaa37f9db181dd57b",
+      "observation_source_sha256": "aa2322235a16b3dde67ca06d3b9e221a950e01f41728652de65c2b1c0cc85ee2",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
       "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
@@ -52,7 +52,7 @@
     "profile_deck_minion_cost_summon_evidence_sha256": "6ee197010831ad4217e602b513c7771261e8552448e09c6ac4f6435721e0d203",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "65deb7098ed4b85a7f7b677f70eb571ddfc3f382f4f52e0e31b2d97395086360",
+    "core_alias_evidence_sha256": "c605b600b3df95469620208a89c68a3b4f5402524cac2b7380e65ff88efd7a3f",
     "pool_detector_sha256": "ca3cd78c4b69bbeb8a221687bb166adde3afd84bc2378c5b8e44684767ed95cc",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },

@@ -20,8 +20,8 @@
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
       "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
-      "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
-      "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+      "bridge_source_sha256": "7e907fc30681fb29a341b070fd7f6aabeaa7602f135df45aaa37f9db181dd57b",
+      "observation_source_sha256": "aa2322235a16b3dde67ca06d3b9e221a950e01f41728652de65c2b1c0cc85ee2",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
       "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"

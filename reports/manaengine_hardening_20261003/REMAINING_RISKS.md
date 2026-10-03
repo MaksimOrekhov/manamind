@@ -2,7 +2,7 @@
 
 ## Blocks acceptance beyond `KEEP_EXPERIMENTAL`
 
-1. **Hosted portability is unverified.** The new Windows/Ubuntu/macOS workflow must complete green. The local machine only validates Windows/MSVC.
+1. **Source CI is still pending.** ManaEngine's hosted Windows/Ubuntu/macOS workflow is green at `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b` (Actions run `37137664188`). The distinct Source CI must pass on Windows and Ubuntu after canonical regeneration is pushed, and its pytest step must be observed running.
 2. **Held-card progress is storage-only.** `CardInstance.counters` proves independent per-copy state and clone fidelity, but no event updates a counter for a real Meta Profile card. A subsequent package that needs spell history must first establish the exact semantic event boundary and may require architecture review if that changes global event ordering.
 3. **Event processing is deliberately approximate.** Prototype semantics are FIFO triggers, batch removal of all dead minions, FIFO deathrattles, repeat until stable. Replacements, death order nuances, aura recalculation, reborn, nested triggers and complete modern ordering are outside this pass.
 4. **Effect composition is intentionally small.** `Damage`, `Draw`, `GainArmor` and `ModifyHeroAttack` are reusable. Other listed primitives remain named handlers or unsupported; the schema is not a card-text DSL.
@@ -15,7 +15,7 @@
 
 ## Safe next work
 
-- Push this hardening branch and inspect all three experimental CI results before changing its verdict.
+- Push the pinned-source re-verification and canonical outputs, then inspect both Source CI jobs through the pytest step before changing the verdict.
 - Keep the branch experimental if CI is red or held-counter semantics remain untested.
 - Before the first new card family, write a capability proposal that targets a real profile gap and can be expressed honestly by the current four effect primitives or a small shared native capability.
 - Treat event-history, nested choice, global trigger-order or death-system work as an architecture checkpoint before changing it.
