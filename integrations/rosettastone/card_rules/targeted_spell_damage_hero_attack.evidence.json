@@ -3,11 +3,11 @@
   "contract_id": "targeted_spell_damage_hero_attack",
   "contract_version": 1,
   "profile_id": "meta_training_20261002_v1",
-  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
   "declaration_sha256": "b601737b6ba058fd179e8a8fee72fbfb79f3a574c92419949ce66c76d062d111",
   "generator_script_sha256": "d7e0c0306df91a2bee778ce75a9b0f3c185616fa8e1d4dd7736a47dd75879876",
   "generated_source_sha256": "d1cc2aece6da9dac0afefcc745d6ddfc66535766e85dc57ddf4efbe0baf2b833",
-  "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+  "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
   "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d",
   "training_eligible": false,
   "cards": {
@@ -36,8 +36,8 @@
       },
       "native_test": "[ManaMind effect composition]* passed",
       "bridge_scope": "PASS: enemy hero target, exact fixed effects, temporary Attack expiry",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
       "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
     },
     "TIME_218": {
@@ -65,17 +65,17 @@
       },
       "native_test": "[ManaMind effect composition]* passed",
       "bridge_scope": "PASS: no target with empty boards; only minion target when available; exact damage and expiry",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
       "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
     }
   },
-  "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  57 |  57 passed | 0 failed | 2560 skipped\n[doctest] assertions: 365 | 365 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+  "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  57 |  57 passed | 0 failed | 2562 skipped\n[doctest] assertions: 365 | 365 passed | 0 failed |\n[doctest] Status: SUCCESS!",
   "schema_version": 2,
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
     "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
     "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
     "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
@@ -87,7 +87,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"

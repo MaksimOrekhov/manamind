@@ -2,18 +2,18 @@
   "schema_version": 2,
   "package": "profile_core_alias_low_hanging_verification_v1",
   "scope": "SCOPED_PACKAGE_ONLY",
-  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
   "cards": {
     "CORE_DRG_107": {
       "status": "VERIFIED_SCOPED",
       "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "aa8518ffebf1928fc0399fc559debf5288be608c747db328f813c677f0ceb01b",
       "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
       "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
       "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
-      "scenario_fingerprint": "4f5f5984a4e7205c3aa249cdf357c0b57ee2b153258649e5e1cb794035845bf7",
+      "scenario_fingerprint": "96230258fcacdb2a8369ca01e7114b7eb15f43fabc62a6ccf5dd97f52d5698a3",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_tests": [
         "[ManaMind definition aliases]*",
@@ -40,12 +40,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "8aa0f0f879ca5f0ddf44a00621a199c4841b0f943bb93169c8178363091d119a",
       "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
       "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
       "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
-      "scenario_fingerprint": "4f5f5984a4e7205c3aa249cdf357c0b57ee2b153258649e5e1cb794035845bf7",
+      "scenario_fingerprint": "96230258fcacdb2a8369ca01e7114b7eb15f43fabc62a6ccf5dd97f52d5698a3",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_tests": [
         "[ManaMind definition aliases]*",
@@ -72,12 +72,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "8677e56873f3ee83e21008513f36efd7eadae622d8805719fdfe744ec21e194d",
       "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
       "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
       "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
-      "scenario_fingerprint": "61e6cfe2053b0f2b259190cf0a5f3b290b9dbce2943702087775fb5f469d6aab",
+      "scenario_fingerprint": "b932b1898c6556387955c49371d0dc103ff1a3e7466c40b893b714a317df3a16",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_tests": [
         "[ManaMind definition aliases]*",
@@ -118,7 +118,7 @@
       "invalidation_reason": "Not rerun in the 2026-10-03 verification harvest; historical record retained."
     }
   },
-  "native_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 5 | 5 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+  "native_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 5 | 5 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
   "bridge_results": {
     "CORE_DRG_107": {
       "standard_deck_validation": "PASS",
@@ -143,7 +143,7 @@
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
     "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
     "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
     "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
@@ -155,7 +155,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"

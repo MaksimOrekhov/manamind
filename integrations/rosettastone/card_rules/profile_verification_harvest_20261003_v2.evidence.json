@@ -1,0 +1,281 @@
+{
+  "schema_version": 2,
+  "package": "meta_profile_low_hanging_verification_harvest_v2",
+  "scope": "SCOPED_PACKAGE_ONLY",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+  "cards": {
+    "CORE_EX1_145": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Root-specific native cost/lifetime scenario plus configured bridge actions checking effective held-card costs, first qualifying consumer and expiry/consumption behavior. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "588aa4274b2394c517dd926bcba8572956add79b36210b89f2768e2881ee4f45",
+      "pool_membership_sha256": "aa6a9547029a1a685dc2abf4b6c5f22c47f55bf42c39a6281b4772f1df291c1e",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_COST_DISCOUNT_EFFECT_V1",
+      "capability_fingerprint": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+      "scenario_fingerprint": "9b4b4e8e2a93b7762b5a96b158cd0ef0ebd7c32551358f5afc8aa6ac163bb89a",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[Rogue : Spell] - CORE_EX1_145 : Preparation",
+      "bridge_result": {
+        "deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "cost_before": 2,
+        "cost_after_preparation": [
+          0,
+          0
+        ],
+        "first_spell_action": "PASS",
+        "cost_after_first_spell": 2,
+        "turn_end_expiry": "PASS"
+      },
+      "dependency_review": {
+        "scope": "REVIEWED_FIXED_ENCHANTMENT_ONLY",
+        "reviewed_static_dependencies": [
+          "EX1_145o"
+        ],
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "CORE_BT_416": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Root-specific native cost/lifetime scenario plus configured bridge actions checking effective held-card costs, first qualifying consumer and expiry/consumption behavior. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "3a7b506c676d23080f4f651b6b17935f9947b7c9d5be67eac00965800121815f",
+      "pool_membership_sha256": "aa6a9547029a1a685dc2abf4b6c5f22c47f55bf42c39a6281b4772f1df291c1e",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_COST_DISCOUNT_EFFECT_V1",
+      "capability_fingerprint": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+      "scenario_fingerprint": "7c57772c53bf76af120b7da9f079cac3d534f5916474769ff8343d0d69973cc3",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[Demon Hunter : Minion] - CORE_BT_416 : Raging Felscreamer",
+      "bridge_result": {
+        "deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "Demon_costs_after_Battlecry": {
+          "CORE_BT_351": [
+            0,
+            0
+          ]
+        },
+        "non_Demon_CORE_BT_480_cost_unchanged": [
+          1
+        ],
+        "discounted_demon_action": "PASS",
+        "remaining_demons_after_first_play": {
+          "CORE_BT_351": [
+            1
+          ]
+        }
+      },
+      "dependency_review": {
+        "scope": "REVIEWED_FIXED_ENCHANTMENT_ONLY",
+        "reviewed_static_dependencies": [
+          "BT_416e"
+        ],
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "JAIL_872": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Root-specific native hero-attack trigger scenario plus configured bridge action scenario confirming exactly one draw after the SELF hero attacks. Does not claim other attack-source semantics, full dependency closure, deck readiness or training admission.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "c5a16f5829eb31462bc7e96547de40f51d3a26ca795127f2dbf655c13d054cdf",
+      "pool_membership_sha256": "158ff246400c90311b0b350b0a795d93bbb944a99c698e39c795df124504c464",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_SPIDER_RIDER_V1",
+      "capability_fingerprint": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+      "scenario_fingerprint": "604e34f9b5bfed858a8d21409ac7a7b8ca4851b9710da522f5733c5c2f10cf5c",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[ManaMind trigger] - JAIL_872 draws after its hero attacks",
+      "bridge_result": {
+        "scenario": "verify_spider_rider",
+        "hero_attack_action": "PASS",
+        "hand_size_increases_by_one": "PASS",
+        "configured_bridge_actions": "PASS"
+      },
+      "dependency_review": {
+        "scope": "STATIC_ROOT_TRIGGER_REVIEWED",
+        "reviewed_static_dependencies": [],
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "CATA_999": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Root-specific native trigger scenario plus configured bridge scenario confirming 4 damage to the reviewed enemy target at the controller's turn end. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "1f35c404a0f8ca139847f04e910db961c290cd75e360265fd8eb3af95563beb4",
+      "pool_membership_sha256": "967dc4b8627588127695a2cc9573c8d809059424dbd37b783b804b6f8d2c72b4",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_CATA_999_V1",
+      "capability_fingerprint": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+      "scenario_fingerprint": "a4b52283572d202913e470d377930455904e1fcdac51cbe0aab5bb5a08b69c8e",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[ManaMind trigger] - CATA_999 damages the enemy hero at its controller's turn end",
+      "bridge_result": {
+        "scenario": "verify_earthen_drake_end_turn_damage",
+        "result": "PASS: enemy hero loses 4 only after controller end turn"
+      },
+      "dependency_review": {
+        "scope": "STATIC_ROOT_TRIGGER_REVIEWED",
+        "reviewed_static_dependencies": [],
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "CATA_475": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Root-specific native trigger scenario plus configured bridge scenario confirming 2 damage to the reviewed enemy target at the controller's turn end. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "44dd3c3eececac1ceec13ec6c252ebd67403dc5806d200efa0f21c234b5cd526",
+      "pool_membership_sha256": "fe81c5ace5dc2fe038d71e933bc2785baa525721d7c4b2a1f55bb51e6a3787d6",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_CATA_475_V1",
+      "capability_fingerprint": "c791e87c470a09228ee5a5f4b54ae1863f79abab3bf41f224ea42f32ffd0b394",
+      "scenario_fingerprint": "3a1cd4b5aea15c846a1d9fdc941069a9fe9e13debe178b98757e60f4c82be562",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[ManaMind effect composition] - CATA_475 damages all enemies at its controller's turn end",
+      "bridge_result": {
+        "scenario": "deterministic_CATA_475_bridge",
+        "result": "PASS: enemy hero 30->28 at controller end turn"
+      },
+      "dependency_review": {
+        "scope": "STATIC_ROOT_TRIGGER_REVIEWED",
+        "reviewed_static_dependencies": [],
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    }
+  },
+  "package_results": {
+    "cost_discount_expiry_verification_v1": {
+      "verified_roots": [
+        "CORE_BT_416",
+        "CORE_EX1_145"
+      ],
+      "native_outputs": {
+        "CORE_EX1_145": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  1 |  1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 15 | 15 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+        "CORE_BT_416": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  1 |  1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 13 | 13 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
+      },
+      "bridge_outputs": {
+        "CORE_EX1_145": {
+          "deck_validation": "PASS",
+          "visible_self_hand_identity": "PASS",
+          "cost_before": 2,
+          "cost_after_preparation": [
+            0,
+            0
+          ],
+          "first_spell_action": "PASS",
+          "cost_after_first_spell": 2,
+          "turn_end_expiry": "PASS"
+        },
+        "CORE_BT_416": {
+          "deck_validation": "PASS",
+          "visible_self_hand_identity": "PASS",
+          "Demon_costs_after_Battlecry": {
+            "CORE_BT_351": [
+              0,
+              0
+            ]
+          },
+          "non_Demon_CORE_BT_480_cost_unchanged": [
+            1
+          ],
+          "discounted_demon_action": "PASS",
+          "remaining_demons_after_first_play": {
+            "CORE_BT_351": [
+              1
+            ]
+          }
+        }
+      },
+      "static_dependencies": {
+        "CORE_EX1_145": "EX1_145o",
+        "CORE_BT_416": "BT_416e"
+      },
+      "dependency_closure_gained": 0,
+      "training_eligible": false,
+      "elapsed_seconds": 798.898,
+      "correction_cycles": 3,
+      "shared_engine_changes": 0,
+      "declaration_changes": 0,
+      "production_changes": 0,
+      "registry_delta": 0
+    },
+    "spider_rider_hero_attack_draw_verification_v1": {
+      "verified_roots": [
+        "JAIL_872"
+      ],
+      "native_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2617 skipped\n[doctest] assertions: 3 | 3 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+      "bridge_output": {
+        "scenario": "verify_spider_rider",
+        "hero_attack_action": "PASS",
+        "hand_size_increases_by_one": "PASS",
+        "configured_bridge_actions": "PASS"
+      },
+      "static_dependencies": [],
+      "dependency_closure_gained": 0,
+      "training_eligible": false,
+      "elapsed_seconds": 295.115,
+      "correction_cycles": 1,
+      "shared_engine_changes": 0,
+      "test_only_changes": 1,
+      "registry_delta": 0
+    },
+    "end_turn_enemy_damage_verification_v1": {
+      "verified_roots": [
+        "CATA_475",
+        "CATA_999"
+      ],
+      "native_outputs": {
+        "CATA_999": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+        "CATA_475": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 7 | 7 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
+      },
+      "bridge_outputs": {
+        "CATA_999": "PASS: enemy hero loses 4 only after controller end turn",
+        "CATA_475": "PASS: enemy hero 30->28 at controller end turn"
+      },
+      "static_dependencies": {
+        "CATA_999": [],
+        "CATA_475": []
+      },
+      "dependency_closure_gained": 0,
+      "training_eligible": false,
+      "elapsed_seconds": 342.877,
+      "correction_cycles": 1,
+      "native_builds": 1,
+      "shared_engine_changes": 0,
+      "test_only_changes": 1,
+      "registry_delta": 0
+    }
+  },
+  "training_eligible": false,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
+    "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
+    "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
+    },
+    "native_tests": {
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
+    },
+    "bridge_module": {
+      "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
+  }
+}

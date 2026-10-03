@@ -2,18 +2,18 @@
   "schema_version": 2,
   "package": "profile_enemy_board_damage_verification_v1",
   "scope": "SCOPED_PACKAGE_ONLY",
-  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
   "cards": {
     "CORE_CS2_062": {
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "5d9158cb31be02a212203d3677913866a2cf28d7e222b8aace417201ea68ac47",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "4531efcd169e0b87ccebe9c200c4bc1ddb12d10dd042ad93d6bce58e44ddbea5",
-      "scenario_fingerprint": "51e230baf95ca4aead864dac0d890db4d57f4028867996c426fabe6f22dd967c",
+      "scenario_fingerprint": "db5707ab53c935bfbc5e7d8543174330ccd315099f5f9a1cc0c349178d9f2e65",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[Warlock : Spell] - CORE_CS2_062 : Hellfire",
       "bridge_result": {
@@ -28,12 +28,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "rules_fingerprint": "3597aa9155b3dfae4a2b3c9e3b043c1ac3b802fe86a6014da79850b4e0fa01f9",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "cd3e05b112e2ef9c07cf9dcf7fbb428073c46aaf28ffc3e8f68ba182deb76d54",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "9305552bd69bc0dd128994408fbe95e0e4e572c4f4d139ac4da0078cca53ea28",
-      "scenario_fingerprint": "ba7b14428c187717c0af13e81f0ead636e9502bf5ef18713cd4f95e95b839aac",
+      "scenario_fingerprint": "d21c60941a44cdd13ee7ba5d67fdbea1757a7d79d27bd22faf8c2fc05c2f1bc9",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[ManaMind effect composition] - CORE_EX1_129 damages all enemy minions then draws",
       "bridge_result": {
@@ -46,8 +46,8 @@
     }
   },
   "native_outputs": {
-    "CORE_CS2_062": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
-    "CORE_EX1_129": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
+    "CORE_CS2_062": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+    "CORE_EX1_129": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
   },
   "bridge_outputs": {
     "CORE_CS2_062": {
@@ -67,7 +67,7 @@
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
     "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
     "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
     "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
@@ -79,7 +79,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"

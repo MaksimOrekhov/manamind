@@ -2,18 +2,18 @@
   "schema_version": 2,
   "package": "profile_single_target_spell_damage_verification_v1",
   "scope": "SCOPED_PACKAGE_ONLY",
-  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
   "cards": {
     "CORE_CS2_029": {
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "24df7d1c430e1154c806d910b2b570ffb6ddf8a0c9462c0c7fecc81de7069c31",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "4531efcd169e0b87ccebe9c200c4bc1ddb12d10dd042ad93d6bce58e44ddbea5",
-      "scenario_fingerprint": "c54beea058810b18e5ba51e72ecabd5b91b15a30a92f3ef89b75e1b2a07832e8",
+      "scenario_fingerprint": "c0dbc82a1d58c205a6ff533236d26dcc38dc1735629e70228bfd332aee23c72e",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[Mage : Spell] - CORE_CS2_029 : Fireball",
       "bridge_result": {
@@ -28,12 +28,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "d416ce09980101a3fcff51438f517de9f0ade62da620d5a025f5b341ac16e629",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "4531efcd169e0b87ccebe9c200c4bc1ddb12d10dd042ad93d6bce58e44ddbea5",
-      "scenario_fingerprint": "c54beea058810b18e5ba51e72ecabd5b91b15a30a92f3ef89b75e1b2a07832e8",
+      "scenario_fingerprint": "c0dbc82a1d58c205a6ff533236d26dcc38dc1735629e70228bfd332aee23c72e",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[Rogue : Spell] - CORE_CS2_072 : Backstab",
       "bridge_result": {
@@ -48,12 +48,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "rules_fingerprint": "c0594b2dd285407744bcea579d2f41b129e8bf85682d4584a865cd95454c734a",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "rules_fingerprint": "4d96d0a41dd2e617714fa992496961d8711fa74e1a8ed3a32cfc14d09b92d0c3",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "9305552bd69bc0dd128994408fbe95e0e4e572c4f4d139ac4da0078cca53ea28",
-      "scenario_fingerprint": "86cb47714df9ee1726934a00164851ec53cff6889067d9474e40460f16d11b24",
+      "scenario_fingerprint": "e62deac2a4d91c8e3f9e2329e803c7d8b6df68bdb35006b36e8df8f503e44abe",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[ManaMind effect composition] - CORE_CS2_024 damages and freezes its target",
       "bridge_result": {
@@ -68,12 +68,12 @@
       "status": "VERIFIED_SCOPED",
       "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
       "training_scope": "SCOPED_PACKAGE_ONLY",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
       "rules_fingerprint": "016d969e277cb6acc78c25ffa04d2752f19ae86159ca28fba39efee96d999491",
       "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
       "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
       "capability_fingerprint": "4531efcd169e0b87ccebe9c200c4bc1ddb12d10dd042ad93d6bce58e44ddbea5",
-      "scenario_fingerprint": "c54beea058810b18e5ba51e72ecabd5b91b15a30a92f3ef89b75e1b2a07832e8",
+      "scenario_fingerprint": "c0dbc82a1d58c205a6ff533236d26dcc38dc1735629e70228bfd332aee23c72e",
       "bridge_action_status": "VERIFIED_SCOPED",
       "native_test": "[Warlock : Spell] - CORE_ICC_055 : Drain Soul",
       "bridge_result": {
@@ -86,10 +86,10 @@
     }
   },
   "native_outputs": {
-    "CORE_CS2_029": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
-    "CORE_CS2_072": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
-    "CORE_CS2_024": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
-    "CORE_ICC_055": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
+    "CORE_CS2_029": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+    "CORE_CS2_072": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+    "CORE_CS2_024": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+    "CORE_ICC_055": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2618 skipped\n[doctest] assertions: 4 | 4 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
   },
   "bridge_outputs": {
     "CORE_CS2_029": {
@@ -121,7 +121,7 @@
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
     "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
     "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
     "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
@@ -133,7 +133,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"

@@ -3,12 +3,12 @@
   "contract_id": "deck_minion_cost_threshold_summon",
   "contract_version": 1,
   "profile_id": "meta_training_20261002_v1",
-  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
   "declaration_sha256": "5e06f67d1426b9e2307ff0ed88210f570a6076fa2b88eb024999a1aa46008f2b",
   "generator_script_sha256": "bf6de865dacf6e9a098e6bfc1f9a97a961ef22ebee9095e71196f85503ddb816",
   "renderer_sha256": "cef1b88e59f0535bef4e0db908bbd91a96dc9910e3895ff8ea5a0cdd12bd21bf",
   "generated_source_sha256": "4b442238e2ed11be27e90366f2976d7fc5c095a8fdd731127d235c0f26240423",
-  "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+  "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
   "bridge_scenario_sha256": "dd02fa918f436327eb3ae876a6c29ffc5d40843b4a230aa6e499f9e2d8268d13",
   "training_eligible": false,
   "cards": {
@@ -36,8 +36,8 @@
       },
       "native_test": "[ManaMind profile deck minion]* passed",
       "bridge_scope": "PASS: three bounded turn-end summons; no fourth trigger",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
       "bridge_scenario_sha256": "dd02fa918f436327eb3ae876a6c29ffc5d40843b4a230aa6e499f9e2d8268d13"
     },
     "JAIL_516": {
@@ -66,17 +66,17 @@
       },
       "native_test": "[ManaMind profile deck minion]* passed",
       "bridge_scope": "PASS: exactly two distinct available deck minions summoned; Rush visible on both",
-      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
-      "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
+      "profile_manifest_sha256": "75f95caca7886a9d6aa30d6d937b932d6db250e12ad0c603b35bfbf1dcc95e4e",
+      "native_scenario_sha256": "f1e0faad96b35423b0abd481a8b3cb40ce1f6cdd359864ecb882636c6cd64572",
       "bridge_scenario_sha256": "dd02fa918f436327eb3ae876a6c29ffc5d40843b4a230aa6e499f9e2d8268d13"
     }
   },
-  "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2614 skipped\n[doctest] assertions: 54 | 54 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+  "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  3 |  3 passed | 0 failed | 2616 skipped\n[doctest] assertions: 54 | 54 passed | 0 failed |\n[doctest] Status: SUCCESS!",
   "schema_version": 2,
   "execution_identity": {
     "profile_id": "standard_full_20261001_v1",
     "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
     "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
     "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
     "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
@@ -88,7 +88,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+      "sha256": "4279301b5a6252c95398dcee471f23901e40cd0de957eea91208cd2c45ef28d7"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"
