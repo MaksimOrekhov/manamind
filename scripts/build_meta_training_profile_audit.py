@@ -215,6 +215,7 @@ def render_markdown(profile, standard, registry, registry_summary, roots, seeds,
         1 for root in roots if root["registration_status"] == "NO_DETECTED_RULE_REGISTRATION"
     )
     profile_current = sum(1 for root in roots if root["meta_profile_verification"] == "VERIFIED_SCOPED_CURRENT")
+    profile_unverified = len(roots) - profile_current
     root_registered_unverified = len(roots) - canonical_current - root_unregistered
     dynamic_ids = sorted(
         {pool for deck in decks for pool in deck["unresolved_dynamic_pool_definitions"]}
@@ -239,7 +240,8 @@ def render_markdown(profile, standard, registry, registry_summary, roots, seeds,
         f"- Distinct decklist names: {len(distinct_names)}; pinned collectible canonical roots: {len(roots)}.",
         f"- Noncollectible Fabled deck entries: {len(seeds)} distinct candidates; their IDs are external candidates and are absent from the pinned registry.",
         f"- Current scoped-verified roots in this profile: {profile_current}; current under canonical Standard registry evidence: {canonical_current}; stale historical evidence: {root_stale}.",
-        f"- Registered but not current-verified roots: {root_registered_unverified}; roots with no detected registration: {root_unregistered}.",
+        f"- Canonical Standard status: {canonical_current} current verified; {root_registered_unverified} registered but not current-verified in the Standard registry; {root_unregistered} with no detected registration.",
+        f"- Meta Profile scope: {profile_current} current scoped-verified; {profile_unverified} not currently scoped-verified (including {root_stale} with stale historical evidence).",
         f"- Distinct classes in the frozen lists: {len(classes)} ({', '.join(classes)}).",
         "",
         "The six Fabled entries remain visible in the slot list because the frozen source lists them. They are not collectible Standard roots. The profile keeps their externally matched IDs as candidates only; they require explicit dependency metadata and runtime verification. `Scarlet Bruiser` remains a separate Beatrix dependency with unresolved ID.",

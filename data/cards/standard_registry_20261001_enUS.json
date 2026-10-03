@@ -49,10 +49,10 @@
     "held_card_gate_manifest_sha256": "f24bca3afaedf62e52cd0fa3c85aa99f05c2e849dc971af476de7830dc475817",
     "held_card_gate_evidence_sha256": "894f42b20bdc69e3f7033727a7513e9f5a7fb9d95a3a71ad157b1c4c71759239",
     "profile_deck_minion_cost_summon_manifest_sha256": "644c2b3c98e6815769ed7465672305d9b3f6c3fc97101ba348b39f531162e985",
-    "profile_deck_minion_cost_summon_evidence_sha256": "85ea506b8d54ace85c538531f7431398d259736b45865bd5874e9e4616bbc4c1",
+    "profile_deck_minion_cost_summon_evidence_sha256": "b943049f9372a2d6b592de0f0f148e8b91dd795aaa39add313ad75582fd86c66",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "28b66cf74e078bfb8a7b8131fc98ca4e4072be3bcf5179afe7f1f87acbc781ff",
+    "core_alias_evidence_sha256": "7c5fa2e15ed51ba5b2d5ecb78b79d18403c9ca56bca3afd14379fa70b0fb02de",
     "pool_detector_sha256": "ca3cd78c4b69bbeb8a221687bb166adde3afd84bc2378c5b8e44684767ed95cc",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },

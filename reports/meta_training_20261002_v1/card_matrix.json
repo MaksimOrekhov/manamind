@@ -733,7 +733,7 @@
       "known_dependency_candidates": [],
       "dynamic_pool_ids": [],
       "training_eligibility": "BLOCKED",
-      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
     },
     {
       "card_id": "CORE_CS2_072",
@@ -815,7 +815,7 @@
       "known_dependency_candidates": [],
       "dynamic_pool_ids": [],
       "training_eligibility": "BLOCKED",
-      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
     },
     {
       "card_id": "CORE_EX1_145",
@@ -2503,7 +2503,7 @@
         }
       ],
       "registered_roots": 4,
-      "current_scoped_verified_roots": 1,
+      "current_scoped_verified_roots": 2,
       "implemented_unverified_roots": 4,
       "unknown_rules_roots": 13,
       "known_candidate_dependency_nodes": 1,
@@ -2526,7 +2526,7 @@
       "pinned_root_ids": 19,
       "unresolved_or_external_seed_entries": [],
       "registered_roots": 19,
-      "current_scoped_verified_roots": 1,
+      "current_scoped_verified_roots": 2,
       "implemented_unverified_roots": 19,
       "unknown_rules_roots": 0,
       "known_candidate_dependency_nodes": 3,

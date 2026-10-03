@@ -9,8 +9,8 @@ Candidate edges and pool hypotheses are not reviewed closure. Counts below descr
 | wanted_mug_shaman | Shaman | 30 | 16 | 1 | 4 | 12 | 2 | 3 | 5 |
 | elise_attack_druid | Druid | 30 | 20 | 1 | 17 | 3 | 15 | 15 | 5 |
 | reborn_quest_priest | Priest | 30 | 17 | 0 | 13 | 4 | 3 | 3 | 9 |
-| ashamane_ayaya_rogue | Rogue | 30 | 17 | 1 | 4 | 13 | 1 | 1 | 6 |
-| mother_drake_warlock | Warlock | 30 | 19 | 1 | 19 | 0 | 3 | 3 | 2 |
+| ashamane_ayaya_rogue | Rogue | 30 | 17 | 2 | 4 | 13 | 1 | 1 | 6 |
+| mother_drake_warlock | Warlock | 30 | 19 | 2 | 19 | 0 | 3 | 3 | 2 |
 | tricky_burn_mage | Mage | 30 | 17 | 4 | 6 | 9 | 5 | 5 | 2 |
 | beatrix_pure_paladin | Paladin | 30 | 16 | 2 | 5 | 11 | 0 | 0 | 5 |
 | galaxy_brain_raza_demon_hunter | Demon Hunter | 30 | 15 | 2 | 4 | 10 | 3 | 2 | 1 |

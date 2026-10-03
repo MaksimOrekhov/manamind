@@ -3,7 +3,7 @@
   "contract_id": "targeted_spell_damage_hero_attack",
   "contract_version": 1,
   "profile_id": "meta_training_20261002_v1",
-  "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
+  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
   "declaration_sha256": "b601737b6ba058fd179e8a8fee72fbfb79f3a574c92419949ce66c76d062d111",
   "generator_script_sha256": "d7e0c0306df91a2bee778ce75a9b0f3c185616fa8e1d4dd7736a47dd75879876",
   "generated_source_sha256": "d1cc2aece6da9dac0afefcc745d6ddfc66535766e85dc57ddf4efbe0baf2b833",
@@ -36,7 +36,7 @@
       },
       "native_test": "[ManaMind effect composition]* passed",
       "bridge_scope": "PASS: enemy hero target, exact fixed effects, temporary Attack expiry",
-      "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
+      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
       "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
       "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
     },
@@ -65,7 +65,7 @@
       },
       "native_test": "[ManaMind effect composition]* passed",
       "bridge_scope": "PASS: no target with empty boards; only minion target when available; exact damage and expiry",
-      "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
+      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
       "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
       "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
     }

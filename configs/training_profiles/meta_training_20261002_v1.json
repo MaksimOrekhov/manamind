@@ -9,7 +9,8 @@
     "integrations/rosettastone/card_rules/targeted_spell_damage_hero_attack.evidence.json",
     "integrations/rosettastone/card_rules/profile_deck_minion_cost_summon.evidence.json",
     "integrations/rosettastone/card_rules/core_aliases.evidence.json",
-    "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json"
+    "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json",
+    "integrations/rosettastone/card_rules/profile_enemy_board_damage.evidence.json"
   ],
   "source_tz_file": "MANAMIND_META_TRAINING_PROFILE_V1_CODEX_TZ_v1.1.md",
   "frozen_deck_count": 10,

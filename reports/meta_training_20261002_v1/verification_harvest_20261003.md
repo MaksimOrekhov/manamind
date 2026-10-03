@@ -32,7 +32,7 @@ Proceed with rank 1, limited to `CORE_DRG_107`, `CORE_SW_072`, and `CORE_SW_108`
 
 No selected root becomes training-eligible from this work. Current Meta Profile report remains zero fully closed decks; alias checks can add roots and static dependency confidence but cannot clear unrelated deck roots, dynamic pools, external Fabled seeds, action/session, or match-evidence gates.
 
-## Execution results — first two candidates (intermediate checkpoint)
+## Execution results — first three candidates
 
 The first three ranked candidates were completed as verification-only packages:
 
@@ -40,10 +40,11 @@ The first three ranked candidates were completed as verification-only packages:
 |---|---:|---|---|---:|---:|---:|
 | `core_alias_base_semantics_verification_v1` | 3 | 4 cases / 789 assertions including structural alias parity | 3 sessions passed | 0 | 0 | 0 |
 | `profile_single_target_spell_damage_verification_v1` | 4 | 4 cases / 16 assertions | 4 sessions passed | 0 | 0 | 0 |
+| `profile_enemy_board_damage_verification_v1` | 2 | 2 cases / 16 assertions | 2 sessions passed | 0 | 0 | 0 |
 
-At this intermediate checkpoint: **7 roots** use pre-existing declarations/aliases; CUSTOM and deferred outliers among those seven: **0**. No new shared engine capability and no engine fix were required. The two packages averaged 3.5 roots each; elapsed time was not captured and is therefore not converted into an observed throughput figure. The targeted spell family advances four roots across three classes; it does not close a deck or its full dependency graph. Canonical Standard evidence remains separate from Meta-scoped evidence.
+Total: **9 roots** use pre-existing declarations/aliases; CUSTOM and deferred outliers among those nine: **0**. No new shared engine capability and no engine fix were required. The three packages averaged 3 roots each; elapsed time was not captured and is therefore not converted into an observed throughput figure. The two spell families advanced six roots across three classes; they do not close a deck or its full dependency graph. Canonical Standard evidence remains separate from Meta-scoped evidence.
 
-Best observed return in root count was the four-root targeted spell package. The Core alias family remains the lightest verification candidate by implementation surface. The original effort/ROI ranges above are estimates, not measured elapsed times.
+Best observed return in root count was the four-root targeted spell package. The Core alias family remains the lightest verification candidate by implementation surface. Enemy-board damage added two roots with distinct target-boundary scenarios. The original effort/ROI ranges above are estimates, not measured elapsed times.
 
 ## Corrected independent evidence and outstanding blockers
 
@@ -51,4 +52,4 @@ The complete configured native UnitTests run against RosettaStone `945d89116e072
 
 `shaman_spell_threshold_hand_transform_v1` remains `BLOCKED_DESIGN_REVIEW`; its short audit found no complete canonical event boundary covering normal, generated, replayed, auto-cast and nested spell resolutions without crossing global event-order semantics. No Shaman production code was changed.
 
-At this intermediate checkpoint the Meta Profile audit reports 11 current scoped-verified roots, 85 registered but not currently scoped-verified roots, and 68 roots without detected registration. It still reports zero fully closed decks and zero roots admitted for full-profile training. Continue verification harvest while exact per-deck dependency/session blockers remain unresolved.
+After the three packages, the Meta Profile audit reports 13 current scoped-verified roots, 85 registered but not currently scoped-verified roots, and 68 roots without detected registration. It still reports zero fully closed decks and zero roots admitted for full-profile training. Continue verification harvest while exact per-deck dependency/session blockers remain unresolved.

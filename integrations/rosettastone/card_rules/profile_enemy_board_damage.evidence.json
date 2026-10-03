@@ -1,0 +1,92 @@
+{
+  "schema_version": 2,
+  "package": "profile_enemy_board_damage_verification_v1",
+  "scope": "SCOPED_PACKAGE_ONLY",
+  "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+  "cards": {
+    "CORE_CS2_062": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "rules_fingerprint": "5d9158cb31be02a212203d3677913866a2cf28d7e222b8aace417201ea68ac47",
+      "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
+      "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
+      "capability_fingerprint": "4531efcd169e0b87ccebe9c200c4bc1ddb12d10dd042ad93d6bce58e44ddbea5",
+      "scenario_fingerprint": "51e230baf95ca4aead864dac0d890db4d57f4028867996c426fabe6f22dd967c",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[Warlock : Spell] - CORE_CS2_062 : Hellfire",
+      "bridge_result": {
+        "deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "legal_action_enumeration": "PASS",
+        "legal_action_count": 4
+      },
+      "training_eligible": false
+    },
+    "CORE_EX1_129": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Existing root-specific native behavior test plus configured-bridge Standard deck acceptance, visible SELF-hand identity and legal-action enumeration. No transitive closure, full-deck readiness or training admission claim.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "a81d8ecc2c9f4f6573a61d8cf1911fb8c7576f1b5714f2e02643c3a0d69b4cd6",
+      "rules_fingerprint": "3597aa9155b3dfae4a2b3c9e3b043c1ac3b802fe86a6014da79850b4e0fa01f9",
+      "pool_membership_sha256": "db1cf9c3bb5e061881df96a834d363549d8f9783dcdce0b00fac5bc8943e7b62",
+      "pool_predicate_version": "NO_GENERATED_CARD_POOL_IN_REVIEWED_SPELL_EFFECT_V1",
+      "capability_fingerprint": "9305552bd69bc0dd128994408fbe95e0e4e572c4f4d139ac4da0078cca53ea28",
+      "scenario_fingerprint": "ba7b14428c187717c0af13e81f0ead636e9502bf5ef18713cd4f95e95b839aac",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_test": "[ManaMind effect composition] - CORE_EX1_129 damages all enemy minions then draws",
+      "bridge_result": {
+        "deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "legal_action_enumeration": "PASS",
+        "legal_action_count": 4
+      },
+      "training_eligible": false
+    }
+  },
+  "native_outputs": {
+    "CORE_CS2_062": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+    "CORE_EX1_129": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 8 | 8 passed | 0 failed |\n[doctest] Status: SUCCESS!\n"
+  },
+  "bridge_outputs": {
+    "CORE_CS2_062": {
+      "deck_validation": "PASS",
+      "visible_self_hand_identity": "PASS",
+      "legal_action_enumeration": "PASS",
+      "legal_action_count": 4
+    },
+    "CORE_EX1_129": {
+      "deck_validation": "PASS",
+      "visible_self_hand_identity": "PASS",
+      "legal_action_enumeration": "PASS",
+      "legal_action_count": 4
+    }
+  },
+  "training_eligible": false,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
+    "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
+    },
+    "native_tests": {
+      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
+    },
+    "bridge_module": {
+      "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
+  }
+}
