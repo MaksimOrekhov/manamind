@@ -2,7 +2,7 @@
 
 ## Blocks acceptance beyond `KEEP_EXPERIMENTAL`
 
-1. **Final CI must be checked.** Source CI run `37139299398` passed on Windows and Ubuntu with pytest observed. The new final commit must produce green Source CI and ManaEngine hosted CI before this hardening result is considered stable.
+1. **CI is green for code commit `6223302`.** Source CI run `37141955265` passed on Windows and Ubuntu, including `check_generated_artifacts.py` and pytest on both. ManaEngine CI run `37141955267` passed on Windows, Ubuntu and macOS. A documentation-only follow-up commit records these run IDs and will receive normal CI checks.
 2. **Held-card progress is fixture-scoped.** A local hook increments independent per-instance counters on direct player spell plays and adjusts current cost; no current Meta Profile card uses it. Nested, replayed, generated and auto-cast spell semantics remain undefined. A profile-root implementation needs a reviewed contract; changing global ordering requires architecture review.
 3. **Event processing is deliberately approximate.** Prototype semantics are FIFO triggers, batch removal of all dead minions, FIFO deathrattles, repeat until stable. Replacements, death order nuances, aura recalculation, reborn, nested triggers and complete modern ordering are outside this pass.
 4. **Effect composition is intentionally small.** `Damage`, `Draw`, `GainArmor`, `ModifyHeroAttack` and `Freeze` are reusable. `Heal`, general stat/cost modification, summon, destroy, hand generation and weapon effects remain named handlers, unsupported or future contracts; the schema is not a card-text DSL.
@@ -15,7 +15,7 @@
 
 ## Safe next work
 
-- Push this hardening delta and inspect Source CI and ManaEngine CI for the new commit before publishing the final verdict.
+- Keep the branch experimental until a real profile root has a reviewed held-card contract and parity coverage expands beyond the two current snapshots.
 - Keep the branch experimental until a real profile root has a reviewed held-card contract and parity coverage expands beyond the two current snapshots.
 - Before the first new card family, write a capability proposal that targets a real profile gap and can be expressed honestly by the current four effect primitives or a small shared native capability.
 - Treat event-history, nested choice, global trigger-order or death-system work as an architecture checkpoint before changing it.

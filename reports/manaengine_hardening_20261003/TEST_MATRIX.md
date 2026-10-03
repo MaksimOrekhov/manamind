@@ -17,8 +17,8 @@
 | Python tests without Rosetta submodule-dependent modules | PASS, 39 | Remaining repository Python tests after excluding the four modules that require the missing checkout resource |
 | Ruff | PASS | all changed Python modules/scripts listed in the command output |
 | Rosetta shared-contract parity | PASS, 2 checkpoints | opening state/actions; after Violet Spellwing state/actions |
-| ManaEngine hosted CI | PASS on prior commit | Windows, Ubuntu and macOS jobs passed at `0c2f4a20f9c28e3589d17885cc0fb07a62918d2b`; Actions run `37137664188`. Final hardening delta requires a fresh run |
-| Source CI | PASS on prior commit | Windows and Ubuntu run `37139299398`; artifact check completed and pytest executed successfully. Final hardening delta requires a fresh run |
+| ManaEngine hosted CI | PASS | Windows, Ubuntu and macOS jobs passed for `622330298e670774e45cded9d271625ceb716daf`; Actions run `37141955267` |
+| Source CI | PASS | Windows and Ubuntu run `37141955265`; artifact check and pytest executed successfully on both for `622330298e670774e45cded9d271625ceb716daf` |
 | Local full Python suite | PASS, 81 | `python -m pytest -q -p no:cacheprovider --basetemp E:\\ManaMind\\.tmp\\pytest-manaengine-hardening` |
 | ManaEngine adapter tests | PASS, 2 | Includes held per-instance progression, newly drawn instance and clone divergence fixture |
 | Direct held-card scenario | PASS | Two independent copies progress; subsequent draw starts at zero; effective cost, legal actions and clone branches agree |
