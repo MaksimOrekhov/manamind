@@ -18,6 +18,10 @@ class CardFeatures:
     current_attack: int | None = None
     current_health: int | None = None
     current_durability: int | None = None
+    shatter_fragment: str | None = None
+    shatter_original_card_id: str | None = None
+    shatter_partner_hand_position: int | None = None
+    prepare_locked: bool | None = None
 
     @property
     def effective_cost(self) -> int | None:

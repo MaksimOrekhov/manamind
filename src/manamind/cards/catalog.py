@@ -78,6 +78,10 @@ class CardCatalog:
             ),
             race=_first_race(record.get("race") or record.get("races")),
             mechanics=mechanics,
+            shatter_fragment=record.get("shatter_fragment") or None,
+            shatter_original_card_id=record.get("shatter_original_card_id") or None,
+            shatter_partner_hand_position=record.get("shatter_partner_hand_position"),
+            prepare_locked=record.get("prepare_locked"),
         )
 
     def __len__(self) -> int:
@@ -91,6 +95,10 @@ class CardCatalog:
                 "health": card.health, "durability": card.durability,
                 "card_type": card.card_type, "card_class": card.card_class,
                 "race": card.race, "mechanics": list(card.mechanics),
+                "shatter_fragment": card.shatter_fragment,
+                "shatter_original_card_id": card.shatter_original_card_id,
+                "shatter_partner_hand_position": card.shatter_partner_hand_position,
+                "prepare_locked": card.prepare_locked,
             }
             for card in sorted(self._cards.values(), key=lambda item: item.card_id)
         ]
@@ -131,4 +139,8 @@ class CardCatalog:
             current_attack=observed.current_attack,
             current_health=observed.current_health,
             current_durability=observed.current_durability,
+            shatter_fragment=observed.shatter_fragment or catalog_card.shatter_fragment,
+            shatter_original_card_id=(observed.shatter_original_card_id or catalog_card.shatter_original_card_id),
+            shatter_partner_hand_position=(observed.shatter_partner_hand_position if observed.shatter_partner_hand_position is not None else catalog_card.shatter_partner_hand_position),
+            prepare_locked=(observed.prepare_locked if observed.prepare_locked is not None else catalog_card.prepare_locked),
         )

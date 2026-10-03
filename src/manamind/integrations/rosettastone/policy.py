@@ -21,6 +21,9 @@ POLICY_STATE_FEATURE_NAMES = (
     "opponent_ready_attackers", "opponent_taunts",
     "opponent_location_count", "opponent_location_health", "opponent_ready_locations",
     "self_hand_mean_cost", "self_hand_minions", "self_hand_spells", "self_hand_weapons",
+    "self_hand_shatter_left", "self_hand_shatter_right", "self_hand_shatter_solo",
+    "self_hand_shatter_intervening_cards_mean",
+    "self_hand_prepare_locked_count", "self_hand_prepare_known_count",
 )
 
 ACTION_FEATURE_NAMES = (
@@ -33,12 +36,15 @@ ACTION_FEATURE_NAMES = (
     "activate_location", "trade_card", "choose_one_a", "choose_one_b",
     "choice_index",
     *(f"dark_gift_{gift_id}" for gift_id in range(1, 11)),
+    "shatter_left", "shatter_right", "shatter_solo", "shatter_partner_relative_position",
+    "prepare_card",
 )
 MAX_HAND_SIZE = 10
 CARD_EMBEDDING_DIM = 32
 
 _ACTION_TYPES = {
     "PLAY_CARD": ACTION_FEATURE_NAMES.index("play_card"),
+    "PREPARE_CARD": ACTION_FEATURE_NAMES.index("prepare_card"),
     "ATTACK": ACTION_FEATURE_NAMES.index("attack"),
     "HERO_POWER": ACTION_FEATURE_NAMES.index("hero_power"),
     "END_TURN": ACTION_FEATURE_NAMES.index("end_turn"),
@@ -82,6 +88,16 @@ def encode_policy_state(state: GameState, encoder: StateEncoder) -> np.ndarray:
         sum(card_type == "MINION" for card_type in hand_types),
         sum(card_type == "SPELL" for card_type in hand_types),
         sum(card_type == "WEAPON" for card_type in hand_types),
+        sum(card.shatter_fragment == "LEFT" for card in state.self_hand),
+        sum(card.shatter_fragment == "RIGHT" for card in state.self_hand),
+        sum(card.shatter_fragment == "SOLO" for card in state.self_hand),
+        (sum(abs(card.shatter_partner_hand_position - position) - 1
+             for position, card in enumerate(state.self_hand)
+             if card.shatter_partner_hand_position is not None) /
+         sum(card.shatter_partner_hand_position is not None for card in state.self_hand))
+        if any(card.shatter_partner_hand_position is not None for card in state.self_hand) else 0.0,
+        sum(card.prepare_locked is True for card in state.self_hand),
+        sum(card.prepare_locked is not None for card in state.self_hand),
     ]
     return np.concatenate((
         encoder.encode(state).global_features,
@@ -132,6 +148,15 @@ def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
         rows[row, ACTION_FEATURE_NAMES.index("choice_index")] = _scaled(
             action.get("choice_index", -1)
         )
+        role = str(action.get("shatter_fragment", "")).upper()
+        if role in {"LEFT", "RIGHT", "SOLO"}:
+            rows[row, ACTION_FEATURE_NAMES.index(f"shatter_{role.lower()}")] = 1.0
+        partner = action.get("shatter_partner_hand_position")
+        hand_index = action.get("hand_index")
+        if partner is not None and hand_index is not None and int(partner) >= 0:
+            rows[row, ACTION_FEATURE_NAMES.index("shatter_partner_relative_position")] = _scaled(
+                int(partner) - int(hand_index)
+            )
     return rows
 
 
@@ -142,7 +167,8 @@ def encode_action_card_ids(
     def semantic_card(action: dict[str, Any]) -> str:
         # The embedding is semantic: play card, selected choice card, or attack source.
         return str(
-            action.get("card_id")
+            action.get("shatter_original_card_id")
+            or action.get("card_id")
             or action.get("choice_card_id")
             or action.get("source_card_id")
             or "UNKNOWN_CARD"
@@ -159,7 +185,7 @@ def encode_hand_card_ids(state: GameState, encoder: StateEncoder) -> np.ndarray:
         raise ValueError(f"Self hand exceeds supported size {MAX_HAND_SIZE}")
     result = np.zeros(MAX_HAND_SIZE, dtype=np.int64)
     result[:len(state.self_hand)] = [
-        encoder.vocabulary.card_id(card.card_id) for card in state.self_hand
+        encoder.vocabulary.card_id(card.shatter_original_card_id or card.card_id) for card in state.self_hand
     ]
     return result
 

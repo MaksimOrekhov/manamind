@@ -38,6 +38,7 @@ class CardEntityEncoder(nn.Module):
             + len(PRESENCE_FEATURES)
             + vocabulary.mechanics_count
             + len(STATE_FLAG_NAMES)
+            + 6
         )
         self.layers = nn.Sequential(
             nn.Linear(input_size, config.entity_hidden_dim),
@@ -57,6 +58,7 @@ class CardEntityEncoder(nn.Module):
                 zone.numeric_present,
                 zone.mechanics,
                 zone.state_flags,
+                zone.hand_semantic_features,
             ),
             dim=-1,
         )

@@ -11,7 +11,7 @@
 #include <vector>
 namespace manaengine {
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, AllCharacters, Self };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
@@ -21,10 +21,12 @@ struct CardDefinition {
     std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race;
     std::string ability="NONE", generated_card, transform_card, support_state="UNSUPPORTED";
     std::string choice_pool;
+    std::string shatter_left_card, shatter_right_card;
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
+    bool prepare=false;
 };
 class CardCatalog {
 public:
@@ -33,7 +35,7 @@ private:
     std::shared_ptr<const std::unordered_map<std::string,CardDefinition>> definitions_;
     friend class GameSession;
 };
-enum class ActionType { PlayCard, Attack, HeroPower, EndTurn, ChooseCard };
+enum class ActionType { PlayCard, Attack, HeroPower, EndTurn, ChooseCard, PrepareCard };
 struct Action {
     ActionType type=ActionType::EndTurn;
     int hand_index=-1, attacker_entity_id=-1, target_entity_id=-1, choice_index=-1;
@@ -45,6 +47,8 @@ struct Action {
     int target_attack=-1, target_health=-1, target_board_position=-1;
     int choice_card_cost=-1, choice_card_attack=-1, choice_card_health=-1;
     std::string choice_card_type;
+    std::string shatter_fragment, shatter_original_card_id;
+    int shatter_partner_hand_position=-1;
     bool execution_equal(const Action& other) const {
         return type==other.type && hand_index==other.hand_index &&
                attacker_entity_id==other.attacker_entity_id &&
@@ -53,6 +57,9 @@ struct Action {
 };
 struct ObservedCard {
     std::string card_id, card_type, card_class, race;
+    std::string shatter_fragment, shatter_original_card_id;
+    int shatter_partner_hand_position=-1;
+    bool prepare_locked=false;
     int cost=0, current_cost=0, attack=0, health=0, durability=0, current_durability=0;
     int current_attack=0, current_health=0, board_position=0, entity_id=-1;
     bool can_attack=false, rush=false, frozen=false, taunt=false, divine_shield=false, lifesteal=false;
@@ -108,13 +115,19 @@ private:
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle };
     enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand };
     enum class Zone { Deck, Hand, Board, Weapon, Graveyard };
+    enum class ShatterFragment { None, Left, Right, Solo };
     struct CardInstance {
       int entity_id=-1, owner=0, controller=0, zone_position=-1, cost_delta=0;
       Zone zone=Zone::Deck;
       std::string card_id, provenance="DECK";
+      std::string shatter_original_card_id;
+      int shatter_partner_entity_id=-1;
+      ShatterFragment shatter_fragment=ShatterFragment::None;
+      bool shatter_consumed=false;
       int attack=0,health=0,max_health=0,durability=0,current_durability=0,freeze_expire_owner_turn=0;
       bool can_attack=false,rush=false,rush_only=false,frozen=false,taunt=false,divine_shield=false,lifesteal=false;
       bool stealth=false,silenced=false,immune=false,has_attacked_this_turn=false;
+      int prepare_locked_turn=-1;
       std::vector<std::string> enchantments;
       std::unordered_map<std::string,int> counters;
     };
@@ -151,6 +164,9 @@ private:
     std::uint64_t next_u64(); std::size_t bounded_random(std::size_t bound);
     void stable_shuffle(std::vector<CardInstance>& cards);
     CardInstance make_instance(const std::string& card_id,int owner,Zone zone,std::string provenance);
+    void enter_hand(int owner,CardInstance instance);
+    void update_shatter_links(int owner);
+    void shatter_on_hand_entry(int owner,CardInstance instance);
     void update_zone_positions(int owner,Zone zone);
     void move_to_graveyard(int owner,CardInstance instance);
     void freeze_character(int target_id);

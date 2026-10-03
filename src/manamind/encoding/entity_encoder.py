@@ -72,6 +72,7 @@ class EncodedZone:
     numeric: np.ndarray
     numeric_present: np.ndarray
     state_flags: np.ndarray
+    hand_semantic_features: np.ndarray
 
     @property
     def size(self) -> int:
@@ -128,6 +129,7 @@ class EntityEncoder:
             numeric=np.zeros((0, len(NUMERIC_FEATURES)), dtype=np.float32),
             numeric_present=np.zeros((0, len(PRESENCE_FEATURES)), dtype=np.float32),
             state_flags=np.zeros((0, len(STATE_FLAG_NAMES)), dtype=np.float32),
+            hand_semantic_features=np.zeros((0, 6), dtype=np.float32),
         )
 
     def encode_entities(self, entities: tuple[_EntityInput, ...]) -> EncodedZone:
@@ -143,10 +145,27 @@ class EntityEncoder:
         numeric = np.zeros((count, len(NUMERIC_FEATURES)), dtype=np.float32)
         numeric_present = np.zeros((count, len(PRESENCE_FEATURES)), dtype=np.float32)
         state_flags = np.zeros((count, len(STATE_FLAG_NAMES)), dtype=np.float32)
+        hand_semantic_features = np.zeros((count, 6), dtype=np.float32)
 
         for row, item in enumerate(entities):
             card = self.catalog.enrich(item.card)
-            card_ids[row] = self.vocabulary.card_id(card.card_id)
+            if item.zone_position is not None and card.shatter_fragment:
+                role = card.shatter_fragment.upper()
+                role_column = {"LEFT": 0, "RIGHT": 1, "SOLO": 2}.get(role)
+                if role_column is None:
+                    raise ValueError(f"Unknown Shatter fragment role: {card.shatter_fragment}")
+                hand_semantic_features[row, role_column] = 1.0
+                if card.shatter_partner_hand_position is not None:
+                    hand_semantic_features[row, 3] = _normalise(
+                        card.shatter_partner_hand_position - item.zone_position
+                    )
+            if item.zone_position is not None and card.prepare_locked is not None:
+                hand_semantic_features[row, 4] = float(card.prepare_locked)
+                hand_semantic_features[row, 5] = 1.0
+            # A fragment is the source card plus an explicit Shatter role. This
+            # keeps generated fragment IDs out of the collectible vocabulary.
+            model_card_id = card.shatter_original_card_id or card.card_id
+            card_ids[row] = self.vocabulary.card_id(model_card_id)
             card_type_ids[row] = self.vocabulary.card_type(card.card_type)
             card_class_ids[row] = self.vocabulary.card_class(card.card_class)
             race_ids[row] = self.vocabulary.race(card.race)
@@ -209,5 +228,6 @@ class EntityEncoder:
             numeric=numeric,
             numeric_present=numeric_present,
             state_flags=state_flags,
+            hand_semantic_features=hand_semantic_features,
         )
 

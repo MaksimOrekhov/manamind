@@ -210,3 +210,94 @@ def test_blazing_invocation_uses_complete_pinned_pool_and_choice_continuation() 
     viper = next(card for card in result.self_hand if card.card_id == "CORE_SW_072")
     assert viper.current_cost == 2
     assert any(action["type"] == "END_TURN" for action in selected_session.legal_actions())
+
+
+def test_arcane_flow_shatter_survives_native_adapter_and_exports_semantic_links() -> None:
+    from manamind.cards import CardCatalog
+    from manamind.domain.card import CardFeatures
+    from manamind.encoding import StateEncoder
+
+    deck = ["CORE_EX1_145"] * 3 + ["CATA_489"] + ["CORE_EX1_145"] * 26
+    session = ManaEngineSession(
+        deck,
+        deck,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+        random_seed=47,
+    )
+    state = session.observation("PLAYER1")
+    assert state.self_hand[0].card_id == "CATA_489t"
+    assert state.self_hand[-1].card_id == "CATA_489t2"
+    assert state.self_hand[0].shatter_fragment == "LEFT"
+    assert state.self_hand[0].shatter_partner_hand_position == len(state.self_hand) - 1
+    assert state.self_hand[-1].shatter_partner_hand_position == 0
+    assert not hasattr(state.self_hand[0], "entity_id")
+
+    catalog = CardCatalog([CardFeatures(card_id="CATA_489", cost=4, card_type="SPELL", card_class="MAGE")])
+    encoded = StateEncoder(catalog).encode(state).self_hand
+    root_id = StateEncoder(catalog).vocabulary.card_id("CATA_489")
+    assert encoded.card_ids[0] == root_id and encoded.card_ids[-1] == root_id
+    assert encoded.hand_semantic_features[0, 0] == 1
+    assert encoded.hand_semantic_features[-1, 1] == 1
+
+    for _ in range(6):
+        session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    left_action = next(action for action in session.legal_actions()
+                       if action["type"] == "PLAY_CARD" and action["card_id"] == "CATA_489t")
+    assert left_action["shatter_fragment"] == "LEFT"
+    assert left_action["shatter_original_card_id"] == "CATA_489"
+    current_hand = session.observation().self_hand
+    right_position = next(i for i, card in enumerate(current_hand) if card.card_id == "CATA_489t2")
+    assert left_action["shatter_partner_hand_position"] == right_position
+
+
+def test_prepare_card_round_trips_as_its_own_action_kind() -> None:
+    from manamind.integrations.manaengine.engine import _load_native
+    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES
+
+    native = _load_native()
+    filler = native.CardDefinition()
+    filler.card_id = "TEST_PREPARE_FILLER"
+    filler.card_type = "MINION"
+    filler.support_state = "VERIFIED_VANILLA"
+    hero_power = native.CardDefinition()
+    hero_power.card_id = "HERO_08bp"
+    hero_power.card_type = "HERO_POWER"
+    hero_power.card_class = "MAGE"
+    hero_power.cost = 2
+    hero_power.support_state = "VERIFIED_VANILLA"
+    prepared = native.CardDefinition()
+    prepared.card_id = "TEST_PREPARE_SPELL"
+    prepared.card_type = "SPELL"
+    prepared.cost = 5
+    prepared.damage = 3
+    prepared.ability = "TARGET_DAMAGE"
+    prepared.support_state = "SUPPORTED"
+    prepared.prepare = True
+    catalog = native.CardCatalog([filler, hero_power, prepared])
+    deck = ["TEST_PREPARE_SPELL", *(["TEST_PREPARE_FILLER"] * 29)]
+    session = native.GameSession(deck, deck, catalog, 13, False, "MAGE", "MAGE")
+    session.apply_action({"type": "END_TURN"})
+    actions = session.legal_actions()
+    prepare = next(action for action in actions if action["type"] == "PREPARE_CARD")
+    assert prepare["card_id"] == "TEST_PREPARE_SPELL"
+    assert prepare["card_cost"] == 5
+    assert prepare["hand_index"] == 0
+    action_features = encode_legal_actions([prepare])
+    assert action_features[0, ACTION_FEATURE_NAMES.index("prepare_card")] == 1.0
+    clone = session.clone()
+    after = session.apply_action(prepare)
+    assert after["self_player"]["available_mana"] == 0
+    assert after["self_hand"][0]["current_cost"] == 3
+    assert after["self_hand"][0]["prepare_locked"] is True
+    assert clone.observation("ACTIVE")["self_hand"][0]["current_cost"] == 5
+    assert clone.observation("ACTIVE")["self_hand"][0]["prepare_locked"] is False
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+    adapted = game_state_from_dict(after)
+    encoded = StateEncoder(CardCatalog([])).encode(adapted).self_hand
+    assert encoded.hand_semantic_features[0, 4:].tolist() == [1.0, 1.0]
+    remaining = session.legal_actions()
+    assert not any(action["type"] in {"PLAY_CARD", "PREPARE_CARD"} and action.get("hand_index") == 0 for action in remaining)

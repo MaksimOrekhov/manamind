@@ -67,3 +67,25 @@ class GameState:
             raise ValueError("self_hand_known_count cannot exceed self hand_size")
         if len(self.opponent_known_cards) > self.opponent.hand_size:
             raise ValueError("Known opponent cards cannot exceed opponent hand_size")
+        for position, card in enumerate(self.self_hand):
+            role = card.shatter_fragment
+            if role is None:
+                if card.shatter_partner_hand_position is not None or card.shatter_original_card_id is not None:
+                    raise ValueError("Unshattered hand cards cannot expose Shatter link fields")
+                continue
+            role = role.upper()
+            if role not in ("LEFT", "RIGHT", "SOLO") or not card.shatter_original_card_id:
+                raise ValueError("Shatter hand cards require a valid role and original card ID")
+            partner_position = card.shatter_partner_hand_position
+            if role == "SOLO":
+                if partner_position is not None:
+                    raise ValueError("Solo Shatter fragments cannot expose a partner position")
+                continue
+            if partner_position is None or not 0 <= partner_position < len(self.self_hand):
+                raise ValueError("Linked Shatter fragments require a valid partner position")
+            partner = self.self_hand[partner_position]
+            expected_role = "RIGHT" if role == "LEFT" else "LEFT"
+            if (partner.shatter_fragment != expected_role or
+                    partner.shatter_original_card_id != card.shatter_original_card_id or
+                    partner.shatter_partner_hand_position != position):
+                raise ValueError("Shatter partner positions and roles must be reciprocal")

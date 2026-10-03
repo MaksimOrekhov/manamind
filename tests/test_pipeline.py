@@ -3,6 +3,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
+import pytest
 
 from manamind.cards import CardCatalog
 from manamind.domain import game_state_from_dict
@@ -55,6 +56,81 @@ def test_encoder_keeps_unknown_card_properties_and_excludes_hidden_hand():
     assert encoded.self_hand.numeric[1, 0] > 0
     assert encoded.opponent_known_cards.size == 0
     assert encoded.opponent_known_cards.mechanics.shape[0] == 0
+
+
+def test_shatter_fragment_semantics_are_encoded_without_engine_handles():
+    from manamind.domain.game_state import GameState, PlayerObservation
+
+    state = GameState(
+        turn_number=1,
+        active_player="SELF",
+        self_player=PlayerObservation(hero_health=30, hand_size=2),
+        opponent=PlayerObservation(hero_health=30),
+        self_hand=(
+            CardFeatures(card_id="CATA_489t", cost=4, card_type="SPELL", card_class="MAGE",
+                         shatter_fragment="LEFT", shatter_original_card_id="CATA_489",
+                         shatter_partner_hand_position=1),
+            CardFeatures(card_id="CATA_489t2", cost=4, card_type="SPELL", card_class="MAGE",
+                         shatter_fragment="RIGHT", shatter_original_card_id="CATA_489",
+                         shatter_partner_hand_position=0),
+        ),
+    )
+    catalog = _sample_catalog().merged(CardCatalog([CardFeatures(card_id="CATA_489", card_type="SPELL", card_class="MAGE", cost=4)]))
+    encoded = StateEncoder(catalog).encode(state).self_hand
+
+    assert encoded.card_ids.tolist() == [StateEncoder(catalog).vocabulary.card_id("CATA_489")] * 2
+    assert encoded.hand_semantic_features[0, :3].tolist() == [1.0, 0.0, 0.0]
+    assert encoded.hand_semantic_features[1, :3].tolist() == [0.0, 1.0, 0.0]
+    assert encoded.hand_semantic_features[0, 3] > 0 > encoded.hand_semantic_features[1, 3]
+    assert not hasattr(state.self_hand[0], "entity_id")
+    from manamind.integrations.rosettastone.policy import (
+        ACTION_FEATURE_NAMES, POLICY_STATE_FEATURE_NAMES, encode_action_card_ids,
+        encode_hand_card_ids, encode_legal_actions, encode_policy_state,
+    )
+    actions = [{
+        "type": "PLAY_CARD", "card_id": "CATA_489t", "card_type": "SPELL",
+        "hand_index": 0, "shatter_fragment": "LEFT",
+        "shatter_original_card_id": "CATA_489", "shatter_partner_hand_position": 1,
+    }]
+    policy_state = encode_policy_state(state, StateEncoder(catalog))
+    action_features = encode_legal_actions(actions)
+    assert policy_state.shape[0] == len(POLICY_STATE_FEATURE_NAMES)
+    assert policy_state[POLICY_STATE_FEATURE_NAMES.index("self_hand_shatter_left")] > 0
+    assert action_features[0, ACTION_FEATURE_NAMES.index("shatter_left")] == 1
+    assert action_features[0, ACTION_FEATURE_NAMES.index("shatter_partner_relative_position")] > 0
+    assert encode_hand_card_ids(state, StateEncoder(catalog))[:2].tolist() == [
+        StateEncoder(catalog).vocabulary.card_id("CATA_489")
+    ] * 2
+    assert encode_action_card_ids(actions, StateEncoder(catalog))[0] == StateEncoder(catalog).vocabulary.card_id("CATA_489")
+
+
+def test_prepare_legal_action_has_distinct_policy_feature():
+    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES, encode_legal_actions
+
+    features = encode_legal_actions([{
+        "type": "PREPARE_CARD", "card_id": "JAIL_321", "card_type": "MINION",
+        "card_cost": 5, "hand_index": 2,
+    }])
+    assert features[0, ACTION_FEATURE_NAMES.index("prepare_card")] == 1.0
+    assert features[0, ACTION_FEATURE_NAMES.index("play_card")] == 0.0
+
+
+def test_game_state_rejects_malformed_shatter_link():
+    from manamind.domain.game_state import GameState, PlayerObservation
+
+    with pytest.raises(ValueError, match="reciprocal"):
+        GameState(
+            turn_number=1,
+            active_player="SELF",
+            self_player=PlayerObservation(hero_health=30, hand_size=2),
+            opponent=PlayerObservation(hero_health=30),
+            self_hand=(
+                CardFeatures(card_id="CATA_489t", shatter_fragment="LEFT",
+                             shatter_original_card_id="CATA_489", shatter_partner_hand_position=1),
+                CardFeatures(card_id="CATA_489t2", shatter_fragment="RIGHT",
+                             shatter_original_card_id="CATA_489", shatter_partner_hand_position=1),
+            ),
+        )
 
 
 def test_encoder_preserves_visible_self_hand_order():
@@ -180,9 +256,17 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
     )
 
     encoder = StateEncoder(_sample_catalog())
-    gift_features = [f"dark_gift_{gift_id}" for gift_id in range(1, 11)]
-    old_names = [name for name in ACTION_FEATURE_NAMES if name not in gift_features]
-    assert old_names == list(ACTION_FEATURE_NAMES[:-10])
+    new_state_features = {
+        "self_hand_shatter_left", "self_hand_shatter_right", "self_hand_shatter_solo",
+        "self_hand_shatter_intervening_cards_mean",
+        "self_hand_prepare_locked_count", "self_hand_prepare_known_count",
+    }
+    new_action_features = {
+        "shatter_left", "shatter_right", "shatter_solo",
+        "shatter_partner_relative_position", "prepare_card",
+    }
+    old_state_names = [name for name in POLICY_STATE_FEATURE_NAMES if name not in new_state_features]
+    old_names = [name for name in ACTION_FEATURE_NAMES if name not in new_action_features]
     old_policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
     new_policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
     old_checkpoint_state = {
@@ -190,16 +274,17 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
     }
     current_weight = old_checkpoint_state["scorer.0.weight"]
     state_count = len(POLICY_STATE_FEATURE_NAMES)
-    old_checkpoint_state["scorer.0.weight"] = torch.cat(
-        (
-            current_weight[:, :state_count + len(old_names)],
-            current_weight[:, state_count + len(ACTION_FEATURE_NAMES):],
-        ),
-        dim=1,
-    )
+    old_action_indices = [ACTION_FEATURE_NAMES.index(name) for name in old_names]
+    old_state_indices = [POLICY_STATE_FEATURE_NAMES.index(name) for name in old_state_names]
+    embedding_start = state_count + len(ACTION_FEATURE_NAMES)
+    old_checkpoint_state["scorer.0.weight"] = torch.cat((
+        current_weight[:, old_state_indices],
+        current_weight[:, state_count + torch.as_tensor(old_action_indices)],
+        current_weight[:, embedding_start:],
+    ), dim=1)
     old_weight = old_checkpoint_state["scorer.0.weight"]
     payload = {
-        "state_feature_names": list(POLICY_STATE_FEATURE_NAMES),
+        "state_feature_names": old_state_names,
         "action_feature_names": old_names,
         "card_vocabulary": {"UNKNOWN_CARD": 0},
         "policy_state_dict": old_checkpoint_state,
@@ -210,17 +295,18 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
     old_action_index = old_names.index("hand_index")
     new_action_index = ACTION_FEATURE_NAMES.index("hand_index")
     state_count = len(POLICY_STATE_FEATURE_NAMES)
+    old_action_offset = len(old_state_names)
     assert torch.equal(
         new_weight[:, state_count + new_action_index],
-        old_weight[:, state_count + old_action_index],
+        old_weight[:, old_action_offset + old_action_index],
     )
-    for feature_name in gift_features:
-        assert torch.count_nonzero(
-            new_weight[:, state_count + ACTION_FEATURE_NAMES.index(feature_name)]
-        ) == 0
+    for feature_name in new_action_features:
+        assert torch.count_nonzero(new_weight[:, state_count + ACTION_FEATURE_NAMES.index(feature_name)]) == 0
+    for feature_name in new_state_features:
+        assert torch.count_nonzero(new_weight[:, POLICY_STATE_FEATURE_NAMES.index(feature_name)]) == 0
     assert torch.equal(
         new_weight[:, state_count + len(ACTION_FEATURE_NAMES):],
-        old_weight[:, state_count + len(old_names):],
+        old_weight[:, old_action_offset + len(old_names):],
     )
 
 
@@ -234,10 +320,13 @@ def test_legacy_policy_weights_migrate_to_card_embeddings():
 
     encoder = StateEncoder(_sample_catalog())
     policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
-    old_action_names = list(ACTION_FEATURE_NAMES[:-3])
+    old_action_names = [name for name in ACTION_FEATURE_NAMES if not name.startswith("shatter_") and not name.startswith("dark_gift_") and name != "prepare_card"]
     old_state_names = [
         name for name in POLICY_STATE_FEATURE_NAMES
-        if name not in {"self_hero_power_ready", "opponent_hero_power_ready"}
+        if name not in {"self_hero_power_ready", "opponent_hero_power_ready",
+                        "self_hand_shatter_left", "self_hand_shatter_right",
+                        "self_hand_shatter_solo", "self_hand_shatter_intervening_cards_mean"}
+        | {"self_hand_prepare_locked_count", "self_hand_prepare_known_count"}
     ]
     old_state = {
         name: value.clone() for name, value in policy.state_dict().items()

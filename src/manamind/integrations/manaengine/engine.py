@@ -76,13 +76,15 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         "JAIL_805t": CardFeatures(card_id="JAIL_805t", cost=7, attack=7, health=7, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL", mechanics=("LIFESTEAL",)),
         "TEST_HELD_TRACKER": CardFeatures(card_id="TEST_HELD_TRACKER", cost=2, attack=4, health=4, card_type="MINION", card_class="MAGE"),
         "HERO_08bp": CardFeatures(card_id="HERO_08bp", cost=2, attack=0, health=0, durability=0, card_type="HERO_POWER", card_class="MAGE"),
+        "CATA_489t": CardFeatures(card_id="CATA_489t", cost=4, card_type="SPELL", card_class="MAGE"),
+        "CATA_489t2": CardFeatures(card_id="CATA_489t2", cost=4, card_type="SPELL", card_class="MAGE"),
     }
     records = {c.card_id: c for c in catalog}
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
     effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE"}
-    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ALL_CHARACTERS", "SELF"}
+    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "SELF"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
         d = native.CardDefinition()
@@ -192,7 +194,7 @@ class ManaEngineSession:
             raise UnsupportedSimulationError(str(exc)) from exc
         for raw in raw_actions:
             action = dict(raw)
-            if action["type"] == "PLAY_CARD":
+            if action["type"] in {"PLAY_CARD", "PREPARE_CARD"}:
                 hand_index = int(action["hand_index"])
                 card = state.self_hand[hand_index]
                 action.update({

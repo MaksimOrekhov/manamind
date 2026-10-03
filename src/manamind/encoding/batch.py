@@ -34,6 +34,7 @@ class TensorZone:
     numeric: Tensor
     numeric_present: Tensor
     state_flags: Tensor
+    hand_semantic_features: Tensor
     mask: Tensor
 
 
@@ -58,6 +59,7 @@ def _pad_zone(zones: list[EncodedZone], device: torch.device | str | None) -> Te
     numeric = np.zeros((batch_size, max_items, zones[0].numeric.shape[1]), dtype=np.float32)
     numeric_present = np.zeros_like(numeric)
     state_flags = np.zeros((batch_size, max_items, zones[0].state_flags.shape[1]), dtype=np.float32)
+    hand_semantic_features = np.zeros((batch_size, max_items, 6), dtype=np.float32)
     mask = np.zeros((batch_size, max_items), dtype=np.bool_)
 
     for row, zone in enumerate(zones):
@@ -74,6 +76,7 @@ def _pad_zone(zones: list[EncodedZone], device: torch.device | str | None) -> Te
         numeric[row, :count] = zone.numeric
         numeric_present[row, :count] = zone.numeric_present
         state_flags[row, :count] = zone.state_flags
+        hand_semantic_features[row, :count] = zone.hand_semantic_features
         mask[row, :count] = True
 
     return TensorZone(
@@ -85,6 +88,7 @@ def _pad_zone(zones: list[EncodedZone], device: torch.device | str | None) -> Te
         numeric=torch.as_tensor(numeric, device=device),
         numeric_present=torch.as_tensor(numeric_present, device=device),
         state_flags=torch.as_tensor(state_flags, device=device),
+        hand_semantic_features=torch.as_tensor(hand_semantic_features, device=device),
         mask=torch.as_tensor(mask, device=device),
     )
 

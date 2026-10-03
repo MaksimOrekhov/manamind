@@ -24,6 +24,14 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
         current_attack=data.get("current_attack"),
         current_health=data.get("current_health"),
         current_durability=data.get("current_durability"),
+        shatter_fragment=data.get("shatter_fragment") or None,
+        shatter_original_card_id=data.get("shatter_original_card_id") or None,
+        shatter_partner_hand_position=(
+            int(data["shatter_partner_hand_position"])
+            if data.get("shatter_partner_hand_position") is not None
+            and int(data["shatter_partner_hand_position"]) >= 0 else None
+        ),
+        prepare_locked=(bool(data["prepare_locked"]) if data.get("prepare_locked") is not None else None),
     )
 
 
