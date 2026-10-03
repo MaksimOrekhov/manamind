@@ -39,7 +39,20 @@ jobs:
           cache: pip
       - name: Install build and adapter dependencies
         run: python -m pip install --upgrade -e ".[dev]" cmake ninja pybind11
-      - name: Configure
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+      - name: Configure Windows with MSVC
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: >-
+          cmake -S experiments/manaengine -B build/manaengine -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_CXX_COMPILER=cl
+          -Dpybind11_DIR="$(python -m pybind11 --cmakedir)"
+      - name: Configure Unix
+        if: runner.os != 'Windows'
         shell: bash
         run: >-
           cmake -S experiments/manaengine -B build/manaengine -G Ninja
