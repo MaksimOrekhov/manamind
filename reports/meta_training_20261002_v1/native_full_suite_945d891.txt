@@ -1,0 +1,18 @@
+[doctest] doctest version is "2.5.3"
+[doctest] run with "--help" for options
+===============================================================================
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\CoreCardsGenTests.cpp(914):
+TEST CASE:  [Druid : Minion] - CORE_OG_044 : Fandral Staghelmh
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\CoreCardsGenTests.cpp(952): ERROR: CHECK_EQ( curField[3]->GetHealth(), 6 ) is NOT correct!
+  values: CHECK_EQ( 4, 6 )
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\CoreCardsGenTests.cpp(954): ERROR: CHECK_EQ( curField[3]->HasTaunt(), true ) is NOT correct!
+  values: CHECK_EQ( false, true )
+
+E:\ManaMind\vendor\RosettaStone\Tests\UnitTests\PlayMode\CardSets\CoreCardsGenTests.cpp(914): FATAL ERROR: test case CRASHED: SIGSEGV - Segmentation violation signal
+
+===============================================================================
+[doctest] test cases:  267 |  266 passed | 1 failed | 2350 skipped
+[doctest] assertions: 8074 | 8072 passed | 2 failed |
+[doctest] Status: FAILURE!

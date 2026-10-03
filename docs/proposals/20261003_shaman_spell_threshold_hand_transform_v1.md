@@ -6,7 +6,7 @@ Revision 1 — 2026-10-03. Inputs: `standard_full_20261001_v1`, canonical regist
 
 Review the three Shaman roots `JAIL_801`, `JAIL_803` and `JAIL_805` as one candidate family. Their shared contract is: while a particular card instance is in its controller's hand, count spells cast by that controller; after the third such spell, permanently replace that hand card with its fixed Elemental minion form. The transformed card retains its listed cost and gains a Battlecry matching the original spell effect. The current profile contains two copies of each in `wanted_mug_shaman`.
 
-This proposal is **blocked before implementation** pending a core event/session design review. The engine currently processes held-card Infuse counters from minion-death handling; it has no equivalent per-card spell-cast counter. Implementing the proposed behavior appears to require new held-instance state and a precise insertion point in `PlaySpell` event processing. That falls under the user's stop condition for session state / event ordering. No implementation changes are authorized in this proposal.
+This proposal remains **`BLOCKED_DESIGN_REVIEW`**. No implementation changes are authorized in this proposal.
 
 ## Semantic capability
 
@@ -79,3 +79,20 @@ None forecast. If any root requires card-ID behavior or a token effect cannot be
 ## Completion record
 
 Not started: stopped at proposal stage because the capability crosses the held-card spell-event/session boundary.
+
+## Design-only audit — 2026-10-03
+
+Reviewed `PlayCard.cpp::PlaySpell`, `Generic::CastSpell`, `Generic::CastRandomSpell`, `Trigger`/`TriggerManager`, `ComplexTrigger::CastSpellWhileHoldingThis`, per-entity tags and `Generic::ChangeEntity`. No production code changed.
+
+| Question | Finding |
+|---|---|
+| What qualifies? | The current reusable `CAST_SPELL` trigger means a friendly spell event dispatched by the normal `PlaySpell` path. It is not a complete definition of every spell effect resolved through the engine. |
+| Replay / auto-cast / generated / nested casts? | A card played through `PlaySpell` emits one `PLAY_SPELL` / `CAST_SPELL` event. `EXTRA_CAST_SPELL` repeats the spell power inside `Generic::CastSpell`, after that event, so it does not emit a second held-card event. Generated or nested spell resolution through direct `Generic::CastSpell`, `CastRandomSpell`, `CastSpellStackTask` and related task paths does not pass through `PlaySpell` and is not observed by this hook. Replay coverage therefore depends on which path the replay effect invokes; it is not guaranteed uniformly. The engine does not currently provide one canonical cast-event boundary covering all of these paths. |
+| Counter timing? | `PlaySpell` increments the player spell counters first, then validates `PLAY_SPELL`; the held `CAST_SPELL` trigger runs in that validation before the target/counter check and before the spell's effect resolves. A hook there would count a subsequently countered spell. |
+| Transform timing? | Using the existing `CAST_SPELL` trigger would transform the held card during `PLAY_SPELL`, before target-trigger processing and before the triggering spell's effects. This is the available local insertion point, but it is not established as correct for every replay/nested cast path. |
+| Newly drawn after prior casts? | A per-entity tag initialized to zero on entity creation/hand entry would naturally exclude earlier casts; a player-wide `NumSpellsCastThisTurn`/`ThisGame` value cannot. RosettaStone currently has no generic hand-instance spell-progress field/hook, and `SetGameTagTask` only assigns a constant, so the proposed threshold needs an increment operation or equivalent shared task. |
+| Two copies? | Separate `Playable` entities have separate tags and activated trigger instances, so independent progress is representable per instance. The current `CastSpellWhileHoldingThis` helper only sets a one-bit marker; it does not implement an independent counter. |
+| State owner? | Progress must live on each held `Playable` instance, not on `Player`, card definition, or a hand-wide aggregate. `Generic::ChangeEntity` must preserve/reset that state deliberately when it replaces the spell with its minion form. |
+| Local reusable hook without global ordering changes? | It can be attached locally to the existing `CAST_SPELL` trigger and keeps the normal-play ordering unchanged, but then misses direct generated/replay/nested cast paths. Making all such paths emit a canonical event would require changing shared spell-resolution/event ordering and avoiding double counting between `PlaySpell` and nested `Generic::CastSpell`. |
+
+**Decision:** keep `BLOCKED_DESIGN_REVIEW` and defer. The narrow hook is easy to express but does not meet an unambiguous “spells cast while holding” contract across the engine. Complete support requires a canonical cast-event contract across normal, generated, replayed, auto-cast and nested resolutions, including exact event nesting and countered-spell semantics. This crosses the user's event-order stop condition; do not promote it to the implementation queue until that contract is designed independently.
