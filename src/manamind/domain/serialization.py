@@ -86,6 +86,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
             None if data.get("hero_power_ready") is None
             else bool(data["hero_power_ready"])
         ),
+        hero_frozen=(None if data.get("hero_frozen") is None else bool(data["hero_frozen"])),
         player_class=str(data.get("player_class", "UNKNOWN_CLASS")).upper(),
         weapon=_card(data.get("weapon")),
         hero_power=_card(data.get("hero_power")),

@@ -147,17 +147,23 @@ def main() -> None:
     args = parser.parse_args()
     if args.iterations < 3:
         parser.error("--iterations must be at least 3")
-    deck = _make_deck()
+    # ManaEngine needs a fully supported draw path for pass-only complete games.
+    # Rosetta uses its validated Mage deck; fixture differences are explicit below.
+    mana_deck = ["CORE_DRG_107"] * 30
+    rosetta_deck = _make_deck()
     results = {
-        "scenario": "30-card validated Mage fixture; seeded, no shuffle; pass-only matches reach fatigue terminal",
+        "scenarios": {
+            "ManaEngine": "30-card supported Mage stress fixture (CORE_DRG_107 x30); seeded, no shuffle; pass-only matches reach fatigue terminal; not a deck-validity claim",
+            "RosettaStone": "30-card Rosetta-validated Mage reference fixture; seeded, no shuffle; pass-only matches reach fatigue terminal",
+        },
         "seed": SEED,
         "iterations": args.iterations,
         "build_type": "Release (CMake Ninja)",
         "cpu": platform.processor() or platform.machine(),
         "os": platform.platform(),
         "backends": {
-            "RosettaStone": _bench_backend("RosettaStone", deck, args.iterations),
-            "ManaEngine": _bench_backend("ManaEngine", deck, args.iterations),
+            "RosettaStone": _bench_backend("RosettaStone", rosetta_deck, args.iterations),
+            "ManaEngine": _bench_backend("ManaEngine", mana_deck, args.iterations),
         },
     }
     payload = json.dumps(results, indent=2, sort_keys=True) + "\n"

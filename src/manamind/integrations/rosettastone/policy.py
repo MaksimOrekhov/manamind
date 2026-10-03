@@ -31,6 +31,7 @@ ACTION_FEATURE_NAMES = (
     "target_is_hero", "target_is_self", "target_attack", "target_health",
     "target_board_position", "target_taunt", "choose_card", "hand_index",
     "activate_location", "trade_card", "choose_one_a", "choose_one_b",
+    "choice_index",
     *(f"dark_gift_{gift_id}" for gift_id in range(1, 11)),
 )
 MAX_HAND_SIZE = 10
@@ -128,6 +129,9 @@ def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
         rows[row, ACTION_FEATURE_NAMES.index("hand_index")] = _scaled(
             action.get("hand_index", -1)
         )
+        rows[row, ACTION_FEATURE_NAMES.index("choice_index")] = _scaled(
+            action.get("choice_index", -1)
+        )
     return rows
 
 
@@ -135,9 +139,17 @@ def encode_action_card_ids(
     actions: Sequence[dict[str, Any]], encoder: StateEncoder
 ) -> np.ndarray:
     """Return vocabulary indices for card-bearing actions, without transient IDs."""
+    def semantic_card(action: dict[str, Any]) -> str:
+        # The embedding is semantic: play card, selected choice card, or attack source.
+        return str(
+            action.get("card_id")
+            or action.get("choice_card_id")
+            or action.get("source_card_id")
+            or "UNKNOWN_CARD"
+        )
+
     return np.asarray([
-        encoder.vocabulary.card_id(str(action.get("card_id", "UNKNOWN_CARD")))
-        for action in actions
+        encoder.vocabulary.card_id(semantic_card(action)) for action in actions
     ], dtype=np.int64)
 
 

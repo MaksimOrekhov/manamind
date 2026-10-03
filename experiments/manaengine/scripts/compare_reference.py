@@ -18,7 +18,14 @@ def _without_catalog_mechanics(value: Any) -> Any:
         return {
             key: _without_catalog_mechanics(item)
             for key, item in value.items()
-            if key != "mechanics"
+            # Rosetta's current bridge does not export hero-freeze state, and
+            # ManaEngine intentionally reports unknown hero shield where it has
+            # no implementation. Compare the shared observation contract only.
+            if key not in {
+                "mechanics", "hero_frozen", "hero_divine_shield",
+                "cant_be_targeted_by_spells", "cant_be_targeted_by_hero_powers",
+            }
+            and not (key == "current_durability" and value.get("card_type") != "WEAPON")
         }
     if isinstance(value, (list, tuple)):
         return [_without_catalog_mechanics(item) for item in value]
@@ -57,7 +64,7 @@ def _make_deck() -> list[str]:
 def _action_signature(action: dict[str, Any]) -> tuple[Any, ...]:
     return (
         action.get("type"),
-        action.get("card_id"),
+        action.get("card_id") or "",
         action.get("hand_index"),
         action.get("field_position"),
         action.get("target_entity_id"),

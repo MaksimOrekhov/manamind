@@ -50,7 +50,7 @@ def test_encoder_keeps_unknown_card_properties_and_excludes_hidden_hand():
     encoder = StateEncoder(_sample_catalog())
     encoded = encoder.encode(_sample_state())
 
-    assert encoded.global_features.shape == (29,)
+    assert encoded.global_features.shape == (31,)
     assert encoded.self_hand.card_ids.tolist() == [4, 1]
     assert encoded.self_hand.numeric[1, 0] > 0
     assert encoded.opponent_known_cards.size == 0
@@ -115,6 +115,60 @@ def test_policy_encodes_card_identity_and_hand_position():
     logits = policy(state_features, action_features, hand_ids, action_ids)
     assert logits.shape == (2,)
     assert torch.isfinite(logits).all()
+
+
+def test_policy_distinguishes_semantic_action_sources_targets_and_choice_options():
+    from manamind.integrations.rosettastone.policy import (
+        ACTION_FEATURE_NAMES,
+        encode_action_card_ids,
+        encode_legal_actions,
+    )
+
+    encoder = StateEncoder(_sample_catalog())
+    card_ids = sorted(card_id for card_id in encoder.vocabulary._card_ids)
+    assert len(card_ids) >= 2
+    source_a, source_b = card_ids[:2]
+
+    pairs = (
+        (
+            {"type": "PLAY_CARD", "card_id": "EX1_116", "card_type": "SPELL",
+             "target_is_hero": True, "target_entity_id": 1},
+            {"type": "PLAY_CARD", "card_id": "EX1_116", "card_type": "SPELL",
+             "target_is_hero": False, "target_card_id": source_a, "target_entity_id": 101},
+        ),
+        (
+            {"type": "ATTACK", "source_card_id": source_a, "source_board_position": 0,
+             "target_card_id": source_b, "target_board_position": 1,
+             "attacker_entity_id": 101, "target_entity_id": 202},
+            {"type": "ATTACK", "source_card_id": source_b, "source_board_position": 1,
+             "target_card_id": source_b, "target_board_position": 1,
+             "attacker_entity_id": 102, "target_entity_id": 202},
+        ),
+        (
+            {"type": "HERO_POWER", "card_id": "HERO_08bp", "target_is_hero": True,
+             "target_entity_id": 2},
+            {"type": "HERO_POWER", "card_id": "HERO_08bp", "target_is_hero": False,
+             "target_card_id": source_a, "target_entity_id": 102},
+        ),
+        (
+            {"type": "CHOOSE_CARD", "choice_index": 0, "choice_card_id": source_a,
+             "target_entity_id": 101},
+            {"type": "CHOOSE_CARD", "choice_index": 1, "choice_card_id": source_b,
+             "target_entity_id": 102},
+        ),
+    )
+    for left, right in pairs:
+        features = encode_legal_actions([left, right])
+        ids = encode_action_card_ids([left, right], encoder)
+        representations = np.concatenate((features, ids[:, None]), axis=1)
+        assert not np.array_equal(representations[0], representations[1])
+        assert "target_entity_id" not in ACTION_FEATURE_NAMES
+        assert "attacker_entity_id" not in ACTION_FEATURE_NAMES
+
+    choice_rows = encode_legal_actions([pairs[3][0], pairs[3][1]])
+    assert choice_rows[0, ACTION_FEATURE_NAMES.index("choice_index")] != choice_rows[
+        1, ACTION_FEATURE_NAMES.index("choice_index")
+    ]
 
 
 def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():

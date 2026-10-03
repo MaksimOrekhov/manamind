@@ -1,0 +1,57 @@
+name: ManaEngine experimental
+
+on:
+  push:
+    branches: ["**"]
+    paths:
+      - "experiments/manaengine/**"
+      - "src/manamind/domain/**"
+      - "src/manamind/encoding/**"
+      - "src/manamind/integrations/manaengine/**"
+      - "src/manamind/integrations/rosettastone/policy.py"
+      - "tests/test_pipeline.py"
+      - ".github/workflows/manaengine-experimental.yml"
+  pull_request:
+    paths:
+      - "experiments/manaengine/**"
+      - "src/manamind/domain/**"
+      - "src/manamind/encoding/**"
+      - "src/manamind/integrations/manaengine/**"
+      - "src/manamind/integrations/rosettastone/policy.py"
+      - "tests/test_pipeline.py"
+      - ".github/workflows/manaengine-experimental.yml"
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    name: ${{ matrix.os }} / ManaEngine
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        python-version: ["3.12"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install build and adapter dependencies
+        run: python -m pip install --upgrade cmake ninja pybind11 pytest numpy torch
+      - name: Configure
+        shell: bash
+        run: >-
+          cmake -S experiments/manaengine -B build/manaengine -G Ninja
+          -DCMAKE_BUILD_TYPE=Release
+          -Dpybind11_DIR="$(python -m pybind11 --cmakedir)"
+      - name: Release build
+        run: cmake --build build/manaengine --config Release --parallel 2
+      - name: CTest
+        run: ctest --test-dir build/manaengine -C Release --output-on-failure
+      - name: Python adapter and policy schema tests
+        shell: bash
+        env:
+          PYTHONPATH: src
+          MANAMIND_MANAENGINE_BUILD: ${{ github.workspace }}/build/manaengine/python
+        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py tests/test_pipeline.py

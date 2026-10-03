@@ -20,6 +20,7 @@ class PlayerObservation:
     hand_size: int = 0
     fatigue: int = 0
     hero_power_ready: bool | None = None
+    hero_frozen: bool | None = None
     player_class: str = "UNKNOWN_CLASS"
     weapon: CardFeatures | None = None
     hero_power: CardFeatures | None = None
