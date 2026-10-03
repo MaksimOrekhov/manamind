@@ -23,7 +23,7 @@
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
-      "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
+      "scenario_source_sha256": "a0bf400148286cf6cc977e393acb219067cac0a6cc7a1dbdd110c4d6930ccb61",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -34,8 +34,8 @@
     "generated_registered": 186,
     "text_bearing_without_detected_registration": 832,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 0,
-    "stale_historical_scoped_evidence": 24,
+    "rules_verified_scoped_current": 3,
+    "stale_historical_scoped_evidence": 23,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_edge_target_nodes_including_roots": 194,
     "unreviewed_static_source_edges": 177,
@@ -58,8 +58,8 @@
       "missing_detected_registration_with_text": 832,
       "textless_metadata_candidates": 0
     },
-    "current_rules_verified": 0,
-    "historical_scoped_evidence_marked_stale": 24
+    "current_rules_verified": 3,
+    "historical_scoped_evidence_marked_stale": 23
   },
   "dependencies": {
     "unique_known_nonroot_dependency_nodes": 192,

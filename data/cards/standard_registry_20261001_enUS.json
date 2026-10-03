@@ -22,7 +22,7 @@
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
-      "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
+      "scenario_source_sha256": "a0bf400148286cf6cc977e393acb219067cac0a6cc7a1dbdd110c4d6930ccb61",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -52,7 +52,7 @@
     "profile_deck_minion_cost_summon_evidence_sha256": "863aa0d4fd33ce2af363d44eb7ef4ecfb5bbdb62cd7ef58ea7b311027f496c57",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "32541da3835949999eae7e203d2e15f79da2e14ac26c4fb3c2fc6cef9093f74c",
+    "core_alias_evidence_sha256": "f2fc1b859b26586acef95f1b5044e19367f84c1f7d2d7014a96332b4b0cadbd9",
     "pool_detector_sha256": "ca3cd78c4b69bbeb8a221687bb166adde3afd84bc2378c5b8e44684767ed95cc",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },
@@ -101,7 +101,7 @@
   },
   "evidence_invalidation": {
     "strategy": "Compare per-evidence fingerprints; invalidate dependents when any relevant fingerprint changes, including pool predicate version even if resolved membership stays equal. Unknown impact scope invalidates conservatively.",
-    "available_current_evidence_fingerprints": false,
+    "available_current_evidence_fingerprints": true,
     "reason": "Historical scenario evidence lacks complete build/scenario/dependency fingerprints; it is retained as stale history.",
     "impact_inputs": [
       "normalized rules text",
@@ -141,8 +141,8 @@
     "generated_registered": 186,
     "text_bearing_without_detected_registration": 832,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 0,
-    "stale_historical_scoped_evidence": 24,
+    "rules_verified_scoped_current": 3,
+    "stale_historical_scoped_evidence": 23,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_edge_target_nodes_including_roots": 194,
     "unreviewed_static_source_edges": 177,
@@ -26509,12 +26509,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "IMPLEMENTED_UNVERIFIED",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -26536,7 +26537,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -26550,12 +26551,9 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:IMPLEMENTED_UNVERIFIED",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "bridge_action:not_audited",
         "session_match:not_current",
         "dependency:static_edges_unreviewed"
       ],
@@ -26573,12 +26571,9 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:IMPLEMENTED_UNVERIFIED",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "bridge_action:not_audited",
           "session_match:not_current",
           "dependency:static_edges_unreviewed"
         ]
@@ -41948,12 +41943,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "IMPLEMENTED_UNVERIFIED",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -41970,7 +41966,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -41986,12 +41982,9 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:IMPLEMENTED_UNVERIFIED",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -42007,12 +42000,9 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:IMPLEMENTED_UNVERIFIED",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -42175,12 +42165,13 @@
         "semantic_contract_reviewed": false
       },
       "rules_verification": {
-        "status": "IMPLEMENTED_UNVERIFIED",
-        "evidence_validity": "NO_SCOPED_EVIDENCE",
+        "status": "VERIFIED_SCOPED",
+        "evidence_validity": "CURRENT",
         "evidence": {
-          "status": "NO_SCOPED_EVIDENCE",
-          "historical_status": null,
-          "reason": "No entry in the 2026-09-29 scoped audit."
+          "status": "CURRENT",
+          "verification_scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+          "historical_status": "VERIFIED_SCOPED",
+          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -42202,7 +42193,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "NOT_AUDITED",
+        "status": "VERIFIED_SCOPED",
         "evidence": null
       },
       "classifier_features": {
@@ -42214,12 +42205,9 @@
         "metadata_and_text_only": true
       },
       "blockers": [
-        "rules:IMPLEMENTED_UNVERIFIED",
-        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
-        "bridge_action:not_audited",
         "session_match:not_current",
         "dependency:static_edges_unreviewed"
       ],
@@ -42237,12 +42225,9 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
-          "rules:IMPLEMENTED_UNVERIFIED",
-          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
-          "bridge_action:not_audited",
           "session_match:not_current",
           "dependency:static_edges_unreviewed"
         ]
@@ -43739,12 +43724,12 @@
       },
       "rules_verification": {
         "status": "IMPLEMENTED_UNVERIFIED",
-        "evidence_validity": "STALE",
+        "evidence_validity": "STALE_OR_INCOMPLETE",
         "evidence": {
-          "status": "STALE",
+          "status": "STALE_OR_INCOMPLETE",
           "verification_scope": "Core CardDef parity for the allowlisted alias package; Crystal Merchant trigger condition and draw count in the focused native scenario; Standard deck validation, bridge session, visible card identity and legal-action enumeration. No closure or training claim.",
-          "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
+          "historical_status": "STALE",
+          "reason": "Evidence lacks a complete explicit execution identity."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -43778,7 +43763,7 @@
       },
       "blockers": [
         "rules:IMPLEMENTED_UNVERIFIED",
-        "evidence:stale_historical_scope",
+        "evidence:missing_or_incomplete",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
@@ -43799,7 +43784,7 @@
         "status": "BLOCKED",
         "blockers": [
           "rules:IMPLEMENTED_UNVERIFIED",
-          "evidence:stale_historical_scope",
+          "evidence:missing_or_incomplete",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",

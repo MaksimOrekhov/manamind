@@ -1,303 +1,105 @@
 {
   "schema_version": 2,
-  "package": "core_aliases",
-  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
-  "declaration_sha256": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
-  "generator_script_sha256": "e3ab542e7a0e5cc21308f635273c5ccb4e447be83bd46cbd285e3793bf0e726e",
-  "generated_source_sha256": "b1fabba9ea68e80cdbd5f0c757b64d555c6cf1825f73a265931b2b7881b82da4",
-  "generated_header_sha256": "82476ec4a8a818a532b4283329cd6f954d37db746909642ec1ec653dfd9361db",
-  "capability_file_sha256": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
-  "engine_library_sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
-  "engine_cmake_cache_sha256": "f1cdac4f9bb9314764738641fcf09d0298823a10229ac30a6f64d6145ac046a7",
-  "bridge_cmake_cache_sha256": "13a4b0d990d5f0489a97b5aa6f48ee59fd3031721524e794f3270969f1fc3480",
-  "native_scenario_sha256": "1ce7f383f5cc18c15d8a132668b94f85b08dea144bb402b30f2e18c8841a8f2f",
-  "native_executable_sha256": "58d2bb95b243dbe7a557935296dd8f27a161746ade0ad473b6250495e5f05794",
-  "bridge_verifier_sha256": "f06d0aaf0a30c4ae26d8a24792eb84b498d820c23d2dd51ae0d43b1769f71927",
-  "bridge_module_sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99",
-  "execution_identity": {
-    "profile_id": "standard_full_20261001_v1",
-    "profile_sha256": "bd5b99d0899fe43571d2416c44df907b8b4f12cbed2d71108cb45d7ebe7839a2",
-    "engine_source_sha256": "4e0beda221b92dc9967704fab797e1b331580753d396b1aeae56cf10c21435b1",
-    "bridge_source_sha256": "c382a484bf572558a4d1fab5d5a8d2270b9c36ae0dba483ef87057db5dd3c44c",
-    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
-    "rules_source_sha256": "8879a30cae4b8e78d0ef6d857da97753fd4767d155f4205d36eab5a2eb112537",
-    "scenario_source_sha256": "eeba6cda838c1a1a40fda6e70cc5d781437ccc23842238c57aca2d0b0dc61a0c",
-    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
-  },
-  "training_eligible": false,
-  "batch_bridge_smokes": [
-    {
-      "card_id": "CORE_ULD_133",
-      "player_class": "DRUID",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BAR_812",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BAR_878",
-      "player_class": "PALADIN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BT_510",
-      "player_class": "DEMONHUNTER",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_559",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_WC_042",
-      "player_class": "SHAMAN",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BT_120",
-      "player_class": "WARRIOR",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BT_321",
-      "player_class": "DEMONHUNTER",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BT_493",
-      "player_class": "DEMONHUNTER",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_DAL_575",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_DAL_720",
-      "player_class": "ROGUE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_DRG_024",
-      "player_class": "WARRIOR",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_100",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_KAR_057",
-      "player_class": "PALADIN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_ONY_022",
-      "player_class": "PALADIN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_REV_308",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_SCH_717",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_ULD_152",
-      "player_class": "HUNTER",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_ULD_165",
-      "player_class": "WARLOCK",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_ULD_280",
-      "player_class": "ROGUE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_BT_292",
-      "player_class": "PALADIN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_DRG_256",
-      "player_class": "HUNTER",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_014",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_189",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_198",
-      "player_class": "PRIEST",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_310",
-      "player_class": "WARLOCK",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_KAR_077",
-      "player_class": "PALADIN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_NEW1_022",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_SCH_713",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_SW_072",
-      "player_class": "MAGE",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_SW_429",
-      "player_class": "DRUID",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_TRL_111",
-      "player_class": "HUNTER",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_ULD_178",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_UNG_809",
-      "player_class": "MAGE",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_UNG_912",
-      "player_class": "HUNTER",
-      "legal_action_count": 5,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_SW_442",
-      "player_class": "PRIEST",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_AT_052",
-      "player_class": "SHAMAN",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_WON_096",
-      "player_class": "WARLOCK",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_WON_337",
-      "player_class": "WARRIOR",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "Core_LOE_115",
-      "player_class": "DRUID",
-      "legal_action_count": 6,
-      "status": "PASS"
-    },
-    {
-      "card_id": "Core_UNG_072",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "TIME_603",
-      "player_class": "HUNTER",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "TIME_720",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "TLC_483",
-      "player_class": "MAGE",
-      "legal_action_count": 4,
-      "status": "PASS"
-    },
-    {
-      "card_id": "CORE_EX1_002",
-      "player_class": "MAGE",
-      "legal_action_count": 5,
-      "status": "PASS"
-    }
-  ],
+  "package": "profile_core_alias_low_hanging_verification_v1",
+  "scope": "SCOPED_PACKAGE_ONLY",
+  "profile_manifest_sha256": "b586e65faceeeb08552d209db25271b7eade31ca3583ddfcdb8502ade70a8b06",
   "cards": {
+    "CORE_DRG_107": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "b586e65faceeeb08552d209db25271b7eade31ca3583ddfcdb8502ade70a8b06",
+      "rules_fingerprint": "aa8518ffebf1928fc0399fc559debf5288be608c747db328f813c677f0ceb01b",
+      "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
+      "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
+      "scenario_fingerprint": "ad3d294c1455efcf769c8e32475b90269e350bace3b0f8be8672f8f6b5f1952c",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_tests": [
+        "[ManaMind definition aliases]*",
+        "[Mage : Minion] - DRG_107 : Violet Spellwing",
+        "[Neutral : Minion] - SW_072 : Rustrot Viper",
+        "[ManaMind Core aliases] - CORE_SW_108 First Flame preserves damage and generated card"
+      ],
+      "bridge_result": {
+        "standard_deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "legal_action_enumeration": "PASS",
+        "legal_action_count": 5
+      },
+      "alias_base_card_id": "DRG_107",
+      "dependency_review": {
+        "scope": "REVIEWED_STATIC_CANDIDATES_ONLY",
+        "reviewed_alias_base": "DRG_107",
+        "basis": "The selected root's executable CardDef is checked against its existing base definition; identified fixed card references are recorded. This does not close transitive dependencies.",
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "CORE_SW_072": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "b586e65faceeeb08552d209db25271b7eade31ca3583ddfcdb8502ade70a8b06",
+      "rules_fingerprint": "8aa0f0f879ca5f0ddf44a00621a199c4841b0f943bb93169c8178363091d119a",
+      "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
+      "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
+      "scenario_fingerprint": "ad3d294c1455efcf769c8e32475b90269e350bace3b0f8be8672f8f6b5f1952c",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_tests": [
+        "[ManaMind definition aliases]*",
+        "[Mage : Minion] - DRG_107 : Violet Spellwing",
+        "[Neutral : Minion] - SW_072 : Rustrot Viper",
+        "[ManaMind Core aliases] - CORE_SW_108 First Flame preserves damage and generated card"
+      ],
+      "bridge_result": {
+        "standard_deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "legal_action_enumeration": "PASS",
+        "legal_action_count": 5
+      },
+      "alias_base_card_id": "SW_072",
+      "dependency_review": {
+        "scope": "REVIEWED_STATIC_CANDIDATES_ONLY",
+        "reviewed_alias_base": "SW_072",
+        "basis": "The selected root's executable CardDef is checked against its existing base definition; identified fixed card references are recorded. This does not close transitive dependencies.",
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
+    "CORE_SW_108": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Reviewed Core alias-to-base CardDef equivalence; root-specific native functional scenario or existing focused scenario; Standard deck validation, visible SELF card identity, and legal-action enumeration. Dependency closure, full deck simulation and training admission are not claimed.",
+      "training_scope": "SCOPED_PACKAGE_ONLY",
+      "profile_manifest_sha256": "b586e65faceeeb08552d209db25271b7eade31ca3583ddfcdb8502ade70a8b06",
+      "rules_fingerprint": "8677e56873f3ee83e21008513f36efd7eadae622d8805719fdfe744ec21e194d",
+      "pool_membership_sha256": "2e77e0fe1dad7e31e5e9f1e841f3679a7abdb1b257abfe21d8c631d1fdd85139",
+      "pool_predicate_version": "NO_DYNAMIC_OUTCOME_POOL_IN_REVIEWED_ALIAS_SUBSET_V1",
+      "capability_fingerprint": "42fc4edacfd82f28eb5eb595e6b3401f863ae33475fcb2f80a1e39e37f6e768c",
+      "scenario_fingerprint": "9e657c2ff7ed51a03a8d0ed4f0c7fc4f074cc8c602699bd0e85798e10227d5b2",
+      "bridge_action_status": "VERIFIED_SCOPED",
+      "native_tests": [
+        "[ManaMind definition aliases]*",
+        "[Mage : Minion] - DRG_107 : Violet Spellwing",
+        "[Neutral : Minion] - SW_072 : Rustrot Viper",
+        "[ManaMind Core aliases] - CORE_SW_108 First Flame preserves damage and generated card"
+      ],
+      "bridge_result": {
+        "standard_deck_validation": "PASS",
+        "visible_self_hand_identity": "PASS",
+        "legal_action_enumeration": "PASS",
+        "legal_action_count": 4
+      },
+      "alias_base_card_id": "SW_108",
+      "dependency_review": {
+        "scope": "REVIEWED_STATIC_CANDIDATES_ONLY",
+        "reviewed_alias_base": "SW_108",
+        "basis": "The selected root's executable CardDef is checked against its existing base definition; identified fixed card references are recorded. This does not close transitive dependencies.",
+        "dynamic_pools": []
+      },
+      "training_eligible": false
+    },
     "CORE_ULD_133": {
       "rules_fingerprint": "e0aa8141de50ef7945623fd87337369fcf828a8aed94fe4aed32dfaf7af8654a",
       "pool_membership_sha256": "d55f9019a48c6f26b24d8134989690ad08458de16b1b7c249ddbe505e20dba0d",
@@ -305,25 +107,58 @@
       "capability_fingerprint": "f382a1c1c4395d0499bdd97ebd37190c2c01609c77f6572309181aeca7ae3f66",
       "engine_build_fingerprint": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
       "scenario_fingerprint": "561b6ed24bce43c26d0129c2b1fa214faa8436ded31082bcd853d6171559c36d",
-      "status": "VERIFIED_SCOPED",
+      "status": "STALE",
       "scope": "Core CardDef parity for the allowlisted alias package; Crystal Merchant trigger condition and draw count in the focused native scenario; Standard deck validation, bridge session, visible card identity and legal-action enumeration. No closure or training claim.",
       "native_test": "[ManaMind Core aliases]* passed",
       "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2609 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!",
       "bridge_smoke": "Standard deck validation, session creation, visible opening hand and legal-action enumeration passed for 45 cards in the batch",
       "binary_sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7",
       "bridge_module_sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99",
-      "training_eligible": false
+      "training_eligible": false,
+      "invalidation_reason": "Not rerun in the 2026-10-03 verification harvest; historical record retained."
     }
+  },
+  "native_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:   1 |   1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 780 | 780 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 2 | 2 passed | 0 failed |\n[doctest] Status: SUCCESS!\n\n[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases: 1 | 1 passed | 0 failed | 2616 skipped\n[doctest] assertions: 5 | 5 passed | 0 failed |\n[doctest] Status: SUCCESS!\n",
+  "bridge_results": {
+    "CORE_DRG_107": {
+      "standard_deck_validation": "PASS",
+      "visible_self_hand_identity": "PASS",
+      "legal_action_enumeration": "PASS",
+      "legal_action_count": 5
+    },
+    "CORE_SW_072": {
+      "standard_deck_validation": "PASS",
+      "visible_self_hand_identity": "PASS",
+      "legal_action_enumeration": "PASS",
+      "legal_action_count": 5
+    },
+    "CORE_SW_108": {
+      "standard_deck_validation": "PASS",
+      "visible_self_hand_identity": "PASS",
+      "legal_action_enumeration": "PASS",
+      "legal_action_count": 4
+    }
+  },
+  "training_eligible": false,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+    "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+    "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
+    "scenario_source_sha256": "a0bf400148286cf6cc977e393acb219067cac0a6cc7a1dbdd110c4d6930ccb61",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
   },
   "artifacts": {
     "engine_library": {
-      "sha256": "2195534175701494be99482c00e650e867ddccb778bb52c684798f64fa2035c7"
+      "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "58d2bb95b243dbe7a557935296dd8f27a161746ade0ad473b6250495e5f05794"
+      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
     },
     "bridge_module": {
-      "sha256": "52e8e98a2b72512c720d4415895d8cfb34625430db4f40420354e59c85739e99"
+      "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"
     }
   },
   "execution_result": {
