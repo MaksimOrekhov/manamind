@@ -3,7 +3,7 @@
   "contract_id": "deck_minion_cost_threshold_summon",
   "contract_version": 1,
   "profile_id": "meta_training_20261002_v1",
-  "profile_manifest_sha256": "3f0013d31fa38015aebda9c11b5463887398cd3ec6bc7869d7c9812afb1601f9",
+  "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
   "declaration_sha256": "5e06f67d1426b9e2307ff0ed88210f570a6076fa2b88eb024999a1aa46008f2b",
   "generator_script_sha256": "bf6de865dacf6e9a098e6bfc1f9a97a961ef22ebee9095e71196f85503ddb816",
   "renderer_sha256": "cef1b88e59f0535bef4e0db908bbd91a96dc9910e3895ff8ea5a0cdd12bd21bf",
@@ -36,7 +36,7 @@
       },
       "native_test": "[ManaMind profile deck minion]* passed",
       "bridge_scope": "PASS: three bounded turn-end summons; no fourth trigger",
-      "profile_manifest_sha256": "3f0013d31fa38015aebda9c11b5463887398cd3ec6bc7869d7c9812afb1601f9",
+      "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
       "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
       "bridge_scenario_sha256": "dd02fa918f436327eb3ae876a6c29ffc5d40843b4a230aa6e499f9e2d8268d13"
     },
@@ -66,7 +66,7 @@
       },
       "native_test": "[ManaMind profile deck minion]* passed",
       "bridge_scope": "PASS: exactly two distinct available deck minions summoned; Rush visible on both",
-      "profile_manifest_sha256": "3f0013d31fa38015aebda9c11b5463887398cd3ec6bc7869d7c9812afb1601f9",
+      "profile_manifest_sha256": "44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a",
       "native_scenario_sha256": "96d59c94bb02b0ce4cd80069e9032aaaeec6fb4054ca435830b643120a1ee619",
       "bridge_scenario_sha256": "dd02fa918f436327eb3ae876a6c29ffc5d40843b4a230aa6e499f9e2d8268d13"
     }
@@ -88,7 +88,7 @@
       "sha256": "06799853eb334167286430471c20c40b5dc3c70b72ded7541500f3bc5e984805"
     },
     "native_tests": {
-      "sha256": "e5f7fe677972949e27af28e2a8040e81e03d911b0f46d5b868d9c0ef6b765be3"
+      "sha256": "f9689f6197492e66000cdcee0b590bb9e9fca42e34e2e0439ac17e0d42d5264a"
     },
     "bridge_module": {
       "sha256": "442a27a0892f93d78f1b16a8d6a2089119ac97f33dc539ba9b60bca44aa12efb"

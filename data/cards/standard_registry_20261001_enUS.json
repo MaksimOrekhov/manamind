@@ -22,7 +22,7 @@
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
-      "scenario_source_sha256": "a0bf400148286cf6cc977e393acb219067cac0a6cc7a1dbdd110c4d6930ccb61",
+      "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -49,10 +49,10 @@
     "held_card_gate_manifest_sha256": "f24bca3afaedf62e52cd0fa3c85aa99f05c2e849dc971af476de7830dc475817",
     "held_card_gate_evidence_sha256": "894f42b20bdc69e3f7033727a7513e9f5a7fb9d95a3a71ad157b1c4c71759239",
     "profile_deck_minion_cost_summon_manifest_sha256": "644c2b3c98e6815769ed7465672305d9b3f6c3fc97101ba348b39f531162e985",
-    "profile_deck_minion_cost_summon_evidence_sha256": "863aa0d4fd33ce2af363d44eb7ef4ecfb5bbdb62cd7ef58ea7b311027f496c57",
+    "profile_deck_minion_cost_summon_evidence_sha256": "85ea506b8d54ace85c538531f7431398d259736b45865bd5874e9e4616bbc4c1",
     "keyword_only_manifest_sha256": "065930232e5005213be79f6fec700cfb8d2a65916f7ba662d5e77dd07ce93438",
     "metadata_only_manifest_sha256": "afa825387d44506418b21844e4f3243b220fcaae0cb5d99f3ca6aa4ccf6031a6",
-    "core_alias_evidence_sha256": "f2fc1b859b26586acef95f1b5044e19367f84c1f7d2d7014a96332b4b0cadbd9",
+    "core_alias_evidence_sha256": "28b66cf74e078bfb8a7b8131fc98ca4e4072be3bcf5179afe7f1f87acbc781ff",
     "pool_detector_sha256": "ca3cd78c4b69bbeb8a221687bb166adde3afd84bc2378c5b8e44684767ed95cc",
     "historical_audit_sha256": "de87af3a33bdd60d3bfb41419375866dc0a4853f6aa2716e0b2c7c4a80e5a680"
   },

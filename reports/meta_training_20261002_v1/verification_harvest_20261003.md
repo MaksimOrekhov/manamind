@@ -31,3 +31,24 @@ No deck has complete closure today, so proximity is measured as statically revie
 Proceed with rank 1, limited to `CORE_DRG_107`, `CORE_SW_072`, and `CORE_SW_108`. It reuses the existing Core alias generator and existing engine CardDefs; work is verification/evidence, not a new generic operation or rules renderer. The family contract is only “the declared Core definition preserves the reviewed base behavior”; tests must still be independently specific for each card. `CORE_DRG_024` is explicitly out because its random Pirate outcome pool is not represented in the current detected-pool fields.
 
 No selected root becomes training-eligible from this work. Current Meta Profile report remains zero fully closed decks; alias checks can add roots and static dependency confidence but cannot clear unrelated deck roots, dynamic pools, external Fabled seeds, action/session, or match-evidence gates.
+
+## Execution results — first two candidates (intermediate checkpoint)
+
+The first three ranked candidates were completed as verification-only packages:
+
+| Package | Roots scoped-verified | Native | Bridge | Production engine changes | Closure gained | Training eligibility gained |
+|---|---:|---|---|---:|---:|---:|
+| `core_alias_base_semantics_verification_v1` | 3 | 4 cases / 789 assertions including structural alias parity | 3 sessions passed | 0 | 0 | 0 |
+| `profile_single_target_spell_damage_verification_v1` | 4 | 4 cases / 16 assertions | 4 sessions passed | 0 | 0 | 0 |
+
+At this intermediate checkpoint: **7 roots** use pre-existing declarations/aliases; CUSTOM and deferred outliers among those seven: **0**. No new shared engine capability and no engine fix were required. The two packages averaged 3.5 roots each; elapsed time was not captured and is therefore not converted into an observed throughput figure. The targeted spell family advances four roots across three classes; it does not close a deck or its full dependency graph. Canonical Standard evidence remains separate from Meta-scoped evidence.
+
+Best observed return in root count was the four-root targeted spell package. The Core alias family remains the lightest verification candidate by implementation surface. The original effort/ROI ranges above are estimates, not measured elapsed times.
+
+## Corrected independent evidence and outstanding blockers
+
+The complete configured native UnitTests run against RosettaStone `945d89116e072b7a3be936b8c4e837896b875d86` is preserved at `reports/meta_training_20261002_v1/native_full_suite_945d891.txt`: **266/267 cases passed; the sole failure is the established `CORE_OG_044 : Fandral Staghelmh` baseline** (two assertions and the existing SIGSEGV). No new failure is designated baseline.
+
+`shaman_spell_threshold_hand_transform_v1` remains `BLOCKED_DESIGN_REVIEW`; its short audit found no complete canonical event boundary covering normal, generated, replayed, auto-cast and nested spell resolutions without crossing global event-order semantics. No Shaman production code was changed.
+
+At this intermediate checkpoint the Meta Profile audit reports 11 current scoped-verified roots, 85 registered but not currently scoped-verified roots, and 68 roots without detected registration. It still reports zero fully closed decks and zero roots admitted for full-profile training. Continue verification harvest while exact per-deck dependency/session blockers remain unresolved.

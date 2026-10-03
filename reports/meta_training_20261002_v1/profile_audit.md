@@ -7,7 +7,7 @@ Pinned source: `standard_full_20261001_v1` / `standard_registry_20261001_v1` (St
 - Frozen decklists and quantities: 10 lists, 300 slots parsed.
 - Distinct decklist names: 162; pinned collectible canonical roots: 156.
 - Noncollectible Fabled deck entries: 6 distinct candidates; their IDs are external candidates and are absent from the pinned registry.
-- Current scoped-verified roots in this profile: 3; current under canonical Standard registry evidence: 3; stale historical evidence: 5.
+- Current scoped-verified roots in this profile: 11; current under canonical Standard registry evidence: 3; stale historical evidence: 5.
 - Registered but not current-verified roots: 85; roots with no detected registration: 68.
 - Distinct classes in the frozen lists: 9 (Demon Hunter, Druid, Mage, Paladin, Priest, Rogue, Shaman, Warlock, Warrior).
 
@@ -18,7 +18,7 @@ The six Fabled entries remain visible in the slot list because the frozen source
 The Standard registry reports 0 Standard roots with complete closure and 0 roots training-eligible in its full-profile scope. Meta-scoped closures are therefore not inferred from these global figures.
 The profile roots reach 42 known source-candidate dependency-node occurrences across decks and 41 unique unresolved pool definitions. Candidate edges are not reviewed closure; source metadata may omit real outcomes.
 
-No deck currently has a complete meta closure or current profile session/match evidence. `configs/standard_profile.json` has no `session_match_evidence`. Meta-profile scoped evidence is checked separately against the pinned Standard execution identity and manifest hash `b586e65faceeeb08552d209db25271b7eade31ca3583ddfcdb8502ade70a8b06`; it does not make a root training-eligible in the canonical Standard registry. The current registry also marks all six candidate seed IDs absent from its pinned root/dependency inventory.
+No deck currently has a complete meta closure or current profile session/match evidence. `configs/standard_profile.json` has no `session_match_evidence`. Meta-profile scoped evidence is checked separately against the pinned Standard execution identity and manifest hash `44d5f33b41562656e7b9c831063bc8c96b274a00cab71ec45ea2871b1087bd4a`; it does not make a root training-eligible in the canonical Standard registry. The current registry also marks all six candidate seed IDs absent from its pinned root/dependency inventory.
 
 ## Stop/continue assessment
 
