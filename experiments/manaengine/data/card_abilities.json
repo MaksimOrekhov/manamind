@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
+  "cards": {
+    "CATA_475": {"ability":"END_TURN_ENEMY_AREA_DAMAGE","damage":2},
+    "CATA_999": {"ability":"END_TURN_ENEMY_HERO_DAMAGE","damage":4},
+    "CORE_BT_416": {"ability":"NEXT_DEMON_DISCOUNT"},
+    "CORE_CS2_024": {"ability":"FREEZE_DAMAGE","damage":3},
+    "CORE_CS2_029": {"ability":"TARGET_DAMAGE","damage":6},
+    "CORE_CS2_062": {"ability":"ALL_CHARACTERS_DAMAGE","damage":3},
+    "CORE_CS2_072": {"ability":"BACKSTAB","damage":2},
+    "CORE_DRG_107": {"ability":"DEATHRATTLE_GENERATE","generated_card":"EX1_277"},
+    "CORE_EX1_129": {"ability":"ENEMY_BOARD_DAMAGE_DRAW","damage":1},
+    "CORE_EX1_145": {"ability":"NEXT_SPELL_DISCOUNT"},
+    "CORE_ICC_055": {"ability":"LIFESTEAL_DAMAGE","damage":3},
+    "CORE_SW_072": {"ability":"DESTROY_ENEMY_WEAPON"},
+    "CORE_SW_108": {"ability":"MINION_DAMAGE_GENERATE","damage":2,"generated_card":"SW_108t"},
+    "END_007": {"ability":"DAMAGE_HERO_ATTACK_DRAW_ARMOR","damage":1},
+    "JAIL_327": {"ability":"REINFORCEMENT_AURA","duration":3,"pool_max_cost":2,"pool_count":1},
+    "JAIL_516": {"ability":"RECRUITER_SUMMON_RUSH","pool_max_cost":2,"pool_count":2},
+    "JAIL_872": {"ability":"HERO_ATTACK_DRAW"},
+    "TIME_218": {"ability":"DAMAGE_MINION_HERO_ATTACK","damage":1},
+    "EX1_277": {"ability":"RANDOM_MISSILES","damage":3},
+    "SW_108t": {"ability":"MINION_DAMAGE_GENERATE","damage":2},
+    "CORE_SW_108t": {"ability":"MINION_DAMAGE_GENERATE","damage":2}
+  }
+}

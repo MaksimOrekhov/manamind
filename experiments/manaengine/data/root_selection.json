@@ -1,0 +1,220 @@
+{
+  "cards": [
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_475",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Scalebreaker Bulwark",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_999",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Earthen Drake",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_BT_416",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Raging Felscreamer",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_024",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Frostbolt",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_029",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Fireball",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_062",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_enemy_board_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Hellfire",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_072",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Backstab",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "CURRENT",
+      "canonical_rules_status": "VERIFIED_SCOPED",
+      "card_id": "CORE_DRG_107",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/core_aliases.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Violet Spellwing",
+      "tier": "A"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_129",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_enemy_board_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Fan of Knives",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_145",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Preparation",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_ICC_055",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Drain Soul",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "CURRENT",
+      "canonical_rules_status": "VERIFIED_SCOPED",
+      "card_id": "CORE_SW_072",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/core_aliases.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Rustrot Viper",
+      "tier": "A"
+    },
+    {
+      "canonical_evidence_validity": "CURRENT",
+      "canonical_rules_status": "VERIFIED_SCOPED",
+      "card_id": "CORE_SW_108",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/core_aliases.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "First Flame",
+      "tier": "A"
+    },
+    {
+      "canonical_evidence_validity": "STALE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "END_007",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/targeted_spell_damage_hero_attack.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Press the Advantage",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "JAIL_327",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_deck_minion_cost_summon.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Reinforcement Aura",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "JAIL_516",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_deck_minion_cost_summon.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Scarlet Recruiter",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "JAIL_872",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Spider Rider",
+      "tier": "B"
+    },
+    {
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "TIME_218",
+      "evidence_files": [
+        "integrations/rosettastone/card_rules/targeted_spell_damage_hero_attack.evidence.json"
+      ],
+      "meta_profile_status": "VERIFIED_SCOPED_CURRENT",
+      "name": "Static Shock",
+      "tier": "B"
+    }
+  ],
+  "profile_id": "meta_training_20261002_v1",
+  "schema_version": 1,
+  "selection_policy": "all current VERIFIED_SCOPED_CURRENT Meta Profile roots; tier A iff canonical registry evidence is also current",
+  "source_sha256": {
+    "configs/standard_profile.json": "f11392af721301debf57c4bbeb52b0805a7095e48981d060f08e7ab1b728ccaf",
+    "data/cards/standard_registry_20261001_enUS.json": "2071434c0c1e40ed85e490f31fbb4a19674d4457ac91f91dd1f6dd88ea164c53",
+    "integrations/rosettastone/card_rules/core_aliases.evidence.json": "65deb7098ed4b85a7f7b677f70eb571ddfc3f382f4f52e0e31b2d97395086360",
+    "integrations/rosettastone/card_rules/profile_deck_minion_cost_summon.evidence.json": "6ee197010831ad4217e602b513c7771261e8552448e09c6ac4f6435721e0d203",
+    "integrations/rosettastone/card_rules/profile_enemy_board_damage.evidence.json": "ebaedcdf8584002a0dc452b26582c6feb56e116fb8e1bd8df2600ae418bd27f3",
+    "integrations/rosettastone/card_rules/profile_single_target_spell_damage.evidence.json": "b79590126b1ae102d4e2a1d157aef63272f87bd61ca36db3c88fe2d5db3359e6",
+    "integrations/rosettastone/card_rules/profile_verification_harvest_20261003_v2.evidence.json": "5a6644831aa88e12289bab3fc380e9eab9792713ff045eda8ba6fa22db4ac90d",
+    "integrations/rosettastone/card_rules/targeted_spell_damage_hero_attack.evidence.json": "5901a0d2d78ac4e84fd5fc071c5b8dabba06a695b0aa3796862d4443d32b9ef3",
+    "reports/meta_training_20261002_v1/card_matrix.json": "c7b710bf6128466a20d08a42bb5535d527d4564ec66046e356d399367956b4c5"
+  },
+  "standard_profile_id": "standard_full_20261001_v1",
+  "tier_a_count": 3,
+  "tier_b_count": 15,
+  "tier_c_included": false
+}

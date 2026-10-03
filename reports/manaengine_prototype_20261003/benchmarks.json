@@ -1,0 +1,88 @@
+{
+  "backends": {
+    "ManaEngine": {
+      "apply_action_end_turn": {
+        "iterations": 15,
+        "median_ms": 0.0382,
+        "p95_ms": 0.0516
+      },
+      "clone": {
+        "iterations": 300,
+        "median_ms": 0.001,
+        "p95_ms": 0.0011
+      },
+      "legal_actions": {
+        "iterations": 150,
+        "median_ms": 0.0325,
+        "p95_ms": 0.0605
+      },
+      "pass_only_complete_games": {
+        "games_per_second": 55.78990414677647,
+        "iterations": 10,
+        "mean_transitions_per_game": 67.0,
+        "results": [
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN"
+        ],
+        "transitions_per_second": 3737.9235778340235
+      },
+      "session_creation": {
+        "iterations": 15,
+        "median_ms": 9.8062,
+        "p95_ms": 10.7697
+      },
+      "working_set_delta_bytes_per_session_estimate": 546
+    },
+    "RosettaStone": {
+      "apply_action_end_turn": {
+        "iterations": 15,
+        "median_ms": 0.2151,
+        "p95_ms": 0.2861
+      },
+      "clone": null,
+      "legal_actions": {
+        "iterations": 150,
+        "median_ms": 0.0257,
+        "p95_ms": 0.027
+      },
+      "pass_only_complete_games": {
+        "games_per_second": 20.659718527918734,
+        "iterations": 10,
+        "mean_transitions_per_game": 67.0,
+        "results": [
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN",
+          "PLAYER1_WIN"
+        ],
+        "transitions_per_second": 1384.2011413705552
+      },
+      "session_creation": {
+        "iterations": 15,
+        "median_ms": 1.129,
+        "p95_ms": 1.3225
+      },
+      "working_set_delta_bytes_per_session_estimate": 236475
+    }
+  },
+  "build_type": "Release (CMake Ninja)",
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "iterations": 15,
+  "os": "Windows-11-10.0.26200-SP0",
+  "scenario": "30-card validated Mage fixture; seeded, no shuffle; pass-only matches reach fatigue terminal",
+  "seed": 7
+}
