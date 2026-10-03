@@ -9,7 +9,7 @@
 5. **Choice and action breadth:** the real Discover continuation works for the bounded reviewed contract. Other classes, Choose One, trade, locations, mulligan, and broader action windows are unsupported. Semantic parity is not established for all offered actions.
 6. **Held-card cast paths:** the three Shaman consumers count an explicit successful player `PlayCard` action for a spell from hand. Internal replay, auto-cast, nested, countered, and generated effects that bypass that action are explicitly outside this contract and fail closed if they reach a tracker-held state.
 7. **Training gates:** no canonical registry/dependency/session/match evidence was promoted by the prototype. No deck is training eligible; no training, production switch, or mass Meta migration is authorized by this result.
-8. **Hosted CI:** final Source CI and ManaEngine CI must execute on Windows and Ubuntu for the pushed Phase 3 commit. Local Windows checks do not replace those jobs.
+8. **Hosted CI:** Source CI and ManaEngine CI passed on Windows and Ubuntu for implementation commit `5261bdf` (runs `37148547862` and `37148547875`). Keep those platform checks required for subsequent engine changes.
 
 ## Measured limits
 
