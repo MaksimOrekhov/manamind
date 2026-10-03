@@ -1542,16 +1542,16 @@
       "card_id": "JAIL_327",
       "name": "Reinforcement Aura",
       "card_class": "PALADIN",
-      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "registration_status": "GENERATED_PROFILE_DECK_MINION_COST_SUMMON",
       "implementation_route": "UNKNOWN",
-      "rules_status": "UNKNOWN",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
       "evidence_validity": "NO_SCOPED_EVIDENCE",
       "known_dependency_candidates": [],
       "dynamic_pool_ids": [
         "POOL:JAIL_327:generated_card"
       ],
       "training_eligibility": "BLOCKED",
-      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
     },
     {
       "card_id": "JAIL_384",
@@ -1740,16 +1740,16 @@
       "card_id": "JAIL_516",
       "name": "Scarlet Recruiter",
       "card_class": "PALADIN",
-      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "registration_status": "GENERATED_PROFILE_DECK_MINION_COST_SUMMON",
       "implementation_route": "UNKNOWN",
-      "rules_status": "UNKNOWN",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
       "evidence_validity": "NO_SCOPED_EVIDENCE",
       "known_dependency_candidates": [],
       "dynamic_pool_ids": [
         "POOL:JAIL_516:generated_card"
       ],
       "training_eligibility": "BLOCKED",
-      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
     },
     {
       "card_id": "JAIL_720",
@@ -2582,10 +2582,10 @@
           "root_kind": "FABLED_DECK_SEED"
         }
       ],
-      "registered_roots": 3,
-      "current_scoped_verified_roots": 0,
-      "implemented_unverified_roots": 3,
-      "unknown_rules_roots": 13,
+      "registered_roots": 5,
+      "current_scoped_verified_roots": 2,
+      "implemented_unverified_roots": 5,
+      "unknown_rules_roots": 11,
       "known_candidate_dependency_nodes": 0,
       "unreviewed_static_candidate_edges": 0,
       "unresolved_dynamic_pool_definitions": [

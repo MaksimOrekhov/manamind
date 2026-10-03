@@ -11,19 +11,19 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "78136d4cfd214073ee60baddf45a834373410a1a",
+    "rules_engine_revision": "945d89116e072b7a3be936b8c4e837896b875d86",
     "engine_source_identity": {
-      "source_commit": "78136d4cfd214073ee60baddf45a834373410a1a",
-      "source_tree_sha256": "9f870e2ee174461487989376993e968f16a1e066997007e0a25197cf3e9559dc"
+      "source_commit": "945d89116e072b7a3be936b8c4e837896b875d86",
+      "source_tree_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-      "engine_source_sha256": "9f870e2ee174461487989376993e968f16a1e066997007e0a25197cf3e9559dc",
+      "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
-      "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
-      "scenario_source_sha256": "9f62a6175ff297d918e40dd3682d5b516d1a362f8c432030385e3d3c4c40c01c",
+      "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
+      "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -31,8 +31,8 @@
     "roots": 1185,
     "metadata_present": 1185,
     "direct_source_registered": 167,
-    "generated_registered": 184,
-    "text_bearing_without_detected_registration": 834,
+    "generated_registered": 186,
+    "text_bearing_without_detected_registration": 832,
     "textless_metadata_candidates": 0,
     "rules_verified_scoped_current": 0,
     "stale_historical_scoped_evidence": 24,
@@ -54,8 +54,8 @@
     },
     "registration_counts": {
       "direct_source_block": 167,
-      "recognized_generated_manifest": 184,
-      "missing_detected_registration_with_text": 834,
+      "recognized_generated_manifest": 186,
+      "missing_detected_registration_with_text": 832,
       "textless_metadata_candidates": 0
     },
     "current_rules_verified": 0,
@@ -253,7 +253,7 @@
     ],
     "pool_candidate_detector": {
       "version": "standard_pool_hypotheses_v2",
-      "source_sha256": "46d623dcda05b043f2a244fe0d402c2ffbd8f97247ff5b62f19327d01ab80636",
+      "source_sha256": "ca3cd78c4b69bbeb8a221687bb166adde3afd84bc2378c5b8e44684767ed95cc",
       "random_board_targets_excluded": true,
       "fixed_named_token_summons_excluded": true,
       "completeness": "HEURISTIC_CANDIDATES_ONLY; unresolved dependencies may remain undetected"
@@ -980,7 +980,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 502,
+      "unregistered_text_root_count": 500,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -1252,7 +1252,6 @@
         "JAIL_313",
         "JAIL_315",
         "JAIL_321",
-        "JAIL_327",
         "JAIL_328",
         "JAIL_330",
         "JAIL_379",
@@ -1285,7 +1284,6 @@
         "JAIL_503",
         "JAIL_504",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_703",
         "JAIL_718",
         "JAIL_719",
@@ -1872,7 +1870,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 272,
+      "unregistered_text_root_count": 271,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -2026,7 +2024,6 @@
         "JAIL_474",
         "JAIL_501",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_706",
         "JAIL_732",
         "JAIL_735",
@@ -2720,7 +2717,7 @@
         "TLC_833",
         "TLC_902"
       ],
-      "unregistered_text_root_count": 173,
+      "unregistered_text_root_count": 171,
       "unregistered_text_root_ids": [
         "CAP_102",
         "CAP_106",
@@ -2815,13 +2812,11 @@
         "FIR_941",
         "JAIL_035",
         "JAIL_122",
-        "JAIL_327",
         "JAIL_440",
         "JAIL_450",
         "JAIL_451",
         "JAIL_454",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_721",
         "JAIL_732",
         "JAIL_735",
@@ -4439,7 +4434,7 @@
         "TLC_987",
         "TLC_EVENT_402"
       ],
-      "unregistered_text_root_count": 502,
+      "unregistered_text_root_count": 500,
       "unregistered_text_root_ids": [
         "CAP_000",
         "CAP_004",
@@ -4711,7 +4706,6 @@
         "JAIL_313",
         "JAIL_315",
         "JAIL_321",
-        "JAIL_327",
         "JAIL_328",
         "JAIL_330",
         "JAIL_379",
@@ -4744,7 +4738,6 @@
         "JAIL_503",
         "JAIL_504",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_703",
         "JAIL_718",
         "JAIL_719",
@@ -5331,7 +5324,7 @@
         "TLC_903",
         "TTN_851"
       ],
-      "unregistered_text_root_count": 272,
+      "unregistered_text_root_count": 271,
       "unregistered_text_root_ids": [
         "CAP_001",
         "CAP_005",
@@ -5485,7 +5478,6 @@
         "JAIL_474",
         "JAIL_501",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_706",
         "JAIL_732",
         "JAIL_735",
@@ -6179,7 +6171,7 @@
         "TLC_833",
         "TLC_902"
       ],
-      "unregistered_text_root_count": 173,
+      "unregistered_text_root_count": 171,
       "unregistered_text_root_ids": [
         "CAP_102",
         "CAP_106",
@@ -6274,13 +6266,11 @@
         "FIR_941",
         "JAIL_035",
         "JAIL_122",
-        "JAIL_327",
         "JAIL_440",
         "JAIL_450",
         "JAIL_451",
         "JAIL_454",
         "JAIL_507",
-        "JAIL_516",
         "JAIL_721",
         "JAIL_732",
         "JAIL_735",

@@ -1,4 +1,4 @@
-# Meta Training Profile v1 capability queue (updated after package 1)
+# Meta Training Profile v1 capability queue (updated after package 2)
 
 Ranking uses target-deck reuse, existing RosettaStone support, dependency cost,
 dynamic-pool complexity, correctness risk, declaration-only likelihood, and
@@ -8,19 +8,21 @@ native definitions, dependencies and scenario expectations are reviewed.
 | Rank | Candidate package | Reviewed profile candidates | Decks advanced | Existing primitives / likely shared work | Dependency and risk notes | Expected reuse / current view |
 |---:|---|---|---:|---|---|---|
 | Done | `targeted_spell_damage_hero_attack_v1` | `TIME_218` Static Shock; `END_007` Press the Advantage | 3 | Existing effect-composition declaration schema and `BTA_02pe` were independently checked. No shared renderer change. | Native family tests, bridge target/action parity, and explicit profile-scoped evidence pass. The roots do not complete their deck closures. | 2/2 declarations, 2 current profile-scoped roots; 0 training-eligible roots. See proposal completion record. |
-| 1 | `cannoneer_trigger_and_token_family_v1` | `CAP_102`, `CAP_103`, `CAP_106`, `CAP_107`; related `CAP_104` only if its persistent Pirate modifier shares the reviewed contract | 2 | Existing Battlecry, summon, trigger and random-target primitives may be reusable; inspect the current `CustomTask` source owner and firing timing. | Several event links and end-of-turn/random target behavior; one source definition is custom. Do not merge `CAP_104` unless its semantics fit the same contract. | Up to 4 core consumers across both Warrior decks; material value, but substantially higher semantic and event-order risk. |
-| 2 | `fabled_deck_seed_setup_v1` | `TIME_009`, `TIME_020`, `TIME_875` and six listed noncollectible seed candidates; later `JAIL_397`/Scarlet Bruiser only after separate contract review | 3–4 | Fabled deck composition/start-of-game seed handling may be shared across classes; exact current session and hidden-information boundaries are not audited. | Tokens are outside the pinned collectible catalog; exact seed membership, initial deck size, setup timing, DH session and Rogue opponent-deck handling need review. This may hit the session stop condition. | High cross-class leverage, but not selected until source ownership and session cost are known. |
-| 3 | `low_cost_deck_minion_selection_v1` | `JAIL_327` Reinforcement Aura; `JAIL_516` Scarlet Recruiter; possible additional roots only after semantic review | 1 | Both mention minions from the deck with a low-cost predicate; selector may be reusable while activations differ. | Dynamic deck-state pool, depleted/empty deck behavior, duplicate copies and turn-end timing need exact expectations. `JAIL_516` currently has an unresolved generated-card pool candidate. | Two roots in one deck; potentially declaration-only shared selector, medium pool correctness cost. |
-| 4 | `profile_discover_and_random_pools_by_predicate` | Current registry lists 41 distinct unresolved pool definitions reachable from profile roots; exact card families must be split by predicate, not implemented as one broad package. | 9+ | Existing Discover, random selection and deck/class/type filters can be reused only after predicate review. | Broadest correctness risk: exact pinned memberships, state-dependent filters and unsupported outcomes. Never narrow pools to implemented cards. | Potentially unlocks many episodes, but poor first-package ROI until shared predicates and memberships are measured. |
+| Done | `profile_deck_minion_cost_threshold_v1` | `JAIL_327` Reinforcement Aura; `JAIL_516` Scarlet Recruiter | 1 | Added a strict shared live-deck minion/current-cost selector declaration renderer over existing RosettaStone tasks. | Native and bridge profile-scoped family scenarios pass; `TLC_438` remains unsupported, so Beatrix closure is not complete. | 2/2 declarations; +2 current profile-scoped roots; 0 closures/eligibility. See proposal completion record. |
+| 1 — review next | `shaman_spell_threshold_hand_transform_v1` | `JAIL_801` Molten Gold; `JAIL_803` Frostshatter; `JAIL_805` Stormfury | 1 | Shared rule: after three spells are cast while each card is held, that instance transforms into its fixed minion form. Existing `TransformTask`, spell counters and Infuse's held-card processing are adjacent primitives. | The engine only applies Infuse counters during minion-death handling. A spell-cast counter attached to held card instances needs exact trigger timing and same-event ordering review; transformed token records also need pinned identity. Do not begin until this is shown to fit without a core session/event-order change. | 3 similar roots in one Shaman list, strong declarative reuse if the in-hand event contract fits existing lifecycle safely. Current leading candidate, not yet approved as implementation. |
+| 2 | `cannoneer_fire_network_v1` | `CAP_102`, `CAP_103`, `CAP_106`; `CAP_104` only in a separate continuous-damage contract | 2 | Existing token, attack-trigger, damage and summon tasks may cover pieces. | The shared Fire behavior crosses hero-attack triggers, random target choice and additional shots. `CAP_102` token summon alone is not enough to claim full support for `CAP_106`. High event-order risk. | Multiple Warrior roots across two lists, but no clean low-risk package boundary yet. |
+| 3 | `fabled_deck_seed_setup_v1` | `TIME_009`, `TIME_020`, `TIME_875` and six external noncollectible seed candidates; later `JAIL_397`/Scarlet Bruiser only after a separate review | 3–4 | Fabled deck composition/start-of-game seed handling may be shared across classes. | Token identities, initial deck contents, setup timing, DH session and Rogue opponent-deck handling need review. This may require session lifecycle changes. | High cross-class leverage, but stop-condition risk is material. |
+| 4 | `discover_and_random_pool_families` | The current audit has 41 distinct unresolved pool definitions reachable from profile roots | 9+ | Existing Discover, random selection and deck/class/type filters can be reused only after exact predicate review. | Broad correctness risk: pinned memberships, state-dependent filters and unsupported outcomes. Never narrow pools. Choice-related changes are a stop condition. | High potential episode gain, poor first-package ROI until exact pools are grouped and measured. |
 
 ## Ranking notes
 
-- The top candidate is a real two-root reusable contract already expressible in
-  the current effect-composition schema. It appears in three of the frozen
-  decks, including two classes.
-- The next packages could affect more cards, but require custom event behavior,
-  exact dynamic memberships or class/session setup. Their apparent card counts
-  are not verified unlock estimates.
+- The first two packages produced four current profile-scoped roots across
+  four decks, but no complete deck closures. Canonical Standard admission is
+  still blocked.
+- The next highest-yield semantic cluster is the Shaman three-spell in-hand
+  transform family. Its proposal must establish trigger ordering and token
+  identity before any implementation. If that needs broad session/event
+  changes, stop and report rather than widening the package.
 - Global Standard coverage is secondary. Unrelated candidates remain out of
   scope unless they are a reviewed dependency or a necessary independent
   control declaration for a universal contract.

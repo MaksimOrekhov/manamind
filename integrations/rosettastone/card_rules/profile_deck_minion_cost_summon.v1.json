@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "package_id": "profile_deck_minion_cost_threshold_v1",
+  "contract_id": "deck_minion_cost_threshold_summon",
+  "contract_version": 1,
+  "implementation_kind": "REUSABLE_CAPABILITY",
+  "reviewed_card_ids": [
+    "JAIL_327",
+    "JAIL_516"
+  ],
+  "dependencies": {
+    "ULD_178a4": {
+      "contract": "RUSH_KEYWORD_ENCHANT_V1",
+      "metadata_sha256": "5ea28e75ad9e2804f07e0471b982cd1319d2ed3ec5833edff83deee245c750f5",
+      "source_owner": "vendor/RosettaStone/Sources/Rosetta/PlayMode/CardSets/UldumCardsGen.cpp",
+      "owner_sha256": "2fc29721aeefa9410618f50b70c7f55c77f9a9f4249a646b39d14debd5a27dfd"
+    }
+  },
+  "cards": [
+    {
+      "card_id": "JAIL_327",
+      "metadata_sha256": "8774b4813c11861f55feb9aab26529223e5f83a814c67d16d544c42d2d40f26f",
+      "activation": {
+        "type": "TURN_END",
+        "trigger_limit": 3
+      },
+      "selection": {
+        "max_cost": 2,
+        "count": 1
+      },
+      "grant_rush": false
+    },
+    {
+      "card_id": "JAIL_516",
+      "metadata_sha256": "35ee606e3eae69a60d7009ae6285931c3df903a2aba592ad45617625b1cc59fa",
+      "activation": {
+        "type": "BATTLECRY"
+      },
+      "selection": {
+        "max_cost": 2,
+        "count": 2
+      },
+      "grant_rush": true
+    }
+  ]
+}

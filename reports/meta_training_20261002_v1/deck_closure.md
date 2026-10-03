@@ -12,7 +12,7 @@ Candidate edges and pool hypotheses are not reviewed closure. Counts below descr
 | ashamane_ayaya_rogue | Rogue | 30 | 17 | 0 | 4 | 13 | 1 | 1 | 6 |
 | mother_drake_warlock | Warlock | 30 | 19 | 0 | 19 | 0 | 3 | 3 | 2 |
 | tricky_burn_mage | Mage | 30 | 17 | 0 | 8 | 9 | 5 | 5 | 2 |
-| beatrix_pure_paladin | Paladin | 30 | 16 | 0 | 3 | 13 | 0 | 0 | 5 |
+| beatrix_pure_paladin | Paladin | 30 | 16 | 2 | 5 | 11 | 0 | 0 | 5 |
 | galaxy_brain_raza_demon_hunter | Demon Hunter | 30 | 15 | 1 | 5 | 10 | 3 | 2 | 1 |
 
 ## Pool IDs

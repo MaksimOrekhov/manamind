@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "review_scope": "Existing generator identity logic and held_card_gate_fixed_battlecry metadata validation reviewed on 2026-10-02; additions require semantic or explicit CUSTOM/metadata review.",
+  "review_scope": "Existing generator identity logic and held_card_gate_fixed_battlecry metadata validation reviewed on 2026-10-02; profile_deck_minion_cost_summon metadata/ownership checks reviewed on 2026-10-03. Additions require semantic or explicit CUSTOM/metadata review.",
   "exceptions": [
     {
       "path": "scripts/card_rules/composition_ops.py",
@@ -3118,6 +3118,105 @@
       "role": "METADATA_VALIDATION",
       "occurrences": 1,
       "reason": "Pinned package consumer/dependency allowlist and catalog lookups validate declaration ownership and metadata only; rendered behavior depends exclusively on semantic predicate/effect fields."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 47,
+      "card_ids": [],
+      "ast_sha256": "223ce2ebcbd1f5caa9d1dd901fa246c16e1919dafc4f6461463686e742756805",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "Reviewed profile-root allowlist and dependency ownership checks reject unreviewed declarations; renderer dispatch uses semantic activation, count, threshold, and keyword parameters only."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 55,
+      "card_ids": ["ULD_178a4"],
+      "ast_sha256": "6bcba29e8862898e2150d5725091abe29dd0679d9b79def5065f246db3ddcd45",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "The fixed reviewed Rush enchant is a semantic dependency allowlist entry; it does not select consumer behavior."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 56,
+      "card_ids": ["ULD_178a4"],
+      "ast_sha256": "853894ba8a249224d583e29131d0942ce0b2b7bb14cb23e18b78aa53ba700d5b",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "The fixed reviewed Rush enchant is verified against canonical resource metadata, not used for consumer-specific dispatch."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 60,
+      "card_ids": ["ULD_178a4"],
+      "ast_sha256": "01b30834e14b4337f62ea8e01b405d734d87a19ce2fc39611ea76b008e885354",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "The dependency source fingerprint prevents use of a different Rush owner; it does not affect which semantic fields render."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 62,
+      "card_ids": ["ULD_178a4"],
+      "ast_sha256": "18b4c690a40b16c3d9c152394275428f692e3267d8b92e8e321e9a7f85d1f383",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "This validates the dependency owner contains its Rush CardDef; no root's behavior is selected by ID."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 70,
+      "card_ids": [],
+      "ast_sha256": "1d33bf057c61ca3cbc200ac3190ea3d9c7376d4af3bce95fadcc10cb128e3cc8",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "Each row must reference a reviewed declaration; generated behavior is selected only by its semantic parameters."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_comparison",
+      "line": 70,
+      "card_ids": [],
+      "ast_sha256": "42941dd272ca9139249858a91686c9449ab78cf3004f531953bbd99b3ba43dc0",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "Duplicate declaration IDs are rejected for ownership integrity; the renderer contains no ID-specific effect branch."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "validate",
+      "kind": "identity_get_lookup",
+      "line": 73,
+      "card_ids": [],
+      "ast_sha256": "a26832263d97a7115c88332c7ff78f046d110d2c0712d696ed12334cb76850a5",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "The canonical catalog lookup verifies root metadata used to reject stale declarations; it does not dispatch behavior."
+    },
+    {
+      "path": "scripts/generate_profile_deck_minion_cost_summon.py",
+      "function": "main",
+      "kind": "identity_lookup",
+      "line": 179,
+      "card_ids": [],
+      "ast_sha256": "3fe7f69b76a168275409e9122a9152f99db4170f2823162f425cfc6496605d6e",
+      "role": "METADATA_VALIDATION",
+      "occurrences": 1,
+      "reason": "This loads per-card source metadata for hashes and report rows; the shared renderer receives declaration semantics only."
     }
   ]
 }

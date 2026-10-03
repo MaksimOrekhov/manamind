@@ -5,7 +5,7 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 ## Pool and implementation inventory
 
 - Collectible roots: **1185**; metadata present: **1185**.
-- Source registration: **167** direct, **184** generated manifest entries, **834** text-bearing without detected registration, **0** textless metadata candidates.
+- Source registration: **167** direct, **186** generated manifest entries, **832** text-bearing without detected registration, **0** textless metadata candidates.
 - Current rules verification: **0**; historical scoped evidence marked stale: **24**.
 - Route proposals: `{"AUTO": 83, "COMPOSABLE": 187, "CUSTOM": 76, "UNKNOWN": 839}` (heuristic; not correctness status).
 
@@ -29,10 +29,10 @@ Priority is not inferred from metadata frequency. These are review groupings bas
 
 | Signal | Candidate roots | Confidence |
 |---|---:|---|
-| triggered | 693 (502 without detected rules registration) | LOW |
-| resource_cost | 372 (272 without detected rules registration) | LOW |
+| triggered | 693 (500 without detected rules registration) | LOW |
+| resource_cost | 372 (271 without detected rules registration) | LOW |
 | damage | 212 (116 without detected rules registration) | LOW |
-| summon | 212 (173 without detected rules registration) | LOW |
+| summon | 212 (171 without detected rules registration) | LOW |
 | discover_choice | 146 (115 without detected rules registration) | LOW |
 | draw | 129 (80 without detected rules registration) | LOW |
 | transform_copy | 68 (60 without detected rules registration) | LOW |
