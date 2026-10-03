@@ -13,11 +13,13 @@ Prototype event pass:
 3. Queue and resolve their deathrattles FIFO.
 4. Repeat until both queues and death set are empty.
 
-`clone()` is a deep value-copy of all session state, including the `std::mt19937_64` state and pending choice. Choice is a typed continuation (`BuffSelectedMinion`) with options computed from the current board. This is deliberately not the full Hearthstone event/death/choice specification.
+`clone()` is a deep value-copy of all session state, including the `std::mt19937_64` state and pending choice. Choice is a typed continuation: the native board-choice fixture selects a current friendly minion, while the Phase 3 `CORE_GIL_836` Discover samples the complete pinned Standard class/neutral Battlecry-minion pool and generates the selected card into hand. Unsupported pool outcomes remain visible and invalidate the branch when selected. The precise bounded contract is in `reports/manaengine_hardening_20261003/PACKAGE_B_COMPLETION.md`. This is deliberately not the full Hearthstone event/death/choice specification.
+
+Native sessions also expose an optional diagnostic event trace through `ManaEngineSession.set_diagnostic_trace(True)` and the read-only `diagnostic_trace` tuple. It is disabled by default, is not part of the observation/policy input, and is copied by value with session clones.
 
 ## Scope
 
-Tier A/B roots are selected at run time by `scripts/select_roots.py` from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The current selection is 18 (3 Tier A, 15 Tier B). Tier C is not included in parity. The prototype choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
+Tier A/B roots are selected at run time by `scripts/select_roots.py` from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The baseline selection is 18 (3 Tier A, 15 Tier B); the additional Phase 3 Discover root is documented separately and does not change the canonical registry. Tier C is not included in parity. The board-choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
 
 Deck summons filter the complete live deck by the card's declared current cost/type predicate, then use seeded RNG. The pool is never reduced to only roots with implemented ManaEngine effects. Unsupported card definitions encountered in a generated pool remain an explicit limitation.
 
@@ -32,7 +34,7 @@ cmake --build experiments/manaengine/build-release
 ctest --test-dir experiments/manaengine/build-release --output-on-failure
 ```
 
-On Linux/macOS, use an ordinary CMake C++20 toolchain plus an installed `pybind11` CMake package and Python development headers. The core library and native tests have no Rosetta/vcpkg dependency.
+On Ubuntu/Linux, use an ordinary CMake C++20 toolchain plus an installed `pybind11` CMake package and Python development headers. The core library and native tests have no Rosetta/vcpkg dependency.
 
 Python import uses `src/manamind/integrations/manaengine/engine.py`; set `PYTHONPATH=src` when running outside an editable install.
 
@@ -40,4 +42,4 @@ Python import uses `src/manamind/integrations/manaengine/engine.py`; set `PYTHON
 
 After building the extension, use `ManaEngineSession` with the same deck IDs and player-class arguments as the Rosetta `SimulatorSession`. The returned `observation()` is the existing immutable visible `GameState`; `legal_actions()` returns ManaMind action dictionaries, and `clone()` creates an independent branch. Set `MANAMIND_ROSETTA_BRIDGE` only when running side-by-side parity from a worktree that does not have the Rosetta submodule initialized.
 
-The current prototype only implements Mage hero power. Its card behavior catalog covers the 18 selected Tier A/B roots plus the generated cards and test fixtures named in `data/card_abilities.json`. It does not verify every possible generated or randomly selected card outcome, enforce deck construction rules in the C++ core, implement mulligan, or provide full Hearthstone event semantics. The dynamic deck selectors operate on the complete current deck and preserve their predicates; an unsupported selected card's subsequent behavior remains outside this prototype's parity claims.
+The current prototype only implements Mage hero power. Its behavior catalog covers the selected Tier A/B roots plus the Phase 3 `CORE_GIL_836` Discover root and generated cards declared in `data/card_abilities.json`. It does not verify every possible generated or randomly selected card outcome, enforce deck construction rules in the C++ core, implement mulligan, or provide full Hearthstone event semantics. Dynamic pools keep their complete declared predicates; selecting an unsupported result fails closed.

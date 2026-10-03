@@ -45,3 +45,19 @@ The working-set estimate and turn timings vary substantially across these short 
 - No performance threshold had been defined, so the results do not label the prototype as passing/failing a numeric regression budget.
 - Memory is a process working-set delta divided across held sessions, not an exact native object-size calculation.
 - No representative action-heavy full games/sec benchmark was added; this remains a future measurement once more than the prototype card set is admitted.
+
+## Phase 3 matched ManaEngine fixture
+
+Measured with the same Windows 11 Release build type, seed 7, `CORE_DRG_107 × 30` deck, pass-only full-game workload, and 25 session/action iterations as `benchmarks_after_held_progress_repeat.json`. The post-Phase-3 run is summarized here; trace remained disabled (the default).
+
+| Metric | Phase 2 repeat | Phase 3 | Change |
+|---|---:|---:|---:|
+| Session creation median | 14.93 ms | 15.13 ms | +1.4% |
+| `legal_actions` median | 0.0436 ms | 0.0401 ms | −8.1% |
+| `apply_action` end turn median | 0.0659 ms | 0.0409 ms | −37.9% |
+| `clone` median | 0.0055 ms | 0.0056 ms | +1.8% |
+| Working-set estimate/session | 25,559 B | 21,135 B | −17.3% |
+| Pass-only transitions/sec | 2,153 | 2,715 | +26.1% |
+| Pass-only games/sec | 32.14 | 40.52 | +26.1% |
+
+The changes are within the substantial run-to-run variability already observed for working-set and turn timings. None approaches an order-of-magnitude slowdown; these are measurements, not a causal performance claim. The Rosetta side of the same run used a validated Mage fixture with different card composition and remains reference context only.

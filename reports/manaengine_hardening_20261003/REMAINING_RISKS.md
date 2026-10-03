@@ -1,22 +1,22 @@
-# Remaining risks after Phase 2 hardening
+# Remaining ManaEngine risks after Phase 3
 
-## Blocks acceptance beyond `KEEP_EXPERIMENTAL`
+## Blocks controlled migration
 
-1. **CI is green for code commit `6223302`.** Source CI run `37141955265` passed on Windows and Ubuntu, including `check_generated_artifacts.py` and pytest on both. ManaEngine CI run `37141955267` passed on Windows, Ubuntu and macOS. A documentation-only follow-up commit records these run IDs and will receive normal CI checks.
-2. **Held-card progress is fixture-scoped.** A local hook increments independent per-instance counters on direct player spell plays and adjusts current cost; no current Meta Profile card uses it. Nested, replayed, generated and auto-cast spell semantics remain undefined. A profile-root implementation needs a reviewed contract; changing global ordering requires architecture review.
-3. **Event processing is deliberately approximate.** Prototype semantics are FIFO triggers, batch removal of all dead minions, FIFO deathrattles, repeat until stable. Replacements, death order nuances, aura recalculation, reborn, nested triggers and complete modern ordering are outside this pass.
-4. **Effect composition is intentionally small.** `Damage`, `Draw`, `GainArmor`, `ModifyHeroAttack` and `Freeze` are reusable. `Heal`, general stat/cost modification, summon, destroy, hand generation and weapon effects remain named handlers, unsupported or future contracts; the schema is not a card-text DSL.
-5. **Current legal/action semantics are narrow.** Only Mage hero power is implemented. Minion placement is automatic (adapter reports `field_position=-1`); Locations, Choose One, trade, hero classes, mulligan and broader action windows remain out of scope.
-6. **Dynamic pools invalidate on selected unsupported outcomes.** Candidate sets are not filtered, as required, but complete current Standard pool semantics and all outcomes are not verified. Such a result must stop/invalidate an episode.
-7. **Per-instance behavior remains incomplete.** The value model can hold counters, enchantment labels, modifiers and provenance, but transformations, copies, deck buffs, theft, silence application and aura/effect application are not general operations.
-8. **Parity scope is small.** Rosetta parity passes two reference snapshots only. The comparator deliberately skips fields Rosetta does not expose; those fields rely on independently asserted ManaEngine scenarios. Lifecycle parity for all selected roots, combat/death order, dynamic outcomes and choice continuations remains open.
-9. **Full repository Python suite is checkout-limited locally.** The current local run passed 81 tests with the Rosetta resource available from the configured workspace environment. Hosted Source CI also passed the complete suite on the prior source-reverification commit. The final commit must rerun Source CI.
-10. **Benchmark uncertainty.** Clone is still fast in absolute terms, but clone/action/session performance shifted and the before/after fixtures differ. Repeat with matched supported deck fixtures and add an action-heavy workload before setting a numeric gate.
+1. **Dynamic Discover outcomes:** the complete pinned `CORE_GIL_836` pool contains 139 eligible cards. Only one is currently supported in ManaEngine; 138 selected outcomes invalidate the branch. Pool membership must stay complete.
+2. **Dynamic deck summon:** the current Paladin profile roots can select low-cost minions whose definitions are not supported. A successful complete-pool outcome is not yet evidenced; unsupported selections invalidate episodes.
+3. **Weapon semantics and parity:** ManaEngine has weapon destruction and attack/durability primitives, but the current Meta fixture lacks a shared supported weapon-equip card path. A real supported scenario is needed before claiming weapon sequence parity.
+4. **Event/death ordering:** the tested FIFO trigger → lethal-set removal → FIFO Deathrattle → repeat contract is only a prototype approximation. Replacement effects, nuanced death order, aura recalculation/expiry, reborn, and nested trigger/choice order remain unproved.
+5. **Choice and action breadth:** the real Discover continuation works for the bounded reviewed contract. Other classes, Choose One, trade, locations, mulligan, and broader action windows are unsupported. Semantic parity is not established for all offered actions.
+6. **Held-card cast paths:** the three Shaman consumers count an explicit successful player `PlayCard` action for a spell from hand. Internal replay, auto-cast, nested, countered, and generated effects that bypass that action are explicitly outside this contract and fail closed if they reach a tracker-held state.
+7. **Training gates:** no canonical registry/dependency/session/match evidence was promoted by the prototype. No deck is training eligible; no training, production switch, or mass Meta migration is authorized by this result.
+8. **Hosted CI:** final Source CI and ManaEngine CI must execute on Windows and Ubuntu for the pushed Phase 3 commit. Local Windows checks do not replace those jobs.
 
-## Safe next work
+## Measured limits
 
-- Keep the branch experimental until a real profile root has a reviewed held-card contract and parity coverage expands beyond the two current snapshots.
-- Keep the branch experimental until a real profile root has a reviewed held-card contract and parity coverage expands beyond the two current snapshots.
-- Before the first new card family, write a capability proposal that targets a real profile gap and can be expressed honestly by the current four effect primitives or a small shared native capability.
-- Treat event-history, nested choice, global trigger-order or death-system work as an architecture checkpoint before changing it.
-- Do not train, switch production backend, or start mass Meta Profile migration from the current evidence.
+- Local Windows Release native suite: 23 scenario groups / 398 assertions; CTest passes.
+- Full Python suite: 81 passed. Focused adapter/action pipeline after trace coverage: 23 passed.
+- Rosetta native UnitTests on the pinned source build: 266/267 pass, with the previously established `[Druid : Minion] - CORE_OG_044 : Fandral Staghelmh` failure. No new Rosetta source change was made.
+- Sequence parity: 26 checkpoints over targeted Fireball, Violet Spellwing minion trade/deathrattle and generated Arcane Missiles play, and Earthen Drake end-turn damage. Weapon and dynamic-deck-summon outcomes are not parity claims.
+- Matched ManaEngine performance comparison is in `BENCHMARKS.md`; no observed operation approached an order-of-magnitude regression. Short-run RSS and timing figures remain noisy.
+
+Keep the branch experimental until the gaps above are addressed by reviewed contracts and real, non-filtered scenarios. This report does not authorize training or production migration.

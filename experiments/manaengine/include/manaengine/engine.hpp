@@ -11,19 +11,20 @@
 #include <vector>
 namespace manaengine {
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
-enum class TargetSelector { ExplicitCharacter, ExplicitMinion, EnemyMinions, AllCharacters, Self };
-struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, AllCharacters, Self };
+struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
 };
 struct CardDefinition {
     std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race;
-    std::string ability="NONE", generated_card, support_state="UNSUPPORTED";
+    std::string ability="NONE", generated_card, transform_card, support_state="UNSUPPORTED";
+    std::string choice_pool;
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
-    int spell_cost_reduction_per_cast=0;
-    bool rush=false, taunt=false;
+    int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0;
+    bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
 };
 class CardCatalog {
 public:
@@ -54,7 +55,7 @@ struct ObservedCard {
     std::string card_id, card_type, card_class, race;
     int cost=0, current_cost=0, attack=0, health=0, durability=0, current_durability=0;
     int current_attack=0, current_health=0, board_position=0, entity_id=-1;
-    bool can_attack=false, rush=false, frozen=false, taunt=false, divine_shield=false;
+    bool can_attack=false, rush=false, frozen=false, taunt=false, divine_shield=false, lifesteal=false;
     bool stealth=false, silenced=false, immune=false;
     int max_health=0;
 };
@@ -96,21 +97,23 @@ public:
     std::unique_ptr<GameSession> clone() const;
     void begin_prototype_choice(int max_attack=2);
     std::uint64_t seed() const;
+    void set_trace_enabled(bool enabled);
+    const std::vector<std::string>& diagnostic_trace() const;
 private:
-    enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, DestroyEnemyWeapon,
+    enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, Discover, DestroyEnemyWeapon,
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush,
       EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle };
-    enum class ContinuationKind { BuffSelectedMinion };
+    enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand };
     enum class Zone { Deck, Hand, Board, Weapon, Graveyard };
     struct CardInstance {
       int entity_id=-1, owner=0, controller=0, zone_position=-1, cost_delta=0;
       Zone zone=Zone::Deck;
       std::string card_id, provenance="DECK";
       int attack=0,health=0,max_health=0,durability=0,current_durability=0,freeze_expire_owner_turn=0;
-      bool can_attack=false,rush=false,rush_only=false,frozen=false,taunt=false,divine_shield=false;
+      bool can_attack=false,rush=false,rush_only=false,frozen=false,taunt=false,divine_shield=false,lifesteal=false;
       bool stealth=false,silenced=false,immune=false,has_attacked_this_turn=false;
       std::vector<std::string> enchantments;
       std::unordered_map<std::string,int> counters;
@@ -125,10 +128,11 @@ private:
       std::vector<CardInstance> deck; std::vector<CardInstance> hand; std::vector<CardInstance> board;
       std::vector<CardInstance> graveyard;
       std::optional<WeaponState> weapon; std::vector<TimedEffect> timed_effects; };
-    struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; };
-    struct PendingChoice { int owner=0; std::vector<int> options; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; };
+    struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; int target_entity_id=-1; };
+    struct PendingChoice { int owner=0; std::vector<int> options; std::vector<std::string> card_options; int choice_cost_delta=0; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; };
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
+      bool trace_enabled=false; std::vector<std::string> trace;
       std::mt19937_64 rng; std::optional<std::string> result,unsupported; };
     std::shared_ptr<const CardCatalog> catalog_;
     EngineState state_; std::uint64_t seed_=0;
@@ -136,12 +140,14 @@ private:
     const CardDefinition& card(const std::string& id) const;
     int effective_cost(int owner,const HandCard& item) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
-    void draw(int owner,int count=1); void damage_character(int target_id,int amount); void damage_minion(int entity_id,int amount);
+    void draw(int owner,int count=1); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
     void resolve_effects(const CardDefinition& def,int owner,int target_id);
+    void begin_discover(int owner,const CardDefinition& source);
     void update_held_card_spell_progress(int owner);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);
     int random_index(std::size_t count); void update_result();
+    void trace_event(std::string event);
     std::uint64_t next_u64(); std::size_t bounded_random(std::size_t bound);
     void stable_shuffle(std::vector<CardInstance>& cards);
     CardInstance make_instance(const std::string& card_id,int owner,Zone zone,std::string provenance);

@@ -1,0 +1,29 @@
+{
+  "build_type": "Release (CMake Ninja)",
+  "cpu": "AMD64 Family 25 Model 97 Stepping 2, AuthenticAMD",
+  "iterations": 25,
+  "os": "Windows-11-10.0.26200-SP0",
+  "seed": 7,
+  "ManaEngine_fixture": "CORE_DRG_107 x30, no shuffle, pass-only games to fatigue terminal",
+  "ManaEngine": {
+    "session_creation_median_ms": 15.1337,
+    "legal_actions_median_ms": 0.0401,
+    "apply_action_end_turn_median_ms": 0.0409,
+    "clone_median_ms": 0.0056,
+    "working_set_delta_bytes_per_session_estimate": 21135,
+    "pass_only_games_per_second": 40.518490814619305,
+    "pass_only_transitions_per_second": 2714.7388845794935,
+    "games": 10,
+    "mean_transitions_per_game": 67.0
+  },
+  "RosettaStone_reference_context_only": {
+    "fixture": "30-card Rosetta-validated Mage reference fixture; different card composition",
+    "session_creation_median_ms": 1.146,
+    "legal_actions_median_ms": 0.0263,
+    "apply_action_end_turn_median_ms": 0.2263,
+    "working_set_delta_bytes_per_session_estimate": 223477,
+    "pass_only_games_per_second": 19.62048873424181,
+    "pass_only_transitions_per_second": 1314.5727451942014
+  },
+  "trace_enabled": false
+}

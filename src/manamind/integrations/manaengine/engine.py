@@ -19,6 +19,7 @@ _ROOT = Path(__file__).resolve().parents[4]
 _CARD_METADATA: dict[str, CardFeatures] = {}
 _DEFINITION_CACHE: dict[str, tuple[list[Any], dict[str, CardFeatures]]] = {}
 _NATIVE_CATALOG_CACHE: dict[str, Any] = {}
+_COLLECTIBLE_IDS: set[str] = set()
 
 
 class UnsupportedSimulationError(RuntimeError):
@@ -50,7 +51,7 @@ def _load_native() -> ModuleType:
 
 
 def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
-    global _CARD_METADATA
+    global _CARD_METADATA, _COLLECTIBLE_IDS
     native = _load_native()
     catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
     key = str(catalog_file.resolve())
@@ -59,10 +60,20 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         _CARD_METADATA = metadata
         return rows
     catalog = CardCatalog.from_json(catalog_file)
+    raw_catalog = json.loads(catalog_file.read_text(encoding="utf-8-sig"))
+    raw_cards = raw_catalog.get("cards", []) if isinstance(raw_catalog, dict) else raw_catalog
+    _COLLECTIBLE_IDS = {
+        str(row.get("id") or row.get("card_id") or row.get("dbfId"))
+        for row in raw_cards
+        if isinstance(row, dict) and row.get("collectible") is True
+    }
     extras = {
         "EX1_277": CardFeatures(card_id="EX1_277", cost=1, card_type="SPELL", card_class="MAGE"),
         "SW_108t": CardFeatures(card_id="SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
         "CORE_SW_108t": CardFeatures(card_id="CORE_SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
+        "JAIL_801t": CardFeatures(card_id="JAIL_801t", cost=3, attack=3, health=3, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL"),
+        "JAIL_803t": CardFeatures(card_id="JAIL_803t", cost=5, attack=5, health=5, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL"),
+        "JAIL_805t": CardFeatures(card_id="JAIL_805t", cost=7, attack=7, health=7, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL", mechanics=("LIFESTEAL",)),
         "TEST_HELD_TRACKER": CardFeatures(card_id="TEST_HELD_TRACKER", cost=2, attack=4, health=4, card_type="MINION", card_class="MAGE"),
         "HERO_08bp": CardFeatures(card_id="HERO_08bp", cost=2, attack=0, health=0, durability=0, card_type="HERO_POWER", card_class="MAGE"),
     }
@@ -71,7 +82,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
     effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE"}
-    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ALL_CHARACTERS", "SELF"}
+    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ALL_CHARACTERS", "SELF"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
         d = native.CardDefinition()
@@ -80,6 +91,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.card_type = card.card_type.upper()
         d.card_class = card.card_class.upper()
         d.race = (card.race or "").upper()
+        d.collectible = card.card_id in _COLLECTIBLE_IDS
+        d.battlecry = "BATTLECRY" in card.mechanics
         d.cost = card.cost or 0
         d.attack = card.attack or 0
         d.health = card.health or 0
@@ -97,8 +110,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             raise ValueError(f"effects must be a list for {card.card_id}")
         native_effects = []
         for effect in raw_effects:
-            if not isinstance(effect, dict) or set(effect) != {"kind", "target", "amount"}:
-                raise ValueError(f"effect requires exactly kind, target, amount for {card.card_id}")
+            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal"}:
+                raise ValueError(f"effect requires kind, target, amount, and optional lifesteal for {card.card_id}")
             kind = str(effect["kind"]).upper()
             target = str(effect["target"]).upper()
             if kind not in effect_kinds or target not in target_selectors:
@@ -107,6 +120,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             native_effect.kind = getattr(native.EffectKind, kind)
             native_effect.target = getattr(native.TargetSelector, target)
             native_effect.amount = int(effect["amount"])
+            native_effect.lifesteal = bool(effect.get("lifesteal", False))
             native_effects.append(native_effect)
         d.effects = native_effects
         result.append(d)
@@ -204,6 +218,14 @@ class ManaEngineSession:
         duplicate._unsupported_exception = self._unsupported_exception
         duplicate._native = self._native.clone()
         return duplicate
+
+    def set_diagnostic_trace(self, enabled: bool) -> None:
+        """Enable the optional native event trace for debugging scenarios."""
+        self._native.set_trace_enabled(bool(enabled))
+
+    @property
+    def diagnostic_trace(self) -> tuple[str, ...]:
+        return tuple(self._native.diagnostic_trace)
 
     def begin_prototype_choice(self, max_attack: int = 2) -> None:
         """Enter the non-card-specific runtime-derived choice demo scenario."""

@@ -17,7 +17,7 @@
 | Python tests without Rosetta submodule-dependent modules | PASS, 39 | Remaining repository Python tests after excluding the four modules that require the missing checkout resource |
 | Ruff | PASS | all changed Python modules/scripts listed in the command output |
 | Rosetta shared-contract parity | PASS, 2 checkpoints | opening state/actions; after Violet Spellwing state/actions |
-| ManaEngine hosted CI | PASS | Windows, Ubuntu and macOS jobs passed for `622330298e670774e45cded9d271625ceb716daf`; Actions run `37141955267` |
+| ManaEngine hosted CI (historical run) | PASS | Windows, Ubuntu and macOS jobs passed for `622330298e670774e45cded9d271625ceb716daf`; Actions run `37141955267`. macOS is no longer an acceptance target. |
 | Source CI | PASS | Windows and Ubuntu run `37141955265`; artifact check and pytest executed successfully on both for `622330298e670774e45cded9d271625ceb716daf` |
 | Local full Python suite | PASS, 81 | `python -m pytest -q -p no:cacheprovider --basetemp E:\\ManaMind\\.tmp\\pytest-manaengine-hardening` |
 | ManaEngine adapter tests | PASS, 2 | Includes held per-instance progression, newly drawn instance and clone divergence fixture |
@@ -55,4 +55,20 @@ The direct comparison checks only fields both backends actually export. Rosetta'
 
 ## CI added
 
-`.github/workflows/manaengine-experimental.yml` runs the same Release CMake build, native CTest, Python adapter, policy and golden RNG tests on `windows-latest`, `ubuntu-latest`, and `macos-latest`; all three hosted jobs passed. The separate Source CI still needs a green Windows and Ubuntu run with pytest observed after artifact regeneration.
+`.github/workflows/manaengine-experimental.yml` targets `windows-latest` (required, primary) and `ubuntu-latest` (required, secondary), running Release CMake build, native CTest, Python adapter, policy and golden RNG tests. A historical run also passed on macOS, which is not part of the acceptance gate. The separate Source CI passed on Windows and Ubuntu, including pytest after artifact regeneration.
+
+## Phase 3 final local checks
+
+| Layer | Result | Scope |
+|---|---:|---|
+| Windows Release native build / CTest | PASS, 1/1 | 23 scenario groups / 398 assertions, including real held-card roots, full-pool Discover fail-closed, event/death stress, deterministic trace and clone-local trace state |
+| ManaEngine adapter + policy/action schema | PASS, 23 | Includes full-pool Choice descriptors, per-instance transform, and optional trace API default-off/clone-local checks |
+| Full repository Python suite | PASS, 81 | CPython 3.12, pinned Rosetta resource available |
+| Generated artifact ownership/regeneration | PASS | 36 pinned outputs reproduced, unique ownership |
+| Generic generator branch guard | PASS | 201 reviewed AST exceptions; CUSTOM ownership validated |
+| Sequence parity | PASS, 26 checkpoints | Fireball target spell; Violet Spellwing minion trade, simultaneous deaths, Deathrattle generation and Arcane Missiles play; Earthen Drake end-turn damage. Compares visible state and semantic legal actions after each step. |
+| Rosetta native UnitTests | 266/267 | Same established Fandral Staghelm legacy failure; see `PHASE3_FINAL_REPORT.md` |
+| Optional trace | PASS | Disabled by default, deterministic event text, copied by value and independently mutable across clones |
+| Matched ManaEngine benchmark | recorded | Same supported 30× Violet Spellwing pass-only fixture as Phase 2 repeat; no order-of-magnitude regression. See `BENCHMARKS.md`. |
+
+Hosted final Source CI and ManaEngine Windows/Ubuntu CI are pending the final push. Weapon attack/durability parity and a successful complete-pool deck-summon parity case remain explicit acceptance gaps, so the Phase 3 verdict is `KEEP_EXPERIMENTAL`.

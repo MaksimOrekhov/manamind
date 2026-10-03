@@ -21,6 +21,16 @@ Base checkpoint: `339b51ebf9d9bede781bcf448eba34a23d83a36e`. Scope: isolated `co
 | 15. Required reports | **FIXED** | All five requested report files are present in this directory. |
 | 16. Autonomous work | **PARTIALLY_FIXED** | The pinned RosettaStone revision `f34da0d3fcb5ad312f7e2acf634d0536b044d29a` and bridge were rebuilt, and the three roots invalidated by observation/bridge fingerprints were reverified with focused native scenarios and bridge parity. Canonical regeneration is current and reproducible. Final Source CI run `37141955265` passed on Windows and Ubuntu; `check_generated_artifacts.py` and pytest passed on both. ManaEngine cross-platform run `37141955267` passed on Windows, Ubuntu and macOS. |
 
+## Phase 3 platform scope
+
+Current CI acceptance requires Windows as primary and Ubuntu/Linux as secondary. macOS was included in historical successful runs above; it is removed from the current ManaEngine workflow and is not an acceptance criterion. See PHASE3_CANDIDATE_AUDIT.md for the real Meta Profile capability ranking and revised held-card semantic boundary.
+
 ## Phase 2 verdict
 
 **KEEP_EXPERIMENTAL**. Commit `6223302` passed Source CI (Windows/Ubuntu, pytest executed) and ManaEngine CI (Windows/Ubuntu/macOS). The prototype has stronger action, lifecycle, state-identity, fail-closed, typed-effect and deterministic foundations. Held-card behavior currently covers one local direct-spell fixture, typed composition covers five operations, and Rosetta parity covers two shared snapshots. This does not meet the broader Phase 2 acceptance gate or justify controlled Meta migration. Do not treat the branch as training-ready or production-ready.
+
+## Phase 3 result
+
+The three scoped real-profile packages are recorded in `PACKAGE_A_COMPLETION.md`, `PACKAGE_B_COMPLETION.md` and `PACKAGE_C_COMPLETION.md`. The held-card roots now have reviewed per-instance progression and transform behavior; Discover keeps the full 139-card candidate pool and fails closed on unsupported selected outcomes; the lifecycle stress sequence passes with the current bounded FIFO/death-set semantics. Behavior-sequence parity now passes 26 checkpoints for targeted spell, minion combat/death plus generated-card play, and an end-turn trigger. Optional deterministic tracing is disabled by default and clone-local.
+
+The Phase 3 verdict remains **KEEP_EXPERIMENTAL**. Weapon durability parity and a successful complete-pool dynamic deck-summon bridge scenario remain unavailable; most Discover outcomes are unsupported; event/death semantics remain approximate. Phase 3 final hosted Source and ManaEngine Windows/Ubuntu workflows must pass on the resulting commit before the branch can be considered closed. See `PHASE3_FINAL_REPORT.md`.
