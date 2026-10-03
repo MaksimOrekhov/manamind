@@ -6,7 +6,7 @@ Registry: `standard_registry_20261001_v1`. Full Standard admission: **BLOCKED**.
 
 - Collectible roots: **1185**; metadata present: **1185**.
 - Source registration: **167** direct, **184** generated manifest entries, **834** text-bearing without detected registration, **0** textless metadata candidates.
-- Current rules verification: **5**; historical scoped evidence marked stale: **19**.
+- Current rules verification: **0**; historical scoped evidence marked stale: **24**.
 - Route proposals: `{"AUTO": 83, "COMPOSABLE": 187, "CUSTOM": 76, "UNKNOWN": 839}` (heuristic; not correctness status).
 
 ## Dependency graph

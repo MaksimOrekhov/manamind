@@ -1,0 +1,2638 @@
+{
+  "schema_version": 1,
+  "profile_id": "meta_training_20261002_v1",
+  "source_standard_profile_id": "standard_full_20261001_v1",
+  "source_standard_registry_id": "standard_registry_20261001_v1",
+  "unique_pinned_standard_roots": 156,
+  "unique_external_noncollectible_seed_candidates": 6,
+  "roots": [
+    {
+      "card_id": "BE_036",
+      "name": "M.O.T.H.E.R.",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_102",
+      "name": "Land Ho!",
+      "card_class": "WARRIOR",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_103",
+      "name": "Hand Cannon",
+      "card_class": "WARRIOR",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_104",
+      "name": "Blastpowder Engineer",
+      "card_class": "WARRIOR",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_105",
+      "name": "Hook n' Heave",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "CAP_107t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [
+        "POOL:CAP_105:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_106",
+      "name": "Captain Crowley",
+      "card_class": "WARRIOR",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_107",
+      "name": "Cannonmaster",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "CAP_107t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_405",
+      "name": "Godfather Kazakus",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_407",
+      "name": "Wanted Poster",
+      "card_class": "NEUTRAL",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CAP_407:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_801",
+      "name": "Haunt",
+      "card_class": "PRIEST",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "STALE",
+      "known_dependency_candidates": [
+        {
+          "to": "CS2_009e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_802",
+      "name": "Follow the Ghosts",
+      "card_class": "PRIEST",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_804",
+      "name": "Specter Specialist",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CAP_804:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_805",
+      "name": "Slime 'em!",
+      "card_class": "PRIEST",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CAP_806",
+      "name": "Raith Van Geist",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CAP_806:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_131",
+      "name": "Felwood Treant",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_139",
+      "name": "Wickerfang",
+      "card_class": "DRUID",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_140",
+      "name": "Merithra of the Dream",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CATA_140:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_200",
+      "name": "Agent of the Old Ones",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_203",
+      "name": "Garona's Last Stand",
+      "card_class": "ROGUE",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_302",
+      "name": "Mend",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_308",
+      "name": "Medivh's Triumph",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_452",
+      "name": "Spellweaver's Brilliance",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_458",
+      "name": "Archmage Kalec",
+      "card_class": "MAGE",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "CATA_458e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_472",
+      "name": "Inspiring Maul",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_473",
+      "name": "Nozdormu, Bronze Aspect",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_474",
+      "name": "Spearheart Sentry",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CATA_474:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_475",
+      "name": "Scalebreaker Bulwark",
+      "card_class": "PALADIN",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_479",
+      "name": "Flight Maneuvers",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_484",
+      "name": "Winterspring Whelp",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CATA_484:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_485",
+      "name": "Sleet Storm",
+      "card_class": "MAGE",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_487",
+      "name": "Raincaller",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_488",
+      "name": "Vulcanos",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_489",
+      "name": "Arcane Flow",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_496",
+      "name": "Cursed Chains",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_526",
+      "name": "Broxigar's Last Stand",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_556",
+      "name": "Carrier Whelp",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CATA_556:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_561",
+      "name": "Ritual of Power",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_567",
+      "name": "Ascendance",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_582",
+      "name": "Searing Fissure",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "CS2_045e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_584",
+      "name": "Erupting Volcano",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_585",
+      "name": "Torch",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_725",
+      "name": "Shadowsworn Disciple",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "CATA_725t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_785",
+      "name": "Rite of Twilight",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_999",
+      "name": "Earthen Drake",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CATA_EVENT_402",
+      "name": "Deadly Bribe",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_BAR_311",
+      "name": "Devouring Plague",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CORE_BAR_311:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_BT_416",
+      "name": "Raging Felscreamer",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "BT_416e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "card_class": "PRIEST",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "STALE",
+      "known_dependency_candidates": [
+        {
+          "to": "CS2_004e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_CS2_024",
+      "name": "Frostbolt",
+      "card_class": "MAGE",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_CS2_029",
+      "name": "Fireball",
+      "card_class": "MAGE",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_CS2_062",
+      "name": "Hellfire",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_CS2_072",
+      "name": "Backstab",
+      "card_class": "ROGUE",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_DRG_024",
+      "name": "Sky Raider",
+      "card_class": "WARRIOR",
+      "registration_status": "GENERATED_CORE_ALIAS",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "DRG_024",
+          "kind": "generated_core_alias_base",
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_DRG_107",
+      "name": "Violet Spellwing",
+      "card_class": "MAGE",
+      "registration_status": "GENERATED_CORE_ALIAS",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "EX1_277",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "DRG_107",
+          "kind": "generated_core_alias_base",
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_EX1_012",
+      "name": "Bloodmage Thalnos",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_EX1_129",
+      "name": "Fan of Knives",
+      "card_class": "ROGUE",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_EX1_145",
+      "name": "Preparation",
+      "card_class": "ROGUE",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "EX1_145o",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_EX1_169",
+      "name": "Innervate",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_EX1_246",
+      "name": "Hex",
+      "card_class": "SHAMAN",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_GIL_836",
+      "name": "Blazing Invocation",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CORE_GIL_836:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_ICC_038",
+      "name": "Righteous Protector",
+      "card_class": "PALADIN",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_ICC_055",
+      "name": "Drain Soul",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_REV_990",
+      "name": "Sanguine Depths",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "REV_990e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_RLK_567",
+      "name": "Shadow of Demise",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CORE_RLK_567:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_SW_066",
+      "name": "Royal Librarian",
+      "card_class": "NEUTRAL",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "STALE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_SW_072",
+      "name": "Rustrot Viper",
+      "card_class": "NEUTRAL",
+      "registration_status": "GENERATED_CORE_ALIAS",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "SW_072",
+          "kind": "generated_core_alias_base",
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_SW_108",
+      "name": "First Flame",
+      "card_class": "MAGE",
+      "registration_status": "GENERATED_CORE_ALIAS",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "SW_108t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "SW_108",
+          "kind": "generated_core_alias_base",
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_TTN_843",
+      "name": "Eredar Deceptor",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_UNG_205",
+      "name": "Glacial Shard",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "CORE_YOP_001",
+      "name": "Illidari Studies",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:CORE_YOP_001:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "DINO_402",
+      "name": "Bat Mask",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "DINO_406",
+      "name": "Fire Breath",
+      "card_class": "SHAMAN",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "ICC_210e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "DINO_426",
+      "name": "Ritual of Life",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:DINO_426:discover",
+        "POOL:DINO_426:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_000",
+      "name": "Ysera, Emerald Aspect",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_258",
+      "name": "Toreth the Unbreaking",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_456",
+      "name": "Darkrider",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:EDR_456:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_457",
+      "name": "Brood Keeper",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "EDR_457t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_463",
+      "name": "Twilight Influence",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:EDR_463:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_492",
+      "name": "Mother Duck",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "EDR_492t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_527",
+      "name": "Ashamane",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_528",
+      "name": "Nightmare Fuel",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:EDR_528:discover",
+        "POOL:EDR_528:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_844",
+      "name": "Naralex, Herald of the Flights",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_846",
+      "name": "Shaladrassil",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "DREAM_01",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "DREAM_02",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "DREAM_03",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "DREAM_04",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "DREAM_05",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "EDR_846t1",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "EDR_846t2",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "EDR_846t3",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "EDR_846t4",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        },
+        {
+          "to": "EDR_846t5",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "EDR_856",
+      "name": "Nightmare Lord Xavius",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:EDR_856:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_004",
+      "name": "Remnant of Rage",
+      "card_class": null,
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_007",
+      "name": "Press the Advantage",
+      "card_class": null,
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "STALE",
+      "known_dependency_candidates": [
+        {
+          "to": "BTA_02pe",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
+    },
+    {
+      "card_id": "END_008",
+      "name": "Enduring Roach",
+      "card_class": null,
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_011",
+      "name": "Acceleration Aura",
+      "card_class": null,
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_020",
+      "name": "Eternal Toil",
+      "card_class": null,
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:END_020:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_022",
+      "name": "Time-Twisted Seer",
+      "card_class": null,
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "END_033",
+      "name": "Prescient Slitherdrake",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "FIR_907",
+      "name": "Amirdrassil",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "FIR_929",
+      "name": "Living Flame",
+      "card_class": "NEUTRAL",
+      "registration_status": "GENERATED_FILTERED_SCHOOL_DRAW",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "STALE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "FIR_939",
+      "name": "Shadowflame Suffusion",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:FIR_939:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "FIR_959",
+      "name": "Fyrakk the Blazing",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "FIR_959e",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_035",
+      "name": "Vigilant Sentry",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_200",
+      "name": "Infest the Scullery",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_200:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_201",
+      "name": "Secret Ingredient",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_201:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_202",
+      "name": "Spiderling",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_206",
+      "name": "Dark Bribe",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_321",
+      "name": "Tricksy Improviser",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_327",
+      "name": "Reinforcement Aura",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_327:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_384",
+      "name": "Chainbreaker Hogger",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_397",
+      "name": "Commander Beatrix",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_399",
+      "name": "Imp Gang Stooge",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "JAIL_399t1",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_421",
+      "name": "Warptooth",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_458",
+      "name": "Tiny Pal",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_503",
+      "name": "Blackpaw's Whip",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_504",
+      "name": "Aya, Lotus Kingpin",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_509",
+      "name": "Godfrey the Betrayer",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_510",
+      "name": "Annihilation",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_511",
+      "name": "Spire of Solitude",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "JAIL_511t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_513",
+      "name": "Caged Cranium",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_514",
+      "name": "The Unseen Atlas",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_515",
+      "name": "Shadow Rounds",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_515:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_516",
+      "name": "Scarlet Recruiter",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_516:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_720",
+      "name": "Lotus Bookie",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_800",
+      "name": "Mug'Zee",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_801",
+      "name": "Molten Gold",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_803",
+      "name": "Frostshatter",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_805",
+      "name": "Stormfury",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_872",
+      "name": "Spider Rider",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_875",
+      "name": "Staff of Trickery",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_875:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_912",
+      "name": "Soothsayer",
+      "card_class": "PRIEST",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_912:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_940",
+      "name": "Undeath Sentence",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_940:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_941",
+      "name": "Holy Embrace",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "JAIL_941t",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_987",
+      "name": "Low Security Wing",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:JAIL_987:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "JAIL_EVENT_101",
+      "name": "Soul Immolation",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "MEND_046",
+      "name": "Bashana Runetotem",
+      "card_class": "DRUID",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_009",
+      "name": "Gelbin of Tomorrow",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TIME_009:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_019",
+      "name": "Manifested Timeways",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_020",
+      "name": "Broxigar",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_031",
+      "name": "RAFAAM LADDER!!",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_034",
+      "name": "Stadium Announcer",
+      "card_class": "WARRIOR",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TIME_034:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_039",
+      "name": "Deja Vu",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TIME_039:discover",
+        "POOL:TIME_039:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_064",
+      "name": "Chrono-Lord Deios",
+      "card_class": "NEUTRAL",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_215",
+      "name": "Thunderquake",
+      "card_class": "SHAMAN",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "TIME_218",
+          "kind": "literal_card_id_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_218",
+      "name": "Static Shock",
+      "card_class": "SHAMAN",
+      "registration_status": "GENERATED_EFFECT_COMPOSITION",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [
+        {
+          "to": "BTA_02pe",
+          "kind": "enchantment_or_object_reference",
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE"
+        }
+      ],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "VERIFIED_SCOPED_CURRENT"
+    },
+    {
+      "card_id": "TIME_700",
+      "name": "Chronological Aura",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_701",
+      "name": "Waveshaping",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TIME_701:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_702",
+      "name": "Ebb and Flow",
+      "card_class": "DRUID",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "CUSTOM",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_713",
+      "name": "Time Adm'ral Hooktail",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_855",
+      "name": "Arcane Barrage",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_875",
+      "name": "Garona Halforcen",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TIME_EVENT_999",
+      "name": "Sands of Time",
+      "card_class": "NEUTRAL",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TIME_EVENT_999:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_100",
+      "name": "Elise the Navigator",
+      "card_class": "NEUTRAL",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_226",
+      "name": "Conjured Bookkeeper",
+      "card_class": "MAGE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TLC_226:generated_card"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_438",
+      "name": "Violet Treasuregill",
+      "card_class": "PALADIN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TLC_438:random_card_or_pool"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_451",
+      "name": "Cursed Catacombs",
+      "card_class": "WARLOCK",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "AUTO",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TLC_451:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_464",
+      "name": "Mountain Map",
+      "card_class": "SHAMAN",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TLC_464:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_515",
+      "name": "Cultist Map",
+      "card_class": "ROGUE",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [
+        "POOL:TLC_515:discover"
+      ],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_600",
+      "name": "Windpeak Wyrm",
+      "card_class": "WARRIOR",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_816",
+      "name": "Gravedawn Sunbloom",
+      "card_class": "PRIEST",
+      "registration_status": "DIRECT_SOURCE_BLOCK",
+      "implementation_route": "COMPOSABLE",
+      "rules_status": "IMPLEMENTED_UNVERIFIED",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_817",
+      "name": "Reach Equilibrium",
+      "card_class": "PRIEST",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_901",
+      "name": "Fumigate",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    },
+    {
+      "card_id": "TLC_902",
+      "name": "Infestation",
+      "card_class": "DEMONHUNTER",
+      "registration_status": "NO_DETECTED_RULE_REGISTRATION",
+      "implementation_route": "UNKNOWN",
+      "rules_status": "UNKNOWN",
+      "evidence_validity": "NO_SCOPED_EVIDENCE",
+      "known_dependency_candidates": [],
+      "dynamic_pool_ids": [],
+      "training_eligibility": "BLOCKED",
+      "meta_profile_verification": "NO_CURRENT_META_PROFILE_EVIDENCE"
+    }
+  ],
+  "external_noncollectible_seed_candidates": [
+    {
+      "candidate_card_id": "TIME_875t1",
+      "display_name": "The Kingslayers",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.wiki.gg/wiki/The_Kingslayers",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    },
+    {
+      "candidate_card_id": "TIME_875t",
+      "display_name": "King Llane",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.blizzard.com/en-us/cards/119815-king-llane/",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    },
+    {
+      "candidate_card_id": "TIME_009t1",
+      "display_name": "Gnomish Aura",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gnomish_Aura",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    },
+    {
+      "candidate_card_id": "TIME_009t2",
+      "display_name": "Mekkatorque's Aura",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gelbin_of_Tomorrow",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    },
+    {
+      "candidate_card_id": "TIME_020t2",
+      "display_name": "First Portal to Argus",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.wiki.gg/wiki/First_Portal_to_Argus",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    },
+    {
+      "candidate_card_id": "TIME_020t1",
+      "display_name": "Axe of Cenarius",
+      "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+      "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Broxigar",
+      "registry_status": "NOT_IN_PINNED_STANDARD_REGISTRY"
+    }
+  ],
+  "decks": [
+    {
+      "deck_id": "cannoneer_dragon_warrior",
+      "class": "Warrior",
+      "source_entries": 16,
+      "declared_slots": 30,
+      "pinned_root_ids": 16,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 15,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 15,
+      "unknown_rules_roots": 1,
+      "known_candidate_dependency_nodes": 5,
+      "unreviewed_static_candidate_edges": 6,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CAP_105:discover",
+        "POOL:CATA_556:random_card_or_pool",
+        "POOL:EDR_456:discover",
+        "POOL:FIR_939:discover",
+        "POOL:TIME_034:random_card_or_pool"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "fire_pirate_warrior",
+      "class": "Warrior",
+      "source_entries": 17,
+      "declared_slots": 30,
+      "pinned_root_ids": 17,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 12,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 12,
+      "unknown_rules_roots": 5,
+      "known_candidate_dependency_nodes": 5,
+      "unreviewed_static_candidate_edges": 5,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CAP_105:discover",
+        "POOL:END_020:random_card_or_pool",
+        "POOL:FIR_939:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "wanted_mug_shaman",
+      "class": "Shaman",
+      "source_entries": 16,
+      "declared_slots": 30,
+      "pinned_root_ids": 16,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 4,
+      "current_scoped_verified_roots": 1,
+      "implemented_unverified_roots": 4,
+      "unknown_rules_roots": 12,
+      "known_candidate_dependency_nodes": 2,
+      "unreviewed_static_candidate_edges": 3,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CAP_407:discover",
+        "POOL:CORE_GIL_836:discover",
+        "POOL:JAIL_987:random_card_or_pool",
+        "POOL:TIME_EVENT_999:discover",
+        "POOL:TLC_464:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "elise_attack_druid",
+      "class": "Druid",
+      "source_entries": 20,
+      "declared_slots": 30,
+      "pinned_root_ids": 20,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 17,
+      "current_scoped_verified_roots": 1,
+      "implemented_unverified_roots": 17,
+      "unknown_rules_roots": 3,
+      "known_candidate_dependency_nodes": 15,
+      "unreviewed_static_candidate_edges": 15,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CATA_140:random_card_or_pool",
+        "POOL:JAIL_200:random_card_or_pool",
+        "POOL:JAIL_201:random_card_or_pool",
+        "POOL:JAIL_875:discover",
+        "POOL:TIME_701:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "reborn_quest_priest",
+      "class": "Priest",
+      "source_entries": 17,
+      "declared_slots": 30,
+      "pinned_root_ids": 17,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 13,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 13,
+      "unknown_rules_roots": 4,
+      "known_candidate_dependency_nodes": 3,
+      "unreviewed_static_candidate_edges": 3,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CAP_804:generated_card",
+        "POOL:CAP_806:generated_card",
+        "POOL:CORE_BAR_311:random_card_or_pool",
+        "POOL:DINO_426:discover",
+        "POOL:DINO_426:generated_card",
+        "POOL:EDR_463:random_card_or_pool",
+        "POOL:EDR_856:discover",
+        "POOL:JAIL_912:random_card_or_pool",
+        "POOL:JAIL_940:generated_card"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "ashamane_ayaya_rogue",
+      "class": "Rogue",
+      "source_entries": 19,
+      "declared_slots": 30,
+      "pinned_root_ids": 17,
+      "unresolved_or_external_seed_entries": [
+        {
+          "display_name": "The Kingslayers",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_875t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/The_Kingslayers",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "King Llane",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_875t",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.blizzard.com/en-us/cards/119815-king-llane/",
+          "root_kind": "FABLED_DECK_SEED"
+        }
+      ],
+      "registered_roots": 4,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 4,
+      "unknown_rules_roots": 13,
+      "known_candidate_dependency_nodes": 1,
+      "unreviewed_static_candidate_edges": 1,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CORE_RLK_567:generated_card",
+        "POOL:EDR_528:discover",
+        "POOL:EDR_528:generated_card",
+        "POOL:TIME_039:discover",
+        "POOL:TIME_039:generated_card",
+        "POOL:TLC_515:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "mother_drake_warlock",
+      "class": "Warlock",
+      "source_entries": 19,
+      "declared_slots": 30,
+      "pinned_root_ids": 19,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 19,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 19,
+      "unknown_rules_roots": 0,
+      "known_candidate_dependency_nodes": 3,
+      "unreviewed_static_candidate_edges": 3,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:JAIL_515:random_card_or_pool",
+        "POOL:TLC_451:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "tricky_burn_mage",
+      "class": "Mage",
+      "source_entries": 17,
+      "declared_slots": 30,
+      "pinned_root_ids": 17,
+      "unresolved_or_external_seed_entries": [],
+      "registered_roots": 8,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 8,
+      "unknown_rules_roots": 9,
+      "known_candidate_dependency_nodes": 5,
+      "unreviewed_static_candidate_edges": 5,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CATA_484:discover",
+        "POOL:TLC_226:generated_card"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "beatrix_pure_paladin",
+      "class": "Paladin",
+      "source_entries": 18,
+      "declared_slots": 30,
+      "pinned_root_ids": 16,
+      "unresolved_or_external_seed_entries": [
+        {
+          "display_name": "Gnomish Aura",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_009t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gnomish_Aura",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Mekkatorque's Aura",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_009t2",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gelbin_of_Tomorrow",
+          "root_kind": "FABLED_DECK_SEED"
+        }
+      ],
+      "registered_roots": 3,
+      "current_scoped_verified_roots": 0,
+      "implemented_unverified_roots": 3,
+      "unknown_rules_roots": 13,
+      "known_candidate_dependency_nodes": 0,
+      "unreviewed_static_candidate_edges": 0,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CATA_474:random_card_or_pool",
+        "POOL:JAIL_327:generated_card",
+        "POOL:JAIL_516:generated_card",
+        "POOL:TIME_009:generated_card",
+        "POOL:TLC_438:random_card_or_pool"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    },
+    {
+      "deck_id": "galaxy_brain_raza_demon_hunter",
+      "class": "Demon Hunter",
+      "source_entries": 17,
+      "declared_slots": 30,
+      "pinned_root_ids": 15,
+      "unresolved_or_external_seed_entries": [
+        {
+          "display_name": "First Portal to Argus",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_020t2",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/First_Portal_to_Argus",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Axe of Cenarius",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_020t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Broxigar",
+          "root_kind": "FABLED_DECK_SEED"
+        }
+      ],
+      "registered_roots": 5,
+      "current_scoped_verified_roots": 1,
+      "implemented_unverified_roots": 5,
+      "unknown_rules_roots": 10,
+      "known_candidate_dependency_nodes": 3,
+      "unreviewed_static_candidate_edges": 2,
+      "unresolved_dynamic_pool_definitions": [
+        "POOL:CORE_YOP_001:discover"
+      ],
+      "closure_status": "LOWER_BOUND_ONLY_BLOCKED"
+    }
+  ]
+}

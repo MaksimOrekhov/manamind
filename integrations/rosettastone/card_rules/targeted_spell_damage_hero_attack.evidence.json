@@ -1,0 +1,100 @@
+{
+  "package_id": "targeted_spell_damage_hero_attack_v1",
+  "contract_id": "targeted_spell_damage_hero_attack",
+  "contract_version": 1,
+  "profile_id": "meta_training_20261002_v1",
+  "profile_manifest_sha256": "5d6e4338293a8a5479af26e84003be85aa3c8c9b1d4a3bdca0900c0098906566",
+  "declaration_sha256": "b601737b6ba058fd179e8a8fee72fbfb79f3a574c92419949ce66c76d062d111",
+  "generator_script_sha256": "d7e0c0306df91a2bee778ce75a9b0f3c185616fa8e1d4dd7736a47dd75879876",
+  "generated_source_sha256": "d1cc2aece6da9dac0afefcc745d6ddfc66535766e85dc57ddf4efbe0baf2b833",
+  "native_scenario_sha256": "6174c0fc090773aa4ff1fc6fed5b15a8769e51a2224a1c408b85098d412f088f",
+  "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d",
+  "training_eligible": false,
+  "cards": {
+    "END_007": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Native independent family scenario and actual loaded-bridge target/action/stat parity; profile roots only, no full deck closure or training admission.",
+      "training_scope": "META_PROFILE_SCOPED_ONLY",
+      "contract_review": {
+        "contract_id": "targeted_spell_damage_hero_attack",
+        "contract_version": 1,
+        "implementation_kind": "GENERIC",
+        "effect": "1 spell damage to declared target then +1 hero Attack until end of turn",
+        "target_variation": {
+          "END_007": "any character",
+          "TIME_218": "minion only"
+        }
+      },
+      "rules_fingerprint": "d2268363290eb68d828d282408764ebb453704a0bf55f8c374a4e44af52fd0a8",
+      "dependency_review": {
+        "scope": "SCOPED_EXISTING_ENCHANT_CONTRACT",
+        "dependency_ids": [
+          "BTA_02pe"
+        ],
+        "verified_property": "+1 hero Attack expires at end of controller's turn",
+        "complete_profile_closure": false
+      },
+      "native_test": "[ManaMind effect composition]* passed",
+      "bridge_scope": "PASS: enemy hero target, exact fixed effects, temporary Attack expiry",
+      "profile_manifest_sha256": "5d6e4338293a8a5479af26e84003be85aa3c8c9b1d4a3bdca0900c0098906566",
+      "native_scenario_sha256": "6174c0fc090773aa4ff1fc6fed5b15a8769e51a2224a1c408b85098d412f088f",
+      "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
+    },
+    "TIME_218": {
+      "status": "VERIFIED_SCOPED",
+      "scope": "Native independent family scenario and actual loaded-bridge target/action/stat parity; profile roots only, no full deck closure or training admission.",
+      "training_scope": "META_PROFILE_SCOPED_ONLY",
+      "contract_review": {
+        "contract_id": "targeted_spell_damage_hero_attack",
+        "contract_version": 1,
+        "implementation_kind": "GENERIC",
+        "effect": "1 spell damage to declared target then +1 hero Attack until end of turn",
+        "target_variation": {
+          "END_007": "any character",
+          "TIME_218": "minion only"
+        }
+      },
+      "rules_fingerprint": "e81f5fab6f1041496b1ab867149ab277e5947e24490888ef4a4bfb1b9f8649dc",
+      "dependency_review": {
+        "scope": "SCOPED_EXISTING_ENCHANT_CONTRACT",
+        "dependency_ids": [
+          "BTA_02pe"
+        ],
+        "verified_property": "+1 hero Attack expires at end of controller's turn",
+        "complete_profile_closure": false
+      },
+      "native_test": "[ManaMind effect composition]* passed",
+      "bridge_scope": "PASS: no target with empty boards; only minion target when available; exact damage and expiry",
+      "profile_manifest_sha256": "5d6e4338293a8a5479af26e84003be85aa3c8c9b1d4a3bdca0900c0098906566",
+      "native_scenario_sha256": "6174c0fc090773aa4ff1fc6fed5b15a8769e51a2224a1c408b85098d412f088f",
+      "bridge_scenario_sha256": "1038326bd6ff830fa3f608b3bdee8b0af2a2b905deb7d1b01aabdd65d581202d"
+    }
+  },
+  "native_assertion_output": "[doctest] doctest version is \"2.5.3\"\n[doctest] run with \"--help\" for options\n===============================================================================\n[doctest] test cases:  57 |  57 passed | 0 failed | 2557 skipped\n[doctest] assertions: 365 | 365 passed | 0 failed |\n[doctest] Status: SUCCESS!",
+  "schema_version": 2,
+  "execution_identity": {
+    "profile_id": "standard_full_20261001_v1",
+    "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
+    "engine_source_sha256": "9f870e2ee174461487989376993e968f16a1e066997007e0a25197cf3e9559dc",
+    "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
+    "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
+    "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
+    "scenario_source_sha256": "9f62a6175ff297d918e40dd3682d5b516d1a362f8c432030385e3d3c4c40c01c",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "artifacts": {
+    "engine_library": {
+      "sha256": "3ba110fa1c09a78ee907a92398a28e318bfdfae963cb429e0fd3ce2bb20c70c7"
+    },
+    "native_tests": {
+      "sha256": "ac13e0ad27c341e949b4ebc99a895976fd700117c26fc7787561ecca4be19937"
+    },
+    "bridge_module": {
+      "sha256": "42f1499fa7b42867688141ff9a8766d016ff120fd6b024817a007b71ee0bf428"
+    }
+  },
+  "execution_result": {
+    "native_scenarios": "PASS",
+    "bridge_smoke": "PASS"
+  }
+}

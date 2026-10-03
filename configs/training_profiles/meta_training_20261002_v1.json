@@ -1,0 +1,1369 @@
+{
+  "schema_version": 1,
+  "profile_id": "meta_training_20261002_v1",
+  "meta_snapshot_date": "2026-10-02",
+  "source_standard_profile_id": "standard_full_20261001_v1",
+  "source_standard_registry_id": "standard_registry_20261001_v1",
+  "status": "AUDIT_DRAFT_BLOCKED_ON_NONCOLLECTIBLE_RUNTIME_SEED_REGISTRATION_AND_CLOSURE",
+  "verification_evidence": [
+    "integrations/rosettastone/card_rules/targeted_spell_damage_hero_attack.evidence.json"
+  ],
+  "source_tz_file": "MANAMIND_META_TRAINING_PROFILE_V1_CODEX_TZ_v1.1.md",
+  "frozen_deck_count": 10,
+  "declared_main_deck_slots": 300,
+  "decklists_immutable": true,
+  "resolution_policy": "Pinned collectible roots resolve only by exact name in selected Standard catalog; noncollectible Fabled deck seeds remain explicitly external candidates until present in pinned dependency metadata. No substitutions or fuzzy matching.",
+  "decks": [
+    {
+      "deck_id": "cannoneer_dragon_warrior",
+      "source_title": "Cannoneer Dragon Warrior",
+      "class": "Warrior",
+      "archetype": "midrange_board_dragon_tempo",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Cannonmaster",
+          "quantity": 2,
+          "card_id": "CAP_107",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Carrier Whelp",
+          "quantity": 2,
+          "card_id": "CATA_556",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Darkrider",
+          "quantity": 2,
+          "card_id": "EDR_456",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Sanguine Depths",
+          "quantity": 2,
+          "card_id": "CORE_REV_990",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Torch",
+          "quantity": 2,
+          "card_id": "CATA_585",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Brood Keeper",
+          "quantity": 2,
+          "card_id": "EDR_457",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Hook n' Heave",
+          "quantity": 2,
+          "card_id": "CAP_105",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Searing Fissure",
+          "quantity": 2,
+          "card_id": "CATA_582",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shadowflame Suffusion",
+          "quantity": 2,
+          "card_id": "FIR_939",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Erupting Volcano",
+          "quantity": 2,
+          "card_id": "CATA_584",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Mother Duck",
+          "quantity": 2,
+          "card_id": "EDR_492",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Stadium Announcer",
+          "quantity": 2,
+          "card_id": "TIME_034",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Warptooth",
+          "quantity": 1,
+          "card_id": "JAIL_421",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Prescient Slitherdrake",
+          "quantity": 2,
+          "card_id": "END_033",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Chainbreaker Hogger",
+          "quantity": 1,
+          "card_id": "JAIL_384",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Windpeak Wyrm",
+          "quantity": 2,
+          "card_id": "TLC_600",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "fire_pirate_warrior",
+      "source_title": "Fire Pirate Warrior",
+      "class": "Warrior",
+      "archetype": "aggro_tempo",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Cannonmaster",
+          "quantity": 2,
+          "card_id": "CAP_107",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Eternal Toil",
+          "quantity": 1,
+          "card_id": "END_020",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Sanguine Depths",
+          "quantity": 2,
+          "card_id": "CORE_REV_990",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Sky Raider",
+          "quantity": 2,
+          "card_id": "CORE_DRG_024",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Torch",
+          "quantity": 2,
+          "card_id": "CATA_585",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Blastpowder Engineer",
+          "quantity": 2,
+          "card_id": "CAP_104",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Hook n' Heave",
+          "quantity": 2,
+          "card_id": "CAP_105",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Living Flame",
+          "quantity": 2,
+          "card_id": "FIR_929",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Searing Fissure",
+          "quantity": 2,
+          "card_id": "CATA_582",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shadowflame Suffusion",
+          "quantity": 2,
+          "card_id": "FIR_939",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Erupting Volcano",
+          "quantity": 2,
+          "card_id": "CATA_584",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Hand Cannon",
+          "quantity": 2,
+          "card_id": "CAP_103",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Land Ho!",
+          "quantity": 2,
+          "card_id": "CAP_102",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Mother Duck",
+          "quantity": 2,
+          "card_id": "EDR_492",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Warptooth",
+          "quantity": 1,
+          "card_id": "JAIL_421",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Captain Crowley",
+          "quantity": 1,
+          "card_id": "CAP_106",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Chainbreaker Hogger",
+          "quantity": 1,
+          "card_id": "JAIL_384",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "wanted_mug_shaman",
+      "source_title": "Wanted Mug Shaman",
+      "class": "Shaman",
+      "archetype": "midrange_reactive_board_control",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Static Shock",
+          "quantity": 2,
+          "card_id": "TIME_218",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Blazing Invocation",
+          "quantity": 2,
+          "card_id": "CORE_GIL_836",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Low Security Wing",
+          "quantity": 2,
+          "card_id": "JAIL_987",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Mountain Map",
+          "quantity": 2,
+          "card_id": "TLC_464",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Sands of Time",
+          "quantity": 2,
+          "card_id": "TIME_EVENT_999",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ritual of Power",
+          "quantity": 2,
+          "card_id": "CATA_561",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Thunderquake",
+          "quantity": 2,
+          "card_id": "TIME_215",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Wanted Poster",
+          "quantity": 2,
+          "card_id": "CAP_407",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Fire Breath",
+          "quantity": 2,
+          "card_id": "DINO_406",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Hex",
+          "quantity": 2,
+          "card_id": "CORE_EX1_246",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Molten Gold",
+          "quantity": 2,
+          "card_id": "JAIL_801",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ascendance",
+          "quantity": 2,
+          "card_id": "CATA_567",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Tiny Pal",
+          "quantity": 1,
+          "card_id": "JAIL_458",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Frostshatter",
+          "quantity": 2,
+          "card_id": "JAIL_803",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Mug'Zee",
+          "quantity": 1,
+          "card_id": "JAIL_800",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Stormfury",
+          "quantity": 2,
+          "card_id": "JAIL_805",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "elise_attack_druid",
+      "source_title": "Elise Attack Druid",
+      "class": "Druid",
+      "archetype": "attack_resource_combo_value",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Innervate",
+          "quantity": 2,
+          "card_id": "CORE_EX1_169",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Secret Ingredient",
+          "quantity": 2,
+          "card_id": "JAIL_201",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Spiderling",
+          "quantity": 2,
+          "card_id": "JAIL_202",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Waveshaping",
+          "quantity": 2,
+          "card_id": "TIME_701",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Acceleration Aura",
+          "quantity": 2,
+          "card_id": "END_011",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ebb and Flow",
+          "quantity": 2,
+          "card_id": "TIME_702",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Felwood Treant",
+          "quantity": 2,
+          "card_id": "CATA_131",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Press the Advantage",
+          "quantity": 2,
+          "card_id": "END_007",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Spider Rider",
+          "quantity": 2,
+          "card_id": "JAIL_872",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Elise the Navigator",
+          "quantity": 1,
+          "card_id": "TLC_100",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Staff of Trickery",
+          "quantity": 1,
+          "card_id": "JAIL_875",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Amirdrassil",
+          "quantity": 1,
+          "card_id": "FIR_907",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Infest the Scullery",
+          "quantity": 2,
+          "card_id": "JAIL_200",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Wickerfang",
+          "quantity": 1,
+          "card_id": "CATA_139",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Bashana Runetotem",
+          "quantity": 1,
+          "card_id": "MEND_046",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Naralex, Herald of the Flights",
+          "quantity": 1,
+          "card_id": "EDR_844",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Merithra of the Dream",
+          "quantity": 1,
+          "card_id": "CATA_140",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shaladrassil",
+          "quantity": 1,
+          "card_id": "EDR_846",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ysera, Emerald Aspect",
+          "quantity": 1,
+          "card_id": "EDR_000",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Fyrakk the Blazing",
+          "quantity": 1,
+          "card_id": "FIR_959",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "reborn_quest_priest",
+      "source_title": "Reborn Quest Priest",
+      "class": "Priest",
+      "archetype": "control_quest_value",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Mend",
+          "quantity": 2,
+          "card_id": "CATA_302",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Power Word: Shield",
+          "quantity": 2,
+          "card_id": "CORE_CS2_004",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Reach Equilibrium",
+          "quantity": 1,
+          "card_id": "TLC_817",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Undeath Sentence",
+          "quantity": 2,
+          "card_id": "JAIL_940",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Follow the Ghosts",
+          "quantity": 2,
+          "card_id": "CAP_802",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Holy Embrace",
+          "quantity": 2,
+          "card_id": "JAIL_941",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ritual of Life",
+          "quantity": 2,
+          "card_id": "DINO_426",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Twilight Influence",
+          "quantity": 2,
+          "card_id": "EDR_463",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Devouring Plague",
+          "quantity": 1,
+          "card_id": "CORE_BAR_311",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Haunt",
+          "quantity": 2,
+          "card_id": "CAP_801",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Specter Specialist",
+          "quantity": 2,
+          "card_id": "CAP_804",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Gravedawn Sunbloom",
+          "quantity": 2,
+          "card_id": "TLC_816",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Nightmare Lord Xavius",
+          "quantity": 1,
+          "card_id": "EDR_856",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Slime 'em!",
+          "quantity": 2,
+          "card_id": "CAP_805",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Medivh's Triumph",
+          "quantity": 2,
+          "card_id": "CATA_308",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Raith Van Geist",
+          "quantity": 1,
+          "card_id": "CAP_806",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Soothsayer",
+          "quantity": 2,
+          "card_id": "JAIL_912",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "ashamane_ayaya_rogue",
+      "source_title": "Ashamane Ayaya Rogue",
+      "class": "Rogue",
+      "archetype": "high_skill_tempo_combo",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Backstab",
+          "quantity": 1,
+          "card_id": "CORE_CS2_072",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Preparation",
+          "quantity": 2,
+          "card_id": "CORE_EX1_145",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shadow of Demise",
+          "quantity": 1,
+          "card_id": "CORE_RLK_567",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Agent of the Old Ones",
+          "quantity": 2,
+          "card_id": "CATA_200",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Deja Vu",
+          "quantity": 2,
+          "card_id": "TIME_039",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Nightmare Fuel",
+          "quantity": 2,
+          "card_id": "EDR_528",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Cultist Map",
+          "quantity": 2,
+          "card_id": "TLC_515",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Fan of Knives",
+          "quantity": 2,
+          "card_id": "CORE_EX1_129",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Garona's Last Stand",
+          "quantity": 2,
+          "card_id": "CATA_203",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Lotus Bookie",
+          "quantity": 2,
+          "card_id": "JAIL_720",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Rite of Twilight",
+          "quantity": 2,
+          "card_id": "CATA_785",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "The Kingslayers",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_875t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/The_Kingslayers",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Blackpaw's Whip",
+          "quantity": 2,
+          "card_id": "JAIL_503",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Deadly Bribe",
+          "quantity": 2,
+          "card_id": "CATA_EVENT_402",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "King Llane",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_875t",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.blizzard.com/en-us/cards/119815-king-llane/",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Garona Halforcen",
+          "quantity": 1,
+          "card_id": "TIME_875",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Time Adm'ral Hooktail",
+          "quantity": 1,
+          "card_id": "TIME_713",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Aya, Lotus Kingpin",
+          "quantity": 1,
+          "card_id": "JAIL_504",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Ashamane",
+          "quantity": 1,
+          "card_id": "EDR_527",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "mother_drake_warlock",
+      "source_title": "Mother Drake Warlock",
+      "class": "Warlock",
+      "archetype": "control_combo_otk",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Cursed Catacombs",
+          "quantity": 2,
+          "card_id": "TLC_451",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Glacial Shard",
+          "quantity": 2,
+          "card_id": "CORE_UNG_205",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Cursed Chains",
+          "quantity": 2,
+          "card_id": "CATA_496",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Drain Soul",
+          "quantity": 2,
+          "card_id": "CORE_ICC_055",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shadow Rounds",
+          "quantity": 1,
+          "card_id": "JAIL_515",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Shadowsworn Disciple",
+          "quantity": 2,
+          "card_id": "CATA_725",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Caged Cranium",
+          "quantity": 2,
+          "card_id": "JAIL_513",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Godfather Kazakus",
+          "quantity": 1,
+          "card_id": "CAP_405",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Hellfire",
+          "quantity": 1,
+          "card_id": "CORE_CS2_062",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Imp Gang Stooge",
+          "quantity": 2,
+          "card_id": "JAIL_399",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Godfrey the Betrayer",
+          "quantity": 1,
+          "card_id": "JAIL_509",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "RAFAAM LADDER!!",
+          "quantity": 2,
+          "card_id": "TIME_031",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Earthen Drake",
+          "quantity": 1,
+          "card_id": "CATA_999",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Spire of Solitude",
+          "quantity": 2,
+          "card_id": "JAIL_511",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Chrono-Lord Deios",
+          "quantity": 1,
+          "card_id": "TIME_064",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Annihilation",
+          "quantity": 2,
+          "card_id": "JAIL_510",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Bat Mask",
+          "quantity": 1,
+          "card_id": "DINO_402",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "M.O.T.H.E.R.",
+          "quantity": 1,
+          "card_id": "BE_036",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "The Unseen Atlas",
+          "quantity": 2,
+          "card_id": "JAIL_514",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "tricky_burn_mage",
+      "source_title": "Tricky Burn Mage",
+      "class": "Mage",
+      "archetype": "burn_spell_sequencing",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "First Flame",
+          "quantity": 1,
+          "card_id": "CORE_SW_108",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Sleet Storm",
+          "quantity": 2,
+          "card_id": "CATA_485",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Time-Twisted Seer",
+          "quantity": 2,
+          "card_id": "END_022",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Violet Spellwing",
+          "quantity": 2,
+          "card_id": "CORE_DRG_107",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Winterspring Whelp",
+          "quantity": 2,
+          "card_id": "CATA_484",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Bloodmage Thalnos",
+          "quantity": 1,
+          "card_id": "CORE_EX1_012",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Frostbolt",
+          "quantity": 2,
+          "card_id": "CORE_CS2_024",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Living Flame",
+          "quantity": 2,
+          "card_id": "FIR_929",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Raincaller",
+          "quantity": 2,
+          "card_id": "CATA_487",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Arcane Barrage",
+          "quantity": 2,
+          "card_id": "TIME_855",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Conjured Bookkeeper",
+          "quantity": 2,
+          "card_id": "TLC_226",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Arcane Flow",
+          "quantity": 2,
+          "card_id": "CATA_489",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Archmage Kalec",
+          "quantity": 1,
+          "card_id": "CATA_458",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Fireball",
+          "quantity": 2,
+          "card_id": "CORE_CS2_029",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Tricksy Improviser",
+          "quantity": 2,
+          "card_id": "JAIL_321",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Vulcanos",
+          "quantity": 1,
+          "card_id": "CATA_488",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Spellweaver's Brilliance",
+          "quantity": 2,
+          "card_id": "CATA_452",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    },
+    {
+      "deck_id": "beatrix_pure_paladin",
+      "source_title": "Beatrix Pure Paladin",
+      "class": "Paladin",
+      "archetype": "board_aura_midrange",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "Righteous Protector",
+          "quantity": 2,
+          "card_id": "CORE_ICC_038",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Acceleration Aura",
+          "quantity": 2,
+          "card_id": "END_011",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Inspiring Maul",
+          "quantity": 2,
+          "card_id": "CATA_472",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Violet Treasuregill",
+          "quantity": 2,
+          "card_id": "TLC_438",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Reinforcement Aura",
+          "quantity": 2,
+          "card_id": "JAIL_327",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Vigilant Sentry",
+          "quantity": 2,
+          "card_id": "JAIL_035",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Flight Maneuvers",
+          "quantity": 2,
+          "card_id": "CATA_479",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Gnomish Aura",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_009t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gnomish_Aura",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Manifested Timeways",
+          "quantity": 2,
+          "card_id": "TIME_019",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Spearheart Sentry",
+          "quantity": 2,
+          "card_id": "CATA_474",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Chronological Aura",
+          "quantity": 2,
+          "card_id": "TIME_700",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Commander Beatrix",
+          "quantity": 1,
+          "card_id": "JAIL_397",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Mekkatorque's Aura",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_009t2",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Gelbin_of_Tomorrow",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Nozdormu, Bronze Aspect",
+          "quantity": 1,
+          "card_id": "CATA_473",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Scarlet Recruiter",
+          "quantity": 2,
+          "card_id": "JAIL_516",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Toreth the Unbreaking",
+          "quantity": 1,
+          "card_id": "EDR_258",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Scalebreaker Bulwark",
+          "quantity": 2,
+          "card_id": "CATA_475",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Gelbin of Tomorrow",
+          "quantity": 1,
+          "card_id": "TIME_009",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": [
+        {
+          "display_name": "Scarlet Bruiser",
+          "card_id": null,
+          "resolution": "UNRESOLVED_DEPENDENCY_ID",
+          "source": "Commander Beatrix dependency note in frozen TZ"
+        }
+      ]
+    },
+    {
+      "deck_id": "galaxy_brain_raza_demon_hunter",
+      "source_title": "Galaxy Brain Raza Demon Hunter",
+      "class": "Demon Hunter",
+      "archetype": "value_control_flexible_sequencing",
+      "status": "AUDIT_DRAFT",
+      "slots": [
+        {
+          "display_name": "First Portal to Argus",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_020t2",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/First_Portal_to_Argus",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Glacial Shard",
+          "quantity": 2,
+          "card_id": "CORE_UNG_205",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Illidari Studies",
+          "quantity": 2,
+          "card_id": "CORE_YOP_001",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Broxigar",
+          "quantity": 1,
+          "card_id": "TIME_020",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Broxigar's Last Stand",
+          "quantity": 2,
+          "card_id": "CATA_526",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Dark Bribe",
+          "quantity": 2,
+          "card_id": "JAIL_206",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Fumigate",
+          "quantity": 2,
+          "card_id": "TLC_901",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Infestation",
+          "quantity": 2,
+          "card_id": "TLC_902",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Press the Advantage",
+          "quantity": 2,
+          "card_id": "END_007",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Soul Immolation",
+          "quantity": 2,
+          "card_id": "JAIL_EVENT_101",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Axe of Cenarius",
+          "quantity": 1,
+          "card_id": null,
+          "candidate_card_id": "TIME_020t1",
+          "resolution": "EXTERNAL_NONCOLLECTIBLE_CANDIDATE_NOT_IN_PINNED_CATALOG",
+          "resolution_source_url": "https://hearthstone.wiki.gg/wiki/Broxigar",
+          "root_kind": "FABLED_DECK_SEED"
+        },
+        {
+          "display_name": "Enduring Roach",
+          "quantity": 2,
+          "card_id": "END_008",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Rustrot Viper",
+          "quantity": 2,
+          "card_id": "CORE_SW_072",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Eredar Deceptor",
+          "quantity": 2,
+          "card_id": "CORE_TTN_843",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Raging Felscreamer",
+          "quantity": 1,
+          "card_id": "CORE_BT_416",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Royal Librarian",
+          "quantity": 2,
+          "card_id": "CORE_SW_066",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        },
+        {
+          "display_name": "Remnant of Rage",
+          "quantity": 2,
+          "card_id": "END_004",
+          "resolution": "PINNED_STANDARD_CATALOG",
+          "root_kind": "STANDARD_COLLECTIBLE"
+        }
+      ],
+      "additional_dependency_seeds": []
+    }
+  ]
+}

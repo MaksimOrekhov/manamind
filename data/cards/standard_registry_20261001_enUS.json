@@ -10,19 +10,19 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "9562c889d9bee228cf9d40ecb99ece9558669740",
+    "rules_engine_revision": "78136d4cfd214073ee60baddf45a834373410a1a",
     "engine_source_identity": {
-      "source_commit": "9562c889d9bee228cf9d40ecb99ece9558669740",
-      "source_tree_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd"
+      "source_commit": "78136d4cfd214073ee60baddf45a834373410a1a",
+      "source_tree_sha256": "9f870e2ee174461487989376993e968f16a1e066997007e0a25197cf3e9559dc"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-      "engine_source_sha256": "093e2e94aa8ddcbb0f12ca15b1c2a026832c7d9806378e3d28153e90be90a6cd",
+      "engine_source_sha256": "9f870e2ee174461487989376993e968f16a1e066997007e0a25197cf3e9559dc",
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
       "rules_source_sha256": "d4401f30778a001b62ad415df9dad0e6276a638f68a506bdaf1b6b403801f895",
-      "scenario_source_sha256": "0404de18ecb6ea473debd99dc19af66850c13597a0256fb786c924cdc029a511",
+      "scenario_source_sha256": "9f62a6175ff297d918e40dd3682d5b516d1a362f8c432030385e3d3c4c40c01c",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
     }
   },
@@ -99,7 +99,7 @@
   },
   "evidence_invalidation": {
     "strategy": "Compare per-evidence fingerprints; invalidate dependents when any relevant fingerprint changes, including pool predicate version even if resolved membership stays equal. Unknown impact scope invalidates conservatively.",
-    "available_current_evidence_fingerprints": true,
+    "available_current_evidence_fingerprints": false,
     "reason": "Historical scenario evidence lacks complete build/scenario/dependency fingerprints; it is retained as stale history.",
     "impact_inputs": [
       "normalized rules text",
@@ -139,8 +139,8 @@
     "generated_registered": 184,
     "text_bearing_without_detected_registration": 834,
     "textless_metadata_candidates": 0,
-    "rules_verified_scoped_current": 5,
-    "stale_historical_scoped_evidence": 19,
+    "rules_verified_scoped_current": 0,
+    "stale_historical_scoped_evidence": 24,
     "unresolved_dynamic_pool_definitions": 318,
     "unique_known_edge_target_nodes_including_roots": 194,
     "unreviewed_static_source_edges": 177,
@@ -3341,20 +3341,20 @@
           "FlagTask",
           "RefreshManaTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "held_card_gate_fixed_battlecry",
         "contract_version": 1,
         "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -3365,7 +3365,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -3380,8 +3380,11 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
+        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -3395,8 +3398,11 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
+          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -40950,20 +40956,20 @@
           "ConditionTask",
           "FlagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "held_card_gate_fixed_battlecry",
         "contract_version": 1,
         "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -40980,7 +40986,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -40994,9 +41000,12 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
         "dependency:reachable_rules_not_verified",
+        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -41012,9 +41021,12 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
           "dependency:reachable_rules_not_verified",
+          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -57640,20 +57652,20 @@
           "DamageTask",
           "FlagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "held_card_gate_fixed_battlecry",
         "contract_version": 1,
         "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -57664,7 +57676,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -57679,8 +57691,11 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
+        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -57694,8 +57709,11 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
+          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -74832,20 +74850,20 @@
           "FlagTask",
           "SetGameTagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "held_card_gate_fixed_battlecry",
         "contract_version": 1,
         "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -74856,7 +74874,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -74870,8 +74888,11 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
+        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -74885,8 +74906,11 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
+          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
@@ -99632,20 +99656,20 @@
           "FlagTask",
           "SetGameTagTask"
         ],
-        "semantic_contract_reviewed": true,
+        "semantic_contract_reviewed": false,
         "implementation_kind": "REUSABLE_CAPABILITY",
         "contract_id": "held_card_gate_fixed_battlecry",
         "contract_version": 1,
         "package_id": "held_card_gate_fixed_battlecry_v1"
       },
       "rules_verification": {
-        "status": "VERIFIED_SCOPED",
-        "evidence_validity": "CURRENT",
+        "status": "IMPLEMENTED_UNVERIFIED",
+        "evidence_validity": "STALE",
         "evidence": {
-          "status": "CURRENT",
+          "status": "STALE",
           "verification_scope": "INDEPENDENT_FAMILY_SCENARIOS_AND_BRIDGE_TARGET_PARITY",
           "historical_status": "VERIFIED_SCOPED",
-          "reason": "Explicit successful execution matches the current pinned source/profile inputs."
+          "reason": "Explicit execution source/profile fingerprints differ from current inputs."
         },
         "training_scope": "SCOPED_PACKAGE_ONLY"
       },
@@ -99656,7 +99680,7 @@
         "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE"
       },
       "bridge_action_support": {
-        "status": "VERIFIED_SCOPED",
+        "status": "NOT_AUDITED",
         "evidence": null
       },
       "classifier_features": {
@@ -99670,8 +99694,11 @@
         "metadata_and_text_only": true
       },
       "blockers": [
+        "rules:IMPLEMENTED_UNVERIFIED",
+        "evidence:stale_historical_scope",
         "rules:scope_not_full_profile",
         "dependency:closure_not_reviewed_complete",
+        "bridge_action:not_audited",
         "session_match:not_current"
       ],
       "dependency_closure": {
@@ -99685,8 +99712,11 @@
         "profile_id": "standard_full_20261001_v1",
         "status": "BLOCKED",
         "blockers": [
+          "rules:IMPLEMENTED_UNVERIFIED",
+          "evidence:stale_historical_scope",
           "rules:scope_not_full_profile",
           "dependency:closure_not_reviewed_complete",
+          "bridge_action:not_audited",
           "session_match:not_current"
         ]
       }
