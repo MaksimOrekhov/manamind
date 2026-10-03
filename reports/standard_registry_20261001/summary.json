@@ -11,15 +11,15 @@
     "metadata_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
     "root_metadata_sha256": "bb28b56ba124b1fad7c91946156ad5f9c7d0ca826b425b4d98856e48e192fea7",
     "ban_manifest": "data/cards/standard_bans_20261001.json",
-    "rules_engine_revision": "945d89116e072b7a3be936b8c4e837896b875d86",
+    "rules_engine_revision": "f34da0d3fcb5ad312f7e2acf634d0536b044d29a",
     "engine_source_identity": {
-      "source_commit": "945d89116e072b7a3be936b8c4e837896b875d86",
-      "source_tree_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d"
+      "source_commit": "f34da0d3fcb5ad312f7e2acf634d0536b044d29a",
+      "source_tree_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a"
     },
     "execution_identity": {
       "profile_id": "standard_full_20261001_v1",
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
-      "engine_source_sha256": "acd651430ee1c8bdde8191fb9b1ca81c733cb5d756966c7714dd4e8711cc796d",
+      "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
       "bridge_source_sha256": "4380b997ff1151f8a91f52cd3f07bec0d232c9ead467e4a291c7647cb40eae32",
       "observation_source_sha256": "aaddb303ae8d4901050185450b2ec61538cd6839cb34c48fe3e108a275bfc9e0",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
