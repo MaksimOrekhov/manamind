@@ -12,8 +12,8 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 6,
-  "primary_queue_implemented": 6,
+  "primary_queue_reviewed": 7,
+  "primary_queue_implemented": 7,
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -39,6 +39,16 @@
       "native": "PASS; 37 groups / 687 assertions",
       "adapter": "PASS within full adapter test file; 22 passed",
       "rules_confidence_note": "CATA_302 has pinned text and secondary cross-check; direct Blizzard card route was not crawlable; no client replay captured."
+    },
+    {
+      "package_id": "manaengine_enemy_area_secret_damage_v1",
+      "cards": ["CORE_EX1_610"],
+      "declaration_only_consumers": 1,
+      "custom_outliers": [],
+      "native": "PASS; 38 groups / 692 assertions",
+      "adapter": "PASS; full adapter test file, 22 passed",
+      "shared_engine_fix": "After a Secret window, recheck that the attacker is still alive before combat damage.",
+      "rules_confidence_note": "Official card text; Spell Damage-at-trigger rule cross-checked with rules reference and Blizzard forum report; not direct official rules documentation."
     }
   ],
   "tests_at_baseline": {
@@ -47,10 +57,13 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "09e61e686f9a1a086d086e1bc24f475defd5c63b",
+  "current_head": "43aadac",
+  "last_updated_utc": "2026-10-04T15:14:36Z",
+  "active_elapsed_minutes": 47,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Six package consumers have individual source and semantic review; direct Blizzard text is available for five, while CATA_302 has pinned text and secondary confirmation; 25 primary-queue candidates still need individual dispositions.",
-    "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable."
+    "Seven roots have been individually reviewed and implemented; the remaining 24 primary-queue candidates still need individual dispositions.",
+    "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
+    "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed."
   ]
 }

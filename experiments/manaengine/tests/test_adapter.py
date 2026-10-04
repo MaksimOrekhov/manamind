@@ -150,6 +150,9 @@ def test_effect_target_boundaries_declarations_and_adapter() -> None:
     assert growth.effects[0].target.name == "EXPLICIT_FRIENDLY_MINION"
     assert definitions["CORE_AT_055"].effects[0].kind.name == "HEAL"
     assert definitions["CATA_302"].effects[0].kind.name == "HEAL_MINION_TO_FULL"
+    trap = definitions["CORE_EX1_610"]
+    assert trap.support_state == "SUPPORTED" and trap.secret_trigger == "FRIENDLY_HERO_ATTACKED"
+    assert trap.secret_effect == "ENEMY_AREA_DAMAGE" and trap.damage == 2
 
     deck = ["CATA_582", *("CORE_EX1_145" for _ in range(29))]
     session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)

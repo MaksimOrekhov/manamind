@@ -138,7 +138,7 @@ private:
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets, SpellDamageAura, DeathrattleDraw,
       EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack, SpellDamageHandDeck };
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
-    enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity };
+    enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity, EnemyAreaDamage };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
     enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand };
     enum class Zone { Deck, Hand, Board, Weapon, Secret, Graveyard };

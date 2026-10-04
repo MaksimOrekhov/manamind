@@ -226,6 +226,14 @@
       "ability": "NONE",
       "support_state": "UNSUPPORTED"
     },
+    "CORE_EX1_610": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "FRIENDLY_HERO_ATTACKED",
+      "secret_effect": "ENEMY_AREA_DAMAGE",
+      "damage": 2,
+      "reviewed_rules_text": "Secret: When your hero is attacked, deal $2 damage to all enemies."
+    },
     "CORE_EX1_287": {
       "ability": "SECRET",
       "support_state": "SUPPORTED",
