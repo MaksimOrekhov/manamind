@@ -50,4 +50,7 @@ Reusable infrastructure is implemented and verified against synthetic cases. Exa
 - `git diff --check`: PASS.
 - Canonical Standard registry/evidence: unchanged; training admission remains blocked.
 
-Hosted Source CI and ManaEngine CI are pending the first push of this commit; record their final Windows/Ubuntu outcomes after they finish.
+Hosted CI for implementation commit `1c28959533e9f54cef4cc44df0ac5bd39f25a413`:
+
+- [Source and generated artifact checks](https://github.com/MaksimOrekhov/manamind/actions/runs/37225198502): Windows and Ubuntu **success**. Both jobs completed `python -m pytest -q` successfully.
+- [ManaEngine experimental](https://github.com/MaksimOrekhov/manamind/actions/runs/37225198467): Windows and Ubuntu **success**. Both completed Release build, CTest, and Python adapter/policy schema tests.
