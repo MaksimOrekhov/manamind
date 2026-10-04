@@ -12,8 +12,8 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 7,
-  "primary_queue_implemented": 7,
+  "primary_queue_reviewed": 10,
+  "primary_queue_implemented": 10,
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -49,6 +49,22 @@
       "adapter": "PASS; full adapter test file, 22 passed",
       "shared_engine_fix": "After a Secret window, recheck that the attacker is still alive before combat damage.",
       "rules_confidence_note": "Official card text; Spell Damage-at-trigger rule cross-checked with rules reference and Blizzard forum report; not direct official rules documentation."
+    },
+    {
+      "package_id": "manaengine_damage_outcome_followup_v1",
+      "cards": ["CORE_EX1_302", "CORE_EX1_391", "CATA_303"],
+      "declaration_only_consumers": 3,
+      "custom_outliers": [],
+      "deferred_outliers": ["FIR_954: target-owner draw is unconditional and belongs to a separate contract"],
+      "new_shared_capability": "typed damage outcome predicates MORTALLY_WOUNDED / SURVIVES with DRAW_SELF / HEAL_ENEMY_HERO follow-ups",
+      "shared_code": "C++ CardDefinition/validation/resolution, pybind fields, strict Python declaration parsing",
+      "native": "PASS; 39 groups / 702 assertions",
+      "adapter": "PASS; full adapter test file, 22 passed",
+      "correction_cycles": 2,
+      "build_attempts": 4,
+      "elapsed_minutes_observed": 19,
+      "canonical_evidence_promoted": false,
+      "rules_evidence_note": "Blizzard text for all three roots; current rules-reference support for Mortal Coil checks mortal wounding before physical death; no client replay captured."
     }
   ],
   "tests_at_baseline": {
@@ -57,13 +73,14 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "43aadac",
-  "last_updated_utc": "2026-10-04T15:14:36Z",
-  "active_elapsed_minutes": 47,
+  "current_head": "5d16439",
+  "last_updated_utc": "2026-10-04T15:33:08Z",
+  "active_elapsed_minutes": 65,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Seven roots have been individually reviewed and implemented; the remaining 24 primary-queue candidates still need individual dispositions.",
+    "Ten roots have been individually reviewed and implemented; the remaining 21 primary-queue candidates still need individual dispositions.",
     "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
-    "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed."
+    "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed.",
+    "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed."
   ]
 }

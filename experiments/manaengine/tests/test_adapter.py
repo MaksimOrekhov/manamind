@@ -153,6 +153,13 @@ def test_effect_target_boundaries_declarations_and_adapter() -> None:
     trap = definitions["CORE_EX1_610"]
     assert trap.support_state == "SUPPORTED" and trap.secret_trigger == "FRIENDLY_HERO_ATTACKED"
     assert trap.secret_effect == "ENEMY_AREA_DAMAGE" and trap.damage == 2
+    coil, slam, breath = (definitions[key] for key in ("CORE_EX1_302", "CORE_EX1_391", "CATA_303"))
+    assert coil.damage_outcome_condition.name == "MORTALLY_WOUNDED"
+    assert coil.damage_outcome_followup.name == "DRAW_SELF" and coil.damage_outcome_amount == 0
+    assert slam.damage_outcome_condition.name == "SURVIVES"
+    assert slam.damage_outcome_followup.name == "DRAW_SELF"
+    assert breath.damage_outcome_condition.name == "MORTALLY_WOUNDED"
+    assert breath.damage_outcome_followup.name == "HEAL_ENEMY_HERO" and breath.damage_outcome_amount == 5
 
     deck = ["CATA_582", *("CORE_EX1_145" for _ in range(29))]
     session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)

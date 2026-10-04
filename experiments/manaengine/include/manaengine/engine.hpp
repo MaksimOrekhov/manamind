@@ -15,6 +15,8 @@ enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull };
 enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
+enum class DamageOutcomeCondition { None, MortallyWounded, Survives };
+enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
@@ -36,6 +38,9 @@ struct CardDefinition {
     int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0, spell_damage_grant=0;
     int spell_damage_cost_reduction=0;
     DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
+    DamageOutcomeCondition damage_outcome_condition=DamageOutcomeCondition::None;
+    DamageOutcomeFollowup damage_outcome_followup=DamageOutcomeFollowup::None;
+    int damage_outcome_amount=0;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
 };

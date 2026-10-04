@@ -143,8 +143,9 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             "reviewed_random_secret_pool",
             "spell_damage_cost_reduction",
             "kindred_copy_contract",
+            "damage_outcome_amount",
         }
-        unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text"}
+        unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text", "damage_outcome_condition", "damage_outcome_followup"}
         if unknown:
             raise ValueError(f"Unknown declaration fields for {card.card_id}: {sorted(unknown)}")
         if "deck_draw_filter" in spec:
@@ -153,6 +154,18 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             if filter_name not in filters:
                 raise ValueError(f"unknown deck_draw_filter for {card.card_id}: {filter_name}")
             d.deck_draw_filter = getattr(native.DeckDrawFilter, filters[filter_name])
+        outcome_conditions = {"MORTALLY_WOUNDED", "SURVIVES"}
+        outcome_followups = {"DRAW_SELF", "HEAL_ENEMY_HERO"}
+        if "damage_outcome_condition" in spec:
+            value = str(spec["damage_outcome_condition"]).upper()
+            if value not in outcome_conditions:
+                raise ValueError(f"unknown damage_outcome_condition for {card.card_id}: {value}")
+            d.damage_outcome_condition = getattr(native.DamageOutcomeCondition, value)
+        if "damage_outcome_followup" in spec:
+            value = str(spec["damage_outcome_followup"]).upper()
+            if value not in outcome_followups:
+                raise ValueError(f"unknown damage_outcome_followup for {card.card_id}: {value}")
+            d.damage_outcome_followup = getattr(native.DamageOutcomeFollowup, value)
         for key, value in spec.items():
             if key in allowed_fields:
                 setattr(d, key, value)

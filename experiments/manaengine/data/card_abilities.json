@@ -120,6 +120,37 @@
       ],
       "reviewed_rules_text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn."
     },
+    "CATA_303": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 5}
+      ],
+      "damage_outcome_condition": "MORTALLY_WOUNDED",
+      "damage_outcome_followup": "HEAL_ENEMY_HERO",
+      "damage_outcome_amount": 5,
+      "reviewed_rules_text": "Deal $5 damage to a minion. If it dies, restore #5 Health to the enemy hero."
+    },
+    "CORE_EX1_302": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 1}
+      ],
+      "damage_outcome_condition": "MORTALLY_WOUNDED",
+      "damage_outcome_followup": "DRAW_SELF",
+      "reviewed_rules_text": "Deal $1 damage to a minion. If it dies, draw a card."
+    },
+    "CORE_EX1_391": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 2}
+      ],
+      "damage_outcome_condition": "SURVIVES",
+      "damage_outcome_followup": "DRAW_SELF",
+      "reviewed_rules_text": "Deal $2 damage to a minion. If it survives, draw a card."
+    },
     "CATA_999": {
       "ability": "END_TURN_ENEMY_HERO_DAMAGE",
       "support_state": "SUPPORTED",
