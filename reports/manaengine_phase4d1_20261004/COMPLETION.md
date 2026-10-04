@@ -53,4 +53,11 @@ One native adversarial group combines hand removal with Shatter, per-instance Sp
 
 The first pytest invocation used the worktree's default cache/temp location and completed all test cases but hung during pytest shutdown. Both Python runs were repeated with plugin autoload disabled, cacheprovider disabled, and a writable basetemp under `E:\ManaMind\_build_phase4d`; those runs returned exit code 0. Build artifacts remain outside the worktree.
 
-Hosted CI results are recorded after the final push below.
+## Hosted CI
+
+Implementation commit: `0a7d3c763679f9adef92127fa4397eb907ac9c75`.
+
+- Source and generated artifact checks, run `37221379382`: **PASS** on Ubuntu and Windows. The full `python -m pytest -q` step completed successfully on both runners, alongside correctness diagnostics, identity guard, generated artifact check, and clean-diff check.
+- ManaEngine experimental, run `37221379325`: **PASS** on Ubuntu and Windows. Both release builds, CTest, and Python adapter/policy schema tests completed successfully.
+
+The hosted checks ran against the implementation commit above. This completion-record-only follow-up does not change simulator code or test inputs.
