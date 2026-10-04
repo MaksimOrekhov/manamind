@@ -135,6 +135,33 @@ def test_safe_existing_primitive_harvest_declarations_reach_adapter_and_policy()
     assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
 
 
+def test_effect_target_boundaries_declarations_and_adapter() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows
+
+    definitions = {row.card_id: row for row in _definition_rows()}
+    searing = definitions["CATA_582"]
+    assert [step.target.name for step in searing.effects] == ["ALL_MINIONS", "SELF"]
+    spirit_bomb = definitions["CORE_BOT_222"]
+    assert [step.target.name for step in spirit_bomb.effects] == ["EXPLICIT_MINION", "SELF_HERO"]
+    execute = definitions["CORE_CS2_108"]
+    growth = definitions["EDR_531"]
+    assert execute.effects[0].kind.name == "DESTROY_MINION"
+    assert execute.effects[0].target.name == "EXPLICIT_DAMAGED_ENEMY_MINION"
+    assert growth.effects[0].target.name == "EXPLICIT_FRIENDLY_MINION"
+    assert definitions["CORE_AT_055"].effects[0].kind.name == "HEAL"
+    assert definitions["CATA_302"].effects[0].kind.name == "HEAL_MINION_TO_FULL"
+
+    deck = ["CATA_582", *("CORE_EX1_145" for _ in range(29))]
+    session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    before = session.observation()
+    state = session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CATA_582"))
+    assert state.self_player.hero_attack == before.self_player.hero_attack + 3
+    assert state.self_player.hero_health == before.self_player.hero_health
+    assert state.opponent.hero_health == before.opponent.hero_health
+
+
 def test_spellweaver_dynamic_cost_policy_and_exact_fixed_dependency() -> None:
     from manamind.integrations.manaengine.engine import _definition_rows
     from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES

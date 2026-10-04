@@ -94,6 +94,32 @@
       ],
       "reviewed_rules_text": "Shattered Deal $2 damage to all enemies."
     },
+    "CATA_302": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "HEAL_MINION_TO_FULL", "target": "EXPLICIT_MINION", "amount": 0},
+        {"kind": "DRAW", "target": "SELF", "amount": 1}
+      ],
+      "reviewed_rules_text": "Restore a minion to full Health. Draw a card."
+    },
+    "CORE_AT_055": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "HEAL", "target": "EXPLICIT_CHARACTER", "amount": 5}
+      ],
+      "reviewed_rules_text": "Restore #5 Health."
+    },
+    "CATA_582": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "ALL_MINIONS", "amount": 1},
+        {"kind": "MODIFY_HERO_ATTACK", "target": "SELF", "amount": 3}
+      ],
+      "reviewed_rules_text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn."
+    },
     "CATA_999": {
       "ability": "END_TURN_ENEMY_HERO_DAMAGE",
       "support_state": "SUPPORTED",
@@ -104,6 +130,15 @@
       "ability": "NEXT_DEMON_DISCOUNT",
       "support_state": "SUPPORTED",
       "reviewed_rules_text": "Battlecry: The next Demon you play costs (2) less."
+    },
+    "CORE_BOT_222": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 4},
+        {"kind": "DAMAGE", "target": "SELF_HERO", "amount": 4}
+      ],
+      "reviewed_rules_text": "Deal $4 damage to a minion and your hero."
     },
     "CORE_CS2_024": {
       "ability": "EFFECT_COMPOSITION",
@@ -212,6 +247,14 @@
       "secret_effect": "EXPLOSIVE_RUNES",
       "reviewed_rules_text": "Secret: After your opponent plays a minion, deal $6 damage to it and any excess to their hero."
     },
+    "CORE_CS2_108": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DESTROY_MINION", "target": "EXPLICIT_DAMAGED_ENEMY_MINION", "amount": 0}
+      ],
+      "reviewed_rules_text": "Destroy a damaged enemy minion."
+    },
     "CORE_CS2_062": {
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
@@ -297,6 +340,15 @@
       "secret_trigger": "OPPONENT_TURN_ENDS",
       "secret_effect": "FLAMES_OF_INFINITY",
       "reviewed_rules_text": "Secret: When your enemy's turn ends, deal INFINITE damage to their highest Health minion."
+    },
+    "EDR_531": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DESTROY_MINION", "target": "EXPLICIT_FRIENDLY_MINION", "amount": 0},
+        {"kind": "GAIN_ARMOR", "target": "SELF", "amount": 8}
+      ],
+      "reviewed_rules_text": "Destroy a friendly minion to gain 8 Armor."
     },
     "END_022": {
       "ability": "SPELL_DAMAGE_AURA",

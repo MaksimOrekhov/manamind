@@ -12,8 +12,8 @@
 namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
-enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed };
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self, RandomEnemyMinion };
+enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; };
 class UnsupportedSimulationError : public std::runtime_error {

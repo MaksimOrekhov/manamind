@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "task": "ManaEngine Phase 4D — Rules Evidence + Bounded Capability Sprint",
+  "branch": "codex/manaengine-first-deck",
+  "baseline_head": "09e61e686f9a1a086d086e1bc24f475defd5c63b",
+  "active_timer_started_utc": "2026-10-04T14:28:00Z",
+  "hard_stop_utc": "2026-10-04T17:13:00Z",
+  "primary_queue_initial": {
+    "DEFERRED_RULES_EVIDENCE": 31,
+    "IMPLEMENTED_BUT_RULES_BLOCKED": 8,
+    "DEFERRED_DYNAMIC_DEPENDENCY": 9,
+    "DEFERRED_ARCHITECTURE": 53,
+    "IMPLEMENTED_SCOPED_VERIFIED": 4
+  },
+  "primary_queue_reviewed": 6,
+  "primary_queue_implemented": 6,
+  "packages_completed": [
+    {
+      "package_id": "manaengine_effect_target_boundaries_v1",
+      "cards": ["CATA_582", "CORE_BOT_222"],
+      "declaration_only_consumers": 2,
+      "custom_outliers": [],
+      "native": "PASS; 35 groups / 673 assertions",
+      "adapter": "focused PASS"
+    },
+    {
+      "package_id": "manaengine_constrained_minion_destroy_v1",
+      "cards": ["CORE_CS2_108", "EDR_531"],
+      "declaration_only_consumers": 2,
+      "custom_outliers": [],
+      "native": "PASS; 36 groups / 680 assertions",
+      "adapter": "PASS within full adapter test file; 22 passed"
+    },
+    {
+      "package_id": "manaengine_bounded_healing_v1",
+      "cards": ["CORE_AT_055", "CATA_302"],
+      "declaration_only_consumers": 2,
+      "custom_outliers": [],
+      "native": "PASS; 37 groups / 687 assertions",
+      "adapter": "PASS within full adapter test file; 22 passed",
+      "rules_confidence_note": "CATA_302 has pinned text and secondary cross-check; direct Blizzard card route was not crawlable; no client replay captured."
+    }
+  ],
+  "tests_at_baseline": {
+    "native_scenario_groups": 34,
+    "native_assertions": 665,
+    "adapter_policy_passed": 46,
+    "full_python_passed": 90
+  },
+  "current_head": "09e61e686f9a1a086d086e1bc24f475defd5c63b",
+  "notes": [
+    "Phase 4D production work is on the requested target branch/worktree only.",
+    "Six package consumers have individual source and semantic review; direct Blizzard text is available for five, while CATA_302 has pinned text and secondary confirmation; 25 primary-queue candidates still need individual dispositions.",
+    "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable."
+  ]
+}
