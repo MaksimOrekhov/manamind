@@ -2,6 +2,14 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
+    "TLC_226": {
+      "ability": "DEATHRATTLE_DRAW",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deathrattle: Draw a spell. Kindred: Summon a copy of this.",
+      "deathrattle_draw_count": 1,
+      "deck_draw_filter": "SPELL",
+      "kindred_copy_contract": "INSTANCE_COPY_V1"
+    },
     "CATA_452": {
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",

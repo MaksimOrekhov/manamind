@@ -6,7 +6,7 @@ import numpy as np
 
 from manamind.cards.catalog import CardCatalog
 from manamind.cards.vocabulary import CardVocabulary
-from manamind.domain.game_state import GameState, PlayerObservation
+from manamind.domain.game_state import MINION_HISTORY_TYPES, GameState, PlayerObservation
 from manamind.encoding.entity_encoder import EncodedZone, EntityEncoder, _normalise
 
 PLAYER_NUMERIC_FEATURE_NAMES = (
@@ -27,6 +27,8 @@ PLAYER_NUMERIC_FEATURE_NAMES = (
     "hero_frozen",
     "spells_cast_this_turn", "spell_discount", "demon_discount", "hero_freeze_turns_remaining",
     "has_spells_cast_this_turn", "has_spell_discount", "has_demon_discount", "has_hero_freeze_turns_remaining",
+    *(f"{period}_minion_type_{kind.lower()}" for period in ("current", "previous") for kind in MINION_HISTORY_TYPES),
+    "has_current_minion_type_history", "has_previous_minion_type_history",
 )
 
 GLOBAL_FEATURE_NAMES = (
@@ -40,7 +42,7 @@ GLOBAL_FEATURE_NAMES = (
     "opponent_known_cards_count",
     "self_choice_pending", "opponent_choice_pending",
 )
-STATE_ENCODING_SCHEMA_VERSION = 14
+STATE_ENCODING_SCHEMA_VERSION = 15
 
 
 @dataclass(frozen=True, slots=True)
@@ -86,6 +88,11 @@ def _encode_player_features(player: PlayerObservation) -> list[float]:
         player.spells_cast_this_turn, player.spell_discount, player.demon_discount, player.hero_freeze_turns_remaining,
         int(player.spells_cast_this_turn is not None), int(player.spell_discount is not None),
         int(player.demon_discount is not None), int(player.hero_freeze_turns_remaining is not None),
+        *(int(kind in (history or ())) for history in (
+            player.current_turn_minion_types_played, player.previous_turn_minion_types_played,
+        ) for kind in MINION_HISTORY_TYPES),
+        int(player.current_turn_minion_types_played is not None),
+        int(player.previous_turn_minion_types_played is not None),
     )
     return [_normalise(value) for value in values]
 

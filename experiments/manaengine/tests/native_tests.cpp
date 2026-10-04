@@ -7,7 +7,7 @@
 using namespace manaengine;
 namespace manaengine {
 struct TestAccess {
- static void reset(GameSession& s){s.state_.active=0;s.state_.turn_number=1;s.state_.next_entity_id=100;s.state_.next_event_sequence=1;s.state_.result.reset();s.state_.unsupported.reset();s.state_.triggers.clear();s.state_.deathrattles.clear();s.state_.pending_choice.reset();s.state_.trace.clear();s.state_.trace_enabled=false;for(auto& p:s.state_.players){p.hero_health=30;p.armor=0;p.hero_attack=0;p.hero_temp_attack=0;p.hero_attacked=false;p.hero_power_used_this_turn=false;p.hero_frozen=false;p.hero_freeze_expire_turn=0;p.max_mana=10;p.mana=10;p.fatigue=0;p.spell_discount=0;p.demon_discount=0;p.turns_started=1;p.spells_cast_this_turn=0;p.spell_damage_dealt_this_turn=0;p.hand.clear();p.board.clear();p.secrets.clear();p.graveyard.clear();p.weapon.reset();p.timed_effects.clear();p.deck.clear();}}
+ static void reset(GameSession& s){s.state_.active=0;s.state_.turn_number=1;s.state_.next_entity_id=100;s.state_.next_event_sequence=1;s.state_.result.reset();s.state_.unsupported.reset();s.state_.triggers.clear();s.state_.deathrattles.clear();s.state_.pending_choice.reset();s.state_.trace.clear();s.state_.trace_enabled=false;for(auto& p:s.state_.players){p.hero_health=30;p.armor=0;p.hero_attack=0;p.hero_temp_attack=0;p.hero_attacked=false;p.hero_power_used_this_turn=false;p.hero_frozen=false;p.hero_freeze_expire_turn=0;p.max_mana=10;p.mana=10;p.fatigue=0;p.spell_discount=0;p.demon_discount=0;p.turns_started=1;p.spells_cast_this_turn=0;p.spell_damage_dealt_this_turn=0;p.current_turn_minion_types_played.clear();p.previous_turn_minion_types_played.clear();p.hand.clear();p.board.clear();p.secrets.clear();p.graveyard.clear();p.weapon.reset();p.timed_effects.clear();p.deck.clear();}}
  static void hand(GameSession& s,int p,const std::string& id){s.state_.players[p].hand.push_back(s.make_instance(id,p,GameSession::Zone::Hand,"TEST"));s.update_zone_positions(p,GameSession::Zone::Hand);}
  static void enter(GameSession& s,int p,const std::string& id){s.enter_hand(p,s.make_instance(id,p,GameSession::Zone::Hand,"TEST"));}
  static void draw_cards(GameSession& s,int p,int n=1){s.draw(p,n);}
@@ -35,6 +35,9 @@ struct TestAccess {
  // Scheduler control: a queued mandatory reaction causes another board death in the next batch.
  static void queued_death_reaction(GameSession& s,int owner){s.state_.deathrattles.push_back({GameSession::TriggerKind::EndTurn,owner});}
  static void set_can_attack(GameSession& s,int p,int index,bool v){s.state_.players[p].board.at(index).can_attack=v;}
+ static void copy_source(GameSession& s,int p,int entity){s.summon_instance_copy_v1(p,entity);}
+ static void fixed_summon(GameSession& s,int p,const std::string& id){s.summon_fixed(p,id,1);}
+ static void transform(GameSession& s,int p,int entity,const std::string& id){s.transform_board(p,entity,id);}
  static int hand_entity(const GameSession& s,int p,int index){return s.state_.players[p].hand.at(index).entity_id;}
  static void set_counter(GameSession& s,int p,int index,const std::string& name,int value){s.state_.players[p].hand.at(index).counters[name]=value;}
  static int counter(const GameSession& s,int p,int index,const std::string& name){const auto& c=s.state_.players[p].hand.at(index).counters;auto i=c.find(name);return i==c.end()?0:i->second;}
@@ -88,6 +91,9 @@ std::vector<CardDefinition> catalog(){std::vector<CardDefinition> c;
  auto add_secret=[&](std::string id,std::string trigger,std::string effect_name){auto x=def(std::move(id),"SPELL",3,0,0,"SECRET");x.secret=true;x.collectible=true;x.card_class="MAGE";x.secret_trigger=std::move(trigger);x.secret_effect=std::move(effect_name);c.push_back(std::move(x));};
  add_secret("TEST_EOT_SECRET_A","OPPONENT_TURN_ENDS","FLAMES_OF_INFINITY");c.back().collectible=false;add_secret("TEST_EOT_SECRET_B","OPPONENT_TURN_ENDS","FLAMES_OF_INFINITY");c.back().collectible=false;add_secret("CORE_BAR_812","FRIENDLY_MINION_ATTACKED","OASIS_ALLY");add_secret("CORE_EX1_287","OPPONENT_CASTS_SPELL","COUNTERSPELL");add_secret("CORE_EX1_289","FRIENDLY_HERO_ATTACKED","ICE_BARRIER");add_secret("CORE_LOOT_101","OPPONENT_PLAYS_MINION","EXPLOSIVE_RUNES");add_secret("END_024","OPPONENT_TURN_ENDS","FLAMES_OF_INFINITY");add_secret("JAIL_315","ENEMY_MINION_ATTACKS","MYSTIC_MISDIRECTION");
  auto tricksy=def("JAIL_321","MINION",5,4,3,"CAST_RANDOM_SECRETS");tricksy.card_class="MAGE";tricksy.battlecry=true;tricksy.prepare=true;tricksy.random_cast_count=2;tricksy.reviewed_random_secret_pool={"CORE_BAR_812","CORE_EX1_287","CORE_EX1_289","CORE_LOOT_101","END_024","JAIL_315"};c.push_back(tricksy);
+ auto bookkeeper=def("TLC_226","MINION",3,2,2,"DEATHRATTLE_DRAW");bookkeeper.minion_types={"ELEMENTAL"};bookkeeper.kindred_copy_contract="INSTANCE_COPY_V1";bookkeeper.deathrattle_draw_count=1;bookkeeper.deck_draw_filter=DeckDrawFilter::Spell;c.push_back(bookkeeper);
+ auto control=bookkeeper;control.card_id="TEST_KINDRED_COPY";control.attack=3;control.health=4;control.minion_types={"BEAST"};c.push_back(control);
+ for(auto& d:c){if(d.card_id=="CORE_DRG_107")d.minion_types={"ELEMENTAL","BEAST"};if(d.card_id=="FIR_929"||d.card_id=="CATA_487")d.minion_types={"ELEMENTAL"};}
  return c;}
 GameSession game(){std::vector<std::string> deck(30,"TEST_FILLER");return GameSession(deck,deck,catalog(),123,false,"MAGE","MAGE");}
 Action play(GameSession& s,int target=-1){for(const auto& a:s.legal_actions())if(a.type==ActionType::PlayCard&&(target<0?a.target_entity_id<0:a.target_entity_id==target))return a;throw std::runtime_error("play action not found");}
@@ -96,6 +102,59 @@ Action attack(GameSession& s,int attacker,int target){for(const auto& a:s.legal_
 int checks=0;void check(bool v,const char* expr){++checks;if(!v)throw std::runtime_error(expr);}
 void test_tier_a_generated_effects(){auto s=game();TestAccess::reset(s);TestAccess::hand(s,0,"CORE_SW_108");int ally=TestAccess::minion(s,0,"CORE_DRG_107",2,1);TestAccess::hand(s,1,"TEST_FILLER");(void)ally;s.apply_action(play(s,ally));auto hand=s.observation(0).self_hand;check(std::any_of(hand.begin(),hand.end(),[](auto& c){return c.card_id=="SW_108t";}),"First Flame adds Second Flame");check(std::any_of(hand.begin(),hand.end(),[](auto& c){return c.card_id=="EX1_277";}),"Violet Spellwing deathrattle generates Arcane Missiles");int target=TestAccess::minion(s,1,"POOL_LOW_B",2,4);s.apply_action(play(s,target));check(TestAccess::player(s,1).board[0].health==2,"generated Second Flame plays its declared damage");
  TestAccess::reset(s);TestAccess::hand(s,0,"CORE_SW_072");TestAccess::weapon(s,1,"CS2_106",3,2);s.apply_action(play(s));check(!TestAccess::player(s,1).weapon.has_value(),"Rustrot Viper destroys enemy weapon");}
+void test_bookkeeper_history_copy(){
+ auto s=game();TestAccess::reset(s);
+ auto end=[&](){s.apply_action(Action{ActionType::EndTurn});};
+ auto count=[&](const std::string& id){int n=0;for(const auto& x:s.observation(0).self_player.board)n+=x.card_id==id;return n;};
+ TestAccess::hand(s,0,"TLC_226");s.apply_action(play_hand(s,0));check(count("TLC_226")==1,"no previous history: no copy");
+ TestAccess::reset(s);TestAccess::hand(s,0,"CORE_DRG_107");s.apply_action(play_hand(s,0));
+ check(s.observation(0).self_player.current_turn_minion_types_played==std::vector<std::string>({"BEAST","ELEMENTAL"}),"all canonical types recorded");
+ TestAccess::hand(s,0,"TLC_226");s.apply_action(play_hand(s,0));check(count("TLC_226")==1,"current-turn Elemental alone does not qualify");
+ TestAccess::reset(s);TestAccess::hand(s,0,"CORE_DRG_107");s.apply_action(play_hand(s,0));end();
+ check(s.observation(0).self_player.previous_turn_minion_types_played==std::vector<std::string>({"BEAST","ELEMENTAL"}),"own history rotates after own end");
+ TestAccess::hand(s,1,"TEST_FILLER");s.apply_action(play_hand(s,0));end();
+ auto branch=s.clone();TestAccess::hand(s,0,"TEST_KINDRED_COPY");s.apply_action(play_hand(s,0));check(count("TEST_KINDRED_COPY")==2,"independent Beast declaration with different stats reuses renderer");
+ check(branch->observation(0).self_player.current_turn_minion_types_played.empty(),"clone history divergence");
+ end();end();TestAccess::hand(s,0,"TLC_226");s.apply_action(play_hand(s,0));check(count("TLC_226")==1,"two-turn-old Elemental no longer qualifies");
+ TestAccess::reset(s);TestAccess::fixed_summon(s,0,"CORE_DRG_107");end();end();TestAccess::hand(s,0,"TLC_226");s.apply_action(play_hand(s,0));check(count("TLC_226")==1,"summoned Elemental is not played");
+ TestAccess::reset(s);int transformed=TestAccess::minion(s,0,"TEST_FILLER",1,2);TestAccess::transform(s,0,transformed,"CORE_DRG_107");end();end();TestAccess::hand(s,0,"TLC_226");s.apply_action(play_hand(s,0));check(count("TLC_226")==1,"transform is not played");
+ for(int occupied:{0,6,7}){
+  TestAccess::reset(s);TestAccess::player(s,0).previous_turn_minion_types_played={"ELEMENTAL"};
+  for(int n=0;n<occupied;++n)TestAccess::minion(s,0,"TEST_FILLER",1,2);
+  TestAccess::hand(s,0,"TLC_226");const int before=TestAccess::next_entity(s);
+  if(occupied==7){bool legal=false;for(const auto& a:s.legal_actions())legal|=a.type==ActionType::PlayCard;check(!legal,"full board minion play illegal");continue;}
+  s.apply_action(play_hand(s,0));check(count("TLC_226")== (occupied==6?1:2),"capacity counts copy after original");
+  check(TestAccess::next_entity(s)==before+(occupied==6?0:1),"no phantom entity on failed copy");
+ }
+ // RULES_REVIEWED_FROM_PHASE_MODEL: exact source handle survives vector growth.
+ TestAccess::reset(s);s.set_trace_enabled(true);TestAccess::player(s,0).previous_turn_minion_types_played={"ELEMENTAL"};
+ TestAccess::secret(s,1,"CORE_LOOT_101");TestAccess::deck(s,0,{"CORE_CS2_029","CORE_CS2_029"});TestAccess::hand(s,0,"TLC_226");
+ const int original=TestAccess::hand_entity(s,0,0);s.apply_action(play_hand(s,0));auto observed=s.observation(0);
+ check(observed.self_player.board.size()==1,"Runes kills only original, copy survives");const auto copy=observed.self_player.board[0];
+ check(copy.entity_id!=original&&copy.card_id=="TLC_226"&&copy.current_attack==2&&copy.current_health==2&&!copy.can_attack,"copy identity stats and sickness");
+ check(TestAccess::player(s,0).graveyard[0].entity_id==original,"Runes targets original execution handle");
+ check(observed.self_hand.size()==1&&observed.self_hand[0].card_id=="CORE_CS2_029","original deathrattle draws runtime spell");
+ std::size_t copy_at=999,secret_at=999;const auto& trace=s.diagnostic_trace();for(std::size_t i=0;i<trace.size();++i){if(trace[i].find("INSTANCE_COPY_V1 source=")!=std::string::npos)copy_at=i;if(trace[i].find("SECRET_RESOLVE")!=std::string::npos)secret_at=i;}
+ check(copy_at<secret_at,"copy resolves before After Play Secret");
+ TestAccess::damage(s,1,copy.entity_id,2,DamageKind::Effect);TestAccess::stabilize(s);check(s.observation(0).self_hand.size()==2,"copy has its own later draw deathrattle");
+ // Reject EVERY unsupported member before play normalization; same guards at snapshot.
+ auto reject=[&](auto mutate){TestAccess::reset(s);TestAccess::player(s,0).previous_turn_minion_types_played={"ELEMENTAL"};TestAccess::hand(s,0,"TLC_226");mutate(TestAccess::player(s,0).hand[0]);bool failed=false;try{s.apply_action(play_hand(s,0));}catch(const UnsupportedSimulationError&){failed=true;}check(failed&&!s.is_valid()&&TestAccess::player(s,0).board.empty(),"source guard before normalization invalidates branch");};
+ reject([](auto& x){++x.attack;});reject([](auto& x){++x.health;++x.max_health;});reject([](auto& x){--x.health;});
+ reject([](auto& x){x.cost_delta=1;});reject([](auto& x){x.spell_damage_bonus=1;});reject([](auto& x){x.enchantments={"UNKNOWN"};});reject([](auto& x){x.counters["UNKNOWN"]=0;});
+ reject([](auto& x){x.frozen=true;});reject([](auto& x){x.freeze_expire_owner_turn=1;});reject([](auto& x){x.silenced=true;});reject([](auto& x){x.divine_shield=true;});reject([](auto& x){x.taunt=true;});reject([](auto& x){x.lifesteal=true;});reject([](auto& x){x.immune=true;});reject([](auto& x){x.stealth=true;});reject([](auto& x){x.rush=true;});reject([](auto& x){x.rush_only=true;});
+ reject([](auto& x){x.shatter_original_card_id="UNKNOWN";});reject([](auto& x){x.shatter_partner_entity_id=1;});reject([](auto& x){x.shatter_fragment=decltype(x.shatter_fragment)::Left;});reject([](auto& x){x.shatter_consumed=true;});reject([](auto& x){x.prepare_locked_turn=0;});reject([](auto& x){x.durability=1;});reject([](auto& x){x.current_durability=1;});reject([](auto& x){x.owner=1;});reject([](auto& x){x.can_attack=true;});reject([](auto& x){x.has_attacked_this_turn=true;});
+ TestAccess::reset(s);int source=TestAccess::minion(s,0,"TLC_226",2,2);TestAccess::set_health(s,0,0,1);bool failed=false;try{TestAccess::copy_source(s,0,source);}catch(const UnsupportedSimulationError&){failed=true;}check(failed,"damaged board snapshot rejected");
+ // Existing filtered-draw family covers empty filter/full hand/unsupported outcomes;
+ TestAccess::reset(s);int empty=TestAccess::minion(s,0,"TLC_226",2,2);TestAccess::deck(s,0,{"TEST_FILLER"});TestAccess::damage(s,1,empty,2,DamageKind::Effect);TestAccess::stabilize(s);
+ check(s.observation(0).self_hand.empty()&&TestAccess::player(s,0).fatigue==0&&TestAccess::player(s,0).deck.size()==1,"Bookkeeper empty filter does not fatigue or draw minion");
+ TestAccess::reset(s);int full=TestAccess::minion(s,0,"TLC_226",2,2);for(int n=0;n<10;++n)TestAccess::hand(s,0,"TEST_FILLER");TestAccess::deck(s,0,{"CORE_CS2_029"});TestAccess::damage(s,1,full,2,DamageKind::Effect);TestAccess::stabilize(s);
+ check(s.observation(0).self_hand.size()==10&&TestAccess::player(s,0).deck.empty()&&TestAccess::player(s,0).graveyard.back().card_id=="CORE_CS2_029","Bookkeeper full hand burns selected spell");
+ TestAccess::reset(s);int unknown=TestAccess::minion(s,0,"TLC_226",2,2);TestAccess::deck(s,0,{"TEST_UNSUPPORTED_FIRE_SPELL"});TestAccess::damage(s,1,unknown,2,DamageKind::Effect);TestAccess::stabilize(s);check(!s.is_valid()&&TestAccess::player(s,0).deck.empty(),"unsupported spell remains selectable and invalidates branch");
+ // this consumer also exercises both-owner simultaneous death ordering.
+ TestAccess::reset(s);int first=TestAccess::minion(s,1,"TLC_226",2,2);int second=TestAccess::minion(s,0,"TLC_226",2,2);TestAccess::deck(s,0,{"CORE_CS2_029"});TestAccess::deck(s,1,{"CORE_CS2_024"});
+ TestAccess::damage(s,0,first,2,DamageKind::Effect);TestAccess::damage(s,1,second,2,DamageKind::Effect);TestAccess::stabilize(s);
+ check(s.observation(0).self_hand[0].card_id=="CORE_CS2_029"&&s.observation(1).self_hand[0].card_id=="CORE_CS2_024","simultaneous deaths draw for correct owners");
+}
 void test_spell_damage_turn_cost_and_fixed_summon(){
  auto s=game();auto setup=[&](){TestAccess::reset(s);TestAccess::hand(s,0,"CATA_452");};
  auto cost=[&](GameSession& session){const auto view=session.observation(0);auto it=std::find_if(view.self_hand.begin(),view.self_hand.end(),[](const auto& h){return h.card_id=="CATA_452";});if(it==view.self_hand.end())throw std::runtime_error("Brilliance observation not found");return it->current_cost;};
@@ -421,4 +480,4 @@ void test_spell_damage_event_attack(){
  TestAccess::reset(s);TestAccess::hand(s,0,"CORE_CS2_029");TestAccess::minion(s,0,"CATA_487",1,4);TestAccess::minion(s,0,"CORE_EX1_012",1,1);s.apply_action(play(s,2));check(TestAccess::player(s,0).board[0].attack==3&&TestAccess::player(s,1).hero_health==23,"Raincaller observes damage after Spell Damage is applied");
  TestAccess::reset(s);TestAccess::hand(s,0,"CORE_CS2_029");TestAccess::minion(s,0,"CATA_487",1,4);s.apply_action(play(s,2));s.apply_action(Action{ActionType::EndTurn});s.apply_action(Action{ActionType::EndTurn});TestAccess::hand(s,0,"CORE_CS2_029");s.apply_action(play(s,2));check(TestAccess::player(s,0).board[0].attack==5,"Raincaller can gain Attack again on the next turn");
 }
-int main(){try{test_spell_damage_turn_cost_and_fixed_summon();test_damage_instruction_boundaries();test_adversarial_correctness();test_tier_a_generated_effects();test_targeted_spells_and_backstab();test_spell_damage_aura_and_draw_deathrattle();test_filtered_self_deck_draw();test_spell_damage_event_attack();test_area_damage_draw_and_lifesteal();test_cost_modifiers_and_composition();test_attack_and_trigger_package();test_endturn_and_dynamic_deck_pools();test_event_lifecycle_real_profile_sequence();test_choice_clone_and_seed();test_real_discover_pool_choice_and_fail_closed();test_basic_hero_power();test_initial_setup_and_coin();test_terminal_match();test_freeze_lifecycle_and_hero_observation();test_weapon_durability_attack_and_temporary_attack();test_felscreamer_discount_persists_until_demon();test_runtime_flags_survive_clone_and_update();test_semantic_action_descriptors();test_per_instance_counter_copy_state();test_held_spell_progress_is_per_instance();test_profile_held_transform_roots();test_shatter_linked_hand_instances();test_prepare_card_action_is_instance_scoped_and_persistent();test_secret_windows_and_activation_order();test_fail_closed_and_catalog_validation();test_simultaneous_deaths_and_visibility_stale_action();test_rng_golden_and_invariants();std::cout<<"ManaEngine hardening: 32 scenario groups, "<<checks<<" assertions passed\n";return 0;}catch(const std::exception& e){std::cerr<<"ManaEngine test failure after "<<checks<<" assertions: "<<e.what()<<"\n";return 1;}}
+int main(){try{test_bookkeeper_history_copy();test_spell_damage_turn_cost_and_fixed_summon();test_damage_instruction_boundaries();test_adversarial_correctness();test_tier_a_generated_effects();test_targeted_spells_and_backstab();test_spell_damage_aura_and_draw_deathrattle();test_filtered_self_deck_draw();test_spell_damage_event_attack();test_area_damage_draw_and_lifesteal();test_cost_modifiers_and_composition();test_attack_and_trigger_package();test_endturn_and_dynamic_deck_pools();test_event_lifecycle_real_profile_sequence();test_choice_clone_and_seed();test_real_discover_pool_choice_and_fail_closed();test_basic_hero_power();test_initial_setup_and_coin();test_terminal_match();test_freeze_lifecycle_and_hero_observation();test_weapon_durability_attack_and_temporary_attack();test_felscreamer_discount_persists_until_demon();test_runtime_flags_survive_clone_and_update();test_semantic_action_descriptors();test_per_instance_counter_copy_state();test_held_spell_progress_is_per_instance();test_profile_held_transform_roots();test_shatter_linked_hand_instances();test_prepare_card_action_is_instance_scoped_and_persistent();test_secret_windows_and_activation_order();test_fail_closed_and_catalog_validation();test_simultaneous_deaths_and_visibility_stale_action();test_rng_golden_and_invariants();std::cout<<"ManaEngine hardening: 33 scenario groups, "<<checks<<" assertions passed\n";return 0;}catch(const std::exception& e){std::cerr<<"ManaEngine test failure after "<<checks<<" assertions: "<<e.what()<<"\n";return 1;}}

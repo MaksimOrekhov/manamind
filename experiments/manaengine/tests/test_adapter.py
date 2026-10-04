@@ -6,6 +6,75 @@ from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimul
 from manamind.integrations.rosettastone.policy import encode_legal_actions
 
 
+def test_bookkeeper_phase_model_runes_history_adapter_and_policy() -> None:
+    from manamind.cards import CardCatalog
+    from manamind.encoding import StateEncoder
+    from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
+
+    deck = ["CORE_DRG_107", "CORE_DRG_107", "TLC_226", *(["CORE_EX1_145"] * 27)]
+    opponent = ["CORE_LOOT_101", *(["CORE_EX1_145"] * 29)]
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+
+    def play(card_id: str):
+        return session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == card_id))
+
+    def end():
+        return session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+
+    initial = session.observation()
+    assert initial.self_player.previous_turn_minion_types_played == ()
+    state = play("CORE_DRG_107")
+    assert state.self_player.current_turn_minion_types_played == ("BEAST", "ELEMENTAL")
+    end()
+    state = end()
+    assert state.self_player.previous_turn_minion_types_played == ("BEAST", "ELEMENTAL")
+    play("CORE_DRG_107")
+    end()
+    play("GAME_005")
+    play("CORE_LOOT_101")
+    state = end()
+    assert state.opponent.known_secrets == () and state.opponent.secret_count == 1
+    action = next(a for a in session.legal_actions() if a.get("card_id") == "TLC_226")
+    original_id = session._native.observation("PLAYER1")["self_hand"][action["hand_index"]]["entity_id"]
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+    clone = session.clone()
+    before = clone.observation()
+    state = session.apply_action(action)
+    copies = [m for m in state.self_player.board if m.card.card_id == "TLC_226"]
+    assert len(copies) == 1
+    native_copies = [m for m in session._native.observation("PLAYER1")["self_player"]["board"] if m["card_id"] == "TLC_226"]
+    assert native_copies[0]["entity_id"] != original_id
+    assert (copies[0].current_attack, copies[0].current_health, copies[0].can_attack) == (2, 2, False)
+    assert state.opponent.secret_count == 0
+    assert clone.observation() == before and clone.apply_action(action) == state
+    assert state.self_player.current_turn_minion_types_played == ("ELEMENTAL",)
+    assert not session.training_eligible
+    encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+    encoded = encoder.encode(state)
+    assert STATE_ENCODING_SCHEMA_VERSION == 15
+    assert encoded.global_features[encoder.global_feature_names.index("self_previous_minion_type_elemental")] > 0
+
+
+def test_minion_history_public_unknown_empty_and_strict_types() -> None:
+    from dataclasses import replace
+
+    from manamind.cards import CardCatalog
+    from manamind.domain import game_state_from_dict
+    from manamind.encoding import StateEncoder
+
+    state = game_state_from_dict({"turn_number": 1, "active_player": "SELF", "self_player": {"hero_health": 30}, "opponent": {"hero_health": 30}})
+    assert state.self_player.previous_turn_minion_types_played is None
+    encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+    empty = replace(state, self_player=replace(state.self_player, previous_turn_minion_types_played=()))
+    mask = encoder.global_feature_names.index("self_has_previous_minion_type_history")
+    assert encoder.encode(state).global_features[mask] == 0
+    assert encoder.encode(empty).global_features[mask] > 0
+    typed = replace(state.self_player, previous_turn_minion_types_played=("ELEMENTAL", "BEAST", "ELEMENTAL"))
+    assert typed.previous_turn_minion_types_played == ("BEAST", "ELEMENTAL")
+    with pytest.raises(ValueError, match="minion type history"):
+        replace(state.self_player, previous_turn_minion_types_played=("PRIVATE_CARD_ID",))
+
+
 def test_sleet_dynamic_damage_boundary_real_actions_and_clone() -> None:
     deck = ["END_022", "CATA_485", *(["CORE_EX1_145"] * 28)]
     opponent = ["END_022", *(["CORE_EX1_145"] * 29)]

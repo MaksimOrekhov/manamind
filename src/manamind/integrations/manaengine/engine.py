@@ -127,6 +127,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.support_state = str(spec.get("support_state", "UNSUPPORTED"))
         d.ability = str(spec.get("ability", "NONE"))
         raw = pinned_raw.get(card.card_id)
+        d.minion_types = sorted(set((raw or {}).get("races", [d.race] if d.race else [])))
         d.rules_contract_reviewed = raw is not None and _rules_coverage(raw, spec)
         d.required_mechanics = [str(m).upper() for m in (raw or {}).get("mechanics", ())]
         if not d.rules_contract_reviewed:
@@ -141,6 +142,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             "spell_damage_attack", "spell_damage_grant", "card_type", "cost", "attack", "health", "race", "lifesteal",
             "reviewed_random_secret_pool",
             "spell_damage_cost_reduction",
+            "kindred_copy_contract",
         }
         unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text"}
         if unknown:

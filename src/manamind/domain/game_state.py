@@ -4,6 +4,11 @@ from typing import Literal
 from .card import CardFeatures
 from .entity import BoardEntity, LocationEntity
 
+MINION_HISTORY_TYPES = (
+    "BEAST", "DEMON", "DRAENEI", "DRAGON", "ELEMENTAL", "MECHANICAL",
+    "MURLOC", "NAGA", "PIRATE", "QUILBOAR", "TOTEM", "UNDEAD",
+)
+
 
 @dataclass(frozen=True, slots=True)
 class PlayerObservation:
@@ -35,8 +40,16 @@ class PlayerObservation:
     demon_discount: int | None = None
     hero_freeze_turns_remaining: int | None = None
     active_effects: tuple[CardFeatures, ...] = field(default_factory=tuple)
+    current_turn_minion_types_played: tuple[str, ...] | None = None
+    previous_turn_minion_types_played: tuple[str, ...] | None = None
 
     def __post_init__(self) -> None:
+        for name in ("current_turn_minion_types_played", "previous_turn_minion_types_played"):
+            history = getattr(self, name)
+            if history is not None:
+                if isinstance(history, str) or any(value not in MINION_HISTORY_TYPES for value in history):
+                    raise ValueError(f"Invalid minion type history: {name}")
+                object.__setattr__(self, name, tuple(sorted(set(history))))
         for name in (
             "hero_health", "armor", "hero_attack", "max_mana", "available_mana",
             "overloaded_mana", "pending_overload", "deck_size", "hand_size", "fatigue", "secret_count", "spell_damage",

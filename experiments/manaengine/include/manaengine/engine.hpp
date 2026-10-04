@@ -26,6 +26,8 @@ struct CardDefinition {
     std::string choice_pool, secret_trigger="NONE", secret_effect="NONE";
     std::string shatter_left_card, shatter_right_card;
     std::vector<EffectStep> effects;
+    std::vector<std::string> minion_types;
+    std::string kindred_copy_contract="NONE";
     std::vector<std::string> required_mechanics;
     std::vector<std::string> reviewed_random_secret_pool;
     bool rules_contract_reviewed=false;
@@ -78,6 +80,7 @@ struct ObservedCard {
     int max_health=0;
 };
 struct ObservedPlayer {
+    std::vector<std::string> current_turn_minion_types_played, previous_turn_minion_types_played;
     int spells_cast_this_turn=0, spell_discount=0, demon_discount=0, hero_freeze_turns_remaining=0;
     std::vector<ObservedCard> active_effects;
     std::string player_class;
@@ -161,6 +164,7 @@ private:
     using WeaponState=CardInstance;
     struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
     struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,armor=0,hero_attack=0,hero_temp_attack=0;
+      std::vector<std::string> current_turn_minion_types_played,previous_turn_minion_types_played;
       int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0;
       std::int64_t spell_damage_dealt_this_turn=0;
       bool hero_attacked=false,hero_power_used_this_turn=false,hero_frozen=false; int hero_freeze_expire_turn=0;
@@ -185,6 +189,10 @@ private:
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
     int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
     void summon_fixed(int owner,const std::string& card_id,int count);
+    void validate_instance_copy_v1(const CardInstance& source,int owner,Zone expected);
+    void summon_instance_copy_v1(int owner,int source_entity);
+    bool kindred_qualified(int owner,const CardDefinition& definition) const;
+    void record_minion_play(int owner,const CardDefinition& definition);
     void transform_board(int owner,int entity,const std::string& card_id);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0,int source_entity=-1);
     int evaluate_spell_damage(const SpellEffectContext& context,int base_amount);

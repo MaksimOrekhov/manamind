@@ -99,6 +99,8 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         secret_count=int(data.get("secret_count", 0)),
         spell_damage=int(data.get("spell_damage", 0)),
         spells_cast_this_turn=data.get("spells_cast_this_turn"),
+        current_turn_minion_types_played=data.get("current_turn_minion_types_played"),
+        previous_turn_minion_types_played=data.get("previous_turn_minion_types_played"),
         spell_discount=data.get("spell_discount"),
         demon_discount=data.get("demon_discount"),
         hero_freeze_turns_remaining=data.get("hero_freeze_turns_remaining"),

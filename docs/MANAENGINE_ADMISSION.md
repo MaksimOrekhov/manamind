@@ -14,7 +14,7 @@ Full-state `clone()` is allowed for authoritative simulation, environment branch
 
 ## Observation scope
 
-Schema 14 adds public cast counts/discounts and missing-value masks, timed effect identities/durations, SELF held progress, per-instance trigger availability, Prepare-used state, Freeze duration, and SELF pending Choice candidates. Hidden opponent choice identities, hand/deck identities, RNG state, deck order and internal activation sequence are excluded. Legal action descriptors carry effective selected-card cost. A public-state audit is not a declaration of complete Hearthstone Markov coverage: disputed ordering and future unsupported mechanics still block complete rules/admission evidence.
+Schema 15 includes public cast counts/discounts and missing-value masks, timed effect identities/durations, SELF held progress, per-instance trigger availability, Prepare-used state, Freeze duration, SELF pending Choice candidates, and both players' current/previous own-turn minion-type presence. Type history is a canonical semantic set with UNKNOWN distinct from known empty; it contains no card/event log or entity identities. Schema 14 checkpoints are incompatible. Hidden opponent choice identities, hand/deck identities, RNG state, deck order and internal activation sequence are excluded. Legal action descriptors carry effective selected-card cost. A public-state audit is not a declaration of complete Hearthstone Markov coverage: disputed ordering and future unsupported mechanics still block complete rules/admission evidence.
 
 ## Metadata versus rules
 
@@ -29,6 +29,16 @@ Ordinary spell Damage instructions use CURRENT_AT_STEP: base amount + current bo
 Sleet Storm (CATA_485) is a declarative two-instruction consumer. Damaging an undamaged friendly 1/3 Time-Twisted Seer first deals two; its now-active +2 aura makes the random enemy-minion instruction deal three. Selection uses the actual enemy board, without filtering unsupported cards or excluding a surviving initial target. Empty board consumes no RNG.
 
 This is scoped support, not full root/deck closure. A mortally wounded unsilenced friendly Spell Damage source before another ordinary Damage instruction fails closed. Random minion selection after a pending board death also fails closed: its timing versus deathrattles/removal needs independent review. Such a branch invalidates the session. Arcane Barrage (TIME_855) remains unimplemented pending target selection/distinctness/mortality/per-hit boundary review. See the [proposal](../reports/manaengine_phase4b_20261004/DAMAGE_BOUNDARY_PROPOSAL.md) and completion evidence for the bounded verification scope.
+
+## Previous own-turn type history and bounded instance copy
+
+TLC_226 is a declaration-only experimental consumer of filtered spell Deathrattle draw and INSTANCE_COPY_V1, gated by previous-own-turn matching minion type. History records hand-played minions, including all canonical types; ALL expands to the finite reviewed type set. Summon, generation, recruitment and transform do not record plays. After the ending player's reactions/stabilization, only that player's current set rotates into previous and current clears. Deep clone preserves independent histories.
+
+The user-reviewed minion-play phase model places Kindred after original entry and before After Play/After Summon reactions. The exact reviewed Explosive Runes scenario creates the copy before Runes targets the original execution entity. Evidence status is RULES_REVIEWED_FROM_PHASE_MODEL, not DIRECT_REPLAY_VERIFIED; no Bookkeeper Power.log was captured. Current admitted copies introduce no summon reaction source; newly supported nested reactions require their own review rather than a speculative new scheduler.
+
+INSTANCE_COPY_V1 explicitly transfers identity and admitted stats field by field, assigns new entity/activation identities, recomputes ownership/placement/provenance and resets ordinary summon attack bookkeeping. It rejects non-default unreviewed modifiers, counters, enchantments, Freeze/silence/keywords, links, Prepare, damage, control change, aura ownership and non-rightmost sources. Guards precede play normalization and run again at snapshot; failed branches invalidate the session. No clean-base substitution or blanket struct copy. Full-board minion legality and failed summon capacity remain ordinary engine rules.
+
+This consumer is PARTIAL. Whelp-generated hand buffs and broader generated/reaction state remain blockers; no full root/deck closure or training admission is granted. Observation schema 15 changes the actual canonical observation fingerprint; historical stale Rosetta evidence is not promoted or recertified by ManaEngine scenarios. See INSTANCE_COPY_V1_CONTRACT_REVIEW.md and BOOKKEEPER_COMPLETION.md under reports/manaengine_phase4b_20261004.
 
 ## Direct spell damage turn accounting and fixed summon, version 1
 
