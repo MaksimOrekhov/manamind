@@ -17,7 +17,8 @@ enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitM
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
-struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; };
+enum class SummonCondition { None, HoldingDragon };
+struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; SummonCondition summon_condition=SummonCondition::None; int conditional_extra_count=0; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;

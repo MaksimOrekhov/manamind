@@ -85,7 +85,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         if isinstance(row, dict) and row.get("collectible") is True
     }
     dependencies_file = _ROOT / "experiments/manaengine/data/dependency_metadata_audit.json"
-    dependency_files = [dependencies_file, _ROOT / "experiments/manaengine/data/fixed_summon_dependency_metadata.json"]
+    dependency_files = [
+        dependencies_file,
+        _ROOT / "experiments/manaengine/data/fixed_summon_dependency_metadata.json",
+        _ROOT / "experiments/manaengine/data/summon_condition_dependencies.json",
+    ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
     pinned_raw = {str(row["id"]): row for row in json.loads(
@@ -174,8 +178,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             raise ValueError(f"effects must be a list for {card.card_id}")
         native_effects = []
         for effect in raw_effects:
-            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card"}:
-                raise ValueError(f"effect requires kind, target, amount, and optional lifesteal/summon_card for {card.card_id}")
+            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card", "summon_condition", "conditional_extra_count"}:
+                raise ValueError(f"effect requires kind, target, amount, and only supported optional fields for {card.card_id}")
             kind = str(effect["kind"]).upper()
             target = str(effect["target"]).upper()
             if kind not in effect_kinds or target not in target_selectors:
@@ -186,6 +190,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             native_effect.amount = int(effect["amount"])
             native_effect.lifesteal = bool(effect.get("lifesteal", False))
             native_effect.summon_card = str(effect.get("summon_card", ""))
+            summon_condition = str(effect.get("summon_condition", "NONE")).upper()
+            if summon_condition not in {"NONE", "HOLDING_DRAGON"}:
+                raise ValueError(f"unknown summon_condition for {card.card_id}: {summon_condition}")
+            native_effect.summon_condition = getattr(native.SummonCondition, summon_condition)
+            native_effect.conditional_extra_count = int(effect.get("conditional_extra_count", 0))
             native_effects.append(native_effect)
         d.effects = native_effects
         result.append(d)

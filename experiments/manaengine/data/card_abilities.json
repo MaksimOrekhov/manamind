@@ -2,6 +2,25 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
+    "TIME_006": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Summon a 0/4 minion with Taunt. If you are holding a Dragon, summon another.",
+      "effects": [
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 1,
+          "summon_card": "TIME_006t1",
+          "summon_condition": "HOLDING_DRAGON",
+          "conditional_extra_count": 1
+        }
+      ]
+    },
+    "TIME_006t1": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
+    },
     "TLC_226": {
       "ability": "DEATHRATTLE_DRAW",
       "support_state": "SUPPORTED",

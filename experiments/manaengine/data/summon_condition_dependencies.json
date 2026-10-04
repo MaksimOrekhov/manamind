@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "source": "reports/manaengine_phase4b_20261004/DYNAMIC_GENERATION_FULL_DEFINITION_SLICE.json",
+  "purpose": "Exact fixed dependency metadata for bounded conditional summon packages; metadata only, not rules evidence",
+  "cards": [
+    {
+      "id": "TIME_006t1",
+      "name": "Mirrored Mage",
+      "type": "MINION",
+      "cardClass": "MAGE",
+      "set": "TIME_TRAVEL",
+      "cost": 1,
+      "attack": 0,
+      "health": 4,
+      "mechanics": ["TAUNT"]
+    }
+  ]
+}

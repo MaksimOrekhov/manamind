@@ -742,3 +742,16 @@ def test_raincaller_attack_gain_crosses_adapter_boundary() -> None:
     assert state.self_player.board[0].current_attack == 3
     attack = next(action for action in session.legal_actions() if action["type"] == "ATTACK" and action.get("source_card_id") == "CATA_487")
     assert attack["source_attack"] == 3
+def test_mirror_dimension_conditional_fixed_summon_adapter() -> None:
+    deck = ["TIME_006", "CATA_452t", *("CORE_EX1_145" for _ in range(28))]
+    opponent = ["CORE_EX1_145"] * 30
+    session = ManaEngineSession(
+        deck,
+        opponent,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+    )
+    action = next(a for a in session.legal_actions() if a.get("card_id") == "TIME_006")
+    state = session.apply_action(action)
+    assert [entity.card.card_id for entity in state.self_player.board].count("TIME_006t1") == 2

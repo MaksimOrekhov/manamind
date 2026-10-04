@@ -12,8 +12,8 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 11,
-  "primary_queue_implemented": 11,
+  "primary_queue_reviewed": 12,
+  "primary_queue_implemented": 12,
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -80,6 +80,22 @@
       "elapsed_seconds_observed": 346,
       "canonical_evidence_promoted": false,
       "rules_evidence_note": "Official card text; current rules documentation supports source-order resolution, but no Conflagrate-specific replay was captured."
+    },
+    {
+      "package_id": "manaengine_holding_dragon_fixed_summon_v1",
+      "cards": ["TIME_006"],
+      "fixed_dependencies": ["TIME_006t1"],
+      "declaration_only_consumers": 1,
+      "custom_outliers": [],
+      "shared_capability": "Typed SUMMON_FIXED condition HOLDING_DRAGON with bounded conditional_extra_count; reads owner's hand at effect resolution.",
+      "shared_changes": "C++ EffectStep/validation/resolver, pybind enum/fields, strict Python effect parser, dependency metadata loader.",
+      "native": "PASS; 41 groups / 710 assertions",
+      "adapter": "PASS; full adapter file, 23 passed",
+      "correction_cycles": 4,
+      "build_attempts": 3,
+      "elapsed_seconds_observed": 722,
+      "canonical_evidence_promoted": false,
+      "rules_evidence_note": "Official Blizzard card text; exact token identity cross-checked in pinned Full Definition Slice; no client replay captured."
     }
   ],
   "tests_at_baseline": {
@@ -88,15 +104,16 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "e002fc3",
-  "last_updated_utc": "2026-10-04T15:45:44Z",
-  "active_elapsed_minutes": 78,
+  "current_head": "b312640",
+  "last_updated_utc": "2026-10-04T16:02:12Z",
+  "active_elapsed_minutes": 94,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Eleven roots have been individually reviewed and implemented; the remaining 20 primary-queue candidates still need individual dispositions.",
+    "Twelve roots have been individually reviewed and implemented; nineteen primary-queue candidates still need individual dispositions.",
     "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
     "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed.",
     "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed.",
-    "Package 6 checks: native PASS, 40 groups / 706 assertions; adapter PASS, 22 passed."
+    "Package 6 checks: native PASS, 40 groups / 706 assertions; adapter PASS, 22 passed.",
+    "Package 7 checks: native PASS, 41 groups / 710 assertions; adapter PASS, 23 passed; 4 correction cycles and 3 builds; package implementation span 12m02s."
   ]
 }
