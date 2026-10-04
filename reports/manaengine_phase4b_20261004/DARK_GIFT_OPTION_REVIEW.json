@@ -1,0 +1,83 @@
+{
+  "status": "OFFICIAL_LAUNCH_CONTRACT_MATCHED_TO_CURRENT_METADATA_CURRENT_RUNTIME_MEMBERSHIP_NOT_PROVEN",
+  "runtime_admitted": false,
+  "official_launch_matching_option_ids": [
+    "EDR_100t",
+    "EDR_100t1",
+    "EDR_100t13",
+    "EDR_100t2",
+    "EDR_100t3",
+    "EDR_100t5",
+    "EDR_100t6",
+    "EDR_100t7",
+    "EDR_100t8",
+    "EDR_100t9"
+  ],
+  "additional_prefix_spell_ids_pending_review": [
+    "EDR_100t10",
+    "EDR_100t4"
+  ],
+  "sources": [
+    "https://hearthstone.blizzard.com/en-us/news/24179067",
+    "https://hearthstone.blizzard.com/en-us/news/24198086"
+  ],
+  "options": [
+    {
+      "card_id": "EDR_100t",
+      "name": "Waking Terror",
+      "text": "+3 Attack and <b>Lifesteal</b>."
+    },
+    {
+      "card_id": "EDR_100t1",
+      "name": "Well Rested",
+      "text": "+2/+2 and <b>Elusive</b>."
+    },
+    {
+      "card_id": "EDR_100t13",
+      "name": "Harpy's Talons",
+      "text": "<b>Divine Shield</b>, <b>Windfury</b>"
+    },
+    {
+      "card_id": "EDR_100t2",
+      "name": "Short Claws",
+      "text": "Costs (2) less,\nbut has -2 Attack."
+    },
+    {
+      "card_id": "EDR_100t3",
+      "name": "Bundled Up",
+      "text": "+4 Health and <b>Taunt</b>."
+    },
+    {
+      "card_id": "EDR_100t5",
+      "name": "Living Nightmare",
+      "text": "When you play this minion, summon a 2/2 copy of it."
+    },
+    {
+      "card_id": "EDR_100t6",
+      "name": "Sleepwalker",
+      "text": "<b>Charge</b>"
+    },
+    {
+      "card_id": "EDR_100t7",
+      "name": "Rude Awakening",
+      "text": "[x]This minion's\n<b>Battlecries</b> trigger twice."
+    },
+    {
+      "card_id": "EDR_100t8",
+      "name": "Sweet Dreams",
+      "text": "+4/+5. Place this card on top of your deck."
+    },
+    {
+      "card_id": "EDR_100t9",
+      "name": "Persisting Horror",
+      "text": "<b>Reborn</b>. Is <b>Reborn</b>\nwith full Health and enchantments."
+    }
+  ],
+  "constraints": [
+    "Keyword redundancy / zero Attack Charge / low Attack reduction eligibility require option-specific review.",
+    "Three different gift/minion pair options, not independently uniform unordered sampling.",
+    "Reborn full health and enchantments; 2/2 on-play copy exceeds current INSTANCE_COPY_V1.",
+    "32.2 documents a Wallow the Wretched-specific Sweet Dreams exception retaining its Dark Gift enchants only; do not generalize it to arbitrary minions or zone moves.",
+    "EDR_100t4 and EDR_100t10 prefix presence is not evidence of runtime eligibility."
+  ]
+}

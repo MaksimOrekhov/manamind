@@ -1,0 +1,23 @@
+{
+  "family_count": 51,
+  "fire_candidates": 33,
+  "fire_declared": 7,
+  "fire_hash": "480f5971bdf90a339f08142a9f2e47c7650be1ddd6973241960885b20b3e0e87",
+  "fire_reachable_envelope": 1115,
+  "graph_edges": 3031,
+  "graph_nodes": 1628,
+  "overlap": 5,
+  "union": 105,
+  "union_declared": 8,
+  "union_reachable_envelope": 1115,
+  "unresolved_pool_frontiers": 275,
+  "whelp_class_working": 63,
+  "whelp_neutral_pending": 2,
+  "whelp_nonquest": 65,
+  "whelp_quests_excluded_working": 12,
+  "whelp_raw": 77,
+  "whelp_reachable_envelope": 1115,
+  "whelp_working_declared": 3,
+  "working_union": 91,
+  "working_whelp_hash": "d6e369266beea0f3c0bbc30532a3efcf06a5493011030511d732bbbec9e90cb3"
+}

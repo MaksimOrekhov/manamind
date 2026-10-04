@@ -1,0 +1,5721 @@
+{
+  "cards": [
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CAP_002",
+      "choice_discover": [
+        "DISCOVER_STEALTH"
+      ],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Follow the Footsteps",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_STEALTH",
+        "GRANT_SELF_EFFECT_ONE_TURN"
+      ],
+      "persistent_aura_state": [
+        "GRANT_SELF_EFFECT_ONE_TURN"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_STEALTH"
+      ],
+      "required_capabilities": [
+        "DISCOVER_STEALTH",
+        "GRANT_SELF_EFFECT_ONE_TURN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a <b>Stealth</b>\nminion. Give it this\neffect for a turn.",
+      "rules_uncertainty": "Inherited triggered effect and recursive Discover continuation; review playable/minion trigger timing, not a generic permanent buff.",
+      "semantic_family": "temporary_inherited_effect",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CAP_006",
+      "choice_discover": [],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "name": "Tricks of the Trade",
+      "new_or_unreviewed_capabilities": [
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "persistent_aura_state": [
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $1 damage.\nIf a <b><b>Stealth</b>ed</b> minion\nattacked while holding\nthis, deal $3 instead.",
+      "rules_uncertainty": "Per-instance history of Stealthed attacker; semantic trigger timing and stolen/newly generated hand admission unknown.",
+      "semantic_family": "held_history_damage",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CAP_101",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_PIRATES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Follow the Fuse",
+      "new_or_unreviewed_capabilities": [
+        "RANDOM_ENEMY_DAMAGE",
+        "GRANT_PLAYABLE_PIRATE_EFFECT_ONE_TURN"
+      ],
+      "persistent_aura_state": [
+        "GRANT_PLAYABLE_PIRATE_EFFECT_ONE_TURN"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_ENEMY_DAMAGE"
+      ],
+      "required_capabilities": [
+        "RANDOM_ENEMY_DAMAGE",
+        "GRANT_PLAYABLE_PIRATE_EFFECT_ONE_TURN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $2 damage to a\nrandom enemy. Give a\nplayable Pirate in your\nhand this effect for a turn.",
+      "rules_uncertainty": "Define playable hand cards including current cost/targets, duration and inherited on-play effect.",
+      "semantic_family": "temporary_inherited_effect",
+      "summon": [],
+      "targeting": "RANDOM_ENEMY",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CAP_402",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_CARDS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "CAP_400t2t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Imp-formant",
+          "rules_text": "[x]<b>Lifesteal</b>\n<b>Summoned When Drawn</b>\n<i>(for your opponent)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        },
+        {
+          "card_id": "CAP_402e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Following the Evidence",
+          "rules_text": "Shuffle a 3/3\nImp-formant into the enemy deck. Give a playable card in your hand this effect for a turn.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Follow the Evidence",
+      "new_or_unreviewed_capabilities": [
+        "SHUFFLE_OPPONENT_DECK_FIXED",
+        "GRANT_PLAYABLE_HAND_EFFECT_ONE_TURN"
+      ],
+      "persistent_aura_state": [
+        "GRANT_PLAYABLE_HAND_EFFECT_ONE_TURN"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SHUFFLE_OPPONENT_DECK_FIXED",
+        "GRANT_PLAYABLE_HAND_EFFECT_ONE_TURN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Put a 3/3 Imp-formant\ninto the enemy deck. Give\na playable card in your\nhand this effect for a turn.",
+      "rules_uncertainty": "Imp-formant has Lifesteal and Summoned When Drawn for opponent; nested draw/summon/continuation required.",
+      "semantic_family": "temporary_inherited_effect",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "DOUBLE_GENERATED_STATS"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_136",
+      "choice_discover": [],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINION_BASE_COST_AT_LEAST_8_ANY_CLASS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Azshara's Triumph",
+      "new_or_unreviewed_capabilities": [
+        "GENERATE_RANDOM_HIGH_COST_MINIONS",
+        "DOUBLE_GENERATED_STATS",
+        "SHUFFLE_SELF_DECK"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "GENERATE_RANDOM_HIGH_COST_MINIONS"
+      ],
+      "required_capabilities": [
+        "GENERATE_RANDOM_HIGH_COST_MINIONS",
+        "DOUBLE_GENERATED_STATS",
+        "SHUFFLE_SELF_DECK"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Shuffle 5 random minions into your deck\nthat cost (8) or more.\nDouble their stats.",
+      "rules_uncertainty": "Repeated sampling, generated initial stats, future play/copy/Colossal reachability.",
+      "semantic_family": "random_deck_generation",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "HEAL_MINION_TO_FULL"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_302",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Mend",
+      "new_or_unreviewed_capabilities": [
+        "HEAL_MINION_TO_FULL"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "HEAL_MINION_TO_FULL",
+        "DRAW_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Restore a minion\nto full Health.\nDraw a card.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "healing_draw",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [
+        "HEAL_ENEMY_HERO"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_303",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Purifying Breath",
+      "new_or_unreviewed_capabilities": [
+        "IF_KILLED",
+        "HEAL_ENEMY_HERO"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "IF_KILLED",
+        "HEAL_ENEMY_HERO"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $5 damage\nto a minion. If it dies,\nrestore #5 Health to\nthe enemy hero.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "damage_outcome_followup",
+      "summon": [],
+      "targeting": "MINION_AND_ENEMY_HERO",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_485",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "amount": 2,
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER"
+          },
+          {
+            "amount": 1,
+            "kind": "DAMAGE",
+            "target": "RANDOM_ENEMY_MINION"
+          }
+        ],
+        "reviewed_rules_text": "Deal $2 damage. Deal $1 damage to a random enemy minion.",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Sleet Storm",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_ENEMY_MINION"
+      ],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "RANDOM_ENEMY_MINION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $2 damage.\n Deal $1 damage to a\n random enemy minion.",
+      "rules_uncertainty": "Existing scoped guards reject pending-death-dependent random target selection; declaration is not unrestricted rules support.",
+      "semantic_family": "sequential_damage",
+      "summon": [],
+      "targeting": "CHARACTER_THEN_RANDOM_ENEMY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_528",
+      "choice_discover": [],
+      "classes": [
+        "DEMONHUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "CATA_528t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Naga Monstrosity",
+          "rules_text": "<b>Taunt</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Sigil of the Seas",
+      "new_or_unreviewed_capabilities": [
+        "NEXT_OWN_TURN_SUMMON_FIXED"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "NEXT_OWN_TURN_SUMMON_FIXED"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "At the start of your\nnext turn, summon a 3/3 Naga with <b>Taunt</b>.",
+      "rules_uncertainty": "Start-of-next-turn scheduler is not the existing timed end-turn recruit; exact phase review required.",
+      "semantic_family": "delayed_fixed_summon",
+      "summon": [
+        "NEXT_OWN_TURN_SUMMON_FIXED"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "SET_HEALTH_1"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_554",
+      "choice_discover": [
+        "SECOND_TARGET_CHOICE"
+      ],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Earthen Roar",
+      "new_or_unreviewed_capabilities": [
+        "SET_HEALTH_1",
+        "HOLDING_DRAGON",
+        "SECOND_TARGET_CHOICE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SET_HEALTH_1",
+        "HOLDING_DRAGON",
+        "SECOND_TARGET_CHOICE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Set an enemy\nminion's Health to 1.\nIf you're holding a\nDragon, pick another.",
+      "rules_uncertainty": "Second 'pick another' continuation and excluding first target; no universal Choice redesign assumed.",
+      "semantic_family": "stat_set_retarget",
+      "summon": [],
+      "targeting": "ENEMY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 6,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_581",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Decimation",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "BOARD_COUNT_SCALING"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "BOARD_COUNT_SCALING"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $1 damage\nto all minions.\n<i>(Improved for each minion\non the battlefield.)</i>",
+      "rules_uncertainty": "Review improved amount, when battlefield size is snapshotted, and damage group semantics.",
+      "semantic_family": "state_scaled_damage",
+      "summon": [],
+      "targeting": "ALL_MINIONS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "enchantment_or_object_reference",
+          "to": "CS2_045e"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_582",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "HERO_ATTACK_THIS_TURN": "EffectKind::ModifyHeroAttack"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "CS2_045e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Rockbiter Weapon",
+          "rules_text": "This character has +3 Attack this turn.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Searing Fissure",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_ALL_MINIONS"
+      ],
+      "persistent_aura_state": [
+        "HERO_ATTACK_THIS_TURN"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "HERO_ATTACK_THIS_TURN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "area_damage_hero_attack",
+      "summon": [],
+      "targeting": "ALL_MINIONS_AND_SELF_HERO",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_585",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "SELF_VARIANT:CATA_585"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Torch",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_DAMAGED_MINION",
+        "NO_SPELLPOWER",
+        "EXCESS_DAMAGE",
+        "RETURN_SELF_WITH_DAMAGE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_DAMAGED_MINION",
+        "NO_SPELLPOWER",
+        "EXCESS_DAMAGE",
+        "RETURN_SELF_WITH_DAMAGE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "rules_uncertainty": "Potential CUSTOM: exact excess computation, return identity/modifiers and retained damage require independent review; not another simple fixed damage declaration.",
+      "semantic_family": "excess_damage_return_outlier",
+      "summon": [],
+      "targeting": "DAMAGED_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": true
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "GENERATE_RANDOM_PALADIN_AURA",
+        "EXTEND_AURA_DURATION"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_621",
+      "choice_discover": [],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "PALADIN_AURA_SPELLS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Gelbin's Triumph",
+      "new_or_unreviewed_capabilities": [
+        "GENERATE_RANDOM_PALADIN_AURA",
+        "EXTEND_AURA_DURATION"
+      ],
+      "persistent_aura_state": [
+        "GENERATE_RANDOM_PALADIN_AURA",
+        "EXTEND_AURA_DURATION"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "GENERATE_RANDOM_PALADIN_AURA"
+      ],
+      "required_capabilities": [
+        "GENERATE_RANDOM_PALADIN_AURA",
+        "EXTEND_AURA_DURATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Get a random Paladin Aura. It lasts an additional turn.",
+      "rules_uncertainty": "Aura duration modifier belongs to generated instance and later persistent aura; not generic cost_delta.",
+      "semantic_family": "random_persistent_aura",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "AT_037a"
+        },
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "AT_037b"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_AT_037",
+      "choice_discover": [
+        "CHOOSE_ONE"
+      ],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "AT_037a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Grasping Roots",
+          "rules_text": "Deal $2 damage.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "AT_037b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "One, Two, Trees!",
+          "rules_text": "Summon two 1/1 Saplings.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "AT_037t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Sapling",
+          "rules_text": "",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Living Roots",
+      "new_or_unreviewed_capabilities": [
+        "CHOOSE_ONE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "CHOOSE_ONE",
+        "DAMAGE_CHARACTER",
+        "SUMMON_FIXED"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Choose One -</b> Deal $2 damage; or Summon two 1/1 Saplings.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "choose_one_composition",
+      "summon": [
+        "SUMMON_FIXED"
+      ],
+      "targeting": "CHARACTER_IF_DAMAGE_OPTION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "HEAL_CHARACTER"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_AT_055",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Flash Heal",
+      "new_or_unreviewed_capabilities": [
+        "HEAL_CHARACTER"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "HEAL_CHARACTER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Restore #5 Health.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "healing_draw",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "SUMMON_FIXED_RUSH"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "BAR_035t"
+        },
+        {
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED",
+          "kind": "generated_core_alias_base",
+          "to": "BAR_801"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_BAR_801",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "SUMMON_FIXED_RUSH": "summon_fixed + CardDefinition.rush"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "BAR_035t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Swift Hyena",
+          "rules_text": "<b>Rush</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Wound Prey",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "SUMMON_FIXED_RUSH"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $1 damage. Summon a 1/1 Hyena with <b>Rush</b>.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_summon_composition",
+      "summon": [
+        "SUMMON_FIXED_RUSH"
+      ],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_BOT_222",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Spirit Bomb",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_OWN_HERO"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "DAMAGE_OWN_HERO"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $4 damage to a minion and your hero.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "MINION_THEN_OWN_HERO",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "SUMMON_FIXED_RUSH"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "BOT_102t"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_BOT_451",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "SUMMON_FIXED_RUSH": "summon_fixed + CardDefinition.rush"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "BOT_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Spark",
+          "rules_text": "<b>Rush</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Voltaic Burst",
+      "new_or_unreviewed_capabilities": [
+        "OVERLOAD"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SUMMON_FIXED_RUSH",
+        "OVERLOAD"
+      ],
+      "resource_mechanic": [
+        "OVERLOAD"
+      ],
+      "rules_text": "Summon two 1/1 Sparks with <b>Rush</b>. <b>Overload:</b> (1)",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "overload_composition",
+      "summon": [
+        "SUMMON_FIXED_RUSH"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS1_130",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Holy Smite",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $3 damage\nto a minion.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_MINION_HEALTH"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "enchantment_or_object_reference",
+          "to": "CS2_004e"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_004",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "CS2_004e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Power Word: Shield",
+          "rules_text": "+2 Health.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Power Word: Shield",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_MINION_HEALTH"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "BUFF_MINION_HEALTH",
+        "DRAW_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Give a minion +2 Health.\nDraw a card.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "stat_keyword_enchant",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 4,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_029",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": {
+        "ability": "TARGET_DAMAGE",
+        "damage": 6,
+        "reviewed_rules_text": "Deal $6 damage.",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Fireball",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $6 damage.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 7,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_032",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_ENEMY_MINIONS": "EffectKind::Damage / EnemyMinions"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Flamestrike",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ENEMY_MINIONS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $5 damage to all enemy minions.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "ENEMY_MINIONS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_062",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "amount": 3,
+            "kind": "DAMAGE",
+            "target": "ALL_CHARACTERS"
+          }
+        ],
+        "reviewed_rules_text": "Deal $3 damage to ALL characters.",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_ALL_CHARACTERS": "EffectKind::Damage / AllCharacters"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Hellfire",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ALL_CHARACTERS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $3 damage to ALL characters.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "ALL_CHARACTERS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_WEAPON_ATTACK"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "enchantment_or_object_reference",
+          "to": "CS2_074e"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_074",
+      "choice_discover": [],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "CS2_074e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Deadly Poison",
+          "rules_text": "+2 Attack.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Deadly Poison",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_WEAPON_ATTACK"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "BUFF_WEAPON_ATTACK"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Give your weapon +2 Attack.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "weapon_buff",
+      "summon": [],
+      "targeting": "FRIENDLY_WEAPON",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_108",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Execute",
+      "new_or_unreviewed_capabilities": [
+        "DESTROY_DAMAGED_ENEMY_MINION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DESTROY_DAMAGED_ENEMY_MINION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Destroy a damaged enemy minion.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "destroy_followup",
+      "summon": [],
+      "targeting": "DAMAGED_ENEMY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_DS1_184",
+      "choice_discover": [
+        "DISCOVER_ACTUAL_DECK"
+      ],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELECTED"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Tracking",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_ACTUAL_DECK"
+      ],
+      "required_capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a card from your deck.",
+      "rules_uncertainty": "Option sampling among duplicate IDs, instance movement and order review; no outside-game collectible exclusions for deck instances.",
+      "semantic_family": "discover_deck",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_DS1_185",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Arcane Shot",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_damage",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_238",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Lightning Bolt",
+      "new_or_unreviewed_capabilities": [
+        "OVERLOAD"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "OVERLOAD"
+      ],
+      "resource_mechanic": [
+        "OVERLOAD"
+      ],
+      "rules_text": "Deal $3 damage. <b>Overload:</b> (1)",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "overload_composition",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_302",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Mortal Coil",
+      "new_or_unreviewed_capabilities": [
+        "IF_KILLED"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "IF_KILLED",
+        "DRAW_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "damage_outcome_followup",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_391",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Slam",
+      "new_or_unreviewed_capabilities": [
+        "IF_SURVIVES"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "IF_SURVIVES",
+        "DRAW_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage to a minion. If it survives, draw a card.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "damage_outcome_followup",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_610",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Explosive Trap",
+      "new_or_unreviewed_capabilities": [
+        "SECRET_HERO_ATTACKED",
+        "DAMAGE_ALL_ENEMIES"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SECRET_HERO_ATTACKED",
+        "DAMAGE_ALL_ENEMIES"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Secret:</b> When your hero is attacked, deal $2 damage to all enemies.",
+      "rules_uncertainty": "Reuse Secret dispatcher with reviewed before/after attack window; not Ice Barrier semantics by text similarity.",
+      "semantic_family": "reactive_secret",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CORE_GIL_836",
+      "choice_discover": [
+        "DISCOVER_BATTLECRY"
+      ],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": {
+        "ability": "DISCOVER",
+        "choice_cost_delta": -1,
+        "choice_count": 3,
+        "choice_pool": "MINION_BATTLECRY_PLAYER_CLASS_NEUTRAL",
+        "reviewed_rules_text": "Discover a Battlecry minion. It costs (1) less.",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "BATTLECRY_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Blazing Invocation",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_BATTLECRY"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_BATTLECRY"
+      ],
+      "required_capabilities": [
+        "DISCOVER_BATTLECRY",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a <b>Battlecry</b>\nminion. It costs (1) less.",
+      "rules_uncertainty": "Existing runtime rescans catalog; exact eligibility/dual-class behavior and all recursive outcomes are not verified.",
+      "semantic_family": "discover_predicate",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_LOOT_101",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": {
+        "ability": "SECRET",
+        "reviewed_rules_text": "Secret: After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+        "secret_effect": "EXPLOSIVE_RUNES",
+        "secret_trigger": "OPPONENT_PLAYS_MINION",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "SECRET_AFTER_OPPONENT_MINION_PLAY": "Secret ExplosiveRunes window"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Explosive Runes",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_AND_EXCESS"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SECRET_AFTER_OPPONENT_MINION_PLAY",
+        "DAMAGE_AND_EXCESS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Secret:</b> After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "reactive_secret",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "SW_108t"
+        },
+        {
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED",
+          "kind": "generated_core_alias_base",
+          "to": "SW_108"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_SW_108",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": {
+        "ability": "MINION_DAMAGE_GENERATE",
+        "damage": 2,
+        "generated_card": "SW_108t",
+        "reviewed_rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "ADD_FIXED_HAND": "MinionDamageGenerate fixed outcome / enter_hand",
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "SW_108t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Second Flame",
+          "rules_text": "Deal $2 damage to\na minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "First Flame",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "ADD_FIXED_HAND"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_hand_generation",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 4,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED",
+          "kind": "generated_exact_text_alias_base",
+          "to": "KAR_091"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_WON_337",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINION_BASE_COST_4_ANY_CLASS"
+      ],
+      "existing_manaengine_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Ironforge Portal",
+      "new_or_unreviewed_capabilities": [
+        "RANDOM_SUMMON"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_SUMMON"
+      ],
+      "required_capabilities": [
+        "GAIN_ARMOR",
+        "RANDOM_SUMMON"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Gain 4 Armor.\nSummon a random\n4-Cost minion.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "random_summon",
+      "summon": [
+        "RANDOM_SUMMON"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_GENERATED_STATS"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CORE_WON_350",
+      "choice_discover": [
+        "DISCOVER_TAUNT"
+      ],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "TAUNT_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "I Know a Guy",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_TAUNT",
+        "BUFF_GENERATED_STATS"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_TAUNT"
+      ],
+      "required_capabilities": [
+        "DISCOVER_TAUNT",
+        "BUFF_GENERATED_STATS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a <b>Taunt</b> minion. Give it +1/+2.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "discover_predicate",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CORE_YOP_001",
+      "choice_discover": [
+        "DISCOVER_OUTCAST"
+      ],
+      "classes": [
+        "DEMONHUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "OUTCAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Illidari Studies",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_OUTCAST",
+        "NEXT_OUTCAST_COST_REDUCTION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_OUTCAST"
+      ],
+      "required_capabilities": [
+        "DISCOVER_OUTCAST",
+        "NEXT_OUTCAST_COST_REDUCTION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> an <b>Outcast</b> card. Your next one costs (1) less.",
+      "rules_uncertainty": "Next-one discount is player state, not generated-card cost_delta; Outcast positional legality needed.",
+      "semantic_family": "discover_predicate",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "LOE_115a"
+        },
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "literal_card_id_reference",
+          "to": "LOE_115b"
+        },
+        {
+          "evidence_status": "DECLARATION_ALLOWLISTED_RULES_EQUIVALENCE_NOT_FULLY_VERIFIED",
+          "kind": "generated_exact_text_alias_base",
+          "to": "LOE_115"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "Core_LOE_115",
+      "choice_discover": [
+        "CHOOSE_ONE",
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "LOE_115a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Break Free",
+          "rules_text": "<b>Discover</b> a minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "LOE_115b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Awakened",
+          "rules_text": "<b>Discover</b> a spell.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "Raven Idol",
+      "new_or_unreviewed_capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "required_capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Choose One -</b>\n<b>Discover</b> a minion; or <b>Discover</b> a spell.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "choose_one_discover",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [
+        "BUFF_ELEMENTALS"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "enchantment_or_object_reference",
+          "to": "ICC_210e"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "DINO_406",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "ICC_210e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ascended",
+          "rules_text": "Stats increased.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Fire Breath",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_ELEMENTALS"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "BUFF_ELEMENTALS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $4 damage.\nGive your Elementals +1/+1.",
+      "rules_uncertainty": "Determine exact zones of 'your Elementals', current stats and application/death sequence.",
+      "semantic_family": "tribal_multi_zone_buff",
+      "summon": [],
+      "targeting": "CHARACTER_AND_ELEMENTALS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_BOARD_ATTACK",
+        "GRANT_RUSH"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "DINO_417",
+      "choice_discover": [],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Soulrest Ceremony",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_BOARD_ATTACK",
+        "GRANT_RUSH",
+        "END_TURN_DESTROY"
+      ],
+      "persistent_aura_state": [
+        "END_TURN_DESTROY"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "BUFF_BOARD_ATTACK",
+        "GRANT_RUSH",
+        "END_TURN_DESTROY"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Give your minions\n+1 Attack and <b>Rush</b>. They\ndie at the end of your turn.",
+      "rules_uncertainty": "Snapshot membership, lost/replaced minions and death ordering; not a DK session requirement solely due to card class.",
+      "semantic_family": "temporary_board_keywords",
+      "summon": [],
+      "targeting": "FRIENDLY_BOARD",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_251",
+      "choice_discover": [],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_DECK_BY_START_PROVENANCE"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "name": "Dragonscale Armaments",
+      "new_or_unreviewed_capabilities": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "persistent_aura_state": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Draw a spell that started in your deck and one that didn't.",
+      "rules_uncertainty": "make_instance.provenance alone is insufficient after subsequent copy/shuffle/transform; immutable started-in-deck provenance needed.",
+      "semantic_family": "provenance_filtered_draw",
+      "summon": [],
+      "targeting": "SELF",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_273",
+      "choice_discover": [
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Symbiosis",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "required_capabilities": [
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a <b>Choose One</b>\ncard from another class.",
+      "rules_uncertainty": "Explicit other-class filter relative to actor, neutral and dual-class overlap review.",
+      "semantic_family": "discover_predicate",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_522",
+      "choice_discover": [],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "OPPONENT_DRAW",
+        "COPY_DRAWN_TO_HAND"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_OPPONENT_DRAWN_INSTANCES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Mimicry",
+      "new_or_unreviewed_capabilities": [
+        "OPPONENT_DRAW",
+        "COPY_DRAWN_TO_HAND"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "OPPONENT_DRAW",
+        "COPY_DRAWN_TO_HAND"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Your opponent\ndraws 2 cards. You get copies of them.",
+      "rules_uncertainty": "Two draws, fatigue/burn, reveal boundary and copies of modified drawn entities must be reviewed.",
+      "semantic_family": "hidden_zone_copy",
+      "summon": [],
+      "targeting": "OPPONENT",
+      "training_eligible": false,
+      "transform": [
+        "COPY_DRAWN_TO_HAND"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_528",
+      "choice_discover": [
+        "DISCOVER_OPPONENT_DECK_COPY"
+      ],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_OPPONENT_DECK_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "COMBO"
+      ],
+      "name": "Nightmare Fuel",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_OPPONENT_DECK_COPY",
+        "COMBO",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_OPPONENT_DECK_COPY"
+      ],
+      "required_capabilities": [
+        "DISCOVER_OPPONENT_DECK_COPY",
+        "COMBO",
+        "DARK_GIFT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a copy\nof a minion in your opponent's deck. <b>Combo:</b> With a <b>Dark Gift</b>.",
+      "rules_uncertainty": "Combo consumes play history; hidden candidates remain internal, no hidden input leakage.",
+      "semantic_family": "discover_dark_gift",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [
+        "DISCOVER_OPPONENT_DECK_COPY"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_531",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Siphoning Growth",
+      "new_or_unreviewed_capabilities": [
+        "DESTROY_FRIENDLY_MINION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DESTROY_FRIENDLY_MINION",
+        "GAIN_ARMOR"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Destroy a friendly\nminion to gain 8 Armor.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "destroy_followup",
+      "summon": [],
+      "targeting": "FRIENDLY_MINION_AND_SELF_HERO",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_DAMAGED_MINION"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_570",
+      "choice_discover": [
+        "CHOOSE_ONE"
+      ],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Ominous Nightmares",
+      "new_or_unreviewed_capabilities": [
+        "CHOOSE_ONE",
+        "DAMAGE_ALL_MINIONS",
+        "BUFF_DAMAGED_MINION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "CHOOSE_ONE",
+        "DAMAGE_ALL_MINIONS",
+        "BUFF_DAMAGED_MINION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Choose One - </b>Deal $1\ndamage to all minions;\nor Give a damaged\nminion +2/+2.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "choose_one_composition",
+      "summon": [],
+      "targeting": "DAMAGED_MINION_IF_BUFF_OPTION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_811",
+      "choice_discover": [
+        "DISCOVER_UNDEAD"
+      ],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "UNDEAD_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Rite of Atrocity",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_UNDEAD",
+        "SPEND_CORPSES",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_UNDEAD"
+      ],
+      "required_capabilities": [
+        "DISCOVER_UNDEAD",
+        "SPEND_CORPSES",
+        "DARK_GIFT"
+      ],
+      "resource_mechanic": [
+        "SPEND_CORPSES"
+      ],
+      "rules_text": "<b>Discover</b> an Undead. Spend 2 <b>Corpses</b> to give it a <b>Dark Gift</b>.",
+      "rules_uncertainty": "Generated DK card on Mage is not a DK session: review corpse accumulation/spend for non-DK and Dark Gift application.",
+      "semantic_family": "corpses_dark_gift",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_813",
+      "choice_discover": [
+        "CHOOSE_ONE"
+      ],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "EDR_813a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Contaminated Colony",
+          "rules_text": "Summon two 1/1 Ants.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "EDR_813b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Bug Bites",
+          "rules_text": "Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "EDR_813at",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ant Husk",
+          "rules_text": "",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Morbid Swarm",
+      "new_or_unreviewed_capabilities": [
+        "CHOOSE_ONE",
+        "SPEND_CORPSES"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "CHOOSE_ONE",
+        "SUMMON_FIXED",
+        "SPEND_CORPSES",
+        "DAMAGE_MINION"
+      ],
+      "resource_mechanic": [
+        "SPEND_CORPSES"
+      ],
+      "rules_text": "<b>Choose One -</b> Summon two 1/1 Ants; or Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+      "rules_uncertainty": "Full definitions resolve Ant Husk EDR_813at and option IDs EDR_813a/EDR_813b; resource legality and option availability still need review.",
+      "semantic_family": "corpses_choose_one",
+      "summon": [
+        "SUMMON_FIXED"
+      ],
+      "targeting": "MINION_IF_DAMAGE_OPTION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "EDR_872",
+      "choice_discover": [
+        "CHOOSE_ONE",
+        "DISCOVER_CLASS_SPELL"
+      ],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "SPELL_MAGE",
+        "SPELL_DRUID"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Spark of Life",
+      "new_or_unreviewed_capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_CLASS_SPELL"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_CLASS_SPELL"
+      ],
+      "required_capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_CLASS_SPELL"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Choose One - </b><b>Discover</b> a Mage spell; or <b>Discover</b> a Druid spell.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "choose_one_discover",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_017",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER",
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Battle at the End Time",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Fill your hand, then empty it.\n<b>Reward: </b>Tick and Tock.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_020",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK",
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [
+        "MINION_BASE_COST_1_ANY_CLASS"
+      ],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Eternal Toil",
+      "new_or_unreviewed_capabilities": [
+        "IF_SURVIVES",
+        "IF_KILLED",
+        "RANDOM_SUMMON"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_SUMMON"
+      ],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "IF_SURVIVES",
+        "DRAW_SELF",
+        "IF_KILLED",
+        "RANDOM_SUMMON"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $1 damage to a\nminion. If it survives, draw\na card. If it dies, summon\na random 1-Cost minion.",
+      "rules_uncertainty": "Outcome-dependent summon requires complete pool and death-boundary review.",
+      "semantic_family": "damage_outcome_followup",
+      "summon": [
+        "RANDOM_SUMMON"
+      ],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [
+        "INFINITE_DAMAGE_HIGHEST_HEALTH"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_024",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": {
+        "ability": "SECRET",
+        "reviewed_rules_text": "Secret: When your enemy's turn ends, deal INFINITE damage to their highest Health minion.",
+        "secret_effect": "FLAMES_OF_INFINITY",
+        "secret_trigger": "OPPONENT_TURN_ENDS",
+        "support_state": "SUPPORTED"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "SECRET_OPPONENT_TURN_END": "Secret OpponentTurnEnds window"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Flames of Infinity",
+      "new_or_unreviewed_capabilities": [
+        "INFINITE_DAMAGE_HIGHEST_HEALTH"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SECRET_OPPONENT_TURN_END",
+        "INFINITE_DAMAGE_HIGHEST_HEALTH"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Secret:</b> When your enemy's turn ends, deal INFINITE damage to their highest Health minion.",
+      "rules_uncertainty": "Current enormous finite int represents INFINITE damage; resource/prevention interactions need review, not general unrestricted proof.",
+      "semantic_family": "reactive_secret",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_025",
+      "choice_discover": [],
+      "classes": [
+        "MAGE",
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "SELF_VARIANT:END_025"
+      ],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Eternal Firebolt",
+      "new_or_unreviewed_capabilities": [
+        "LIFESTEAL",
+        "IF_KILLED",
+        "END_TURN_RETURN_SELF"
+      ],
+      "persistent_aura_state": [
+        "END_TURN_RETURN_SELF"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "LIFESTEAL",
+        "IF_KILLED",
+        "END_TURN_RETURN_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Lifesteal</b>\nDeal $3 damage to a minion. If it dies, return this to your hand at the end of your turn.",
+      "rules_uncertainty": "Return-source instance identity, discount persistence, activation and end-turn boundary unreviewed.",
+      "semantic_family": "conditional_spell_return",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_027",
+      "choice_discover": [
+        "DISCOVER_PAST_DRAGON"
+      ],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "DRAGON_FROM_PAST",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "Wings of Eternity",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_PAST_DRAGON",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_PAST_DRAGON"
+      ],
+      "required_capabilities": [
+        "DISCOVER_PAST_DRAGON",
+        "DARK_GIFT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a Dragon\nfrom the past with a\n<b>Dark Gift</b>.",
+      "rules_uncertainty": "'From the past' requires a versioned out-of-Standard pool, not pinned Standard dragons.",
+      "semantic_family": "discover_dark_gift",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_900",
+      "choice_discover": [
+        "DISCOVER_MINION"
+      ],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "Cremate",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_MINION",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_MINION"
+      ],
+      "required_capabilities": [
+        "DISCOVER_MINION",
+        "DARK_GIFT",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a minion\nwith a <b>Dark Gift</b>.\nIt costs (2) less.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "discover_dark_gift",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [
+        "BUFF_FRIENDLY_BOARD",
+        "CONDITIONAL_EXTRA_BUFF"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_906",
+      "choice_discover": [],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Overheat",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "RANDOM_HAND_NATURE_DISCARD",
+        "CONDITIONAL_EXTRA_BUFF"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_HAND_NATURE_DISCARD"
+      ],
+      "required_capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "RANDOM_HAND_NATURE_DISCARD",
+        "CONDITIONAL_EXTRA_BUFF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "school_discard_composition",
+      "summon": [],
+      "targeting": "FRIENDLY_BOARD",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_909",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Bursting Shot",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_RANDOM_DISTINCT_ENEMIES"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DAMAGE_RANDOM_DISTINCT_ENEMIES"
+      ],
+      "required_capabilities": [
+        "DAMAGE_RANDOM_DISTINCT_ENEMIES"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage to\nthree random enemies.",
+      "rules_uncertainty": "Confirm distinct sampling, fewer than 3 enemies, packet/death ordering and Spell Damage application.",
+      "semantic_family": "random_distinct_targets",
+      "summon": [],
+      "targeting": "UP_TO_THREE_DISTINCT_ENEMIES",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_910",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Scorching Winds",
+      "new_or_unreviewed_capabilities": [
+        "RANDOM_HAND_FIRE_DISCARD",
+        "CONDITIONAL_EXTRA_DAMAGE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_HAND_FIRE_DISCARD"
+      ],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "RANDOM_HAND_FIRE_DISCARD",
+        "CONDITIONAL_EXTRA_DAMAGE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $3 damage. Discard a random Fire spell to deal $3 more.",
+      "rules_uncertainty": "Review discard-between-instructions and whether discarded source is still a candidate; no generated pool, only actual hand.",
+      "semantic_family": "school_discard_composition",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_911",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Smoldering Grove",
+      "new_or_unreviewed_capabilities": [
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "persistent_aura_state": [
+        "HAND_TURN_UPGRADE"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DRAW_SELF",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Draw {0} card.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Draw {0} cards.\n<i>(Discards this turn!)</i>",
+      "rules_uncertainty": "Metadata placeholders {0}/{1} do not specify initial value/cap/expiry phase; generated arrival starts a new per-instance lifecycle, needs fuller rules evidence.",
+      "semantic_family": "smoldering_hand_age",
+      "summon": [],
+      "targeting": "SELF",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_FRIENDLY_MINION"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_914",
+      "choice_discover": [],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "FIR_914e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Smoldering Strength",
+          "rules_text": "+{0}/+{0}.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Smoldering Strength",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_FRIENDLY_MINION",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "persistent_aura_state": [
+        "HAND_TURN_UPGRADE"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "BUFF_FRIENDLY_MINION",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Give a friendly minion +{0}/+{0}.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Give a friendly\nminion +{0}/+{0}.\n<i>(Discards this turn!)</i>",
+      "rules_uncertainty": "Exact initial amount/turn upgrades/expiry/hand entry undefined by placeholders; generates hand-buffed Bookkeeper states outside INSTANCE_COPY_V1.",
+      "semantic_family": "smoldering_hand_age",
+      "summon": [],
+      "targeting": "FRIENDLY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_916",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_ENEMY_MINIONS": "EffectKind::Damage / EnemyMinions"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Smoldering Ascent",
+      "new_or_unreviewed_capabilities": [
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "persistent_aura_state": [
+        "HAND_TURN_UPGRADE"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ENEMY_MINIONS",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal ${0} damage to all enemy minions. <i>(Upgrades each turn,\nbut discards after {1}!)</i>1Deal ${0} damage to all enemy minions.\n<i>(Discards this turn!)</i>",
+      "rules_uncertainty": "Exact starting amount/age/expiry and CurrentAtStep Spell Damage need review.",
+      "semantic_family": "smoldering_hand_age",
+      "summon": [],
+      "targeting": "ENEMY_MINIONS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_920",
+      "choice_discover": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION"
+      ],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "COMBO_BATTLECRY_STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION"
+      ],
+      "name": "Smoke Bomb",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION"
+      ],
+      "required_capabilities": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION",
+        "DARK_GIFT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a <b>Combo</b>, <b>Battlecry</b>, or <b>Stealth</b> minion with a <b>Dark Gift</b>.",
+      "rules_uncertainty": "OR predicate, eligible implied mechanics and Dark Gift options require exact manifest, no reduced supported choices.",
+      "semantic_family": "discover_dark_gift",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_923",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Flames of the Firelord",
+      "new_or_unreviewed_capabilities": [
+        "HELD_COST_AT_LEAST_8",
+        "CONDITIONAL_DAMAGE"
+      ],
+      "persistent_aura_state": [
+        "HELD_COST_AT_LEAST_8"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_ENEMY_MINION"
+      ],
+      "required_capabilities": [
+        "RANDOM_ENEMY_MINION",
+        "HELD_COST_AT_LEAST_8",
+        "CONDITIONAL_DAMAGE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $4 damage to a random\nenemy minion. If you're\nholding a card that costs\n(8) or more, deal $8 instead.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "state_scaled_damage",
+      "summon": [],
+      "targeting": "RANDOM_ENEMY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 2,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_939",
+      "choice_discover": [
+        "DISCOVER_WARRIOR_MINION"
+      ],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "WARRIOR_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "Shadowflame Suffusion",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_WARRIOR_MINION",
+        "DARK_GIFT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_WARRIOR_MINION"
+      ],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "DISCOVER_WARRIOR_MINION",
+        "DARK_GIFT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>.",
+      "rules_uncertainty": "Explicit Warrior overrides controlling Mage class for the minion predicate.",
+      "semantic_family": "discover_dark_gift",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 7,
+      "buff_debuff": [
+        "DIVINE_SHIELD"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_941",
+      "choice_discover": [],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_MINION"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_DECK_MINIONS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Searing Reflection",
+      "new_or_unreviewed_capabilities": [
+        "DRAW_MINION",
+        "COPY_AS_8_8",
+        "DIVINE_SHIELD",
+        "SUMMON_COPY"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DRAW_MINION",
+        "COPY_AS_8_8",
+        "DIVINE_SHIELD",
+        "SUMMON_COPY"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Draw a minion. Summon an 8/8 copy of it with <b>Divine Shield</b>.",
+      "rules_uncertainty": "Requires new modified-instance copy/summon policy; outside INSTANCE_COPY_V1, full board/draw buff interactions unknown.",
+      "semantic_family": "deck_draw_copy_summon",
+      "summon": [
+        "SUMMON_COPY"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [
+        "COPY_AS_8_8",
+        "SUMMON_COPY"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_954",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_TARGET_OWNER"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Conflagrate",
+      "new_or_unreviewed_capabilities": [
+        "DRAW_TARGET_OWNER"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "DRAW_TARGET_OWNER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $5 damage to a minion. Its owner draws a card.",
+      "rules_uncertainty": "Capture target owner before damage/death; draw/fatigue timing needs independent review.",
+      "semantic_family": "damage_outcome_followup",
+      "summon": [],
+      "targeting": "MINION_AND_ITS_OWNER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "FREEZE_ENEMY"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_125",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "FROST_SPELL_ANY_CLASS"
+      ],
+      "existing_manaengine_primitives": {
+        "FREEZE_ENEMY": "EffectKind::Freeze, targeting extension review"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Cold Snap",
+      "new_or_unreviewed_capabilities": [
+        "GENERATE_RANDOM_FROST_SPELL"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "GENERATE_RANDOM_FROST_SPELL"
+      ],
+      "required_capabilities": [
+        "FREEZE_ENEMY",
+        "GENERATE_RANDOM_FROST_SPELL"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Freeze</b> an enemy.\nGet a random\nFrost spell.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "random_school_generation",
+      "summon": [],
+      "targeting": "ENEMY_CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 5,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_307",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Crowd Control",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "REPEAT_TWO",
+        "DECK_SIZE_COST_REDUCTION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "REPEAT_TWO",
+        "DECK_SIZE_COST_REDUCTION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage to all minions, twice. If your deck has 25 or more cards, this costs (2) less.",
+      "rules_uncertainty": "Two damage instructions with distinct death/reaction boundaries; deck-size >=25 reduction combines with generated instance discount.",
+      "semantic_family": "state_scaled_damage",
+      "summon": [],
+      "targeting": "ALL_MINIONS",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_319",
+      "choice_discover": [
+        "DISCOVER_SPELL"
+      ],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "The Skeleton Key",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_SPELL",
+        "REPEAT_REFRESH_OPTIONS",
+        "RANDOM_SELF_DAMAGE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_SPELL",
+        "RANDOM_SELF_DAMAGE"
+      ],
+      "required_capabilities": [
+        "DISCOVER_SPELL",
+        "REPEAT_REFRESH_OPTIONS",
+        "RANDOM_SELF_DAMAGE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a spell,\nor refresh your options\n<i>(20% chance to take 5\ndamage each refresh!)</i>",
+      "rules_uncertainty": "Potential CUSTOM/architectural outlier: refresh action, retained choice lifetime and damage/death during pending Choice.",
+      "semantic_family": "refresh_discover_outlier",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": true
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_386",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "CAST_WHEN_DRAWN"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "JAIL_386t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Found Gear!",
+          "rules_text": "<b>Casts When Drawn</b>\nGain 2 Armor.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "history": [],
+      "name": "Scramble for Gear",
+      "new_or_unreviewed_capabilities": [
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "GAIN_ARMOR",
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Gain 2 Armor. Shuffle five Gear spells into your deck that give\n2 Armor when drawn.",
+      "rules_uncertainty": "When-drawn replacement draw, deck recursion, spell-cast event/accounting distinguish drawn versus hand-played.",
+      "semantic_family": "cast_when_drawn_shuffle",
+      "summon": [],
+      "targeting": "SELF",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_732",
+      "choice_discover": [],
+      "classes": [
+        "DEMONHUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "DEMON_COST_FUTURE_VOID_SOUL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Void Soul",
+      "new_or_unreviewed_capabilities": [
+        "RANDOM_DEMON_SUMMON",
+        "FUTURE_VOID_SOUL_UPGRADE"
+      ],
+      "persistent_aura_state": [
+        "FUTURE_VOID_SOUL_UPGRADE"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [
+        "FUTURE_VOID_SOUL_UPGRADE"
+      ],
+      "randomness": [
+        "RANDOM_DEMON_SUMMON"
+      ],
+      "required_capabilities": [
+        "RANDOM_DEMON_SUMMON",
+        "FUTURE_VOID_SOUL_UPGRADE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Summon a random\n1-Cost Demon. Improve\nyour future Void Souls.",
+      "rules_uncertainty": "Upgrade persistence across instances/generation and initial versus effective cost pool need full rules contract.",
+      "semantic_family": "future_generated_state",
+      "summon": [
+        "RANDOM_DEMON_SUMMON"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_801",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "amount": 4,
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER"
+          }
+        ],
+        "held_spell_threshold": 3,
+        "reviewed_rules_text": "Deal $4 damage. (Cast 3 spells to turn into a minion!)",
+        "support_state": "SUPPORTED",
+        "transform_card": "JAIL_801t"
+      },
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "HELD_SPELL_PROGRESS": "update_held_card_spell_progress, scoped hand-play gate",
+        "TRANSFORM_HAND": "held_spell_threshold / transform_card, scoped combination only"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "JAIL_801t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Molten Gold Elemental",
+          "rules_text": "<b>Battlecry:</b> Deal 4 damage.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [
+        "HELD_SPELL_PROGRESS"
+      ],
+      "name": "Molten Gold",
+      "new_or_unreviewed_capabilities": [],
+      "persistent_aura_state": [
+        "HELD_SPELL_PROGRESS"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "HELD_SPELL_PROGRESS",
+        "TRANSFORM_HAND"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $4 damage.\n<i>(Cast 3 spells to turn into a minion!)</i>",
+      "rules_uncertainty": "Existing scoped progress contract uses hand-play spells; replay/autocast/nested semantics beyond reviewed admission remain blocked.",
+      "semantic_family": "held_spell_transform",
+      "summon": [],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [
+        "TRANSFORM_HAND"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "JAIL_940",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "DEATHRATTLES_FROM_FRIENDLY_GAME_HISTORY"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY"
+      ],
+      "name": "Undeath Sentence",
+      "new_or_unreviewed_capabilities": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY",
+        "TRIGGER_DEATHRATTLE"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY"
+      ],
+      "required_capabilities": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY",
+        "TRIGGER_DEATHRATTLE"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Trigger the <b>Deathrattle</b> of\na random friendly minion\nthat died this game.",
+      "rules_uncertainty": "Requires whole-match death history and ghost-source identity/controller/instance semantics, not current graveyard metadata alone.",
+      "semantic_family": "death_history_replay",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "MEND_300",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELF"
+      ],
+      "dynamic_generated_dependencies": [
+        "BEAST_COST_PREVIOUS_COMPANION_PLUS_1"
+      ],
+      "existing_manaengine_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Tame Pet",
+      "new_or_unreviewed_capabilities": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT"
+      ],
+      "persistent_aura_state": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT",
+        "DRAW_SELF"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Replace your future\nAnimal Companions with\nrandom Beasts that cost\n(1) more. Draw a card.",
+      "rules_uncertainty": "Persistent replacement rule with random results; future generated Animal Companion outcomes expand graph.",
+      "semantic_family": "future_companion_override",
+      "summon": [],
+      "targeting": "SELF",
+      "training_eligible": false,
+      "transform": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TIME_006",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "TIME_006t1",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Mirrored Mage",
+          "rules_text": "<b>Taunt</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Mirror Dimension",
+      "new_or_unreviewed_capabilities": [
+        "HOLDING_DRAGON",
+        "CONDITIONAL_COUNT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SUMMON_FIXED",
+        "HOLDING_DRAGON",
+        "CONDITIONAL_COUNT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Summon a 0/4 minion with <b>Taunt</b>. If you are holding a Dragon, summon another.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "fixed_summon_composition",
+      "summon": [
+        "SUMMON_FIXED"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "BUFF_FRIENDLY_BOARD"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TIME_026",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "CAST_WHEN_DRAWN"
+      ],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "TIME_025t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Shred of Time",
+          "rules_text": "<b>Casts When Drawn</b>\nDeal $3 damage to\nyour hero.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "TIME_026e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ruptured Reality",
+          "rules_text": "+1/+1.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Entropic Continuity",
+      "new_or_unreviewed_capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Give your minions +1/+1.\nShuffle 2 Shreds of Time\ninto your deck.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "cast_when_drawn_shuffle",
+      "summon": [],
+      "targeting": "FRIENDLY_BOARD",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TIME_039",
+      "choice_discover": [
+        "DISCOVER_OPPONENT_HAND"
+      ],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_OPPONENT_HAND_INSTANCES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Deja Vu",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_OPPONENT_HAND",
+        "COPY_TO_HAND"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_OPPONENT_HAND"
+      ],
+      "required_capabilities": [
+        "DISCOVER_OPPONENT_HAND",
+        "COPY_TO_HAND"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a copy\nof a card in your opponent's hand.",
+      "rules_uncertainty": "Internal hidden candidates reveal only offered/selected cards; copy-to-hand contract differs from INSTANCE_COPY_V1.",
+      "semantic_family": "hidden_zone_copy",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [
+        "COPY_TO_HAND"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "TIME_212",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Lightning Rod",
+      "new_or_unreviewed_capabilities": [
+        "DAMAGE_FRIENDLY_MINION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_ENEMY_MINION"
+      ],
+      "required_capabilities": [
+        "DAMAGE_FRIENDLY_MINION",
+        "RANDOM_ENEMY_MINION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $2 damage to a friendly minion to deal $4 damage to a random enemy minion.",
+      "rules_uncertainty": "Death boundary and damage-trigger interleaving between packets require review; do not reuse Sleet's admission blindly.",
+      "semantic_family": "sequential_damage",
+      "summon": [],
+      "targeting": "FRIENDLY_MINION_THEN_RANDOM_ENEMY_MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [
+        "SHIELD_CHARACTER",
+        "BUFF_HAND_HEALTH"
+      ],
+      "canonical_rosettastone_source_candidates": [
+        {
+          "evidence_status": "UNREVIEWED_SOURCE_CANDIDATE",
+          "kind": "enchantment_or_object_reference",
+          "to": "ULD_191e"
+        }
+      ],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "TIME_447",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "ULD_191e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Assisting!",
+          "rules_text": "+2 Health.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "history": [],
+      "name": "Power Word: Barrier",
+      "new_or_unreviewed_capabilities": [
+        "SHIELD_CHARACTER",
+        "BUFF_HAND_HEALTH"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "SHIELD_CHARACTER",
+        "BUFF_HAND_HEALTH"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Give a character <b>Divine Shield</b>. Give minions in your hand +2 Health.",
+      "rules_uncertainty": "Hero Shield legality and persistent hand instance Health; hand-buffed Bookkeeper remains blocked.",
+      "semantic_family": "stat_keyword_enchant",
+      "summon": [],
+      "targeting": "CHARACTER_AND_HAND",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "TIME_701",
+      "choice_discover": [
+        "DISCOVER_ACTUAL_DECK"
+      ],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_SELECTED"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Waveshaping",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED",
+        "BOTTOM_UNSELECTED"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_ACTUAL_DECK"
+      ],
+      "required_capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED",
+        "BOTTOM_UNSELECTED"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a card from your deck. The others get put on the bottom.",
+      "rules_uncertainty": "Exact candidate sampling, bottom order and duplicate-instance handling.",
+      "semantic_family": "discover_deck",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TIME_EVENT_999",
+      "choice_discover": [
+        "REWIND",
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "classes": [
+        "NEUTRAL"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "SPELL_ANY_CLASS",
+        "SPELL_PLAYER_CLASS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Sands of Time",
+      "new_or_unreviewed_capabilities": [
+        "REWIND",
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "persistent_aura_state": [
+        "REWIND",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "required_capabilities": [
+        "REWIND",
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Rewind</b>\n<b>Discover</b> a spell from\nANY class. <i>(Or just your class after you <b>Rewind</b>!)</i>",
+      "rules_uncertainty": "Rewind is gameplay continuation/reroll semantics; deterministic clone alone is not reviewed Rewind.",
+      "semantic_family": "rewind_discover",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 6,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_221",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "TLC_249",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Sizzling Cinder",
+          "rules_text": "<b>Deathrattle:</b> Deal 2 damage randomly split among all enemies.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "history": [],
+      "name": "Sizzling Swarm",
+      "new_or_unreviewed_capabilities": [
+        "SUMMON_COUNT_DAMAGE_DEALT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_CHARACTER",
+        "SUMMON_COUNT_DAMAGE_DEALT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Deal $3 damage.\nSummon that many 2/1 Sizzling Cinders.",
+      "rules_uncertainty": "Sizzling Cinder is a collectible 2/1 with random split-damage Deathrattle, not vanilla token. Review count after prevention, armor/overkill and Spell Damage.",
+      "semantic_family": "damage_scaled_summon",
+      "summon": [
+        "SUMMON_COUNT_DAMAGE_DEALT"
+      ],
+      "targeting": "CHARACTER",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [
+        "BUFF_DRAWN_STATS"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_222",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [
+        "DRAW_DIFFERENT_MINION_TYPES",
+        "BUFF_DRAWN_STATS"
+      ],
+      "dynamic_generated_dependencies": [
+        "ACTUAL_DECK_DIFFERENT_MINION_TYPES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Flight of the Firehawk",
+      "new_or_unreviewed_capabilities": [
+        "DRAW_DIFFERENT_MINION_TYPES",
+        "BUFF_DRAWN_STATS"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DRAW_DIFFERENT_MINION_TYPES"
+      ],
+      "required_capabilities": [
+        "DRAW_DIFFERENT_MINION_TYPES",
+        "BUFF_DRAWN_STATS"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Draw two minions of different minion types. Give them +1/+1.",
+      "rules_uncertainty": "Dual/ALL type matching, sample order, hand overflow and buffed instances need review.",
+      "semantic_family": "type_filtered_draw_buff",
+      "summon": [],
+      "targeting": "SELF",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 3,
+      "buff_debuff": [
+        "LOWEST_HEALTH_ENEMY_DAMAGE"
+      ],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_227",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Lava Flow",
+      "new_or_unreviewed_capabilities": [
+        "LOWEST_HEALTH_ENEMY_DAMAGE",
+        "REPEAT_THREE",
+        "OVERLOAD"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "LOWEST_HEALTH_ENEMY_DAMAGE",
+        "REPEAT_THREE",
+        "OVERLOAD"
+      ],
+      "resource_mechanic": [
+        "OVERLOAD"
+      ],
+      "rules_text": "Deal $2 damage to the lowest Health enemy, three times. <b>Overload:</b> (1)",
+      "rules_uncertainty": "Re-select enemy incl hero each instruction, ties RNG, deaths, packet scaling, mana-lock state on Mage player.",
+      "semantic_family": "overload_composition",
+      "summon": [],
+      "targeting": "LOWEST_HEALTH_ENEMY",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_229",
+      "choice_discover": [],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Spirit of the Mountain",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Play 6 minions\nof unique types.\n<b>Reward:</b> Ashalon.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_235",
+      "choice_discover": [],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINION_BASE_COST_EQUALS_DESTROYED"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Life Cycle",
+      "new_or_unreviewed_capabilities": [
+        "DESTROY_MINION",
+        "RANDOM_SAME_COST_REPLACEMENT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "RANDOM_SAME_COST_REPLACEMENT"
+      ],
+      "required_capabilities": [
+        "DESTROY_MINION",
+        "RANDOM_SAME_COST_REPLACEMENT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "Destroy a minion. Summon a random minion of the same\nCost to replace it.",
+      "rules_uncertainty": "Cost snapshot, position and target-controller placement need review; full reachable cost union not frozen deck only.",
+      "semantic_family": "random_summon",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [
+        "RANDOM_SAME_COST_REPLACEMENT"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_239",
+      "choice_discover": [],
+      "classes": [
+        "DRUID"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Restore the Wild",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Fill your board\non 3 of your turns.\n<b>Reward:</b> The Everbloom.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_426",
+      "choice_discover": [],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Dive the Golakka Depths",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Repeatable Quest:</b> Summon 6 Murlocs.\n<b>Reward:</b> Murlocs you summon gain +1/+1.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_433",
+      "choice_discover": [],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Reanimate the Terror",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Quest:</b> Spend 15 <b>Corpses</b>.\n<b>Reward:</b> Tyrax, Bone Terror.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_435",
+      "choice_discover": [
+        "DISCOVER_FROST_RUNE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "FROST_RUNE_CARDS"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "name": "Crypt Map",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_FROST_RUNE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "persistent_aura_state": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_FROST_RUNE"
+      ],
+      "required_capabilities": [
+        "DISCOVER_FROST_RUNE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Discover</b> a Frost Rune card. If you play it this turn, also pick one\nof the others.",
+      "rules_uncertainty": "Tracked discovered entity, held options and second continuation; Mage actor/corpse effects may appear.",
+      "semantic_family": "discover_then_play_other_option",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_442",
+      "choice_discover": [
+        "DISCOVER_MURLOC",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "classes": [
+        "PALADIN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MURLOC_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "name": "Submerged Map",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_MURLOC",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "persistent_aura_state": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_MURLOC"
+      ],
+      "required_capabilities": [
+        "DISCOVER_MURLOC",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a Murloc.\nIf you play it this turn, also\npick one of the others.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "discover_then_play_other_option",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_446",
+      "choice_discover": [],
+      "classes": [
+        "WARLOCK"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Escape the Underfel",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Play 6 <b>Temporary</b> cards. <b>Reward:</b> Underfel Rift.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_460",
+      "choice_discover": [],
+      "classes": [
+        "MAGE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "The Forbidden Sequence",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Quest:</b> <b>Discover</b> 8 cards.\n<b>Reward:</b> The Origin Stone.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_464",
+      "choice_discover": [
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "classes": [
+        "SHAMAN"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "MINIONS_UNPLAYED_TYPES"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "name": "Mountain Map",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "persistent_aura_state": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_UNPLAYED_TYPE"
+      ],
+      "required_capabilities": [
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a minion with\na type you haven't played.\nIf you play it this turn, also\npick one of the others.",
+      "rules_uncertainty": "Needs game-wide type history, not previous-own-turn history; ALL/dual types review.",
+      "semantic_family": "discover_then_play_other_option",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_513",
+      "choice_discover": [],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Lie in Wait",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Quest:</b> Shuffle cards\ninto your deck, 5 times.\n<b>Reward: </b>Master Dusk.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_517",
+      "choice_discover": [],
+      "classes": [
+        "ROGUE"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [
+        "GAME_SHUFFLE_COUNT"
+      ],
+      "name": "Knockback",
+      "new_or_unreviewed_capabilities": [
+        "GAME_SHUFFLE_COUNT"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [],
+      "required_capabilities": [
+        "DAMAGE_MINION",
+        "GAME_SHUFFLE_COUNT"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]Deal $1 damage to\na minion <i>(improved for\neach time you've shuffled\ncards into your deck)</i>.",
+      "rules_uncertainty": "Text needs game-wide shuffle event-count semantics; unrelated to Bookkeeper previous-turn type history.",
+      "semantic_family": "held_history_damage",
+      "summon": [],
+      "targeting": "MINION",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_602",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Enter the Lost City",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Quest:</b> Survive 10 turns.\n<b>Reward: </b>Latorvius, Gaze\nof the City.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_631",
+      "choice_discover": [],
+      "classes": [
+        "DEMONHUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Unleash the Colossus",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Deal exactly 2 damage to an enemy\non your turn, 12 times.\n<b>Reward:</b> Gorishi Colossus.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 5,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_632",
+      "choice_discover": [],
+      "classes": [
+        "WARRIOR"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [
+        {
+          "card_id": "TLC_632t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "DIE, INSECT!",
+          "rules_text": "Deal $8 damage to a random enemy.\n<i>(Two uses left!)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "HERO_POWER"
+        },
+        {
+          "card_id": "TLC_632t2",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "DIE, INSECT!",
+          "rules_text": "Deal $8 damage to a random enemy.\n<i>(Last use!)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "HERO_POWER"
+        }
+      ],
+      "history": [],
+      "name": "Story of Sulfuras",
+      "new_or_unreviewed_capabilities": [
+        "REPLACE_HERO_POWER",
+        "TWO_USE_RETURN",
+        "RANDOM_ENEMY_DAMAGE"
+      ],
+      "persistent_aura_state": [
+        "TWO_USE_RETURN"
+      ],
+      "pool_membership": {
+        "fire_candidate": true,
+        "whelp_raw_candidate": false,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "REPLACE_HERO_POWER"
+      ],
+      "randomness": [
+        "RANDOM_ENEMY_DAMAGE"
+      ],
+      "required_capabilities": [
+        "REPLACE_HERO_POWER",
+        "TWO_USE_RETURN",
+        "RANDOM_ENEMY_DAMAGE"
+      ],
+      "resource_mechanic": [
+        "REPLACE_HERO_POWER"
+      ],
+      "rules_text": "[x]Swap your Hero Power\nto \"Deal 8 damage\nto a random enemy.\"\nAfter 2 uses, swap back.",
+      "rules_uncertainty": "Fundamental public hero-power identity, legal actions, counters, restoration and repeated swaps; adapter currently initializes Mage Fireblast.",
+      "semantic_family": "temporary_hero_power_swap",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [
+        "REPLACE_HERO_POWER"
+      ],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_817",
+      "choice_discover": [],
+      "classes": [
+        "PRIEST"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Reach Equilibrium",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Quest:</b> Cast 4 Holy spells\n<b>Reward:</b> Life's Breath.\n<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_824",
+      "choice_discover": [
+        "DISCOVER_ODD_ATTACK_BEAST",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ODD_BASE_ATTACK_BEAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "name": "Odd Map",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_ODD_ATTACK_BEAST",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "persistent_aura_state": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_ODD_ATTACK_BEAST"
+      ],
+      "required_capabilities": [
+        "DISCOVER_ODD_ATTACK_BEAST",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> an odd-Attack\nBeast. If you play it this\nturn, also pick one of\nthe others.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "discover_then_play_other_option",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_830",
+      "choice_discover": [],
+      "classes": [
+        "HUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "The Food Chain",
+      "new_or_unreviewed_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "QUEST_LONG_LIVED_STATE"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "<b>Quest:</b> Play a 1, 3, 5, and 7-Attack Beast.\n<b>Reward:</b> Shokk.",
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "semantic_family": "quest_excluded_from_random",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_900",
+      "choice_discover": [
+        "DISCOVER_FEL_SPELL",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "classes": [
+        "DEMONHUNTER"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "FEL_SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_manaengine_primitives": {},
+      "fixed_generated_dependencies": [],
+      "history": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "name": "Hive Map",
+      "new_or_unreviewed_capabilities": [
+        "DISCOVER_FEL_SPELL",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "persistent_aura_state": [
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": true
+      },
+      "quest_long_lived_state": [],
+      "randomness": [
+        "DISCOVER_FEL_SPELL"
+      ],
+      "required_capabilities": [
+        "DISCOVER_FEL_SPELL",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Discover</b> a Fel spell.\nIf you play it this turn, also\npick one of the others.",
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification.",
+      "semantic_family": "discover_then_play_other_option",
+      "summon": [],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": false
+    },
+    {
+      "base_cost": 1,
+      "buff_debuff": [],
+      "canonical_rosettastone_source_candidates": [],
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_EVENT_400",
+      "choice_discover": [],
+      "classes": [
+        "NEUTRAL"
+      ],
+      "current_support_declaration": null,
+      "dependency_closure_state": "NOT_REVIEWED_COMPLETE",
+      "draw": [],
+      "dynamic_generated_dependencies": [
+        "ZOMBEAST_COMPONENTS"
+      ],
+      "existing_manaengine_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "fixed_generated_dependencies": [],
+      "history": [],
+      "name": "Storm the Gates",
+      "new_or_unreviewed_capabilities": [
+        "SIDEQUEST",
+        "SUMMON_BEAST_UNDEAD_COUNT",
+        "CRAFT_ZOMBEAST"
+      ],
+      "persistent_aura_state": [],
+      "pool_membership": {
+        "fire_candidate": false,
+        "whelp_raw_candidate": true,
+        "whelp_working_class_candidate": false
+      },
+      "quest_long_lived_state": [
+        "SIDEQUEST"
+      ],
+      "randomness": [],
+      "required_capabilities": [
+        "SIDEQUEST",
+        "SUMMON_BEAST_UNDEAD_COUNT",
+        "CRAFT_ZOMBEAST",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "resource_mechanic": [],
+      "rules_text": "[x]<b>Sidequest:</b> Play\n3 Beasts or Undead.\n<b>Reward:</b> Craft a custom\nZombeast. It costs (3) less.",
+      "rules_uncertainty": "Neutral sidequest eligibility for 'any class' unknown; should not inherit Quest exclusion. Composite card identity/state requires architecture review.",
+      "semantic_family": "sidequest_composite_minion",
+      "summon": [
+        "SUMMON_BEAST_UNDEAD_COUNT",
+        "CRAFT_ZOMBEAST"
+      ],
+      "targeting": "NONE",
+      "training_eligible": false,
+      "transform": [],
+      "unique_outlier_mechanic": true
+    }
+  ],
+  "classification": "MANUAL_TEXT_CONTRACT_AUDIT_NOT_IMPLEMENTATION_OR_VERIFICATION",
+  "count": 105,
+  "schema_version": 1,
+  "sources": {
+    "audit_builder_sha256": "a4e410e32bd179c6f2e538cff513cb8f4fe825face6cdd9ec3a2297d88d06645",
+    "dark_gift_review_sha256": "47f65e6e043d4dd50a1788b81ebef6cf1449d5f299f260c95f301733a33d43dd",
+    "fetched_full_feed_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+    "full_definition_slice_sha256": "869e13bbe49546724c71363031fde897475ee4211e6f70abfdc9698896a3fe95",
+    "hash_contract": "Ordinal sorted unique card IDs, UTF-8 without BOM, LF after every ID including the last.",
+    "metadata_snapshot": "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+    "metadata_snapshot_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "root_membership_file": "data/cards/standard_roots_20261001_enUS.json",
+    "root_membership_file_sha256": "1820a2f3b78539929e267a7da68e3a91d2275528ba969ed2540d778735198915",
+    "rules_review_sha256": "d065220470edcde778e5b689487cb6cc830bacd78277d8d9e55f2689d31c07d7",
+    "source_revision": "1686256493293459b6fa6f863832f887416025f7"
+  }
+}

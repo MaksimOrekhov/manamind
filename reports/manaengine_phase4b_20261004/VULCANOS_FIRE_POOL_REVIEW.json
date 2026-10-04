@@ -1,0 +1,763 @@
+{
+  "as_of_date": "2026-10-01",
+  "candidate_ids": [
+    "CATA_303",
+    "CATA_581",
+    "CATA_582",
+    "CATA_585",
+    "CORE_CS2_029",
+    "CORE_CS2_032",
+    "CORE_CS2_062",
+    "CORE_EX1_610",
+    "CORE_GIL_836",
+    "CORE_LOOT_101",
+    "CORE_SW_108",
+    "CORE_WON_337",
+    "DINO_406",
+    "END_024",
+    "END_025",
+    "FIR_900",
+    "FIR_906",
+    "FIR_909",
+    "FIR_910",
+    "FIR_911",
+    "FIR_914",
+    "FIR_916",
+    "FIR_920",
+    "FIR_923",
+    "FIR_939",
+    "FIR_941",
+    "FIR_954",
+    "JAIL_307",
+    "JAIL_801",
+    "TLC_221",
+    "TLC_222",
+    "TLC_227",
+    "TLC_632"
+  ],
+  "count": 33,
+  "members": [
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_303",
+      "classes": [
+        "PRIEST"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 122774,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Purifying Breath",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CATACLYSM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 6,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CATA_581",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 123056,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Decimation",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CATACLYSM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_582",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 123157,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Searing Fissure",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CATACLYSM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 1,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CATA_585",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 123164,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Torch",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CATACLYSM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 4,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_029",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "TARGET_DAMAGE",
+        "damage": 6,
+        "reviewed_rules_text": "Deal $6 damage.",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 69501,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Fireball",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 7,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_032",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 69502,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Flamestrike",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_CS2_062",
+      "classes": [
+        "WARLOCK"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "amount": 3,
+            "kind": "DAMAGE",
+            "target": "ALL_CHARACTERS"
+          }
+        ],
+        "reviewed_rules_text": "Deal $3 damage to ALL characters.",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 69519,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Hellfire",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_EX1_610",
+      "classes": [
+        "HUNTER"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 69603,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Explosive Trap",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": 48393,
+      "base_cost": 1,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "CORE_GIL_836",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "DISCOVER",
+        "choice_cost_delta": -1,
+        "choice_count": 3,
+        "choice_pool": "MINION_BATTLECRY_PLAYER_CLASS_NEUTRAL",
+        "reviewed_rules_text": "Discover a Battlecry minion. It costs (1) less.",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 120572,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Blazing Invocation",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_LOOT_101",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "SECRET",
+        "reviewed_rules_text": "Secret: After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+        "secret_effect": "EXPLOSIVE_RUNES",
+        "secret_trigger": "OPPONENT_PLAYS_MINION",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 86235,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Explosive Runes",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": 64430,
+      "base_cost": 1,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_SW_108",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "MINION_DAMAGE_GENERATE",
+        "damage": 2,
+        "generated_card": "SW_108t",
+        "reviewed_rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 126227,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "First Flame",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": 103240,
+      "base_cost": 4,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "CORE_WON_337",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 127592,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Ironforge Portal",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "CORE",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "DINO_406",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 118480,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Fire Breath",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "THE_LOST_CITY",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_024",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "SECRET",
+        "reviewed_rules_text": "Secret: When your enemy's turn ends, deal INFINITE damage to their highest Health minion.",
+        "secret_effect": "FLAMES_OF_INFINITY",
+        "secret_trigger": "OPPONENT_TURN_ENDS",
+        "support_state": "SUPPORTED"
+      },
+      "dbf_id": 121187,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Flames of Infinity",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "TIME_TRAVEL",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "END_025",
+      "classes": [
+        "MAGE",
+        "PRIEST"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 121188,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Eternal Firebolt",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "TIME_TRAVEL",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_900",
+      "classes": [
+        "DEATHKNIGHT"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115624,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Cremate",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_906",
+      "classes": [
+        "DRUID"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115630,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Overheat",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_909",
+      "classes": [
+        "HUNTER"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115633,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Bursting Shot",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_910",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115634,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Scorching Winds",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_911",
+      "classes": [
+        "MAGE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115635,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Smoldering Grove",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 1,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_914",
+      "classes": [
+        "PALADIN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115638,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Smoldering Strength",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_916",
+      "classes": [
+        "PRIEST"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115640,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Smoldering Ascent",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_920",
+      "classes": [
+        "ROGUE"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115647,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Smoke Bomb",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_923",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115650,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Flames of the Firelord",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 2,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_939",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115688,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Shadowflame Suffusion",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 7,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "FIR_941",
+      "classes": [
+        "PALADIN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115776,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Searing Reflection",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 1,
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "card_id": "FIR_954",
+      "classes": [
+        "WARLOCK"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 115753,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Conflagrate",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "EMERALD_DREAM",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 5,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_307",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 126100,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Crowd Control",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "JAIL_801",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "amount": 4,
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER"
+          }
+        ],
+        "held_spell_threshold": 3,
+        "reviewed_rules_text": "Deal $4 damage. (Cast 3 spells to turn into a minion!)",
+        "support_state": "SUPPORTED",
+        "transform_card": "JAIL_801t"
+      },
+      "dbf_id": 126407,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "SUPPORTED",
+      "name": "Molten Gold",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 6,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_221",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 117532,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Sizzling Swarm",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "THE_LOST_CITY",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_222",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 117606,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Flight of the Firehawk",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "THE_LOST_CITY",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 3,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_227",
+      "classes": [
+        "SHAMAN"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 117536,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Lava Flow",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "THE_LOST_CITY",
+      "spell_school": "FIRE"
+    },
+    {
+      "alias_count_as_copy_of_dbf_id": null,
+      "base_cost": 5,
+      "canonical_rules_status": "UNKNOWN",
+      "card_id": "TLC_632",
+      "classes": [
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "current_manaengine_declaration": null,
+      "dbf_id": 117874,
+      "dependency_closure": "NOT_REVIEWED_COMPLETE",
+      "manaengine_support_status": "NO_DECLARATION",
+      "name": "Story of Sulfuras",
+      "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+      "rune_cost": null,
+      "set": "THE_LOST_CITY",
+      "spell_school": "FIRE"
+    }
+  ],
+  "pool_contract_version": 1,
+  "pool_id": "SPELL_FIRE_STANDARD_ANY_CLASS_20261001_V1",
+  "predicate_contract": {
+    "classes": "ANY",
+    "duplicate_policy": "ONE_CANONICAL_ROOT_ID_NO_LEGACY_ALIAS_EXPANSION",
+    "format_ban_policy": "DO_NOT_INHERIT_DECKBUILDING_BANS",
+    "known_exclusion_hits": [],
+    "open_question": "No full patch-specific not-generatable tag inventory or client outcome trace available; 33 is exact metadata-derived reviewed candidate membership, not certified complete runtime membership.",
+    "rules_exclusions": [
+      "QUEST_AND_QUESTLINE",
+      "ANY_THREE_RUNE_REQUIREMENT",
+      "REVIEWED_NOT_GENERATABLE_IDS"
+    ],
+    "scope": "PINNED_STANDARD_COLLECTIBLE_ROOTS",
+    "spell_school": "FIRE",
+    "type": "SPELL"
+  },
+  "profile_id": "standard_full_20261001_v1",
+  "rules_provenance": [
+    "https://hearthstone.blizzard.com/en-us/news/23935323/26-0-4-patch-notes",
+    "https://hearthstone.blizzard.com/en-us/news/24293284/36-2-2-patch-notes"
+  ],
+  "rules_review_status": "METADATA_AND_CARD_TEXT_REVIEWED_RUNTIME_ELIGIBILITY_NOT_PROVEN",
+  "runtime_admitted": false,
+  "schema_version": 1,
+  "sorted_lf_sha256": "480f5971bdf90a339f08142a9f2e47c7650be1ddd6973241960885b20b3e0e87",
+  "sources": {
+    "audit_builder_sha256": "a4e410e32bd179c6f2e538cff513cb8f4fe825face6cdd9ec3a2297d88d06645",
+    "dark_gift_review_sha256": "47f65e6e043d4dd50a1788b81ebef6cf1449d5f299f260c95f301733a33d43dd",
+    "fetched_full_feed_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+    "full_definition_slice_sha256": "869e13bbe49546724c71363031fde897475ee4211e6f70abfdc9698896a3fe95",
+    "hash_contract": "Ordinal sorted unique card IDs, UTF-8 without BOM, LF after every ID including the last.",
+    "metadata_snapshot": "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+    "metadata_snapshot_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "root_membership_file": "data/cards/standard_roots_20261001_enUS.json",
+    "root_membership_file_sha256": "1820a2f3b78539929e267a7da68e3a91d2275528ba969ed2540d778735198915",
+    "rules_review_sha256": "d065220470edcde778e5b689487cb6cc830bacd78277d8d9e55f2689d31c07d7",
+    "source_revision": "1686256493293459b6fa6f863832f887416025f7"
+  },
+  "support_filter_applied": false
+}

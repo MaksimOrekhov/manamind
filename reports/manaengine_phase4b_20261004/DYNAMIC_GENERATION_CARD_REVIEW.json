@@ -1,0 +1,1363 @@
+{
+  "schema_version": 1,
+  "purpose": "Manual semantic audit annotations, not executable declarations or rules evidence",
+  "card_reviews": {
+    "CORE_CS2_029": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_CHARACTER"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_DS1_185": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_CHARACTER"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_CS1_130": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_MINION"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_CS2_032": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_ENEMY_MINIONS"
+      ],
+      "targeting": "ENEMY_MINIONS",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_CS2_062": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_ALL_CHARACTERS"
+      ],
+      "targeting": "ALL_CHARACTERS",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_BOT_222": {
+      "family": "fixed_damage",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "DAMAGE_OWN_HERO"
+      ],
+      "targeting": "MINION_THEN_OWN_HERO",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_582": {
+      "family": "area_damage_hero_attack",
+      "capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "HERO_ATTACK_THIS_TURN"
+      ],
+      "targeting": "ALL_MINIONS_AND_SELF_HERO",
+      "fixed_dependencies": [
+        "CS2_045e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_485": {
+      "family": "sequential_damage",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "RANDOM_ENEMY_MINION"
+      ],
+      "targeting": "CHARACTER_THEN_RANDOM_ENEMY_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Existing scoped guards reject pending-death-dependent random target selection; declaration is not unrestricted rules support."
+    },
+    "TIME_212": {
+      "family": "sequential_damage",
+      "capabilities": [
+        "DAMAGE_FRIENDLY_MINION",
+        "RANDOM_ENEMY_MINION"
+      ],
+      "targeting": "FRIENDLY_MINION_THEN_RANDOM_ENEMY_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Death boundary and damage-trigger interleaving between packets require review; do not reuse Sleet's admission blindly."
+    },
+    "FIR_909": {
+      "family": "random_distinct_targets",
+      "capabilities": [
+        "DAMAGE_RANDOM_DISTINCT_ENEMIES"
+      ],
+      "targeting": "UP_TO_THREE_DISTINCT_ENEMIES",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Confirm distinct sampling, fewer than 3 enemies, packet/death ordering and Spell Damage application."
+    },
+    "CATA_303": {
+      "family": "damage_outcome_followup",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "IF_KILLED",
+        "HEAL_ENEMY_HERO"
+      ],
+      "targeting": "MINION_AND_ENEMY_HERO",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "FIR_954": {
+      "family": "damage_outcome_followup",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "DRAW_TARGET_OWNER"
+      ],
+      "targeting": "MINION_AND_ITS_OWNER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Capture target owner before damage/death; draw/fatigue timing needs independent review."
+    },
+    "CORE_EX1_302": {
+      "family": "damage_outcome_followup",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "IF_KILLED",
+        "DRAW_SELF"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_EX1_391": {
+      "family": "damage_outcome_followup",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "IF_SURVIVES",
+        "DRAW_SELF"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "END_020": {
+      "family": "damage_outcome_followup",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "IF_SURVIVES",
+        "DRAW_SELF",
+        "IF_KILLED",
+        "RANDOM_SUMMON"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_1_ANY_CLASS"
+      ],
+      "rules_uncertainty": "Outcome-dependent summon requires complete pool and death-boundary review."
+    },
+    "CATA_581": {
+      "family": "state_scaled_damage",
+      "capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "BOARD_COUNT_SCALING"
+      ],
+      "targeting": "ALL_MINIONS",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Review improved amount, when battlefield size is snapshotted, and damage group semantics."
+    },
+    "JAIL_307": {
+      "family": "state_scaled_damage",
+      "capabilities": [
+        "DAMAGE_ALL_MINIONS",
+        "REPEAT_TWO",
+        "DECK_SIZE_COST_REDUCTION"
+      ],
+      "targeting": "ALL_MINIONS",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Two damage instructions with distinct death/reaction boundaries; deck-size >=25 reduction combines with generated instance discount."
+    },
+    "FIR_923": {
+      "family": "state_scaled_damage",
+      "capabilities": [
+        "RANDOM_ENEMY_MINION",
+        "HELD_COST_AT_LEAST_8",
+        "CONDITIONAL_DAMAGE"
+      ],
+      "targeting": "RANDOM_ENEMY_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CAP_006": {
+      "family": "held_history_damage",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Per-instance history of Stealthed attacker; semantic trigger timing and stolen/newly generated hand admission unknown."
+    },
+    "TLC_517": {
+      "family": "held_history_damage",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "GAME_SHUFFLE_COUNT"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Text needs game-wide shuffle event-count semantics; unrelated to Bookkeeper previous-turn type history."
+    },
+    "CATA_585": {
+      "family": "excess_damage_return_outlier",
+      "capabilities": [
+        "DAMAGE_DAMAGED_MINION",
+        "NO_SPELLPOWER",
+        "EXCESS_DAMAGE",
+        "RETURN_SELF_WITH_DAMAGE"
+      ],
+      "targeting": "DAMAGED_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "SELF_VARIANT:CATA_585"
+      ],
+      "rules_uncertainty": "Potential CUSTOM: exact excess computation, return identity/modifiers and retained damage require independent review; not another simple fixed damage declaration."
+    },
+    "END_025": {
+      "family": "conditional_spell_return",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "LIFESTEAL",
+        "IF_KILLED",
+        "END_TURN_RETURN_SELF"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "SELF_VARIANT:END_025"
+      ],
+      "rules_uncertainty": "Return-source instance identity, discount persistence, activation and end-turn boundary unreviewed."
+    },
+    "FIR_910": {
+      "family": "school_discard_composition",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "RANDOM_HAND_FIRE_DISCARD",
+        "CONDITIONAL_EXTRA_DAMAGE"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Review discard-between-instructions and whether discarded source is still a candidate; no generated pool, only actual hand."
+    },
+    "FIR_906": {
+      "family": "school_discard_composition",
+      "capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "RANDOM_HAND_NATURE_DISCARD",
+        "CONDITIONAL_EXTRA_BUFF"
+      ],
+      "targeting": "FRIENDLY_BOARD",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "FIR_911": {
+      "family": "smoldering_hand_age",
+      "capabilities": [
+        "DRAW_SELF",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "targeting": "SELF",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Metadata placeholders {0}/{1} do not specify initial value/cap/expiry phase; generated arrival starts a new per-instance lifecycle, needs fuller rules evidence."
+    },
+    "FIR_914": {
+      "family": "smoldering_hand_age",
+      "capabilities": [
+        "BUFF_FRIENDLY_MINION",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "targeting": "FRIENDLY_MINION",
+      "fixed_dependencies": [
+        "FIR_914e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Exact initial amount/turn upgrades/expiry/hand entry undefined by placeholders; generates hand-buffed Bookkeeper states outside INSTANCE_COPY_V1."
+    },
+    "FIR_916": {
+      "family": "smoldering_hand_age",
+      "capabilities": [
+        "DAMAGE_ENEMY_MINIONS",
+        "HAND_TURN_UPGRADE",
+        "AUTO_DISCARD"
+      ],
+      "targeting": "ENEMY_MINIONS",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Exact starting amount/age/expiry and CurrentAtStep Spell Damage need review."
+    },
+    "CORE_AT_055": {
+      "family": "healing_draw",
+      "capabilities": [
+        "HEAL_CHARACTER"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_302": {
+      "family": "healing_draw",
+      "capabilities": [
+        "HEAL_MINION_TO_FULL",
+        "DRAW_SELF"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_CS2_004": {
+      "family": "stat_keyword_enchant",
+      "capabilities": [
+        "BUFF_MINION_HEALTH",
+        "DRAW_SELF"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [
+        "CS2_004e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TIME_447": {
+      "family": "stat_keyword_enchant",
+      "capabilities": [
+        "SHIELD_CHARACTER",
+        "BUFF_HAND_HEALTH"
+      ],
+      "targeting": "CHARACTER_AND_HAND",
+      "fixed_dependencies": [
+        "ULD_191e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Hero Shield legality and persistent hand instance Health; hand-buffed Bookkeeper remains blocked."
+    },
+    "DINO_406": {
+      "family": "tribal_multi_zone_buff",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "BUFF_ELEMENTALS"
+      ],
+      "targeting": "CHARACTER_AND_ELEMENTALS",
+      "fixed_dependencies": [
+        "ICC_210e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Determine exact zones of 'your Elementals', current stats and application/death sequence."
+    },
+    "CORE_CS2_074": {
+      "family": "weapon_buff",
+      "capabilities": [
+        "BUFF_WEAPON_ATTACK"
+      ],
+      "targeting": "FRIENDLY_WEAPON",
+      "fixed_dependencies": [
+        "CS2_074e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_CS2_108": {
+      "family": "destroy_followup",
+      "capabilities": [
+        "DESTROY_DAMAGED_ENEMY_MINION"
+      ],
+      "targeting": "DAMAGED_ENEMY_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "EDR_531": {
+      "family": "destroy_followup",
+      "capabilities": [
+        "DESTROY_FRIENDLY_MINION",
+        "GAIN_ARMOR"
+      ],
+      "targeting": "FRIENDLY_MINION_AND_SELF_HERO",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_554": {
+      "family": "stat_set_retarget",
+      "capabilities": [
+        "SET_HEALTH_1",
+        "HOLDING_DRAGON",
+        "SECOND_TARGET_CHOICE"
+      ],
+      "targeting": "ENEMY_MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Second 'pick another' continuation and excluding first target; no universal Choice redesign assumed."
+    },
+    "CORE_BAR_801": {
+      "family": "fixed_summon_composition",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "SUMMON_FIXED_RUSH"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [
+        "BAR_035t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TIME_006": {
+      "family": "fixed_summon_composition",
+      "capabilities": [
+        "SUMMON_FIXED",
+        "HOLDING_DRAGON",
+        "CONDITIONAL_COUNT"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "TIME_006t1"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_528": {
+      "family": "delayed_fixed_summon",
+      "capabilities": [
+        "NEXT_OWN_TURN_SUMMON_FIXED"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "CATA_528t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Start-of-next-turn scheduler is not the existing timed end-turn recruit; exact phase review required."
+    },
+    "CORE_SW_108": {
+      "family": "fixed_hand_generation",
+      "capabilities": [
+        "DAMAGE_MINION",
+        "ADD_FIXED_HAND"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [
+        "SW_108t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TLC_221": {
+      "family": "damage_scaled_summon",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "SUMMON_COUNT_DAMAGE_DEALT"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [
+        "TLC_249"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Sizzling Cinder is a collectible 2/1 with random split-damage Deathrattle, not vanilla token. Review count after prevention, armor/overkill and Spell Damage."
+    },
+    "CORE_WON_337": {
+      "family": "random_summon",
+      "capabilities": [
+        "GAIN_ARMOR",
+        "RANDOM_SUMMON"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_4_ANY_CLASS"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TLC_235": {
+      "family": "random_summon",
+      "capabilities": [
+        "DESTROY_MINION",
+        "RANDOM_SAME_COST_REPLACEMENT"
+      ],
+      "targeting": "MINION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_EQUALS_DESTROYED"
+      ],
+      "rules_uncertainty": "Cost snapshot, position and target-controller placement need review; full reachable cost union not frozen deck only."
+    },
+    "JAIL_732": {
+      "family": "future_generated_state",
+      "capabilities": [
+        "RANDOM_DEMON_SUMMON",
+        "FUTURE_VOID_SOUL_UPGRADE"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "DEMON_COST_FUTURE_VOID_SOUL"
+      ],
+      "rules_uncertainty": "Upgrade persistence across instances/generation and initial versus effective cost pool need full rules contract."
+    },
+    "JAIL_940": {
+      "family": "death_history_replay",
+      "capabilities": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY",
+        "TRIGGER_DEATHRATTLE"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "DEATHRATTLES_FROM_FRIENDLY_GAME_HISTORY"
+      ],
+      "rules_uncertainty": "Requires whole-match death history and ghost-source identity/controller/instance semantics, not current graveyard metadata alone."
+    },
+    "MEND_300": {
+      "family": "future_companion_override",
+      "capabilities": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT",
+        "DRAW_SELF"
+      ],
+      "targeting": "SELF",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "BEAST_COST_PREVIOUS_COMPANION_PLUS_1"
+      ],
+      "rules_uncertainty": "Persistent replacement rule with random results; future generated Animal Companion outcomes expand graph."
+    },
+    "DINO_417": {
+      "family": "temporary_board_keywords",
+      "capabilities": [
+        "BUFF_BOARD_ATTACK",
+        "GRANT_RUSH",
+        "END_TURN_DESTROY"
+      ],
+      "targeting": "FRIENDLY_BOARD",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Snapshot membership, lost/replaced minions and death ordering; not a DK session requirement solely due to card class."
+    },
+    "CORE_BOT_451": {
+      "family": "overload_composition",
+      "capabilities": [
+        "SUMMON_FIXED_RUSH",
+        "OVERLOAD"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "BOT_102t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_EX1_238": {
+      "family": "overload_composition",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "OVERLOAD"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TLC_227": {
+      "family": "overload_composition",
+      "capabilities": [
+        "LOWEST_HEALTH_ENEMY_DAMAGE",
+        "REPEAT_THREE",
+        "OVERLOAD"
+      ],
+      "targeting": "LOWEST_HEALTH_ENEMY",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Re-select enemy incl hero each instruction, ties RNG, deaths, packet scaling, mana-lock state on Mage player."
+    },
+    "EDR_811": {
+      "family": "corpses_dark_gift",
+      "capabilities": [
+        "DISCOVER_UNDEAD",
+        "SPEND_CORPSES",
+        "DARK_GIFT"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "UNDEAD_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "Generated DK card on Mage is not a DK session: review corpse accumulation/spend for non-DK and Dark Gift application."
+    },
+    "EDR_813": {
+      "family": "corpses_choose_one",
+      "capabilities": [
+        "CHOOSE_ONE",
+        "SUMMON_FIXED",
+        "SPEND_CORPSES",
+        "DAMAGE_MINION"
+      ],
+      "targeting": "MINION_IF_DAMAGE_OPTION",
+      "fixed_dependencies": [
+        "EDR_813a",
+        "EDR_813b",
+        "EDR_813at"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Full definitions resolve Ant Husk EDR_813at and option IDs EDR_813a/EDR_813b; resource legality and option availability still need review."
+    },
+    "CORE_AT_037": {
+      "family": "choose_one_composition",
+      "capabilities": [
+        "CHOOSE_ONE",
+        "DAMAGE_CHARACTER",
+        "SUMMON_FIXED"
+      ],
+      "targeting": "CHARACTER_IF_DAMAGE_OPTION",
+      "fixed_dependencies": [
+        "AT_037a",
+        "AT_037b",
+        "AT_037t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "EDR_570": {
+      "family": "choose_one_composition",
+      "capabilities": [
+        "CHOOSE_ONE",
+        "DAMAGE_ALL_MINIONS",
+        "BUFF_DAMAGED_MINION"
+      ],
+      "targeting": "DAMAGED_MINION_IF_BUFF_OPTION",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "Core_LOE_115": {
+      "family": "choose_one_discover",
+      "capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "LOE_115a",
+        "LOE_115b"
+      ],
+      "dynamic_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "EDR_872": {
+      "family": "choose_one_discover",
+      "capabilities": [
+        "CHOOSE_ONE",
+        "DISCOVER_CLASS_SPELL"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "SPELL_MAGE",
+        "SPELL_DRUID"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_DS1_184": {
+      "family": "discover_deck",
+      "capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "rules_uncertainty": "Option sampling among duplicate IDs, instance movement and order review; no outside-game collectible exclusions for deck instances."
+    },
+    "TIME_701": {
+      "family": "discover_deck",
+      "capabilities": [
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED",
+        "BOTTOM_UNSELECTED"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "rules_uncertainty": "Exact candidate sampling, bottom order and duplicate-instance handling."
+    },
+    "EDR_251": {
+      "family": "provenance_filtered_draw",
+      "capabilities": [
+        "DRAW_STARTED_IN_DECK",
+        "DRAW_NOT_STARTED_IN_DECK"
+      ],
+      "targeting": "SELF",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_BY_START_PROVENANCE"
+      ],
+      "rules_uncertainty": "make_instance.provenance alone is insufficient after subsequent copy/shuffle/transform; immutable started-in-deck provenance needed."
+    },
+    "TLC_222": {
+      "family": "type_filtered_draw_buff",
+      "capabilities": [
+        "DRAW_DIFFERENT_MINION_TYPES",
+        "BUFF_DRAWN_STATS"
+      ],
+      "targeting": "SELF",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_DIFFERENT_MINION_TYPES"
+      ],
+      "rules_uncertainty": "Dual/ALL type matching, sample order, hand overflow and buffed instances need review."
+    },
+    "TIME_039": {
+      "family": "hidden_zone_copy",
+      "capabilities": [
+        "DISCOVER_OPPONENT_HAND",
+        "COPY_TO_HAND"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_HAND_INSTANCES"
+      ],
+      "rules_uncertainty": "Internal hidden candidates reveal only offered/selected cards; copy-to-hand contract differs from INSTANCE_COPY_V1."
+    },
+    "EDR_522": {
+      "family": "hidden_zone_copy",
+      "capabilities": [
+        "OPPONENT_DRAW",
+        "COPY_DRAWN_TO_HAND"
+      ],
+      "targeting": "OPPONENT",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_DRAWN_INSTANCES"
+      ],
+      "rules_uncertainty": "Two draws, fatigue/burn, reveal boundary and copies of modified drawn entities must be reviewed."
+    },
+    "EDR_528": {
+      "family": "discover_dark_gift",
+      "capabilities": [
+        "DISCOVER_OPPONENT_DECK_COPY",
+        "COMBO",
+        "DARK_GIFT"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_DECK_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "Combo consumes play history; hidden candidates remain internal, no hidden input leakage."
+    },
+    "FIR_941": {
+      "family": "deck_draw_copy_summon",
+      "capabilities": [
+        "DRAW_MINION",
+        "COPY_AS_8_8",
+        "DIVINE_SHIELD",
+        "SUMMON_COPY"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_MINIONS"
+      ],
+      "rules_uncertainty": "Requires new modified-instance copy/summon policy; outside INSTANCE_COPY_V1, full board/draw buff interactions unknown."
+    },
+    "FIR_900": {
+      "family": "discover_dark_gift",
+      "capabilities": [
+        "DISCOVER_MINION",
+        "DARK_GIFT",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "EDR_102t"
+      ],
+      "dynamic_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "FIR_920": {
+      "family": "discover_dark_gift",
+      "capabilities": [
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION",
+        "DARK_GIFT"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "EDR_102t"
+      ],
+      "dynamic_dependencies": [
+        "COMBO_BATTLECRY_STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "OR predicate, eligible implied mechanics and Dark Gift options require exact manifest, no reduced supported choices."
+    },
+    "FIR_939": {
+      "family": "discover_dark_gift",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "DISCOVER_WARRIOR_MINION",
+        "DARK_GIFT"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [
+        "EDR_102t"
+      ],
+      "dynamic_dependencies": [
+        "WARRIOR_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "Explicit Warrior overrides controlling Mage class for the minion predicate."
+    },
+    "END_027": {
+      "family": "discover_dark_gift",
+      "capabilities": [
+        "DISCOVER_PAST_DRAGON",
+        "DARK_GIFT"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "EDR_102t"
+      ],
+      "dynamic_dependencies": [
+        "DRAGON_FROM_PAST",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "rules_uncertainty": "'From the past' requires a versioned out-of-Standard pool, not pinned Standard dragons."
+    },
+    "CORE_GIL_836": {
+      "family": "discover_predicate",
+      "capabilities": [
+        "DISCOVER_BATTLECRY",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "BATTLECRY_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Existing runtime rescans catalog; exact eligibility/dual-class behavior and all recursive outcomes are not verified."
+    },
+    "CORE_WON_350": {
+      "family": "discover_predicate",
+      "capabilities": [
+        "DISCOVER_TAUNT",
+        "BUFF_GENERATED_STATS"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "TAUNT_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CORE_YOP_001": {
+      "family": "discover_predicate",
+      "capabilities": [
+        "DISCOVER_OUTCAST",
+        "NEXT_OUTCAST_COST_REDUCTION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "OUTCAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Next-one discount is player state, not generated-card cost_delta; Outcast positional legality needed."
+    },
+    "CAP_002": {
+      "family": "temporary_inherited_effect",
+      "capabilities": [
+        "DISCOVER_STEALTH",
+        "GRANT_SELF_EFFECT_ONE_TURN"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Inherited triggered effect and recursive Discover continuation; review playable/minion trigger timing, not a generic permanent buff."
+    },
+    "CAP_101": {
+      "family": "temporary_inherited_effect",
+      "capabilities": [
+        "RANDOM_ENEMY_DAMAGE",
+        "GRANT_PLAYABLE_PIRATE_EFFECT_ONE_TURN"
+      ],
+      "targeting": "RANDOM_ENEMY",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_PIRATES"
+      ],
+      "rules_uncertainty": "Define playable hand cards including current cost/targets, duration and inherited on-play effect."
+    },
+    "CAP_402": {
+      "family": "temporary_inherited_effect",
+      "capabilities": [
+        "SHUFFLE_OPPONENT_DECK_FIXED",
+        "GRANT_PLAYABLE_HAND_EFFECT_ONE_TURN"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "CAP_400t2t",
+        "CAP_402e"
+      ],
+      "dynamic_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_CARDS"
+      ],
+      "rules_uncertainty": "Imp-formant has Lifesteal and Summoned When Drawn for opponent; nested draw/summon/continuation required."
+    },
+    "EDR_273": {
+      "family": "discover_predicate",
+      "capabilities": [
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "rules_uncertainty": "Explicit other-class filter relative to actor, neutral and dual-class overlap review."
+    },
+    "TLC_435": {
+      "family": "discover_then_play_other_option",
+      "capabilities": [
+        "DISCOVER_FROST_RUNE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "FROST_RUNE_CARDS"
+      ],
+      "rules_uncertainty": "Tracked discovered entity, held options and second continuation; Mage actor/corpse effects may appear."
+    },
+    "TLC_442": {
+      "family": "discover_then_play_other_option",
+      "capabilities": [
+        "DISCOVER_MURLOC",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MURLOC_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TLC_464": {
+      "family": "discover_then_play_other_option",
+      "capabilities": [
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MINIONS_UNPLAYED_TYPES"
+      ],
+      "rules_uncertainty": "Needs game-wide type history, not previous-own-turn history; ALL/dual types review."
+    },
+    "TLC_824": {
+      "family": "discover_then_play_other_option",
+      "capabilities": [
+        "DISCOVER_ODD_ATTACK_BEAST",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ODD_BASE_ATTACK_BEAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "TLC_900": {
+      "family": "discover_then_play_other_option",
+      "capabilities": [
+        "DISCOVER_FEL_SPELL",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "FEL_SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_621": {
+      "family": "random_persistent_aura",
+      "capabilities": [
+        "GENERATE_RANDOM_PALADIN_AURA",
+        "EXTEND_AURA_DURATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "PALADIN_AURA_SPELLS"
+      ],
+      "rules_uncertainty": "Aura duration modifier belongs to generated instance and later persistent aura; not generic cost_delta."
+    },
+    "JAIL_125": {
+      "family": "random_school_generation",
+      "capabilities": [
+        "FREEZE_ENEMY",
+        "GENERATE_RANDOM_FROST_SPELL"
+      ],
+      "targeting": "ENEMY_CHARACTER",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "FROST_SPELL_ANY_CLASS"
+      ],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "CATA_136": {
+      "family": "random_deck_generation",
+      "capabilities": [
+        "GENERATE_RANDOM_HIGH_COST_MINIONS",
+        "DOUBLE_GENERATED_STATS",
+        "SHUFFLE_SELF_DECK"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_AT_LEAST_8_ANY_CLASS"
+      ],
+      "rules_uncertainty": "Repeated sampling, generated initial stats, future play/copy/Colossal reachability."
+    },
+    "JAIL_386": {
+      "family": "cast_when_drawn_shuffle",
+      "capabilities": [
+        "GAIN_ARMOR",
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "targeting": "SELF",
+      "fixed_dependencies": [
+        "JAIL_386t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "When-drawn replacement draw, deck recursion, spell-cast event/accounting distinguish drawn versus hand-played."
+    },
+    "TIME_026": {
+      "family": "cast_when_drawn_shuffle",
+      "capabilities": [
+        "BUFF_FRIENDLY_BOARD",
+        "SHUFFLE_FIXED",
+        "CAST_WHEN_DRAWN"
+      ],
+      "targeting": "FRIENDLY_BOARD",
+      "fixed_dependencies": [
+        "TIME_025t",
+        "TIME_026e"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "JAIL_319": {
+      "family": "refresh_discover_outlier",
+      "capabilities": [
+        "DISCOVER_SPELL",
+        "REPEAT_REFRESH_OPTIONS",
+        "RANDOM_SELF_DAMAGE"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "rules_uncertainty": "Potential CUSTOM/architectural outlier: refresh action, retained choice lifetime and damage/death during pending Choice."
+    },
+    "TIME_EVENT_999": {
+      "family": "rewind_discover",
+      "capabilities": [
+        "REWIND",
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "SPELL_ANY_CLASS",
+        "SPELL_PLAYER_CLASS"
+      ],
+      "rules_uncertainty": "Rewind is gameplay continuation/reroll semantics; deterministic clone alone is not reviewed Rewind."
+    },
+    "JAIL_801": {
+      "family": "held_spell_transform",
+      "capabilities": [
+        "DAMAGE_CHARACTER",
+        "HELD_SPELL_PROGRESS",
+        "TRANSFORM_HAND"
+      ],
+      "targeting": "CHARACTER",
+      "fixed_dependencies": [
+        "JAIL_801t"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Existing scoped progress contract uses hand-play spells; replay/autocast/nested semantics beyond reviewed admission remain blocked."
+    },
+    "TLC_632": {
+      "family": "temporary_hero_power_swap",
+      "capabilities": [
+        "REPLACE_HERO_POWER",
+        "TWO_USE_RETURN",
+        "RANDOM_ENEMY_DAMAGE"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [
+        "TLC_632t",
+        "TLC_632t2"
+      ],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Fundamental public hero-power identity, legal actions, counters, restoration and repeated swaps; adapter currently initializes Mage Fireblast."
+    },
+    "CORE_EX1_610": {
+      "family": "reactive_secret",
+      "capabilities": [
+        "SECRET_HERO_ATTACKED",
+        "DAMAGE_ALL_ENEMIES"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Reuse Secret dispatcher with reviewed before/after attack window; not Ice Barrier semantics by text similarity."
+    },
+    "CORE_LOOT_101": {
+      "family": "reactive_secret",
+      "capabilities": [
+        "SECRET_AFTER_OPPONENT_MINION_PLAY",
+        "DAMAGE_AND_EXCESS"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Independent family/action scenarios required before rules verification."
+    },
+    "END_024": {
+      "family": "reactive_secret",
+      "capabilities": [
+        "SECRET_OPPONENT_TURN_END",
+        "INFINITE_DAMAGE_HIGHEST_HEALTH"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [],
+      "rules_uncertainty": "Current enormous finite int represents INFINITE damage; resource/prevention interactions need review, not general unrestricted proof."
+    },
+    "TLC_EVENT_400": {
+      "family": "sidequest_composite_minion",
+      "capabilities": [
+        "SIDEQUEST",
+        "SUMMON_BEAST_UNDEAD_COUNT",
+        "CRAFT_ZOMBEAST",
+        "GENERATED_COST_REDUCTION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "ZOMBEAST_COMPONENTS"
+      ],
+      "rules_uncertainty": "Neutral sidequest eligibility for 'any class' unknown; should not inherit Quest exclusion. Composite card identity/state requires architecture review."
+    },
+    "END_017": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_229": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_239": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_426": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_433": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_446": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_460": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_513": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_602": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_631": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_817": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    },
+    "TLC_830": {
+      "family": "quest_excluded_from_random",
+      "capabilities": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "targeting": "NONE",
+      "fixed_dependencies": [],
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "rules_uncertainty": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required."
+    }
+  }
+}

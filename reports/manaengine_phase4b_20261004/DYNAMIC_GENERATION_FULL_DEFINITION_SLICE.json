@@ -1,0 +1,3923 @@
+{
+  "schema_version": 1,
+  "purpose": "Finite full-definition metadata audit, not loaded by engine; prefix matches are candidate relations only",
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json?audit=dynamic-generation-20261004",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "captured_at_utc": "2026-10-04T13:19:05.749138+00:00",
+  "pinned_root_objects_match": true,
+  "cards": [
+    {
+      "artist": "Dan Brereton",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 2792,
+      "flavor": "2 out of 2 saplings recommend that you summon the saplings.",
+      "id": "AT_037",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "name": "Living Roots",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "spellSchool": "NATURE",
+      "text": "<b>Choose One -</b> Deal $2 damage; or Summon two 1/1 Saplings.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Danny Dai",
+      "cardClass": "DRUID",
+      "cost": 1,
+      "dbfId": 2789,
+      "id": "AT_037a",
+      "name": "Grasping Roots",
+      "set": "TGT",
+      "spellSchool": "NATURE",
+      "text": "Deal $2 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Ware Li",
+      "cardClass": "DRUID",
+      "cost": 1,
+      "dbfId": 2791,
+      "id": "AT_037b",
+      "name": "One, Two, Trees!",
+      "set": "TGT",
+      "spellSchool": "NATURE",
+      "text": "Summon two 1/1 Saplings.",
+      "type": "SPELL"
+    },
+    {
+      "attack": 1,
+      "cardClass": "DRUID",
+      "cost": 1,
+      "dbfId": 2790,
+      "health": 1,
+      "id": "AT_037t",
+      "name": "Sapling",
+      "set": "TGT",
+      "type": "MINION"
+    },
+    {
+      "artist": "Marcelo Vignali",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 2582,
+      "flavor": "Flash!  Ahhhhhhh~",
+      "id": "AT_055",
+      "name": "Flash Heal",
+      "rarity": "COMMON",
+      "set": "TGT",
+      "spellSchool": "HOLY",
+      "text": "Restore #5 Health.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "attack": 1,
+      "cardClass": "HUNTER",
+      "cost": 1,
+      "dbfId": 63459,
+      "health": 1,
+      "id": "BAR_035t",
+      "mechanics": [
+        "RUSH"
+      ],
+      "name": "Swift Hyena",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "THE_BARRENS",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Jim Nelson",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 63195,
+      "flavor": "You steal the cranberry juice, you pay the price.",
+      "id": "BAR_801",
+      "name": "Wound Prey",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "RUSH"
+      ],
+      "set": "THE_BARRENS",
+      "text": "Deal $1 damage. Summon a 1/1 Hyena with <b>Rush</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "L Chanchai",
+      "attack": 1,
+      "cardClass": "NEUTRAL",
+      "cost": 1,
+      "dbfId": 48557,
+      "health": 1,
+      "id": "BOT_102t",
+      "mechanics": [
+        "RUSH"
+      ],
+      "name": "Spark",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "BOOMSDAY",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 48113,
+      "flavor": "Might take a few episodes to power up.",
+      "id": "BOT_222",
+      "name": "Spirit Bomb",
+      "rarity": "COMMON",
+      "set": "BOOMSDAY",
+      "spellSchool": "SHADOW",
+      "text": "Deal $4 damage to a minion and your hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 49052,
+      "flavor": "Batteries have three components: Cathode, Anode, and Overload.",
+      "id": "BOT_451",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "name": "Voltaic Burst",
+      "overload": 1,
+      "rarity": "RARE",
+      "referencedTags": [
+        "RUSH"
+      ],
+      "set": "BOOMSDAY",
+      "spellSchool": "NATURE",
+      "text": "Summon two 1/1 Sparks with <b>Rush</b>. <b>Overload:</b> (1)",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 127041,
+      "flavor": "Big Foot Hunter",
+      "id": "CAP_002",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Follow the Footsteps",
+      "rarity": "RARE",
+      "referencedTags": [
+        "STEALTH"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Discover</b> a <b>Stealth</b>\nminion. Give it this\neffect for a turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "ROGUE",
+      "dbfId": 127043,
+      "id": "CAP_002e",
+      "mechanics": [
+        "ENCHANTMENT_INVISIBLE",
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Following the Footsteps",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "After you play the card, <b>Discover</b> a <b>Stealth</b> minion and give it this effect",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Ivo Campelo da Silva",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 127073,
+      "flavor": "Go go gadget dagger!",
+      "id": "CAP_006",
+      "isMiniSet": true,
+      "name": "Tricks of the Trade",
+      "rarity": "EPIC",
+      "referencedTags": [
+        "STEALTH"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Deal $1 damage.\nIf a <b><b>Stealth</b>ed</b> minion\nattacked while holding\nthis, deal $3 instead.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Gabor Szikszai",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 127013,
+      "flavor": "Wound up being a dead end.",
+      "id": "CAP_101",
+      "isMiniSet": true,
+      "name": "Follow the Fuse",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Deal $2 damage to a\nrandom enemy. Give a\nplayable Pirate in your\nhand this effect for a turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARRIOR",
+      "dbfId": 127035,
+      "id": "CAP_101e",
+      "mechanics": [
+        "ENCHANTMENT_INVISIBLE",
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Following the Fuse",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "When played, deal $2 damage to a random enemy. Give a playable Pirate in your hand this effect for a turn.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 134688,
+      "id": "CAP_101e2",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Following the X Player Enchant",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Player enchant for the Follow the X series of cards",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Mooncolony",
+      "attack": 3,
+      "cardClass": "WARLOCK",
+      "cost": 3,
+      "dbfId": 127024,
+      "health": 3,
+      "id": "CAP_400t2t",
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "name": "Imp-formant",
+      "race": "DEMON",
+      "races": [
+        "DEMON"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Lifesteal</b>\n<b>Summoned When Drawn</b>\n<i>(for your opponent)</i>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Vika Yarova",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 127051,
+      "flavor": "We're dealing with a serious monster. Who eats everything BUT the marshmallows?!",
+      "id": "CAP_402",
+      "isMiniSet": true,
+      "name": "Follow the Evidence",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Put a 3/3 Imp-formant\ninto the enemy deck. Give\na playable card in your\nhand this effect for a turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARLOCK",
+      "dbfId": 127052,
+      "id": "CAP_402e",
+      "mechanics": [
+        "ENCHANTMENT_INVISIBLE",
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Following the Evidence",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Shuffle a 3/3\nImp-formant into the enemy deck. Give a playable card in your hand this effect for a turn.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Tee Fuyuan",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 122975,
+      "flavor": "Just when she thought victory was in reach, the Ocean Lord found herself facing a foe she never thought to prepare for – the hero she could have become if she cared more for her people.",
+      "id": "CATA_136",
+      "name": "Azshara's Triumph",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "spellSchool": "ARCANE",
+      "text": "Shuffle 5 random minions into your deck\nthat cost (8) or more.\nDouble their stats.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 122985,
+      "id": "CATA_136e",
+      "name": "Azshara's Triumph",
+      "set": "CATACLYSM",
+      "text": "Doubled Attack and Health.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Ivan Fomin",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 122779,
+      "flavor": "You're fine, you're fine, don't tell mom.",
+      "id": "CATA_302",
+      "name": "Mend",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "spellSchool": "HOLY",
+      "text": "[x]Restore a minion\nto full Health.\nDraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Bima Kusuma",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 122774,
+      "flavor": "An innocent bystander was tragically healed in the crossfire.",
+      "id": "CATA_303",
+      "name": "Purifying Breath",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "spellSchool": "FIRE",
+      "text": "[x]Deal $5 damage\nto a minion. If it dies,\nrestore #5 Health to\nthe enemy hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "attack": 1,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 123398,
+      "flavor": "It's important to explore other classes while learning to spread your wings!",
+      "health": 2,
+      "id": "CATA_484",
+      "mechanics": [
+        "BATTLECRY",
+        "DISCOVER"
+      ],
+      "name": "Winterspring Whelp",
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "<b>Battlecry:</b> <b>Discover</b> a\n1-Cost spell from any class.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Gabriel Lopes",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 123410,
+      "flavor": "Pocket snow!",
+      "id": "CATA_485",
+      "name": "Sleet Storm",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "spellSchool": "FROST",
+      "text": "[x]Deal $2 damage.\n Deal $1 damage to a\n random enemy minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "attack": 4,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 7,
+      "dbfId": 123665,
+      "elite": true,
+      "flavor": "Determined to see Azeroth aflame, Ragnaros awakened a living volcano to send rivers of lava across the Barrens.",
+      "health": 8,
+      "id": "CATA_488",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Colossal +2</b>\nAt the end of your turn,\ndeal 3 damage to all\nother minions.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 123666,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 128032,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t2",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Edgar Hidalgo",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 122773,
+      "flavor": "If your opponent has lethal, you're Naganna make it.",
+      "id": "CATA_528",
+      "name": "Sigil of the Seas",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "spellSchool": "FEL",
+      "text": "At the start of your\nnext turn, summon a 3/3 Naga with <b>Taunt</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Edgar Hidalgo",
+      "attack": 3,
+      "cardClass": "DEMONHUNTER",
+      "cost": 3,
+      "dbfId": 127933,
+      "health": 3,
+      "id": "CATA_528t",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "name": "Naga Monstrosity",
+      "race": "NAGA",
+      "races": [
+        "NAGA"
+      ],
+      "set": "CATACLYSM",
+      "text": "<b>Taunt</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Trent Kaniuga",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 122883,
+      "flavor": "\"ROCKS!!!!!!!\"",
+      "id": "CATA_554",
+      "name": "Earthen Roar",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "[x]Set an enemy\nminion's Health to 1.\nIf you're holding a\nDragon, pick another.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 127130,
+      "id": "CATA_554e",
+      "name": "Intimidated",
+      "set": "CATACLYSM",
+      "text": "This minion has 1 Health.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Dmitry Bolotov",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 6,
+      "dbfId": 123056,
+      "flavor": "10 times as bad as Centi-mation.",
+      "id": "CATA_581",
+      "name": "Decimation",
+      "rarity": "EPIC",
+      "set": "CATACLYSM",
+      "spellSchool": "FIRE",
+      "text": "[x]Deal $1 damage\nto all minions.\n<i>(Improved for each minion\non the battlefield.)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 123157,
+      "flavor": "ON TIME! YOU HAVE AWOKEN ME ON TIME, EXECUTUS!",
+      "id": "CATA_582",
+      "name": "Searing Fissure",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "spellSchool": "FIRE",
+      "text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARRIOR",
+      "dbfId": 127691,
+      "id": "CATA_582e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Flamebound",
+      "set": "CATACLYSM",
+      "text": "+3 Attack this turn,",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Jason Kang",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 123164,
+      "flavor": "Make sure you always wear your iron gauntlets before handling your cooked veggies.",
+      "howToEarnGolden": "Earnable on <i>CATACLYSM</i> Reward Track.",
+      "id": "CATA_585",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "name": "Torch",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "spellSchool": "FIRE",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Max Grecke",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 123403,
+      "flavor": "Lord Victor Nefarius fancied himself Azeroth's greatest inventor, but Gelbin showed him what true innovation can do!",
+      "id": "CATA_621",
+      "name": "Gelbin's Triumph",
+      "rarity": "RARE",
+      "set": "CATACLYSM",
+      "text": "Get a random Paladin Aura. It lasts an additional turn.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dan Brereton",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 76289,
+      "flavor": "2 out of 2 saplings recommend that you summon the saplings.",
+      "howToEarn": "Unlocked with Druid class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Druid.",
+      "id": "CORE_AT_037",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "name": "Living Roots",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "NATURE",
+      "text": "<b>Choose One -</b> Deal $2 damage; or Summon two 1/1 Saplings.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Marcelo Vignali",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69707,
+      "flavor": "Flash!  Ahhhhhhh~",
+      "howToEarn": "Unlocked with Priest class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Priest.",
+      "id": "CORE_AT_055",
+      "name": "Flash Heal",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "HOLY",
+      "text": "Restore #5 Health.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jim Nelson",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "countAsCopyOfDbfId": 63195,
+      "dbfId": 117039,
+      "flavor": "You steal the cranberry juice, you pay the price.",
+      "howToEarn": "Unlocked with Hunter class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Hunter.",
+      "id": "CORE_BAR_801",
+      "name": "Wound Prey",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "RUSH"
+      ],
+      "set": "CORE",
+      "text": "Deal $1 damage. Summon a 1/1 Hyena with <b>Rush</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 102212,
+      "flavor": "Might take a few episodes to power up.",
+      "howToEarn": "Unlocked with Warlock class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warlock.",
+      "id": "CORE_BOT_222",
+      "name": "Spirit Bomb",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "SHADOW",
+      "text": "Deal $4 damage to a minion and your hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 106323,
+      "flavor": "Batteries have three components: Cathode, Anode, and Overload.",
+      "howToEarn": "Unlocked with Shaman class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Shaman.",
+      "id": "CORE_BOT_451",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "name": "Voltaic Burst",
+      "overload": 1,
+      "rarity": "RARE",
+      "referencedTags": [
+        "RUSH"
+      ],
+      "set": "CORE",
+      "spellSchool": "NATURE",
+      "text": "Summon two 1/1 Sparks with <b>Rush</b>. <b>Overload:</b> (1)",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Steve Ellis",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69509,
+      "flavor": "It doesn't matter how pious you are.  Everyone needs a good smiting now and again.",
+      "howToEarn": "Unlocked with Priest class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Priest.",
+      "id": "CORE_CS1_130",
+      "name": "Holy Smite",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "HOLY",
+      "text": "Deal $3 damage\nto a minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jessica Jung",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "countAsCopyOfDbfId": 613,
+      "dbfId": 120786,
+      "flavor": "Sure the extra protection is nice, but the shield really reduces visibility.",
+      "howToEarn": "Unlocked with Priest class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Priest.",
+      "id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "HOLY",
+      "text": "Give a minion +2 Health.\nDraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Ralph Horsley",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 69501,
+      "flavor": "This spell is useful for burning things.  If you're looking for spells that toast things, or just warm them a little, you're in the wrong place.",
+      "howToEarn": "Unlocked with Mage class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Mage.",
+      "id": "CORE_CS2_029",
+      "name": "Fireball",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "Deal $6 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Romain De Santi",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 7,
+      "dbfId": 69502,
+      "flavor": "When the ground is on fire, you should <i>not</i> stop, drop, and roll.",
+      "howToEarn": "Unlocked with Mage class.",
+      "howToEarnGolden": "Unlocked after winning 250 games as Mage.",
+      "id": "CORE_CS2_032",
+      "name": "Flamestrike",
+      "rarity": "EPIC",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "Deal $5 damage to all enemy minions.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Chippy",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 69519,
+      "flavor": "It's spells like these that make it hard for Warlocks to get decent help.",
+      "howToEarn": "Unlocked with Warlock class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warlock.",
+      "id": "CORE_CS2_062",
+      "name": "Hellfire",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "Deal $3 damage to ALL characters.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Trevor Jacobs",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69522,
+      "flavor": "Rogues guard the secrets to poison-making carefully, lest magi start incorporating poison into their spells.  Poisonbolt? Rain of Poison?  Poison Elemental?  Nobody wants that.",
+      "howToEarn": "Unlocked with Rogue class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Rogue.",
+      "id": "CORE_CS2_074",
+      "name": "Deadly Poison",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "NATURE",
+      "text": "Give your weapon +2 Attack.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dany Orizio",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69535,
+      "flavor": "It's okay, he deserved it.",
+      "howToEarn": "Unlocked with Warrior class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warrior.",
+      "id": "CORE_CS2_108",
+      "name": "Execute",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "Destroy a damaged enemy minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mauro Cascioli",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69545,
+      "flavor": "For the person who just cannot decide what card to put into a deck!",
+      "howToEarn": "Unlocked with Hunter class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Hunter.",
+      "id": "CORE_DS1_184",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Tracking",
+      "rarity": "RARE",
+      "set": "CORE",
+      "text": "<b>Discover</b> a card from your deck.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Luca Zontini",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69546,
+      "flavor": "Magi conjured arcane arrows to sell to hunters, until hunters learned just enough magic to do it themselves.  The resulting loss of jobs sent Stormwind into a minor recession.",
+      "howToEarn": "Unlocked with Hunter class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Hunter.",
+      "id": "CORE_DS1_185",
+      "name": "Arcane Shot",
+      "rarity": "RARE",
+      "set": "CORE",
+      "spellSchool": "ARCANE",
+      "text": "Deal $2 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daarken",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69625,
+      "flavor": "Lightning Bolt! Lightning Bolt! Lightning Bolt!",
+      "howToEarn": "Unlocked with Shaman class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Shaman.",
+      "id": "CORE_EX1_238",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "name": "Lightning Bolt",
+      "overload": 1,
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "NATURE",
+      "text": "Deal $3 damage. <b>Overload:</b> (1)",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Gaser",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69553,
+      "flavor": "If your spells look like horrifying skulls, let's be honest, you should get to draw some cards.",
+      "howToEarn": "Unlocked with Warlock class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warlock.",
+      "id": "CORE_EX1_302",
+      "name": "Mortal Coil",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "SHADOW",
+      "text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "E. M. Gist",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 69638,
+      "flavor": "\"Dun da dun, dun da dun\": if you've heard an ogre sing this, it's too late.",
+      "howToEarn": "Unlocked with Warrior class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warrior.",
+      "id": "CORE_EX1_391",
+      "name": "Slam",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "Deal $2 damage to a minion. If it survives, draw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Brandon Kitkouski",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 69603,
+      "flavor": "It traps your food AND cooks it for you!",
+      "howToEarn": "Unlocked with Hunter class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Hunter.",
+      "id": "CORE_EX1_610",
+      "mechanics": [
+        "SECRET"
+      ],
+      "name": "Explosive Trap",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "<b>Secret:</b> When your hero is attacked, deal $2 damage to all enemies.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dan Scott",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "countAsCopyOfDbfId": 48393,
+      "dbfId": 120572,
+      "flavor": "A lot of shaman have started vaping their invocations.",
+      "howToEarn": "Unlocked with Shaman class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Shaman.",
+      "id": "CORE_GIL_836",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Blazing Invocation",
+      "rarity": "RARE",
+      "referencedTags": [
+        "BATTLECRY"
+      ],
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "[x]<b>Discover</b> a <b>Battlecry</b>\nminion. It costs (1) less.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 86235,
+      "flavor": "Sometimes it's safer NOT to read the warning signs.",
+      "howToEarn": "Unlocked with Mage class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Mage.",
+      "id": "CORE_LOOT_101",
+      "mechanics": [
+        "SECRET",
+        "ImmuneToSpellpower"
+      ],
+      "name": "Explosive Runes",
+      "rarity": "RARE",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "<b>Secret:</b> After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Anton Zemskov",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "countAsCopyOfDbfId": 64430,
+      "dbfId": 126227,
+      "flavor": "You never forget your first love: fire.",
+      "howToEarn": "Unlocked with Mage class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Mage.",
+      "id": "CORE_SW_108",
+      "name": "First Flame",
+      "rarity": "RARE",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Nate Bowden",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 4,
+      "countAsCopyOfDbfId": 103240,
+      "dbfId": 127592,
+      "flavor": "Come to beautiful Ironforge! Where irons are forged and the forges are iron!",
+      "howToEarn": "Unlocked with Warrior class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warrior.",
+      "id": "CORE_WON_337",
+      "name": "Ironforge Portal",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "spellSchool": "FIRE",
+      "text": "Gain 4 Armor.\nSummon a random\n4-Cost minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kan Liu",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "countAsCopyOfDbfId": 106465,
+      "dbfId": 120468,
+      "flavor": "Well… a guy who knows a guy.",
+      "howToEarn": "Unlocked with Warrior class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Warrior.",
+      "id": "CORE_WON_350",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "I Know a Guy",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "TAUNT"
+      ],
+      "set": "CORE",
+      "text": "<b>Discover</b> a <b>Taunt</b> minion. Give it +1/+2.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "MAR Studio",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 97377,
+      "flavor": "\"Don't read texts and drive.\"",
+      "howToEarn": "Unlocked with the Demon Hunter class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Demon Hunter.",
+      "id": "CORE_YOP_001",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Illidari Studies",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "OUTCAST"
+      ],
+      "set": "CORE",
+      "text": "<b>Discover</b> an <b>Outcast</b> card. Your next one costs (1) less.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Steve Ellis",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 279,
+      "flavor": "It doesn't matter how pious you are.  Everyone needs a good smiting now and again.",
+      "id": "CS1_130",
+      "name": "Holy Smite",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "HOLY",
+      "text": "Deal $3 damage\nto a minion.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PRIEST",
+      "cost": 1,
+      "dbfId": 62850,
+      "id": "CS1_130_Puzzle",
+      "name": "Holy Smite",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "HOLY",
+      "text": "Deal $2 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jessica Jung",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 613,
+      "flavor": "Sure the extra protection is nice, but the shield really reduces visibility.",
+      "id": "CS2_004",
+      "name": "Power Word: Shield",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "HOLY",
+      "text": "Give a minion +2 Health.\nDraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PRIEST",
+      "cost": 1,
+      "dbfId": 62917,
+      "id": "CS2_004_Puzzle",
+      "name": "Power Word: Shield",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "HOLY",
+      "text": "Give a minion +2 Health.\nDraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PRIEST",
+      "dbfId": 591,
+      "id": "CS2_004e",
+      "name": "Power Word: Shield",
+      "set": "LEGACY",
+      "text": "+2 Health.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "PRIEST",
+      "dbfId": 123059,
+      "id": "CS2_004e_Puzzle",
+      "name": "Power Word: Shield",
+      "set": "BASIC",
+      "text": "+2 Health.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Ralph Horsley",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 315,
+      "flavor": "This spell is useful for burning things.  If you're looking for spells that toast things, or just warm them a little, you're in the wrong place.",
+      "id": "CS2_029",
+      "name": "Fireball",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "FIRE",
+      "text": "Deal $6 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Romain De Santi",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 7,
+      "dbfId": 1004,
+      "flavor": "When the ground is on fire, you should <i>not</i> stop, drop, and roll.",
+      "id": "CS2_032",
+      "name": "Flamestrike",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "FIRE",
+      "text": "Deal $5 damage to all enemy minions.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 1102,
+      "id": "CS2_045e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Rockbiter Weapon",
+      "set": "LEGACY",
+      "text": "This character has +3 Attack this turn.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Chippy",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 950,
+      "flavor": "It's spells like these that make it hard for Warlocks to get decent help.",
+      "id": "CS2_062",
+      "name": "Hellfire",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "FIRE",
+      "text": "Deal $3 damage to ALL characters.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Trevor Jacobs",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 459,
+      "flavor": "Rogues guard the secrets to poison-making carefully, lest magi start incorporating poison into their spells.  Poisonbolt? Rain of Poison?  Poison Elemental?  Nobody wants that.",
+      "id": "CS2_074",
+      "name": "Deadly Poison",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "NATURE",
+      "text": "Give your weapon +2 Attack.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 1739,
+      "id": "CS2_074e",
+      "name": "Deadly Poison",
+      "set": "LEGACY",
+      "text": "+2 Attack.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Dany Orizio",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 785,
+      "flavor": "It's okay, he deserved it.",
+      "id": "CS2_108",
+      "name": "Execute",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "Destroy a damaged enemy minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "A. J. Nazzaro",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 113109,
+      "flavor": "Was petrified when it found out it didn't make the cut for Azerothian Idol.",
+      "howToEarn": "Unlocked with Druid class.",
+      "howToEarnGolden": "Unlocked after winning 50 games as Druid.",
+      "id": "Core_LOE_115",
+      "mechanics": [
+        "CHOOSE_ONE",
+        "DISCOVER"
+      ],
+      "name": "Raven Idol",
+      "rarity": "COMMON",
+      "set": "CORE",
+      "text": "<b>Choose One -</b>\n<b>Discover</b> a minion; or <b>Discover</b> a spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Brian Adriel",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 118480,
+      "flavor": "\"…let’s sit in the back row for this performance.\"",
+      "id": "DINO_406",
+      "isMiniSet": true,
+      "name": "Fire Breath",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "FIRE",
+      "text": "Deal $4 damage.\nGive your Elementals +1/+1.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 123498,
+      "id": "DINO_406e",
+      "name": "Fire Breather",
+      "set": "THE_LOST_CITY",
+      "text": "+1/+1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 118559,
+      "flavor": "When you're looking for lethal, you might have to break a few eggs.",
+      "id": "DINO_417",
+      "isMiniSet": true,
+      "name": "Soulrest Ceremony",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "RUSH"
+      ],
+      "set": "THE_LOST_CITY",
+      "spellSchool": "SHADOW",
+      "text": "[x]Give your minions\n+1 Attack and <b>Rush</b>. They\ndie at the end of your turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DEATHKNIGHT",
+      "dbfId": 118560,
+      "id": "DINO_417e",
+      "name": "Soulrest",
+      "set": "THE_LOST_CITY",
+      "text": "+1 Attack and <b>Rush</b>. At the end of your turn, this minion dies.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Mauro Cascioli",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 1047,
+      "flavor": "For the person who just cannot decide what card to put into a deck!",
+      "id": "DS1_184",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Tracking",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>Discover</b> a card from your deck.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Luca Zontini",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 877,
+      "flavor": "Magi conjured arcane arrows to sell to hunters, until hunters learned just enough magic to do it themselves.  The resulting loss of jobs sent Stormwind into a minor recession.",
+      "id": "DS1_185",
+      "name": "Arcane Shot",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "ARCANE",
+      "text": "Deal $2 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Vlad Botos",
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113796,
+      "hideCost": true,
+      "id": "EDR_100t",
+      "name": "Waking Terror",
+      "referencedTags": [
+        "LIFESTEAL"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+3 Attack and <b>Lifesteal</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113797,
+      "hideCost": true,
+      "id": "EDR_100t1",
+      "name": "Well Rested",
+      "referencedTags": [
+        "ELUSIVE"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+2/+2 and <b>Elusive</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "cost": 0,
+      "dbfId": 115658,
+      "hideCost": true,
+      "id": "EDR_100t10",
+      "name": "Nightmare Scales",
+      "set": "EMERALD_DREAM",
+      "text": "Has a <b>Divine Shield</b> that takes 3 hits to break.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 120225,
+      "hideCost": true,
+      "id": "EDR_100t13",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "WINDFURY"
+      ],
+      "name": "Harpy's Talons",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Divine Shield</b>, <b>Windfury</b>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 120226,
+      "id": "EDR_100t13e",
+      "name": "Harpy's Talons",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Divine Shield</b>, <b>Windfury</b>",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113804,
+      "id": "EDR_100t1e",
+      "name": "Well Rested",
+      "set": "EMERALD_DREAM",
+      "text": "+2/+2 and <b>Elusive</b>.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113798,
+      "hideCost": true,
+      "id": "EDR_100t2",
+      "name": "Short Claws",
+      "set": "EMERALD_DREAM",
+      "text": "Costs (2) less,\nbut has -2 Attack.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113805,
+      "id": "EDR_100t2e",
+      "name": "Short Claws",
+      "set": "EMERALD_DREAM",
+      "text": "Costs (2) less,\nbut has -2 Attack.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113799,
+      "hideCost": true,
+      "id": "EDR_100t3",
+      "name": "Bundled Up",
+      "referencedTags": [
+        "TAUNT"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+4 Health and <b>Taunt</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113806,
+      "id": "EDR_100t3e",
+      "name": "Bundled Up",
+      "set": "EMERALD_DREAM",
+      "text": "+4 Health and <b>Taunt</b>.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113800,
+      "hideCost": true,
+      "id": "EDR_100t4",
+      "name": "Inner Demons",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Deathrattle:</b> Draw 2 cards.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113807,
+      "id": "EDR_100t4e",
+      "name": "Inner Demons",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Deathrattle:</b> Draw 2 cards.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113801,
+      "hideCost": true,
+      "id": "EDR_100t5",
+      "name": "Living Nightmare",
+      "set": "EMERALD_DREAM",
+      "text": "When you play this minion, summon a 2/2 copy of it.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113808,
+      "id": "EDR_100t5e",
+      "name": "Living Nightmare",
+      "set": "EMERALD_DREAM",
+      "text": "When you play this minion, summon a 2/2 copy of it.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 117173,
+      "id": "EDR_100t5e2",
+      "name": "Tiny Nightmare",
+      "set": "EMERALD_DREAM",
+      "text": "1/1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 120020,
+      "id": "EDR_100t5e5",
+      "name": "Living Nightmare",
+      "set": "EMERALD_DREAM",
+      "text": "2/2.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113802,
+      "hideCost": true,
+      "id": "EDR_100t6",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "name": "Sleepwalker",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Charge</b>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113809,
+      "id": "EDR_100t6e",
+      "name": "Sneaky Sleepwalking",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Charge</b>",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113882,
+      "hideCost": true,
+      "id": "EDR_100t7",
+      "name": "Rude Awakening",
+      "set": "EMERALD_DREAM",
+      "text": "[x]This minion's\n<b>Battlecries</b> trigger twice.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113883,
+      "id": "EDR_100t7e",
+      "name": "Rude Awakening",
+      "set": "EMERALD_DREAM",
+      "text": "[x]This minion's\n<b>Battlecries</b> trigger twice.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 113892,
+      "id": "EDR_100t7e1",
+      "name": "DoubleBattlecryTwist",
+      "set": "EMERALD_DREAM",
+      "text": "Selected minion triggers its battlecry twice.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113884,
+      "hideCost": true,
+      "id": "EDR_100t8",
+      "name": "Sweet Dreams",
+      "set": "EMERALD_DREAM",
+      "text": "+4/+5. Place this card on top of your deck.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113885,
+      "id": "EDR_100t8e",
+      "name": "Turtled Up",
+      "set": "EMERALD_DREAM",
+      "text": "+3/+3 and shuffled stats.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 115355,
+      "id": "EDR_100t8e1",
+      "name": "Sweet Dreams",
+      "set": "EMERALD_DREAM",
+      "text": "+4/+5.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113886,
+      "hideCost": true,
+      "id": "EDR_100t9",
+      "mechanics": [
+        "REBORN"
+      ],
+      "name": "Persisting Horror",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Reborn</b>. Is <b>Reborn</b>\nwith full Health and enchantments.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113887,
+      "id": "EDR_100t9e",
+      "name": "Persisting Horror",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Reborn</b>. Is <b>Reborn</b>\nwith full Health and enchantments.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 113803,
+      "id": "EDR_100te",
+      "name": "Waking Terror",
+      "set": "EMERALD_DREAM",
+      "text": "+3 Attack and <b>Lifesteal</b>.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 115323,
+      "id": "EDR_102t",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Dark Gift",
+      "set": "EMERALD_DREAM",
+      "text": "Executes nightmare bonus",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Gabriel Lopes",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 114511,
+      "flavor": "Why are dragons so good in the late game? 'Cause they scale!!!!",
+      "id": "EDR_251",
+      "name": "Dragonscale Armaments",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "HOLY",
+      "text": "Draw a spell that started in your deck and one that didn't.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 115876,
+      "flavor": "It's the circle of life.",
+      "id": "EDR_273",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Symbiosis",
+      "rarity": "RARE",
+      "referencedTags": [
+        "CHOOSE_ONE"
+      ],
+      "set": "EMERALD_DREAM",
+      "spellSchool": "NATURE",
+      "text": "[x]<b>Discover</b> a <b>Choose One</b>\ncard from another class.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 114508,
+      "flavor": "\"Stop copying me!\"\n\"sToP cOpyInG mEE!\"",
+      "id": "EDR_522",
+      "name": "Mimicry",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "Your opponent\ndraws 2 cards. You get copies of them.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Ivan Fomin",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 115088,
+      "flavor": "Every instance of \"but not less than (1)\" has been replaced with \"but not more than (1).\"",
+      "id": "EDR_528",
+      "mechanics": [
+        "COMBO",
+        "DISCOVER"
+      ],
+      "name": "Nightmare Fuel",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Discover</b> a copy\nof a minion in your opponent's deck. <b>Combo:</b> With a <b>Dark Gift</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Slawomir Maniak",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 116684,
+      "flavor": "No thanks. This one's all yours, bud.",
+      "id": "EDR_531",
+      "name": "Siphoning Growth",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "Destroy a friendly\nminion to gain 8 Armor.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARRIOR",
+      "dbfId": 120093,
+      "id": "EDR_531e",
+      "name": "Siphoned Growth",
+      "set": "EMERALD_DREAM",
+      "text": "+2 Attack. This minion's <b>Deathrattles</b> trigger twice.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Jakub Kasper",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 116660,
+      "flavor": "Everyone keeps talking about nightmares, but I don't see any horses?",
+      "id": "EDR_570",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "name": "Ominous Nightmares",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "SHADOW",
+      "text": "[x]<b>Choose One - </b>Deal $1\ndamage to all minions;\nor Give a damaged\nminion +2/+2.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jakub Kasper",
+      "cardClass": "WARRIOR",
+      "cost": 1,
+      "dbfId": 116661,
+      "id": "EDR_570A",
+      "name": "Nightmarish Burst",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "SHADOW",
+      "text": "Deal $1 damage to\nall minions.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jakub Kasper",
+      "cardClass": "WARRIOR",
+      "cost": 1,
+      "dbfId": 116662,
+      "id": "EDR_570B",
+      "name": "Unstable Power",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "SHADOW",
+      "text": "Give a damaged minion +2/+2.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARRIOR",
+      "dbfId": 116665,
+      "id": "EDR_570e",
+      "name": "Terror of the Night",
+      "set": "EMERALD_DREAM",
+      "text": "+2/+2.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Ivo Campelo da Silva",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 114303,
+      "flavor": "Turns out 2 Atrocities do make a Rite!",
+      "id": "EDR_811",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Rite of Atrocity",
+      "rarity": "COMMON",
+      "runeCost": {
+        "blood": 0,
+        "frost": 0,
+        "unholy": 1
+      },
+      "set": "EMERALD_DREAM",
+      "text": "<b>Discover</b> an Undead. Spend 2 <b>Corpses</b> to give it a <b>Dark Gift</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 114967,
+      "flavor": "Death Knights are masters of death who use shadow magic to control swarms of... ants?",
+      "id": "EDR_813",
+      "mechanics": [
+        "CHOOSE_ONE"
+      ],
+      "name": "Morbid Swarm",
+      "rarity": "RARE",
+      "runeCost": {
+        "blood": 1,
+        "frost": 0,
+        "unholy": 1
+      },
+      "set": "EMERALD_DREAM",
+      "text": "<b>Choose One -</b> Summon two 1/1 Ants; or Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "DEATHKNIGHT",
+      "cost": 1,
+      "dbfId": 115797,
+      "id": "EDR_813a",
+      "name": "Contaminated Colony",
+      "set": "EMERALD_DREAM",
+      "text": "Summon two 1/1 Ants.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "attack": 1,
+      "cardClass": "DEATHKNIGHT",
+      "cost": 1,
+      "dbfId": 117526,
+      "health": 1,
+      "id": "EDR_813at",
+      "name": "Ant Husk",
+      "race": "BEAST",
+      "races": [
+        "UNDEAD",
+        "BEAST"
+      ],
+      "set": "EMERALD_DREAM",
+      "type": "MINION"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "DEATHKNIGHT",
+      "cost": 1,
+      "dbfId": 117525,
+      "id": "EDR_813b",
+      "name": "Bug Bites",
+      "set": "EMERALD_DREAM",
+      "text": "Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mauricio Herrera",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 116977,
+      "flavor": "Just don't spark that life too close to the World Tree.",
+      "id": "EDR_872",
+      "mechanics": [
+        "CHOOSE_ONE",
+        "DISCOVER"
+      ],
+      "name": "Spark of Life",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Choose One - </b><b>Discover</b> a Mage spell; or <b>Discover</b> a Druid spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mauricio Herrera",
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 116978,
+      "id": "EDR_872A",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Gift of Fire",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Discover</b> a Mage spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mauricio Herrera",
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 116979,
+      "id": "EDR_872B",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Gift of Nature",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Discover</b> a Druid spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mooncolony",
+      "classes": [
+        "HUNTER",
+        "WARLOCK"
+      ],
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 121159,
+      "elite": true,
+      "flavor": "Before Tick and Tock, we grew our entertainment on vines.",
+      "id": "END_017",
+      "isMiniSet": true,
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Battle at the End Time",
+      "rarity": "LEGENDARY",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Quest:</b> Fill your hand, then empty it.\n<b>Reward: </b>Tick and Tock.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Mooncolony",
+      "attack": 8,
+      "classes": [
+        "HUNTER",
+        "WARLOCK"
+      ],
+      "cost": 5,
+      "dbfId": 121160,
+      "elite": true,
+      "health": 8,
+      "id": "END_017t",
+      "isMiniSet": true,
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE"
+      ],
+      "name": "Tick and Tock",
+      "race": "DRAGON",
+      "races": [
+        "DRAGON"
+      ],
+      "set": "TIME_TRAVEL",
+      "text": "<b>Battlecry:</b> Draw until\nyour hand is full.\n<b>Deathrattle:</b> Empty the opponent's hand.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Mauricio Herrera",
+      "classes": [
+        "WARLOCK",
+        "WARRIOR"
+      ],
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 121168,
+      "flavor": "In the End Time EVERY day is a Monday.",
+      "id": "END_020",
+      "isMiniSet": true,
+      "name": "Eternal Toil",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "spellSchool": "SHADOW",
+      "text": "[x]Deal $1 damage to a\nminion. If it survives, draw\na card. If it dies, summon\na random 1-Cost minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Studio Hive",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 121187,
+      "flavor": "This card is total overkill.",
+      "id": "END_024",
+      "isMiniSet": true,
+      "mechanics": [
+        "SECRET",
+        "ImmuneToSpellpower"
+      ],
+      "name": "Flames of Infinity",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "spellSchool": "FIRE",
+      "text": "<b>Secret:</b> When your enemy's turn ends, deal INFINITE damage to their highest Health minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "BOSi Studio",
+      "classes": [
+        "MAGE",
+        "PRIEST"
+      ],
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 121188,
+      "flavor": "Did I forget to turn off the Eternal Oven?",
+      "id": "END_025",
+      "isMiniSet": true,
+      "mechanics": [
+        "LIFESTEAL"
+      ],
+      "name": "Eternal Firebolt",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "spellSchool": "FIRE",
+      "text": "<b>Lifesteal</b>\nDeal $3 damage to a minion. If it dies, return this to your hand at the end of your turn.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 128926,
+      "id": "END_025e",
+      "name": "Eternal Firebolt",
+      "set": "TIME_TRAVEL",
+      "text": "Get an Eternal Flame at the end of the turn.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Stefan Bogdasarov",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 121190,
+      "flavor": "I can't wait for Temporus with double <b>Battlecry</b>.",
+      "id": "END_027",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Wings of Eternity",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Discover</b> a Dragon\nfrom the past with a\n<b>Dark Gift</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daarken",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 505,
+      "flavor": "Lightning Bolt! Lightning Bolt! Lightning Bolt!",
+      "id": "EX1_238",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "name": "Lightning Bolt",
+      "overload": 1,
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "spellSchool": "NATURE",
+      "text": "Deal $3 damage. <b>Overload:</b> (1)",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Gaser",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 1092,
+      "flavor": "If your spells look like horrifying skulls, let's be honest, you should get to draw some cards.",
+      "id": "EX1_302",
+      "name": "Mortal Coil",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "SHADOW",
+      "text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "E. M. Gist",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 1074,
+      "flavor": "\"Dun da dun, dun da dun\": if you've heard an ogre sing this, it's too late.",
+      "id": "EX1_391",
+      "name": "Slam",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "text": "Deal $2 damage to a minion. If it survives, draw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Brandon Kitkouski",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 585,
+      "flavor": "It traps your food AND cooks it for you!",
+      "id": "EX1_610",
+      "mechanics": [
+        "SECRET"
+      ],
+      "name": "Explosive Trap",
+      "rarity": "COMMON",
+      "set": "EXPERT1",
+      "spellSchool": "FIRE",
+      "text": "<b>Secret:</b> When your hero is attacked, deal $2 damage to all enemies.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kleston Marques",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 115624,
+      "flavor": "Cleanup on grave plot 4.",
+      "id": "FIR_900",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Cremate",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "<b>Discover</b> a minion\nwith a <b>Dark Gift</b>.\nIt costs (2) less.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Timur Shevtsov",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 115630,
+      "flavor": "\"Did you bring water?\"\n\"I THOUGHT YOU WERE BRINGING THE WATER!\"",
+      "id": "FIR_906",
+      "isMiniSet": true,
+      "name": "Overheat",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DRUID",
+      "dbfId": 122042,
+      "id": "FIR_906e",
+      "name": "Overheated",
+      "set": "EMERALD_DREAM",
+      "text": "+1/+1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Ramzy Kamen",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115633,
+      "flavor": "And I fired! And I missed. And I fired again! And I missed again. This went on for several hours.",
+      "id": "FIR_909",
+      "isMiniSet": true,
+      "name": "Bursting Shot",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to\nthree random enemies.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "A. J. Nazzaro",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 115634,
+      "flavor": "It's like the old saying goes: where there's smoke, there's often fire... and where there's fire, there's often more fire.",
+      "id": "FIR_910",
+      "isMiniSet": true,
+      "name": "Scorching Winds",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Deal $3 damage. Discard a random Fire spell to deal $3 more.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115635,
+      "flavor": "To be clear, the grove is not SUPPOSED to be smoldering.",
+      "id": "FIR_911",
+      "isMiniSet": true,
+      "name": "Smoldering Grove",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Draw {0} card.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Draw {0} cards.\n<i>(Discards this turn!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "James Ryman",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 115638,
+      "flavor": "You'll get it when you're smolder.",
+      "id": "FIR_914",
+      "isMiniSet": true,
+      "name": "Smoldering Strength",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Give a friendly minion +{0}/+{0}.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Give a friendly\nminion +{0}/+{0}.\n<i>(Discards this turn!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PALADIN",
+      "dbfId": 121559,
+      "id": "FIR_914e",
+      "name": "Smoldering Strength",
+      "set": "EMERALD_DREAM",
+      "text": "+{0}/+{0}.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Edward Frayna",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115640,
+      "flavor": "We all know what happens when you fly too close to the sun. But THIS is what happens when you fly straight into it.",
+      "id": "FIR_916",
+      "isMiniSet": true,
+      "name": "Smoldering Ascent",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Deal ${0} damage to all enemy minions. <i>(Upgrades each turn,\nbut discards after {1}!)</i>1Deal ${0} damage to all enemy minions.\n<i>(Discards this turn!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Studio Hive",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115647,
+      "flavor": "Wow, this blew up.",
+      "id": "FIR_920",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Smoke Bomb",
+      "rarity": "RARE",
+      "referencedTags": [
+        "BATTLECRY",
+        "COMBO",
+        "STEALTH"
+      ],
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "<b>Discover</b> a <b>Combo</b>, <b>Battlecry</b>, or <b>Stealth</b> minion with a <b>Dark Gift</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Edgar Hidalgo",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115650,
+      "flavor": "The Firelord has been banned from chat for flaming.",
+      "id": "FIR_923",
+      "isMiniSet": true,
+      "name": "Flames of the Firelord",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "[x]Deal $4 damage to a random\nenemy minion. If you're\nholding a card that costs\n(8) or more, deal $8 instead.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 2,
+      "dbfId": 115688,
+      "flavor": "One Fire and Shadow swirl, please!",
+      "id": "FIR_939",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Shadowflame Suffusion",
+      "rarity": "COMMON",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Lea Faske",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 7,
+      "dbfId": 115776,
+      "flavor": "You never would've guessed it, but Ancients love doing the Hot Embers Challenge.",
+      "id": "FIR_941",
+      "isMiniSet": true,
+      "name": "Searing Reflection",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "DIVINE_SHIELD"
+      ],
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Draw a minion. Summon an 8/8 copy of it with <b>Divine Shield</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PALADIN",
+      "dbfId": 117291,
+      "id": "FIR_941e1",
+      "name": "Searing Reflection",
+      "set": "EMERALD_DREAM",
+      "text": "Stats set to 8/8.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Vlad Botos",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 115753,
+      "flavor": "From the ashes, a new card is drawn.",
+      "id": "FIR_954",
+      "isMiniSet": true,
+      "name": "Conflagrate",
+      "rarity": "RARE",
+      "set": "EMERALD_DREAM",
+      "spellSchool": "FIRE",
+      "text": "Deal $5 damage to a minion. Its owner draws a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dan Scott",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 48393,
+      "flavor": "A lot of shaman have started vaping their invocations.",
+      "id": "GIL_836",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Blazing Invocation",
+      "rarity": "RARE",
+      "referencedTags": [
+        "BATTLECRY"
+      ],
+      "set": "GILNEAS",
+      "spellSchool": "FIRE",
+      "text": "[x]<b>Discover</b> a <b>Battlecry</b>\nminion. It costs (1) less.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PRIEST",
+      "dbfId": 45489,
+      "id": "ICC_210e",
+      "name": "Ascended",
+      "set": "ICECROWN",
+      "text": "Stats increased.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Tee Fuyuan",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 126356,
+      "flavor": "Oh snappers!",
+      "id": "JAIL_125",
+      "name": "Cold Snap",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "FREEZE"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "FROST",
+      "text": "<b>Freeze</b> an enemy.\nGet a random\nFrost spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Alex Stone",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 5,
+      "dbfId": 126100,
+      "flavor": "What type? Stun? Sleep? Sheep?",
+      "id": "JAIL_307",
+      "name": "Crowd Control",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to all minions, twice. If your deck has 25 or more cards, this costs (2) less.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 126116,
+      "elite": true,
+      "flavor": "The skeleton belongs to the person who last tried to use it.",
+      "id": "JAIL_319",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "The Skeleton Key",
+      "rarity": "LEGENDARY",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "ARCANE",
+      "text": "[x]<b>Discover</b> a spell,\nor refresh your options\n<i>(20% chance to take 5\ndamage each refresh!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "MAGE",
+      "dbfId": 126251,
+      "id": "JAIL_319e",
+      "name": "Skeleton Key",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Transforming into a random spell that costs (2) less. <i>(Transforms after you play a card.)</i>",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "MAGE",
+      "cost": 0,
+      "dbfId": 131199,
+      "hideStats": true,
+      "id": "JAIL_319t",
+      "name": "Transform the Key!",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Refresh your options. <i>(20% chance to take\n5 damage!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Sonderflex",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 125893,
+      "flavor": "Trying to get a toddler ready to leave the house.",
+      "id": "JAIL_386",
+      "name": "Scramble for Gear",
+      "rarity": "EPIC",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Gain 2 Armor. Shuffle five Gear spells into your deck that give\n2 Armor when drawn.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Sonderflex",
+      "cardClass": "WARRIOR",
+      "cost": 1,
+      "dbfId": 127174,
+      "id": "JAIL_386t",
+      "name": "Found Gear!",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Casts When Drawn</b>\nGain 2 Armor.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Tee Fuyuan",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 126662,
+      "flavor": "WARNING: Soul void if damaged.",
+      "id": "JAIL_732",
+      "name": "Void Soul",
+      "rarity": "RARE",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "SHADOW",
+      "text": "[x]Summon a random\n1-Cost Demon. Improve\nyour future Void Souls.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 126407,
+      "flavor": "Looks like it's time for a little PAYBACK!",
+      "id": "JAIL_801",
+      "name": "Molten Gold",
+      "rarity": "COMMON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "FIRE",
+      "text": "Deal $4 damage.\n<i>(Cast 3 spells to turn into a minion!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "attack": 3,
+      "cardClass": "SHAMAN",
+      "cost": 3,
+      "dbfId": 126408,
+      "health": 3,
+      "id": "JAIL_801t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Molten Gold Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "targetingArrowText": "Deal 4 damage.",
+      "text": "<b>Battlecry:</b> Deal 4 damage.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Jason Kang",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 126867,
+      "flavor": "A punishment reserved for only the most cold-blooded criminals.",
+      "id": "JAIL_940",
+      "name": "Undeath Sentence",
+      "rarity": "RARE",
+      "referencedTags": [
+        "DEATHRATTLE"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "spellSchool": "SHADOW",
+      "text": "[x]Trigger the <b>Deathrattle</b> of\na random friendly minion\nthat died this game.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "A. J. Nazzaro",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 13335,
+      "flavor": "Was petrified when it found out it didn't make the cut for Azerothian Idol.",
+      "howToEarn": "Unlocked in the Hall of Explorers, in the League of Explorers adventure.",
+      "howToEarnGolden": "Crafting unlocked in the Hall of Explorers, in the League of Explorers adventure.",
+      "id": "LOE_115",
+      "mechanics": [
+        "CHOOSE_ONE",
+        "DISCOVER"
+      ],
+      "name": "Raven Idol",
+      "rarity": "COMMON",
+      "set": "LOE",
+      "text": "<b>Choose One -</b>\n<b>Discover</b> a minion; or <b>Discover</b> a spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "A. J. Nazzaro",
+      "cardClass": "DRUID",
+      "cost": 1,
+      "dbfId": 38112,
+      "id": "LOE_115a",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Break Free",
+      "set": "LOE",
+      "text": "<b>Discover</b> a minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "A. J. Nazzaro",
+      "cardClass": "DRUID",
+      "cost": 1,
+      "dbfId": 38113,
+      "id": "LOE_115b",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Awakened",
+      "set": "LOE",
+      "text": "<b>Discover</b> a spell.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 43407,
+      "flavor": "Sometimes it's safer NOT to read the warning signs.",
+      "id": "LOOT_101",
+      "mechanics": [
+        "SECRET",
+        "ImmuneToSpellpower"
+      ],
+      "name": "Explosive Runes",
+      "rarity": "RARE",
+      "set": "LOOTAPALOOZA",
+      "spellSchool": "FIRE",
+      "text": "<b>Secret:</b> After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Vika Yarova",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 123486,
+      "flavor": "Finally, it's never Huffer.",
+      "id": "MEND_300",
+      "isMiniSet": true,
+      "name": "Tame Pet",
+      "rarity": "COMMON",
+      "set": "CATACLYSM",
+      "text": "[x]Replace your future\nAnimal Companions with\nrandom Beasts that cost\n(1) more. Draw a card.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Anton Zemskov",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 64430,
+      "flavor": "You never forget your first love: fire.",
+      "id": "SW_108",
+      "name": "First Flame",
+      "rarity": "RARE",
+      "set": "STORMWIND",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Anton Zemskov",
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 64432,
+      "id": "SW_108t",
+      "name": "Second Flame",
+      "set": "STORMWIND",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to\na minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 119541,
+      "flavor": "Also summons two 4/0s.",
+      "id": "TIME_006",
+      "name": "Mirror Dimension",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "TAUNT"
+      ],
+      "set": "TIME_TRAVEL",
+      "text": "Summon a 0/4 minion with <b>Taunt</b>. If you are holding a Dragon, summon another.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kleston Marques",
+      "attack": 0,
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 119916,
+      "health": 4,
+      "id": "TIME_006t1",
+      "mechanics": [
+        "TAUNT"
+      ],
+      "name": "Mirrored Mage",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Taunt</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Stefan Bogdasarov",
+      "cardClass": "WARLOCK",
+      "cost": 0,
+      "dbfId": 120483,
+      "id": "TIME_025t",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "name": "Shred of Time",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Casts When Drawn</b>\nDeal $3 damage to\nyour hero.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 120484,
+      "flavor": "I thought I signed up to go to the Tropic Continuity...",
+      "id": "TIME_026",
+      "name": "Entropic Continuity",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Give your minions +1/+1.\nShuffle 2 Shreds of Time\ninto your deck.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 122474,
+      "id": "TIME_026e",
+      "name": "Ruptured Reality",
+      "set": "TIME_TRAVEL",
+      "text": "+1/+1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 120647,
+      "flavor": "\"I've played this game before!\"",
+      "howToEarnGolden": "Earnable on the <i>Across the Timeways</i> Tavern Pass.",
+      "id": "TIME_039",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Deja Vu",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Discover</b> a copy\nof a card in your opponent's hand.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Brian Adriel",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 120173,
+      "flavor": "Rodney despised his nickname, but took comfort in knowing none doubted his power.",
+      "id": "TIME_212",
+      "name": "Lightning Rod",
+      "rarity": "COMMON",
+      "set": "TIME_TRAVEL",
+      "spellSchool": "NATURE",
+      "text": "Deal $2 damage to a friendly minion to deal $4 damage to a random enemy minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Ramzy Kamen",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 121005,
+      "flavor": "Nothing says teamwork like hiding under a yellow bubble and pretending mechanics don't exist.",
+      "id": "TIME_447",
+      "name": "Power Word: Barrier",
+      "rarity": "RARE",
+      "referencedTags": [
+        "DIVINE_SHIELD"
+      ],
+      "set": "TIME_TRAVEL",
+      "spellSchool": "HOLY",
+      "text": "Give a character <b>Divine Shield</b>. Give minions in your hand +2 Health.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PRIEST",
+      "dbfId": 121198,
+      "id": "TIME_447e2",
+      "name": "Barrier",
+      "set": "TIME_TRAVEL",
+      "text": "+2 Health",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Sergey Tsvelykh",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 120746,
+      "flavor": "I wave in squares.",
+      "id": "TIME_701",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Waveshaping",
+      "rarity": "RARE",
+      "set": "TIME_TRAVEL",
+      "spellSchool": "NATURE",
+      "text": "<b>Discover</b> a card from your deck. The others get put on the bottom.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Melvin Chan",
+      "cardClass": "NEUTRAL",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 121675,
+      "flavor": "Perfect for seasoning your thymelines.",
+      "howToEarn": "Earnable after opening a <i>Across the Timeways</i> card pack.",
+      "howToEarnGolden": "Earnable after opening a golden <i>Across the Timeways</i> card pack.",
+      "id": "TIME_EVENT_999",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Sands of Time",
+      "rarity": "EPIC",
+      "set": "EVENT",
+      "text": "<b>Rewind</b>\n<b>Discover</b> a spell from\nANY class. <i>(Or just your class after you <b>Rewind</b>!)</i>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 1,
+      "dbfId": 122549,
+      "id": "TIME_EVENT_999t",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Sands of Time",
+      "rarity": "EPIC",
+      "set": "EVENT",
+      "text": "<b>Discover</b> a spell from\nYOUR class.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Alex Stone",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 6,
+      "dbfId": 117532,
+      "flavor": "Can someone open a window? It's a little swarm in here!",
+      "id": "TLC_221",
+      "name": "Sizzling Swarm",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "FIRE",
+      "text": "Deal $3 damage.\nSummon that many 2/1 Sizzling Cinders.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 117606,
+      "flavor": "Also the name of a famous Tortollan orchestral arrangement.",
+      "id": "TLC_222",
+      "name": "Flight of the Firehawk",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "FIRE",
+      "text": "Draw two minions of different minion types. Give them +1/+1.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 119670,
+      "id": "TLC_222e",
+      "name": "Ignited",
+      "set": "THE_LOST_CITY",
+      "text": "+1/+1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Stefan Bogdasarov",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 3,
+      "dbfId": 117536,
+      "flavor": "The lava must flow.",
+      "id": "TLC_227",
+      "mechanics": [
+        "OVERLOAD"
+      ],
+      "name": "Lava Flow",
+      "overload": 1,
+      "rarity": "EPIC",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to the lowest Health enemy, three times. <b>Overload:</b> (1)",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dmitry Bolotov",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117538,
+      "elite": true,
+      "flavor": "Day 10. A Tortollan named Bralma took Niri, Elise, and I deep into the mountain. She showed us how the Tortollans move lava up from the base of the volcano through a system of “lavaqueducts.” I was shocked to find a pack of Volcanosaurs living there!",
+      "id": "TLC_229",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Spirit of the Mountain",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Play 6 minions\nof unique types.\n<b>Reward:</b> Ashalon.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Dmitry Bolotov",
+      "attack": 8,
+      "cardClass": "SHAMAN",
+      "cost": 5,
+      "dbfId": 120778,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_229t14",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "name": "Ashalon, Ridge Guardian",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL",
+        "BEAST"
+      ],
+      "referencedTags": [
+        "ADAPT"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Rush</b>. <b>Battlecry:</b> <b>Adapt</b> twice.\nFor the rest of the game,\ngive minions you play\nthose <b><b>Adapt</b>ations</b>.",
+      "type": "MINION"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 120779,
+      "id": "TLC_229t14e",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Perfect Evolution",
+      "set": "THE_LOST_CITY",
+      "text": "For the rest of the game, give minions you play those <b>Adaptations</b>.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Mooncolony",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117655,
+      "flavor": "It's the cyyyyyycle of liiiiiife.",
+      "id": "TLC_235",
+      "name": "Life Cycle",
+      "rarity": "EPIC",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "NATURE",
+      "text": "Destroy a minion. Summon a random minion of the same\nCost to replace it.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "cardClass": "DRUID",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117661,
+      "elite": true,
+      "flavor": "Day 3. We happened upon a clearing filled with dangerous Bloodpetals. As I was noting our findings, the world went dark. My vision is perfect of course, but it appeared as though a large flying shape was blocking out the sun! Confounding indeed.",
+      "id": "TLC_239",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Restore the Wild",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Fill your board\non 3 of your turns.\n<b>Reward:</b> The Everbloom.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DRUID",
+      "dbfId": 122816,
+      "id": "TLC_239e",
+      "name": "Full Bloom",
+      "set": "THE_LOST_CITY",
+      "text": "+2/+2.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Miki Neves",
+      "attack": 2,
+      "cardClass": "DRUID",
+      "cost": 3,
+      "dbfId": 117662,
+      "durability": 0,
+      "elite": true,
+      "health": 5,
+      "id": "TLC_239t",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "The Everbloom",
+      "set": "THE_LOST_CITY",
+      "text": "[x]After your hero attacks,\ngive your minions +2/+2.",
+      "type": "WEAPON"
+    },
+    {
+      "artist": "Vika Yarova",
+      "attack": 2,
+      "cardClass": "NEUTRAL",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 118222,
+      "flavor": "\"Hey, I'm sizzlin' here!\"",
+      "health": 1,
+      "id": "TLC_249",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "name": "Sizzling Cinder",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Deathrattle:</b> Deal 2 damage randomly split among all enemies.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117341,
+      "elite": true,
+      "flavor": "Day 5. Elise had a hunch that the Lost City may be hidden deep beneath the Golakka Hot Springs. Niri swam down and discovered a beautiful cavern! The Murlocs may not be hiding an entrance to the city, but it seems they do have a few secrets.",
+      "id": "TLC_426",
+      "mechanics": [
+        "QUEST",
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Dive the Golakka Depths",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Repeatable Quest:</b> Summon 6 Murlocs.\n<b>Reward:</b> Murlocs you summon gain +1/+1.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PALADIN",
+      "dbfId": 119456,
+      "id": "TLC_426e",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Golakka Quest Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "Murlocs you summon gain +1/+1.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "PALADIN",
+      "dbfId": 117378,
+      "id": "TLC_426e2",
+      "name": "Sacred",
+      "set": "THE_LOST_CITY",
+      "text": "+{0}/+{1}.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "PALADIN",
+      "cost": 0,
+      "dbfId": 121956,
+      "elite": true,
+      "hideCost": true,
+      "id": "TLC_426t",
+      "name": "The Sacred Cave",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Whenever you summon\na Murloc, give it +1/+1.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117427,
+      "elite": true,
+      "flavor": "Day 11. We’ve been betrayed! Umbra has been meeting secretly with the Cult of the Damned to plan a coup. She and High Cultist Herenn used shadow magic to raise an undead dinosaur army! Tortolla preserve us, the fate of the Lost City rests in our hands.",
+      "id": "TLC_433",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Reanimate the Terror",
+      "rarity": "LEGENDARY",
+      "runeCost": {
+        "blood": 1,
+        "frost": 0,
+        "unholy": 1
+      },
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Spend 15 <b>Corpses</b>.\n<b>Reward:</b> Tyrax, Bone Terror.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Grafit Studio",
+      "attack": 8,
+      "cardClass": "DEATHKNIGHT",
+      "cost": 5,
+      "dbfId": 117707,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_433t",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "name": "Tyrax, Bone Terror",
+      "race": "UNDEAD",
+      "races": [
+        "UNDEAD",
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "<b>Deathrattle:</b> Open Terror's Grave. It has \"<b>Deathrattle:</b> Resummon Tyrax.\"",
+      "type": "MINION"
+    },
+    {
+      "artist": "BOSi Studio",
+      "cardClass": "DEATHKNIGHT",
+      "cost": 5,
+      "dbfId": 119897,
+      "elite": true,
+      "health": 2,
+      "id": "TLC_433t2",
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "name": "Terror's Grave",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Deal 4 damage.\n<b>Deathrattle:</b> Resummon\nTyrax, Bone Terror.",
+      "type": "LOCATION"
+    },
+    {
+      "artist": "Grafit Studio",
+      "cardClass": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117431,
+      "flavor": "Solving a maze is easy. Just hug the left wall and don't get eaten by dinosaurs!",
+      "id": "TLC_435",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Crypt Map",
+      "rarity": "COMMON",
+      "runeCost": {
+        "blood": 0,
+        "frost": 2,
+        "unholy": 0
+      },
+      "set": "THE_LOST_CITY",
+      "text": "<b>Discover</b> a Frost Rune card. If you play it this turn, also pick one\nof the others.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DEATHKNIGHT",
+      "dbfId": 120240,
+      "id": "TLC_435e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Crypt Map Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "If you play the <b>Discover</b>ed card this turn, also choose one of the other two options.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Melvin Chan",
+      "cardClass": "PALADIN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117665,
+      "flavor": "Sure, it leads straight to Latorvia. How long can you hold your breath?",
+      "id": "TLC_442",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Submerged Map",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Discover</b> a Murloc.\nIf you play it this turn, also\npick one of the others.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "PALADIN",
+      "dbfId": 117678,
+      "id": "TLC_442e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Submerged Map Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "If you play the <b>Discover</b>ed card this turn, also choose one of the other two options.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Edgar Hidalgo",
+      "cardClass": "WARLOCK",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117827,
+      "elite": true,
+      "flavor": "Day 7. A terrible day! The ground opened beneath us, and we fell head over shell into an accursed rift! Fel choked my keen senses, and demonic beasts emerged from the fog. Thank goodness Umbra was able to use her magic to ward them off while we escaped.",
+      "id": "TLC_446",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Escape the Underfel",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Play 6 <b>Temporary</b> cards. <b>Reward:</b> Underfel Rift.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "WARLOCK",
+      "dbfId": 118230,
+      "id": "TLC_446e",
+      "name": "Underfel Rift Enchantment",
+      "set": "THE_LOST_CITY",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "BOSi Studio",
+      "cardClass": "WARLOCK",
+      "cost": 5,
+      "dbfId": 118227,
+      "elite": true,
+      "id": "TLC_446t",
+      "name": "Underfel Rift",
+      "set": "THE_LOST_CITY",
+      "text": "Open a Rift to the Underfel. Throw a card in to summon 2 random Fel Beasts. <i>(Once per turn.)</i>",
+      "type": "SPELL"
+    },
+    {
+      "artist": "BOSi Studio",
+      "attack": 0,
+      "cardClass": "WARLOCK",
+      "cost": 5,
+      "dbfId": 120968,
+      "elite": true,
+      "health": 1,
+      "hideCost": true,
+      "hideStats": true,
+      "id": "TLC_446t1",
+      "mechanics": [
+        "UNTOUCHABLE"
+      ],
+      "name": "Underfel Rift",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Select the Rift to activate.\nThrow a card in to summon\n2 random Fel Beasts.\n<i>(Once per turn.)</i>",
+      "type": "MINION"
+    },
+    {
+      "attack": 5,
+      "cardClass": "WARLOCK",
+      "cost": 5,
+      "dbfId": 118228,
+      "health": 3,
+      "id": "TLC_446t2",
+      "mechanics": [
+        "LIFESTEAL",
+        "RUSH"
+      ],
+      "name": "Felscreamer",
+      "race": "BEAST",
+      "races": [
+        "DEMON",
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "<b>Rush</b>\n<b>Lifesteal</b>",
+      "type": "MINION"
+    },
+    {
+      "attack": 4,
+      "cardClass": "WARLOCK",
+      "cost": 5,
+      "dbfId": 120037,
+      "health": 4,
+      "id": "TLC_446t3",
+      "mechanics": [
+        "CHARGE",
+        "ELUSIVE"
+      ],
+      "name": "Felraptor",
+      "race": "BEAST",
+      "races": [
+        "DEMON",
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "<b>Charge</b>\n<b>Elusive</b>",
+      "type": "MINION"
+    },
+    {
+      "attack": 3,
+      "cardClass": "WARLOCK",
+      "cost": 5,
+      "dbfId": 120038,
+      "health": 5,
+      "id": "TLC_446t4",
+      "mechanics": [
+        "REBORN",
+        "TAUNT"
+      ],
+      "name": "Felhorn",
+      "race": "BEAST",
+      "races": [
+        "DEMON",
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "<b>Taunt</b>\n<b>Reborn</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Mooncolony",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 118183,
+      "elite": true,
+      "flavor": "Day 9. We were not welcomed with open arms, but with spears! Fortunately, Chief Esho took pity on us and called off the guards. Learning of Elise's expertise, a Titanographer whisked her away to the library. Umbra disappeared in the twisting streets...",
+      "id": "TLC_460",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "The Forbidden Sequence",
+      "rarity": "LEGENDARY",
+      "referencedTags": [
+        "DISCOVER"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> <b>Discover</b> 8 cards.\n<b>Reward:</b> The Origin Stone.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "BOSi Studio",
+      "attack": 0,
+      "cardClass": "MAGE",
+      "cost": 3,
+      "dbfId": 118191,
+      "durability": 0,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_460t",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "The Origin Stone",
+      "referencedTags": [
+        "DISCOVER"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "After you <b>Discover</b> a card, this plays the other options.\nLose 1 Durability.",
+      "type": "WEAPON"
+    },
+    {
+      "artist": "Vika Yarova",
+      "cardClass": "SHAMAN",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 118225,
+      "flavor": "See that part at the top? That's the top.",
+      "id": "TLC_464",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Mountain Map",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Discover</b> a minion with\na type you haven't played.\nIf you play it this turn, also\npick one of the others.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "SHAMAN",
+      "dbfId": 118226,
+      "id": "TLC_464e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Mountaineering Map Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "If you play the <b>Discover</b>ed card this turn, also choose one of the other two options.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Alex Stone",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117222,
+      "elite": true,
+      "flavor": "Day 2. Our first night in the Crater was a tad rough on this old shell. I can’t shake the feeling that we’re being watched. I swear I saw a glint of shining silver in the dark. I was going to ask Umbra about it at breakfast, but she never turned up.",
+      "id": "TLC_513",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Lie in Wait",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Shuffle cards\ninto your deck, 5 times.\n<b>Reward: </b>Master Dusk.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "ROGUE",
+      "dbfId": 123420,
+      "id": "TLC_513e1",
+      "name": "Sneaky!",
+      "set": "THE_LOST_CITY",
+      "text": "When this dies, shuffle it into your deck.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "cardClass": "ROGUE",
+      "dbfId": 120950,
+      "id": "TLC_513e2",
+      "name": "Master Dusk Reshuffle Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "When a Ninja dies, shuffle it into your deck.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Topdog Entertainment",
+      "cardClass": "ROGUE",
+      "cost": 1,
+      "dbfId": 119197,
+      "id": "TLC_513hp",
+      "name": "Way of the Shell",
+      "set": "THE_LOST_CITY",
+      "text": "Draw 2 cards\nthat didn't start\nin your deck.",
+      "type": "HERO_POWER"
+    },
+    {
+      "armor": 8,
+      "artist": "Topdog Entertainment",
+      "cardClass": "ROGUE",
+      "cost": 3,
+      "dbfId": 117224,
+      "elite": true,
+      "health": 30,
+      "heroPowerDbfId": 119197,
+      "id": "TLC_513t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Master Dusk",
+      "referencedTags": [
+        "STEALTH"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Battlecry:</b> Summon two\n3/3 Ninjas with <b>Stealth</b>.\nYour Ninjas now shuffle back\ninto your deck when they die.",
+      "type": "HERO"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "attack": 3,
+      "cardClass": "ROGUE",
+      "cost": 3,
+      "dbfId": 119563,
+      "health": 3,
+      "id": "TLC_513t2",
+      "mechanics": [
+        "STEALTH"
+      ],
+      "name": "Tortollan Ninja",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Summoned When Drawn</b>\n<b>Stealth</b>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Timur Shevtsov",
+      "cardClass": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117699,
+      "flavor": "Every day he's scufflin'",
+      "id": "TLC_517",
+      "name": "Knockback",
+      "rarity": "EPIC",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Deal $1 damage to\na minion <i>(improved for\neach time you've shuffled\ncards into your deck)</i>.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Zoltan Boros",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117716,
+      "elite": true,
+      "flavor": "Day 8. We’ve done it! As night fell, we came upon a brilliantly glowing tunnel guarded by two slumbering Tol’vir. With silent footsteps, we walked through and emerged into the heart of the Lost City! I’m sure my people will welcome us with open arms.",
+      "id": "TLC_602",
+      "mechanics": [
+        "QUEST",
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Enter the Lost City",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Survive 10 turns.\n<b>Reward: </b>Latorvius, Gaze\nof the City.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kevin Sidharta",
+      "attack": 8,
+      "cardClass": "WARRIOR",
+      "cost": 5,
+      "dbfId": 117717,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_602t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Latorvius, Gaze of the City",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Battlecry:</b> Get 2 random\n'Journey to Un'Goro' <b>Quest\nRewards</b>. Shuffle the rest\ninto your deck.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Felideus Bubastis",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117871,
+      "elite": true,
+      "flavor": "Day 4. I am dismayed to report that we thought we'd found a hidden entrance to the Lost City, but in fact it was a Silithid Hive! We high-tailed it out of there faster than a goblin wearing rocket boots. I am not terribly fond of bugs.",
+      "id": "TLC_631",
+      "mechanics": [
+        "QUEST",
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Unleash the Colossus",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Deal exactly 2 damage to an enemy\non your turn, 12 times.\n<b>Reward:</b> Gorishi Colossus.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DEMONHUNTER",
+      "dbfId": 123168,
+      "id": "TLC_631e",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Gorishi's Favor",
+      "set": "THE_LOST_CITY",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "James Ryman",
+      "attack": 8,
+      "cardClass": "DEMONHUNTER",
+      "cost": 5,
+      "dbfId": 117872,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_631t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Gorishi Colossus",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Battlecry:</b> For the rest of the\ngame, whenever you deal\nexactly 2 damage to an\nenemy, deal 2 more.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Ivan Fomin",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 5,
+      "dbfId": 117874,
+      "flavor": "\"...and there were seven minions on board, and it STILL hit the enemy hero!\"",
+      "id": "TLC_632",
+      "name": "Story of Sulfuras",
+      "rarity": "RARE",
+      "set": "THE_LOST_CITY",
+      "spellSchool": "FIRE",
+      "text": "[x]Swap your Hero Power\nto \"Deal 8 damage\nto a random enemy.\"\nAfter 2 uses, swap back.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Jimmy Lo",
+      "cardClass": "WARRIOR",
+      "cost": 2,
+      "dbfId": 119639,
+      "id": "TLC_632t",
+      "name": "DIE, INSECT!",
+      "set": "THE_LOST_CITY",
+      "text": "Deal $8 damage to a random enemy.\n<i>(Two uses left!)</i>",
+      "type": "HERO_POWER"
+    },
+    {
+      "artist": "Jimmy Lo",
+      "cardClass": "WARRIOR",
+      "cost": 2,
+      "dbfId": 119640,
+      "id": "TLC_632t2",
+      "name": "DIE, INSECT!",
+      "set": "THE_LOST_CITY",
+      "text": "Deal $8 damage to a random enemy.\n<i>(Last use!)</i>",
+      "type": "HERO_POWER"
+    },
+    {
+      "artist": "BOSi Studio",
+      "cardClass": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117544,
+      "elite": true,
+      "flavor": "Day 6. Today we found ourselves in a glade tormented by conflicting Holy and Shadow magic. At its center were two enormous Elementals, like opposite sides of the same coin. I hope one day we'll return here to see this broken place restored to peace.",
+      "id": "TLC_817",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Reach Equilibrium",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Cast 4 Holy spells\n<b>Reward:</b> Life's Breath.\n<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "type": "SPELL"
+    },
+    {
+      "battlegroundsRelatedCard": 119879,
+      "cardClass": "PRIEST",
+      "cost": 1,
+      "dbfId": 117545,
+      "elite": true,
+      "id": "TLC_817t",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Cleanse the Shadow",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Cast 4 Holy spells.\n<b>Reward:</b> Life's Breath.",
+      "type": "SPELL"
+    },
+    {
+      "battlegroundsRelatedCard": 119879,
+      "cardClass": "PRIEST",
+      "cost": 1,
+      "dbfId": 119726,
+      "elite": true,
+      "id": "TLC_817t2",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "Corrupt the Light",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "attack": 4,
+      "cardClass": "PRIEST",
+      "cost": 5,
+      "dbfId": 118551,
+      "elite": true,
+      "health": 4,
+      "id": "TLC_817t3",
+      "mechanics": [
+        "BATTLECRY",
+        "TAUNT"
+      ],
+      "name": "Sol'etos, Life's Breath",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Taunt</b>. <b>Battlecry:</b> Summon\na copy of this.\n<i>If you're holding both halves\n of Sol'etos, combine!</i>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "attack": 4,
+      "cardClass": "PRIEST",
+      "cost": 5,
+      "dbfId": 118552,
+      "elite": true,
+      "health": 4,
+      "id": "TLC_817t4",
+      "mechanics": [
+        "DEATHRATTLE",
+        "REBORN"
+      ],
+      "name": "Sol'etos, Death's Touch",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Reborn</b>. <b>Deathrattle:</b> Deal 5\ndamage to a random enemy.\n<i>If you're holding both halves\nof Sol'etos, combine!</i>",
+      "type": "MINION"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "attack": 8,
+      "cardClass": "PRIEST",
+      "cost": 5,
+      "dbfId": 119879,
+      "elite": true,
+      "health": 8,
+      "id": "TLC_817t5",
+      "mechanics": [
+        "BATTLECRY",
+        "DEATHRATTLE",
+        "REBORN",
+        "TAUNT"
+      ],
+      "name": "Sol'etos, Cycle's Rebirth",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Taunt</b>, <b>Reborn</b>. <b>Battlecry:</b>\nSummon a copy of this.\n<b>Deathrattle:</b> Deal 5 damage\nto a random enemy.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Ramzy Kamen",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117596,
+      "flavor": "I don't EVEN know where this goes!",
+      "id": "TLC_824",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Odd Map",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Discover</b> an odd-Attack\nBeast. If you play it this\nturn, also pick one of\nthe others.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "HUNTER",
+      "dbfId": 117597,
+      "id": "TLC_824e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Odd Map Player Enchant",
+      "set": "THE_LOST_CITY",
+      "text": "If you play the <b>Discover</b>ed card this turn, also choose one of the other two options.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "L. Lullabi & T. Shevtsov",
+      "cardClass": "HUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117672,
+      "elite": true,
+      "flavor": "Day 1. The search begins! I joined Elise Starseeker at the outskirts of the Crater, as well as a Tortollan named Umbra and a most curious gnome named Niri. Embarking into the jungle, we stumbled upon the largest tracks I’ve ever laid eyes on!",
+      "id": "TLC_830",
+      "mechanics": [
+        "QUEST"
+      ],
+      "name": "The Food Chain",
+      "rarity": "LEGENDARY",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Play a 1, 3, 5, and 7-Attack Beast.\n<b>Reward:</b> Shokk.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Alex Horley Orlandelli",
+      "attack": 9,
+      "cardClass": "HUNTER",
+      "cost": 5,
+      "dbfId": 117673,
+      "elite": true,
+      "health": 9,
+      "id": "TLC_830t",
+      "mechanics": [
+        "BATTLECRY",
+        "RUSH"
+      ],
+      "name": "Shokk, Jungle Tyrant",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Rush</b>\n<b>Battlecry:</b> <b>Discover</b> any\n8, 6, and 4-Attack Beast.\nSet their Costs to (2).",
+      "type": "MINION"
+    },
+    {
+      "artist": "Sergey Tsvelykh",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 117684,
+      "flavor": "The perfect map of where to never ever ever ever ever go.",
+      "id": "TLC_900",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Hive Map",
+      "rarity": "COMMON",
+      "set": "THE_LOST_CITY",
+      "text": "[x]<b>Discover</b> a Fel spell.\nIf you play it this turn, also\npick one of the others.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "DEMONHUNTER",
+      "dbfId": 120583,
+      "id": "TLC_900e",
+      "mechanics": [
+        "TAG_ONE_TURN_EFFECT"
+      ],
+      "name": "Hive Map",
+      "set": "THE_LOST_CITY",
+      "text": "If you play the <b>Discover</b>ed card this turn, also choose one of the other two options.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "James Ryman",
+      "cardClass": "NEUTRAL",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 120648,
+      "flavor": "Have fun storming the Lost City!",
+      "howToEarn": "Earnable after opening a <i>The Lost City of Un'Goro</i> card pack.",
+      "howToEarnGolden": "Earnable after opening a golden <i>The Lost City of Un'Goro</i> card pack.",
+      "id": "TLC_EVENT_400",
+      "mechanics": [
+        "SIDE_QUEST"
+      ],
+      "name": "Storm the Gates",
+      "rarity": "EPIC",
+      "set": "EVENT",
+      "text": "[x]<b>Sidequest:</b> Play\n3 Beasts or Undead.\n<b>Reward:</b> Craft a custom\nZombeast. It costs (3) less.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 54268,
+      "id": "ULD_191e",
+      "name": "Assisting!",
+      "set": "ULDUM",
+      "text": "+2 Health.",
+      "type": "ENCHANTMENT"
+    },
+    {
+      "artist": "Nate Bowden",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 103240,
+      "flavor": "Come to beautiful Ironforge! Where irons are forged and the forges are iron!",
+      "id": "WON_337",
+      "name": "Ironforge Portal",
+      "rarity": "COMMON",
+      "set": "WONDERS",
+      "spellSchool": "FIRE",
+      "text": "Gain 4 Armor.\nSummon a random\n4-Cost minion.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Kan Liu",
+      "cardClass": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 106465,
+      "flavor": "Well… a guy who knows a guy.",
+      "id": "WON_350",
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "I Know a Guy",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "TAUNT"
+      ],
+      "set": "WONDERS",
+      "text": "<b>Discover</b> a <b>Taunt</b> minion. Give it +1/+2.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "MAR Studio",
+      "cardClass": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 61939,
+      "flavor": "\"Don't read texts and drive.\"",
+      "id": "YOP_001",
+      "isMiniSet": true,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "name": "Illidari Studies",
+      "rarity": "COMMON",
+      "referencedTags": [
+        "OUTCAST"
+      ],
+      "set": "DARKMOON_FAIRE",
+      "text": "<b>Discover</b> an <b>Outcast</b> card. Your next one costs (1) less.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "dbfId": 62005,
+      "id": "YOP_001e",
+      "mechanics": [
+        "AURA"
+      ],
+      "name": "Loner",
+      "set": "DARKMOON_FAIRE",
+      "text": "Your next <b>Outcast</b> card costs (1) less.",
+      "type": "ENCHANTMENT"
+    }
+  ],
+  "dark_gift_prefix_policy": "Archive prefix matches, not certified current option membership. Match official launch ten separately; extra options remain unclassified."
+}

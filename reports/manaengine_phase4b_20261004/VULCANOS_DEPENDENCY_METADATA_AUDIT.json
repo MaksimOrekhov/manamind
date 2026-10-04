@@ -1,0 +1,80 @@
+{
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json?audit=vulcanos-20261004",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "cards": [
+    {
+      "artist": "Zoltan Boros",
+      "attack": 4,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 7,
+      "dbfId": 123665,
+      "elite": true,
+      "flavor": "Determined to see Azeroth aflame, Ragnaros awakened a living volcano to send rivers of lava across the Barrens.",
+      "health": 8,
+      "id": "CATA_488",
+      "mechanics": [
+        "COLOSSAL",
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "rarity": "LEGENDARY",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Colossal +2</b>\nAt the end of your turn,\ndeal 3 damage to all\nother minions.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 123666,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 128032,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t2",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    }
+  ],
+  "schema_version": 1,
+  "captured_at_utc": "2026-10-04T12:59:00Z",
+  "capture_time_precision": "Approximate minute from tool execution; not an exact acquisition timestamp",
+  "purpose": "Finite metadata audit only; not loaded by simulator, not executable rules or verification evidence",
+  "root_metadata_matches_pinned_20261001": true,
+  "pinned_collectible_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+  "metadata_scope": "Complete full-feed objects for CATA_488, CATA_488t and CATA_488t2; source_sha256 identifies fetched response bytes, not this derived subset",
+  "appendage_order_status": "IDs resolved; exact placement/order still requires reviewed rules evidence",
+  "noncollectible_interpretation": "Both appendages omit collectible in full feed, unlike collectible root; absence denotes noncollectible metadata"
+}

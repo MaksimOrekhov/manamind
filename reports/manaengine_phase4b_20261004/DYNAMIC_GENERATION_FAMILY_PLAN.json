@@ -1,0 +1,1453 @@
+{
+  "count": 51,
+  "families": [
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_582"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DAMAGE_ALL_MINIONS"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "CS2_045e"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "area_damage_hero_attack",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "JAIL_386",
+        "TIME_026"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_FRIENDLY_BOARD",
+        "CAST_WHEN_DRAWN",
+        "SHUFFLE_FIXED"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "JAIL_386t",
+        "TIME_025t",
+        "TIME_026e"
+      ],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "cast_when_drawn_shuffle",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_AT_037",
+        "EDR_570"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_DAMAGED_MINION",
+        "CHOOSE_ONE",
+        "DAMAGE_ALL_MINIONS"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "AT_037a",
+        "AT_037b",
+        "AT_037t"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "choose_one_composition",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "Core_LOE_115",
+        "EDR_872"
+      ],
+      "dynamic_frontiers": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "SPELL_DRUID",
+        "SPELL_MAGE"
+      ],
+      "expected_shared_changes": [
+        "CHOOSE_ONE",
+        "DISCOVER_CLASS_SPELL",
+        "DISCOVER_MINION",
+        "DISCOVER_SPELL"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "LOE_115a",
+        "LOE_115b"
+      ],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 4,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "choose_one_discover",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "END_025"
+      ],
+      "dynamic_frontiers": [
+        "SELF_VARIANT:END_025"
+      ],
+      "expected_shared_changes": [
+        "END_TURN_RETURN_SELF",
+        "IF_KILLED",
+        "LIFESTEAL"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "conditional_spell_return",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "EDR_813"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "CHOOSE_ONE",
+        "SPEND_CORPSES"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "EDR_813a",
+        "EDR_813at",
+        "EDR_813b"
+      ],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "corpses_choose_one",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "EDR_811"
+      ],
+      "dynamic_frontiers": [
+        "DARK_GIFT_OPTIONS",
+        "UNDEAD_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "expected_shared_changes": [
+        "DARK_GIFT",
+        "DISCOVER_UNDEAD",
+        "SPEND_CORPSES"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "corpses_dark_gift",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_303",
+        "CORE_EX1_302",
+        "CORE_EX1_391",
+        "END_020",
+        "FIR_954"
+      ],
+      "dynamic_frontiers": [
+        "MINION_BASE_COST_1_ANY_CLASS"
+      ],
+      "expected_shared_changes": [
+        "DRAW_TARGET_OWNER",
+        "HEAL_ENEMY_HERO",
+        "IF_KILLED",
+        "IF_SURVIVES",
+        "RANDOM_SUMMON"
+      ],
+      "fire_candidates_addressed": 2,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 5,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "damage_outcome_followup",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 4,
+      "whelp_working_candidates_addressed": 4
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TLC_221"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "SUMMON_COUNT_DAMAGE_DEALT"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "TLC_249"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "damage_scaled_summon",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "JAIL_940"
+      ],
+      "dynamic_frontiers": [
+        "DEATHRATTLES_FROM_FRIENDLY_GAME_HISTORY"
+      ],
+      "expected_shared_changes": [
+        "RANDOM_FRIENDLY_DEATH_HISTORY",
+        "TRIGGER_DEATHRATTLE"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "death_history_replay",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "FIR_941"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_DECK_MINIONS"
+      ],
+      "expected_shared_changes": [
+        "COPY_AS_8_8",
+        "DIVINE_SHIELD",
+        "DRAW_MINION",
+        "SUMMON_COPY"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 4,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "deck_draw_copy_summon",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_528"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "NEXT_OWN_TURN_SUMMON_FIXED"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "CATA_528t"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "delayed_fixed_summon",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_CS2_108",
+        "EDR_531"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DESTROY_DAMAGED_ENEMY_MINION",
+        "DESTROY_FRIENDLY_MINION"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "destroy_followup",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "EDR_528",
+        "END_027",
+        "FIR_900",
+        "FIR_920",
+        "FIR_939"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_OPPONENT_DECK_MINIONS",
+        "COMBO_BATTLECRY_STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS",
+        "DRAGON_FROM_PAST",
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "WARRIOR_MINIONS"
+      ],
+      "expected_shared_changes": [
+        "COMBO",
+        "DARK_GIFT",
+        "DISCOVER_COMBO_BATTLECRY_STEALTH_MINION",
+        "DISCOVER_MINION",
+        "DISCOVER_OPPONENT_DECK_COPY",
+        "DISCOVER_PAST_DRAGON",
+        "DISCOVER_WARRIOR_MINION"
+      ],
+      "fire_candidates_addressed": 3,
+      "fixed_dependency_candidates": [
+        "EDR_102t"
+      ],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 7,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "discover_dark_gift",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_DS1_184",
+        "TIME_701"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "expected_shared_changes": [
+        "BOTTOM_UNSELECTED",
+        "DISCOVER_ACTUAL_DECK",
+        "DRAW_SELECTED"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "discover_deck",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 1,
+      "candidate_ids": [
+        "CORE_GIL_836",
+        "CORE_WON_350",
+        "CORE_YOP_001",
+        "EDR_273"
+      ],
+      "dynamic_frontiers": [
+        "BATTLECRY_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "OTHER_CLASS_CHOOSE_ONE",
+        "OUTCAST_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "TAUNT_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "expected_shared_changes": [
+        "BUFF_GENERATED_STATS",
+        "DISCOVER_BATTLECRY",
+        "DISCOVER_OTHER_CLASS_CHOOSE_ONE",
+        "DISCOVER_OUTCAST",
+        "DISCOVER_TAUNT",
+        "NEXT_OUTCAST_COST_REDUCTION"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 6,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "discover_predicate",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 4,
+      "whelp_working_candidates_addressed": 4
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TLC_435",
+        "TLC_442",
+        "TLC_464",
+        "TLC_824",
+        "TLC_900"
+      ],
+      "dynamic_frontiers": [
+        "FEL_SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "FROST_RUNE_CARDS",
+        "MINIONS_UNPLAYED_TYPES",
+        "MURLOC_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "ODD_BASE_ATTACK_BEAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "expected_shared_changes": [
+        "DISCOVER_FEL_SPELL",
+        "DISCOVER_FROST_RUNE",
+        "DISCOVER_MURLOC",
+        "DISCOVER_ODD_ATTACK_BEAST",
+        "DISCOVER_UNPLAYED_TYPE",
+        "IF_PLAY_THIS_TURN_PICK_OTHER"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 6,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "discover_then_play_other_option",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 5,
+      "whelp_working_candidates_addressed": 5
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_585"
+      ],
+      "dynamic_frontiers": [
+        "SELF_VARIANT:CATA_585"
+      ],
+      "expected_shared_changes": [
+        "DAMAGE_DAMAGED_MINION",
+        "EXCESS_DAMAGE",
+        "NO_SPELLPOWER",
+        "RETURN_SELF_WITH_DAMAGE"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 4,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "excess_damage_return_outlier",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 2,
+      "candidate_ids": [
+        "CORE_BOT_222",
+        "CORE_CS1_130",
+        "CORE_CS2_029",
+        "CORE_CS2_032",
+        "CORE_CS2_062",
+        "CORE_DS1_185"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DAMAGE_OWN_HERO"
+      ],
+      "fire_candidates_addressed": 3,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "fixed_damage",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 3,
+      "whelp_working_candidates_addressed": 3
+    },
+    {
+      "already_declared_consumers": 1,
+      "candidate_ids": [
+        "CORE_SW_108"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "SW_108t"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6 Luna",
+      "new_shared_primitives_count_upper_bound": 0,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "fixed_hand_generation",
+      "rules_risk": "LOW",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_BAR_801",
+        "TIME_006"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "CONDITIONAL_COUNT",
+        "HOLDING_DRAGON"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "BAR_035t",
+        "TIME_006t1"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "fixed_summon_composition",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "MEND_300"
+      ],
+      "dynamic_frontiers": [
+        "BEAST_COST_PREVIOUS_COMPANION_PLUS_1"
+      ],
+      "expected_shared_changes": [
+        "FUTURE_ANIMAL_COMPANION_REPLACEMENT"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "future_companion_override",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "JAIL_732"
+      ],
+      "dynamic_frontiers": [
+        "DEMON_COST_FUTURE_VOID_SOUL"
+      ],
+      "expected_shared_changes": [
+        "FUTURE_VOID_SOUL_UPGRADE",
+        "RANDOM_DEMON_SUMMON"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "future_generated_state",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_302",
+        "CORE_AT_055"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "HEAL_CHARACTER",
+        "HEAL_MINION_TO_FULL"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "healing_draw",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CAP_006",
+        "TLC_517"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "GAME_SHUFFLE_COUNT",
+        "HELD_STEALTH_ATTACK_PROGRESS"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "held_history_damage",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 1,
+      "candidate_ids": [
+        "JAIL_801"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "JAIL_801t"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 0,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "held_spell_transform",
+      "rules_risk": "LOW",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "EDR_522",
+        "TIME_039"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_OPPONENT_DRAWN_INSTANCES",
+        "ACTUAL_OPPONENT_HAND_INSTANCES"
+      ],
+      "expected_shared_changes": [
+        "COPY_DRAWN_TO_HAND",
+        "COPY_TO_HAND",
+        "DISCOVER_OPPONENT_HAND",
+        "OPPONENT_DRAW"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 4,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "hidden_zone_copy",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_BOT_451",
+        "CORE_EX1_238",
+        "TLC_227"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "LOWEST_HEALTH_ENEMY_DAMAGE",
+        "OVERLOAD",
+        "REPEAT_THREE"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "BOT_102t"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "overload_composition",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "EDR_251"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_DECK_BY_START_PROVENANCE"
+      ],
+      "expected_shared_changes": [
+        "DRAW_NOT_STARTED_IN_DECK",
+        "DRAW_STARTED_IN_DECK"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "provenance_filtered_draw",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "END_017",
+        "TLC_229",
+        "TLC_239",
+        "TLC_426",
+        "TLC_433",
+        "TLC_446",
+        "TLC_460",
+        "TLC_513",
+        "TLC_602",
+        "TLC_631",
+        "TLC_817",
+        "TLC_830"
+      ],
+      "dynamic_frontiers": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "expected_shared_changes": [
+        "QUEST_LONG_LIVED_STATE",
+        "REWARD_GENERATION"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "quest_excluded_from_random",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 12,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_136"
+      ],
+      "dynamic_frontiers": [
+        "MINION_BASE_COST_AT_LEAST_8_ANY_CLASS"
+      ],
+      "expected_shared_changes": [
+        "DOUBLE_GENERATED_STATS",
+        "GENERATE_RANDOM_HIGH_COST_MINIONS",
+        "SHUFFLE_SELF_DECK"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "random_deck_generation",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "FIR_909"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DAMAGE_RANDOM_DISTINCT_ENEMIES"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "random_distinct_targets",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_621"
+      ],
+      "dynamic_frontiers": [
+        "PALADIN_AURA_SPELLS"
+      ],
+      "expected_shared_changes": [
+        "EXTEND_AURA_DURATION",
+        "GENERATE_RANDOM_PALADIN_AURA"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "random_persistent_aura",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "JAIL_125"
+      ],
+      "dynamic_frontiers": [
+        "FROST_SPELL_ANY_CLASS"
+      ],
+      "expected_shared_changes": [
+        "GENERATE_RANDOM_FROST_SPELL"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "random_school_generation",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_WON_337",
+        "TLC_235"
+      ],
+      "dynamic_frontiers": [
+        "MINION_BASE_COST_4_ANY_CLASS",
+        "MINION_BASE_COST_EQUALS_DESTROYED"
+      ],
+      "expected_shared_changes": [
+        "DESTROY_MINION",
+        "RANDOM_SAME_COST_REPLACEMENT",
+        "RANDOM_SUMMON"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "random_summon",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 2,
+      "candidate_ids": [
+        "CORE_EX1_610",
+        "CORE_LOOT_101",
+        "END_024"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DAMAGE_ALL_ENEMIES",
+        "DAMAGE_AND_EXCESS",
+        "INFINITE_DAMAGE_HIGHEST_HEALTH",
+        "SECRET_HERO_ATTACKED"
+      ],
+      "fire_candidates_addressed": 3,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 4,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "reactive_secret",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "JAIL_319"
+      ],
+      "dynamic_frontiers": [
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "expected_shared_changes": [
+        "DISCOVER_SPELL",
+        "RANDOM_SELF_DAMAGE",
+        "REPEAT_REFRESH_OPTIONS"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "refresh_discover_outlier",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TIME_EVENT_999"
+      ],
+      "dynamic_frontiers": [
+        "SPELL_ANY_CLASS",
+        "SPELL_PLAYER_CLASS"
+      ],
+      "expected_shared_changes": [
+        "DISCOVER_ANY_CLASS_SPELL",
+        "DISCOVER_OWN_CLASS_ON_REWIND",
+        "REWIND"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "rewind_discover",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "FIR_906",
+        "FIR_910"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_FRIENDLY_BOARD",
+        "CONDITIONAL_EXTRA_BUFF",
+        "CONDITIONAL_EXTRA_DAMAGE",
+        "RANDOM_HAND_FIRE_DISCARD",
+        "RANDOM_HAND_NATURE_DISCARD"
+      ],
+      "fire_candidates_addressed": 2,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 5,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "school_discard_composition",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 1,
+      "candidate_ids": [
+        "CATA_485",
+        "TIME_212"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "DAMAGE_FRIENDLY_MINION"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "sequential_damage",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TLC_EVENT_400"
+      ],
+      "dynamic_frontiers": [
+        "ZOMBEAST_COMPONENTS"
+      ],
+      "expected_shared_changes": [
+        "CRAFT_ZOMBEAST",
+        "SIDEQUEST",
+        "SUMMON_BEAST_UNDEAD_COUNT"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "sidequest_composite_minion",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "FIR_911",
+        "FIR_914",
+        "FIR_916"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "AUTO_DISCARD",
+        "BUFF_FRIENDLY_MINION",
+        "HAND_TURN_UPGRADE"
+      ],
+      "fire_candidates_addressed": 3,
+      "fixed_dependency_candidates": [
+        "FIR_914e"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "smoldering_hand_age",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_CS2_004",
+        "TIME_447"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_HAND_HEALTH",
+        "BUFF_MINION_HEALTH",
+        "SHIELD_CHARACTER"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "CS2_004e",
+        "ULD_191e"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "stat_keyword_enchant",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 2,
+      "whelp_working_candidates_addressed": 2
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_554"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "HOLDING_DRAGON",
+        "SECOND_TARGET_CHOICE",
+        "SET_HEALTH_1"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "stat_set_retarget",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CATA_581",
+        "FIR_923",
+        "JAIL_307"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BOARD_COUNT_SCALING",
+        "CONDITIONAL_DAMAGE",
+        "DAMAGE_ALL_MINIONS",
+        "DECK_SIZE_COST_REDUCTION",
+        "HELD_COST_AT_LEAST_8",
+        "REPEAT_TWO"
+      ],
+      "fire_candidates_addressed": 3,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 6,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "state_scaled_damage",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "DINO_417"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_BOARD_ATTACK",
+        "END_TURN_DESTROY",
+        "GRANT_RUSH"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "temporary_board_keywords",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TLC_632"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "RANDOM_ENEMY_DAMAGE",
+        "REPLACE_HERO_POWER",
+        "TWO_USE_RETURN"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "TLC_632t",
+        "TLC_632t2"
+      ],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 3,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "temporary_hero_power_swap",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CAP_002",
+        "CAP_101",
+        "CAP_402"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_PLAYABLE_HAND_CARDS",
+        "ACTUAL_PLAYABLE_HAND_PIRATES",
+        "STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "expected_shared_changes": [
+        "DISCOVER_STEALTH",
+        "GRANT_PLAYABLE_HAND_EFFECT_ONE_TURN",
+        "GRANT_PLAYABLE_PIRATE_EFFECT_ONE_TURN",
+        "GRANT_SELF_EFFECT_ONE_TURN",
+        "RANDOM_ENEMY_DAMAGE",
+        "SHUFFLE_OPPONENT_DECK_FIXED"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "CAP_400t2t",
+        "CAP_402e"
+      ],
+      "implementation_complexity": "ARCHITECTURE_REVIEW",
+      "model_recommendation": "GPT-6.1 Sol High",
+      "new_shared_primitives_count_upper_bound": 6,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "temporary_inherited_effect",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 3,
+      "whelp_working_candidates_addressed": 3
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "DINO_406"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_ELEMENTALS"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [
+        "ICC_210e"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "tribal_multi_zone_buff",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "TLC_222"
+      ],
+      "dynamic_frontiers": [
+        "ACTUAL_DECK_DIFFERENT_MINION_TYPES"
+      ],
+      "expected_shared_changes": [
+        "BUFF_DRAWN_STATS",
+        "DRAW_DIFFERENT_MINION_TYPES"
+      ],
+      "fire_candidates_addressed": 1,
+      "fixed_dependency_candidates": [],
+      "implementation_complexity": "OUTCOME_CLOSURE_DOMINATES",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 2,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "type_filtered_draw_buff",
+      "rules_risk": "HIGH",
+      "transitive_closure_unlock_count": null,
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 0,
+      "whelp_working_candidates_addressed": 0
+    },
+    {
+      "already_declared_consumers": 0,
+      "candidate_ids": [
+        "CORE_CS2_074"
+      ],
+      "dynamic_frontiers": [],
+      "expected_shared_changes": [
+        "BUFF_WEAPON_ATTACK"
+      ],
+      "fire_candidates_addressed": 0,
+      "fixed_dependency_candidates": [
+        "CS2_074e"
+      ],
+      "implementation_complexity": "BOUNDED",
+      "model_recommendation": "GPT-6.1 Sol Medium",
+      "new_shared_primitives_count_upper_bound": 1,
+      "package_status": "FAMILY_PLANNING_CANDIDATE_NARROW_CONTRACT_AND_PROPOSAL_REQUIRED",
+      "proposed_family": "weapon_buff",
+      "rules_risk": "MEDIUM",
+      "transitive_closure_unlock_count": "NOT_VERIFIED",
+      "unlock_semantics": "Potential outcome rule implementations addressed, not verified roots or training gain; subcontracts and all listed dependencies still required.",
+      "verified_cards_gained_by_audit": 0,
+      "whelp_raw_candidates_addressed": 1,
+      "whelp_working_candidates_addressed": 1
+    }
+  ],
+  "schema_version": 1,
+  "sources": {
+    "audit_builder_sha256": "a4e410e32bd179c6f2e538cff513cb8f4fe825face6cdd9ec3a2297d88d06645",
+    "dark_gift_review_sha256": "47f65e6e043d4dd50a1788b81ebef6cf1449d5f299f260c95f301733a33d43dd",
+    "fetched_full_feed_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+    "full_definition_slice_sha256": "869e13bbe49546724c71363031fde897475ee4211e6f70abfdc9698896a3fe95",
+    "hash_contract": "Ordinal sorted unique card IDs, UTF-8 without BOM, LF after every ID including the last.",
+    "metadata_snapshot": "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+    "metadata_snapshot_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "root_membership_file": "data/cards/standard_roots_20261001_enUS.json",
+    "root_membership_file_sha256": "1820a2f3b78539929e267a7da68e3a91d2275528ba969ed2540d778735198915",
+    "rules_review_sha256": "d065220470edcde778e5b689487cb6cc830bacd78277d8d9e55f2689d31c07d7",
+    "source_revision": "1686256493293459b6fa6f863832f887416025f7"
+  },
+  "warning": "Do not implement mixed facets as one behavioral dispatcher; split into reusable subcontracts. Counts address candidates, not guaranteed package unlocks."
+}
