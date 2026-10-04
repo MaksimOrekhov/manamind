@@ -937,7 +937,7 @@ def test_dark_gift_option_manifest_keeps_unresolved_admission_and_hashes(tmp_pat
 def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -> None:
     from manamind.cards import CardCatalog
     from manamind.domain.serialization import game_state_from_dict
-    from manamind.encoding.entity_encoder import NUMERIC_FEATURES, STATE_FLAG_NAMES
+    from manamind.encoding.entity_encoder import NUMERIC_FEATURES, STATE_FLAG_NAMES, _normalise
     from manamind.encoding.state_encoder import StateEncoder
     from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES, encode_legal_actions
     from manamind.domain.dark_gift import DARK_GIFT_OPTION_IDS, DARK_GIFT_POLICY_INDEX
@@ -960,7 +960,9 @@ def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -
     assert state.opponent_known_cards == ()
     encoded = StateEncoder(CardCatalog([])).encode(state)
     assert "dark_gift_EDR_100t2" in NUMERIC_FEATURES
-    assert encoded.self_board.numeric[0, NUMERIC_FEATURES.index("dark_gift_EDR_100t2")] == 1
+    gift_column = NUMERIC_FEATURES.index("dark_gift_EDR_100t2")
+    assert encoded.self_board.numeric_present[0, gift_column] == 1
+    assert encoded.self_board.numeric[0, gift_column] == _normalise(1)
     assert encoded.self_board.state_flags[0, STATE_FLAG_NAMES.index("charge")] == 1
 
     actions = [{"type": "PLAY_CARD", "card_dark_gifts": [gift]} for gift in DARK_GIFT_OPTION_IDS]

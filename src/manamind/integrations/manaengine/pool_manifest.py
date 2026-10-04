@@ -135,7 +135,10 @@ def load_dark_gift_option_manifest(manifest_path: str | Path, metadata_path: str
     metadata = raw["source_metadata"]
     if not isinstance(metadata, dict) or set(metadata) != {"id", "sha256"}:
         raise ValueError("Dark Gift source metadata identity is invalid")
-    digest = hashlib.sha256(Path(metadata_path).read_bytes()).hexdigest()
+    # Git may materialize JSON text with CRLF on Windows. Hash the canonical
+    # UTF-8/LF bytes so the pinned identity is stable across checkout modes.
+    metadata_bytes = Path(metadata_path).read_bytes().replace(b"\r\n", b"\n")
+    digest = hashlib.sha256(metadata_bytes).hexdigest()
     if metadata["sha256"] != digest or not _SHA256.fullmatch(str(metadata["sha256"])):
         raise ValueError("Dark Gift option metadata identity mismatch")
     candidates = raw["candidate_option_ids"]
