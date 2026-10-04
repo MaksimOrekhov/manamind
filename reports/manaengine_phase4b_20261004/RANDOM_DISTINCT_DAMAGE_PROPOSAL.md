@@ -1,5 +1,7 @@
 # CAPABILITY PACKAGE PROPOSAL
 
+Historical combined proposal. The user's subsequent local damage-boundary decision supersedes the Sleet Storm portion; see DAMAGE_BOUNDARY_PROPOSAL.md. TIME_855 remains BLOCKED_DESIGN_REVIEW and is not implemented. The completion statements below describe the earlier checkpoint only.
+
 ## package_id
 
 `ordered_random_distinct_damage_v1`, proposal 2026-10-04; ManaMind 8413065 / Rosetta f34da0d; pinned `standard_full_20261001_v1`, frozen `tricky_burn_mage`. Status: `BLOCKED_DESIGN_REVIEW`. No production implementation started.

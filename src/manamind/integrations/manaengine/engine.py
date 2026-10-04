@@ -103,7 +103,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
     effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE"}
-    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "SELF"}
+    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "SELF", "RANDOM_ENEMY_MINION"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
         d = native.CardDefinition()

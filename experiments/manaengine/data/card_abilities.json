@@ -2,6 +2,23 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
+    "CATA_485": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $2 damage. Deal $1 damage to a random enemy minion.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 2
+        },
+        {
+          "kind": "DAMAGE",
+          "target": "RANDOM_ENEMY_MINION",
+          "amount": 1
+        }
+      ]
+    },
     "CATA_475": {
       "ability": "END_TURN_ENEMY_AREA_DAMAGE",
       "support_state": "SUPPORTED",

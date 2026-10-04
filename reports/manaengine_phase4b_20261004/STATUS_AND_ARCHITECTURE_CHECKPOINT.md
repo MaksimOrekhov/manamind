@@ -1,5 +1,7 @@
 # Phase 4B: H6 completion and damage-timing review checkpoint
 
+Historical H6 architecture-stop checkpoint. The subsequent explicit user decision approves local damage-boundary v1 and scoped Sleet Storm; see DAMAGE_BOUNDARY_PROPOSAL.md and DAMAGE_BOUNDARY_COMPLETION.md. Barrage and later packages remain deferred. Counts/verdict below belong to the H6 snapshot.
+
 Baseline: `84130657f303622b52a096a1129a1eb265a48751`, branch `codex/manaengine-first-deck`, initially clean. RosettaStone remains reference backend, pinned at `f34da0d3fcb5ad312f7e2acf634d0536b044d29a`.
 First recorded active timer: 2026-10-04 10:29:17 UTC. Hard limit: four active hours or earlier architecture/rules stop. No training/search/backend switch or user-response waiting.
 

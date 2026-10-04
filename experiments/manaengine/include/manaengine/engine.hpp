@@ -12,7 +12,7 @@
 namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self, RandomEnemyMinion };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; };
 class UnsupportedSimulationError : public std::runtime_error {
@@ -121,6 +121,12 @@ public:
     void set_trace_enabled(bool enabled);
     const std::vector<std::string>& diagnostic_trace() const;
 private:
+    static constexpr int damage_boundary_contract_version=1;
+    enum class DamageEvaluationContract { CurrentAtStep, MissileTotal };
+    struct SpellEffectContext {
+      int owner=0, source_entity=-1, persistent_bonus=0;
+      DamageEvaluationContract contract=DamageEvaluationContract::CurrentAtStep;
+    };
     enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, Discover, DestroyEnemyWeapon,
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
@@ -176,7 +182,8 @@ private:
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
     int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false);
     void transform_board(int owner,int entity,const std::string& card_id);
-    void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0);
+    void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0,int source_entity=-1);
+    int evaluate_spell_damage(const SpellEffectContext& context,int base_amount);
     void record_spell_damage_event(int owner,int amount);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
     bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);
@@ -184,7 +191,7 @@ private:
     void activate_secret(CardInstance secret);
     void assign_activation_sequence(CardInstance& source);
     void resolve_end_turn_reactions(int owner);
-    int resolve_effects(const CardDefinition& def,int owner,int target_id,int spell_damage=0);
+    int resolve_effects(const CardDefinition& def,const SpellEffectContext& context,int target_id);
     void begin_discover(int owner,const CardDefinition& source);
     void update_held_card_spell_progress(int owner);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);

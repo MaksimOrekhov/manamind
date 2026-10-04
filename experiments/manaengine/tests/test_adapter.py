@@ -6,6 +6,29 @@ from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimul
 from manamind.integrations.rosettastone.policy import encode_legal_actions
 
 
+def test_sleet_dynamic_damage_boundary_real_actions_and_clone() -> None:
+    deck = ["END_022", "CATA_485", *(["CORE_EX1_145"] * 28)]
+    opponent = ["END_022", *(["CORE_EX1_145"] * 29)]
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False, random_seed=87)
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "END_022"))
+    session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "END_022"))
+    session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    actions = session.legal_actions()
+    sleet = next(a for a in actions if a.get("card_id") == "CATA_485" and a.get("target_card_id") == "END_022" and a.get("target_is_self"))
+    assert sleet["card_spell_damage"] == 0  # Persistent instance bonus, separate from the board aura.
+    assert encode_legal_actions(actions).shape[0] == len(actions)
+    clone = session.clone()
+    before = session.observation()
+    result = session.apply_action(sleet)
+    assert clone.observation() == before
+    assert clone.apply_action(sleet) == result
+    assert result.self_player.board[0].current_health == 1
+    assert result.self_player.spell_damage == 2
+    assert result.opponent.board == ()  # Its 1/3 Seer takes 3, rather than the old cast snapshot's 1.
+    assert not session.training_eligible
+
+
 def test_unsupported_hero_power_session_and_training_fail_closed() -> None:
     deck = ["CORE_EX1_145"] * 30
     with pytest.raises(UnsupportedSimulationError, match="hero powers"):
