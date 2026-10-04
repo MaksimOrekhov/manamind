@@ -10,6 +10,7 @@ import torch
 from torch import Tensor, nn
 
 from manamind.domain.game_state import GameState
+from manamind.domain.dark_gift import DARK_GIFT_POLICY_INDEX
 from manamind.encoding.state_encoder import GLOBAL_FEATURE_NAMES, StateEncoder
 
 POLICY_STATE_FEATURE_NAMES = (
@@ -131,6 +132,14 @@ def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
         dark_gift_id = int(action.get("dark_gift_id", 0) or 0)
         if 1 <= dark_gift_id <= 10:
             rows[row, ACTION_FEATURE_NAMES.index(f"dark_gift_{dark_gift_id}")] = 1.0
+
+        gifts = list(action.get("card_dark_gifts") or ())
+        if action.get("choice_dark_gift"):
+            gifts.append(str(action["choice_dark_gift"]))
+        for gift in gifts:
+            if gift not in DARK_GIFT_POLICY_INDEX:
+                raise ValueError(f"Unreviewed Dark Gift identity: {gift}")
+            rows[row, ACTION_FEATURE_NAMES.index(f"dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] = 1.0
 
         card_type = action.get("card_type", "OTHER")
         card_type_index = _CARD_TYPES.get(card_type, _CARD_TYPES["OTHER"])

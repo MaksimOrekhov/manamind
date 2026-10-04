@@ -42,7 +42,7 @@ GLOBAL_FEATURE_NAMES = (
     "opponent_known_cards_count",
     "self_choice_pending", "opponent_choice_pending",
 )
-STATE_ENCODING_SCHEMA_VERSION = 15
+STATE_ENCODING_SCHEMA_VERSION = 16
 
 
 @dataclass(frozen=True, slots=True)

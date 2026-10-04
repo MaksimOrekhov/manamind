@@ -14,6 +14,7 @@ from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
 from manamind.domain.game_state import GameState
 from manamind.domain.serialization import game_state_from_dict
+from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest
 
 _NATIVE: ModuleType | None = None
 _ROOT = Path(__file__).resolve().parents[4]
@@ -90,6 +91,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         _ROOT / "experiments/manaengine/data/fixed_summon_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/summon_condition_dependencies.json",
         _ROOT / "experiments/manaengine/data/overload_dependency_metadata.json",
+        _ROOT / "experiments/manaengine/data/dark_gift_option_metadata.json",
     ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
@@ -150,6 +152,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             "spell_damage_cost_reduction",
             "kindred_copy_contract",
             "damage_outcome_amount",
+            "dark_gift_option_pool_id", "dark_gift_attack", "dark_gift_health", "dark_gift_cost",
+            "dark_gift_keywords", "dark_gift_requires_battlecry", "dark_gift_requires_positive_attack",
         }
         unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text", "damage_outcome_condition", "damage_outcome_followup"}
         if unknown:
@@ -175,6 +179,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         for key, value in spec.items():
             if key in allowed_fields:
                 setattr(d, key, value)
+        if "dark_gift_keywords" in spec:
+            d.dark_gift_keywords = [str(value).upper() for value in spec["dark_gift_keywords"]]
         raw_effects = spec.get("effects", [])
         if not isinstance(raw_effects, list):
             raise ValueError(f"effects must be a list for {card.card_id}")
@@ -225,8 +231,8 @@ def _export_state(raw: dict[str, Any]) -> GameState:
             row["mechanics"] = list(base.mechanics)
         if in_hand:
             if str(row.get("card_type", "")).upper() == "MINION":
-                row["current_attack"] = row.get("attack")
-                row["current_health"] = row.get("health")
+                row["current_attack"] = row.get("current_attack", row.get("attack"))
+                row["current_health"] = row.get("current_health", row.get("health"))
             else:
                 row["current_attack"] = None
                 row["current_health"] = None
@@ -272,7 +278,13 @@ class ManaEngineSession:
         catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
         catalog_key = str(catalog_file.resolve())
         if catalog_key not in _NATIVE_CATALOG_CACHE:
-            _NATIVE_CATALOG_CACHE[catalog_key] = native.CardCatalog(_definition_rows(catalog_path))
+            option_manifest = load_dark_gift_option_manifest(
+                _ROOT / "experiments/manaengine/data/pools/dark_gift_launch_review_20261004_v1.json",
+                _ROOT / "experiments/manaengine/data/dark_gift_option_metadata.json",
+            )
+            _NATIVE_CATALOG_CACHE[catalog_key] = native.CardCatalog(
+                _definition_rows(catalog_path), [], "", "", [option_manifest.to_native(native)]
+            )
         else:
             _definition_rows(catalog_path)
         self._native = native.GameSession(list(player1_deck), list(player2_deck), _NATIVE_CATALOG_CACHE[catalog_key],

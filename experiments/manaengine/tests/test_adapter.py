@@ -6,6 +6,19 @@ from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimul
 from manamind.integrations.rosettastone.policy import encode_legal_actions
 
 
+def _native_dark_gift_manifests(native):
+    from pathlib import Path
+
+    from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest
+
+    root = Path(__file__).resolve().parents[3]
+    doc = load_dark_gift_option_manifest(
+        root / "experiments/manaengine/data/pools/dark_gift_launch_review_20261004_v1.json",
+        root / "experiments/manaengine/data/dark_gift_option_metadata.json",
+    )
+    return [doc.to_native(native)]
+
+
 def test_bookkeeper_phase_model_runes_history_adapter_and_policy() -> None:
     from manamind.cards import CardCatalog
     from manamind.encoding import StateEncoder
@@ -51,7 +64,7 @@ def test_bookkeeper_phase_model_runes_history_adapter_and_policy() -> None:
     assert not session.training_eligible
     encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
     encoded = encoder.encode(state)
-    assert STATE_ENCODING_SCHEMA_VERSION == 15
+    assert STATE_ENCODING_SCHEMA_VERSION == 16
     assert encoded.global_features[encoder.global_feature_names.index("self_previous_minion_type_elemental")] > 0
 
 
@@ -157,7 +170,8 @@ def test_safe_existing_primitive_harvest_declarations_reach_adapter_and_policy()
     assert token.support_state == "VERIFIED_VANILLA"
     assert (token.card_type, token.attack, token.health, token.race, token.rush) == ("MINION", 1, 1, "BEAST", True)
     assert token.required_mechanics == ["RUSH"]
-    _load_native().CardCatalog(list(definitions.values()))
+    native = _load_native()
+    native.CardCatalog(list(definitions.values()), [], "", "", _native_dark_gift_manifests(native))
 
     filler = "CORE_EX1_145"
     deck = ["CORE_BAR_801", *([filler] * 29)]
@@ -641,7 +655,7 @@ def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
 
     native = _load_native()
     rows = _definition_rows()
-    native.CardCatalog(rows)
+    native.CardCatalog(rows, [], "", "", _native_dark_gift_manifests(native))
     by_id = {row.card_id: row for row in rows}
     mage_secrets = {
         card_id for card_id, row in by_id.items()
@@ -835,7 +849,7 @@ def test_finite_pool_manifests_are_strict_and_native_compatible(tmp_path) -> Non
     root = Path(__file__).resolve().parents[3]
     snapshot = root / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json"
     pool_dir = root / "experiments/manaengine/data/pools"
-    manifests = sorted(pool_dir.glob("*.json"))
+    manifests = sorted(path for path in pool_dir.glob("*.json") if path.name.startswith(("fire_spell_", "whelp_")))
     assert len(manifests) == 4
     native = _load_native()
     expected_counts = {"fire_spell_standard_20261001_candidate_v1.json": 33,
@@ -885,3 +899,74 @@ def test_finite_pool_manifests_are_strict_and_native_compatible(tmp_path) -> Non
                            expected_as_of_date="2026-10-01", metadata_snapshot_path=snapshot,
                            standard_roots_path=bad_roots,
                            expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+
+
+def test_dark_gift_option_manifest_keeps_unresolved_admission_and_hashes(tmp_path) -> None:
+    import json
+    from pathlib import Path
+
+    from manamind.integrations.manaengine.engine import _load_native
+    from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest
+
+    root = Path(__file__).resolve().parents[3]
+    manifest_path = root / "experiments/manaengine/data/pools/dark_gift_launch_review_20261004_v1.json"
+    metadata_path = root / "experiments/manaengine/data/dark_gift_option_metadata.json"
+    doc = load_dark_gift_option_manifest(manifest_path, metadata_path)
+    assert len(doc.candidate_option_ids) == 12
+    assert len(doc.launch_reviewed_option_ids) == 10
+    native = _load_native()
+    from manamind.integrations.manaengine.engine import _definition_rows
+
+    catalog = native.CardCatalog(_definition_rows(), [], "", "", [doc.to_native(native)])
+    assert catalog is not None
+
+    raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    raw["runtime_membership_status"] = "MEMBERSHIP_REVIEWED"
+    malformed = tmp_path / "promoted.json"
+    malformed.write_text(json.dumps(raw), encoding="utf-8")
+    with pytest.raises(ValueError, match="uncertainty/training status"):
+        load_dark_gift_option_manifest(malformed, metadata_path)
+
+    raw = json.loads(manifest_path.read_text(encoding="utf-8"))
+    raw["launch_reviewed_option_ids"].pop()
+    malformed.write_text(json.dumps(raw), encoding="utf-8")
+    with pytest.raises(ValueError, match="set sizes"):
+        load_dark_gift_option_manifest(malformed, metadata_path)
+
+
+def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -> None:
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding.entity_encoder import NUMERIC_FEATURES, STATE_FLAG_NAMES
+    from manamind.encoding.state_encoder import StateEncoder
+    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES, encode_legal_actions
+    from manamind.domain.dark_gift import DARK_GIFT_OPTION_IDS, DARK_GIFT_POLICY_INDEX
+
+    state = game_state_from_dict({
+        "turn_number": 4,
+        "active_player": "SELF",
+        "self_hand": [{"card_id": "FIR_900", "card_type": "MINION", "dark_gifts": ["EDR_100t", "EDR_100t3"]}],
+        "self_player": {"hero_health": 30, "hand_size": 1, "board": [{
+            "card_id": "EDR_100t", "card_type": "MINION", "attack": 2, "health": 2,
+            "current_attack": 5, "current_health": 4, "max_health": 4, "charge": True,
+            "dark_gifts": ["EDR_100t2"],
+        }]},
+        "opponent": {"hero_health": 30, "hand_size": 4},
+        "pending_choice_owner": "SELF",
+        "pending_choice_options": [{"card_id": "EDR_100t4", "card_type": "MINION", "dark_gifts": ["EDR_100t6"]}],
+    })
+    assert state.self_player.board[0].charge is True
+    assert state.self_hand[0].dark_gifts == ("EDR_100t", "EDR_100t3")
+    assert state.opponent_known_cards == ()
+    encoded = StateEncoder(CardCatalog([])).encode(state)
+    assert "dark_gift_EDR_100t2" in NUMERIC_FEATURES
+    assert encoded.self_board.numeric[0, NUMERIC_FEATURES.index("dark_gift_EDR_100t2")] == 1
+    assert encoded.self_board.state_flags[0, STATE_FLAG_NAMES.index("charge")] == 1
+
+    actions = [{"type": "PLAY_CARD", "card_dark_gifts": [gift]} for gift in DARK_GIFT_OPTION_IDS]
+    rows = encode_legal_actions(actions)
+    for index, gift in enumerate(DARK_GIFT_OPTION_IDS):
+        assert rows[index, ACTION_FEATURE_NAMES.index(f"dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] == 1
+    assert len({tuple(row) for row in rows}) == len(DARK_GIFT_OPTION_IDS)
+    with pytest.raises(ValueError, match="Unreviewed Dark Gift identity"):
+        encode_legal_actions([{"type": "PLAY_CARD", "card_dark_gifts": ["UNKNOWN_GIFT"]}])

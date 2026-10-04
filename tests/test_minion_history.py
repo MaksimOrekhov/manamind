@@ -21,7 +21,7 @@ def test_public_minion_history_roundtrip_and_known_masks():
     encoder = StateEncoder(CardCatalog([]))
     encoded = encoder.encode(state)
     names = encoder.global_feature_names
-    assert STATE_ENCODING_SCHEMA_VERSION == 15
+    assert STATE_ENCODING_SCHEMA_VERSION == 16
     assert encoded.global_features[names.index("self_has_current_minion_type_history")] > 0
     assert encoded.global_features[names.index("self_previous_minion_type_elemental")] > 0
     assert encoded.global_features[names.index("opponent_has_previous_minion_type_history")] == 0

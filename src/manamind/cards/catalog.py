@@ -88,6 +88,7 @@ class CardCatalog:
             shatter_original_card_id=record.get("shatter_original_card_id") or None,
             shatter_partner_hand_position=record.get("shatter_partner_hand_position"),
             prepare_locked=record.get("prepare_locked"),
+            dark_gifts=(tuple(str(item) for item in record["dark_gifts"]) if record.get("dark_gifts") is not None else None),
         )
 
     def __len__(self) -> int:
@@ -111,6 +112,7 @@ class CardCatalog:
                 "trigger_remaining": card.trigger_remaining,
                 "effect_turns_remaining": card.effect_turns_remaining,
                 "freeze_turns_remaining": card.freeze_turns_remaining,
+                "dark_gifts": list(card.dark_gifts) if card.dark_gifts is not None else None,
             }
             for card in sorted(self._cards.values(), key=lambda item: item.card_id)
         ]
@@ -161,4 +163,5 @@ class CardCatalog:
             shatter_original_card_id=(observed.shatter_original_card_id or catalog_card.shatter_original_card_id),
             shatter_partner_hand_position=(observed.shatter_partner_hand_position if observed.shatter_partner_hand_position is not None else catalog_card.shatter_partner_hand_position),
             prepare_locked=(observed.prepare_locked if observed.prepare_locked is not None else catalog_card.prepare_locked),
+            dark_gifts=observed.dark_gifts,
         )

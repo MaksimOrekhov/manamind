@@ -38,6 +38,7 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
             and int(data["shatter_partner_hand_position"]) >= 0 else None
         ),
         prepare_locked=(bool(data["prepare_locked"]) if data.get("prepare_locked") is not None else None),
+        dark_gifts=(tuple(str(item) for item in data["dark_gifts"]) if data.get("dark_gifts") is not None else None),
     )
 
 

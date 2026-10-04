@@ -7,6 +7,7 @@ import numpy as np
 from manamind.cards.catalog import CardCatalog
 from manamind.cards.vocabulary import CardVocabulary
 from manamind.domain.card import CardFeatures
+from manamind.domain.dark_gift import DARK_GIFT_OPTION_IDS, dark_gift_counts
 from manamind.domain.entity import BoardEntity, LocationEntity
 
 NUMERIC_FEATURES = (
@@ -26,6 +27,7 @@ NUMERIC_FEATURES = (
     "trigger_remaining",
     "effect_turns_remaining",
     "freeze_turns_remaining",
+    *(f"dark_gift_{gift_id}" for gift_id in DARK_GIFT_OPTION_IDS),
 )
 
 PRESENCE_FEATURES = tuple(f"has_{name}" for name in NUMERIC_FEATURES)
@@ -189,6 +191,12 @@ class EntityEncoder:
                 value = getattr(card, name)
                 numeric[row, column] = _normalise(value)
                 numeric_present[row, column] = float(value is not None)
+
+            if card.dark_gifts is not None:
+                for gift_id, count in zip(DARK_GIFT_OPTION_IDS, dark_gift_counts(card.dark_gifts)):
+                    column = NUMERIC_FEATURES.index(f"dark_gift_{gift_id}")
+                    numeric[row, column] = _normalise(count)
+                    numeric_present[row, column] = 1.0
 
             entity = item.board_entity
             location = item.location_entity

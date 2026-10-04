@@ -64,4 +64,15 @@ void validate_pool_manifest(const PoolManifest& m){
  if(m.predicate_rules_fingerprint!=pool_predicate_rules_fingerprint(m))throw std::invalid_argument("pool manifest predicate/rules fingerprint mismatch");
  if(m.training_eligible&&(m.membership_status!=PoolMembershipStatus::MembershipReviewed||m.dependency_status!=PoolDependencyStatus::DependencyClosed))throw std::invalid_argument("training eligibility requires reviewed membership and dependency closure");
 }
+void validate_dark_gift_option_manifest(const DarkGiftOptionManifest& m){
+ if(m.schema_version!=1||m.contract_version!=1)throw std::invalid_argument("unknown Dark Gift manifest version");
+ if(m.manifest_id.empty()||m.source_metadata_id.empty()||m.source_metadata_sha256.size()!=64)throw std::invalid_argument("Dark Gift manifest source identity is incomplete");
+ auto valid_ids=[](const std::vector<std::string>& ids){return !ids.empty()&&std::all_of(ids.begin(),ids.end(),[](const std::string& id){return !id.empty();})&&std::is_sorted(ids.begin(),ids.end())&&std::adjacent_find(ids.begin(),ids.end())==ids.end();};
+ if(!valid_ids(m.candidate_option_ids)||!valid_ids(m.launch_reviewed_option_ids))throw std::invalid_argument("Dark Gift option IDs must be sorted, unique and nonempty");
+ if(m.candidate_option_ids.size()!=12||m.launch_reviewed_option_ids.size()!=10)throw std::invalid_argument("Dark Gift candidate/launch-reviewed membership count mismatch");
+ for(const auto& id:m.launch_reviewed_option_ids)if(!std::binary_search(m.candidate_option_ids.begin(),m.candidate_option_ids.end(),id))throw std::invalid_argument("launch-reviewed Dark Gift option is not a candidate");
+ if(m.candidate_membership_sha256!=pool_membership_sha256(m.candidate_option_ids)||m.launch_reviewed_membership_sha256!=pool_membership_sha256(m.launch_reviewed_option_ids))throw std::invalid_argument("Dark Gift option membership hash mismatch");
+ if(m.runtime_membership_status!=DarkGiftRuntimeMembershipStatus::Unresolved||m.sampler_status!=DarkGiftSamplerStatus::Unverified||m.training_eligible)throw std::invalid_argument("Dark Gift runtime/sampler uncertainty cannot be promoted here");
+}
+
 } // namespace manaengine

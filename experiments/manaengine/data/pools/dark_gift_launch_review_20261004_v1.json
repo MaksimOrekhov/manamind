@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "manifest_id": "dark_gift_launch_review_20261004_v1",
+  "source_metadata": {
+    "id": "hearthstonejson_dark_gift_options_20261004",
+    "sha256": "5c1565dad5cccd6b31812096488ca58840a0260ff07280a328ddd3aa02b4ec1b"
+  },
+  "candidate_option_ids": [
+    "EDR_100t",
+    "EDR_100t1",
+    "EDR_100t10",
+    "EDR_100t13",
+    "EDR_100t2",
+    "EDR_100t3",
+    "EDR_100t4",
+    "EDR_100t5",
+    "EDR_100t6",
+    "EDR_100t7",
+    "EDR_100t8",
+    "EDR_100t9"
+  ],
+  "launch_reviewed_option_ids": [
+    "EDR_100t",
+    "EDR_100t1",
+    "EDR_100t13",
+    "EDR_100t2",
+    "EDR_100t3",
+    "EDR_100t5",
+    "EDR_100t6",
+    "EDR_100t7",
+    "EDR_100t8",
+    "EDR_100t9"
+  ],
+  "runtime_membership_status": "UNRESOLVED",
+  "sampler_status": "UNVERIFIED",
+  "execution_support_status": "SCOPED_EXPERIMENTAL",
+  "training_eligible": false,
+  "candidate_membership_sha256": "08a4709412dbdbc26888b6f2d37d0a3aedc5a7cde521fa6408e9c925c23c6cdf",
+  "launch_reviewed_membership_sha256": "47f477eaf64216c71aa66d8e9d58c614a0e829006a6da4b9c56349d09ff7f352"
+}

@@ -165,8 +165,16 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "HEAL_MINION_TO_FULL", "target": "EXPLICIT_MINION", "amount": 0},
-        {"kind": "DRAW", "target": "SELF", "amount": 1}
+        {
+          "kind": "HEAL_MINION_TO_FULL",
+          "target": "EXPLICIT_MINION",
+          "amount": 0
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
       ],
       "reviewed_rules_text": "Restore a minion to full Health. Draw a card."
     },
@@ -174,7 +182,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "HEAL", "target": "EXPLICIT_CHARACTER", "amount": 5}
+        {
+          "kind": "HEAL",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 5
+        }
       ],
       "reviewed_rules_text": "Restore #5 Health."
     },
@@ -182,8 +194,16 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "ALL_MINIONS", "amount": 1},
-        {"kind": "MODIFY_HERO_ATTACK", "target": "SELF", "amount": 3}
+        {
+          "kind": "DAMAGE",
+          "target": "ALL_MINIONS",
+          "amount": 1
+        },
+        {
+          "kind": "MODIFY_HERO_ATTACK",
+          "target": "SELF",
+          "amount": 3
+        }
       ],
       "reviewed_rules_text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn."
     },
@@ -191,7 +211,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 5}
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 5
+        }
       ],
       "damage_outcome_condition": "MORTALLY_WOUNDED",
       "damage_outcome_followup": "HEAL_ENEMY_HERO",
@@ -202,7 +226,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 1}
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 1
+        }
       ],
       "damage_outcome_condition": "MORTALLY_WOUNDED",
       "damage_outcome_followup": "DRAW_SELF",
@@ -212,7 +240,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 2}
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 2
+        }
       ],
       "damage_outcome_condition": "SURVIVES",
       "damage_outcome_followup": "DRAW_SELF",
@@ -222,7 +254,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 5}
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 5
+        }
       ],
       "damage_outcome_condition": "ALWAYS",
       "damage_outcome_followup": "DRAW_TARGET_OWNER",
@@ -243,8 +279,16 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 4},
-        {"kind": "DAMAGE", "target": "SELF_HERO", "amount": 4}
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 4
+        },
+        {
+          "kind": "DAMAGE",
+          "target": "SELF_HERO",
+          "amount": 4
+        }
       ],
       "reviewed_rules_text": "Deal $4 damage to a minion and your hero."
     },
@@ -367,7 +411,11 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DESTROY_MINION", "target": "EXPLICIT_DAMAGED_ENEMY_MINION", "amount": 0}
+        {
+          "kind": "DESTROY_MINION",
+          "target": "EXPLICIT_DAMAGED_ENEMY_MINION",
+          "amount": 0
+        }
       ],
       "reviewed_rules_text": "Destroy a damaged enemy minion."
     },
@@ -461,8 +509,16 @@
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
       "effects": [
-        {"kind": "DESTROY_MINION", "target": "EXPLICIT_FRIENDLY_MINION", "amount": 0},
-        {"kind": "GAIN_ARMOR", "target": "SELF", "amount": 8}
+        {
+          "kind": "DESTROY_MINION",
+          "target": "EXPLICIT_FRIENDLY_MINION",
+          "amount": 0
+        },
+        {
+          "kind": "GAIN_ARMOR",
+          "target": "SELF",
+          "amount": 8
+        }
       ],
       "reviewed_rules_text": "Destroy a friendly minion to gain 8 Armor."
     },
@@ -703,6 +759,96 @@
         }
       ],
       "reviewed_rules_text": "Deal $1 damage to a minion. Give your hero +1 Attack this turn."
+    },
+    "EDR_100t": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "SUPPORTED",
+      "dark_gift_attack": 3,
+      "dark_gift_keywords": [
+        "LIFESTEAL"
+      ],
+      "reviewed_rules_text": "+3 Attack and Lifesteal."
+    },
+    "EDR_100t1": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED",
+      "dark_gift_attack": 2,
+      "dark_gift_health": 2,
+      "dark_gift_keywords": [
+        "ELUSIVE"
+      ]
+    },
+    "EDR_100t13": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED",
+      "dark_gift_keywords": [
+        "DIVINE_SHIELD",
+        "WINDFURY"
+      ]
+    },
+    "EDR_100t2": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "SUPPORTED",
+      "dark_gift_attack": -2,
+      "dark_gift_cost": -2,
+      "reviewed_rules_text": "Costs (2) less, but has -2 Attack."
+    },
+    "EDR_100t3": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "SUPPORTED",
+      "dark_gift_health": 4,
+      "dark_gift_keywords": [
+        "TAUNT"
+      ],
+      "reviewed_rules_text": "+4 Health and Taunt."
+    },
+    "EDR_100t5": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED"
+    },
+    "EDR_100t6": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "SUPPORTED",
+      "dark_gift_keywords": [
+        "CHARGE"
+      ],
+      "dark_gift_requires_positive_attack": true,
+      "reviewed_rules_text": "Charge"
+    },
+    "EDR_100t7": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED",
+      "dark_gift_requires_battlecry": true
+    },
+    "EDR_100t8": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED",
+      "dark_gift_attack": 4,
+      "dark_gift_health": 5
+    },
+    "EDR_100t9": {
+      "ability": "DARK_GIFT_OPTION",
+      "support_state": "UNSUPPORTED",
+      "dark_gift_keywords": [
+        "REBORN"
+      ]
+    },
+    "FIR_900": {
+      "ability": "DISCOVER",
+      "support_state": "SUPPORTED",
+      "choice_pool": "MINION_PLAYER_CLASS_NEUTRAL",
+      "choice_count": 3,
+      "choice_cost_delta": -2,
+      "dark_gift_option_pool_id": "dark_gift_launch_review_20261004_v1",
+      "reviewed_rules_text": "Discover a minion with a Dark Gift. It costs (2) less."
+    },
+    "EDR_488": {
+      "ability": "DISCOVER",
+      "support_state": "SUPPORTED",
+      "choice_pool": "MINION_DEATHRATTLE_PLAYER_CLASS_NEUTRAL",
+      "choice_count": 3,
+      "dark_gift_option_pool_id": "dark_gift_launch_review_20261004_v1",
+      "reviewed_rules_text": "Discover a Deathrattle minion with a Dark Gift."
     }
   }
 }

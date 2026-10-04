@@ -28,6 +28,7 @@ class CardFeatures:
     trigger_remaining: int | None = None
     effect_turns_remaining: int | None = None
     freeze_turns_remaining: int | None = None
+    dark_gifts: tuple[str, ...] | None = None
 
     @property
     def effective_cost(self) -> int | None:

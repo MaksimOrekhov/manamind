@@ -99,6 +99,65 @@ def membership_hash(card_ids: tuple[str, ...] | list[str]) -> str:
     return hashlib.sha256(("\n".join(card_ids) + "\n").encode("utf-8")).hexdigest()
 
 
+
+@dataclass(frozen=True)
+class DarkGiftOptionManifestDocument:
+    manifest_id: str
+    source_metadata_id: str
+    source_metadata_sha256: str
+    candidate_option_ids: tuple[str, ...]
+    launch_reviewed_option_ids: tuple[str, ...]
+    candidate_membership_sha256: str
+    launch_reviewed_membership_sha256: str
+    def to_native(self, native: Any) -> Any:
+        manifest = native.DarkGiftOptionManifest()
+        manifest.manifest_id = self.manifest_id
+        manifest.source_metadata_id = self.source_metadata_id
+        manifest.source_metadata_sha256 = self.source_metadata_sha256
+        manifest.candidate_option_ids = list(self.candidate_option_ids)
+        manifest.launch_reviewed_option_ids = list(self.launch_reviewed_option_ids)
+        manifest.candidate_membership_sha256 = self.candidate_membership_sha256
+        manifest.launch_reviewed_membership_sha256 = self.launch_reviewed_membership_sha256
+        manifest.runtime_membership_status = native.DarkGiftRuntimeMembershipStatus.UNRESOLVED
+        manifest.sampler_status = native.DarkGiftSamplerStatus.UNVERIFIED
+        manifest.training_eligible = False
+        return manifest
+
+def load_dark_gift_option_manifest(manifest_path: str | Path, metadata_path: str | Path) -> DarkGiftOptionManifestDocument:
+    """Load the bounded launch-review option set without claiming runtime admission."""
+    raw = json.loads(Path(manifest_path).read_text(encoding="utf-8"))
+    fields = {"schema_version", "contract_version", "manifest_id", "source_metadata",
+              "candidate_option_ids", "launch_reviewed_option_ids",
+              "runtime_membership_status", "sampler_status", "execution_support_status",
+              "training_eligible", "candidate_membership_sha256", "launch_reviewed_membership_sha256"}
+    if not isinstance(raw, dict) or set(raw) != fields or raw["schema_version"] != 1 or raw["contract_version"] != 1:
+        raise ValueError("Dark Gift option manifest schema mismatch")
+    metadata = raw["source_metadata"]
+    if not isinstance(metadata, dict) or set(metadata) != {"id", "sha256"}:
+        raise ValueError("Dark Gift source metadata identity is invalid")
+    digest = hashlib.sha256(Path(metadata_path).read_bytes()).hexdigest()
+    if metadata["sha256"] != digest or not _SHA256.fullmatch(str(metadata["sha256"])):
+        raise ValueError("Dark Gift option metadata identity mismatch")
+    candidates = raw["candidate_option_ids"]
+    reviewed = raw["launch_reviewed_option_ids"]
+    for name, ids in (("candidates", candidates), ("launch-reviewed", reviewed)):
+        if not isinstance(ids, list) or ids != sorted(set(ids)) or any(not isinstance(v, str) or not _CARD_ID.fullmatch(v) for v in ids):
+            raise ValueError(f"Dark Gift {name} identities must be sorted, unique card IDs")
+    if len(candidates) != 12 or len(reviewed) != 10 or not set(reviewed).issubset(candidates):
+        raise ValueError("Dark Gift candidate/launch-reviewed set sizes do not match the reviewed contract")
+    if raw["runtime_membership_status"] != "UNRESOLVED" or raw["sampler_status"] != "UNVERIFIED" or raw["execution_support_status"] != "SCOPED_EXPERIMENTAL" or raw["training_eligible"] is not False:
+        raise ValueError("Dark Gift uncertainty/training status cannot be promoted by this loader")
+    if raw["candidate_membership_sha256"] != membership_hash(candidates) or raw["launch_reviewed_membership_sha256"] != membership_hash(reviewed):
+        raise ValueError("Dark Gift option membership hash mismatch")
+    rows = json.loads(Path(metadata_path).read_text(encoding="utf-8"))
+    if not isinstance(rows, dict) or not isinstance(rows.get("cards"), list):
+        raise ValueError("Dark Gift option metadata must contain a cards array")
+    metadata_ids = {row.get("id") for row in rows["cards"] if isinstance(row, dict)}
+    if not set(reviewed).issubset(metadata_ids):
+        raise ValueError("launch-reviewed Dark Gift option is missing from pinned identity metadata")
+    return DarkGiftOptionManifestDocument(raw["manifest_id"], metadata["id"], metadata["sha256"],
+        tuple(candidates), tuple(reviewed), raw["candidate_membership_sha256"], raw["launch_reviewed_membership_sha256"])
+
 def _predicate_fingerprint(document: dict[str, Any]) -> str:
     predicate = document["predicate"]
     metadata = document["metadata_snapshot"]

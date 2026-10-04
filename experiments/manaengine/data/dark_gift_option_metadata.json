@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json",
+  "captured_at_utc": "2026-10-04",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "purpose": "Exact identities/text of the ten Blizzard launch-list Dark Gift option cards for the ManaEngine Dark Gift prototype. Identity lookup only; not rules evidence. EDR_100t4 and EDR_100t10 are intentionally excluded (runtime membership unestablished).",
+  "cards": [
+    {
+      "artist": "Vlad Botos",
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113796,
+      "id": "EDR_100t",
+      "name": "Waking Terror",
+      "referencedTags": [
+        "LIFESTEAL"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+3 Attack and <b>Lifesteal</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113797,
+      "id": "EDR_100t1",
+      "name": "Well Rested",
+      "referencedTags": [
+        "ELUSIVE"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+2/+2 and <b>Elusive</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 120225,
+      "id": "EDR_100t13",
+      "mechanics": [
+        "DIVINE_SHIELD",
+        "WINDFURY"
+      ],
+      "name": "Harpy's Talons",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Divine Shield</b>, <b>Windfury</b>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113798,
+      "id": "EDR_100t2",
+      "name": "Short Claws",
+      "set": "EMERALD_DREAM",
+      "text": "Costs (2) less,\nbut has -2 Attack.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113799,
+      "id": "EDR_100t3",
+      "name": "Bundled Up",
+      "referencedTags": [
+        "TAUNT"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "+4 Health and <b>Taunt</b>.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113801,
+      "id": "EDR_100t5",
+      "name": "Living Nightmare",
+      "set": "EMERALD_DREAM",
+      "text": "When you play this minion, summon a 2/2 copy of it.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113802,
+      "id": "EDR_100t6",
+      "mechanics": [
+        "CHARGE"
+      ],
+      "name": "Sleepwalker",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Charge</b>",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113882,
+      "id": "EDR_100t7",
+      "name": "Rude Awakening",
+      "set": "EMERALD_DREAM",
+      "text": "[x]This minion's\n<b>Battlecries</b> trigger twice.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113884,
+      "id": "EDR_100t8",
+      "name": "Sweet Dreams",
+      "set": "EMERALD_DREAM",
+      "text": "+4/+5. Place this card on top of your deck.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "NEUTRAL",
+      "cost": 0,
+      "dbfId": 113886,
+      "id": "EDR_100t9",
+      "mechanics": [
+        "REBORN"
+      ],
+      "name": "Persisting Horror",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Reborn</b>. Is <b>Reborn</b>\nwith full Health and enchantments.",
+      "type": "SPELL"
+    }
+  ]
+}
