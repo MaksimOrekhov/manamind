@@ -4,7 +4,7 @@
 - Baseline: `09e61e686f9a1a086d086e1bc24f475defd5c63b`
 - Active-work timer started: 2026-10-04 14:28 UTC; hard stop at 17:13 UTC (2h45m)
 - Initial primary queue: 31 `DEFERRED_RULES_EVIDENCE`
-- Queue review completed: 12 of 31; 19 candidates still need individual dispositions. The initial candidate set is preserved in `SAFE_EXISTING_PRIMITIVE_HARVEST.json`.
+- Queue review completed: 13 of 31; 18 candidates still need individual dispositions. The initial candidate set is preserved in `SAFE_EXISTING_PRIMITIVE_HARVEST.json`.
 - Baseline tests: native 34 scenario groups / 665 assertions; adapter-policy 46 passed; full Python 90 passed.
 
 ## Initial family map (provisional)
@@ -31,9 +31,10 @@ This map does not claim verified semantics or authorize expanding any card beyon
 - New reusable semantics so far: `ALL_MINIONS`, `SELF_HERO`, side/damage-constrained minion action selectors, typed minion destruction using existing death stabilization, fixed character healing and minion-to-full healing.
 - First package needed an adapter enum allowlist update; one bridge correction cycle. No schema change.
 - Found and fixed an existing attack-flow bug exposed by the Explosive Trap scenario: a minion/hero killed by a Secret could still complete combat. This is one generic engine fix, not card-ID behavior.
-- Twelve of 31 roots now have declarations and individual semantic review; the remaining 19 need individual dispositions. No canonical evidence status has been promoted.
+- Thirteen of 31 roots now have declarations and individual semantic review; the remaining 18 need individual dispositions. No canonical evidence status has been promoted.
 - Latest recheck after package 4: native 38 groups / 692 assertions PASS; full adapter test file 22 passed. Generic card-ID guard passed in the preceding check. These checks were rerun after confirming the typed Secret pair allowlist.
 - Native build outputs live in `E:\ManaMind\_build_phase4d` to keep worktree artifacts untouched.
 - Checkpoint `5d16439` is pushed to `origin/codex/manaengine-first-deck`; it contains the separately committed Explosive Trap package.
 - Checkpoint `e002fc3` is pushed to `origin/codex/manaengine-first-deck`; it contains the outcome-conditioned damage package.
 - Proposal and completion record: `PROPOSAL_MIRROR_DIMENSION_V1.md`. The exact token metadata is recorded separately in `experiments/manaengine/data/summon_condition_dependencies.json` and is sourced from the pinned Phase 4B Full Definition Slice; it does not enter the collectible pool.
+- `manaengine_school_discard_minion_buff_v1`: 1 declaration-only consumer (`FIR_906` Overheat), no CUSTOM outlier; `FIR_910` deferred for unresolved target/death ordering. Native PASS: 42 groups / 716 assertions; adapter PASS: 24 passed. Actual-hand Nature-school discard, empty-pool behavior, conditional second buff, deterministic clone and independent Fire-school control are covered. Two correction cycles, three builds; observed package span 13m36s. No canonical evidence was promoted. See `PROPOSAL_OVERHEAT_SCHOOL_DISCARD_V1.md` and `COMPLETION_OVERHEAT_SCHOOL_DISCARD_V1.md`.

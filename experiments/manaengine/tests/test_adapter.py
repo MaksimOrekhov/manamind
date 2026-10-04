@@ -55,6 +55,26 @@ def test_bookkeeper_phase_model_runes_history_adapter_and_policy() -> None:
     assert encoded.global_features[encoder.global_feature_names.index("self_previous_minion_type_elemental")] > 0
 
 
+def test_overheat_school_discard_declaration_reaches_adapter() -> None:
+    deck = ["FIR_906", "JAIL_805", *(["CORE_EX1_145"] * 28)]
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+
+    def end_turn() -> None:
+        session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+
+    for _ in range(4):
+        end_turn()
+
+    before = session.observation()
+    assert {card.card_id for card in before.self_hand} >= {"FIR_906", "JAIL_805"}
+    action = next(action for action in session.legal_actions() if action.get("card_id") == "FIR_906")
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+    after = session.apply_action(action)
+    assert "FIR_906" not in {card.card_id for card in after.self_hand}
+    assert "JAIL_805" not in {card.card_id for card in after.self_hand}
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+
 def test_minion_history_public_unknown_empty_and_strict_types() -> None:
     from dataclasses import replace
 

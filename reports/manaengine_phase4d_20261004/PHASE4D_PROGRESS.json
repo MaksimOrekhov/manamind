@@ -12,8 +12,8 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 12,
-  "primary_queue_implemented": 12,
+  "primary_queue_reviewed": 13,
+  "primary_queue_implemented": 13,
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -96,6 +96,22 @@
       "elapsed_seconds_observed": 722,
       "canonical_evidence_promoted": false,
       "rules_evidence_note": "Official Blizzard card text; exact token identity cross-checked in pinned Full Definition Slice; no client replay captured."
+    },
+    {
+      "package_id": "manaengine_school_discard_minion_buff_v1",
+      "cards": ["FIR_906"],
+      "declaration_only_consumers": 1,
+      "custom_outliers": [],
+      "deferred_outliers": ["FIR_910: damage-and-discard follow-up has unresolved target/death ordering"],
+      "shared_capability": "BUFF_FRIENDLY_MINIONS plus DISCARD_RANDOM_SPELL filtered by typed school, with immediate typed previous-discard condition.",
+      "shared_changes": "C++ EffectStep validation/resolver, pybind enum/fields, strict Python declaration parser, FIR_906 declaration, independent Fire-school native control.",
+      "native": "PASS; 42 groups / 716 assertions",
+      "adapter": "PASS; full adapter test file, 24 passed",
+      "correction_cycles": 2,
+      "build_attempts": 3,
+      "elapsed_seconds_observed": 816,
+      "canonical_evidence_promoted": false,
+      "rules_evidence_note": "Official Blizzard card text; no Overheat-specific client replay. Recognized unsupported discard-trigger outcomes invalidate the branch without shrinking the actual random pool."
     }
   ],
   "tests_at_baseline": {
@@ -104,16 +120,17 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "b312640",
-  "last_updated_utc": "2026-10-04T16:02:12Z",
-  "active_elapsed_minutes": 94,
+  "current_head": "f2ae8b0",
+  "last_updated_utc": "2026-10-04T16:22:36Z",
+  "active_elapsed_minutes": 114,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Twelve roots have been individually reviewed and implemented; nineteen primary-queue candidates still need individual dispositions.",
+    "Thirteen roots have been individually reviewed and implemented; eighteen primary-queue candidates still need individual dispositions.",
     "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
     "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed.",
     "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed.",
     "Package 6 checks: native PASS, 40 groups / 706 assertions; adapter PASS, 22 passed.",
-    "Package 7 checks: native PASS, 41 groups / 710 assertions; adapter PASS, 23 passed; 4 correction cycles and 3 builds; package implementation span 12m02s."
+    "Package 7 checks: native PASS, 41 groups / 710 assertions; adapter PASS, 23 passed; 4 correction cycles and 3 builds; package implementation span 12m02s.",
+    "Package 8 Overheat checks: native PASS, 42 groups / 716 assertions; adapter PASS, 24 passed; 2 correction cycles and 3 builds; observed package span 13m36s. Canonical evidence was not promoted."
   ]
 }

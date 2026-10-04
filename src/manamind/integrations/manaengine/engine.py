@@ -107,7 +107,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
-    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED", "DESTROY_MINION", "HEAL", "HEAL_MINION_TO_FULL"}
+    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED", "DESTROY_MINION", "HEAL", "HEAL_MINION_TO_FULL", "BUFF_FRIENDLY_MINIONS", "DISCARD_RANDOM_SPELL"}
     target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "EXPLICIT_DAMAGED_ENEMY_MINION", "EXPLICIT_FRIENDLY_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "ALL_MINIONS", "SELF_HERO", "SELF", "RANDOM_ENEMY_MINION"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
@@ -178,7 +178,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             raise ValueError(f"effects must be a list for {card.card_id}")
         native_effects = []
         for effect in raw_effects:
-            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card", "summon_condition", "conditional_extra_count"}:
+            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card", "summon_condition", "conditional_extra_count", "discard_school", "requires_previous_discard"}:
                 raise ValueError(f"effect requires kind, target, amount, and only supported optional fields for {card.card_id}")
             kind = str(effect["kind"]).upper()
             target = str(effect["target"]).upper()
@@ -195,6 +195,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
                 raise ValueError(f"unknown summon_condition for {card.card_id}: {summon_condition}")
             native_effect.summon_condition = getattr(native.SummonCondition, summon_condition)
             native_effect.conditional_extra_count = int(effect.get("conditional_extra_count", 0))
+            discard_school = str(effect.get("discard_school", "NONE")).upper()
+            if discard_school not in {"NONE", "NATURE", "FIRE"}:
+                raise ValueError(f"unknown discard_school for {card.card_id}: {discard_school}")
+            native_effect.discard_school = getattr(native.DiscardSpellSchool, discard_school)
+            native_effect.requires_previous_discard = bool(effect.get("requires_previous_discard", False))
             native_effects.append(native_effect)
         d.effects = native_effects
         result.append(d)

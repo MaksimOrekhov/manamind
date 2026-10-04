@@ -2,6 +2,30 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
+    "FIR_906": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+      "effects": [
+        {
+          "kind": "BUFF_FRIENDLY_MINIONS",
+          "target": "SELF",
+          "amount": 1
+        },
+        {
+          "kind": "DISCARD_RANDOM_SPELL",
+          "target": "SELF",
+          "amount": 0,
+          "discard_school": "NATURE"
+        },
+        {
+          "kind": "BUFF_FRIENDLY_MINIONS",
+          "target": "SELF",
+          "amount": 1,
+          "requires_previous_discard": true
+        }
+      ]
+    },
     "TIME_006": {
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
