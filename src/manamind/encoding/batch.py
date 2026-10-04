@@ -12,6 +12,7 @@ from manamind.encoding.state_encoder import EncodedGameState
 
 ZONE_NAMES = (
     "self_hand",
+    "self_known_secrets",
     "self_board",
     "opponent_board",
     "self_locations",

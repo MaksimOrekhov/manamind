@@ -19,6 +19,8 @@ class PlayerObservation:
     deck_size: int = 0
     hand_size: int = 0
     fatigue: int = 0
+    secret_count: int = 0
+    known_secrets: tuple[CardFeatures, ...] = field(default_factory=tuple)
     hero_power_ready: bool | None = None
     hero_frozen: bool | None = None
     player_class: str = "UNKNOWN_CLASS"
@@ -31,7 +33,7 @@ class PlayerObservation:
     def __post_init__(self) -> None:
         for name in (
             "hero_health", "armor", "hero_attack", "max_mana", "available_mana",
-            "overloaded_mana", "pending_overload", "deck_size", "hand_size", "fatigue",
+            "overloaded_mana", "pending_overload", "deck_size", "hand_size", "fatigue", "secret_count",
         ):
             if getattr(self, name) < 0:
                 raise ValueError(f"{name} cannot be negative")
@@ -67,6 +69,10 @@ class GameState:
             raise ValueError("self_hand_known_count cannot exceed self hand_size")
         if len(self.opponent_known_cards) > self.opponent.hand_size:
             raise ValueError("Known opponent cards cannot exceed opponent hand_size")
+        if len(self.opponent.known_secrets) > 0:
+            raise ValueError("Opponent Secret identities must remain hidden")
+        if len(self.self_player.known_secrets) > self.self_player.secret_count:
+            raise ValueError("Known self Secrets cannot exceed the active Secret count")
         for position, card in enumerate(self.self_hand):
             role = card.shatter_fragment
             if role is None:

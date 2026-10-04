@@ -6,16 +6,16 @@ Phase 3 checkpoint: eecc9fe9f187da5162037a4c052aca36896870d9
 Pinned RosettaStone gitlink: f34da0d3fcb5ad312f7e2acf634d0536b044d29a  
 Frozen profile: configs/training_profiles/meta_training_20261002_v1.json
 
-## Checkpoint — refreshed after approved Shatter and Prepare work
+## Checkpoint — refreshed after Prepare and Mage Secret work
 
 - Frozen deck: 30 slots, 17 unique roots.
-- 5/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489.
-- 12/17 roots remain unsupported by the ManaEngine catalog.
+- 6/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489, JAIL_321.
+- 11/17 roots remain unsupported by the ManaEngine catalog.
 - Mage class/hero power, turn/mana progression, draws, fatigue, hand burn, board limit, targeting, terminal result, deterministic RNG, clone, and a narrow typed Choice flow exist.
-- Shatter hand pieces and generic Prepare actions are implemented and tested. Mulligan, Secret zones/windows, Spell Damage, previous-turn Kindred history, and generic 30-card deck validation remain absent.
+- Shatter hand pieces and generic Prepare actions are implemented and tested. Six pinned Mage Secrets, typed trigger windows, private identities/public counts, current-turn spell history, and the complete Tricksy Secret outcome pool are implemented in ManaEngine. Mulligan, Spell Damage, previous-turn Kindred history, and generic 30-card deck validation remain absent.
 - The old registry reports two dynamic pool IDs. This audit found another dynamic dependency on JAIL_321: two random Mage Secrets.
 - CATA_484 is the largest dependency risk: 77 current Standard collectible spell candidates, of which only First Flame has a closed ManaEngine outcome.
-- Shatter architecture was approved and implemented. Secret outcomes still require exact current-pool/event-window audit before implementation.
+- Shatter and the minimal shared activation-sequence architecture are approved and implemented. Flames of Infinity uses the ordinary sequence; no FIRST/NORMAL/LAST priority classes exist.
 
 ## Frozen roots and ManaEngine-specific status
 
@@ -37,7 +37,7 @@ Status refers only to the Phase 3 ManaEngine catalog, not Rosetta registry statu
 | CATA_489 Arcane Flow | 2 | CURRENT_MANAENGINE_SUPPORTED | Typed linked fragment instances, opposite hand edges, solo/recombine behavior, semantic observation/action fields and both ordered effects are covered. |
 | CATA_458 Archmage Kalec | 1 | NEEDS_SHARED_CAPABILITY | Battlecry grants Spell Damage +1 to spells in hand/deck; needs per-instance modifiers and draw rules. |
 | CORE_CS2_029 Fireball | 2 | CURRENT_MANAENGINE_SUPPORTED | Existing targeted damage contract. |
-| JAIL_321 Tricksy Improviser | 2 | PARTIAL_PREPARE / SECRET_BATTLECRY_BLOCKED | Generic Prepare action exists; the card remains UNSUPPORTED until its spell-history condition and full Mage Secret pool are implemented. |
+| JAIL_321 Tricksy Improviser | 2 | CURRENT_MANAENGINE_SUPPORTED | Prepare, generic spell-cast history, and two independent random casts from the exact six-card Mage Secret pool are implemented. |
 | CATA_488 Vulcanos | 1 | NEEDS_SHARED_CAPABILITY | Colossal +2 creates two appendages; end turn deals 3 to every other minion, including friendly. |
 | CATA_452 Spellweaver's Brilliance | 2 | NEEDS_SHARED_CAPABILITY | Costs 1 less per damage actually dealt by spells this turn; summons a fixed 6/6 Dragon. |
 
@@ -73,7 +73,7 @@ The pinned collectible Standard catalog contains six Mage Secrets, none implemen
 - END_024 Flames of Infinity — at enemy turn end, damage the highest-Health minion;
 - JAIL_315 Mystic Misdirection — transform an attacking enemy minion.
 
-There is no Secret zone or opponent-visible secret-count state. Outcomes trigger on attack, spell/minion play, and end turn. Their order relative to action resolution and FIFO triggers is a core event-order decision.
+ManaEngine stores active Secrets separately, exports both players' active counts, and exports identities only for the observing player's Secrets. The six typed windows are wired to the corresponding spell, attack, minion-play, and turn-end phases. End-turn board reactions and Secrets merge by a shared activation sequence while the existing FIFO trigger/death loop remains in place.
 
 ### TLC_226 heuristic resolution
 
@@ -89,11 +89,10 @@ Missing or insufficient:
 - Exact 30-card deck validation.
 - Spell Damage state, including static aura, damaged-only aura, and spell-instance modifiers.
 - Previous-turn minion-type history plus current-turn cast/damage history.
-- Secret storage, private identity/public count, Secret trigger windows.
 - Colossal positions/appendages, exact token IDs, full outcome rules.
 - Actual Tricky Burn Mage match. Current terminal test is a synthetic repeated Violet Spellwing deck.
 
-Current actions are PlayCard, PrepareCard, Attack, HeroPower, EndTurn, ChooseCard. GameSession accepts arbitrary deck lengths, so deck-size validation is absent.
+Current actions are PlayCard, PrepareCard, Attack, HeroPower, EndTurn, ChooseCard. GameSession accepts arbitrary deck lengths, so deck-size validation is absent. Prepare spends all remaining mana and applies exactly `spent + 1` persistent discount. Eligibility for an already zero-cost Prepare card is unresolved: the prototype fails closed if the case arises.
 
 ## Reusable capability families
 
@@ -101,10 +100,10 @@ Current actions are PlayCard, PrepareCard, Attack, HeroPower, EndTurn, ChooseCar
 2. **Filtered draw and Kindred history** — CORE_EX1_012, FIR_929, TLC_226. Reuse basic draw/death processing; add draw filters and previous-turn type history.
 3. **Random enemy damage selection** — CATA_485, TIME_855, part of CATA_489. Reuse deterministic RNG; add candidate selection, distinct sampling, Spell Damage integration.
 4. **Hand-state mechanics** — CATA_489 Shatter and JAIL_321 Prepare. Both now use instance-scoped typed state; Prepare is a separate action with per-instance persistent discount and a same-turn lock; Shatter changes card-instance count/order and exports partner position without exposing internal link IDs.
-5. **Secret system** — JAIL_321 and six outcomes. A typed Secret capability may be reusable, but its trigger windows cross play, attack, turn-end, damage, and summon flows.
+5. **Secret system** — JAIL_321 and six outcomes. Implemented with typed windows and an activation sequence shared with modeled end-turn board reactions. Tricksy samples the exact six-card pool independently for both casts and does not filter unsupported or already-active results.
 6. **Colossal and turn-end board damage** — CATA_488, two appendages and symmetric other-minion damage.
 
-The 77-outcome Discover closure is likely the largest declarative workload. Shatter passed its architecture gate; Secret event windows are the next timing gate.
+The 77-outcome Discover closure is likely the largest declarative workload. Shatter and the Secret event windows are implemented; broad current-profile coverage remains far from deck readiness.
 
 ## Architecture decisions and implementation status
 
@@ -113,17 +112,18 @@ The 77-outcome Discover closure is likely the largest declarative workload. Shat
 - Each fragment is a real CardInstance with its real token ID. Partner entity IDs remain engine-internal; GameState and policy receive original card ID, fragment role, and partner hand position.
 - Every hand-entry path uses the same Shatter capability. Fragments enter opposite hand ends, remain instance-linked across clone, become solo when their partner is played, and recombine only when linked fragments are adjacent.
 - Family coverage includes draw/add-to-hand, two independent copies, intervening cards, each single fragment, recombination effects, hand capacity, clones, and semantic action/observation encoding.
-- Prepare uses a distinct `PREPARE_CARD` action. It spends up to the mana needed to reduce the card's current cost to zero, adds one extra point of persistent reduction, leaves the instance at the same hand position, and prevents playing or preparing that instance again during the same turn. Its lock is exported into GameState and encoded with an explicit known mask.
-- CATA_489 is supported in the Phase 4 ManaEngine catalog. JAIL_321 remains unsupported because its conditional random-Secret Battlecry is not implemented. The standard card JAIL_453's separate “when you Prepare” discount interaction remains outside this deck slice.
+- Prepare uses a distinct `PREPARE_CARD` action. It spends all remaining mana and applies exactly `spent + 1` persistent discount without capping the stored discount at the current cost. The card stays in its hand position and is locked for the rest of the turn. Its lock is exported into GameState and encoded with an explicit known mask. Eligibility for an already zero-cost card is unresolved; the simulator fails closed for that state.
+- CATA_489 and JAIL_321 are supported in the Phase 4 ManaEngine catalog. The standard card JAIL_453's separate “when you Prepare” discount interaction remains outside this deck slice.
 
-### Secret/event-order boundary — pending required audit
+### Secret/event-order boundary — implemented prototype contract
 
-The user approved minimal typed Secret event windows over the existing FIFO trigger/death loop; do not replace the whole trigger system. Before coding the six Standard Mage Secret outcomes, record their exact current eligibility pool and all required timing windows. Stop if the FIFO baseline cannot represent one without exceptional ordering.
+The approved minimal extension assigns monotonically increasing activation sequence stamps to persistent reactive sources. End-turn board reactions and active Secrets are merged by that stamp; FIFO trigger/death processing is otherwise retained. Clone preserves stamps and the counter; a source re-entering its active zone receives a fresh stamp. Internal stamps are not included in GameState or Policy observations. This is prototype semantics and does not claim full Hearthstone event-order coverage beyond the reviewed scenarios.
 
 ## Phase 4 verification record (current checkpoint)
 
-- Native Windows build: passed; CTest: 1/1 test passed, covering 25 scenario groups and 423 assertions.
-- Python adapter: 7/7 functions passed; affected pipeline: 21/21 functions passed, invoked directly because local pytest prints all test dots but hangs before process exit on this Windows host.
+- Native Windows build: passed; ManaEngine native suite: 1/1 test passed, covering 25 scenario groups and 442 assertions after Secret support (the Prepare zero-cost case is now explicitly fail-closed).
+- Python ManaEngine adapter: 8/8 tests passed via direct invocation. A full pytest completion has not been established for this experimental worktree; Rosetta-backed test collection is also limited because the worktree's RosettaStone submodule content is absent.
 - Ruff: passed on modified Python files.
-- CATA_489 ManaEngine support gained: +1 root, with 2 token dependencies supported; no canonical Rosetta registry status changed.
-- Prepare action is generic; JAIL_321 is still explicitly UNSUPPORTED pending Secret Battlecry. No training or production-backend switch occurred.
+- CATA_489 and JAIL_321 ManaEngine support gained: +2 roots; two Shatter token dependencies and two Secret token definitions are available. No canonical Rosetta registry status changed.
+- Secret verification covers all six outcomes, ordering/clone/re-entry, Tricksy cast history and full-pool sampling, and owner/opponent observation privacy. Observation schema is version 11; old checkpoints are rejected through the existing explicit schema-version check, with no implicit migration.
+- No training or production-backend switch occurred. No macOS work was added.

@@ -90,6 +90,11 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         deck_size=int(data.get("deck_size", 0)),
         hand_size=int(data.get("hand_size", 0)),
         fatigue=int(data.get("fatigue", 0)),
+        secret_count=int(data.get("secret_count", 0)),
+        known_secrets=tuple(
+            card for item in data.get("known_secrets", ())
+            if (card := _card(item if isinstance(item, dict) else {"card_id": item})) is not None
+        ),
         hero_power_ready=(
             None if data.get("hero_power_ready") is None
             else bool(data["hero_power_ready"])

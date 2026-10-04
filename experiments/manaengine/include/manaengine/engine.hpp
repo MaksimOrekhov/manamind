@@ -20,13 +20,13 @@ public:
 struct CardDefinition {
     std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race;
     std::string ability="NONE", generated_card, transform_card, support_state="UNSUPPORTED";
-    std::string choice_pool;
+    std::string choice_pool, secret_trigger="NONE", secret_effect="NONE";
     std::string shatter_left_card, shatter_right_card;
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
-    int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0;
+    int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
-    bool prepare=false;
+    bool prepare=false, secret=false;
 };
 class CardCatalog {
 public:
@@ -69,7 +69,8 @@ struct ObservedCard {
 struct ObservedPlayer {
     std::string player_class;
     int hero_health=30, armor=0, hero_attack=0, max_mana=0, available_mana=0;
-    int deck_size=0, hand_size=0, fatigue=0;
+    int deck_size=0, hand_size=0, fatigue=0, secret_count=0;
+    std::vector<std::string> known_secrets;
     bool hero_power_ready=false, hero_frozen=false;
     std::optional<ObservedCard> hero_power;
     std::optional<ObservedCard> weapon;
@@ -110,11 +111,13 @@ private:
     enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, Discover, DestroyEnemyWeapon,
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
-      EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush,
+      EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets,
       EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction };
-    enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle };
+    enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
+    enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity };
+    enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
     enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand };
-    enum class Zone { Deck, Hand, Board, Weapon, Graveyard };
+    enum class Zone { Deck, Hand, Board, Weapon, Secret, Graveyard };
     enum class ShatterFragment { None, Left, Right, Solo };
     struct CardInstance {
       int entity_id=-1, owner=0, controller=0, zone_position=-1, cost_delta=0;
@@ -128,33 +131,42 @@ private:
       bool can_attack=false,rush=false,rush_only=false,frozen=false,taunt=false,divine_shield=false,lifesteal=false;
       bool stealth=false,silenced=false,immune=false,has_attacked_this_turn=false;
       int prepare_locked_turn=-1;
+      std::uint64_t activation_sequence=0;
       std::vector<std::string> enchantments;
       std::unordered_map<std::string,int> counters;
     };
     using HandCard=CardInstance;
     using MinionState=CardInstance;
     using WeaponState=CardInstance;
-    struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; };
+    struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
     struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,armor=0,hero_attack=0,hero_temp_attack=0;
-      int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0;
+      int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0;
       bool hero_attacked=false,hero_power_used_this_turn=false,hero_frozen=false; int hero_freeze_expire_turn=0;
       std::vector<CardInstance> deck; std::vector<CardInstance> hand; std::vector<CardInstance> board;
-      std::vector<CardInstance> graveyard;
+      std::vector<CardInstance> graveyard; std::vector<CardInstance> secrets;
       std::optional<WeaponState> weapon; std::vector<TimedEffect> timed_effects; };
-    struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; int target_entity_id=-1; };
+    struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; int target_entity_id=-1; EventWindow window=EventWindow::OpponentCastsSpell; };
     struct PendingChoice { int owner=0; std::vector<int> options; std::vector<std::string> card_options; int choice_cost_delta=0; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; };
-    struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::array<PlayerState,2> players;
+    struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;
       std::mt19937_64 rng; std::optional<std::string> result,unsupported; };
     std::shared_ptr<const CardCatalog> catalog_;
     EngineState state_; std::uint64_t seed_=0;
     static Ability ability_of(const CardDefinition& card);
+    static std::optional<EventWindow> secret_window_of(const std::string& trigger);
+    static SecretEffect secret_effect_of(const CardDefinition& card);
     const CardDefinition& card(const std::string& id) const;
     int effective_cost(int owner,const HandCard& item) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
+    bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
+    bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);
+    bool resolve_attack_secret_windows(int attacker_owner,int attacker_entity_id,bool hero_attack,int target_entity_id);
+    void activate_secret(CardInstance secret);
+    void assign_activation_sequence(CardInstance& source);
+    void resolve_end_turn_reactions(int owner);
     void resolve_effects(const CardDefinition& def,int owner,int target_id);
     void begin_discover(int owner,const CardDefinition& source);
     void update_held_card_spell_progress(int owner);

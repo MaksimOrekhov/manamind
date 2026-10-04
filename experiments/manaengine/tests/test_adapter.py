@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimulationError
 from manamind.integrations.rosettastone.policy import encode_legal_actions
 
@@ -301,3 +303,48 @@ def test_prepare_card_round_trips_as_its_own_action_kind() -> None:
     assert encoded.hand_semantic_features[0, 4:].tolist() == [1.0, 1.0]
     remaining = session.legal_actions()
     assert not any(action["type"] in {"PLAY_CARD", "PREPARE_CARD"} and action.get("hand_index") == 0 for action in remaining)
+
+
+def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+    from manamind.encoding.state_encoder import GLOBAL_FEATURE_NAMES
+    from manamind.integrations.manaengine.engine import _definition_rows, _export_state, _load_native
+
+    native = _load_native()
+    rows = _definition_rows()
+    native.CardCatalog(rows)
+    by_id = {row.card_id: row for row in rows}
+    mage_secrets = {
+        card_id for card_id, row in by_id.items()
+        if row.secret and row.collectible and row.card_class == "MAGE"
+    }
+    assert mage_secrets == {
+        "CORE_BAR_812", "CORE_EX1_287", "CORE_EX1_289",
+        "CORE_LOOT_101", "END_024", "JAIL_315",
+    }
+    assert by_id["JAIL_321"].ability == "CAST_RANDOM_SECRETS"
+    assert by_id["JAIL_321"].random_cast_count == 2
+    assert by_id["JAIL_321"].prepare is True
+
+    raw = {
+        "turn_number": 4,
+        "active_player": "SELF",
+        "self_player": {"hero_health": 30, "secret_count": 1, "known_secrets": ["CORE_EX1_287"]},
+        "opponent": {"hero_health": 30, "secret_count": 1, "known_secrets": []},
+    }
+    state = _export_state(raw)
+    assert state.self_player.known_secrets[0].card_id == "CORE_EX1_287"
+    assert state.opponent.secret_count == 1
+    assert state.opponent.known_secrets == ()
+
+    catalog = CardCatalog([state.self_player.known_secrets[0]])
+    encoded = StateEncoder(catalog).encode(state)
+    secret_id = encoded.self_known_secrets.card_ids[0]
+    assert secret_id == StateEncoder(catalog).vocabulary.card_id("CORE_EX1_287")
+    assert encoded.global_features[GLOBAL_FEATURE_NAMES.index("opponent_secret_count")] > 0
+
+    raw["opponent"]["known_secrets"] = ["CORE_EX1_287"]
+    with pytest.raises(ValueError, match="Secret identities must remain hidden"):
+        game_state_from_dict(raw)

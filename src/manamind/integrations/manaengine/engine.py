@@ -78,6 +78,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         "HERO_08bp": CardFeatures(card_id="HERO_08bp", cost=2, attack=0, health=0, durability=0, card_type="HERO_POWER", card_class="MAGE"),
         "CATA_489t": CardFeatures(card_id="CATA_489t", cost=4, card_type="SPELL", card_class="MAGE"),
         "CATA_489t2": CardFeatures(card_id="CATA_489t2", cost=4, card_type="SPELL", card_class="MAGE"),
+        "CORE_CS2_033": CardFeatures(card_id="CORE_CS2_033", cost=4, attack=3, health=6, card_type="MINION", card_class="MAGE", race="ELEMENTAL"),
+        "EX1_100t": CardFeatures(card_id="EX1_100t", cost=1, attack=1, health=1, card_type="MINION", card_class="MAGE"),
     }
     records = {c.card_id: c for c in catalog}
     records.update({key: records.get(key, value) for key, value in extras.items()})
@@ -95,6 +97,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.race = (card.race or "").upper()
         d.collectible = card.card_id in _COLLECTIBLE_IDS
         d.battlecry = "BATTLECRY" in card.mechanics
+        d.secret = "SECRET" in card.mechanics
         d.cost = card.cost or 0
         d.attack = card.attack or 0
         d.health = card.health or 0
@@ -152,8 +155,15 @@ def _export_state(raw: dict[str, Any]) -> GameState:
     for player_key in ("self_player", "opponent"):
         player = raw[player_key]
         player.setdefault("hero_divine_shield", None)
+        player.setdefault("known_secrets", [])
+        player["known_secrets"] = [
+            {"card_id": secret} if isinstance(secret, str) else secret
+            for secret in player["known_secrets"]
+        ]
         for card in player.get("board", ()):
             enrich(card)
+        for secret in player.get("known_secrets", ()):
+            enrich(secret)
         if player.get("hero_power") is not None:
             enrich(player["hero_power"], in_hand=True)
         if player.get("weapon") is not None:
