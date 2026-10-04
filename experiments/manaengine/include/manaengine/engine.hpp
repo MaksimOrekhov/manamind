@@ -11,10 +11,11 @@
 #include <vector>
 namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
-enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
+enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
+enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed };
 enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self, RandomEnemyMinion };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
-struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; };
+struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
@@ -31,6 +32,7 @@ struct CardDefinition {
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
     int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0, spell_damage_grant=0;
+    int spell_damage_cost_reduction=0;
     DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
@@ -160,6 +162,7 @@ private:
     struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
     struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,armor=0,hero_attack=0,hero_temp_attack=0;
       int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0;
+      std::int64_t spell_damage_dealt_this_turn=0;
       bool hero_attacked=false,hero_power_used_this_turn=false,hero_frozen=false; int hero_freeze_expire_turn=0;
       std::vector<CardInstance> deck; std::vector<CardInstance> hand; std::vector<CardInstance> board;
       std::vector<CardInstance> graveyard; std::vector<CardInstance> secrets;
@@ -180,7 +183,8 @@ private:
     int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
-    int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false);
+    int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
+    void summon_fixed(int owner,const std::string& card_id,int count);
     void transform_board(int owner,int entity,const std::string& card_id);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0,int source_entity=-1);
     int evaluate_spell_damage(const SpellEffectContext& context,int base_amount);

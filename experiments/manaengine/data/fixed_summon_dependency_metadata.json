@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json",
+  "captured_at_utc": "2026-10-04",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "purpose": "Finite Spellweaver fixed dependency identity audit; does not change pinned Standard or establish rules evidence",
+  "root_id": "CATA_452",
+  "root_metadata_matches_pinned_20261001": true,
+  "cards": [
+    {
+      "artist": "Ivo Campelo da Silva",
+      "attack": 6,
+      "cardClass": "MAGE",
+      "cost": 6,
+      "dbfId": 122455,
+      "health": 6,
+      "id": "CATA_452t",
+      "name": "Azure Warden",
+      "race": "DRAGON",
+      "races": ["DRAGON"],
+      "set": "CATACLYSM",
+      "type": "MINION"
+    }
+  ]
+}

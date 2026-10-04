@@ -29,6 +29,58 @@ def test_sleet_dynamic_damage_boundary_real_actions_and_clone() -> None:
     assert not session.training_eligible
 
 
+def test_spellweaver_dynamic_cost_policy_and_exact_fixed_dependency() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows
+    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES
+
+    definitions = {row.card_id: row for row in _definition_rows()}
+    token = definitions["CATA_452t"]
+    assert token.support_state == "VERIFIED_VANILLA"
+    assert (token.card_type, token.race, token.attack, token.health) == ("MINION", "DRAGON", 6, 6)
+    assert not token.collectible and token.required_mechanics == []
+    deck = ["CATA_452", "CORE_CS2_029", *(["CORE_EX1_145"] * 28)]
+    opponent = ["CORE_EX1_145"] * 30
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False, random_seed=93)
+    assert session.observation().self_hand[0].current_cost == 10
+    for _ in range(14):  # Own turn eight: enough mana to deal six, then spend the remaining four.
+        session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    clone = session.clone()
+    fire = next(a for a in session.legal_actions() if a.get("card_id") == "CORE_CS2_029" and a.get("target_is_hero") and not a.get("target_is_self"))
+    state = session.apply_action(fire)
+    held = next(card for card in state.self_hand if card.card_id == "CATA_452")
+    assert held.cost == 10 and held.current_cost == 4
+    assert clone.observation().self_hand[0].current_cost == 10
+    summon = next(a for a in session.legal_actions() if a.get("card_id") == "CATA_452")
+    assert summon["card_cost"] == 4 and "target_entity_id" not in summon
+    comparison = dict(summon, card_cost=10)
+    encoded = encode_legal_actions([summon, comparison])
+    cost_column = ACTION_FEATURE_NAMES.index("card_cost")
+    assert encoded[0, cost_column] < encoded[1, cost_column]
+    result = session.apply_action(summon)
+    dragon = result.self_player.board[0]
+    assert (dragon.card.card_id, dragon.card.card_type, dragon.card.race) == ("CATA_452t", "MINION", "DRAGON")
+    assert (dragon.current_attack, dragon.current_health, dragon.can_attack) == (6, 6, False)
+    assert result.self_player.available_mana == 0
+    assert not session.training_eligible
+
+
+def test_spellweaver_zero_cost_and_global_turn_reset_in_adapter() -> None:
+    deck = ["CATA_452", "CORE_CS2_029", "CORE_CS2_029", *(["CORE_EX1_145"] * 27)]
+    session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    for _ in range(6):
+        session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    for _ in range(2):
+        session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CORE_EX1_145"))
+        session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CORE_CS2_029" and a.get("target_is_hero") and not a.get("target_is_self")))
+    zero = next(a for a in session.legal_actions() if a.get("card_id") == "CATA_452")
+    assert zero["card_cost"] == 0
+    clone = session.clone()
+    session.apply_action(zero)
+    assert session.observation().self_player.board[0].card.card_id == "CATA_452t"
+    clone.apply_action(next(a for a in clone.legal_actions() if a["type"] == "END_TURN"))
+    assert next(card for card in clone.observation("PLAYER1").self_hand if card.card_id == "CATA_452").current_cost == 10
+
+
 def test_unsupported_hero_power_session_and_training_fail_closed() -> None:
     deck = ["CORE_EX1_145"] * 30
     with pytest.raises(UnsupportedSimulationError, match="hero powers"):

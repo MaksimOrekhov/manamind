@@ -2,6 +2,24 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
+    "CATA_452": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Summon a 6/6 Dragon. Costs (1) less for each damage you dealt with spells this turn.",
+      "spell_damage_cost_reduction": 1,
+      "effects": [
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 1,
+          "summon_card": "CATA_452t"
+        }
+      ]
+    },
+    "CATA_452t": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
+    },
     "CATA_485": {
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",

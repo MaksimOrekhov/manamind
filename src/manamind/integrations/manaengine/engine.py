@@ -85,16 +85,17 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         if isinstance(row, dict) and row.get("collectible") is True
     }
     dependencies_file = _ROOT / "experiments/manaengine/data/dependency_metadata_audit.json"
-    dependencies = CardCatalog.from_json(dependencies_file)
-    extras = {card.card_id: card for card in dependencies}
+    dependency_files = [dependencies_file, _ROOT / "experiments/manaengine/data/fixed_summon_dependency_metadata.json"]
+    extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
     pinned_raw = {str(row["id"]): row for row in json.loads(
         (_ROOT / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json").read_text(encoding="utf-8")
     )}
     pinned_raw.update({str(row["id"]): row for row in raw_cards})
-    for row in json.loads(dependencies_file.read_text(encoding="utf-8"))["cards"]:
-        pinned_raw[str(row["id"])] = row
-        spell_schools[str(row["id"])] = str(row.get("spellSchool", "")).upper()
+    for path in dependency_files:
+        for row in json.loads(path.read_text(encoding="utf-8"))["cards"]:
+            pinned_raw[str(row["id"])] = row
+            spell_schools[str(row["id"])] = str(row.get("spellSchool", "")).upper()
     legacy_file = _ROOT / "vendor/RosettaStone/Resources/cards.json"
     if legacy_file.exists():
         for row in json.loads(legacy_file.read_text(encoding="utf-8")):
@@ -102,7 +103,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
-    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE"}
+    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED"}
     target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "SELF", "RANDOM_ENEMY_MINION"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
@@ -139,6 +140,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             "spell_cost_reduction_per_cast", "spell_damage", "damaged_spell_damage", "deathrattle_draw_count",
             "spell_damage_attack", "spell_damage_grant", "card_type", "cost", "attack", "health", "race", "lifesteal",
             "reviewed_random_secret_pool",
+            "spell_damage_cost_reduction",
         }
         unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text"}
         if unknown:
@@ -157,8 +159,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             raise ValueError(f"effects must be a list for {card.card_id}")
         native_effects = []
         for effect in raw_effects:
-            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal"}:
-                raise ValueError(f"effect requires kind, target, amount, and optional lifesteal for {card.card_id}")
+            if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card"}:
+                raise ValueError(f"effect requires kind, target, amount, and optional lifesteal/summon_card for {card.card_id}")
             kind = str(effect["kind"]).upper()
             target = str(effect["target"]).upper()
             if kind not in effect_kinds or target not in target_selectors:
@@ -168,12 +170,14 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             native_effect.target = getattr(native.TargetSelector, target)
             native_effect.amount = int(effect["amount"])
             native_effect.lifesteal = bool(effect.get("lifesteal", False))
+            native_effect.summon_card = str(effect.get("summon_card", ""))
             native_effects.append(native_effect)
         d.effects = native_effects
         result.append(d)
     by_id = {row.card_id: row for row in result}
     for definition in result:
         dependencies = (definition.shatter_left_card, definition.shatter_right_card, definition.transform_card)
+        dependencies += tuple(effect.summon_card for effect in definition.effects if effect.summon_card)
         if any(dep and (dep not in by_id or by_id[dep].support_state == "UNSUPPORTED") for dep in dependencies):
             definition.support_state = "UNSUPPORTED"
     _CARD_METADATA = records
