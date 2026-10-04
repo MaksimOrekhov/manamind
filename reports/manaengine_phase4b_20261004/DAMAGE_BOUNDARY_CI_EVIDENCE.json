@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "kind": "HOSTED_SCOPED_DAMAGE_BOUNDARY_NOT_FULL_CARD_CLOSURE",
+  "package_id": "local_damage_boundary_v1",
+  "damage_contract_version": 1,
+  "commit": "0a7bedcf47b60392be80bb94f6a092f45ba24a26",
+  "rosetta_revision": "f34da0d3fcb5ad312f7e2acf634d0536b044d29a",
+  "fetched_at_utc": "2026-10-04 11:25:32 UTC",
+  "source_sha256_lf": {
+    "experiments/manaengine/include/manaengine/engine.hpp": "5f9ab53869efdaa4e74920375a6b35d02f8e550c6c507118f6da71c7d34736e2",
+    "experiments/manaengine/src/engine.cpp": "d379770a9dda98d0ba18fc13c0a23cc009c91d5e666448bf130c310cf9cd3fd5",
+    "experiments/manaengine/src/python_bindings.cpp": "5508200f8c237643475964d0f80132b122fa4c8d5a6dc5e43fc677b654c0a758",
+    "experiments/manaengine/data/card_abilities.json": "08f472fc84c832141f846cc07cf87c3ff1b43a37bc8b64eade8cf4211ccddae6",
+    "experiments/manaengine/tests/native_tests.cpp": "e34556f9cb45249e58fd20126dc2d8ad44db0bad1aa7028507aa95c9926ce9e4",
+    "experiments/manaengine/tests/test_adapter.py": "65e1bfc88b07e16bf6e4b401a5123f85a874f1e244733b28ba38f08aa3240acb",
+    "src/manamind/integrations/manaengine/engine.py": "1bbcfb04c3baa00c8930f25e65bae68d4ec4dfd001628119fd0a4b4a5327c292"
+  },
+  "runs": [
+    {
+      "run_id": 37198474424,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37198474424",
+      "jobs": [
+        {
+          "id": 111425095167,
+          "name": "source (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:23:19.3752309Z 36 pinned outputs reproduced; generated ownership is unique.\r",
+            "2026-10-04T11:23:34.6997865Z 88 passed in 13.43s\r"
+          ]
+        },
+        {
+          "id": 111425095364,
+          "name": "source (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:23:17.8584220Z 36 pinned outputs reproduced; generated ownership is unique.",
+            "2026-10-04T11:23:26.6219039Z 88 passed in 8.21s"
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37198474433,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37198474433",
+      "jobs": [
+        {
+          "id": 111425095420,
+          "name": "ubuntu-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:23:32.9310354Z 1/1 Test #1: manaengine_native ................   Passed    1.07 sec",
+            "2026-10-04T11:23:32.9313836Z 100% tests passed out of 1",
+            "2026-10-04T11:23:51.6002415Z 41 passed in 18.11s"
+          ]
+        },
+        {
+          "id": 111425095473,
+          "name": "windows-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:24:07.6120848Z 1/1 Test #1: manaengine_native ................   Passed    2.10 sec\r",
+            "2026-10-04T11:24:07.6133824Z 100% tests passed out of 1\r",
+            "2026-10-04T11:24:28.2088738Z 41 passed in 19.56s\r"
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "CATA_485 is scoped: mortal aura before another damage step and pending board death before random selection invalidate the branch.",
+    "TIME_855 remains unimplemented; this evidence certifies no full root/deck closure or training admission.",
+    "Canonical RosettaStone evidence was not promoted; no global death scheduler change."
+  ]
+}

@@ -49,3 +49,9 @@ Canonical pinned outputs regenerated and remain byte-equivalent after line-endin
 Timer started 2026-10-04 11:03:50 UTC. Implementation, review, corrections and local verification through 11:20:38 UTC: 16m48s observed elapsed, with no user-response wait. Hosted acceptance and report/commit work are separate intervals; this is not CPU time or a throughput projection.
 
 Stop after push and green Windows/Ubuntu Source and ManaEngine CI. No later Phase 4B root, training or search is authorized by this completion.
+
+## Hosted acceptance
+
+Implementation commit: 0a7bedcf47b60392be80bb94f6a092f45ba24a26. [Source CI](https://github.com/MaksimOrekhov/manamind/actions/runs/37198474424) is green on Windows and Ubuntu: each reproduced all 36 outputs, had empty generated diff and actually ran 88 Python tests (13.43s / 8.21s). [ManaEngine CI](https://github.com/MaksimOrekhov/manamind/actions/runs/37198474433) is green on both: fresh Release build and native CTest (2.10s Windows / 1.07s Ubuntu), followed by all 41 adapter/policy tests (19.56s / 18.11s).
+
+Fetched completed job steps, actual log excerpts and normalized source SHA-256 identities are in DAMAGE_BOUNDARY_CI_EVIDENCE.json. No PASS/status was inferred from earlier evidence. Local implementation/verification interval ended 11:20:38 UTC; documentation, commit/push and hosted acceptance through 11:25:32 UTC added 4m54s observed elapsed. Total through accepted implementation: 21m42s, including hosted wait. The final evidence-only commit triggers checks again and changes no implementation/test identity.
