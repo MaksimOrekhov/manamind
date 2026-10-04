@@ -368,3 +368,30 @@ def test_manaengine_exports_current_spell_damage() -> None:
     state = session.apply_action(bloodmage)
     assert state.self_player.spell_damage == 1
     assert state.opponent.spell_damage == 0
+
+
+def test_living_flame_draws_a_fire_spell_from_its_deck() -> None:
+    deck = ["FIR_929", "CORE_SW_108", "CORE_CS2_029", "CORE_CS2_024", *("CORE_CS2_029" for _ in range(26))]
+    opponent_deck = ["CORE_DRG_107"] * 30
+    session = ManaEngineSession(
+        deck,
+        opponent_deck,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+        random_seed=73,
+    )
+    session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    violet = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_DRG_107")
+    session.apply_action(violet)
+    session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    living_flame = next(action for action in session.legal_actions() if action.get("card_id") == "FIR_929")
+    session.apply_action(living_flame)
+    session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    before_attack = session.observation("PLAYER1")
+    fire_cards_before = sum(card.card_id in {"CORE_SW_108", "CORE_CS2_029"} for card in before_attack.self_hand)
+    attack = next(action for action in session.legal_actions() if action["type"] == "ATTACK" and action.get("target_card_id") == "FIR_929")
+    session.apply_action(attack)
+    observed = session.observation("PLAYER1")
+    fire_cards_after = sum(card.card_id in {"CORE_SW_108", "CORE_CS2_029"} for card in observed.self_hand)
+    assert fire_cards_after == fire_cards_before + 1

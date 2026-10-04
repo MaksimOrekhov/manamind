@@ -62,6 +62,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     catalog = CardCatalog.from_json(catalog_file)
     raw_catalog = json.loads(catalog_file.read_text(encoding="utf-8-sig"))
     raw_cards = raw_catalog.get("cards", []) if isinstance(raw_catalog, dict) else raw_catalog
+    spell_schools = {
+        str(row.get("id") or row.get("card_id") or row.get("dbfId")): str(row.get("spellSchool") or "").upper()
+        for row in raw_cards
+        if isinstance(row, dict)
+    }
     _COLLECTIBLE_IDS = {
         str(row.get("id") or row.get("card_id") or row.get("dbfId"))
         for row in raw_cards
@@ -95,6 +100,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.card_type = card.card_type.upper()
         d.card_class = card.card_class.upper()
         d.race = (card.race or "").upper()
+        d.spell_school = spell_schools.get(card.card_id, "")
         d.collectible = card.card_id in _COLLECTIBLE_IDS
         d.battlecry = "BATTLECRY" in card.mechanics
         d.secret = "SECRET" in card.mechanics
@@ -107,8 +113,14 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         spec = overrides.get(card.card_id, {})
         d.support_state = str(spec.get("support_state", "UNSUPPORTED"))
         d.ability = str(spec.get("ability", "NONE"))
+        if "deck_draw_filter" in spec:
+            filters = {"ANY": "ANY", "SPELL": "SPELL", "FIRE_SPELL": "FIRE_SPELL"}
+            filter_name = str(spec["deck_draw_filter"]).upper()
+            if filter_name not in filters:
+                raise ValueError(f"unknown deck_draw_filter for {card.card_id}: {filter_name}")
+            d.deck_draw_filter = getattr(native.DeckDrawFilter, filters[filter_name])
         for key, value in spec.items():
-            if key not in {"support_state", "ability", "effects"}:
+            if key not in {"support_state", "ability", "effects", "deck_draw_filter"}:
                 setattr(d, key, value)
         raw_effects = spec.get("effects", [])
         if not isinstance(raw_effects, list):

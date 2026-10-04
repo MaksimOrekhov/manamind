@@ -9,8 +9,8 @@ Frozen profile: configs/training_profiles/meta_training_20261002_v1.json
 ## Checkpoint — refreshed after Prepare, Secrets, and Spell Damage work
 
 - Frozen deck: 30 slots, 17 unique roots.
-- 8/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489, JAIL_321, CORE_EX1_012, END_022.
-- 9/17 roots remain unsupported by the ManaEngine catalog.
+- 9/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489, JAIL_321, CORE_EX1_012, END_022, FIR_929.
+- 8/17 roots remain unsupported by the ManaEngine catalog.
 - Mage class/hero power, turn/mana progression, draws, fatigue, hand burn, board limit, targeting, terminal result, deterministic RNG, clone, and a narrow typed Choice flow exist.
 - Shatter hand pieces and generic Prepare actions are implemented and tested. Six pinned Mage Secrets, typed trigger windows, private identities/public counts, current-turn spell history, Spell Damage static/damaged-only auras, and the complete Tricksy Secret outcome pool are implemented in ManaEngine. Mulligan, Spell Damage on spells in hand/deck, previous-turn Kindred history, and generic 30-card deck validation remain absent.
 - The old registry reports two dynamic pool IDs. This audit found another dynamic dependency on JAIL_321: two random Mage Secrets.
@@ -30,7 +30,7 @@ Status refers only to the Phase 3 ManaEngine catalog, not Rosetta registry statu
 | CATA_484 Winterspring Whelp | 2 | DYNAMIC_DEPENDENCY | Discovers a 1-Cost spell from any class. Existing Choice renderer has a different Battlecry-minion predicate. |
 | CORE_EX1_012 Bloodmage Thalnos | 1 | CURRENT_MANAENGINE_SUPPORTED | Static Spell Damage +1 and generic one-card draw Deathrattle. |
 | CORE_CS2_024 Frostbolt | 2 | CURRENT_MANAENGINE_SUPPORTED | Existing targeted damage plus Freeze. |
-| FIR_929 Living Flame | 2 | NEEDS_SHARED_CAPABILITY | Deathrattle draws a Fire spell from this deck: CORE_SW_108 ×1, CORE_CS2_029 ×2. |
+| FIR_929 Living Flame | 2 | CURRENT_MANAENGINE_SUPPORTED | Shared typed Deathrattle deck selector draws a random Fire spell from actual deck contents. |
 | CATA_487 Raincaller | 2 | NEEDS_SHARED_CAPABILITY | First spell-damage event each turn grants +2 Attack. |
 | TIME_855 Arcane Barrage | 2 | NEEDS_SHARED_CAPABILITY | 3 damage to selected enemy, then 2 to two other random enemy characters; needs distinct sampling and Spell Damage. |
 | TLC_226 Conjured Bookkeeper | 2 | NEEDS_SHARED_CAPABILITY | Deathrattle draws a deck spell; Kindred summons a copy when an Elemental was played last turn. Seven unique spell IDs / 13 physical slots are eligible. The copy is fixed self-copy. |
@@ -103,6 +103,8 @@ Current actions are PlayCard, PrepareCard, Attack, HeroPower, EndTurn, ChooseCar
 5. **Secret system** — JAIL_321 and six outcomes. Implemented with typed windows and an activation sequence shared with modeled end-turn board reactions. Tricksy samples the exact six-card pool independently for both casts and does not filter unsupported or already-active results.
 6. **Colossal and turn-end board damage** — CATA_488, two appendages and symmetric other-minion damage.
 
+The reusable filtered self-deck draw selector now supports `FIR_929` through `FIRE_SPELL`; `TLC_226` remains deferred because Kindred history and its self-copy effect need separate contracts.
+
 The 77-outcome Discover closure is likely the largest declarative workload. Shatter, Secret event windows, and the first shared Spell Damage aura package are implemented; broad current-profile coverage remains far from deck readiness.
 
 ## Architecture decisions and implementation status
@@ -112,7 +114,7 @@ The 77-outcome Discover closure is likely the largest declarative workload. Shat
 - Each fragment is a real CardInstance with its real token ID. Partner entity IDs remain engine-internal; GameState and policy receive original card ID, fragment role, and partner hand position.
 - Every hand-entry path uses the same Shatter capability. Fragments enter opposite hand ends, remain instance-linked across clone, become solo when their partner is played, and recombine only when linked fragments are adjacent.
 - Family coverage includes draw/add-to-hand, two independent copies, intervening cards, each single fragment, recombination effects, hand capacity, clones, and semantic action/observation encoding.
-- Prepare uses a distinct `PREPARE_CARD` action. It spends all remaining mana and applies exactly `spent + 1` persistent discount without capping the stored discount at the current cost. The card stays in its hand position and is locked for the rest of the turn. Its lock is exported into GameState and encoded with an explicit known mask. Eligibility for an already zero-cost card is unresolved; the simulator fails closed for that state.
+- Prepare uses a distinct `PREPARE_CARD` action. It spends all remaining mana and applies exactly `spent + 1` persistent discount without capping the stored discount at the current cost. The card stays in its hand position and is locked for the rest of the turn. Its lock is exported into GameState and encoded with an explicit known mask. Eligibility for an already zero-cost card is unresolved; the simulator fails closed for that state. No current ManaEngine card-copy operation copies a prepared hand instance, so discount transfer through copying is outside supported semantics.
 - CATA_489 and JAIL_321 are supported in the Phase 4 ManaEngine catalog. The standard card JAIL_453's separate “when you Prepare” discount interaction remains outside this deck slice.
 
 ### Secret/event-order boundary — implemented prototype contract
@@ -125,10 +127,11 @@ Spell Damage is derived from the caster's current unsilenced board and snapshott
 
 ## Phase 4 verification record (current checkpoint)
 
-- Native Windows build: passed; ManaEngine native suite: 1/1 test passed, covering 26 scenario groups and 454 assertions after Spell Damage support (the Prepare zero-cost case is explicitly fail-closed).
-- Python ManaEngine adapter: 9/9 test functions passed by direct invocation. Six focused pipeline/encoder/schema checks passed. A full pytest completion has not been established for this experimental worktree; Rosetta-backed test collection is also limited because the worktree's RosettaStone submodule content is absent.
+- Native Windows build: passed; ManaEngine native suite: 1/1 test passed, covering 27 scenario groups and 460 assertions after filtered draw support (the Prepare zero-cost case is explicitly fail-closed).
+- Python ManaEngine adapter: 10/10 test functions passed by direct invocation. Six focused pipeline/encoder/schema checks passed. A full pytest completion has not been established for this experimental worktree; Rosetta-backed test collection is also limited because the worktree's RosettaStone submodule content is absent.
 - Ruff: passed on modified Python files.
-- CATA_489, JAIL_321, CORE_EX1_012, and END_022 ManaEngine support gained in these Phase 4 packages: four roots total; Shatter fragments, two Secret tokens, and the six Secret outcomes are declared. No canonical Rosetta registry status changed.
+- CATA_489, JAIL_321, CORE_EX1_012, END_022, and FIR_929 ManaEngine support gained in these Phase 4 packages: five roots total; Shatter fragments, two Secret tokens, and the six Secret outcomes are declared. No canonical Rosetta registry status changed.
 - Secret verification covers all six outcomes, ordering/clone/re-entry, Tricksy cast history and full-pool sampling, and owner/opponent observation privacy. Observation schema is version 12 after adding both Secret and current Spell Damage features; older checkpoints are rejected through the existing explicit schema-version check, with no implicit migration.
 - Spell Damage verification covers static/damaged aura state, silence, clone divergence, spell-resolution snapshots across source death, and exclusion from Battlecry/combat damage. Generic draw Deathrattle is verified for distinct declared counts.
+- Filtered draw verification covers the full runtime deck predicate, Fire spell selection, empty eligible pool without fatigue or unrelated draw, deterministic clone selection, unsupported eligible outcomes remaining selectable, full-hand burn, and adapter-level Living Flame deathrattle behavior.
 - No training or production-backend switch occurred. No macOS work was added.

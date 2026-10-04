@@ -26,6 +26,8 @@ Base ManaMind revision: `5568cb9d5689ddc7bfe08457cda6e7321b23a32c`
 
 Blizzard's published rule confirms that Prepare spends all remaining mana and reduces cost by exactly the amount spent plus one. It does not specify whether an already zero-cost card is an eligible target. ManaEngine does not infer that rule: if such a card with spendable mana reaches action generation, simulation fails closed. No test or completion status treats that legality as verified.
 
+The native Prepare scenarios cover costs 7/2 with 3/5 mana, per-instance targeting with two identical hand cards, clone divergence, persistence across turn end, and fail-closed zero-cost eligibility. The current ManaEngine prototype has no card-copy operation that copies a prepared hand instance, so transfer of Prepare's per-instance discount through a separate copy effect is not modeled or claimed. That interaction remains outside supported semantics.
+
 ## Effort and corrections
 
 - **Observed elapsed time:** 11m21s between the first recorded active-work timestamp (06:41:24 UTC) and the verification checkpoint at 06:52:45 UTC. This is elapsed task time, including tool execution.

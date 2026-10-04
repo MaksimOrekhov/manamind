@@ -12,13 +12,14 @@
 namespace manaengine {
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
 enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self };
+enum class DeckDrawFilter { Any, Spell, FireSpell };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
 };
 struct CardDefinition {
-    std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race;
+    std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race, spell_school;
     std::string ability="NONE", generated_card, transform_card, support_state="UNSUPPORTED";
     std::string choice_pool, secret_trigger="NONE", secret_effect="NONE";
     std::string shatter_left_card, shatter_right_card;
@@ -26,6 +27,7 @@ struct CardDefinition {
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
     int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0;
+    DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
 };
@@ -161,7 +163,7 @@ private:
     int effective_cost(int owner,const HandCard& item) const;
     int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
-    void draw(int owner,int count=1); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
+    void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
     bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);
