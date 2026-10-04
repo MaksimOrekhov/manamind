@@ -26,6 +26,8 @@ POLICY_STATE_FEATURE_NAMES = (
     "self_hand_prepare_locked_count", "self_hand_prepare_known_count",
 )
 
+POLICY_ACTION_SCHEMA_VERSION = 2
+
 ACTION_FEATURE_NAMES = (
     "play_card", "attack", "hero_power", "end_turn",
     "card_minion", "card_spell", "card_weapon", "card_hero_power", "card_other",
@@ -38,6 +40,8 @@ ACTION_FEATURE_NAMES = (
     *(f"dark_gift_{gift_id}" for gift_id in range(1, 11)),
     "shatter_left", "shatter_right", "shatter_solo", "shatter_partner_relative_position",
     "prepare_card",
+    "card_spell_damage", "choice_card_cost",
+    "card_spell_damage_known", "choice_card_cost_known",
 )
 MAX_HAND_SIZE = 10
 CARD_EMBEDDING_DIM = 32
@@ -157,6 +161,11 @@ def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
             rows[row, ACTION_FEATURE_NAMES.index("shatter_partner_relative_position")] = _scaled(
                 int(partner) - int(hand_index)
             )
+        for feature in ("card_spell_damage", "choice_card_cost"):
+            value = action.get(feature)
+            known = value is not None and float(value) >= 0
+            rows[row, ACTION_FEATURE_NAMES.index(feature)] = _scaled(value) if known else 0.0
+            rows[row, ACTION_FEATURE_NAMES.index(f"{feature}_known")] = float(known)
     return rows
 
 
@@ -192,11 +201,16 @@ def encode_hand_card_ids(state: GameState, encoder: StateEncoder) -> np.ndarray:
 
 def load_policy_weights(policy: PolicyNetwork, payload: dict[str, Any]) -> bool:
     """Load compatible policy weights; return whether a schema migration occurred."""
+    version = payload.get("policy_action_schema_version")
+    if version is not None and version not in (1, POLICY_ACTION_SCHEMA_VERSION):
+        raise ValueError("Unsupported policy action schema version")
     feature_names = payload.get("action_feature_names")
     state = payload.get("policy_state_dict")
     if not isinstance(state, dict):
         raise TypeError("Checkpoint does not contain policy weights")
-    if feature_names == list(ACTION_FEATURE_NAMES) and "card_vocabulary" in payload:
+    if (feature_names == list(ACTION_FEATURE_NAMES)
+            and payload.get("state_feature_names") == list(POLICY_STATE_FEATURE_NAMES)
+            and "card_vocabulary" in payload):
         policy.load_state_dict(state)
         return False
 

@@ -15,6 +15,7 @@ from manamind.cards.catalog import CardCatalog
 from manamind.encoding.state_encoder import StateEncoder
 from manamind.integrations.rosettastone.policy import (
     ACTION_FEATURE_NAMES,
+    POLICY_ACTION_SCHEMA_VERSION,
     POLICY_STATE_FEATURE_NAMES,
     PolicyNetwork,
     encode_action_card_ids,
@@ -306,6 +307,7 @@ def main() -> None:
         policy.eval()
         torch.save({
             "schema_version": 2,
+            "policy_action_schema_version": POLICY_ACTION_SCHEMA_VERSION,
             "policy_state_dict": policy.state_dict(),
             "optimizer_state_dict": optimizer.state_dict(),
             "state_feature_names": list(POLICY_STATE_FEATURE_NAMES),

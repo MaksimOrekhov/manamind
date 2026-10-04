@@ -6,6 +6,7 @@ on:
     paths:
       - "experiments/manaengine/**"
       - "reports/manaengine_phase4_20261003/**"
+      - "reports/manaengine_phase4b_20261004/**"
       - "data/cards/**"
       - "src/manamind/cards/**"
       - "src/manamind/domain/**"
@@ -13,11 +14,14 @@ on:
       - "src/manamind/integrations/manaengine/**"
       - "src/manamind/integrations/rosettastone/policy.py"
       - "tests/test_pipeline.py"
+      - "tests/test_policy_action_semantics.py"
+      - "train_selfplay.py"
       - ".github/workflows/manaengine-experimental.yml"
   pull_request:
     paths:
       - "experiments/manaengine/**"
       - "reports/manaengine_phase4_20261003/**"
+      - "reports/manaengine_phase4b_20261004/**"
       - "data/cards/**"
       - "src/manamind/cards/**"
       - "src/manamind/domain/**"
@@ -25,6 +29,8 @@ on:
       - "src/manamind/integrations/manaengine/**"
       - "src/manamind/integrations/rosettastone/policy.py"
       - "tests/test_pipeline.py"
+      - "tests/test_policy_action_semantics.py"
+      - "train_selfplay.py"
       - ".github/workflows/manaengine-experimental.yml"
   workflow_dispatch:
 
@@ -75,4 +81,4 @@ jobs:
         env:
           PYTHONPATH: src
           MANAMIND_MANAENGINE_BUILD: ${{ github.workspace }}/build/manaengine/python
-        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py tests/test_pipeline.py
+        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py tests/test_pipeline.py tests/test_policy_action_semantics.py

@@ -264,6 +264,7 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
     new_action_features = {
         "shatter_left", "shatter_right", "shatter_solo",
         "shatter_partner_relative_position", "prepare_card",
+        "card_spell_damage", "choice_card_cost", "card_spell_damage_known", "choice_card_cost_known",
     }
     old_state_names = [name for name in POLICY_STATE_FEATURE_NAMES if name not in new_state_features]
     old_names = [name for name in ACTION_FEATURE_NAMES if name not in new_action_features]
@@ -320,7 +321,8 @@ def test_legacy_policy_weights_migrate_to_card_embeddings():
 
     encoder = StateEncoder(_sample_catalog())
     policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
-    old_action_names = [name for name in ACTION_FEATURE_NAMES if not name.startswith("shatter_") and not name.startswith("dark_gift_") and name != "prepare_card"]
+    old_action_names = [name for name in ACTION_FEATURE_NAMES if not name.startswith("shatter_") and not name.startswith("dark_gift_")
+                        and name not in {"prepare_card", "card_spell_damage", "choice_card_cost", "card_spell_damage_known", "choice_card_cost_known"}]
     old_state_names = [
         name for name in POLICY_STATE_FEATURE_NAMES
         if name not in {"self_hero_power_ready", "opponent_hero_power_ready",

@@ -461,6 +461,8 @@ def test_archmage_kalec_marks_spell_instances_in_hand_and_exports_action_value()
     session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
     spell_action = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_CS2_029")
     assert spell_action["card_spell_damage"] == 1
+    encoded_actions = encode_legal_actions([spell_action, {**spell_action, "card_spell_damage": 0}])
+    assert (encoded_actions[0] != encoded_actions[1]).any()
     assert state.opponent.hand_size >= 1
     assert state.opponent_known_cards == ()
 
