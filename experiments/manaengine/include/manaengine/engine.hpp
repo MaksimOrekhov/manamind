@@ -220,6 +220,7 @@ private:
     void stable_shuffle(std::vector<CardInstance>& cards);
     CardInstance make_instance(const std::string& card_id,int owner,Zone zone,std::string provenance);
     void enter_hand(int owner,CardInstance instance);
+    CardInstance remove_card_from_hand(int owner,std::size_t hand_position);
     void update_shatter_links(int owner);
     void shatter_on_hand_entry(int owner,CardInstance instance);
     void update_zone_positions(int owner,Zone zone);

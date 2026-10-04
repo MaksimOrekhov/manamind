@@ -794,3 +794,33 @@ def test_mirror_dimension_conditional_fixed_summon_adapter() -> None:
     action = next(a for a in session.legal_actions() if a.get("card_id") == "TIME_006")
     state = session.apply_action(action)
     assert [entity.card.card_id for entity in state.self_player.board].count("TIME_006t1") == 2
+
+
+def test_solo_shatter_observation_constructs_game_state_without_dangling_partner() -> None:
+    from copy import deepcopy
+
+    from manamind.integrations.manaengine.engine import _export_state
+
+    raw = {
+        "turn_number": 3,
+        "active_player": "SELF",
+        "self_player": {"hero_health": 30, "hand_size": 1},
+        "opponent": {"hero_health": 30},
+        "self_hand": [{
+            "card_id": "CATA_489t",
+            "card_type": "SPELL",
+            "shatter_fragment": "SOLO",
+            "shatter_original_card_id": "CATA_489",
+            "shatter_partner_hand_position": -1,
+        }],
+    }
+    state = _export_state(deepcopy(raw))
+    fragment = state.self_hand[0]
+    assert fragment.shatter_fragment == "SOLO"
+    assert fragment.shatter_original_card_id == "CATA_489"
+    assert fragment.shatter_partner_hand_position is None
+
+    dangling = deepcopy(raw)
+    dangling["self_hand"][0]["shatter_fragment"] = "LEFT"
+    with pytest.raises(ValueError, match="Linked Shatter fragments require a valid partner"):
+        _export_state(dangling)
