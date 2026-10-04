@@ -22,6 +22,11 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
         mechanics=tuple(str(item).upper() for item in data.get("mechanics", ())),
         current_cost=data.get("current_cost"),
         current_spell_damage=data.get("current_spell_damage"),
+        prepare_used=data.get("prepare_used"),
+        held_spell_progress=data.get("held_spell_progress"),
+        trigger_remaining=data.get("trigger_remaining"),
+        effect_turns_remaining=data.get("effect_turns_remaining"),
+        freeze_turns_remaining=data.get("freeze_turns_remaining"),
         current_attack=data.get("current_attack"),
         current_health=data.get("current_health"),
         current_durability=data.get("current_durability"),
@@ -93,6 +98,11 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         fatigue=int(data.get("fatigue", 0)),
         secret_count=int(data.get("secret_count", 0)),
         spell_damage=int(data.get("spell_damage", 0)),
+        spells_cast_this_turn=data.get("spells_cast_this_turn"),
+        spell_discount=data.get("spell_discount"),
+        demon_discount=data.get("demon_discount"),
+        hero_freeze_turns_remaining=data.get("hero_freeze_turns_remaining"),
+        active_effects=tuple(_card(item) for item in data.get("active_effects", ())),
         known_secrets=tuple(
             card for item in data.get("known_secrets", ())
             if (card := _card(item if isinstance(item, dict) else {"card_id": item})) is not None
@@ -128,4 +138,6 @@ def game_state_from_dict(data: dict[str, Any]) -> GameState:
         self_hand=self_hand,
         self_hand_known_count=data.get("self_hand_known_count"),
         opponent_known_cards=opponent_known_cards,
+        pending_choice_owner=data.get("pending_choice_owner"),
+        pending_choice_options=tuple(_card(item) for item in data.get("pending_choice_options", ())),
     )

@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import os
+import re
 from importlib.machinery import EXTENSION_SUFFIXES
 from pathlib import Path
 from types import ModuleType
@@ -20,6 +21,17 @@ _CARD_METADATA: dict[str, CardFeatures] = {}
 _DEFINITION_CACHE: dict[str, tuple[list[Any], dict[str, CardFeatures]]] = {}
 _NATIVE_CATALOG_CACHE: dict[str, Any] = {}
 _COLLECTIBLE_IDS: set[str] = set()
+
+
+def _rules_coverage(metadata: dict[str, Any], spec: dict[str, Any]) -> bool:
+    """Authoring guard; reviewed text coverage is independent of test evidence."""
+    text = re.sub(r"<[^>]+>|\[x\]", "", str(metadata.get("text", "")))
+    text = " ".join(text.split())
+    if spec.get("ability", "NONE") == "NONE":
+        keywords = {"TAUNT", "RUSH", "LIFESTEAL"}
+        words = set(text.upper().replace(",", " ").split())
+        return words <= keywords and set(metadata.get("mechanics", ())) <= keywords
+    return text == spec.get("reviewed_rules_text")
 
 
 class UnsupportedSimulationError(RuntimeError):
@@ -72,21 +84,21 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         for row in raw_cards
         if isinstance(row, dict) and row.get("collectible") is True
     }
-    extras = {
-        "EX1_277": CardFeatures(card_id="EX1_277", cost=1, card_type="SPELL", card_class="MAGE"),
-        "SW_108t": CardFeatures(card_id="SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
-        "CORE_SW_108t": CardFeatures(card_id="CORE_SW_108t", cost=1, card_type="SPELL", card_class="MAGE"),
-        "JAIL_801t": CardFeatures(card_id="JAIL_801t", cost=3, attack=3, health=3, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL"),
-        "JAIL_803t": CardFeatures(card_id="JAIL_803t", cost=5, attack=5, health=5, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL"),
-        "JAIL_805t": CardFeatures(card_id="JAIL_805t", cost=7, attack=7, health=7, card_type="MINION", card_class="SHAMAN", race="ELEMENTAL", mechanics=("LIFESTEAL",)),
-        "TEST_HELD_TRACKER": CardFeatures(card_id="TEST_HELD_TRACKER", cost=2, attack=4, health=4, card_type="MINION", card_class="MAGE"),
-        "HERO_08bp": CardFeatures(card_id="HERO_08bp", cost=2, attack=0, health=0, durability=0, card_type="HERO_POWER", card_class="MAGE"),
-        "CATA_489t": CardFeatures(card_id="CATA_489t", cost=4, card_type="SPELL", card_class="MAGE"),
-        "CATA_489t2": CardFeatures(card_id="CATA_489t2", cost=4, card_type="SPELL", card_class="MAGE"),
-        "CORE_CS2_033": CardFeatures(card_id="CORE_CS2_033", cost=4, attack=3, health=6, card_type="MINION", card_class="MAGE", race="ELEMENTAL"),
-        "EX1_100t": CardFeatures(card_id="EX1_100t", cost=1, attack=1, health=1, card_type="MINION", card_class="MAGE"),
-    }
+    dependencies_file = _ROOT / "experiments/manaengine/data/dependency_metadata_audit.json"
+    dependencies = CardCatalog.from_json(dependencies_file)
+    extras = {card.card_id: card for card in dependencies}
     records = {c.card_id: c for c in catalog}
+    pinned_raw = {str(row["id"]): row for row in json.loads(
+        (_ROOT / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json").read_text(encoding="utf-8")
+    )}
+    pinned_raw.update({str(row["id"]): row for row in raw_cards})
+    for row in json.loads(dependencies_file.read_text(encoding="utf-8"))["cards"]:
+        pinned_raw[str(row["id"])] = row
+        spell_schools[str(row["id"])] = str(row.get("spellSchool", "")).upper()
+    legacy_file = _ROOT / "vendor/RosettaStone/Resources/cards.json"
+    if legacy_file.exists():
+        for row in json.loads(legacy_file.read_text(encoding="utf-8")):
+            pinned_raw.setdefault(str(row["id"]), row)
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
@@ -113,6 +125,24 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         spec = overrides.get(card.card_id, {})
         d.support_state = str(spec.get("support_state", "UNSUPPORTED"))
         d.ability = str(spec.get("ability", "NONE"))
+        raw = pinned_raw.get(card.card_id)
+        d.rules_contract_reviewed = raw is not None and _rules_coverage(raw, spec)
+        d.required_mechanics = [str(m).upper() for m in (raw or {}).get("mechanics", ())]
+        if not d.rules_contract_reviewed:
+            d.support_state = "UNSUPPORTED"
+        d.battlecry = "BATTLECRY" in d.required_mechanics
+        d.lifesteal = d.card_type == "MINION" and "LIFESTEAL" in d.required_mechanics
+        allowed_fields = {
+            "damage", "generated_card", "transform_card", "choice_pool", "choice_count", "choice_cost_delta",
+            "shatter_left_card", "shatter_right_card", "secret_trigger", "secret_effect", "prepare",
+            "random_cast_count", "duration", "pool_max_cost", "pool_count", "held_spell_threshold",
+            "spell_cost_reduction_per_cast", "spell_damage", "damaged_spell_damage", "deathrattle_draw_count",
+            "spell_damage_attack", "spell_damage_grant", "card_type", "cost", "attack", "health", "race", "lifesteal",
+            "reviewed_random_secret_pool",
+        }
+        unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "deck_draw_filter", "reviewed_rules_text"}
+        if unknown:
+            raise ValueError(f"Unknown declaration fields for {card.card_id}: {sorted(unknown)}")
         if "deck_draw_filter" in spec:
             filters = {"ANY": "ANY", "SPELL": "SPELL", "FIRE_SPELL": "FIRE_SPELL"}
             filter_name = str(spec["deck_draw_filter"]).upper()
@@ -120,7 +150,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
                 raise ValueError(f"unknown deck_draw_filter for {card.card_id}: {filter_name}")
             d.deck_draw_filter = getattr(native.DeckDrawFilter, filters[filter_name])
         for key, value in spec.items():
-            if key not in {"support_state", "ability", "effects", "deck_draw_filter"}:
+            if key in allowed_fields:
                 setattr(d, key, value)
         raw_effects = spec.get("effects", [])
         if not isinstance(raw_effects, list):
@@ -141,6 +171,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             native_effects.append(native_effect)
         d.effects = native_effects
         result.append(d)
+    by_id = {row.card_id: row for row in result}
+    for definition in result:
+        dependencies = (definition.shatter_left_card, definition.shatter_right_card, definition.transform_card)
+        if any(dep and (dep not in by_id or by_id[dep].support_state == "UNSUPPORTED") for dep in dependencies):
+            definition.support_state = "UNSUPPORTED"
     _CARD_METADATA = records
     _DEFINITION_CACHE[key] = (result, records)
     return result
@@ -174,6 +209,8 @@ def _export_state(raw: dict[str, Any]) -> GameState:
         ]
         for card in player.get("board", ()):
             enrich(card)
+        for effect in player.get("active_effects", ()):
+            enrich(effect)
         for secret in player.get("known_secrets", ()):
             enrich(secret)
         if player.get("hero_power") is not None:
@@ -182,6 +219,8 @@ def _export_state(raw: dict[str, Any]) -> GameState:
             enrich(player["weapon"])
     for card in raw.get("self_hand", ()):
         enrich(card, in_hand=True)
+    for option in raw.get("pending_choice_options", ()):
+        enrich(option, in_hand=True)
     return game_state_from_dict(raw)
 
 
@@ -193,6 +232,8 @@ class ManaEngineSession:
                  shuffle: bool = True, random_seed: int = 0, catalog_path: str | Path | None = None) -> None:
         native = _load_native()
         self._unsupported_exception = native.UnsupportedSimulationError
+        if player1_class.upper() != "MAGE" or player2_class.upper() != "MAGE":
+            raise UnsupportedSimulationError("ManaEngine session requires implemented hero powers; only Mage mirror is supported")
         catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
         catalog_key = str(catalog_file.resolve())
         if catalog_key not in _NATIVE_CATALOG_CACHE:
@@ -200,7 +241,7 @@ class ManaEngineSession:
         else:
             _definition_rows(catalog_path)
         self._native = native.GameSession(list(player1_deck), list(player2_deck), _NATIVE_CATALOG_CACHE[catalog_key],
-                                          random_seed, shuffle, player1_class, player2_class)
+                                          random_seed, shuffle, player1_class.upper(), player2_class.upper())
 
     def observation(self, perspective: str = "ACTIVE") -> GameState:
         if perspective not in {"ACTIVE", "PLAYER1", "PLAYER2"}:
@@ -243,6 +284,18 @@ class ManaEngineSession:
         duplicate._unsupported_exception = self._unsupported_exception
         duplicate._native = self._native.clone()
         return duplicate
+
+    @property
+    def training_eligible(self) -> bool:
+        """No backend-specific complete closure/session evidence producer exists yet."""
+        return False
+
+    def require_training_admission(self) -> None:
+        """Fail before collecting episodes, rather than filtering unsupported outcomes."""
+        raise UnsupportedSimulationError(
+            "ManaEngine training admission is blocked: complete backend-specific dependency, "
+            "dynamic outcome, session and match evidence is required for the selected environment"
+        )
 
     def set_diagnostic_trace(self, enabled: bool) -> None:
         """Enable the optional native event trace for debugging scenarios."""

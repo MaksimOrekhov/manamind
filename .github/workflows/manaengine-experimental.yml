@@ -5,6 +5,9 @@ on:
     branches: ["**"]
     paths:
       - "experiments/manaengine/**"
+      - "reports/manaengine_phase4_20261003/**"
+      - "data/cards/**"
+      - "src/manamind/cards/**"
       - "src/manamind/domain/**"
       - "src/manamind/encoding/**"
       - "src/manamind/integrations/manaengine/**"
@@ -14,6 +17,9 @@ on:
   pull_request:
     paths:
       - "experiments/manaengine/**"
+      - "reports/manaengine_phase4_20261003/**"
+      - "data/cards/**"
+      - "src/manamind/cards/**"
       - "src/manamind/domain/**"
       - "src/manamind/encoding/**"
       - "src/manamind/integrations/manaengine/**"
@@ -33,6 +39,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}

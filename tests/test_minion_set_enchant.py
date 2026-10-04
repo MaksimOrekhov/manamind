@@ -93,4 +93,4 @@ def test_new_visible_flags_preserve_unknown_and_checkpoint_schema():
     assert known.global_features[encoder.global_feature_names.index("self_hero_divine_shield")] < 0
     data["self_player"]["hero_divine_shield"] = True
     assert encoder.encode(game_state_from_dict(data)).global_features[encoder.global_feature_names.index("self_hero_divine_shield")] > 0
-    assert STATE_ENCODING_SCHEMA_VERSION == 13
+    assert STATE_ENCODING_SCHEMA_VERSION == 14

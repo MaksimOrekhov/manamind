@@ -1,5 +1,7 @@
 # ManaEngine Phase 4 — Tricky Burn Mage closure audit
 
+> Historical checkpoint at a62ff5f, superseded by [CORRECTNESS_HARDENING_COMPLETION.md](CORRECTNESS_HARDENING_COMPLETION.md) and [CORRECTNESS_RULES_AUDIT.md](CORRECTNESS_RULES_AUDIT.md). Claims below describe the pre-review prototype, not current correctness/admission. In particular the old Prepare spending rule, Water Elemental vanilla declaration, Shatter modifier tests, and partial Secret/Raincaller verification claims are withdrawn. Current observation schema is 14. No deck is DECK_READY.
+
 Audit date: 2026-10-03  
 ManaMind branch: codex/manaengine-first-deck  
 Phase 3 checkpoint: eecc9fe9f187da5162037a4c052aca36896870d9  

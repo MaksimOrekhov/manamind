@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json",
+  "captured_at_utc": "2026-10-04",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "purpose": "Dependency metadata audit, not rules evidence",
+  "missing_ids": [
+    "CORE_SW_108t",
+    "EX1_100t"
+  ],
+  "cards": [
+    {
+      "artist": "Tee Fuyuan",
+      "cardClass": "MAGE",
+      "cost": 4,
+      "dbfId": 123743,
+      "id": "CATA_489t",
+      "mechanics": [
+        "EVIL_GLOW"
+      ],
+      "name": "Arcane Flow",
+      "set": "CATACLYSM",
+      "spellSchool": "ARCANE",
+      "text": "<b>Shattered</b>\nDeal $4 damage.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "Tee Fuyuan",
+      "cardClass": "MAGE",
+      "cost": 4,
+      "dbfId": 123744,
+      "id": "CATA_489t2",
+      "mechanics": [
+        "EVIL_GLOW"
+      ],
+      "name": "Arcane Flow",
+      "set": "CATACLYSM",
+      "spellSchool": "ARCANE",
+      "text": "<b>Shattered</b>\nDeal $2 damage to\nall enemies.",
+      "type": "SPELL"
+    },
+    {
+      "artist": "John Avon",
+      "attack": 3,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 69503,
+      "flavor": "Don't summon a water elemental at a party.  It'll dampen the mood.",
+      "health": 6,
+      "howToEarn": "Unlocked with Mage class.",
+      "howToEarnGolden": "Unlocked after winning 100 games as Mage.",
+      "id": "CORE_CS2_033",
+      "mechanics": [
+        "FREEZE"
+      ],
+      "name": "Water Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "rarity": "RARE",
+      "set": "CORE_HIDDEN",
+      "text": "<b>Freeze</b> any character damaged by this minion.",
+      "type": "MINION"
+    },
+    {
+      "artist": "John Avon",
+      "attack": 3,
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 4,
+      "dbfId": 395,
+      "flavor": "Don't summon a water elemental at a party.  It'll dampen the mood.",
+      "health": 6,
+      "id": "CS2_033",
+      "mechanics": [
+        "FREEZE"
+      ],
+      "name": "Water Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>Freeze</b> any character damaged by this minion.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 796,
+      "health": 1,
+      "id": "CS2_tk1",
+      "name": "Sheep",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "LEGACY",
+      "type": "MINION"
+    },
+    {
+      "artist": "Warren Mahy",
+      "cardClass": "MAGE",
+      "collectible": true,
+      "cost": 1,
+      "dbfId": 564,
+      "flavor": "You'd think you'd be able to control your missiles a little better since you're a powerful mage and all.",
+      "id": "EX1_277",
+      "mechanics": [
+        "ImmuneToSpellpower"
+      ],
+      "name": "Arcane Missiles",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "spellSchool": "ARCANE",
+      "text": "Deal $3 damage randomly split among all enemies.",
+      "type": "SPELL"
+    },
+    {
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 807,
+      "id": "HERO_08bp",
+      "name": "Fireblast",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "targetingArrowText": "Deal 1 damage.",
+      "text": "<b>Hero Power</b>\nDeal $1 damage.",
+      "type": "HERO_POWER"
+    },
+    {
+      "artist": "Daniil Kudriavtsev",
+      "attack": 3,
+      "cardClass": "SHAMAN",
+      "cost": 3,
+      "dbfId": 126408,
+      "health": 3,
+      "id": "JAIL_801t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Molten Gold Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "targetingArrowText": "Deal 4 damage.",
+      "text": "<b>Battlecry:</b> Deal 4 damage.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Kleston Marques",
+      "attack": 5,
+      "cardClass": "SHAMAN",
+      "cost": 5,
+      "dbfId": 126411,
+      "health": 5,
+      "id": "JAIL_803t",
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "name": "Frostshatter Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "referencedTags": [
+        "FREEZE"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "targetingArrowText": "Freeze an enemy.",
+      "text": "<b>Battlecry:</b> <b>Freeze</b> an enemy. Draw two cards.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Mauricio Herrera",
+      "attack": 7,
+      "cardClass": "SHAMAN",
+      "cost": 7,
+      "dbfId": 126414,
+      "health": 7,
+      "id": "JAIL_805t",
+      "mechanics": [
+        "BATTLECRY",
+        "LIFESTEAL"
+      ],
+      "name": "Stormfury Elemental",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Lifesteal</b>\n<b>Battlecry:</b> Deal 2 damage\nto all enemy minions.",
+      "type": "MINION"
+    },
+    {
+      "artist": "Anton Zemskov",
+      "cardClass": "MAGE",
+      "cost": 1,
+      "dbfId": 64432,
+      "id": "SW_108t",
+      "name": "Second Flame",
+      "set": "STORMWIND",
+      "spellSchool": "FIRE",
+      "text": "Deal $2 damage to\na minion.",
+      "type": "SPELL"
+    }
+  ]
+}

@@ -30,6 +30,11 @@ class PlayerObservation:
     board: tuple[BoardEntity, ...] = field(default_factory=tuple)
     locations: tuple[LocationEntity, ...] = field(default_factory=tuple)
     hero_divine_shield: bool | None = None
+    spells_cast_this_turn: int | None = None
+    spell_discount: int | None = None
+    demon_discount: int | None = None
+    hero_freeze_turns_remaining: int | None = None
+    active_effects: tuple[CardFeatures, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         for name in (
@@ -51,10 +56,16 @@ class GameState:
     self_hand: tuple[CardFeatures, ...] = field(default_factory=tuple)
     self_hand_known_count: int | None = None
     opponent_known_cards: tuple[CardFeatures, ...] = field(default_factory=tuple)
+    pending_choice_owner: Literal["SELF", "OPPONENT"] | None = None
+    pending_choice_options: tuple[CardFeatures, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         if self.turn_number < 0:
             raise ValueError("turn_number cannot be negative")
+        if self.pending_choice_owner not in (None, "SELF", "OPPONENT"):
+            raise ValueError("Invalid pending choice owner")
+        if self.pending_choice_options and self.pending_choice_owner != "SELF":
+            raise ValueError("Only SELF pending choice identities may be exposed")
         if self.active_player not in ("SELF", "OPPONENT"):
             raise ValueError("active_player must be 'SELF' or 'OPPONENT'")
         if self.self_hand_known_count is not None and self.self_hand_known_count < 0:

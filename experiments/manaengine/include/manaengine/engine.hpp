@@ -10,6 +10,7 @@
 #include <unordered_map>
 #include <vector>
 namespace manaengine {
+enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze };
 enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, EnemyMinions, EnemyCharacters, AllCharacters, Self };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
@@ -24,6 +25,9 @@ struct CardDefinition {
     std::string choice_pool, secret_trigger="NONE", secret_effect="NONE";
     std::string shatter_left_card, shatter_right_card;
     std::vector<EffectStep> effects;
+    std::vector<std::string> required_mechanics;
+    std::vector<std::string> reviewed_random_secret_pool;
+    bool rules_contract_reviewed=false;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
     int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0, spell_damage_grant=0;
@@ -59,6 +63,8 @@ struct Action {
     }
 };
 struct ObservedCard {
+    int held_spell_progress=0, trigger_remaining=-1, effect_turns_remaining=0, freeze_turns_remaining=0;
+    bool prepare_used=false;
     std::string card_id, card_type, card_class, race;
     std::string shatter_fragment, shatter_original_card_id;
     int shatter_partner_hand_position=-1;
@@ -70,6 +76,8 @@ struct ObservedCard {
     int max_health=0;
 };
 struct ObservedPlayer {
+    int spells_cast_this_turn=0, spell_discount=0, demon_discount=0, hero_freeze_turns_remaining=0;
+    std::vector<ObservedCard> active_effects;
     std::string player_class;
     int hero_health=30, armor=0, hero_attack=0, max_mana=0, available_mana=0;
     int deck_size=0, hand_size=0, fatigue=0, secret_count=0, spell_damage=0;
@@ -80,6 +88,8 @@ struct ObservedPlayer {
     std::vector<ObservedCard> board;
 };
 struct Observation {
+    std::string pending_choice_owner;
+    std::vector<ObservedCard> pending_choice_options;
     int turn_number=1;
     std::string active_player="SELF";
     ObservedPlayer self_player, opponent;
@@ -163,7 +173,9 @@ private:
     int effective_cost(int owner,const HandCard& item) const;
     int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
-    void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
+    void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
+    int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false);
+    void transform_board(int owner,int entity,const std::string& card_id);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0);
     void record_spell_damage_event(int owner,int amount);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);

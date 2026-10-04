@@ -6,6 +6,69 @@ from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimul
 from manamind.integrations.rosettastone.policy import encode_legal_actions
 
 
+def test_unsupported_hero_power_session_and_training_fail_closed() -> None:
+    deck = ["CORE_EX1_145"] * 30
+    with pytest.raises(UnsupportedSimulationError, match="hero powers"):
+        ManaEngineSession(deck, deck, player1_class="SHAMAN", player2_class="MAGE")
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE")
+    assert not session.training_eligible
+    with pytest.raises(UnsupportedSimulationError, match="backend-specific"):
+        session.require_training_admission()
+
+
+def test_catalog_mechanic_and_token_identity_guard() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows, _rules_coverage
+
+    definitions = {row.card_id: row for row in _definition_rows()}
+    assert definitions["CORE_CS2_033"].support_state == "UNSUPPORTED"
+    assert definitions["CORE_SW_072"].support_state == "UNSUPPORTED"  # Tradeable is absent.
+    assert definitions["CS2_tk1"].support_state == "VERIFIED_VANILLA"
+    assert "EX1_100t" not in definitions and "TEST_HELD_TRACKER" not in definitions
+    assert "CORE_SW_108t" not in definitions
+    assert not _rules_coverage({"text": "Freeze anything damaged by this minion.", "mechanics": ["FREEZE"]}, {"ability": "NONE"})
+    assert _rules_coverage({"text": "<b>Taunt</b>", "mechanics": ["TAUNT"]}, {"ability": "NONE"})
+    assert not _rules_coverage({"text": "Unknown new behavior"}, {"ability": "TARGET_DAMAGE", "reviewed_rules_text": "Deal $6 damage."})
+
+
+def test_public_transition_state_roundtrip_encoding_and_privacy() -> None:
+    from dataclasses import asdict
+    from manamind.cards import CardCatalog
+    from manamind.domain.card import CardFeatures
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+
+    deck = ["JAIL_327", "CORE_GIL_836", "CORE_EX1_145", "CORE_EX1_145", *(["CORE_EX1_145"] * 26)]
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CORE_EX1_145"))
+    state = session.observation()
+    assert state.self_player.spells_cast_this_turn == 1 and state.self_player.spell_discount == 2
+    catalog = CardCatalog([CardFeatures(card_id=card) for card in deck])
+    encoder = StateEncoder(catalog)
+    assert game_state_from_dict(asdict(state)) == state
+    for _ in range(4):
+        session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CORE_EX1_145"))
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "JAIL_327"))
+    state = session.observation()
+    assert state.self_player.active_effects[0].effect_turns_remaining == 3
+    assert encoder.encode(state).self_active_effects.card_ids.shape == (1,)
+    session.apply_action(next(a for a in session.legal_actions() if a.get("card_id") == "CORE_GIL_836"))
+    state = session.observation()
+    assert state.pending_choice_owner == "SELF" and len(state.pending_choice_options) == 3
+    assert encoder.encode(state).pending_choice_options.card_ids.shape == (3,)
+    other = session.observation("PLAYER2")
+    assert other.pending_choice_owner == "OPPONENT" and other.pending_choice_options == ()
+    assert other.self_hand != state.self_hand
+    assert game_state_from_dict(asdict(state)) == state
+    def keys(value):
+        if isinstance(value, dict):
+            return set(value) | set().union(*(keys(v) for v in value.values()))
+        if isinstance(value, (tuple, list)):
+            return set().union(*(keys(v) for v in value))
+        return set()
+    assert not keys(asdict(state)) & {"entity_id", "activation_sequence", "rng", "deck", "trace", "diagnostic_trace"}
+
+
 def test_exports_existing_game_state_and_policy_compatible_card_actions() -> None:
     deck = ["CORE_EX1_145"] * 30
     session = ManaEngineSession(
@@ -59,9 +122,9 @@ def test_optional_diagnostic_trace_is_off_by_default_and_clone_local() -> None:
 
 def test_held_spell_progress_is_per_card_instance_and_clone_safe() -> None:
     deck = [
-        "TEST_HELD_TRACKER", "TEST_HELD_TRACKER", "CORE_EX1_129",
-        "TEST_HELD_TRACKER", "CORE_EX1_129", "TEST_HELD_TRACKER",
-        *(["TEST_HELD_TRACKER"] * 24),
+        "JAIL_801", "JAIL_801", "CORE_EX1_129",
+        "JAIL_801", "CORE_EX1_129", "JAIL_801",
+        *(["JAIL_801"] * 24),
     ]
     session = ManaEngineSession(
         deck,
@@ -78,13 +141,13 @@ def test_held_spell_progress_is_per_card_instance_and_clone_safe() -> None:
     first_fan = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_EX1_129")
     progressed = session.apply_action(first_fan)
     tracker_costs = sorted(
-        card.current_cost for card in progressed.self_hand if card.card_id == "TEST_HELD_TRACKER"
+        card.held_spell_progress for card in progressed.self_hand if card.card_id == "JAIL_801"
     )
-    assert tracker_costs == [1, 1, 1, 2]
+    assert tracker_costs == [0, 1, 1, 1]
 
     branch = session.clone()
     assert sorted(
-        card.current_cost for card in branch.observation().self_hand if card.card_id == "TEST_HELD_TRACKER"
+        card.held_spell_progress for card in branch.observation().self_hand if card.card_id == "JAIL_801"
     ) == tracker_costs
 
     for _ in range(2):
@@ -93,13 +156,15 @@ def test_held_spell_progress_is_per_card_instance_and_clone_safe() -> None:
     second_fan = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_EX1_129")
     after_branch = session.apply_action(second_fan)
     assert sorted(
-        card.current_cost for card in after_branch.self_hand if card.card_id == "TEST_HELD_TRACKER"
-    ) == [0, 0, 0, 1, 1, 2]
+        card.held_spell_progress for card in after_branch.self_hand if card.card_id == "JAIL_801"
+    ) == [0, 1, 1, 2, 2, 2]
     assert sorted(
-        card.current_cost for card in branch.observation().self_hand if card.card_id == "TEST_HELD_TRACKER"
+        card.held_spell_progress for card in branch.observation().self_hand if card.card_id == "JAIL_801"
     ) == tracker_costs
+    for _ in range(2):
+        session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
     assert any(
-        action.get("card_id") == "TEST_HELD_TRACKER" and action.get("card_cost") == 0
+        action.get("card_id") == "JAIL_801" and action.get("card_cost") == 3
         for action in session.legal_actions()
     )
 
@@ -113,7 +178,7 @@ def test_profile_held_threshold_transform_exports_minion_actions_and_clones() ->
     session = ManaEngineSession(
         deck,
         opponent_deck,
-        player1_class="SHAMAN",
+        player1_class="MAGE",
         player2_class="MAGE",
         shuffle=False,
         random_seed=53,
@@ -150,8 +215,8 @@ def test_blazing_invocation_uses_complete_pinned_pool_and_choice_continuation() 
     session = ManaEngineSession(
         deck,
         deck,
-        player1_class="SHAMAN",
-        player2_class="SHAMAN",
+        player1_class="MAGE",
+        player2_class="MAGE",
         shuffle=False,
         random_seed=0,
     )
@@ -166,8 +231,8 @@ def test_blazing_invocation_uses_complete_pinned_pool_and_choice_continuation() 
     repeated = ManaEngineSession(
         deck,
         deck,
-        player1_class="SHAMAN",
-        player2_class="SHAMAN",
+        player1_class="MAGE",
+        player2_class="MAGE",
         shuffle=False,
         random_seed=0,
     )
@@ -192,15 +257,15 @@ def test_blazing_invocation_uses_complete_pinned_pool_and_choice_continuation() 
         candidate = ManaEngineSession(
             deck,
             deck,
-            player1_class="SHAMAN",
-            player2_class="SHAMAN",
+            player1_class="MAGE",
+            player2_class="MAGE",
             shuffle=False,
             random_seed=seed,
         )
         candidate_root = next(action for action in candidate.legal_actions() if action.get("card_id") == "CORE_GIL_836")
         candidate.apply_action(candidate_root)
         choice_actions = candidate.legal_actions()
-        option = next((action for action in choice_actions if action["choice_card_id"] == "CORE_SW_072"), None)
+        option = next((action for action in choice_actions if action["choice_card_id"] == "CATA_458"), None)
         if option is not None:
             selected_session, viper_option = candidate, option
             break
@@ -209,8 +274,8 @@ def test_blazing_invocation_uses_complete_pinned_pool_and_choice_continuation() 
     branch_options = branch.legal_actions()
     assert [row["choice_card_id"] for row in branch_options] == [row["choice_card_id"] for row in selected_session.legal_actions()]
     result = selected_session.apply_action(viper_option)
-    viper = next(card for card in result.self_hand if card.card_id == "CORE_SW_072")
-    assert viper.current_cost == 2
+    viper = next(card for card in result.self_hand if card.card_id == "CATA_458")
+    assert viper.current_cost == 3
     assert any(action["type"] == "END_TURN" for action in selected_session.legal_actions())
 
 
@@ -277,6 +342,8 @@ def test_prepare_card_round_trips_as_its_own_action_kind() -> None:
     prepared.ability = "TARGET_DAMAGE"
     prepared.support_state = "SUPPORTED"
     prepared.prepare = True
+    for definition in (filler, hero_power, prepared):
+        definition.rules_contract_reviewed = True
     catalog = native.CardCatalog([filler, hero_power, prepared])
     deck = ["TEST_PREPARE_SPELL", *(["TEST_PREPARE_FILLER"] * 29)]
     session = native.GameSession(deck, deck, catalog, 13, False, "MAGE", "MAGE")

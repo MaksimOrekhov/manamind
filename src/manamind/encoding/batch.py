@@ -22,6 +22,7 @@ ZONE_NAMES = (
     "opponent_weapon",
     "self_hero_power",
     "opponent_hero_power",
+    "self_active_effects", "opponent_active_effects", "pending_choice_options",
 )
 
 

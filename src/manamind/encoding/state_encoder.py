@@ -25,6 +25,8 @@ PLAYER_NUMERIC_FEATURE_NAMES = (
     "hero_power_ready",
     "hero_divine_shield",
     "hero_frozen",
+    "spells_cast_this_turn", "spell_discount", "demon_discount", "hero_freeze_turns_remaining",
+    "has_spells_cast_this_turn", "has_spell_discount", "has_demon_discount", "has_hero_freeze_turns_remaining",
 )
 
 GLOBAL_FEATURE_NAMES = (
@@ -36,8 +38,9 @@ GLOBAL_FEATURE_NAMES = (
     "self_known_secrets_count",
     *(f"opponent_{name}" for name in PLAYER_NUMERIC_FEATURE_NAMES),
     "opponent_known_cards_count",
+    "self_choice_pending", "opponent_choice_pending",
 )
-STATE_ENCODING_SCHEMA_VERSION = 13
+STATE_ENCODING_SCHEMA_VERSION = 14
 
 
 @dataclass(frozen=True, slots=True)
@@ -58,6 +61,9 @@ class EncodedGameState:
     opponent_weapon: EncodedZone
     self_hero_power: EncodedZone
     opponent_hero_power: EncodedZone
+    self_active_effects: EncodedZone
+    opponent_active_effects: EncodedZone
+    pending_choice_options: EncodedZone
 
 
 def _encode_player_features(player: PlayerObservation) -> list[float]:
@@ -77,6 +83,9 @@ def _encode_player_features(player: PlayerObservation) -> list[float]:
         0 if player.hero_power_ready is None else (1 if player.hero_power_ready else -1),
         0 if player.hero_divine_shield is None else (1 if player.hero_divine_shield else -1),
         0 if player.hero_frozen is None else (1 if player.hero_frozen else -1),
+        player.spells_cast_this_turn, player.spell_discount, player.demon_discount, player.hero_freeze_turns_remaining,
+        int(player.spells_cast_this_turn is not None), int(player.spell_discount is not None),
+        int(player.demon_discount is not None), int(player.hero_freeze_turns_remaining is not None),
     )
     return [_normalise(value) for value in values]
 
@@ -107,6 +116,7 @@ class StateEncoder:
             _normalise(len(state.self_player.known_secrets)),
             *_encode_player_features(state.opponent),
             _normalise(len(state.opponent_known_cards)),
+            float(state.pending_choice_owner == "SELF"), float(state.pending_choice_owner == "OPPONENT"),
         ]
 
         return EncodedGameState(
@@ -124,4 +134,7 @@ class StateEncoder:
             opponent_weapon=self.entity_encoder.encode_optional_card(state.opponent.weapon),
             self_hero_power=self.entity_encoder.encode_optional_card(state.self_player.hero_power),
             opponent_hero_power=self.entity_encoder.encode_optional_card(state.opponent.hero_power),
+            self_active_effects=self.entity_encoder.encode_zone(state.self_player.active_effects),
+            opponent_active_effects=self.entity_encoder.encode_zone(state.opponent.active_effects),
+            pending_choice_options=self.entity_encoder.encode_zone(state.pending_choice_options),
         )

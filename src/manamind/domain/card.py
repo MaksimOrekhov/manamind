@@ -23,6 +23,11 @@ class CardFeatures:
     shatter_original_card_id: str | None = None
     shatter_partner_hand_position: int | None = None
     prepare_locked: bool | None = None
+    prepare_used: bool | None = None
+    held_spell_progress: int | None = None
+    trigger_remaining: int | None = None
+    effect_turns_remaining: int | None = None
+    freeze_turns_remaining: int | None = None
 
     @property
     def effective_cost(self) -> int | None:

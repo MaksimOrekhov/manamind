@@ -21,6 +21,11 @@ NUMERIC_FEATURES = (
     "current_cost",
     "current_durability",
     "current_spell_damage",
+    "prepare_used",
+    "held_spell_progress",
+    "trigger_remaining",
+    "effect_turns_remaining",
+    "freeze_turns_remaining",
 )
 
 PRESENCE_FEATURES = tuple(f"has_{name}" for name in NUMERIC_FEATURES)
@@ -179,7 +184,7 @@ class EntityEncoder:
             for mechanic_index in self.vocabulary.mechanics(card.mechanics):
                 mechanics[row, mechanic_index] = 1.0
 
-            for name in ("current_cost", "current_attack", "current_health", "current_durability", "current_spell_damage"):
+            for name in ("current_cost", "current_attack", "current_health", "current_durability", "current_spell_damage", "prepare_used", "held_spell_progress", "trigger_remaining", "effect_turns_remaining", "freeze_turns_remaining"):
                 column = NUMERIC_FEATURES.index(name)
                 value = getattr(card, name)
                 numeric[row, column] = _normalise(value)

@@ -2,52 +2,444 @@
   "schema_version": 1,
   "source": "current Meta Training Profile Tier A/B root selector; this file maps audited semantic contracts to the prototype's typed capability surface",
   "cards": {
-    "CATA_475": {"ability":"END_TURN_ENEMY_AREA_DAMAGE","support_state":"SUPPORTED","damage":2},
-    "CATA_489": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","shatter_left_card":"CATA_489t","shatter_right_card":"CATA_489t2","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":4},{"kind":"DAMAGE","target":"ENEMY_CHARACTERS","amount":2}]},
-    "CATA_489t": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":4}]},
-    "CATA_489t2": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"ENEMY_CHARACTERS","amount":2}]},
-    "CATA_999": {"ability":"END_TURN_ENEMY_HERO_DAMAGE","support_state":"SUPPORTED","damage":4},
-    "CORE_BT_416": {"ability":"NEXT_DEMON_DISCOUNT","support_state":"SUPPORTED"},
-    "CORE_CS2_024": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":3},{"kind":"FREEZE","target":"EXPLICIT_CHARACTER","amount":0}]},
-    "CORE_CS2_029": {"ability":"TARGET_DAMAGE","support_state":"SUPPORTED","damage":6},
-    "CORE_BAR_812": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"FRIENDLY_MINION_ATTACKED","secret_effect":"OASIS_ALLY"},
-    "CORE_CS2_033": {"ability":"NONE","support_state":"VERIFIED_VANILLA"},
-    "CORE_EX1_287": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"OPPONENT_CASTS_SPELL","secret_effect":"COUNTERSPELL"},
-    "CORE_EX1_289": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"FRIENDLY_HERO_ATTACKED","secret_effect":"ICE_BARRIER"},
-    "CORE_LOOT_101": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"OPPONENT_PLAYS_MINION","secret_effect":"EXPLOSIVE_RUNES"},
-    "CORE_CS2_062": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"ALL_CHARACTERS","amount":3}]},
-    "CORE_CS2_072": {"ability":"BACKSTAB","support_state":"SUPPORTED","damage":2},
-    "CORE_DRG_107": {"ability":"DEATHRATTLE_GENERATE","support_state":"SUPPORTED","generated_card":"EX1_277"},
-    "CORE_EX1_012": {"ability":"DEATHRATTLE_DRAW","support_state":"SUPPORTED","spell_damage":1,"deathrattle_draw_count":1},
-    "CORE_EX1_129": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"ENEMY_MINIONS","amount":1},{"kind":"DRAW","target":"SELF","amount":1}]},
-    "CORE_EX1_145": {"ability":"NEXT_SPELL_DISCOUNT","support_state":"SUPPORTED"},
-    "CORE_GIL_836": {"ability":"DISCOVER","support_state":"SUPPORTED","choice_pool":"MINION_BATTLECRY_PLAYER_CLASS_NEUTRAL","choice_count":3,"choice_cost_delta":-1},
-    "CORE_ICC_055": {"ability":"LIFESTEAL_DAMAGE","support_state":"SUPPORTED","damage":3},
-    "CORE_SW_072": {"ability":"DESTROY_ENEMY_WEAPON","support_state":"SUPPORTED"},
-    "CORE_SW_108": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2,"generated_card":"SW_108t"},
-    "CORE_SW_108t": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2},
-    "END_024": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"OPPONENT_TURN_ENDS","secret_effect":"FLAMES_OF_INFINITY"},
-    "END_022": {"ability":"SPELL_DAMAGE_AURA","support_state":"SUPPORTED","damaged_spell_damage":2},
-    "FIR_929": {"ability":"DEATHRATTLE_DRAW","support_state":"SUPPORTED","deathrattle_draw_count":1,"deck_draw_filter":"FIRE_SPELL"},
-    "CATA_487": {"ability":"SPELL_DAMAGE_GAINS_ATTACK","support_state":"SUPPORTED","spell_damage_attack":2},
-    "CATA_458": {"ability":"SPELL_DAMAGE_HAND_DECK","support_state":"SUPPORTED","spell_damage_grant":1},
-    "END_007": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":1},{"kind":"MODIFY_HERO_ATTACK","target":"SELF","amount":1},{"kind":"DRAW","target":"SELF","amount":1},{"kind":"GAIN_ARMOR","target":"SELF","amount":1}]},
-    "EX1_277": {"ability":"RANDOM_MISSILES","support_state":"SUPPORTED","damage":3},
-    "HERO_08bp": {"ability":"TARGET_DAMAGE","support_state":"SUPPORTED"},
-    "EX1_100t": {"ability":"NONE","support_state":"VERIFIED_VANILLA"},
-    "JAIL_321": {"ability":"CAST_RANDOM_SECRETS","support_state":"SUPPORTED","prepare":true,"random_cast_count":2},
-    "JAIL_315": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"ENEMY_MINION_ATTACKS","secret_effect":"MYSTIC_MISDIRECTION"},
-    "JAIL_327": {"ability":"REINFORCEMENT_AURA","support_state":"SUPPORTED","duration":3,"pool_max_cost":2,"pool_count":1},
-    "JAIL_516": {"ability":"RECRUITER_SUMMON_RUSH","support_state":"SUPPORTED","pool_max_cost":2,"pool_count":2},
-    "JAIL_801": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","held_spell_threshold":3,"transform_card":"JAIL_801t","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":4}]},
-    "JAIL_801t": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","card_type":"MINION","cost":3,"attack":3,"health":3,"race":"ELEMENTAL","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":4}]},
-    "JAIL_803": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","held_spell_threshold":3,"transform_card":"JAIL_803t","effects":[{"kind":"FREEZE","target":"EXPLICIT_ENEMY_CHARACTER","amount":0},{"kind":"DRAW","target":"SELF","amount":2}]},
-    "JAIL_803t": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","card_type":"MINION","cost":5,"attack":5,"health":5,"race":"ELEMENTAL","effects":[{"kind":"FREEZE","target":"EXPLICIT_ENEMY_CHARACTER","amount":0},{"kind":"DRAW","target":"SELF","amount":2}]},
-    "JAIL_805": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","held_spell_threshold":3,"transform_card":"JAIL_805t","effects":[{"kind":"DAMAGE","target":"ENEMY_MINIONS","amount":2,"lifesteal":true}]},
-    "JAIL_805t": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","card_type":"MINION","cost":7,"attack":7,"health":7,"race":"ELEMENTAL","lifesteal":true,"effects":[{"kind":"DAMAGE","target":"ENEMY_MINIONS","amount":2,"lifesteal":true}]},
-    "JAIL_872": {"ability":"HERO_ATTACK_DRAW","support_state":"SUPPORTED"},
-    "SW_108t": {"ability":"MINION_DAMAGE_GENERATE","support_state":"SUPPORTED","damage":2},
-    "TEST_HELD_TRACKER": {"ability":"HELD_SPELL_COST_REDUCTION","support_state":"SUPPORTED","spell_cost_reduction_per_cast":1},
-    "TIME_218": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_MINION","amount":1},{"kind":"MODIFY_HERO_ATTACK","target":"SELF","amount":1}]}
+    "CATA_475": {
+      "ability": "END_TURN_ENEMY_AREA_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 2,
+      "reviewed_rules_text": "At the end of your turn, deal 2 damage to all enemies."
+    },
+    "CATA_489": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "shatter_left_card": "CATA_489t",
+      "shatter_right_card": "CATA_489t2",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        },
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_CHARACTERS",
+          "amount": 2
+        }
+      ],
+      "reviewed_rules_text": "Shatter Deal $4 damage. Deal $2 damage to all enemies."
+    },
+    "CATA_489t": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        }
+      ],
+      "reviewed_rules_text": "Shattered Deal $4 damage."
+    },
+    "CATA_489t2": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_CHARACTERS",
+          "amount": 2
+        }
+      ],
+      "reviewed_rules_text": "Shattered Deal $2 damage to all enemies."
+    },
+    "CATA_999": {
+      "ability": "END_TURN_ENEMY_HERO_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 4,
+      "reviewed_rules_text": "At the end of your turn, deal 4 damage to the enemy hero."
+    },
+    "CORE_BT_416": {
+      "ability": "NEXT_DEMON_DISCOUNT",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: The next Demon you play costs (2) less."
+    },
+    "CORE_CS2_024": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 3
+        },
+        {
+          "kind": "FREEZE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 0
+        }
+      ],
+      "reviewed_rules_text": "Deal $3 damage to a character and Freeze it."
+    },
+    "CORE_CS2_029": {
+      "ability": "TARGET_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 6,
+      "reviewed_rules_text": "Deal $6 damage."
+    },
+    "CORE_BAR_812": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "FRIENDLY_MINION_ATTACKED",
+      "secret_effect": "OASIS_ALLY",
+      "reviewed_rules_text": "Secret: When a friendly minion is attacked, summon a 3/6 Water Elemental."
+    },
+    "CORE_CS2_033": {
+      "ability": "NONE",
+      "support_state": "UNSUPPORTED"
+    },
+    "CORE_EX1_287": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "OPPONENT_CASTS_SPELL",
+      "secret_effect": "COUNTERSPELL",
+      "reviewed_rules_text": "Secret: When your opponent casts a spell, Counter it."
+    },
+    "CORE_EX1_289": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "FRIENDLY_HERO_ATTACKED",
+      "secret_effect": "ICE_BARRIER",
+      "reviewed_rules_text": "Secret: When your hero is attacked, gain 8 Armor."
+    },
+    "CORE_LOOT_101": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "OPPONENT_PLAYS_MINION",
+      "secret_effect": "EXPLOSIVE_RUNES",
+      "reviewed_rules_text": "Secret: After your opponent plays a minion, deal $6 damage to it and any excess to their hero."
+    },
+    "CORE_CS2_062": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ALL_CHARACTERS",
+          "amount": 3
+        }
+      ],
+      "reviewed_rules_text": "Deal $3 damage to ALL characters."
+    },
+    "CORE_CS2_072": {
+      "ability": "BACKSTAB",
+      "support_state": "SUPPORTED",
+      "damage": 2,
+      "reviewed_rules_text": "Deal $2 damage to an undamaged minion."
+    },
+    "CORE_DRG_107": {
+      "ability": "DEATHRATTLE_GENERATE",
+      "support_state": "SUPPORTED",
+      "generated_card": "EX1_277",
+      "reviewed_rules_text": "Deathrattle: Add an 'Arcane Missiles' spell to your hand."
+    },
+    "CORE_EX1_012": {
+      "ability": "DEATHRATTLE_DRAW",
+      "support_state": "SUPPORTED",
+      "spell_damage": 1,
+      "deathrattle_draw_count": 1,
+      "reviewed_rules_text": "Spell Damage +1 Deathrattle: Draw a card."
+    },
+    "CORE_EX1_129": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 1
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ],
+      "reviewed_rules_text": "Deal $1 damage to all enemy minions. Draw a card."
+    },
+    "CORE_EX1_145": {
+      "ability": "NEXT_SPELL_DISCOUNT",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "The next spell you cast this turn costs (2) less."
+    },
+    "CORE_GIL_836": {
+      "ability": "DISCOVER",
+      "support_state": "SUPPORTED",
+      "choice_pool": "MINION_BATTLECRY_PLAYER_CLASS_NEUTRAL",
+      "choice_count": 3,
+      "choice_cost_delta": -1,
+      "reviewed_rules_text": "Discover a Battlecry minion. It costs (1) less."
+    },
+    "CORE_ICC_055": {
+      "ability": "LIFESTEAL_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 3,
+      "reviewed_rules_text": "Lifesteal Deal $3 damage to a minion."
+    },
+    "CORE_SW_072": {
+      "ability": "DESTROY_ENEMY_WEAPON",
+      "support_state": "UNSUPPORTED",
+      "reviewed_rules_text": "Tradeable Battlecry: Destroy your opponent's weapon."
+    },
+    "CORE_SW_108": {
+      "ability": "MINION_DAMAGE_GENERATE",
+      "support_state": "SUPPORTED",
+      "damage": 2,
+      "generated_card": "SW_108t",
+      "reviewed_rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand."
+    },
+    "END_024": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "OPPONENT_TURN_ENDS",
+      "secret_effect": "FLAMES_OF_INFINITY",
+      "reviewed_rules_text": "Secret: When your enemy's turn ends, deal INFINITE damage to their highest Health minion."
+    },
+    "END_022": {
+      "ability": "SPELL_DAMAGE_AURA",
+      "support_state": "SUPPORTED",
+      "damaged_spell_damage": 2,
+      "reviewed_rules_text": "Has Spell Damage +2 while damaged."
+    },
+    "FIR_929": {
+      "ability": "DEATHRATTLE_DRAW",
+      "support_state": "SUPPORTED",
+      "deathrattle_draw_count": 1,
+      "deck_draw_filter": "FIRE_SPELL",
+      "reviewed_rules_text": "Deathrattle: Draw a Fire spell."
+    },
+    "CATA_487": {
+      "ability": "SPELL_DAMAGE_GAINS_ATTACK",
+      "support_state": "SUPPORTED",
+      "spell_damage_attack": 2,
+      "reviewed_rules_text": "The first time you deal damage with a spell each turn, gain +2 Attack."
+    },
+    "CATA_458": {
+      "ability": "SPELL_DAMAGE_HAND_DECK",
+      "support_state": "SUPPORTED",
+      "spell_damage_grant": 1,
+      "reviewed_rules_text": "Battlecry: Give all spells in your hand and deck Spell Damage +1."
+    },
+    "END_007": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 1
+        },
+        {
+          "kind": "MODIFY_HERO_ATTACK",
+          "target": "SELF",
+          "amount": 1
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        },
+        {
+          "kind": "GAIN_ARMOR",
+          "target": "SELF",
+          "amount": 1
+        }
+      ],
+      "reviewed_rules_text": "Deal $1 damage. Give your hero +1 Attack this turn. Draw 1 card. Gain 1 Armor."
+    },
+    "EX1_277": {
+      "ability": "RANDOM_MISSILES",
+      "support_state": "SUPPORTED",
+      "damage": 3,
+      "reviewed_rules_text": "Deal $3 damage randomly split among all enemies."
+    },
+    "HERO_08bp": {
+      "ability": "TARGET_DAMAGE",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Hero Power Deal $1 damage."
+    },
+    "CS2_tk1": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
+    },
+    "JAIL_321": {
+      "ability": "CAST_RANDOM_SECRETS",
+      "support_state": "SUPPORTED",
+      "prepare": true,
+      "random_cast_count": 2,
+      "reviewed_rules_text": "Prepare Battlecry: If you've cast a spell this turn, cast two random Mage Secrets.",
+      "reviewed_random_secret_pool": [
+        "CORE_BAR_812",
+        "CORE_EX1_287",
+        "CORE_EX1_289",
+        "CORE_LOOT_101",
+        "END_024",
+        "JAIL_315"
+      ]
+    },
+    "JAIL_315": {
+      "ability": "SECRET",
+      "support_state": "SUPPORTED",
+      "secret_trigger": "ENEMY_MINION_ATTACKS",
+      "secret_effect": "MYSTIC_MISDIRECTION",
+      "reviewed_rules_text": "Secret: When an enemy minion attacks, transform it into a 1/1 Sheep."
+    },
+    "JAIL_327": {
+      "ability": "REINFORCEMENT_AURA",
+      "support_state": "SUPPORTED",
+      "duration": 3,
+      "pool_max_cost": 2,
+      "pool_count": 1,
+      "reviewed_rules_text": "At the end of your turn, summon a minion from your deck that costs (2) or less. Lasts 3 turns."
+    },
+    "JAIL_516": {
+      "ability": "RECRUITER_SUMMON_RUSH",
+      "support_state": "SUPPORTED",
+      "pool_max_cost": 2,
+      "pool_count": 2,
+      "reviewed_rules_text": "Battlecry: Summon two minions from your deck that cost (2) or less. Give them Rush."
+    },
+    "JAIL_801": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "held_spell_threshold": 3,
+      "transform_card": "JAIL_801t",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        }
+      ],
+      "reviewed_rules_text": "Deal $4 damage. (Cast 3 spells to turn into a minion!)"
+    },
+    "JAIL_801t": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "card_type": "MINION",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "race": "ELEMENTAL",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        }
+      ],
+      "reviewed_rules_text": "Battlecry: Deal 4 damage."
+    },
+    "JAIL_803": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "held_spell_threshold": 3,
+      "transform_card": "JAIL_803t",
+      "effects": [
+        {
+          "kind": "FREEZE",
+          "target": "EXPLICIT_ENEMY_CHARACTER",
+          "amount": 0
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 2
+        }
+      ],
+      "reviewed_rules_text": "Freeze an enemy. Draw 2 cards. (Cast 3 spells to turn into a minion!)"
+    },
+    "JAIL_803t": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "card_type": "MINION",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "race": "ELEMENTAL",
+      "effects": [
+        {
+          "kind": "FREEZE",
+          "target": "EXPLICIT_ENEMY_CHARACTER",
+          "amount": 0
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 2
+        }
+      ],
+      "reviewed_rules_text": "Battlecry: Freeze an enemy. Draw two cards."
+    },
+    "JAIL_805": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "held_spell_threshold": 3,
+      "transform_card": "JAIL_805t",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 2,
+          "lifesteal": true
+        }
+      ],
+      "reviewed_rules_text": "Lifesteal. Deal $2 damage to all enemy minions. (Cast 3 spells to turn into a minion!)"
+    },
+    "JAIL_805t": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "card_type": "MINION",
+      "cost": 7,
+      "attack": 7,
+      "health": 7,
+      "race": "ELEMENTAL",
+      "lifesteal": true,
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 2,
+          "lifesteal": true
+        }
+      ],
+      "reviewed_rules_text": "Lifesteal Battlecry: Deal 2 damage to all enemy minions."
+    },
+    "JAIL_872": {
+      "ability": "HERO_ATTACK_DRAW",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "After your hero attacks, draw a card."
+    },
+    "SW_108t": {
+      "ability": "MINION_DAMAGE_GENERATE",
+      "support_state": "SUPPORTED",
+      "damage": 2,
+      "reviewed_rules_text": "Deal $2 damage to a minion."
+    },
+    "TIME_218": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 1
+        },
+        {
+          "kind": "MODIFY_HERO_ATTACK",
+          "target": "SELF",
+          "amount": 1
+        }
+      ],
+      "reviewed_rules_text": "Deal $1 damage to a minion. Give your hero +1 Attack this turn."
+    }
   }
 }
