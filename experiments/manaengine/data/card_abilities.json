@@ -26,6 +26,30 @@
         }
       ]
     },
+    "CORE_EX1_238": {
+      "ability": "TARGET_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 3,
+      "reviewed_rules_text": "Deal $3 damage. Overload: (1)"
+    },
+    "CORE_BOT_451": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Summon two 1/1 Sparks with Rush. Overload: (1)",
+      "effects": [
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 2,
+          "summon_card": "BOT_102t"
+        }
+      ]
+    },
+    "BOT_102t": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Rush</b>"
+    },
     "TIME_006": {
       "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",

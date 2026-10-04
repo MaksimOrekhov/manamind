@@ -59,8 +59,8 @@ def test_overheat_school_discard_declaration_reaches_adapter() -> None:
     deck = ["FIR_906", "JAIL_805", *(["CORE_EX1_145"] * 28)]
     session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
 
-    def end_turn() -> None:
-        session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    def end_turn():
+        return session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
 
     for _ in range(4):
         end_turn()
@@ -73,6 +73,25 @@ def test_overheat_school_discard_declaration_reaches_adapter() -> None:
     assert "FIR_906" not in {card.card_id for card in after.self_hand}
     assert "JAIL_805" not in {card.card_id for card in after.self_hand}
     assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+
+def test_overload_state_reaches_adapter_and_turn_refill() -> None:
+    deck = ["CORE_BOT_451", "CORE_EX1_238", *(["CORE_EX1_145"] * 28)]
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    burst = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_BOT_451")
+    state = session.apply_action(burst)
+    assert state.self_player.pending_overload == 1 and state.self_player.overloaded_mana == 0
+    assert len(state.self_player.board) == 2
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+    def end_turn():
+        return session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+
+    end_turn()
+    state = end_turn()
+    assert state.self_player.pending_overload == 0
+    assert state.self_player.overloaded_mana == 1
+    assert state.self_player.available_mana == state.self_player.max_mana - 1
 
 
 def test_minion_history_public_unknown_empty_and_strict_types() -> None:

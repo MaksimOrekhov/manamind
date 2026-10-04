@@ -89,6 +89,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         dependencies_file,
         _ROOT / "experiments/manaengine/data/fixed_summon_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/summon_condition_dependencies.json",
+        _ROOT / "experiments/manaengine/data/overload_dependency_metadata.json",
     ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
@@ -131,9 +132,10 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.support_state = str(spec.get("support_state", "UNSUPPORTED"))
         d.ability = str(spec.get("ability", "NONE"))
         raw = pinned_raw.get(card.card_id)
+        d.overload = int((raw or {}).get("overload", 0))
         d.minion_types = sorted(set((raw or {}).get("races", [d.race] if d.race else [])))
         d.rules_contract_reviewed = raw is not None and _rules_coverage(raw, spec)
-        d.required_mechanics = [str(m).upper() for m in (raw or {}).get("mechanics", ())]
+        d.required_mechanics = [str(m).upper() for m in (raw or {}).get("mechanics", ()) if str(m).upper() != "OVERLOAD" or d.overload <= 0]
         if not d.rules_contract_reviewed:
             d.support_state = "UNSUPPORTED"
         d.battlecry = "BATTLECRY" in d.required_mechanics

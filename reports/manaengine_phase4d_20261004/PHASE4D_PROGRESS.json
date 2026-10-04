@@ -12,8 +12,12 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 13,
-  "primary_queue_implemented": 13,
+  "primary_queue_reviewed": 15,
+  "primary_queue_implemented": 15,
+  "primary_queue_remaining_dispositions": {
+    "DEFERRED_ARCHITECTURE": 6,
+    "DEFERRED_RULES_EVIDENCE": 10
+  },
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -112,6 +116,23 @@
       "elapsed_seconds_observed": 816,
       "canonical_evidence_promoted": false,
       "rules_evidence_note": "Official Blizzard card text; no Overheat-specific client replay. Recognized unsupported discard-trigger outcomes invalidate the branch without shrinking the actual random pool."
+    },
+    {
+      "package_id": "manaengine_overload_turn_lock_v1",
+      "cards": ["CORE_EX1_238", "CORE_BOT_451"],
+      "fixed_dependencies": ["BOT_102t"],
+      "declaration_only_consumers": 2,
+      "custom_outliers": [],
+      "deferred_outliers": [],
+      "shared_capability": "Direct-play spell Overload adds pending crystals after uncountered spell text; owner turn start applies lock before refill; repeated Overload stacks.",
+      "shared_changes": "Internal PlayerState and generic play/turn transition; import pinned overload amount; public existing observation fields; fixed Spark dependency and two root declarations.",
+      "native": "PASS; 43 groups / 722 assertions",
+      "adapter": "PASS; full adapter test file, 25 passed",
+      "correction_cycles": 2,
+      "build_attempts": 1,
+      "elapsed_seconds_observed": 831,
+      "canonical_evidence_promoted": false,
+      "rules_evidence_note": "Official Blizzard Core Card Library text and pinned metadata. Current rules reference covers turn lock and Counterspell prevention; secondary timing detail remains scoped. No card-specific replay captured."
     }
   ],
   "tests_at_baseline": {
@@ -120,17 +141,19 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "f2ae8b0",
-  "last_updated_utc": "2026-10-04T16:22:36Z",
-  "active_elapsed_minutes": 114,
+  "current_head": "4c650cb",
+  "last_updated_utc": "2026-10-04T16:44:00Z",
+  "active_elapsed_minutes": 136,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Thirteen roots have been individually reviewed and implemented; eighteen primary-queue candidates still need individual dispositions.",
+    "Fifteen roots have been individually reviewed and implemented; sixteen remaining primary-queue roots have exact dispositions in PRIMARY_QUEUE_DISPOSITIONS.md.",
     "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
     "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed.",
     "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed.",
     "Package 6 checks: native PASS, 40 groups / 706 assertions; adapter PASS, 22 passed.",
     "Package 7 checks: native PASS, 41 groups / 710 assertions; adapter PASS, 23 passed; 4 correction cycles and 3 builds; package implementation span 12m02s.",
-    "Package 8 Overheat checks: native PASS, 42 groups / 716 assertions; adapter PASS, 24 passed; 2 correction cycles and 3 builds; observed package span 13m36s. Canonical evidence was not promoted."
+    "Package 8 Overheat checks: native PASS, 42 groups / 716 assertions; adapter PASS, 24 passed; 2 correction cycles and 3 builds; observed package span 13m36s. Canonical evidence was not promoted.",
+    "Package 9 Overload checks: native PASS, 43 groups / 722 assertions; adapter PASS, 25 passed; 2 correction cycles and 1 build; observed package span 13m51s. Canonical evidence was not promoted.",
+    "Final local checks: native 43 groups / 722 assertions PASS; full pytest 90 passed using dedicated writable basetemp after the default Windows temp root rejected 5 fixture setups with PermissionError; Ruff PASS; 201-exception generator identity guard PASS; 36 pinned generated outputs reproduce; git diff --check PASS. Hosted Source and ManaEngine CI still pending final checkpoint push."
   ]
 }

@@ -42,7 +42,7 @@ struct CardDefinition {
     DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
     DamageOutcomeCondition damage_outcome_condition=DamageOutcomeCondition::None;
     DamageOutcomeFollowup damage_outcome_followup=DamageOutcomeFollowup::None;
-    int damage_outcome_amount=0;
+    int damage_outcome_amount=0, overload=0;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
 };
@@ -91,7 +91,7 @@ struct ObservedPlayer {
     int spells_cast_this_turn=0, spell_discount=0, demon_discount=0, hero_freeze_turns_remaining=0;
     std::vector<ObservedCard> active_effects;
     std::string player_class;
-    int hero_health=30, armor=0, hero_attack=0, max_mana=0, available_mana=0;
+    int hero_health=30, armor=0, hero_attack=0, max_mana=0, available_mana=0, overloaded_mana=0, pending_overload=0;
     int deck_size=0, hand_size=0, fatigue=0, secret_count=0, spell_damage=0;
     std::vector<std::string> known_secrets;
     bool hero_power_ready=false, hero_frozen=false;
@@ -172,7 +172,7 @@ private:
     struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
     struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,armor=0,hero_attack=0,hero_temp_attack=0;
       std::vector<std::string> current_turn_minion_types_played,previous_turn_minion_types_played;
-      int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0;
+      int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0,overloaded_mana=0,pending_overload=0;
       std::int64_t spell_damage_dealt_this_turn=0;
       bool hero_attacked=false,hero_power_used_this_turn=false,hero_frozen=false; int hero_freeze_expire_turn=0;
       std::vector<CardInstance> deck; std::vector<CardInstance> hand; std::vector<CardInstance> board;

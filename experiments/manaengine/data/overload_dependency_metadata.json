@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json",
+  "captured_at_utc": "2026-10-04",
+  "purpose": "Exact fixed-token identity for the ManaEngine Voltaic Burst prototype; does not alter the Standard collectible pool or establish rules evidence",
+  "root_id": "CORE_BOT_451",
+  "root_metadata_matches_pinned_20261001": true,
+  "cards": [
+    {
+      "artist": "L Chanchai",
+      "attack": 1,
+      "cardClass": "NEUTRAL",
+      "cost": 1,
+      "dbfId": 48557,
+      "health": 1,
+      "id": "BOT_102t",
+      "mechanics": ["RUSH"],
+      "name": "Spark",
+      "race": "ELEMENTAL",
+      "races": ["ELEMENTAL"],
+      "set": "BOOMSDAY",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
+    }
+  ]
+}
