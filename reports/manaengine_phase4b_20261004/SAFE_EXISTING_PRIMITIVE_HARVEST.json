@@ -1,0 +1,3044 @@
+{
+  "audit_baseline_revision": "eb1018a7f5b7072554fc8018d2916fe8417b08e2",
+  "cards": [
+    {
+      "card_id": "CAP_002",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Follow the Footsteps",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Inherited triggered effect and recursive Discover continuation; review playable/minion trigger timing, not a generic permanent buff.",
+      "reviewed_metadata_dbf_id": 127041,
+      "reviewed_rules_text": "[x]<b>Discover</b> a <b>Stealth</b>\nminion. Give it this\neffect for a turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "temporary_inherited_effect",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CAP_006",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Tricks of the Trade",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Per-instance history of Stealthed attacker; semantic trigger timing and stolen/newly generated hand admission unknown.",
+      "reviewed_metadata_dbf_id": 127073,
+      "reviewed_rules_text": "[x]Deal $1 damage.\nIf a <b><b>Stealth</b>ed</b> minion\nattacked while holding\nthis, deal $3 instead.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "held_history_damage",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CAP_101",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_PIRATES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Follow the Fuse",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Define playable hand cards including current cost/targets, duration and inherited on-play effect.",
+      "reviewed_metadata_dbf_id": 127013,
+      "reviewed_rules_text": "[x]Deal $2 damage to a\nrandom enemy. Give a\nplayable Pirate in your\nhand this effect for a turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "temporary_inherited_effect",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CAP_402",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_PLAYABLE_HAND_CARDS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "CAP_400t2t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Imp-formant",
+          "rules_text": "[x]<b>Lifesteal</b>\n<b>Summoned When Drawn</b>\n<i>(for your opponent)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        },
+        {
+          "card_id": "CAP_402e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Following the Evidence",
+          "rules_text": "Shuffle a 3/3\nImp-formant into the enemy deck. Give a playable card in your hand this effect for a turn.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Follow the Evidence",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Imp-formant has Lifesteal and Summoned When Drawn for opponent; nested draw/summon/continuation required.",
+      "reviewed_metadata_dbf_id": 127051,
+      "reviewed_rules_text": "[x]Put a 3/3 Imp-formant\ninto the enemy deck. Give\na playable card in your\nhand this effect for a turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "temporary_inherited_effect",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_136",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_AT_LEAST_8_ANY_CLASS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Azshara's Triumph",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: MINION_BASE_COST_AT_LEAST_8_ANY_CLASS"
+      ],
+      "review_note": "Repeated sampling, generated initial stats, future play/copy/Colossal reachability.",
+      "reviewed_metadata_dbf_id": 122975,
+      "reviewed_rules_text": "Shuffle 5 random minions into your deck\nthat cost (8) or more.\nDouble their stats.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "random_deck_generation",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_302",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Mend",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 122779,
+      "reviewed_rules_text": "[x]Restore a minion\nto full Health.\nDraw a card.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "healing_draw",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_303",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Purifying Breath",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 122774,
+      "reviewed_rules_text": "[x]Deal $5 damage\nto a minion. If it dies,\nrestore #5 Health to\nthe enemy hero.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "damage_outcome_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CATA_485",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Sleet Storm",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: IMPLEMENTED_UNVERIFIED.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Existing scoped guards reject pending-death-dependent random target selection; declaration is not unrestricted rules support.",
+      "reviewed_metadata_dbf_id": 123410,
+      "reviewed_rules_text": "[x]Deal $2 damage.\n Deal $1 damage to a\n random enemy minion.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "sequential_damage",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_528",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "CATA_528t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Naga Monstrosity",
+          "rules_text": "<b>Taunt</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Sigil of the Seas",
+      "remaining_blockers": [
+        "Start-of-next-turn scheduler is not the existing timed end-turn recruit; exact phase review required."
+      ],
+      "review_note": "Start-of-next-turn scheduler is not the existing timed end-turn recruit; exact phase review required.",
+      "reviewed_metadata_dbf_id": 122773,
+      "reviewed_rules_text": "At the start of your\nnext turn, summon a 3/3 Naga with <b>Taunt</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "delayed_fixed_summon",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_554",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Earthen Roar",
+      "remaining_blockers": [
+        "Second 'pick another' continuation and excluding first target; no universal Choice redesign assumed."
+      ],
+      "review_note": "Second 'pick another' continuation and excluding first target; no universal Choice redesign assumed.",
+      "reviewed_metadata_dbf_id": 122883,
+      "reviewed_rules_text": "[x]Set an enemy\nminion's Health to 1.\nIf you're holding a\nDragon, pick another.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "stat_set_retarget",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_581",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Decimation",
+      "remaining_blockers": [
+        "Review improved amount, when battlefield size is snapshotted, and damage group semantics."
+      ],
+      "review_note": "Review improved amount, when battlefield size is snapshotted, and damage group semantics.",
+      "reviewed_metadata_dbf_id": 123056,
+      "reviewed_rules_text": "[x]Deal $1 damage\nto all minions.\n<i>(Improved for each minion\non the battlefield.)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "state_scaled_damage",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CATA_582",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "HERO_ATTACK_THIS_TURN": "EffectKind::ModifyHeroAttack"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "CS2_045e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Rockbiter Weapon",
+          "rules_text": "This character has +3 Attack this turn.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Searing Fissure",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 123157,
+      "reviewed_rules_text": "Deal $1 damage to all minions. Give your hero +3 Attack this turn.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "area_damage_hero_attack",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CATA_585",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "SELF_VARIANT:CATA_585"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Torch",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: SELF_VARIANT:CATA_585"
+      ],
+      "review_note": "Potential CUSTOM: exact excess computation, return identity/modifiers and retained damage require independent review; not another simple fixed damage declaration.",
+      "reviewed_metadata_dbf_id": 123164,
+      "reviewed_rules_text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "excess_damage_return_outlier",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CATA_621",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "PALADIN_AURA_SPELLS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Gelbin's Triumph",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: PALADIN_AURA_SPELLS"
+      ],
+      "review_note": "Aura duration modifier belongs to generated instance and later persistent aura; not generic cost_delta.",
+      "reviewed_metadata_dbf_id": 123403,
+      "reviewed_rules_text": "Get a random Paladin Aura. It lasts an additional turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "random_persistent_aura",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_AT_037",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "AT_037a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Grasping Roots",
+          "rules_text": "Deal $2 damage.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "AT_037b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "One, Two, Trees!",
+          "rules_text": "Summon two 1/1 Saplings.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "AT_037t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Sapling",
+          "rules_text": "",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Living Roots",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 76289,
+      "reviewed_rules_text": "<b>Choose One -</b> Deal $2 damage; or Summon two 1/1 Saplings.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "choose_one_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_AT_055",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Flash Heal",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69707,
+      "reviewed_rules_text": "Restore #5 Health.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "healing_draw",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_BAR_801",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "SUMMON_FIXED_RUSH": "summon_fixed + CardDefinition.rush"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "BAR_035t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Swift Hyena",
+          "rules_text": "<b>Rush</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": true,
+      "name": "Wound Prey",
+      "remaining_blockers": [
+        "Task-local native family scenario and adapter/policy test passed.",
+        "Canonical registry remains IMPLEMENTED_UNVERIFIED; no Rosetta bridge parity or registry evidence promotion in this task.",
+        "Dynamic generation pool admission and full dependency closure remain outside this package."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 117039,
+      "reviewed_rules_text": "Deal $1 damage. Summon a 1/1 Hyena with <b>Rush</b>.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_summon_composition",
+      "status": "IMPLEMENTED_SCOPED_VERIFIED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_BOT_222",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Spirit Bomb",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 102212,
+      "reviewed_rules_text": "Deal $4 damage to a minion and your hero.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_BOT_451",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "SUMMON_FIXED_RUSH": "summon_fixed + CardDefinition.rush"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "BOT_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Spark",
+          "rules_text": "<b>Rush</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Voltaic Burst",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 106323,
+      "reviewed_rules_text": "Summon two 1/1 Sparks with <b>Rush</b>. <b>Overload:</b> (1)",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "overload_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_CS1_130",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": true,
+      "name": "Holy Smite",
+      "remaining_blockers": [
+        "Task-local native family scenario and adapter/policy test passed.",
+        "Canonical registry remains IMPLEMENTED_UNVERIFIED; no Rosetta bridge parity or registry evidence promotion in this task.",
+        "Dynamic generation pool admission and full dependency closure remain outside this package."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69509,
+      "reviewed_rules_text": "Deal $3 damage\nto a minion.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "IMPLEMENTED_SCOPED_VERIFIED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "CS2_004e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Power Word: Shield",
+          "rules_text": "+2 Health.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Power Word: Shield",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 120786,
+      "reviewed_rules_text": "Give a minion +2 Health.\nDraw a card.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "stat_keyword_enchant",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_CS2_029",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Fireball",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: IMPLEMENTED_UNVERIFIED.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69501,
+      "reviewed_rules_text": "Deal $6 damage.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_CS2_032",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_ENEMY_MINIONS": "EffectKind::Damage / EnemyMinions"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": true,
+      "name": "Flamestrike",
+      "remaining_blockers": [
+        "Task-local native family scenario and adapter/policy test passed.",
+        "Canonical registry remains IMPLEMENTED_UNVERIFIED; no Rosetta bridge parity or registry evidence promotion in this task.",
+        "Dynamic generation pool admission and full dependency closure remain outside this package."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69502,
+      "reviewed_rules_text": "Deal $5 damage to all enemy minions.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "IMPLEMENTED_SCOPED_VERIFIED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_CS2_062",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_ALL_CHARACTERS": "EffectKind::Damage / AllCharacters"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Hellfire",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: IMPLEMENTED_UNVERIFIED.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69519,
+      "reviewed_rules_text": "Deal $3 damage to ALL characters.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_CS2_074",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "CS2_074e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Deadly Poison",
+          "rules_text": "+2 Attack.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Deadly Poison",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69522,
+      "reviewed_rules_text": "Give your weapon +2 Attack.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "weapon_buff",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_CS2_108",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Execute",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69535,
+      "reviewed_rules_text": "Destroy a damaged enemy minion.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "destroy_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_DS1_184",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Tracking",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Option sampling among duplicate IDs, instance movement and order review; no outside-game collectible exclusions for deck instances.",
+      "reviewed_metadata_dbf_id": 69545,
+      "reviewed_rules_text": "<b>Discover</b> a card from your deck.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "discover_deck",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_DS1_185",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": true,
+      "name": "Arcane Shot",
+      "remaining_blockers": [
+        "Task-local native family scenario and adapter/policy test passed.",
+        "Canonical registry remains IMPLEMENTED_UNVERIFIED; no Rosetta bridge parity or registry evidence promotion in this task.",
+        "Dynamic generation pool admission and full dependency closure remain outside this package."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69546,
+      "reviewed_rules_text": "Deal $2 damage.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_damage",
+      "status": "IMPLEMENTED_SCOPED_VERIFIED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_EX1_238",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Lightning Bolt",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69625,
+      "reviewed_rules_text": "Deal $3 damage. <b>Overload:</b> (1)",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "overload_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_EX1_302",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Mortal Coil",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69553,
+      "reviewed_rules_text": "Deal $1 damage to a minion. If it dies,\ndraw a card.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "damage_outcome_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_EX1_391",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Slam",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 69638,
+      "reviewed_rules_text": "Deal $2 damage to a minion. If it survives, draw a card.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "damage_outcome_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_EX1_610",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Explosive Trap",
+      "remaining_blockers": [
+        "Reuse Secret dispatcher with reviewed before/after attack window; not Ice Barrier semantics by text similarity."
+      ],
+      "review_note": "Reuse Secret dispatcher with reviewed before/after attack window; not Ice Barrier semantics by text similarity.",
+      "reviewed_metadata_dbf_id": 69603,
+      "reviewed_rules_text": "<b>Secret:</b> When your hero is attacked, deal $2 damage to all enemies.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "reactive_secret",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_GIL_836",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [
+        "BATTLECRY_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Blazing Invocation",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: UNKNOWN.",
+        "No new focused verification or evidence promotion in this harvest.",
+        "Dynamic dependencies remain unresolved: BATTLECRY_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "review_note": "Existing runtime rescans catalog; exact eligibility/dual-class behavior and all recursive outcomes are not verified.",
+      "reviewed_metadata_dbf_id": 120572,
+      "reviewed_rules_text": "[x]<b>Discover</b> a <b>Battlecry</b>\nminion. It costs (1) less.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_predicate",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_LOOT_101",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "SECRET_AFTER_OPPONENT_MINION_PLAY": "Secret ExplosiveRunes window"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Explosive Runes",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: IMPLEMENTED_UNVERIFIED.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 86235,
+      "reviewed_rules_text": "<b>Secret:</b> After your opponent plays a minion, deal $6 damage to it and any excess to their hero.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "reactive_secret",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_SW_108",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "ADD_FIXED_HAND": "MinionDamageGenerate fixed outcome / enter_hand",
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "LOW",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "SW_108t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Second Flame",
+          "rules_text": "Deal $2 damage to\na minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "First Flame",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: IMPLEMENTED_UNVERIFIED.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 126227,
+      "reviewed_rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "fixed_hand_generation",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_WON_337",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_4_ANY_CLASS"
+      ],
+      "existing_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Ironforge Portal",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: MINION_BASE_COST_4_ANY_CLASS"
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 127592,
+      "reviewed_rules_text": "Gain 4 Armor.\nSummon a random\n4-Cost minion.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "random_summon",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "CORE_WON_350",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "TAUNT_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "I Know a Guy",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 120468,
+      "reviewed_rules_text": "<b>Discover</b> a <b>Taunt</b> minion. Give it +1/+2.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_predicate",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "CORE_YOP_001",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "OUTCAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Illidari Studies",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Next-one discount is player state, not generated-card cost_delta; Outcast positional legality needed.",
+      "reviewed_metadata_dbf_id": 97377,
+      "reviewed_rules_text": "<b>Discover</b> an <b>Outcast</b> card. Your next one costs (1) less.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_predicate",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "Core_LOE_115",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "LOE_115a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Break Free",
+          "rules_text": "<b>Discover</b> a minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "LOE_115b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Awakened",
+          "rules_text": "<b>Discover</b> a spell.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Raven Idol",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: MINION_DISCOVER_PLAYER_CLASS_NEUTRAL, SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 113109,
+      "reviewed_rules_text": "<b>Choose One -</b>\n<b>Discover</b> a minion; or <b>Discover</b> a spell.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "choose_one_discover",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "DINO_406",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "ICC_210e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ascended",
+          "rules_text": "Stats increased.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Fire Breath",
+      "remaining_blockers": [
+        "Determine exact zones of 'your Elementals', current stats and application/death sequence."
+      ],
+      "review_note": "Determine exact zones of 'your Elementals', current stats and application/death sequence.",
+      "reviewed_metadata_dbf_id": 118480,
+      "reviewed_rules_text": "Deal $4 damage.\nGive your Elementals +1/+1.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "tribal_multi_zone_buff",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "DINO_417",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Soulrest Ceremony",
+      "remaining_blockers": [
+        "Snapshot membership, lost/replaced minions and death ordering; not a DK session requirement solely due to card class."
+      ],
+      "review_note": "Snapshot membership, lost/replaced minions and death ordering; not a DK session requirement solely due to card class.",
+      "reviewed_metadata_dbf_id": 118559,
+      "reviewed_rules_text": "[x]Give your minions\n+1 Attack and <b>Rush</b>. They\ndie at the end of your turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "temporary_board_keywords",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_251",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_BY_START_PROVENANCE"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Dragonscale Armaments",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "make_instance.provenance alone is insufficient after subsequent copy/shuffle/transform; immutable started-in-deck provenance needed.",
+      "reviewed_metadata_dbf_id": 114511,
+      "reviewed_rules_text": "Draw a spell that started in your deck and one that didn't.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "provenance_filtered_draw",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_273",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "OTHER_CLASS_CHOOSE_ONE"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Symbiosis",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Explicit other-class filter relative to actor, neutral and dual-class overlap review.",
+      "reviewed_metadata_dbf_id": 115876,
+      "reviewed_rules_text": "[x]<b>Discover</b> a <b>Choose One</b>\ncard from another class.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_predicate",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_522",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_DRAWN_INSTANCES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Mimicry",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Two draws, fatigue/burn, reveal boundary and copies of modified drawn entities must be reviewed.",
+      "reviewed_metadata_dbf_id": 114508,
+      "reviewed_rules_text": "Your opponent\ndraws 2 cards. You get copies of them.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "hidden_zone_copy",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_528",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_DECK_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Nightmare Fuel",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Combo consumes play history; hidden candidates remain internal, no hidden input leakage.",
+      "reviewed_metadata_dbf_id": 115088,
+      "reviewed_rules_text": "<b>Discover</b> a copy\nof a minion in your opponent's deck. <b>Combo:</b> With a <b>Dark Gift</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_531",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Siphoning Growth",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 116684,
+      "reviewed_rules_text": "Destroy a friendly\nminion to gain 8 Armor.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "destroy_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_570",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Ominous Nightmares",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 116660,
+      "reviewed_rules_text": "[x]<b>Choose One - </b>Deal $1\ndamage to all minions;\nor Give a damaged\nminion +2/+2.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "choose_one_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_811",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "UNDEAD_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Rite of Atrocity",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Generated DK card on Mage is not a DK session: review corpse accumulation/spend for non-DK and Dark Gift application.",
+      "reviewed_metadata_dbf_id": 114303,
+      "reviewed_rules_text": "<b>Discover</b> an Undead. Spend 2 <b>Corpses</b> to give it a <b>Dark Gift</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "corpses_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_813",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "EDR_813a",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Contaminated Colony",
+          "rules_text": "Summon two 1/1 Ants.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "EDR_813b",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Bug Bites",
+          "rules_text": "Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "EDR_813at",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ant Husk",
+          "rules_text": "",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Morbid Swarm",
+      "remaining_blockers": [
+        "Full definitions resolve Ant Husk EDR_813at and option IDs EDR_813a/EDR_813b; resource legality and option availability still need review."
+      ],
+      "review_note": "Full definitions resolve Ant Husk EDR_813at and option IDs EDR_813a/EDR_813b; resource legality and option availability still need review.",
+      "reviewed_metadata_dbf_id": 114967,
+      "reviewed_rules_text": "<b>Choose One -</b> Summon two 1/1 Ants; or Spend 2 <b>Corpses</b> to deal $4 damage to a minion.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "corpses_choose_one",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "EDR_872",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "SPELL_MAGE",
+        "SPELL_DRUID"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Spark of Life",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: SPELL_MAGE, SPELL_DRUID"
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 116977,
+      "reviewed_rules_text": "<b>Choose One - </b><b>Discover</b> a Mage spell; or <b>Discover</b> a Druid spell.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "choose_one_discover",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "END_017",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Battle at the End Time",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 121159,
+      "reviewed_rules_text": "<b>Quest:</b> Fill your hand, then empty it.\n<b>Reward: </b>Tick and Tock.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "END_020",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_1_ANY_CLASS"
+      ],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion",
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Eternal Toil",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: MINION_BASE_COST_1_ANY_CLASS"
+      ],
+      "review_note": "Outcome-dependent summon requires complete pool and death-boundary review.",
+      "reviewed_metadata_dbf_id": 121168,
+      "reviewed_rules_text": "[x]Deal $1 damage to a\nminion. If it survives, draw\na card. If it dies, summon\na random 1-Cost minion.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "damage_outcome_followup",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "END_024",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "SECRET_OPPONENT_TURN_END": "Secret OpponentTurnEnds window"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Flames of Infinity",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: UNKNOWN.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Current enormous finite int represents INFINITE damage; resource/prevention interactions need review, not general unrestricted proof.",
+      "reviewed_metadata_dbf_id": 121187,
+      "reviewed_rules_text": "<b>Secret:</b> When your enemy's turn ends, deal INFINITE damage to their highest Health minion.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "reactive_secret",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "END_025",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "SELF_VARIANT:END_025"
+      ],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Eternal Firebolt",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Return-source instance identity, discount persistence, activation and end-turn boundary unreviewed.",
+      "reviewed_metadata_dbf_id": 121188,
+      "reviewed_rules_text": "<b>Lifesteal</b>\nDeal $3 damage to a minion. If it dies, return this to your hand at the end of your turn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "conditional_spell_return",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "END_027",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "DRAGON_FROM_PAST",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Wings of Eternity",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "'From the past' requires a versioned out-of-Standard pool, not pinned Standard dragons.",
+      "reviewed_metadata_dbf_id": 121190,
+      "reviewed_rules_text": "[x]<b>Discover</b> a Dragon\nfrom the past with a\n<b>Dark Gift</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "FIR_900",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Cremate",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 115624,
+      "reviewed_rules_text": "<b>Discover</b> a minion\nwith a <b>Dark Gift</b>.\nIt costs (2) less.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_906",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Overheat",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 115630,
+      "reviewed_rules_text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "school_discard_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_909",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Bursting Shot",
+      "remaining_blockers": [
+        "Confirm distinct sampling, fewer than 3 enemies, packet/death ordering and Spell Damage application."
+      ],
+      "review_note": "Confirm distinct sampling, fewer than 3 enemies, packet/death ordering and Spell Damage application.",
+      "reviewed_metadata_dbf_id": 115633,
+      "reviewed_rules_text": "Deal $2 damage to\nthree random enemies.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "random_distinct_targets",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_910",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Scorching Winds",
+      "remaining_blockers": [
+        "Review discard-between-instructions and whether discarded source is still a candidate; no generated pool, only actual hand."
+      ],
+      "review_note": "Review discard-between-instructions and whether discarded source is still a candidate; no generated pool, only actual hand.",
+      "reviewed_metadata_dbf_id": 115634,
+      "reviewed_rules_text": "Deal $3 damage. Discard a random Fire spell to deal $3 more.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "school_discard_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_911",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Smoldering Grove",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Metadata placeholders {0}/{1} do not specify initial value/cap/expiry phase; generated arrival starts a new per-instance lifecycle, needs fuller rules evidence.",
+      "reviewed_metadata_dbf_id": 115635,
+      "reviewed_rules_text": "Draw {0} card.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Draw {0} cards.\n<i>(Discards this turn!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "smoldering_hand_age",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_914",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "FIR_914e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Smoldering Strength",
+          "rules_text": "+{0}/+{0}.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Smoldering Strength",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Exact initial amount/turn upgrades/expiry/hand entry undefined by placeholders; generates hand-buffed Bookkeeper states outside INSTANCE_COPY_V1.",
+      "reviewed_metadata_dbf_id": 115638,
+      "reviewed_rules_text": "Give a friendly minion +{0}/+{0}.\n<i>(Upgrades each turn,\nbut discards after {1}!)</i>1Give a friendly\nminion +{0}/+{0}.\n<i>(Discards this turn!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "smoldering_hand_age",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "FIR_916",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_ENEMY_MINIONS": "EffectKind::Damage / EnemyMinions"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Smoldering Ascent",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Exact starting amount/age/expiry and CurrentAtStep Spell Damage need review.",
+      "reviewed_metadata_dbf_id": 115640,
+      "reviewed_rules_text": "Deal ${0} damage to all enemy minions. <i>(Upgrades each turn,\nbut discards after {1}!)</i>1Deal ${0} damage to all enemy minions.\n<i>(Discards this turn!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "smoldering_hand_age",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_920",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "COMBO_BATTLECRY_STEALTH_DISCOVER_PLAYER_CLASS_NEUTRAL",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Smoke Bomb",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "OR predicate, eligible implied mechanics and Dark Gift options require exact manifest, no reduced supported choices.",
+      "reviewed_metadata_dbf_id": 115647,
+      "reviewed_rules_text": "<b>Discover</b> a <b>Combo</b>, <b>Battlecry</b>, or <b>Stealth</b> minion with a <b>Dark Gift</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_923",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Flames of the Firelord",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 115650,
+      "reviewed_rules_text": "[x]Deal $4 damage to a random\nenemy minion. If you're\nholding a card that costs\n(8) or more, deal $8 instead.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "state_scaled_damage",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_939",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "WARRIOR_MINIONS",
+        "DARK_GIFT_OPTIONS"
+      ],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "EDR_102t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Dark Gift",
+          "rules_text": "Executes nightmare bonus",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Shadowflame Suffusion",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Explicit Warrior overrides controlling Mage class for the minion predicate.",
+      "reviewed_metadata_dbf_id": 115688,
+      "reviewed_rules_text": "[x]Deal $2 damage.\n<b>Discover</b> a Warrior\nminion with a <b>Dark Gift</b>.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "discover_dark_gift",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_941",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_MINIONS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Searing Reflection",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Requires new modified-instance copy/summon policy; outside INSTANCE_COPY_V1, full board/draw buff interactions unknown.",
+      "reviewed_metadata_dbf_id": 115776,
+      "reviewed_rules_text": "Draw a minion. Summon an 8/8 copy of it with <b>Divine Shield</b>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "deck_draw_copy_summon",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "FIR_954",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Conflagrate",
+      "remaining_blockers": [
+        "Capture target owner before damage/death; draw/fatigue timing needs independent review."
+      ],
+      "review_note": "Capture target owner before damage/death; draw/fatigue timing needs independent review.",
+      "reviewed_metadata_dbf_id": 115753,
+      "reviewed_rules_text": "Deal $5 damage to a minion. Its owner draws a card.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "damage_outcome_followup",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "JAIL_125",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "FROST_SPELL_ANY_CLASS"
+      ],
+      "existing_primitives": {
+        "FREEZE_ENEMY": "EffectKind::Freeze, targeting extension review"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Cold Snap",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 126356,
+      "reviewed_rules_text": "<b>Freeze</b> an enemy.\nGet a random\nFrost spell.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "random_school_generation",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "JAIL_307",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Crowd Control",
+      "remaining_blockers": [
+        "Two damage instructions with distinct death/reaction boundaries; deck-size >=25 reduction combines with generated instance discount."
+      ],
+      "review_note": "Two damage instructions with distinct death/reaction boundaries; deck-size >=25 reduction combines with generated instance discount.",
+      "reviewed_metadata_dbf_id": 126100,
+      "reviewed_rules_text": "Deal $2 damage to all minions, twice. If your deck has 25 or more cards, this costs (2) less.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "state_scaled_damage",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "JAIL_319",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "The Skeleton Key",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Potential CUSTOM/architectural outlier: refresh action, retained choice lifetime and damage/death during pending Choice.",
+      "reviewed_metadata_dbf_id": 126116,
+      "reviewed_rules_text": "[x]<b>Discover</b> a spell,\nor refresh your options\n<i>(20% chance to take 5\ndamage each refresh!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "refresh_discover_outlier",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "JAIL_386",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "GAIN_ARMOR": "EffectKind::GainArmor"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "JAIL_386t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Found Gear!",
+          "rules_text": "<b>Casts When Drawn</b>\nGain 2 Armor.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Scramble for Gear",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "When-drawn replacement draw, deck recursion, spell-cast event/accounting distinguish drawn versus hand-played.",
+      "reviewed_metadata_dbf_id": 125893,
+      "reviewed_rules_text": "Gain 2 Armor. Shuffle five Gear spells into your deck that give\n2 Armor when drawn.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "cast_when_drawn_shuffle",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "JAIL_732",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "DEMON_COST_FUTURE_VOID_SOUL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Void Soul",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Upgrade persistence across instances/generation and initial versus effective cost pool need full rules contract.",
+      "reviewed_metadata_dbf_id": 126662,
+      "reviewed_rules_text": "[x]Summon a random\n1-Cost Demon. Improve\nyour future Void Souls.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "future_generated_state",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "JAIL_801",
+      "current_declaration_state": "SUPPORTED",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage",
+        "HELD_SPELL_PROGRESS": "update_held_card_spell_progress, scoped hand-play gate",
+        "TRANSFORM_HAND": "held_spell_threshold / transform_card, scoped combination only"
+      },
+      "family_plan_risk": "LOW",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "JAIL_801t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Molten Gold Elemental",
+          "rules_text": "<b>Battlecry:</b> Deal 4 damage.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": true,
+      "implemented_by_task": false,
+      "name": "Molten Gold",
+      "remaining_blockers": [
+        "Existing ManaEngine declaration is preserved.",
+        "Canonical rules status: UNKNOWN.",
+        "No new focused verification or evidence promotion in this harvest."
+      ],
+      "review_note": "Existing scoped progress contract uses hand-play spells; replay/autocast/nested semantics beyond reviewed admission remain blocked.",
+      "reviewed_metadata_dbf_id": 126407,
+      "reviewed_rules_text": "Deal $4 damage.\n<i>(Cast 3 spells to turn into a minion!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "held_spell_transform",
+      "status": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "JAIL_940",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "DEATHRATTLES_FROM_FRIENDLY_GAME_HISTORY"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Undeath Sentence",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Requires whole-match death history and ghost-source identity/controller/instance semantics, not current graveyard metadata alone.",
+      "reviewed_metadata_dbf_id": 126867,
+      "reviewed_rules_text": "[x]Trigger the <b>Deathrattle</b> of\na random friendly minion\nthat died this game.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "death_history_replay",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "MEND_300",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "BEAST_COST_PREVIOUS_COMPANION_PLUS_1"
+      ],
+      "existing_primitives": {
+        "DRAW_SELF": "EffectKind::Draw / draw()"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Tame Pet",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Persistent replacement rule with random results; future generated Animal Companion outcomes expand graph.",
+      "reviewed_metadata_dbf_id": 123486,
+      "reviewed_rules_text": "[x]Replace your future\nAnimal Companions with\nrandom Beasts that cost\n(1) more. Draw a card.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "future_companion_override",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_006",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "SUMMON_FIXED": "EffectKind::SummonFixed / summon_fixed"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "TIME_006t1",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Mirrored Mage",
+          "rules_text": "<b>Taunt</b>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Mirror Dimension",
+      "remaining_blockers": [
+        "Independent family/action scenarios required before rules verification."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 119541,
+      "reviewed_rules_text": "Summon a 0/4 minion with <b>Taunt</b>. If you are holding a Dragon, summon another.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "fixed_summon_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_026",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "TIME_025t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Shred of Time",
+          "rules_text": "<b>Casts When Drawn</b>\nDeal $3 damage to\nyour hero.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "SPELL"
+        },
+        {
+          "card_id": "TIME_026e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Ruptured Reality",
+          "rules_text": "+1/+1.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Entropic Continuity",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 120484,
+      "reviewed_rules_text": "[x]Give your minions +1/+1.\nShuffle 2 Shreds of Time\ninto your deck.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "cast_when_drawn_shuffle",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_039",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_OPPONENT_HAND_INSTANCES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Deja Vu",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Internal hidden candidates reveal only offered/selected cards; copy-to-hand contract differs from INSTANCE_COPY_V1.",
+      "reviewed_metadata_dbf_id": 120647,
+      "reviewed_rules_text": "<b>Discover</b> a copy\nof a card in your opponent's hand.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "hidden_zone_copy",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_212",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "RANDOM_ENEMY_MINION": "EffectKind::Damage / RandomEnemyMinion, scoped death guard"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Lightning Rod",
+      "remaining_blockers": [
+        "Death boundary and damage-trigger interleaving between packets require review; do not reuse Sleet's admission blindly."
+      ],
+      "review_note": "Death boundary and damage-trigger interleaving between packets require review; do not reuse Sleet's admission blindly.",
+      "reviewed_metadata_dbf_id": 120173,
+      "reviewed_rules_text": "Deal $2 damage to a friendly minion to deal $4 damage to a random enemy minion.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "sequential_damage",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_447",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [
+        {
+          "card_id": "ULD_191e",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Assisting!",
+          "rules_text": "+2 Health.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "ENCHANTMENT"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Power Word: Barrier",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Hero Shield legality and persistent hand instance Health; hand-buffed Bookkeeper remains blocked.",
+      "reviewed_metadata_dbf_id": 121005,
+      "reviewed_rules_text": "Give a character <b>Divine Shield</b>. Give minions in your hand +2 Health.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "stat_keyword_enchant",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_701",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_INSTANCES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Waveshaping",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Exact candidate sampling, bottom order and duplicate-instance handling.",
+      "reviewed_metadata_dbf_id": 120746,
+      "reviewed_rules_text": "<b>Discover</b> a card from your deck. The others get put on the bottom.",
+      "rules_evidence_status": "IMPLEMENTED_UNVERIFIED",
+      "semantic_family": "discover_deck",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TIME_EVENT_999",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "SPELL_ANY_CLASS",
+        "SPELL_PLAYER_CLASS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Sands of Time",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Rewind is gameplay continuation/reroll semantics; deterministic clone alone is not reviewed Rewind.",
+      "reviewed_metadata_dbf_id": 121675,
+      "reviewed_rules_text": "<b>Rewind</b>\n<b>Discover</b> a spell from\nANY class. <i>(Or just your class after you <b>Rewind</b>!)</i>",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "rewind_discover",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_221",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_CHARACTER": "TARGET_DAMAGE / EffectKind::Damage"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "TLC_249",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "Sizzling Cinder",
+          "rules_text": "<b>Deathrattle:</b> Deal 2 damage randomly split among all enemies.",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "MINION"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Sizzling Swarm",
+      "remaining_blockers": [
+        "Sizzling Cinder is a collectible 2/1 with random split-damage Deathrattle, not vanilla token. Review count after prevention, armor/overkill and Spell Damage."
+      ],
+      "review_note": "Sizzling Cinder is a collectible 2/1 with random split-damage Deathrattle, not vanilla token. Review count after prevention, armor/overkill and Spell Damage.",
+      "reviewed_metadata_dbf_id": 117532,
+      "reviewed_rules_text": "Deal $3 damage.\nSummon that many 2/1 Sizzling Cinders.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "damage_scaled_summon",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_222",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ACTUAL_DECK_DIFFERENT_MINION_TYPES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Flight of the Firehawk",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: ACTUAL_DECK_DIFFERENT_MINION_TYPES"
+      ],
+      "review_note": "Dual/ALL type matching, sample order, hand overflow and buffed instances need review.",
+      "reviewed_metadata_dbf_id": 117606,
+      "reviewed_rules_text": "Draw two minions of different minion types. Give them +1/+1.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "type_filtered_draw_buff",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_227",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": true,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Lava Flow",
+      "remaining_blockers": [
+        "Re-select enemy incl hero each instruction, ties RNG, deaths, packet scaling, mana-lock state on Mage player."
+      ],
+      "review_note": "Re-select enemy incl hero each instruction, ties RNG, deaths, packet scaling, mana-lock state on Mage player.",
+      "reviewed_metadata_dbf_id": 117536,
+      "reviewed_rules_text": "Deal $2 damage to the lowest Health enemy, three times. <b>Overload:</b> (1)",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "overload_composition",
+      "status": "DEFERRED_RULES_EVIDENCE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_229",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Spirit of the Mountain",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117538,
+      "reviewed_rules_text": "<b>Quest:</b> Play 6 minions\nof unique types.\n<b>Reward:</b> Ashalon.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_235",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINION_BASE_COST_EQUALS_DESTROYED"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Life Cycle",
+      "remaining_blockers": [
+        "Reachable runtime pool/state selector is unresolved: MINION_BASE_COST_EQUALS_DESTROYED"
+      ],
+      "review_note": "Cost snapshot, position and target-controller placement need review; full reachable cost union not frozen deck only.",
+      "reviewed_metadata_dbf_id": 117655,
+      "reviewed_rules_text": "Destroy a minion. Summon a random minion of the same\nCost to replace it.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "random_summon",
+      "status": "DEFERRED_DYNAMIC_DEPENDENCY",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_239",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Restore the Wild",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117661,
+      "reviewed_rules_text": "<b>Quest:</b> Fill your board\non 3 of your turns.\n<b>Reward:</b> The Everbloom.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_426",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Dive the Golakka Depths",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117341,
+      "reviewed_rules_text": "<b>Repeatable Quest:</b> Summon 6 Murlocs.\n<b>Reward:</b> Murlocs you summon gain +1/+1.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_433",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Reanimate the Terror",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117427,
+      "reviewed_rules_text": "[x]<b>Quest:</b> Spend 15 <b>Corpses</b>.\n<b>Reward:</b> Tyrax, Bone Terror.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_435",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "FROST_RUNE_CARDS"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Crypt Map",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Tracked discovered entity, held options and second continuation; Mage actor/corpse effects may appear.",
+      "reviewed_metadata_dbf_id": 117431,
+      "reviewed_rules_text": "<b>Discover</b> a Frost Rune card. If you play it this turn, also pick one\nof the others.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_then_play_other_option",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_442",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MURLOC_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Submerged Map",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 117665,
+      "reviewed_rules_text": "[x]<b>Discover</b> a Murloc.\nIf you play it this turn, also\npick one of the others.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_then_play_other_option",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_446",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Escape the Underfel",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117827,
+      "reviewed_rules_text": "<b>Quest:</b> Play 6 <b>Temporary</b> cards. <b>Reward:</b> Underfel Rift.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_460",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "The Forbidden Sequence",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 118183,
+      "reviewed_rules_text": "[x]<b>Quest:</b> <b>Discover</b> 8 cards.\n<b>Reward:</b> The Origin Stone.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_464",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "MINIONS_UNPLAYED_TYPES"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Mountain Map",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Needs game-wide type history, not previous-own-turn history; ALL/dual types review.",
+      "reviewed_metadata_dbf_id": 118225,
+      "reviewed_rules_text": "[x]<b>Discover</b> a minion with\na type you haven't played.\nIf you play it this turn, also\npick one of the others.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_then_play_other_option",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_513",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Lie in Wait",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117222,
+      "reviewed_rules_text": "[x]<b>Quest:</b> Shuffle cards\ninto your deck, 5 times.\n<b>Reward: </b>Master Dusk.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_517",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {
+        "DAMAGE_MINION": "MINION_DAMAGE_GENERATE target legality / ExplicitMinion"
+      },
+      "family_plan_risk": "MEDIUM",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Knockback",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Text needs game-wide shuffle event-count semantics; unrelated to Bookkeeper previous-turn type history.",
+      "reviewed_metadata_dbf_id": 117699,
+      "reviewed_rules_text": "[x]Deal $1 damage to\na minion <i>(improved for\neach time you've shuffled\ncards into your deck)</i>.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "held_history_damage",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_602",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Enter the Lost City",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117716,
+      "reviewed_rules_text": "[x]<b>Quest:</b> Survive 10 turns.\n<b>Reward: </b>Latorvius, Gaze\nof the City.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_631",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Unleash the Colossus",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117871,
+      "reviewed_rules_text": "<b>Quest:</b> Deal exactly 2 damage to an enemy\non your turn, 12 times.\n<b>Reward:</b> Gorishi Colossus.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_632",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": true,
+      "fixed_dependencies": [
+        {
+          "card_id": "TLC_632t",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "DIE, INSECT!",
+          "rules_text": "Deal $8 damage to a random enemy.\n<i>(Two uses left!)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "HERO_POWER"
+        },
+        {
+          "card_id": "TLC_632t2",
+          "edge_review": "MANUAL_CONTRACT_REFERENCE_REQUIRES_EXECUTABLE_PARITY",
+          "identity_status": "METADATA_RESOLVED",
+          "name": "DIE, INSECT!",
+          "rules_text": "Deal $8 damage to a random enemy.\n<i>(Last use!)</i>",
+          "rules_verification": "NOT_VERIFIED_BY_THIS_AUDIT",
+          "type": "HERO_POWER"
+        }
+      ],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Story of Sulfuras",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Fundamental public hero-power identity, legal actions, counters, restoration and repeated swaps; adapter currently initializes Mage Fireblast.",
+      "reviewed_metadata_dbf_id": 117874,
+      "reviewed_rules_text": "[x]Swap your Hero Power\nto \"Deal 8 damage\nto a random enemy.\"\nAfter 2 uses, swap back.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "temporary_hero_power_swap",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": false,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_817",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Reach Equilibrium",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117544,
+      "reviewed_rules_text": "[x]<b>Quest:</b> Cast 4 Holy spells\n<b>Reward:</b> Life's Breath.\n<b>Quest:</b> Cast 4 Shadow spells.\n<b>Reward:</b> Death's Touch.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_824",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ODD_BASE_ATTACK_BEAST_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Odd Map",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 117596,
+      "reviewed_rules_text": "[x]<b>Discover</b> an odd-Attack\nBeast. If you play it this\nturn, also pick one of\nthe others.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_then_play_other_option",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_830",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "QUEST_REWARD_BY_ROOT"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "The Food Chain",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Retained raw 1-cost candidate for audit completeness; working outside-game generation rule excludes QUEST, supported by developer statement mirrored in HearthPwn; current exact exception review still required.",
+      "reviewed_metadata_dbf_id": 117672,
+      "reviewed_rules_text": "<b>Quest:</b> Play a 1, 3, 5, and 7-Attack Beast.\n<b>Reward:</b> Shokk.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "quest_excluded_from_random",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    },
+    {
+      "card_id": "TLC_900",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "FEL_SPELL_DISCOVER_PLAYER_CLASS_NEUTRAL"
+      ],
+      "existing_primitives": {},
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Hive Map",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Independent family/action scenarios required before rules verification.",
+      "reviewed_metadata_dbf_id": 117684,
+      "reviewed_rules_text": "[x]<b>Discover</b> a Fel spell.\nIf you play it this turn, also\npick one of the others.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "discover_then_play_other_option",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": true
+    },
+    {
+      "card_id": "TLC_EVENT_400",
+      "current_declaration_state": "NO_DECLARATION",
+      "dynamic_dependencies": [
+        "ZOMBEAST_COMPONENTS"
+      ],
+      "existing_primitives": {
+        "GENERATED_COST_REDUCTION": "CardInstance.cost_delta / effective_cost / existing Discover modifier"
+      },
+      "family_plan_risk": "HIGH",
+      "fire_candidate": false,
+      "fixed_dependencies": [],
+      "implemented_before_task": false,
+      "implemented_by_task": false,
+      "name": "Storm the Gates",
+      "remaining_blockers": [
+        "Existing behavior set does not cover this state/event/choice/session contract honestly."
+      ],
+      "review_note": "Neutral sidequest eligibility for 'any class' unknown; should not inherit Quest exclusion. Composite card identity/state requires architecture review.",
+      "reviewed_metadata_dbf_id": 120648,
+      "reviewed_rules_text": "[x]<b>Sidequest:</b> Play\n3 Beasts or Undead.\n<b>Reward:</b> Craft a custom\nZombeast. It costs (3) less.",
+      "rules_evidence_status": "UNKNOWN",
+      "semantic_family": "sidequest_composite_minion",
+      "status": "DEFERRED_ARCHITECTURE",
+      "whelp_raw_candidate": true,
+      "whelp_working_class_candidate": false
+    }
+  ],
+  "harvest_base_commit": "eb1018a",
+  "profile_id": "standard_full_20261001_v1",
+  "provenance": {
+    "capability_matrix_sha256": "da7002fbafe88eceacbe5d6ee921680575ae6cddfa3ba301edde974ee7d30dc9",
+    "card_abilities_sha256": "394ecb343a2ff1fd0a80b71b0fdacce9b1ce4b798e9cb51981f31e175c10402e",
+    "dependency_metadata_sha256": "eb7b8313051919c62574439dce0e14e1edc43a92a649e78c3489858e24458695",
+    "registry_sha256": "4bbd8097e0e38f2e30122df27510cacc9dc0c368118ed43e070d04ddff664295",
+    "review_annotations_sha256": "d065220470edcde778e5b689487cb6cc830bacd78277d8d9e55f2689d31c07d7"
+  },
+  "report_type": "SAFE_EXISTING_PRIMITIVE_COVERAGE_HARVEST",
+  "rules_verification_note": "IMPLEMENTED_SCOPED_VERIFIED is limited to task-local ManaEngine native and adapter/action-policy expectations. It does not promote canonical RosettaStone evidence, bridge parity, pool closure, or training eligibility.",
+  "schema_version": 1,
+  "status_counts": {
+    "DEFERRED_ARCHITECTURE": 53,
+    "DEFERRED_DYNAMIC_DEPENDENCY": 9,
+    "DEFERRED_NEW_CAPABILITY": 0,
+    "DEFERRED_RULES_EVIDENCE": 31,
+    "IMPLEMENTED_BUT_RULES_BLOCKED": 8,
+    "IMPLEMENTED_SCOPED_VERIFIED": 4
+  },
+  "supported_declaration_counts_not_pool_admission": {
+    "fire_candidates": {
+      "after": 8,
+      "before": 7
+    },
+    "working_whelp_candidates": {
+      "after": 6,
+      "before": 3
+    }
+  },
+  "task_changes": {
+    "adapter_policy_tests_passed": 46,
+    "adapter_tests_added": 1,
+    "bridge_parity_runs": 0,
+    "canonical_evidence_promotions": 0,
+    "exact_fixed_dependency_id": {
+      "artist": "Matt Dixon",
+      "attack": 1,
+      "cardClass": "HUNTER",
+      "cost": 1,
+      "dbfId": 63459,
+      "health": 1,
+      "id": "BAR_035t",
+      "mechanics": [
+        "RUSH"
+      ],
+      "name": "Swift Hyena",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "THE_BARRENS",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
+    },
+    "full_python_tests_passed": 90,
+    "native_assertions_passed": 665,
+    "native_scenario_groups": 34,
+    "native_scenario_groups_added": 1,
+    "new_card_id_branches": 0,
+    "new_engine_primitives": 0,
+    "new_root_declarations": [
+      "CORE_BAR_801",
+      "CORE_CS1_130",
+      "CORE_CS2_032",
+      "CORE_DS1_185"
+    ]
+  },
+  "universe": {
+    "fire_candidates": 33,
+    "reviewed_unique_candidates": 105,
+    "whelp_raw_candidates": 77,
+    "whelp_working_candidates": 63
+  }
+}
