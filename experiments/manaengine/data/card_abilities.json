@@ -29,6 +29,7 @@
     "END_024": {"ability":"SECRET","support_state":"SUPPORTED","secret_trigger":"OPPONENT_TURN_ENDS","secret_effect":"FLAMES_OF_INFINITY"},
     "END_022": {"ability":"SPELL_DAMAGE_AURA","support_state":"SUPPORTED","damaged_spell_damage":2},
     "FIR_929": {"ability":"DEATHRATTLE_DRAW","support_state":"SUPPORTED","deathrattle_draw_count":1,"deck_draw_filter":"FIRE_SPELL"},
+    "CATA_487": {"ability":"SPELL_DAMAGE_GAINS_ATTACK","support_state":"SUPPORTED","spell_damage_attack":2},
     "END_007": {"ability":"EFFECT_COMPOSITION","support_state":"SUPPORTED","effects":[{"kind":"DAMAGE","target":"EXPLICIT_CHARACTER","amount":1},{"kind":"MODIFY_HERO_ATTACK","target":"SELF","amount":1},{"kind":"DRAW","target":"SELF","amount":1},{"kind":"GAIN_ARMOR","target":"SELF","amount":1}]},
     "EX1_277": {"ability":"RANDOM_MISSILES","support_state":"SUPPORTED","damage":3},
     "HERO_08bp": {"ability":"TARGET_DAMAGE","support_state":"SUPPORTED"},

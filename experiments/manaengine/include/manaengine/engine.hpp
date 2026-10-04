@@ -26,7 +26,7 @@ struct CardDefinition {
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
-    int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0;
+    int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0;
     DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
@@ -115,7 +115,7 @@ private:
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets, SpellDamageAura, DeathrattleDraw,
-      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction };
+      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack };
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
     enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
@@ -165,13 +165,14 @@ private:
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
+    void record_spell_damage_event(int owner,int amount);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
     bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);
     bool resolve_attack_secret_windows(int attacker_owner,int attacker_entity_id,bool hero_attack,int target_entity_id);
     void activate_secret(CardInstance secret);
     void assign_activation_sequence(CardInstance& source);
     void resolve_end_turn_reactions(int owner);
-    void resolve_effects(const CardDefinition& def,int owner,int target_id,int spell_damage=0);
+    int resolve_effects(const CardDefinition& def,int owner,int target_id,int spell_damage=0);
     void begin_discover(int owner,const CardDefinition& source);
     void update_held_card_spell_progress(int owner);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);
