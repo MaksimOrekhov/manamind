@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "kind": "HOSTED_INTERFACE_CORRECTNESS_NOT_CARD_RULES",
+  "commit": "4a952c0d9dd55d5a01699a56a4d7c0601ec850d2",
+  "fetched_at_utc": "2026-10-04 10:46:47 UTC",
+  "runs": [
+    {
+      "run_id": 37196223508,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37196223508",
+      "jobs": [
+        {
+          "id": 111418555666,
+          "name": "source (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T10:44:02.9637941Z 36 pinned outputs reproduced; generated ownership is unique.\r",
+            "2026-10-04T10:44:17.5336522Z 88 passed in 12.94s\r"
+          ]
+        },
+        {
+          "id": 111418555770,
+          "name": "source (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T10:44:01.1874861Z 36 pinned outputs reproduced; generated ownership is unique.",
+            "2026-10-04T10:44:12.1635941Z 88 passed in 10.15s"
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37196223527,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37196223527",
+      "jobs": [
+        {
+          "id": 111418555568,
+          "name": "windows-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T10:45:11.3250936Z 100% tests passed out of 1\r",
+            "2026-10-04T10:45:31.6631804Z 40 passed in 19.32s\r"
+          ]
+        },
+        {
+          "id": 111418555700,
+          "name": "ubuntu-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T10:44:02.0126556Z 100% tests passed out of 1",
+            "2026-10-04T10:44:21.3219407Z 40 passed in 18.59s"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -21,6 +21,8 @@ DamageTask, RandomTask, IncludeTask, ComplexTask::DamageRandomTargets, Consecuti
 | CATA_485 | selected character 2; random enemy minion 1; first target can be friendly | Amount/target kinds reviewed; aura/phase boundaries blocked |
 | TIME_855 | selected enemy 3; two distinct other enemy characters 2 | Amount/exclusion reviewed; sampling/phase boundaries blocked |
 
+Pinned canonical rules-text SHA-256: CATA_485 `a600acc13f4731ef52d633bd05147950cb9b9a358bd852784bd20265c1c4059b`; TIME_855 `9c64f0c4030ddabdf7f7dffe4266e45cb8296a57187ead79d8e17c70fd458639`. Metadata-record SHA-256: CATA_485 `e26431ae6c21ea0ea7d683f1eac088611d1ff4602b7abe61ae94ee92645d82a8`; TIME_855 `5241d0039496c57cedd0bbf8c229e702836ffefcc3cad58284b6c92a3b385ce2`.
+
 ## dependencies
 
 No generated outcomes from these spells. Relevant interactions: END_022 conditional aura, CORE_EX1_012 aura/deathrattle, CATA_487 event progression, prevention and Secret cancellation. Full deck closure still needs all generated outcomes transitively.
