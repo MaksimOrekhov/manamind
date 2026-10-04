@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "kind": "HOSTED_SCOPED_SPELLWEAVER_NOT_FULL_DECK_CLOSURE",
+  "package_id": "direct_spell_damage_turn_cost_fixed_summon_v1",
+  "contract_version": 1,
+  "commit": "d01ffde3c292e3fa03322bf35126875e28c20269",
+  "rosetta_revision": "f34da0d3fcb5ad312f7e2acf634d0536b044d29a",
+  "fetched_at_utc": "2026-10-04 11:57:30 UTC",
+  "source_sha256_lf": {
+    "experiments/manaengine/include/manaengine/engine.hpp": "4b3789e2d10a60b631468fdd53b1dc5a86651129de47b84d86d8810439237b80",
+    "experiments/manaengine/src/engine.cpp": "9f77f7091c7a2ea5b212d8e59fc957b214961a310bcd28d75b064ac7364133e8",
+    "experiments/manaengine/src/python_bindings.cpp": "570e004fc636f9e35a37771c297ce8ee7459f7bd7ac4899fd440107423ff8146",
+    "experiments/manaengine/data/card_abilities.json": "38cf492f2c5f54b9d2f3f4ac5641381e77fcf9425a11a30e8a42e3d13701b378",
+    "experiments/manaengine/data/fixed_summon_dependency_metadata.json": "e15c6cd371208263f5a32b5d01289cf0e5252e014b33a0f417468765a391a003",
+    "experiments/manaengine/tests/native_tests.cpp": "4c4e89e2f63bd46b2922525656b572b9c1abbc421298c5ab535d5856fd9b0c2f",
+    "experiments/manaengine/tests/test_adapter.py": "4f739116259177afec41f0f9f529229f55cc91a62359df1eca930ff821ee7c89",
+    "src/manamind/integrations/manaengine/engine.py": "412f807b0ec4f6a4846b2c2f8bc648c37697bbfbae45d09699f5ccc7bad95c3d"
+  },
+  "token_id": "CATA_452t",
+  "token_metadata_sha256": "3ce8e1c928a603290c33209ae0abf22e81943c8d4fbe25719000a937b4df1ac8",
+  "runs": [
+    {
+      "run_id": 37200195427,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37200195427",
+      "jobs": [
+        {
+          "id": 111430130256,
+          "name": "source (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:54:03.4912329Z 36 pinned outputs reproduced; generated ownership is unique.\r",
+            "2026-10-04T11:54:11.9650923Z 88 passed in 7.22s\r"
+          ]
+        },
+        {
+          "id": 111430130354,
+          "name": "source (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:54:24.4705611Z 36 pinned outputs reproduced; generated ownership is unique.",
+            "2026-10-04T11:54:36.0664828Z 88 passed in 10.93s"
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37200195447,
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37200195447",
+      "jobs": [
+        {
+          "id": 111430130360,
+          "name": "windows-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:54:52.2643062Z 1/1 Test #1: manaengine_native ................   Passed    1.95 sec\r",
+            "2026-10-04T11:54:52.2655482Z 100% tests passed out of 1\r",
+            "2026-10-04T11:55:12.6199404Z 43 passed in 19.37s\r"
+          ]
+        },
+        {
+          "id": 111430130528,
+          "name": "ubuntu-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "verified_steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10
+            }
+          ],
+          "log_excerpts": [
+            "2026-10-04T11:54:30.1817396Z 1/1 Test #1: manaengine_native ................   Passed    0.82 sec",
+            "2026-10-04T11:54:30.1820713Z 100% tests passed out of 1",
+            "2026-10-04T11:54:44.6411142Z 43 passed in 14.03s"
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No canonical RosettaStone evidence or training status promoted.",
+    "Four frozen Mage roots remain unimplemented, Sleet and other previously recorded routes remain partial.",
+    "DirectSpell attribution is explicit; legacy destroy-via-damage placeholders do not become reviewed spell damage.",
+    "No Skeleton Key, global scheduler rewrite, new public/Policy schema, training or search."
+  ]
+}

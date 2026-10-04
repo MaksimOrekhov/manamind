@@ -54,3 +54,9 @@ Remaining wholly unimplemented frozen Mage roots: TIME_855 Arcane Barrage (2 slo
 Timer start: 2026-10-04 11:34:30 UTC. Review, identity resolution, proposal, implementation and local checks through 11:50:10 UTC took 15m40s observed elapsed, with no user-response wait. Report/commit/hosted acceptance time will be recorded separately. This is observed wall-clock task time, not sampled CPU time or a future throughput estimate.
 
 STOP after push and green Windows/Ubuntu Source/ManaEngine CI. Do not implement another root or start training/search before the next explicit user instruction.
+
+## Hosted acceptance
+
+Implementation commit d01ffde3c292e3fa03322bf35126875e28c20269: [Source CI](https://github.com/MaksimOrekhov/manamind/actions/runs/37200195427) green on Windows and Ubuntu, both reproduced all 36 outputs and actually ran 88 Python tests (7.22s Windows / 10.93s Ubuntu). [ManaEngine CI](https://github.com/MaksimOrekhov/manamind/actions/runs/37200195447) green on both OSes: fresh Release build, native CTest (1.95s Windows / 0.82s Ubuntu) and all 43 adapter/policy tests (19.37s / 14.03s).
+
+SPELLWEAVER_CI_EVIDENCE.json contains actual completed job steps, fetched log excerpts and computed source identities. Acceptance was observed at 2026-10-04 11:57:30 UTC. Report, identity recheck, commit/push and hosted acceptance added 7m20s after the local interval; total through hosted implementation acceptance is 23m00s observed elapsed, including CI wait. Final evidence-only commit changes no engine/adapter/test source; its workflows are checked again before stopping.
