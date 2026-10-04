@@ -222,7 +222,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     return result
 
 
-def _export_state(raw: dict[str, Any]) -> GameState:
+def _export_state(raw: dict[str, Any], evidence_constraints: Sequence[str] = ()) -> GameState:
     """Adapt engine observations to the shared domain schema and catalog metadata."""
     def enrich(row: dict[str, Any], *, in_hand: bool = False) -> None:
         base = _CARD_METADATA.get(str(row.get("card_id", "")))
@@ -262,7 +262,24 @@ def _export_state(raw: dict[str, Any]) -> GameState:
         enrich(card, in_hand=True)
     for option in raw.get("pending_choice_options", ()):
         enrich(option, in_hand=True)
+    raw["evidence_constraints"] = list(evidence_constraints)
     return game_state_from_dict(raw)
+
+
+def require_canonical_training_admission(
+    evidence_constraints: Sequence[str], *, global_gate_blocked: bool
+) -> None:
+    """Apply evidence debt and global admission as independent gates."""
+    if evidence_constraints:
+        raise UnsupportedSimulationError(
+            "Canonical training admission blocked by evidence constraints: "
+            + ", ".join(sorted(set(evidence_constraints)))
+        )
+    if global_gate_blocked:
+        raise UnsupportedSimulationError(
+            "ManaEngine training admission is blocked: complete backend-specific dependency, "
+            "dynamic outcome, session and match evidence is required for the selected environment"
+        )
 
 
 class ManaEngineSession:
@@ -293,7 +310,7 @@ class ManaEngineSession:
     def observation(self, perspective: str = "ACTIVE") -> GameState:
         if perspective not in {"ACTIVE", "PLAYER1", "PLAYER2"}:
             raise ValueError("perspective must be ACTIVE, PLAYER1, or PLAYER2")
-        return _export_state(dict(self._native.observation(perspective)))
+        return _export_state(dict(self._native.observation(perspective)), self.evidence_constraints)
 
     def legal_actions(self) -> tuple[dict[str, Any], ...]:
         state = self.observation()
@@ -324,7 +341,7 @@ class ManaEngineSession:
             raw = self._native.apply_action(dict(action))
         except self._unsupported_exception as exc:
             raise UnsupportedSimulationError(str(exc)) from exc
-        return _export_state(dict(raw))
+        return _export_state(dict(raw), self.evidence_constraints)
 
     def clone(self) -> "ManaEngineSession":
         duplicate = object.__new__(ManaEngineSession)
@@ -337,11 +354,15 @@ class ManaEngineSession:
         """No backend-specific complete closure/session evidence producer exists yet."""
         return False
 
+    @property
+    def evidence_constraints(self) -> tuple[str, ...]:
+        """Sorted session-level evidence debt, separate from player-visible features."""
+        return tuple(sorted(self._native.evidence_constraints))
+
     def require_training_admission(self) -> None:
         """Fail before collecting episodes, rather than filtering unsupported outcomes."""
-        raise UnsupportedSimulationError(
-            "ManaEngine training admission is blocked: complete backend-specific dependency, "
-            "dynamic outcome, session and match evidence is required for the selected environment"
+        require_canonical_training_admission(
+            self.evidence_constraints, global_gate_blocked=True
         )
 
     def set_diagnostic_trace(self, enabled: bool) -> None:

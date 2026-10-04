@@ -5,6 +5,7 @@
 #include <memory>
 #include <optional>
 #include <random>
+#include <set>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
@@ -27,6 +28,8 @@ enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
 enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
 enum class DarkGiftRuntimeMembershipStatus { Unresolved };
 enum class DarkGiftSamplerStatus { Unverified };
+enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved };
+const char* evidence_constraint_id(EvidenceConstraint constraint);
 struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
 struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };
 struct PoolManifest {
@@ -99,6 +102,7 @@ private:
     std::shared_ptr<const std::unordered_map<std::string,PoolManifest>> pools_;
     std::shared_ptr<const std::unordered_map<std::string,DarkGiftOptionManifest>> dark_gift_manifests_;
     friend class GameSession;
+    friend struct TestAccess;
 };
 enum class ActionType { PlayCard, Attack, HeroPower, EndTurn, ChooseCard, PrepareCard };
 struct Action {
@@ -173,6 +177,7 @@ public:
     void validate_invariants() const;
     bool is_valid() const;
     std::optional<std::string> unsupported_outcome() const;
+    const std::set<EvidenceConstraint>& evidence_constraints() const;
     std::optional<std::string> result() const;
     bool needs_choice() const;
     std::vector<int> choice_options() const;
@@ -234,7 +239,8 @@ private:
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;
-      std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result,unsupported; };
+      std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result,unsupported;
+      std::set<EvidenceConstraint> evidence_constraints; };
     struct DamageOccurrence {
       int damage_source_entity_id=-1, damaged_entity_id=-1, damaged_controller=-1;
       DamageKind damage_kind=DamageKind::Effect; DamageAttribution attribution=DamageAttribution::None;
@@ -272,6 +278,7 @@ private:
     void resolve_end_turn_reactions(int owner);
     int resolve_effects(const CardDefinition& def,const SpellEffectContext& context,int target_id);
     void begin_discover(int owner,const CardDefinition& source);
+    [[noreturn]] void reject_unsupported(std::string reason);
     bool dark_gift_eligible(const CardDefinition& minion,const CardDefinition& gift) const;
     void apply_dark_gift(CardInstance& instance,const std::string& gift_id);
     void project_modifiers(CardInstance& instance,const CardDefinition& definition) const;

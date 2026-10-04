@@ -27,7 +27,7 @@ POLICY_STATE_FEATURE_NAMES = (
     "self_hand_prepare_locked_count", "self_hand_prepare_known_count",
 )
 
-POLICY_ACTION_SCHEMA_VERSION = 2
+POLICY_ACTION_SCHEMA_VERSION = 3
 
 ACTION_FEATURE_NAMES = (
     "play_card", "attack", "hero_power", "end_turn",
@@ -38,7 +38,8 @@ ACTION_FEATURE_NAMES = (
     "target_board_position", "target_taunt", "choose_card", "hand_index",
     "activate_location", "trade_card", "choose_one_a", "choose_one_b",
     "choice_index",
-    *(f"dark_gift_{gift_id}" for gift_id in range(1, 11)),
+    *(f"play_dark_gift_{gift_id}" for gift_id in range(1, 11)),
+    *(f"choice_dark_gift_{gift_id}" for gift_id in range(1, 11)),
     "shatter_left", "shatter_right", "shatter_solo", "shatter_partner_relative_position",
     "prepare_card",
     "card_spell_damage", "choice_card_cost",
@@ -129,18 +130,23 @@ def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
             feature = "choose_one_a" if choose_one == 1 else "choose_one_b"
             rows[row, ACTION_FEATURE_NAMES.index(feature)] = 1.0
 
-        dark_gift_id = int(action.get("dark_gift_id", 0) or 0)
-        if 1 <= dark_gift_id <= 10:
-            rows[row, ACTION_FEATURE_NAMES.index(f"dark_gift_{dark_gift_id}")] = 1.0
-
-        gifts = list(action.get("card_dark_gifts") or ())
-        if action.get("choice_dark_gift"):
-            gifts.append(str(action["choice_dark_gift"]))
-        for gift in gifts:
-            if gift not in DARK_GIFT_POLICY_INDEX:
-                raise ValueError(f"Unreviewed Dark Gift identity: {gift}")
-            rows[row, ACTION_FEATURE_NAMES.index(f"dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] = 1.0
-
+        if action_type == "CHOOSE_CARD":
+            dark_gift_id = int(action.get("dark_gift_id", 0) or 0)
+            if 1 <= dark_gift_id <= 10:
+                rows[row, ACTION_FEATURE_NAMES.index(f"choice_dark_gift_{dark_gift_id}")] = 1.0
+            choice_gifts = [str(action["choice_dark_gift"])] if action.get("choice_dark_gift") else []
+            for gift in choice_gifts:
+                if gift not in DARK_GIFT_POLICY_INDEX:
+                    raise ValueError(f"Unreviewed Dark Gift identity: {gift}")
+                index = DARK_GIFT_POLICY_INDEX[gift]
+                rows[row, ACTION_FEATURE_NAMES.index(f"choice_dark_gift_{index}")] = 1.0
+        elif action_type == "PLAY_CARD":
+            gifts = list(action.get("card_dark_gifts") or ())
+            for gift in gifts:
+                if gift not in DARK_GIFT_POLICY_INDEX:
+                    raise ValueError(f"Unreviewed Dark Gift identity: {gift}")
+                index = DARK_GIFT_POLICY_INDEX[gift]
+                rows[row, ACTION_FEATURE_NAMES.index(f"play_dark_gift_{index}")] = 1.0
         card_type = action.get("card_type", "OTHER")
         card_type_index = _CARD_TYPES.get(card_type, _CARD_TYPES["OTHER"])
         rows[row, 4 + card_type_index] = 1.0
@@ -211,7 +217,7 @@ def encode_hand_card_ids(state: GameState, encoder: StateEncoder) -> np.ndarray:
 def load_policy_weights(policy: PolicyNetwork, payload: dict[str, Any]) -> bool:
     """Load compatible policy weights; return whether a schema migration occurred."""
     version = payload.get("policy_action_schema_version")
-    if version is not None and version not in (1, POLICY_ACTION_SCHEMA_VERSION):
+    if version is not None and version not in (1, 2, POLICY_ACTION_SCHEMA_VERSION):
         raise ValueError("Unsupported policy action schema version")
     feature_names = payload.get("action_feature_names")
     state = payload.get("policy_state_dict")
@@ -224,6 +230,13 @@ def load_policy_weights(policy: PolicyNetwork, payload: dict[str, Any]) -> bool:
         return False
 
     state_names = payload.get("state_feature_names")
+    # Version 2 had one `dark_gift_N` family. Rosetta used it for CHOOSE;
+    # map that reviewed meaning to CHOICE and leave new PLAY columns zero.
+    if version == 2 and isinstance(feature_names, list):
+        feature_names = [
+            f"choice_{name}" if name.startswith("dark_gift_") else name
+            for name in feature_names
+        ]
     if (
         not isinstance(feature_names, list)
         or len(set(feature_names)) != len(feature_names)

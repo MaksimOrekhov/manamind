@@ -4,6 +4,11 @@ from typing import Literal
 from .card import CardFeatures
 from .entity import BoardEntity, LocationEntity
 
+EVIDENCE_CONSTRAINT_IDS = frozenset({
+    "DARK_GIFT_SAMPLER_UNVERIFIED",
+    "DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED",
+})
+
 MINION_HISTORY_TYPES = (
     "BEAST", "DEMON", "DRAENEI", "DRAGON", "ELEMENTAL", "MECHANICAL",
     "MURLOC", "NAGA", "PIRATE", "QUILBOAR", "TOTEM", "UNDEAD",
@@ -71,10 +76,17 @@ class GameState:
     opponent_known_cards: tuple[CardFeatures, ...] = field(default_factory=tuple)
     pending_choice_owner: Literal["SELF", "OPPONENT"] | None = None
     pending_choice_options: tuple[CardFeatures, ...] = field(default_factory=tuple)
+    evidence_constraints: tuple[str, ...] = field(default_factory=tuple)
 
     def __post_init__(self) -> None:
         if self.turn_number < 0:
             raise ValueError("turn_number cannot be negative")
+        if isinstance(self.evidence_constraints, str):
+            raise ValueError("evidence_constraints must be a collection of known constraint IDs")
+        unknown_constraints = set(self.evidence_constraints) - EVIDENCE_CONSTRAINT_IDS
+        if unknown_constraints:
+            raise ValueError(f"Unknown evidence constraints: {sorted(unknown_constraints)}")
+        object.__setattr__(self, "evidence_constraints", tuple(sorted(set(self.evidence_constraints))))
         if self.pending_choice_owner not in (None, "SELF", "OPPONENT"):
             raise ValueError("Invalid pending choice owner")
         if self.pending_choice_options and self.pending_choice_owner != "SELF":

@@ -5,11 +5,35 @@ from typing import Any
 from manamind.domain.card import CardFeatures
 from manamind.domain.entity import BoardEntity, LocationEntity
 from manamind.domain.game_state import GameState, PlayerObservation
+from manamind.domain.dark_gift import DARK_GIFT_OPTION_IDS, DARK_GIFT_POLICY_INDEX
 
 
 def _card(data: dict[str, Any] | None) -> CardFeatures | None:
     if data is None:
         return None
+    raw_gifts = data.get("dark_gifts")
+    if raw_gifts is None and data.get("dark_gift_id") not in (None, 0, "", False):
+        gift_value = data["dark_gift_id"]
+        if isinstance(gift_value, int):
+            by_index = {index: gift for gift, index in DARK_GIFT_POLICY_INDEX.items()}
+            if gift_value not in by_index:
+                raise ValueError(f"Unknown Dark Gift policy index: {gift_value}")
+            raw_gifts = (by_index[gift_value],)
+        else:
+            raw_gifts = (str(gift_value),)
+    elif raw_gifts is not None and data.get("dark_gift_id") not in (None, 0, "", False):
+        gift_value = data["dark_gift_id"]
+        if isinstance(gift_value, int):
+            by_index = {index: gift for gift, index in DARK_GIFT_POLICY_INDEX.items()}
+            if gift_value not in by_index or by_index[gift_value] not in raw_gifts:
+                raise ValueError("dark_gift_id conflicts with dark_gifts")
+        elif str(gift_value) not in raw_gifts:
+            raise ValueError("dark_gift_id conflicts with dark_gifts")
+    if raw_gifts is not None:
+        raw_gifts = tuple(str(item) for item in raw_gifts)
+        unknown_gifts = set(raw_gifts) - set(DARK_GIFT_OPTION_IDS)
+        if unknown_gifts:
+            raise ValueError(f"Unreviewed Dark Gift identity: {sorted(unknown_gifts)}")
     return CardFeatures(
         card_id=str(data.get("card_id", data.get("id", "UNKNOWN_CARD"))),
         cost=data.get("cost"),
@@ -38,7 +62,7 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
             and int(data["shatter_partner_hand_position"]) >= 0 else None
         ),
         prepare_locked=(bool(data["prepare_locked"]) if data.get("prepare_locked") is not None else None),
-        dark_gifts=(tuple(str(item) for item in data["dark_gifts"]) if data.get("dark_gifts") is not None else None),
+        dark_gifts=raw_gifts,
     )
 
 
@@ -143,4 +167,5 @@ def game_state_from_dict(data: dict[str, Any]) -> GameState:
         opponent_known_cards=opponent_known_cards,
         pending_choice_owner=data.get("pending_choice_owner"),
         pending_choice_options=tuple(_card(item) for item in data.get("pending_choice_options", ())),
+        evidence_constraints=tuple(data.get("evidence_constraints", ())),
     )

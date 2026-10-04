@@ -179,7 +179,7 @@ def test_policy_encodes_card_identity_and_hand_position():
         "dark_gift_id": 8,
     }])
     gift_features = [
-        gift_action[0, ACTION_FEATURE_NAMES.index(f"dark_gift_{gift_id}")]
+        gift_action[0, ACTION_FEATURE_NAMES.index(f"choice_dark_gift_{gift_id}")]
         for gift_id in range(1, 11)
     ]
     assert gift_features == [0.0] * 7 + [1.0, 0.0, 0.0]
@@ -265,6 +265,8 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
         "shatter_left", "shatter_right", "shatter_solo",
         "shatter_partner_relative_position", "prepare_card",
         "card_spell_damage", "choice_card_cost", "card_spell_damage_known", "choice_card_cost_known",
+        *(f"play_dark_gift_{i}" for i in range(1, 11)),
+        *(f"choice_dark_gift_{i}" for i in range(1, 11)),
     }
     old_state_names = [name for name in POLICY_STATE_FEATURE_NAMES if name not in new_state_features]
     old_names = [name for name in ACTION_FEATURE_NAMES if name not in new_action_features]

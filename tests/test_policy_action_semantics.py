@@ -53,7 +53,9 @@ def test_prepare_shatter_choice_targeting_and_current_cost_remain_distinct():
 
 
 def test_policy_schema_migration_zero_initializes_only_new_features():
-    new_features = {"card_spell_damage", "choice_card_cost", "card_spell_damage_known", "choice_card_cost_known"}
+    new_features = {"card_spell_damage", "choice_card_cost", "card_spell_damage_known", "choice_card_cost_known",
+                    *(f"play_dark_gift_{i}" for i in range(1, 11)),
+                    *(f"choice_dark_gift_{i}" for i in range(1, 11))}
     old_features = [name for name in ACTION_FEATURE_NAMES if name not in new_features]
     policy = PolicyNetwork(card_count=2)
     old_state = {key: value.clone() for key, value in policy.state_dict().items()}
@@ -70,3 +72,43 @@ def test_policy_schema_migration_zero_initializes_only_new_features():
     payload["policy_action_schema_version"] = POLICY_ACTION_SCHEMA_VERSION + 1
     with pytest.raises(ValueError, match="schema version"):
         load_policy_weights(policy, payload)
+
+
+def test_schema_v2_dark_gift_checkpoint_migrates_old_columns_as_choice_only():
+    policy = PolicyNetwork(card_count=2)
+    state = {key: value.clone() for key, value in policy.state_dict().items()}
+    typed_gifts = {*(f"play_dark_gift_{i}" for i in range(1, 11)),
+                   *(f"choice_dark_gift_{i}" for i in range(1, 11))}
+    old_names = [name for name in ACTION_FEATURE_NAMES if name not in typed_gifts]
+    insert_at = old_names.index("choice_index") + 1
+    old_names[insert_at:insert_at] = [f"dark_gift_{i}" for i in range(1, 11)]
+    old_weight = torch.zeros((128, len(POLICY_STATE_FEATURE_NAMES) + len(old_names)))
+    for index, name in enumerate(old_names):
+        old_weight[:, len(POLICY_STATE_FEATURE_NAMES) + index] = index + 1
+    state["scorer.0.weight"] = old_weight
+    payload = {"policy_state_dict": state,
+               "state_feature_names": list(POLICY_STATE_FEATURE_NAMES),
+               "action_feature_names": old_names,
+               "policy_action_schema_version": 2}
+
+    assert load_policy_weights(policy, payload)
+    weight = policy.scorer[0].weight
+    for gift_id in range(1, 11):
+        old_column = old_names.index(f"dark_gift_{gift_id}")
+        choice_column = len(POLICY_STATE_FEATURE_NAMES) + ACTION_FEATURE_NAMES.index(f"choice_dark_gift_{gift_id}")
+        play_column = len(POLICY_STATE_FEATURE_NAMES) + ACTION_FEATURE_NAMES.index(f"play_dark_gift_{gift_id}")
+        assert torch.all(weight[:, choice_column] == old_column + 1)
+        assert torch.count_nonzero(weight[:, play_column]) == 0
+
+
+def test_play_and_choice_dark_gifts_have_distinct_policy_semantics():
+    rows = encode_legal_actions([
+        {"type": "PLAY_CARD", "card_type": "MINION", "card_dark_gifts": ["EDR_100t9"]},
+        {"type": "CHOOSE_CARD", "choice_dark_gift": "EDR_100t9"},
+        {"type": "CHOOSE_CARD", "dark_gift_id": 8},
+    ])
+    play = ACTION_FEATURE_NAMES.index("play_dark_gift_8")
+    choice = ACTION_FEATURE_NAMES.index("choice_dark_gift_8")
+    assert rows[0, play] == 1.0 and rows[0, choice] == 0.0
+    assert rows[1, play] == 0.0 and rows[1, choice] == 1.0
+    assert np.array_equal(rows[1], rows[2])

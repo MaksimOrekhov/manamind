@@ -968,7 +968,84 @@ def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -
     actions = [{"type": "PLAY_CARD", "card_dark_gifts": [gift]} for gift in DARK_GIFT_OPTION_IDS]
     rows = encode_legal_actions(actions)
     for index, gift in enumerate(DARK_GIFT_OPTION_IDS):
-        assert rows[index, ACTION_FEATURE_NAMES.index(f"dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] == 1
+        assert rows[index, ACTION_FEATURE_NAMES.index(f"play_dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] == 1
+    rosetta_choice = encode_legal_actions([{"type": "CHOOSE_CARD", "dark_gift_id": 8}])
+    manaengine_choice = encode_legal_actions([{"type": "CHOOSE_CARD", "choice_dark_gift": "EDR_100t9"}])
+    assert (rosetta_choice == manaengine_choice).all()
     assert len({tuple(row) for row in rows}) == len(DARK_GIFT_OPTION_IDS)
     with pytest.raises(ValueError, match="Unreviewed Dark Gift identity"):
         encode_legal_actions([{"type": "PLAY_CARD", "card_dark_gifts": ["UNKNOWN_GIFT"]}])
+
+
+def test_rosettastone_singular_gift_observation_normalizes_to_canonical_domain_shape() -> None:
+    from dataclasses import asdict
+
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding.entity_encoder import NUMERIC_FEATURES
+    from manamind.encoding.state_encoder import StateEncoder
+    from manamind.cards import CardCatalog
+
+    def observed(card):
+        return game_state_from_dict({
+            "turn_number": 1, "active_player": "SELF",
+            "self_player": {"hero_health": 30, "hand_size": 1},
+            "opponent": {"hero_health": 30}, "self_hand": [card],
+        })
+
+    rosetta = observed({"card_id": "EX1_116", "dark_gift_id": 8})
+    manaengine = observed({"card_id": "EX1_116", "dark_gifts": ["EDR_100t9"]})
+    assert rosetta.self_hand[0].dark_gifts == manaengine.self_hand[0].dark_gifts == ("EDR_100t9",)
+    assert game_state_from_dict(asdict(rosetta)) == rosetta
+    encoder = StateEncoder(CardCatalog([]))
+    left = encoder.encode(rosetta).self_hand
+    right = encoder.encode(manaengine).self_hand
+    index = NUMERIC_FEATURES.index("dark_gift_EDR_100t9")
+    assert left.numeric[0, index] == right.numeric[0, index] > 0
+    assert (left.numeric == right.numeric).all()
+    assert (left.numeric_present == right.numeric_present).all()
+
+
+def test_dark_gift_evidence_debt_is_session_scoped_cloned_serialized_and_admission_blocking() -> None:
+    from dataclasses import asdict, replace
+
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+    from manamind.integrations.manaengine.engine import require_canonical_training_admission
+
+    filler = "CORE_EX1_145"
+    session = ManaEngineSession(["FIR_900", *([filler] * 29)], [filler] * 30,
+                                player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    clean_branch = session.clone()
+    state = session.observation()
+    for _ in range(14):
+        actions = session.legal_actions()
+        offer = next((action for action in actions if action.get("card_id") == "FIR_900"), None)
+        if offer is not None:
+            state = session.apply_action(offer)
+            break
+        state = session.apply_action(next(action for action in actions if action["type"] == "END_TURN"))
+    else:
+        pytest.fail("FIR_900 did not become playable during the bounded fixture progression")
+
+    expected = tuple(sorted(("DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED", "DARK_GIFT_SAMPLER_UNVERIFIED")))
+    assert session.is_valid and not session.training_eligible
+    assert session.evidence_constraints == expected
+    assert state.evidence_constraints == expected
+    assert clean_branch.evidence_constraints == ()
+    assert session.clone().evidence_constraints == expected
+    assert game_state_from_dict(asdict(state)).evidence_constraints == expected
+
+    with pytest.raises(UnsupportedSimulationError, match="DARK_GIFT_"):
+        session.require_training_admission()
+    require_canonical_training_admission((), global_gate_blocked=False)
+    with pytest.raises(UnsupportedSimulationError, match="DARK_GIFT_SAMPLER_UNVERIFIED"):
+        require_canonical_training_admission(expected, global_gate_blocked=False)
+
+    encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+    without_debt = replace(state, evidence_constraints=())
+    assert (encoder.encode(state).global_features == encoder.encode(without_debt).global_features).all()
+    invalid = asdict(state)
+    invalid["evidence_constraints"] = ["UNRECOGNIZED_CONSTRAINT"]
+    with pytest.raises(ValueError, match="Unknown evidence constraints"):
+        game_state_from_dict(invalid)
