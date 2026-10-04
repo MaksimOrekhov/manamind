@@ -20,6 +20,7 @@ class PlayerObservation:
     hand_size: int = 0
     fatigue: int = 0
     secret_count: int = 0
+    spell_damage: int = 0
     known_secrets: tuple[CardFeatures, ...] = field(default_factory=tuple)
     hero_power_ready: bool | None = None
     hero_frozen: bool | None = None
@@ -33,7 +34,7 @@ class PlayerObservation:
     def __post_init__(self) -> None:
         for name in (
             "hero_health", "armor", "hero_attack", "max_mana", "available_mana",
-            "overloaded_mana", "pending_overload", "deck_size", "hand_size", "fatigue", "secret_count",
+            "overloaded_mana", "pending_overload", "deck_size", "hand_size", "fatigue", "secret_count", "spell_damage",
         ):
             if getattr(self, name) < 0:
                 raise ValueError(f"{name} cannot be negative")

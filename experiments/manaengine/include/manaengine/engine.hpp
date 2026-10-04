@@ -25,6 +25,7 @@ struct CardDefinition {
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
+    int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
 };
@@ -69,7 +70,7 @@ struct ObservedCard {
 struct ObservedPlayer {
     std::string player_class;
     int hero_health=30, armor=0, hero_attack=0, max_mana=0, available_mana=0;
-    int deck_size=0, hand_size=0, fatigue=0, secret_count=0;
+    int deck_size=0, hand_size=0, fatigue=0, secret_count=0, spell_damage=0;
     std::vector<std::string> known_secrets;
     bool hero_power_ready=false, hero_frozen=false;
     std::optional<ObservedCard> hero_power;
@@ -111,7 +112,7 @@ private:
     enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, Discover, DestroyEnemyWeapon,
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
-      EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets,
+      EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets, SpellDamageAura, DeathrattleDraw,
       EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction };
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
     enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity };
@@ -158,6 +159,7 @@ private:
     static SecretEffect secret_effect_of(const CardDefinition& card);
     const CardDefinition& card(const std::string& id) const;
     int effective_cost(int owner,const HandCard& item) const;
+    int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
@@ -167,7 +169,7 @@ private:
     void activate_secret(CardInstance secret);
     void assign_activation_sequence(CardInstance& source);
     void resolve_end_turn_reactions(int owner);
-    void resolve_effects(const CardDefinition& def,int owner,int target_id);
+    void resolve_effects(const CardDefinition& def,int owner,int target_id,int spell_damage=0);
     void begin_discover(int owner,const CardDefinition& source);
     void update_held_card_spell_progress(int owner);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);

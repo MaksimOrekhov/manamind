@@ -91,6 +91,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         hand_size=int(data.get("hand_size", 0)),
         fatigue=int(data.get("fatigue", 0)),
         secret_count=int(data.get("secret_count", 0)),
+        spell_damage=int(data.get("spell_damage", 0)),
         known_secrets=tuple(
             card for item in data.get("known_secrets", ())
             if (card := _card(item if isinstance(item, dict) else {"card_id": item})) is not None

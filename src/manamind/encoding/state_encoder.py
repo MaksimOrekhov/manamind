@@ -21,6 +21,7 @@ PLAYER_NUMERIC_FEATURE_NAMES = (
     "hand_size",
     "fatigue",
     "secret_count",
+    "spell_damage",
     "hero_power_ready",
     "hero_divine_shield",
     "hero_frozen",
@@ -36,7 +37,7 @@ GLOBAL_FEATURE_NAMES = (
     *(f"opponent_{name}" for name in PLAYER_NUMERIC_FEATURE_NAMES),
     "opponent_known_cards_count",
 )
-STATE_ENCODING_SCHEMA_VERSION = 11
+STATE_ENCODING_SCHEMA_VERSION = 12
 
 
 @dataclass(frozen=True, slots=True)
@@ -72,6 +73,7 @@ def _encode_player_features(player: PlayerObservation) -> list[float]:
         player.hand_size,
         player.fatigue,
         player.secret_count,
+        player.spell_damage,
         0 if player.hero_power_ready is None else (1 if player.hero_power_ready else -1),
         0 if player.hero_divine_shield is None else (1 if player.hero_divine_shield else -1),
         0 if player.hero_frozen is None else (1 if player.hero_frozen else -1),

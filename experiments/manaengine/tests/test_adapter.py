@@ -331,11 +331,12 @@ def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
     raw = {
         "turn_number": 4,
         "active_player": "SELF",
-        "self_player": {"hero_health": 30, "secret_count": 1, "known_secrets": ["CORE_EX1_287"]},
-        "opponent": {"hero_health": 30, "secret_count": 1, "known_secrets": []},
+        "self_player": {"hero_health": 30, "secret_count": 1, "spell_damage": 2, "known_secrets": ["CORE_EX1_287"]},
+        "opponent": {"hero_health": 30, "secret_count": 1, "spell_damage": 0, "known_secrets": []},
     }
     state = _export_state(raw)
     assert state.self_player.known_secrets[0].card_id == "CORE_EX1_287"
+    assert state.self_player.spell_damage == 2
     assert state.opponent.secret_count == 1
     assert state.opponent.known_secrets == ()
 
@@ -348,3 +349,22 @@ def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
     raw["opponent"]["known_secrets"] = ["CORE_EX1_287"]
     with pytest.raises(ValueError, match="Secret identities must remain hidden"):
         game_state_from_dict(raw)
+
+
+def test_manaengine_exports_current_spell_damage() -> None:
+    deck = ["CORE_EX1_012", *("CORE_EX1_145" for _ in range(29))]
+    session = ManaEngineSession(
+        deck,
+        deck,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+        random_seed=61,
+    )
+    for _ in range(2):
+        end_turn = next(action for action in session.legal_actions() if action["type"] == "END_TURN")
+        session.apply_action(end_turn)
+    bloodmage = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_EX1_012")
+    state = session.apply_action(bloodmage)
+    assert state.self_player.spell_damage == 1
+    assert state.opponent.spell_damage == 0

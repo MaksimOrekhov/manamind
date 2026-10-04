@@ -51,7 +51,7 @@ def test_encoder_keeps_unknown_card_properties_and_excludes_hidden_hand():
     encoder = StateEncoder(_sample_catalog())
     encoded = encoder.encode(_sample_state())
 
-    assert encoded.global_features.shape == (34,)
+    assert encoded.global_features.shape == (36,)
     assert encoded.self_hand.card_ids.tolist() == [4, 1]
     assert encoded.self_hand.numeric[1, 0] > 0
     assert encoded.opponent_known_cards.size == 0
