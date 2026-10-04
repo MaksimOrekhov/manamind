@@ -4,7 +4,7 @@ Package: `prototype_correctness_hardening_v1`.
 Baseline: ManaMind `a62ff5fb2f7d48498aea7e913a46ab24ad723286`.
 Branch: `codex/manaengine-first-deck`.
 RosettaStone pinned and unchanged: `f34da0d3fcb5ad312f7e2acf634d0536b044d29a`.
-Active work start: 2026-10-04 09:04:32 UTC. Local verification completed approximately 10:01 UTC; hosted acceptance still pending at this commit. Final observed elapsed/CI links will be appended after hosted checks.
+Active work start: 2026-10-04 09:04:32 UTC. Implementation/report commit `ba5616541deed434882f7d6afbb0fb84b9d4cb10` at 10:05:00 UTC: 60 minutes 28 seconds observed elapsed, including authoring/review/debug/build/tests. Hosted results and logs confirmed at 10:08:03 UTC: 63 minutes 31 seconds through first acceptance, including about three minutes of hosted acceptance wait. No user-response waiting or card expansion occurred. These are observed elapsed intervals, not sampled CPU time or separate authoring-hour estimates.
 
 ## Repairs
 
@@ -22,17 +22,19 @@ Public observation schema is 14, with progress, trigger availability, discounts,
 
 | Check | Observed result |
 |---|---|
-| Windows Release native suite | PASS, 30 scenario groups / 537 assertions |
+| Windows local Debug native suite | PASS, 30 scenario groups / 537 assertions; CTest 1/1, 44.57 seconds |
 | Python adapter + pipeline | PASS, 36 tests, 30.94 seconds |
 | Full repository Python suite | PASS, 84 tests, 11.68 seconds |
 | Ruff src/tests/scripts/adapter tests | PASS |
 | Generic card-ID AST guard | PASS, 201 existing reviewed exceptions |
 | Pinned regeneration | PASS, 36 outputs reproduced on repeated run |
 | git diff whitespace check | PASS |
-| Source CI Win/Ubuntu | Await hosted results |
-| ManaEngine CI Win/Ubuntu | Await hosted results |
+| Source CI Win/Ubuntu | PASS on ba56165; real pytest 84/84, Windows 7.37s / Ubuntu 11.19s |
+| ManaEngine CI Win/Ubuntu | PASS on ba56165; Release CTest 1/1 and adapter/schema 36/36 on both |
 
-Native build: fresh `%TEMP%/ManaEngineCorrectnessBuild`, MSVC/Ninja Release core and Python bridge built together; the adapter loaded its `python` module directory. Nine local incremental build invocations including initial configure/build; one compile failure and five assertion-fixture correction cycles. Old assertions for Drain Soul targeting, Lifesteal overkill, no-target Secrets and Shatter propagation were reviewed independently rather than preserved as rules truth.
+Native build: fresh `%TEMP%/ManaEngineCorrectnessBuild`, MSVC/Ninja Debug core and Python bridge built together; the adapter loaded its `python` module directory. The cache/build.ninja was inspected directly: `ctest -C Release` does not change a single-config Ninja Debug build. Hosted builds independently use Release on both OSes. Nine local incremental build invocations including initial configure/build; one compile failure and five assertion-fixture correction cycles. Old assertions for Drain Soul targeting, Lifesteal overkill, no-target Secrets and Shatter propagation were reviewed independently rather than preserved as rules truth.
+
+Hosted [Source run 37194189875](https://github.com/MaksimOrekhov/manamind/actions/runs/37194189875) passed regeneration, empty Git diff and actual full pytest on both operating systems. Hosted [ManaEngine run 37194189890](https://github.com/MaksimOrekhov/manamind/actions/runs/37194189890) passed Release CTest (Windows 1.30s / Ubuntu 1.08s) and adapter/schema tests (Windows 12.66s / Ubuntu 17.94s). Actual fetched job statuses and selected log lines are archived in `CORRECTNESS_CI_EVIDENCE.json`. They certify the implementation commit, not full card rules or training admission.
 
 ## Honest registry delta
 
@@ -46,4 +48,4 @@ Root membership remains 1185; registered routes, dependency graph and closure un
 
 [CORRECTNESS_RULES_AUDIT.md](CORRECTNESS_RULES_AUDIT.md) records the independent sources, exact prototype contracts and every unresolved rules question. CATA_489, JAIL_321, CATA_487 and several Secret interactions are not fully verified. Water Elemental and Viper are unsupported. No actual Tricky Burn Mage deck reaches DECK_READY; broad dynamic pool/session requirements remain open.
 
-Verdict after local repairs: `SAFE_AFTER_FIXES` for the narrow experimental prototype, pending hosted checks. This does not certify full Hearthstone rules, training, search or production migration. STOP after hosted acceptance and report/push; the next deck-closure step requires a separate review checkpoint.
+Verdict: `SAFE_AFTER_FIXES` for the narrow experimental prototype, with hosted checks passed. This does not certify full Hearthstone rules, training, search or production migration. STOP after report/push; the next deck-closure step requires a separate review checkpoint. The final report-only commit is checked by both workflows again; it does not change the verified engine/schema tree.
