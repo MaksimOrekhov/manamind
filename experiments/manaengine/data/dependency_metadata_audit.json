@@ -209,6 +209,26 @@
       "spellSchool": "FIRE",
       "text": "Deal $2 damage to\na minion.",
       "type": "SPELL"
+    },
+    {
+      "artist": "Matt Dixon",
+      "attack": 1,
+      "cardClass": "HUNTER",
+      "cost": 1,
+      "dbfId": 63459,
+      "health": 1,
+      "id": "BAR_035t",
+      "mechanics": [
+        "RUSH"
+      ],
+      "name": "Swift Hyena",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "THE_BARRENS",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
     }
   ]
 }

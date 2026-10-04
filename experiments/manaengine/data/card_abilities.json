@@ -128,6 +128,58 @@
       "damage": 6,
       "reviewed_rules_text": "Deal $6 damage."
     },
+    "CORE_DS1_185": {
+      "ability": "TARGET_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 2,
+      "reviewed_rules_text": "Deal $2 damage."
+    },
+    "CORE_CS1_130": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_MINION",
+          "amount": 3
+        }
+      ],
+      "reviewed_rules_text": "Deal $3 damage to a minion."
+    },
+    "CORE_CS2_032": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 5
+        }
+      ],
+      "reviewed_rules_text": "Deal $5 damage to all enemy minions."
+    },
+    "CORE_BAR_801": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 1
+        },
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 1,
+          "summon_card": "BAR_035t"
+        }
+      ],
+      "reviewed_rules_text": "Deal $1 damage. Summon a 1/1 Hyena with Rush."
+    },
+    "BAR_035t": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
+    },
     "CORE_BAR_812": {
       "ability": "SECRET",
       "support_state": "SUPPORTED",

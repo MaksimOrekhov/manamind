@@ -98,6 +98,43 @@ def test_sleet_dynamic_damage_boundary_real_actions_and_clone() -> None:
     assert not session.training_eligible
 
 
+def test_safe_existing_primitive_harvest_declarations_reach_adapter_and_policy() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows, _load_native
+
+    definitions = {row.card_id: row for row in _definition_rows()}
+    expected = {
+        "CORE_DS1_185": ("TARGET_DAMAGE", 2),
+        "CORE_CS1_130": ("EFFECT_COMPOSITION", 3),
+        "CORE_CS2_032": ("EFFECT_COMPOSITION", 5),
+        "CORE_BAR_801": ("EFFECT_COMPOSITION", 1),
+    }
+    for card_id, (ability, amount) in expected.items():
+        assert definitions[card_id].support_state == "SUPPORTED"
+        assert definitions[card_id].rules_contract_reviewed is True
+        assert definitions[card_id].ability == ability
+        assert (definitions[card_id].damage if card_id == "CORE_DS1_185" else definitions[card_id].effects[0].amount) == amount
+
+    token = definitions["BAR_035t"]
+    assert token.support_state == "VERIFIED_VANILLA"
+    assert (token.card_type, token.attack, token.health, token.race, token.rush) == ("MINION", 1, 1, "BEAST", True)
+    assert token.required_mechanics == ["RUSH"]
+    _load_native().CardCatalog(list(definitions.values()))
+
+    filler = "CORE_EX1_145"
+    deck = ["CORE_BAR_801", *([filler] * 29)]
+    opponent = [filler] * 30
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    actions = session.legal_actions()
+    assert encode_legal_actions(actions).shape[0] == len(actions)
+    wound_prey = next(action for action in actions if action.get("card_id") == "CORE_BAR_801" and action.get("target_is_hero") and not action.get("target_is_self"))
+    state = session.apply_action(wound_prey)
+    assert state.opponent.hero_health == 29
+    assert len(state.self_player.board) == 1
+    hyena = state.self_player.board[0]
+    assert (hyena.card.card_id, hyena.current_attack, hyena.current_health, hyena.can_attack) == ("BAR_035t", 1, 1, True)
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+
 def test_spellweaver_dynamic_cost_policy_and_exact_fixed_dependency() -> None:
     from manamind.integrations.manaengine.engine import _definition_rows
     from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES
