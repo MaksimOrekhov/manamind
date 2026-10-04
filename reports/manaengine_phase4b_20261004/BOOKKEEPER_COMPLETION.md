@@ -5,7 +5,7 @@ baseline: ManaMind 361fbd0013288de5d4106c65496ea4e2b6e2e6cf; RosettaStone f34da0
 implementation_kind: REUSABLE_CAPABILITY
 rules_review_status: RULES_REVIEWED_FROM_PHASE_MODEL
 support_scope: PARTIAL / experimental ManaEngine; no training admission
-hosted_ci_status: PENDING first implementation push; record actual jobs in BOOKKEEPER_CI_EVIDENCE.json afterward
+hosted_ci_status: PASS on implementation commit a6efe65a93b5df9d6d28308cbbff09574d588ece; actual jobs/logs in BOOKKEEPER_CI_EVIDENCE.json
 
 ## Reviewed contract and consumers
 
@@ -27,7 +27,7 @@ All commands run from the managed manaengine-first-deck worktree. Native Debug c
 - Pinned regeneration: first run explicitly detected the two changed canonical outputs; second run **36 pinned outputs reproduced**. No bypass, manual fingerprint or native evidence promotion.
 - Generic identity guard: **PASS / 201 existing reviewed exceptions**. Ruff and git diff --check pass.
 
-Family cases include previous/current/two-turn-old/no matching type; dual types; clone divergence; summon/transform negatives; 0/6/7 board occupancy and no phantom entity; independent declaration reuse; original Runes death/draw, copy's eventual death/draw; every guarded non-default field; damaged live snapshot; empty filtered deck without fatigue, full-hand burn and unsupported spell staying eligible; simultaneous deaths drawing for the correct controllers. Exact trace assertion places copy creation before Runes. All expected results are reviewed scenario expectations, not generated from declaration text.
+Family cases include previous/current/two-turn-old/no matching type; dual types; clone divergence; summon/transform negatives; 0/6/7 board occupancy and no phantom entity; independent declaration reuse; original Runes death/draw, copy's eventual death/draw; guarded modifier/keyword/link state families; damaged live snapshot; empty filtered deck without fatigue, full-hand burn and unsupported spell staying eligible; simultaneous deaths drawing for the correct controllers. Exact trace assertion places copy creation before Runes. All expected results are reviewed scenario expectations, not generated from declaration text.
 
 ## Schema, canonical freshness and deltas
 
@@ -43,7 +43,9 @@ Shared changes: engine.hpp, engine.cpp, python_bindings.cpp, adapter metadata ma
 
 Three correction cycles: compile handle declaration; adapter fixture used a nonexistent domain entity_id and was corrected to inspect native execution handles; an existing source test expected schema 14 and was updated to the explicit schema 15. Final runs pass. No change to independently reviewed expected rules was made to make a test pass.
 
-Reliable timer window starts **2026-10-04 12:30:25 UTC**, after initial implementation edits; it is a measured lower bound, not total package authoring time. Final elapsed and hosted waiting time will be recorded alongside actual CI job evidence. Do not infer full active duration from this partial window. Builds/test outputs/logs remain in fresh temporary paths; historical datasets/checkpoints were untouched.
+Reliable timer window starts **2026-10-04 12:30:25 UTC**, after initial implementation edits, and ends at the hosted-evidence capture **12:47:51 UTC**: **17m26s observed elapsed**, a lower bound, not total active package authoring time. It includes hosted waiting after the 12:44 push; separate exact active duration was not instrumented. Do not infer full active duration from this partial window. Builds/test outputs/logs remain in fresh temporary paths; historical datasets/checkpoints were untouched.
+
+Source run 37203098169: Windows job 111438621258 / Ubuntu 111438621366 both success, each actually ran 90 Python tests and reproduced 36 outputs. ManaEngine run 37203098157: Ubuntu 111438621133 / Windows 111438621276 both success, each actually ran CTest and 45 adapter/policy tests. Captured log excerpts, source hashes and local loaded-module hash are in BOOKKEEPER_CI_EVIDENCE.json. No job conclusion was inferred from local runs.
 
 ## Stop boundary
 

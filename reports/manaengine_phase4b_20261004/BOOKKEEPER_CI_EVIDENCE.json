@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "package_id": "previous_own_turn_minion_types_kindred_copy_v1",
+  "verified_implementation_commit": "a6efe65a93b5df9d6d28308cbbff09574d588ece",
+  "rosettastone_revision": "f34da0d3fcb5ad312f7e2acf634d0536b044d29a",
+  "rules_evidence_status": "RULES_REVIEWED_FROM_PHASE_MODEL",
+  "direct_bookkeeper_replay_captured": false,
+  "support_scope": "PARTIAL",
+  "training_eligible": false,
+  "observed_at_utc": "2026-10-04 12:47:51 UTC",
+  "local": {
+    "native": {
+      "scenario_groups": 33,
+      "assertions": 653,
+      "build_attempts": 3
+    },
+    "adapter_policy_passed": 45,
+    "full_python_passed": 90,
+    "pinned_outputs_reproduced": 36,
+    "engine_cpp_sha256": "df265f2a1afa26d20db0f1b1550708f155bf1729b59a9642e4a6120d5c795432",
+    "engine_hpp_sha256": "36385b0de1e24ab74fbe562bc222d230d696aa1e90f501fc7e154ca5c37d371a",
+    "loaded_bridge_path": "%TEMP%/ManaEngineCorrectnessBuild/python/manaengine_native.cp312-win_amd64.pyd",
+    "loaded_bridge_sha256": "8c64f081c5430b17b953dfdded46f8766686633cc8996f581f36a0b642077bd1",
+    "native_test_executable_sha256": "1204da0ece19111c704d97eebdab5afd54df9c8771336ed500bd0c3578c34c0b"
+  },
+  "canonical_delta": {
+    "observation_source_sha256_before": "a54cee582bc4da06e8b50d531f5edf4af775f0f542b4a02ac60c5b40c992e5e9",
+    "observation_source_sha256_after": "988407de57de0fa2d89edb1e5fc18afa8f99da15a866f174b9ef82a3fe5e0645",
+    "current_verified_before": 0,
+    "current_verified_after": 0,
+    "stale_before": 27,
+    "stale_after": 27
+  },
+  "jobs": [
+    {
+      "id": 111438621258,
+      "run_id": 37203098169,
+      "name": "source (windows-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37203098169/job/111438621258",
+      "steps": [
+        {
+          "name": "Run python scripts/check_generated_artifacts.py",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run git diff --exit-code",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pytest -q",
+          "conclusion": "success"
+        }
+      ],
+      "log_excerpts": [
+        "2026-10-04T12:45:19.9959304Z 36 pinned outputs reproduced; generated ownership is unique.",
+        "2026-10-04T12:45:35.2716815Z 90 passed in 13.36s"
+      ]
+    },
+    {
+      "id": 111438621366,
+      "run_id": 37203098169,
+      "name": "source (ubuntu-latest)",
+      "conclusion": "success",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37203098169/job/111438621366",
+      "steps": [
+        {
+          "name": "Run python scripts/check_generated_artifacts.py",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run git diff --exit-code",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pytest -q",
+          "conclusion": "success"
+        }
+      ],
+      "log_excerpts": [
+        "2026-10-04T12:45:02.6754265Z 36 pinned outputs reproduced; generated ownership is unique.",
+        "2026-10-04T12:45:14.1253959Z 90 passed in 10.78s"
+      ]
+    },
+    {
+      "id": 111438621133,
+      "run_id": 37203098157,
+      "name": "ubuntu-latest / ManaEngine",
+      "conclusion": "success",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37203098157/job/111438621133",
+      "steps": [
+        {
+          "name": "CTest",
+          "conclusion": "success"
+        },
+        {
+          "name": "Python adapter and policy schema tests",
+          "conclusion": "success"
+        }
+      ],
+      "log_excerpts": [
+        "2026-10-04T12:45:24.0172571Z 100% tests passed out of 1",
+        "2026-10-04T12:45:42.4814553Z 45 passed in 17.96s"
+      ]
+    },
+    {
+      "id": 111438621276,
+      "run_id": 37203098157,
+      "name": "windows-latest / ManaEngine",
+      "conclusion": "success",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37203098157/job/111438621276",
+      "steps": [
+        {
+          "name": "CTest",
+          "conclusion": "success"
+        },
+        {
+          "name": "Python adapter and policy schema tests",
+          "conclusion": "success"
+        }
+      ],
+      "log_excerpts": [
+        "2026-10-04T12:46:08.4887322Z 100% tests passed out of 1",
+        "2026-10-04T12:46:30.9478277Z 45 passed in 21.36s"
+      ]
+    }
+  ]
+}
