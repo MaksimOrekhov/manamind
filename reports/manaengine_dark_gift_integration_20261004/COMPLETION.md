@@ -27,11 +27,13 @@ The independently typed option manifest contains 12 metadata candidates and 10 l
 - Generated artifact check: PASS; 36 pinned outputs reproduced.
 - Generic card branch guard: PASS; 201 reviewed AST exceptions validated.
 - `git diff --check`: PASS.
-- Hosted Source CI (Windows/Ubuntu) and ManaEngine CI (Windows/Ubuntu): pending push; record final run links and results here before declaring completion.
+- Hosted Source CI: Ubuntu and Windows PASS on `e1a4d2d` (including the full `python -m pytest -q` step): [run 37228367420](https://github.com/MaksimOrekhov/manamind/actions/runs/37228367420).
+- Hosted ManaEngine CI: Ubuntu and Windows PASS on `e1a4d2d`; both Release builds, CTest, and adapter/policy steps passed: [run 37228367387](https://github.com/MaksimOrekhov/manamind/actions/runs/37228367387).
+- An earlier CI attempt on `c436683` caught the CRLF-sensitive metadata digest and an assertion that ignored numeric normalization. Both were fixed and verified in the rerun above.
 
 ## Registry and evidence
 
-The observation-schema fingerprint changed from `6d78f757...` to `988407de...`. Canonical Standard registry outputs were regenerated using the normal registry builder, so dependent evidence freshness is evaluated from the new fingerprint. No evidence was manually copied or promoted. The registry still reports training admission `BLOCKED`.
+The observation-schema fingerprint changed from `6d78f757...` to `988407de...`. Canonical Standard registry outputs were regenerated using the normal registry builder, so dependent evidence freshness is evaluated from the new fingerprint. The Dark Gift source metadata SHA uses canonical UTF-8/LF bytes so Windows and Unix working-tree line endings produce the same identity. No evidence was manually copied or promoted. The registry still reports training admission `BLOCKED`.
 
 ## Implementation accounting
 
