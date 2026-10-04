@@ -1,0 +1,88 @@
+{
+  "pool_id": "fire_spell_standard_20261001_candidate_v1",
+  "schema_version": 1,
+  "contract_version": 1,
+  "format_profile_id": "standard_full_20261001_v1",
+  "as_of_date": "2026-10-01",
+  "predicate": {
+    "kind": "STANDARD_SPELL_SCHOOL",
+    "school": "FIRE",
+    "base_cost": null,
+    "class_policy": "ANY_CLASS"
+  },
+  "card_ids": [
+    "CATA_303",
+    "CATA_581",
+    "CATA_582",
+    "CATA_585",
+    "CORE_CS2_029",
+    "CORE_CS2_032",
+    "CORE_CS2_062",
+    "CORE_EX1_610",
+    "CORE_GIL_836",
+    "CORE_LOOT_101",
+    "CORE_SW_108",
+    "CORE_WON_337",
+    "DINO_406",
+    "END_024",
+    "END_025",
+    "FIR_900",
+    "FIR_906",
+    "FIR_909",
+    "FIR_910",
+    "FIR_911",
+    "FIR_914",
+    "FIR_916",
+    "FIR_920",
+    "FIR_923",
+    "FIR_939",
+    "FIR_941",
+    "FIR_954",
+    "JAIL_307",
+    "JAIL_801",
+    "TLC_221",
+    "TLC_222",
+    "TLC_227",
+    "TLC_632"
+  ],
+  "count": 33,
+  "sorted_membership_sha256": "480f5971bdf90a339f08142a9f2e47c7650be1ddd6973241960885b20b3e0e87",
+  "metadata_snapshot": {
+    "id": "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+    "sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930"
+  },
+  "membership_status": "CANDIDATE",
+  "dependency_status": "OPEN",
+  "training_eligible": false,
+  "exclusions": [
+    {
+      "category": "QUEST",
+      "status": "REVIEWED_EXCLUDED",
+      "card_ids": [],
+      "rationale": "No Quest identity is present among the 33 pinned Fire metadata candidates.",
+      "evidence_ref": "Phase4B VULCANOS_FIRE_POOL_REVIEW.json"
+    },
+    {
+      "category": "RUNE",
+      "status": "REVIEWED_EXCLUDED",
+      "card_ids": [],
+      "rationale": "No candidate has a three-rune requirement in the reviewed metadata slice.",
+      "evidence_ref": "Phase4B VULCANOS_FIRE_POOL_REVIEW.json"
+    },
+    {
+      "category": "ALIAS",
+      "status": "REVIEWED_EXCLUDED",
+      "card_ids": [],
+      "rationale": "Canonical card IDs are one ticket each; legacy aliases do not add a second identity.",
+      "evidence_ref": "Phase4B VULCANOS_FIRE_POOL_REVIEW.json"
+    },
+    {
+      "category": "NON_GENERATABLE",
+      "status": "UNRESOLVED",
+      "card_ids": [],
+      "rationale": "A complete patch-specific ordinary-random-generation exception inventory/client trace is unavailable.",
+      "evidence_ref": "official generation exclusion inventory unresolved"
+    }
+  ],
+  "predicate_rules_fingerprint": "065c3538329bf77827146da0a154cf7ccfbae8215db613e119698f22ca70459b"
+}

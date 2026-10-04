@@ -824,3 +824,64 @@ def test_solo_shatter_observation_constructs_game_state_without_dangling_partner
     dangling["self_hand"][0]["shatter_fragment"] = "LEFT"
     with pytest.raises(ValueError, match="Linked Shatter fragments require a valid partner"):
         _export_state(dangling)
+
+def test_finite_pool_manifests_are_strict_and_native_compatible(tmp_path) -> None:
+    import json
+    from pathlib import Path
+
+    from manamind.integrations.manaengine.engine import _load_native
+    from manamind.integrations.manaengine.pool_manifest import load_pool_manifest
+
+    root = Path(__file__).resolve().parents[3]
+    snapshot = root / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json"
+    pool_dir = root / "experiments/manaengine/data/pools"
+    manifests = sorted(pool_dir.glob("*.json"))
+    assert len(manifests) == 4
+    native = _load_native()
+    expected_counts = {"fire_spell_standard_20261001_candidate_v1.json": 33,
+                       "whelp_one_cost_spell_standard_20261001_raw_candidate_v1.json": 77,
+                       "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1.json": 65,
+                       "whelp_one_cost_spell_standard_20261001_class_candidate_v1.json": 63}
+    for path in manifests:
+        document = load_pool_manifest(path, expected_profile_id="standard_full_20261001_v1",
+                                     expected_as_of_date="2026-10-01", metadata_snapshot_path=snapshot,
+                                     standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                                     expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+        assert document.count == expected_counts[path.name]
+        assert document.membership_status == "CANDIDATE"
+        assert document.dependency_status == "OPEN"
+        assert not document.training_eligible
+        native_manifest = document.to_native(native)
+        native.CardCatalog([], [native_manifest], document.metadata_snapshot_id,
+                           document.metadata_snapshot_sha256)
+
+    raw = json.loads(manifests[0].read_text(encoding="utf-8"))
+    raw["card_ids"].reverse()
+    malformed = tmp_path / "unsorted.json"
+    malformed.write_text(json.dumps(raw), encoding="utf-8")
+    with pytest.raises(ValueError, match="sorted and unique"):
+        load_pool_manifest(malformed, expected_profile_id="standard_full_20261001_v1",
+                           expected_as_of_date="2026-10-01", metadata_snapshot_path=snapshot,
+                                     standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                                     expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+
+    raw = json.loads(manifests[0].read_text(encoding="utf-8"))
+    raw["training_eligible"] = True
+    malformed.write_text(json.dumps(raw), encoding="utf-8")
+    with pytest.raises(ValueError, match="training eligibility"):
+        load_pool_manifest(malformed, expected_profile_id="standard_full_20261001_v1",
+                           expected_as_of_date="2026-10-01", metadata_snapshot_path=snapshot,
+                                     standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                                     expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+
+    roots = json.loads((root / "data/cards/standard_roots_20261001_enUS.json").read_text(encoding="utf-8"))
+    roots["roots"] = []
+    roots["root_count"] = 0
+    roots["root_membership_sha256"] = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    bad_roots = tmp_path / "empty_roots.json"
+    bad_roots.write_text(json.dumps(roots), encoding="utf-8")
+    with pytest.raises(ValueError, match="outside the pinned Standard roots"):
+        load_pool_manifest(manifests[0], expected_profile_id="standard_full_20261001_v1",
+                           expected_as_of_date="2026-10-01", metadata_snapshot_path=snapshot,
+                           standard_roots_path=bad_roots,
+                           expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")

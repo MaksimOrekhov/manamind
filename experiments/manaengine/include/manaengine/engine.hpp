@@ -19,6 +19,29 @@ enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
 enum class SummonCondition { None, HoldingDragon };
 enum class DiscardSpellSchool { None, Nature, Fire };
+enum class PoolPredicateKind { StandardSpellSchool, StandardSpellBaseCost };
+enum class PoolClassPolicy { AnyClass, NonNeutralClass };
+enum class PoolMembershipStatus { Candidate, MembershipReviewed };
+enum class PoolDependencyStatus { Open, DependencyClosed };
+enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
+enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
+struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
+struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };
+struct PoolManifest {
+    std::string pool_id, format_profile_id, as_of_date, metadata_snapshot_id, metadata_snapshot_sha256;
+    int schema_version=1, contract_version=1, count=0;
+    PoolPredicate predicate;
+    std::vector<std::string> card_ids;
+    std::string sorted_membership_sha256, predicate_rules_fingerprint;
+    PoolMembershipStatus membership_status=PoolMembershipStatus::Candidate;
+    PoolDependencyStatus dependency_status=PoolDependencyStatus::Open;
+    bool training_eligible=false;
+    std::vector<PoolExclusion> exclusions;
+};
+struct GeneratedInstanceModifiers { int additive_cost_delta=0; };
+std::string pool_membership_sha256(const std::vector<std::string>& card_ids);
+std::string pool_predicate_rules_fingerprint(const PoolManifest& manifest);
+void validate_pool_manifest(const PoolManifest& manifest);
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; SummonCondition summon_condition=SummonCondition::None; int conditional_extra_count=0; DiscardSpellSchool discard_school=DiscardSpellSchool::None; bool requires_previous_discard=false; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
@@ -32,6 +55,8 @@ struct CardDefinition {
     std::vector<EffectStep> effects;
     std::vector<std::string> minion_types;
     std::string kindred_copy_contract="NONE";
+    std::string takes_damage_pool_id;
+    int takes_damage_cost_delta=0;
     std::vector<std::string> required_mechanics;
     std::vector<std::string> reviewed_random_secret_pool;
     bool rules_contract_reviewed=false;
@@ -48,9 +73,13 @@ struct CardDefinition {
 };
 class CardCatalog {
 public:
-    explicit CardCatalog(std::vector<CardDefinition> definitions);
+    explicit CardCatalog(std::vector<CardDefinition> definitions,
+                         std::vector<PoolManifest> pools={},
+                         std::string metadata_snapshot_id={},
+                         std::string metadata_snapshot_sha256={});
 private:
     std::shared_ptr<const std::unordered_map<std::string,CardDefinition>> definitions_;
+    std::shared_ptr<const std::unordered_map<std::string,PoolManifest>> pools_;
     friend class GameSession;
 };
 enum class ActionType { PlayCard, Attack, HeroPower, EndTurn, ChooseCard, PrepareCard };
@@ -183,7 +212,14 @@ private:
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;
-      std::mt19937_64 rng; std::optional<std::string> result,unsupported; };
+      std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result,unsupported; };
+    struct DamageOccurrence {
+      int damage_source_entity_id=-1, damaged_entity_id=-1, damaged_controller=-1;
+      DamageKind damage_kind=DamageKind::Effect; DamageAttribution attribution=DamageAttribution::None;
+      int packet_amount=0; std::int64_t actual_health_delta=0;
+      std::uint64_t damage_group_id=0, sequence=0, consumer_activation_sequence=0;
+      std::string captured_pool_id; int captured_cost_delta=0;
+    };
     std::shared_ptr<const CardCatalog> catalog_;
     EngineState state_; std::uint64_t seed_=0;
     static Ability ability_of(const CardDefinition& card);
@@ -195,6 +231,8 @@ private:
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
     int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
+    void resolve_damage_occurrence(const DamageOccurrence& occurrence);
+    void generate_random_card_to_hand(int owner,const std::string& pool_id,GeneratedInstanceModifiers modifiers);
     void summon_fixed(int owner,const std::string& card_id,int count);
     void validate_instance_copy_v1(const CardInstance& source,int owner,Zone expected);
     void summon_instance_copy_v1(int owner,int source_entity);
