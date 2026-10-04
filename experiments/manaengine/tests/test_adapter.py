@@ -160,6 +160,9 @@ def test_effect_target_boundaries_declarations_and_adapter() -> None:
     assert slam.damage_outcome_followup.name == "DRAW_SELF"
     assert breath.damage_outcome_condition.name == "MORTALLY_WOUNDED"
     assert breath.damage_outcome_followup.name == "HEAL_ENEMY_HERO" and breath.damage_outcome_amount == 5
+    conflagrate = definitions["FIR_954"]
+    assert conflagrate.damage_outcome_condition.name == "ALWAYS"
+    assert conflagrate.damage_outcome_followup.name == "DRAW_TARGET_OWNER"
 
     deck = ["CATA_582", *("CORE_EX1_145" for _ in range(29))]
     session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)

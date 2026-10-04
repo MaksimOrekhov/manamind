@@ -12,8 +12,8 @@
     "DEFERRED_ARCHITECTURE": 53,
     "IMPLEMENTED_SCOPED_VERIFIED": 4
   },
-  "primary_queue_reviewed": 10,
-  "primary_queue_implemented": 10,
+  "primary_queue_reviewed": 11,
+  "primary_queue_implemented": 11,
   "packages_completed": [
     {
       "package_id": "manaengine_effect_target_boundaries_v1",
@@ -65,6 +65,21 @@
       "elapsed_minutes_observed": 19,
       "canonical_evidence_promoted": false,
       "rules_evidence_note": "Blizzard text for all three roots; current rules-reference support for Mortal Coil checks mortal wounding before physical death; no client replay captured."
+    },
+    {
+      "package_id": "manaengine_damage_target_owner_draw_v1",
+      "cards": ["FIR_954"],
+      "declaration_only_consumers": 1,
+      "custom_outliers": [],
+      "deferred_outliers": [],
+      "shared_capability_extension": "ALWAYS → DRAW_TARGET_OWNER in typed damage follow-up; capture CardInstance.owner before damage, then reuse draw()",
+      "native": "PASS; 40 groups / 706 assertions",
+      "adapter": "PASS; full adapter test file, 22 passed",
+      "correction_cycles": 0,
+      "build_attempts": 1,
+      "elapsed_seconds_observed": 346,
+      "canonical_evidence_promoted": false,
+      "rules_evidence_note": "Official card text; current rules documentation supports source-order resolution, but no Conflagrate-specific replay was captured."
     }
   ],
   "tests_at_baseline": {
@@ -73,14 +88,15 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "5d16439",
-  "last_updated_utc": "2026-10-04T15:33:08Z",
-  "active_elapsed_minutes": 65,
+  "current_head": "e002fc3",
+  "last_updated_utc": "2026-10-04T15:45:44Z",
+  "active_elapsed_minutes": 78,
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
-    "Ten roots have been individually reviewed and implemented; the remaining 21 primary-queue candidates still need individual dispositions.",
+    "Eleven roots have been individually reviewed and implemented; the remaining 20 primary-queue candidates still need individual dispositions.",
     "Native build artifacts are external at E:/ManaMind/_build_phase4d because the worktree's ignored build directory is not writable.",
     "Rechecked package 4 after validating the typed Secret contract allowlist: native PASS, 38 groups / 692 assertions; adapter PASS, 22 passed.",
-    "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed."
+    "Package 5 checks: native PASS, 39 groups / 702 assertions; adapter PASS, 22 passed.",
+    "Package 6 checks: native PASS, 40 groups / 706 assertions; adapter PASS, 22 passed."
   ]
 }

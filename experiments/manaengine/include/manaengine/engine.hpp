@@ -15,8 +15,8 @@ enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull };
 enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
-enum class DamageOutcomeCondition { None, MortallyWounded, Survives };
-enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero };
+enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
+enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:

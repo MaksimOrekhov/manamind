@@ -154,8 +154,8 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             if filter_name not in filters:
                 raise ValueError(f"unknown deck_draw_filter for {card.card_id}: {filter_name}")
             d.deck_draw_filter = getattr(native.DeckDrawFilter, filters[filter_name])
-        outcome_conditions = {"MORTALLY_WOUNDED", "SURVIVES"}
-        outcome_followups = {"DRAW_SELF", "HEAL_ENEMY_HERO"}
+        outcome_conditions = {"MORTALLY_WOUNDED", "SURVIVES", "ALWAYS"}
+        outcome_followups = {"DRAW_SELF", "HEAL_ENEMY_HERO", "DRAW_TARGET_OWNER"}
         if "damage_outcome_condition" in spec:
             value = str(spec["damage_outcome_condition"]).upper()
             if value not in outcome_conditions:

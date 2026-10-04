@@ -151,6 +151,16 @@
       "damage_outcome_followup": "DRAW_SELF",
       "reviewed_rules_text": "Deal $2 damage to a minion. If it survives, draw a card."
     },
+    "FIR_954": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "effects": [
+        {"kind": "DAMAGE", "target": "EXPLICIT_MINION", "amount": 5}
+      ],
+      "damage_outcome_condition": "ALWAYS",
+      "damage_outcome_followup": "DRAW_TARGET_OWNER",
+      "reviewed_rules_text": "Deal $5 damage to a minion. Its owner draws a card."
+    },
     "CATA_999": {
       "ability": "END_TURN_ENEMY_HERO_DAMAGE",
       "support_state": "SUPPORTED",
