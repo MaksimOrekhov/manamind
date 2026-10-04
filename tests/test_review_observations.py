@@ -23,6 +23,13 @@ def test_buffed_hand_and_cost_preserve_base_and_instance_stats_through_serializa
     for name in ("current_cost", "current_attack", "current_health"):
         assert encoded.numeric_present[0, NUMERIC_FEATURES.index(name)] == 1
     assert encoded.numeric[0, NUMERIC_FEATURES.index("current_attack")] > encoded.numeric[0, NUMERIC_FEATURES.index("base_attack")]
+    enchanted_spell = CardFeatures(card_id="S", card_type="SPELL", current_spell_damage=1)
+    assert _card(asdict(enchanted_spell)) == enchanted_spell
+    assert catalog.enrich(enchanted_spell) == enchanted_spell
+    spell_encoding = EntityEncoder(catalog, CardVocabulary(catalog)).encode_zone((enchanted_spell,), ordered=True)
+    spell_damage_column = NUMERIC_FEATURES.index("current_spell_damage")
+    assert spell_encoding.numeric_present[0, spell_damage_column] == 1
+    assert spell_encoding.numeric[0, spell_damage_column] > 0
 
 
 def test_modified_weapon_matches_bridge_instance_payload():

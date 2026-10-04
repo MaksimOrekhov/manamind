@@ -78,6 +78,7 @@ class CardCatalog:
             ),
             race=_first_race(record.get("race") or record.get("races")),
             mechanics=mechanics,
+            current_spell_damage=_optional_int(record.get("current_spell_damage")),
             shatter_fragment=record.get("shatter_fragment") or None,
             shatter_original_card_id=record.get("shatter_original_card_id") or None,
             shatter_partner_hand_position=record.get("shatter_partner_hand_position"),
@@ -99,6 +100,7 @@ class CardCatalog:
                 "shatter_original_card_id": card.shatter_original_card_id,
                 "shatter_partner_hand_position": card.shatter_partner_hand_position,
                 "prepare_locked": card.prepare_locked,
+                "current_spell_damage": card.current_spell_damage,
             }
             for card in sorted(self._cards.values(), key=lambda item: item.card_id)
         ]
@@ -136,6 +138,7 @@ class CardCatalog:
             race=observed.race if observed.race is not None else catalog_card.race,
             mechanics=tuple(sorted(set(observed.mechanics) | set(catalog_card.mechanics))),
             current_cost=observed.current_cost,
+            current_spell_damage=observed.current_spell_damage,
             current_attack=observed.current_attack,
             current_health=observed.current_health,
             current_durability=observed.current_durability,

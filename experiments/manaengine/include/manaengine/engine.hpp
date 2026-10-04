@@ -26,7 +26,7 @@ struct CardDefinition {
     std::vector<EffectStep> effects;
     int cost=0, attack=0, health=0, durability=0, damage=0, pool_max_cost=0, pool_count=0, duration=0;
     int spell_cost_reduction_per_cast=0, held_spell_threshold=0, choice_count=0, choice_cost_delta=0, random_cast_count=0;
-    int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0;
+    int spell_damage=0, damaged_spell_damage=0, deathrattle_draw_count=0, spell_damage_attack=0, spell_damage_grant=0;
     DeckDrawFilter deck_draw_filter=DeckDrawFilter::Any;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
@@ -63,7 +63,7 @@ struct ObservedCard {
     std::string shatter_fragment, shatter_original_card_id;
     int shatter_partner_hand_position=-1;
     bool prepare_locked=false;
-    int cost=0, current_cost=0, attack=0, health=0, durability=0, current_durability=0;
+    int cost=0, current_cost=0, attack=0, health=0, durability=0, current_durability=0, current_spell_damage=0;
     int current_attack=0, current_health=0, board_position=0, entity_id=-1;
     bool can_attack=false, rush=false, frozen=false, taunt=false, divine_shield=false, lifesteal=false;
     bool stealth=false, silenced=false, immune=false;
@@ -115,7 +115,7 @@ private:
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets, SpellDamageAura, DeathrattleDraw,
-      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack };
+      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack, SpellDamageHandDeck };
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
     enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
@@ -123,7 +123,7 @@ private:
     enum class Zone { Deck, Hand, Board, Weapon, Secret, Graveyard };
     enum class ShatterFragment { None, Left, Right, Solo };
     struct CardInstance {
-      int entity_id=-1, owner=0, controller=0, zone_position=-1, cost_delta=0;
+      int entity_id=-1, owner=0, controller=0, zone_position=-1, cost_delta=0, spell_damage_bonus=0;
       Zone zone=Zone::Deck;
       std::string card_id, provenance="DECK";
       std::string shatter_original_card_id;
@@ -164,7 +164,7 @@ private:
     int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter); int damage_character(int target_id,int amount); int damage_minion(int entity_id,int amount);
-    void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id);
+    void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0);
     void record_spell_damage_event(int owner,int amount);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
     bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);

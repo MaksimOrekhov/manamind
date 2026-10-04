@@ -9,10 +9,10 @@ Frozen profile: configs/training_profiles/meta_training_20261002_v1.json
 ## Checkpoint — refreshed after Prepare, Secrets, and Spell Damage work
 
 - Frozen deck: 30 slots, 17 unique roots.
-- 10/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489, JAIL_321, CORE_EX1_012, END_022, FIR_929, CATA_487.
-- 7/17 roots remain unsupported by the ManaEngine catalog.
+- 11/17 roots currently have complete ManaEngine support declarations: CORE_SW_108, CORE_DRG_107, CORE_CS2_024, CORE_CS2_029, CATA_489, JAIL_321, CORE_EX1_012, END_022, FIR_929, CATA_487, CATA_458.
+- 6/17 roots remain unsupported by the ManaEngine catalog.
 - Mage class/hero power, turn/mana progression, draws, fatigue, hand burn, board limit, targeting, terminal result, deterministic RNG, clone, and a narrow typed Choice flow exist.
-- Shatter hand pieces and generic Prepare actions are implemented and tested. Six pinned Mage Secrets, typed trigger windows, private identities/public counts, current-turn spell history, Spell Damage static/damaged-only auras, and the complete Tricksy Secret outcome pool are implemented in ManaEngine. Mulligan, Spell Damage on spells in hand/deck, previous-turn Kindred history, and generic 30-card deck validation remain absent.
+- Shatter hand pieces and generic Prepare actions are implemented and tested. Six pinned Mage Secrets, typed trigger windows, private identities/public counts, current-turn spell history, static/damaged-only Spell Damage auras, per-card hand/deck Spell Damage, and the complete Tricksy Secret outcome pool are implemented in ManaEngine. Mulligan, previous-turn Kindred history, and generic 30-card deck validation remain absent.
 - The old registry reports two dynamic pool IDs. This audit found another dynamic dependency on JAIL_321: two random Mage Secrets.
 - CATA_484 is the largest dependency risk: 77 current Standard collectible spell candidates, of which only First Flame has a closed ManaEngine outcome.
 - Shatter and the minimal shared activation-sequence architecture are approved and implemented. Flames of Infinity uses the ordinary sequence; no FIRST/NORMAL/LAST priority classes exist.
@@ -35,7 +35,7 @@ Status refers only to the Phase 3 ManaEngine catalog, not Rosetta registry statu
 | TIME_855 Arcane Barrage | 2 | NEEDS_SHARED_CAPABILITY | 3 damage to selected enemy, then 2 to two other random enemy characters; needs distinct sampling and Spell Damage. |
 | TLC_226 Conjured Bookkeeper | 2 | NEEDS_SHARED_CAPABILITY | Deathrattle draws a deck spell; Kindred summons a copy when an Elemental was played last turn. Seven unique spell IDs / 13 physical slots are eligible. The copy is fixed self-copy. |
 | CATA_489 Arcane Flow | 2 | CURRENT_MANAENGINE_SUPPORTED | Typed linked fragment instances, opposite hand edges, solo/recombine behavior, semantic observation/action fields and both ordered effects are covered. |
-| CATA_458 Archmage Kalec | 1 | NEEDS_SHARED_CAPABILITY | Battlecry grants Spell Damage +1 to spells in hand/deck; needs per-instance modifiers and draw rules. |
+| CATA_458 Archmage Kalec | 1 | CURRENT_MANAENGINE_SUPPORTED | Generic Battlecry grants configured per-instance Spell Damage to current hand/deck spells; value follows draw, clone, Shatter and cast. |
 | CORE_CS2_029 Fireball | 2 | CURRENT_MANAENGINE_SUPPORTED | Existing targeted damage contract. |
 | JAIL_321 Tricksy Improviser | 2 | CURRENT_MANAENGINE_SUPPORTED | Prepare, generic spell-cast history, and two independent random casts from the exact six-card Mage Secret pool are implemented. |
 | CATA_488 Vulcanos | 1 | NEEDS_SHARED_CAPABILITY | Colossal +2 creates two appendages; end turn deals 3 to every other minion, including friendly. |
@@ -49,7 +49,7 @@ Fixed edges:
 - CATA_452 summons a fixed 6/6 Dragon. Its non-collectible ID is absent from the selected collectible catalog and must be resolved from pinned full definitions.
 - CATA_488 creates two fixed Colossal appendages. Their non-collectible IDs must be resolved before implementation.
 - TLC_226 creates another TLC_226 on Kindred. This is a fixed self-copy, not an external random pool.
-- CATA_458 has an unreviewed registry candidate edge to CATA_458e. ManaEngine needs instance-level Spell Damage +1, not merely an edge.
+- CATA_458's possible registry edge to CATA_458e remains unreviewed; the implemented Battlecry generates no token and does not change the frozen dependency closure.
 - CORE_EX1_012 draws the next card from its own deck (no external card identity pool).
 - FIR_929 draws from this deck's Fire subset: CORE_SW_108 ×1 and CORE_CS2_029 ×2.
 - TLC_226 draws from this deck's spell subset: CORE_SW_108 ×1, CATA_485 ×2, CORE_CS2_024 ×2, TIME_855 ×2, CATA_489 ×2, CORE_CS2_029 ×2, CATA_452 ×2.
@@ -96,7 +96,7 @@ Current actions are PlayCard, PrepareCard, Attack, HeroPower, EndTurn, ChooseCar
 
 ## Reusable capability families
 
-1. **Spell Damage and spell-event accounting** — static and damaged-only board auras now support CORE_EX1_012 and END_022. CATA_458's per-spell-in-hand/deck modifier, CATA_487's first-event tracker, and consumers CATA_485, TIME_855, CATA_452, and any unresolved spell interactions remain queued.
+1. **Spell Damage and spell-event accounting** — static and damaged-only board auras support CORE_EX1_012 and END_022; per-instance hand/deck Spell Damage supports CATA_458; CATA_487 uses a typed event observer. Consumers CATA_485, TIME_855, CATA_452, and unresolved spell interactions remain queued.
 2. **Filtered draw and Kindred history** — CORE_EX1_012, FIR_929, TLC_226. Reuse basic draw/death processing; add draw filters and previous-turn type history.
 3. **Random enemy damage selection** — CATA_485, TIME_855, part of CATA_489. Reuse deterministic RNG; add candidate selection, distinct sampling, Spell Damage integration.
 4. **Hand-state mechanics** — CATA_489 Shatter and JAIL_321 Prepare. Both now use instance-scoped typed state; Prepare is a separate action with per-instance persistent discount and a same-turn lock; Shatter changes card-instance count/order and exports partner position without exposing internal link IDs.
@@ -129,12 +129,13 @@ Spell Damage is derived from the caster's current unsilenced board and snapshott
 
 ## Phase 4 verification record (current checkpoint)
 
-- Native Windows build: passed; ManaEngine native suite: 1/1 test passed, covering 28 scenario groups and 472 assertions after Raincaller support (the Prepare zero-cost case is explicitly fail-closed).
-- Python ManaEngine adapter: 11/11 test functions passed by direct invocation. Six focused pipeline/encoder/schema checks passed. A full pytest completion has not been established for this experimental worktree; Rosetta-backed test collection is also limited because the worktree's RosettaStone submodule content is absent.
+- Native Windows build: passed; ManaEngine native suite: 1/1 test passed, covering 28 scenario groups and 482 assertions after Archmage Kalec support (the Prepare zero-cost case is explicitly fail-closed).
+- Python ManaEngine adapter: 12/12 test functions passed by direct invocation. Two focused state/encoder/schema checks passed. Full pytest completion has not been established for this experimental worktree; Rosetta-backed collection needs its submodule resources. The selected direct tests pass.
 - Ruff: passed on modified Python files.
 - CATA_489, JAIL_321, CORE_EX1_012, END_022, FIR_929, and CATA_487 ManaEngine support gained in these Phase 4 packages: six roots total; Shatter fragments, two Secret tokens, and the six Secret outcomes are declared. No canonical Rosetta registry status changed.
-- Secret verification covers all six outcomes, ordering/clone/re-entry, Tricksy cast history and full-pool sampling, and owner/opponent observation privacy. Observation schema is version 12 after adding both Secret and current Spell Damage features; older checkpoints are rejected through the existing explicit schema-version check, with no implicit migration.
+- Secret verification covers all six outcomes, ordering/clone/re-entry, Tricksy cast history and full-pool sampling, and owner/opponent observation privacy. Observation schema is version 13 after adding Secrets, player Spell Damage, and per-card current Spell Damage; older checkpoints are rejected through the existing explicit schema-version check, with no implicit migration.
 - Spell Damage verification covers static/damaged aura state, silence, clone divergence, spell-resolution snapshots across source death, and exclusion from Battlecry/combat damage. Generic draw Deathrattle is verified for distinct declared counts.
 - Filtered draw verification covers the full runtime deck predicate, Fire spell selection, empty eligible pool without fatigue or unrelated draw, deterministic clone selection, unsupported eligible outcomes remaining selectable, full-hand burn, and adapter-level Living Flame deathrattle behavior.
 - Raincaller verification covers spell damage attribution, per-instance once-per-turn progression, source entry after an earlier spell event, silence, prevention, Counterspell, clone isolation, Spell Damage, and bridge-exported board/action Attack.
+- `card_spell_damage_hand_deck_v1` verifies a declaration-driven grant parameter, hand and deck spell instances, later draws, exclusion of minions and spells entering after the Battlecry, clone isolation, stacking with board Spell Damage, Shatter propagation/recombination, and SELF-hand action/encoder export. It adds one shared native capability and one profile root, without changing the canonical Rosetta registry or training admission state.
 - No training or production-backend switch occurred. No macOS work was added.

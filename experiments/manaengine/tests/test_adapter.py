@@ -370,6 +370,34 @@ def test_manaengine_exports_current_spell_damage() -> None:
     assert state.opponent.spell_damage == 0
 
 
+def test_archmage_kalec_marks_spell_instances_in_hand_and_exports_action_value() -> None:
+    deck = ["CATA_458", "CORE_CS2_029", *(["CORE_CS2_024"] * 28)]
+    opponent_deck = ["CORE_DRG_107"] * 30
+    session = ManaEngineSession(
+        deck,
+        opponent_deck,
+        player1_class="MAGE",
+        player2_class="MAGE",
+        shuffle=False,
+        random_seed=63,
+    )
+    for _ in range(12):
+        state = session.observation()
+        if any(action.get("card_id") == "CATA_458" for action in session.legal_actions()):
+            break
+        session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    kalec = next(action for action in session.legal_actions() if action.get("card_id") == "CATA_458")
+    state = session.apply_action(kalec)
+    fireball = next(card for card in state.self_hand if card.card_id == "CORE_CS2_029")
+    assert fireball.current_spell_damage == 1
+    session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+    spell_action = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_CS2_029")
+    assert spell_action["card_spell_damage"] == 1
+    assert state.opponent.hand_size >= 1
+    assert state.opponent_known_cards == ()
+
+
 def test_living_flame_draws_a_fire_spell_from_its_deck() -> None:
     deck = ["FIR_929", "CORE_SW_108", "CORE_CS2_029", "CORE_CS2_024", *("CORE_CS2_029" for _ in range(26))]
     opponent_deck = ["CORE_DRG_107"] * 30

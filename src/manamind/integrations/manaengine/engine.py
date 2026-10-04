@@ -223,6 +223,7 @@ class ManaEngineSession:
                     "card_id": card.card_id,
                     "card_type": card.card_type,
                     "card_cost": card.current_cost if card.current_cost is not None else card.cost or 0,
+                    "card_spell_damage": card.current_spell_damage or 0,
                     "card_attack": card.attack or 0,
                     "card_health": card.health or 0,
                     "field_position": -1,

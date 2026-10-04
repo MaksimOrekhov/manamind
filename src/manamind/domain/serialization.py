@@ -21,6 +21,7 @@ def _card(data: dict[str, Any] | None) -> CardFeatures | None:
         race=data.get("race"),
         mechanics=tuple(str(item).upper() for item in data.get("mechanics", ())),
         current_cost=data.get("current_cost"),
+        current_spell_damage=data.get("current_spell_damage"),
         current_attack=data.get("current_attack"),
         current_health=data.get("current_health"),
         current_durability=data.get("current_durability"),

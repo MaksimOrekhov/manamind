@@ -15,6 +15,7 @@ class CardFeatures:
     race: str | None = None
     mechanics: tuple[str, ...] = field(default_factory=tuple)
     current_cost: int | None = None
+    current_spell_damage: int | None = None
     current_attack: int | None = None
     current_health: int | None = None
     current_durability: int | None = None
