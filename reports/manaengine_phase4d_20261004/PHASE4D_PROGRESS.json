@@ -141,9 +141,16 @@
     "adapter_policy_passed": 46,
     "full_python_passed": 90
   },
-  "current_head": "4c650cb",
-  "last_updated_utc": "2026-10-04T16:44:00Z",
-  "active_elapsed_minutes": 136,
+  "verified_code_head": "84560446aac512dbc91545af6c0c7d4393bd1880",
+  "last_updated_utc": "2026-10-04T16:52:00Z",
+  "active_elapsed_minutes": 144,
+  "hosted_ci": {
+    "source_windows": "PASS",
+    "source_ubuntu": "PASS",
+    "manaengine_windows": "PASS",
+    "manaengine_ubuntu": "PASS",
+    "code_head": "84560446aac512dbc91545af6c0c7d4393bd1880"
+  },
   "notes": [
     "Phase 4D production work is on the requested target branch/worktree only.",
     "Fifteen roots have been individually reviewed and implemented; sixteen remaining primary-queue roots have exact dispositions in PRIMARY_QUEUE_DISPOSITIONS.md.",
@@ -154,6 +161,7 @@
     "Package 7 checks: native PASS, 41 groups / 710 assertions; adapter PASS, 23 passed; 4 correction cycles and 3 builds; package implementation span 12m02s.",
     "Package 8 Overheat checks: native PASS, 42 groups / 716 assertions; adapter PASS, 24 passed; 2 correction cycles and 3 builds; observed package span 13m36s. Canonical evidence was not promoted.",
     "Package 9 Overload checks: native PASS, 43 groups / 722 assertions; adapter PASS, 25 passed; 2 correction cycles and 1 build; observed package span 13m51s. Canonical evidence was not promoted.",
-    "Final local checks: native 43 groups / 722 assertions PASS; full pytest 90 passed using dedicated writable basetemp after the default Windows temp root rejected 5 fixture setups with PermissionError; Ruff PASS; 201-exception generator identity guard PASS; 36 pinned generated outputs reproduce; git diff --check PASS. Hosted Source and ManaEngine CI still pending final checkpoint push."
+    "Final local checks: native 43 groups / 722 assertions PASS; full pytest 90 passed using dedicated writable basetemp after the default Windows temp root rejected 5 fixture setups with PermissionError; Ruff PASS; 201-exception generator identity guard PASS; 36 pinned generated outputs reproduce; git diff --check PASS.",
+    "Hosted CI for code head 84560446aac512dbc91545af6c0c7d4393bd1880: Source Windows PASS, Source Ubuntu PASS, ManaEngine Windows PASS, ManaEngine Ubuntu PASS."
   ]
 }
