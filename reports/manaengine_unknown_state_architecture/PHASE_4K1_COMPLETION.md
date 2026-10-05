@@ -2,7 +2,7 @@
 
 Starting main SHA: `7268ff6e173c330e6456d4790296cf57916e43f1`
 
-Implementation commit SHA: pending implementation commit.
+Implementation commit SHA: `dc67da81209cf362f0eef6df6fa4a5a5e0831813`.
 
 Final publication revision: pending hosted checks and main promotion.
 
@@ -137,8 +137,19 @@ No native source changes were needed.
 
 ## Hosted validation
 
-Pending implementation branch publication. Required Source and ManaEngine
-Windows/Ubuntu jobs must pass before normal fast-forward promotion of main.
+Implementation branch was published. Initial Source run
+[37337594594](https://github.com/MaksimOrekhov/manamind/actions/runs/37337594594)
+failed before code validation: Windows checkout could not connect to
+github.com:443 while fetching the pinned RosettaStone submodule; fail-fast
+cancelled Ubuntu during dependency installation. Pytest did not run in that
+Source attempt. This is not a source-validation PASS.
+
+The connected GitHub integration rejected the job rerun with HTTP 403 (no
+Actions write permission). Publishing this factual report starts another
+Source run without changing the validated implementation. ManaEngine run
+[37337594823](https://github.com/MaksimOrekhov/manamind/actions/runs/37337594823)
+is being checked separately. Both required Windows/Ubuntu matrices must pass
+before normal fast-forward promotion of main.
 
 ## Known limitations and stop boundary
 
