@@ -3,6 +3,7 @@
 ## Scope and result
 
 - Branch baseline: `codex/manaengine-first-deck` at `a31fe5612b72c7e190dcbd3c950cd15aac6405bf`.
+- Capability implementation commit: `44d6d42f928473e45ca933bb9c81a1eb77332ed6`, pushed to `origin/codex/manaengine-first-deck`.
 - Frozen profile: `standard_full_20261001_v1`.
 - Active elapsed time: approximately 45 minutes, measured from creation of the Phase 4F ledger/proposal artifacts through final local verification; no user wait is included.
 - Implemented packages: `choice_mode_continuation_v1` and `weapon_required_attack_modifier_v1`.
@@ -63,11 +64,12 @@ The four frozen manifests retain counts 33/77/65/63, `CANDIDATE` membership and 
 - Generic generator branch/identity guard: passed (201 reviewed AST exceptions; CUSTOM ownership checked); **0 new card-ID behavior branches**.
 - Pool ledger check: passed for 105 unique roots and all four unchanged manifest sizes; generated ledger reproduces.
 - `git diff --check`: passed.
-- Hosted Source CI and ManaEngine Windows/Ubuntu jobs: pending push; final report will be updated with their run result.
+- Hosted Source CI Windows/Ubuntu: **green** on `44d6d42` ([run 37266679815](https://github.com/MaksimOrekhov/manamind/actions/runs/37266679815)).
+- Hosted ManaEngine CI Windows/Ubuntu: **green** on `44d6d42` ([run 37266679857](https://github.com/MaksimOrekhov/manamind/actions/runs/37266679857)).
 
 ## Evidence and admission boundaries
 
 - Observation schema and Policy feature schema were not changed. The existing Choose One action columns are reused; `choose_one` is added to the native semantic action transport only.
 - Evidence constraints and canonical Standard evidence were not changed. Registry outputs reproduced without a diff.
 - All four Fire/Whelp pool manifests remain candidate/open. Training eligibility remains **false**.
-- Current verdict before hosted CI: `FRONTIER_COVERAGE_EXPANDED`.
+- Final verdict: `FRONTIER_COVERAGE_EXPANDED`.
