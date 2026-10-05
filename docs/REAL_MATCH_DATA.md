@@ -52,3 +52,27 @@ To validate imported rows, remove identical match trajectories, and make train/v
 ```
 
 The default output is `data/processed_real/pilot_splits/`, which Git ignores. The script writes `train.jsonl`, `validation.jsonl`, `test.jsonl`, and `report.json`. It balances match outcomes across the three parts when the sample allows it. With only ten matches, these splits are for checking the pipeline; validation and test metrics will be very uncertain and are not evidence of playing strength. This preparation step does not train or overwrite a model checkpoint.
+
+## Future simulator evidence loop (not implemented)
+
+The current Power.log importer captures completed match observations and
+outcomes. It does **not** automatically replay a match in ManaEngine, compare
+the two engines, update evidence, or learn from a discrepancy. Logs can later
+provide gameplay observations and rules-evidence leads, subject to the privacy
+and visibility boundary above.
+
+A future replay/evidence bundle should retain enough provenance to reproduce a
+comparison: `game_id`; client/build identity; timestamp and turn; the visible
+state and involved card/entity IDs; the relevant raw log slice and parsed event
+sequence; simulator support status; expected and observed transitions; active
+`EvidenceConstraints` or the precise failure reason; and the evidence source
+and review status. Keep raw logs in ignored `data/raw/`; never add hidden
+opponent cards, deck order or future RNG outcomes to model inputs.
+
+Candidate triage labels are `KNOWN_EXPECTED`, `KNOWN_INFERRED_CONFIRMED`,
+`NOVEL_OBSERVATION`, `ENGINE_CONTRADICTION` and `PATCH_DRIFT_SUSPECTED`.
+Repeated observations can increase confidence in an inference, but do not by
+themselves prove complete dynamic-pool membership or establish a canonical
+rules contract. No future discrepancy loop should edit production rules,
+manifests, registry statuses, or model weights automatically; those changes
+require review and the applicable evidence/regeneration workflow.

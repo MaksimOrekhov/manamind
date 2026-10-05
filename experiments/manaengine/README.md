@@ -1,6 +1,24 @@
-# ManaEngine controlled prototype
+# ManaEngine simulator backend
 
-This is an isolated C++20 backend experiment. RosettaStone stays the reference backend. This does not change profile evidence, declarations, registry, datasets, checkpoints, or training behavior.
+ManaEngine is the primary forward simulator development backend, with strict
+bounded behavior and explicit evidence debt. It is not a complete Hearthstone
+rules implementation and is not currently admitted for canonical training.
+RosettaStone remains a reference/regression backend and historical source of
+implementation evidence. See the [partial-simulator architecture](../../docs/PARTIAL_SIMULATOR_ARCHITECTURE.md)
+for the implemented behavior, accepted target and future work boundaries.
+
+Runtime execution, evidence status, dependency closure and training admission
+are separate. For example, the Vulcanos Fire pool can run using a bounded
+`REVIEWED_INFERRED` manifest while each sample carries explicit evidence debt;
+that does not make membership exact, promote canonical evidence or permit
+training. Unsupported outcomes are not removed from pools and are not rerolled.
+The simulator fails closed when a selected transition is unsupported.
+
+The implementation described below is scoped to its current card catalog and
+session lifecycle. Terms such as a typed `SimulationAttempt`, live-root import,
+or `Q_fallback` refer to future architecture unless a later section identifies
+an implemented API. These docs do not authorize a Phase 4K implementation or
+training run.
 
 ## State and event contract
 
@@ -88,4 +106,4 @@ Python import uses `src/manamind/integrations/manaengine/engine.py`; set `PYTHON
 
 After building the extension, use `ManaEngineSession` with the same deck IDs and player-class arguments as the Rosetta `SimulatorSession`. The returned `observation()` is the existing immutable visible `GameState`; `legal_actions()` returns ManaMind action dictionaries, and `clone()` creates an independent branch. Set `MANAMIND_ROSETTA_BRIDGE` only when running side-by-side parity from a worktree that does not have the Rosetta submodule initialized.
 
-The current prototype only implements Mage hero power. Its behavior catalog covers the selected Tier A/B roots plus the Phase 3 `CORE_GIL_836` Discover root and generated cards declared in `data/card_abilities.json`. It does not verify every possible generated or randomly selected card outcome, enforce deck construction rules in the C++ core, implement mulligan, or provide full Hearthstone event semantics. Dynamic pools keep their complete declared predicates; selecting an unsupported result fails closed.
+The current session adapter admits only Mage hero-power games. Its bounded behavior catalog covers the selected Tier A/B roots plus the Phase 3 `CORE_GIL_836` Discover root and generated cards declared in `data/card_abilities.json`. It does not verify every possible generated or randomly selected card outcome, enforce deck construction rules in the C++ core, implement mulligan, or provide full Hearthstone event semantics. Dynamic pools keep their complete declared predicates; selecting an unsupported result fails closed.

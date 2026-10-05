@@ -1,3 +1,12 @@
+# HISTORICAL PROPOSAL AND COMPLETION RECORD
+
+This dated document records the original 2026-10-03 prototype decision and
+outcome. Its prototype-era role descriptions, counts, priorities, branch/base
+identities and implementation instructions are historical evidence only; they
+do not override current architecture or authorize future work. For current
+ManaEngine boundaries and accepted/future work, see
+[`PARTIAL_SIMULATOR_ARCHITECTURE.md`](../PARTIAL_SIMULATOR_ARCHITECTURE.md).
+
 # ManaEngine prototype — reuse audit and architecture review
 
 Date: 2026-10-03

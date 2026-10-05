@@ -22,6 +22,18 @@ Reviewed Tasks, Triggers, Auras, Conditions and engine contracts, with source re
 
 Separate confirmed in-scope candidates, provisional candidates and regression/control cases. Similar text alone does not establish membership.
 
+### Rules basis and bounded uncertainty (optional)
+
+For a package whose runtime behavior is deliberately accepted as an inference, record:
+
+- Rules basis: `REVIEWED`, `REVIEWED_INFERRED` or `OPEN`.
+- Exact uncertain rule and bounded outcome scope.
+- Supporting evidence/provenance and client/build/version, when known.
+- What source, pool, rules or evidence change invalidates the inference.
+- Effect on canonical training admission.
+
+Ordinary exact packages can omit this section. `REVIEWED_INFERRED` is not exact rules verification and does not by itself permit canonical training.
+
 ## dependencies
 
 Literal tokens/enchantments/options and transitive outcomes; exact dynamic-pool predicates and versioned membership where known. List missing/unknown rules, action support, state-dependent pools and closure blockers.

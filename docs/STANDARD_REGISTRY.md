@@ -32,6 +32,29 @@ Audit tokens, enchantments, choice options, appendages, transforms, rewards, gen
 
 Dynamic pools need a versioned predicate, source-rules identity, snapshot membership/hash and parity evidence. Reuse pool definitions across consumers. For state/history-dependent pools, record an exact filter and a reviewed upper bound where possible; an upper bound alone does not prove runtime selection correctness. Missing membership/filter/recursive coverage stays unresolved.
 
+### Dynamic-pool membership status
+
+The ManaEngine manifest distinguishes three membership statuses:
+
+- `CANDIDATE`: a proposed pool; the current runtime loader does not admit it for sampling.
+- `MEMBERSHIP_REVIEWED`: membership is reviewed under that manifest's predicate and evidence. The current loader rejects unresolved exclusion rows for this status.
+- `REVIEWED_INFERRED`: explicit project policy may admit a bounded, versioned candidate set for runtime sampling while membership uncertainty remains. This is a runtime policy with evidence debt, **not rules verification** and not canonical training admission. Dependency closure remains a separate axis.
+
+Pool membership is defined by reviewed game semantics and the pinned manifest,
+never by which outcomes ManaEngine currently implements. Preserve every real
+candidate and its probability. If an unsupported identity is sampled, fail
+closed after the sample; never reroll, replace it, or remove it from the
+candidate set. A candidate pool that is not runtime-admitted likewise does not
+justify silently substituting a narrower pool.
+
+The current `fire_spell_standard_253932_inferred_v1` manifest is the concrete
+`REVIEWED_INFERRED` example: bounded runtime sampling is allowed, its
+membership remains unresolved, dependency status is `OPEN`, and
+`training_eligible` is false. Do not generalize those exact Fire-specific
+constraints to every future inferred pool. See the
+[partial-simulator architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md) for the
+runtime/training distinction.
+
 Implement shared dynamic pools when a reviewed package or profile actually needs them. Do not build every possible pool before that demand exists. Preserve the distinction between heuristic/source candidate edges, reviewed rule edges and runtime parity evidence; candidate graph growth does not itself close a dependency.
 
 Handle cycles with a fixed-point/SCC or equivalent deduplicated traversal. A cycle is not automatically invalid; every required node and outgoing outcome must be supported. Resource/depth limits produce INCOMPLETE, not a successful closure.

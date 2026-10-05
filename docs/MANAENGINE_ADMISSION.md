@@ -1,10 +1,23 @@
-# Experimental ManaEngine admission and information boundary
+# ManaEngine admission and information boundary
 
-ManaEngine is an explicitly authorized isolated experimental backend. Its internal state is authoritative; ManaMind GameState is a separate player-visible projection. Existing RosettaStone canonical evidence does not certify ManaEngine rules.
+ManaEngine is ManaMind's primary forward simulator development backend, with bounded correctness and admission; it is not production-complete. Its internal state is authoritative during simulation; ManaMind `GameState` is a separate player-visible projection. Existing RosettaStone canonical evidence does not certify ManaEngine rules. See the [partial-simulator architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md) for unknown-state handling, inferred behavior and future fallback boundaries.
 
 ## Development and training
 
-A successful development branch, a registered declaration, or a scoped scenario is not training admission. `ManaEngineSession.training_eligible` remains false and `require_training_admission()` fails before episode collection. There is currently no ManaEngine training dataset producer. A future producer must require current backend-specific evidence for the selected environment: legal deck/class/hero-power initialization, every root's complete rules, transitive static dependencies, all reachable dynamic outcomes, action/observation support, session lifecycle and repeated complete matches. Pool membership must remain complete. Unsupported episodes must fail collection and invalidate the run; silently dropping them would bias the surviving labels.
+A successful development branch, a registered declaration, or a scoped scenario is not training admission. `ManaEngineSession.training_eligible` remains false and `require_training_admission()` fails before episode collection. There is currently no ManaEngine training dataset producer. A future producer must require current backend-specific evidence for its selected environment: legal deck/class/hero-power initialization, the selected roots' required rules, transitive static dependencies, all reachable dynamic outcomes, action/observation support, session lifecycle and repeated complete matches. Pool membership must remain complete. Unsupported episodes must fail collection and invalidate the run; silently dropping them would bias the surviving labels.
+
+### Runtime execution vs canonical training admission
+
+These are independent status dimensions:
+
+- **Mechanically executable:** this transition completes within the current ManaEngine contract.
+- **Rules/evidence basis:** the behavior is reviewed, carries `REVIEWED_INFERRED` evidence debt, or remains unresolved/blocked.
+- **Dependency closure:** required static and dynamic outcomes are independently closed or remain open.
+- **Canonical training eligibility:** the complete applicable profile has passed its strict admission gates.
+
+The current Fire pool is explicitly `REVIEWED_INFERRED`: it can be sampled for bounded runtime simulation, and sampling records `FIRE_POOL_MEMBERSHIP_INFERRED`. Its membership is not rules-verified, dependencies remain `OPEN`, and its manifest sets `training_eligible` to false. This is permitted runtime simulation with evidence debt, not a training exception. `ManaEngineSession.training_eligible` is false globally today. Do not add arbitrary numerical penalties to inferred transitions merely because they carry evidence debt.
+
+An unsupported action can eventually remain rankable through a future higher-layer action-value evaluator, but that path is not implemented and cannot consume a fabricated or poisoned child state. A runtime transition's success does not itself close dependencies, verify rules, or permit canonical training.
 
 Only Mage hero-power sessions are admitted to ordinary development simulation. Cross-class decks in focused adapter tests are semantic fixtures, not legal decks or deck-readiness evidence. Tests use real declarations and do not install diagnostic cards in production catalog configuration. Diagnostic traces may contain hidden identities and are a separate debugging channel; GameState serialization, encoders and datasets must never consume them.
 
@@ -14,7 +27,7 @@ Full-state `clone()` is allowed for authoritative simulation, environment branch
 
 ## Observation scope
 
-Schema 15 includes public cast counts/discounts and missing-value masks, timed effect identities/durations, SELF held progress, per-instance trigger availability, Prepare-used state, Freeze duration, SELF pending Choice candidates, and both players' current/previous own-turn minion-type presence. Type history is a canonical semantic set with UNKNOWN distinct from known empty; it contains no card/event log or entity identities. Schema 14 checkpoints are incompatible. Hidden opponent choice identities, hand/deck identities, RNG state, deck order and internal activation sequence are excluded. Legal action descriptors carry effective selected-card cost. A public-state audit is not a declaration of complete Hearthstone Markov coverage: disputed ordering and future unsupported mechanics still block complete rules/admission evidence.
+The current value-state encoder version is `STATE_ENCODING_SCHEMA_VERSION = 16` in `src/manamind/encoding/state_encoder.py`. Version 16 includes public cast counts/discounts and missing-value masks, timed effect identities/durations, SELF held progress, per-instance trigger availability, Prepare-used state, Freeze duration, SELF pending Choice candidates, and both players' current/previous own-turn minion-type presence. Type history is a canonical semantic set with UNKNOWN distinct from known empty; it contains no card/event log or entity identities. Version 15 was the preceding state contract; checkpoints with a different state-encoding schema are incompatible. The Rosetta policy action contract has a separate `POLICY_ACTION_SCHEMA_VERSION = 3` in `src/manamind/integrations/rosettastone/policy.py`. Hidden opponent choice identities, hand/deck identities, RNG state, deck order and internal activation sequence are excluded. Legal action descriptors carry effective selected-card cost. A public-state audit is not a declaration of complete Hearthstone Markov coverage: disputed ordering and future unsupported mechanics still block complete rules/admission evidence.
 
 ## Metadata versus rules
 
@@ -38,7 +51,7 @@ The user-reviewed minion-play phase model places Kindred after original entry an
 
 INSTANCE_COPY_V1 explicitly transfers identity and admitted stats field by field, assigns new entity/activation identities, recomputes ownership/placement/provenance and resets ordinary summon attack bookkeeping. It rejects non-default unreviewed modifiers, counters, enchantments, Freeze/silence/keywords, links, Prepare, damage, control change, aura ownership and non-rightmost sources. Guards precede play normalization and run again at snapshot; failed branches invalidate the session. No clean-base substitution or blanket struct copy. Full-board minion legality and failed summon capacity remain ordinary engine rules.
 
-This consumer is PARTIAL. Whelp-generated hand buffs and broader generated/reaction state remain blockers; no full root/deck closure or training admission is granted. Observation schema 15 changes the actual canonical observation fingerprint; historical stale Rosetta evidence is not promoted or recertified by ManaEngine scenarios. See INSTANCE_COPY_V1_CONTRACT_REVIEW.md and BOOKKEEPER_COMPLETION.md under reports/manaengine_phase4b_20261004.
+This consumer is PARTIAL. Whelp-generated hand buffs and broader generated/reaction state remain blockers; no full root/deck closure or training admission is granted. The TLC_226 change recorded at that time changed the observation fingerprint under schema 15. Schema 16 is current; historical stale Rosetta evidence is not promoted or recertified by ManaEngine scenarios. See INSTANCE_COPY_V1_CONTRACT_REVIEW.md and BOOKKEEPER_COMPLETION.md under reports/manaengine_phase4b_20261004.
 
 ## Direct spell damage turn accounting and fixed summon, version 1
 

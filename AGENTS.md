@@ -6,6 +6,8 @@ Latest explicit user instructions take precedence over repository guidance. This
 
 For card support, read [docs/CAPABILITY_PACKAGE_PROCESS.md](docs/CAPABILITY_PACKAGE_PROCESS.md) and [docs/STANDARD_REGISTRY.md](docs/STANDARD_REGISTRY.md). Use [the proposal template](docs/CAPABILITY_PACKAGE_PROPOSAL_TEMPLATE.md) before implementation. Read [the native integration guide](docs/ROSETTASTONE_INTEGRATION.md) or [the real-data guide](docs/REAL_MATCH_DATA.md) only for the relevant task.
 
+For work involving unknown cards/states, runtime ranking, neural fallback, evidence debt, search or live-game integration, read [docs/PARTIAL_SIMULATOR_ARCHITECTURE.md](docs/PARTIAL_SIMULATOR_ARCHITECTURE.md). It separates implemented behavior from accepted targets and future work.
+
 The selected `configs/standard_profile.json`, canonical registry and generated report own current pool/evidence/admission facts. Read their current contents; do not copy volatile counts into instructions. Markdown under `docs/history/`, dated audit reports and old experiment results are evidence only. Their old priorities, resume steps and permissions are inactive. They cannot authorize training or choose the next card.
 
 Answer in Russian by default. Explain Python/ML concepts plainly; the user is a frontend developer learning this stack.
@@ -13,7 +15,11 @@ Answer in Russian by default. Explain Python/ML concepts plainly; the user is a 
 ## Product and information boundaries
 
 - Build a desktop Hearthstone adviser, not a gameplay automation tool. Do not automate mouse movement, clicks or game actions.
-- Keep executable rules in RosettaStone. Reuse CardDef, Power, Tasks, Triggers, Auras, Conditions and existing event/death processing. Do not build another rules interpreter or a universal card-text language.
+- ManaEngine is the primary forward simulator development backend. Keep its rules deterministic and strict: fail closed when a transition is unsafe or unsupported; never fabricate a plausible Hearthstone transition. RosettaStone remains a reference/regression backend, historical implementation source, and evidence/tooling dependency where explicitly consumed. Develop new rules in ManaEngine unless a task explicitly requests RosettaStone.
+- Do not build a second approximate Hearthstone rules engine. Resilience to incomplete simulator coverage belongs above ManaEngine, in adapters/evaluators and future neural/search layers. An unsupported simulator action may still be recommendable through a future action-value fallback; it does not imply that the action must be universally un-recommendable.
+- Keep runtime simulation, rules/evidence basis, dependency closure and canonical training admission separate. `REVIEWED_INFERRED` may authorize bounded runtime simulation with explicit evidence debt; it is not rules verification and does not currently grant canonical training eligibility. Canonical training remains stricter than runtime execution.
+- Dynamic generation membership comes from reviewed game rules and manifests, never implementation coverage. Do not prune pools, substitute supported outcomes or reroll an unsupported sampled result. A poisoned/partially mutated state is diagnostic only and cannot be a valid observation, search child or training sample. `ENGINE_DEFECT` must not silently become ordinary unsupported behavior or neural fallback.
+- Full-information simulator cloning is not authorization for real-game search. Preserve the hidden-information boundary and require a reviewed information-set/determinization design before using search to choose live-game actions.
 - Estimate positions, not context-free card strength. Value targets are for SELF: win 1.0, loss 0.0, draw 0.5.
 - Model inputs contain player-visible information only: SELF hand, public entities and explicitly revealed opponent cards. Exclude hidden opponent hand identities, deck order, future draws and RNG outcomes. Entity IDs are action handles, not policy inputs.
 - Preserve unknown/new-card support, ordered SELF hand, shared minion/Location board positions, variable-size zones, missing-value masks and unknown booleans.

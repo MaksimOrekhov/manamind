@@ -2,6 +2,8 @@
 
 This guide describes the implemented bridge and configured Windows build. Product/model requirements live in [README](../README.md); card-support workflow and admission live in [the package process](CAPABILITY_PACKAGE_PROCESS.md) and [Standard registry](STANDARD_REGISTRY.md). Historical card-by-card queues and pilot permissions are inactive.
 
+> **Role:** ManaEngine is the primary forward simulator development backend. RosettaStone remains a reference/regression backend and a source of historical implementation evidence. This guide documents the existing native integration and its limits; RosettaStone evidence does not automatically establish ManaEngine correctness. See [the partial-simulator architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md).
+
 ## Source and metadata
 
 The gitlink pins a published commit in `MaksimOrekhov/RosettaStone`. Upstream is `utilForever/RosettaStone`; read the actual revision from Git/current registry rather than a hardcoded upstream SHA. Recursive clone includes the engine changes; do not apply the old integration patch on top.
@@ -63,7 +65,10 @@ Generic hand-choice windows and reviewed special choices are exposed; other choi
 
 Observations contain SELF hand and public board/resources/Locations/weapons/hero powers, with current instance stats separate from base metadata. Opponent hidden hand and deck identities remain absent. Engine entity IDs are action handles only.
 
-Encoder schema v7 includes visible `hero_divine_shield` and the two board-minion
+The current `STATE_ENCODING_SCHEMA_VERSION` is 16. Older checkpoints with a
+different encoder schema are incompatible and must retain their original
+metadata and interpretation. The public state preserves visible
+`hero_divine_shield` and the two board-minion
 target protections (`cant_be_targeted_by_spells`, `cant_be_targeted_by_hero_powers`).
 Absent import fields remain unknown, distinct from false. Hero Shield is ternary
 in player features; each minion protection has its own known mask. Old value

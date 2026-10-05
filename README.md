@@ -7,37 +7,67 @@ ManaMind is a desktop Hearthstone adviser: it observes a player-visible position
 | Document | Purpose |
 |---|---|
 | [AGENTS.md](AGENTS.md) | Working rules and instruction authority |
+| [Partial simulator architecture](docs/PARTIAL_SIMULATOR_ARCHITECTURE.md) | Implemented boundaries, unknown-state strategy, accepted targets and future roadmap |
 | [Capability-package process](docs/CAPABILITY_PACKAGE_PROCESS.md) | Card-support workflow, implementation kinds and proposed CI guardrail |
 | [Package proposal template](docs/CAPABILITY_PACKAGE_PROPOSAL_TEMPLATE.md) | Required design record before new engine/generator card support |
 | [Standard registry](docs/STANDARD_REGISTRY.md) | Pool/dependency contracts, admission gates and snapshot updates |
-| [RosettaStone integration](docs/ROSETTASTONE_INTEGRATION.md) | Native build, bridge API and execution evidence |
+| [RosettaStone integration](docs/ROSETTASTONE_INTEGRATION.md) | Reference backend build, bridge API and execution evidence |
 | [Real match data](docs/REAL_MATCH_DATA.md) | Local Power.log capture/import and match-level dataset preparation |
 
 Current pool and coverage facts come from the profile-selected registry/report, not a copied Markdown count. [Historical records](docs/history/README.md) document experiments and scoped evidence; their old queues, resume instructions and training permissions are inactive.
 
 ## Product specification and current architecture
 
-```text
-Hearthstone / logs → adapters → player-visible GameState
-→ legal actions + RosettaStone → policy/value models + future search
-→ recommendations → planned Vue 3 / Tauri UI or overlay
+ManaEngine is the primary simulator for forward rules development. It owns an
+isolated internal state and exports completed observations through an adapter
+to ManaMind's player-visible `GameState`. It is an actively developed,
+bounded simulator, not production-complete. RosettaStone remains available for
+reference, regression/parity, historical implementation and explicitly used
+evidence/tooling.
+
+```mermaid
+flowchart LR
+    LOG["Hearthstone / Power.log"] --> OBS["Player-visible GameState"]
+    OBS --> ENC["Current encoder and Value Network"]
+    SESSION["ManaEngine session from deck/setup"] -->|supported action completes| CHILD["Valid quiescent child observation"]
+    SESSION -->|unsupported transition| FAIL["Strict failure; no fabricated child"]
+    CHILD -. "future ranking/search integration" .-> VALUE["Value / future search"]
+    FAIL -. "future action-value path" .-> Q["Q_fallback"]
+    Q -. FUTURE .-> VALUE
+    VALUE --> REC["Recommendation"]
+    LIVE["Observed live root → ManaEngine"] -. "FUTURE" .-> SESSION
+    SEARCH["Beam / MCTS"] -. "FUTURE" .-> VALUE
 ```
 
-Implemented: domain schema, metadata catalog/vocabulary, state encoding, Value Network, labeled-data pipeline, inference, native simulator bridge and an experimental REINFORCE action policy. Live capture/UI/search are future product work, not part of the current card-support cleanup.
+**Implemented:** player-visible domain state, metadata catalog/vocabulary,
+state encoding, Value Network, labeled-data pipeline and inference; the
+ManaEngine deck-session adapter; RosettaStone native bridge and a separate
+experimental action policy. The ManaEngine accepts only supported transitions
+and fails closed when a transition cannot be modeled safely. Power.log capture
+and import produce gameplay data, but there is no automatic comparison of a
+real replay against ManaEngine rules.
 
-The current priority is reusable capability packages for the full pinned Standard pool and reachable outcomes. Historical five-deck lists are regression controls. Full Standard training remains blocked until the profile's rules, closure, actions and session/match gates pass.
+**Accepted target / future:** an unsimulatable legal action may eventually be
+ranked by an action-conditioned value fallback without inventing a child state.
+`Q_fallback`, an arbitrary observed-live-state importer, live simulator search,
+Beam/MCTS and a recommendation UI are not implemented. Full Standard remains
+the canonical coverage target, but near-complete Hearthstone simulation is not
+a prerequisite for every future ML experiment. Canonical training still
+requires valid trajectories and its applicable rules, closure, action,
+observation, session and match gates. Historical five-deck lists remain
+regression controls.
 
 ### Observation and model contracts
 
 - Orient every state to SELF and OPPONENT. Include SELF hand, public entities, resources and explicitly revealed opponent cards; never hidden hand identities, deck order, future draws or RNG outcomes.
 - `GameState` requires `turn_number`, `active_player` (`SELF`/`OPPONENT`) and both player observations; each player requires `hero_health`. Minions and Locations share a seven-slot board with preserved positions.
 - `CardFeatures` retains base cost/attack/health/durability separately from optional `current_cost`, `current_attack`, `current_health`, `current_durability`. Effective accessors serve gameplay consumers; missing values and unknown booleans remain distinguishable from zero/false.
-- Encoding uses identity/category embeddings, structured numeric/mechanic/entity features and missing-value masks. It preserves ordered SELF hand and separate minion/Location zones. Numeric scaling is signed `log1p`, clipped at 10,000. The current global vector has 27 features.
+- Encoding uses identity/category embeddings, structured numeric/mechanic/entity features and missing-value masks. It preserves ordered SELF hand and separate minion/Location zones. Numeric scaling is signed `log1p`, clipped at 10,000. `STATE_ENCODING_SCHEMA_VERSION` in `src/manamind/encoding/state_encoder.py` is authoritative; schema 16 is the current value. Feature and schema changes invalidate incompatible checkpoints; do not copy old feature counts into documentation.
 - `hero_power_ready` represents observed exhaustion state, not a complete legal-use predicate; missing log tags remain unknown. Location activation is unknown unless the source can establish it.
 - The Value Network shares an entity encoder, uses masked mean/max zone pooling and a global-feature MLP, then returns a win/loss logit. Sigmoid estimates `P(SELF eventually wins | visible GameState)`; targets are win 1.0, loss 0.0, draw 0.5.
-- Unknown/new IDs must still encode/infer using structured features and the unknown vocabulary token. Report unknown IDs to callers.
-- Encoder schema is currently **v7**; the constant in `src/manamind/encoding/state_encoder.py` is authoritative. Older value checkpoints are rejected. Checkpoints store vocabulary/catalog, model config/weights, feature names, normalization and schema. Inference uses the saved catalog; added metadata cannot reorder trained vocabulary.
-- The separate policy scores currently legal actions from visible state, ordered hand and semantic action descriptors. Engine entity IDs only apply actions. Both seats share the stochastic policy; terminal rewards are +1/-1/0. Policy checkpoints and compatibility rules are separate from the Value Network.
+- An ID absent from the saved vocabulary maps to its shared unknown identity index; available visible numeric/category/mechanic features can still carry information. The current vocabulary does not encode whether an unknown index represents a newly introduced identity or a known token absent from that checkpoint. Report unknown IDs to callers. A richer identity-status split is a target, not implemented.
+- Older value checkpoints are rejected when their state schema does not match. Checkpoints store vocabulary/catalog, model config/weights, feature names, normalization and schema. Inference uses the saved catalog; added metadata cannot reorder trained vocabulary.
+- The separate policy scores currently legal actions from visible state, ordered hand and semantic action descriptors. Engine entity IDs only apply actions. Both seats share the stochastic policy; terminal rewards are +1/-1/0. Its current checkpoint action schema is `POLICY_ACTION_SCHEMA_VERSION = 3` in `src/manamind/integrations/rosettastone/policy.py`. Policy logits are action-selection scores, not win probabilities or Q-values. Policy checkpoints and compatibility rules are separate from the Value Network.
 
 ### Data and result interpretation
 

@@ -4,6 +4,11 @@ This record describes the bounded prototype changes. It does not promote
 Dark Gift membership, sampler behavior, canonical evidence, or training
 eligibility.
 
+This is a dated Phase 4E.2 evidence record; its historical findings and
+statuses remain unchanged. For the current primary ManaEngine role and the
+separation between runtime execution, evidence debt and canonical training,
+see [Partial Simulator Architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md).
+
 ## Session evidence constraints
 
 `GameSession` stores a typed set with stable IDs

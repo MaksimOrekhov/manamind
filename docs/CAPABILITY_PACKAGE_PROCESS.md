@@ -14,6 +14,31 @@ Effective 2026-10-01. These rules replace card-by-card implementation queues. Th
 
 The proposal is a required design record, not a new mandatory user-confirmation step. Existing authorization for reversible work remains subject to the latest task scope. This documentation change starts no card implementation package.
 
+## Rules uncertainty disposition
+
+For each capability whose Hearthstone semantics are not fully established,
+classify the uncertainty before implementation:
+
+1. **REVIEWED / sufficiently established.** Implement the reviewed contract
+   with strict semantics and ordinary family verification.
+2. **FINITE BOUNDED UNCERTAINTY.** Runtime may use `REVIEWED_INFERRED` only
+   when the assumption and scope are explicit, the behavior/outcome set is
+   finite and deterministically representable, the project has approved the
+   assumption, and a concrete invalidation condition is recorded. Keep
+   evidence debt attached. This status is not rules verification or canonical
+   training permission.
+3. **UNSAFE / UNBOUNDED UNCERTAINTY.** If uncertainty changes legality,
+   hidden-information boundaries, target topology, unbounded state mutation,
+   passive/held behavior, or otherwise cannot be bounded safely, fail closed
+   and defer the capability pending rules evidence or design review.
+
+`REVIEWED_INFERRED` is not permission to guess arbitrary rules. Any package
+using inferred behavior records the assumption, scope, provenance,
+client/build/version, invalidation condition and canonical-training impact.
+Keep runtime execution, rules/evidence basis, dependency closure and training
+eligibility as separate axes. See [Partial Simulator Architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md)
+for the project-wide status model.
+
 ## Technical classification
 
 The table defines the classification design; it is not a migration of all legacy
