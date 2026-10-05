@@ -1306,7 +1306,9 @@ def test_damage_group_vulcanos_barrier_poison_and_quiescent_clone() -> None:
     clone = session.clone()
     end = next(a for a in session.legal_actions() if a["type"] == "END_TURN")
     for branch in (session, clone):
-        with pytest.raises(UnsupportedSimulationError, match="pool identity is not loaded"):
+        # The inferred Fire manifest is loaded. This fixed seed selects an
+        # unsupported outcome, which must poison both branches without reroll.
+        with pytest.raises(UnsupportedSimulationError, match="selected generated outcome is unsupported: TLC_222"):
             branch.apply_action(end)
         assert not branch.is_valid
         trace = list(branch.diagnostic_trace)
@@ -1388,7 +1390,7 @@ def test_poisoned_session_accessors_are_adapter_errors_not_native_state() -> Non
     # Healthy session: accessors work and report in-progress state.
     assert session.result is None and not session.is_complete and not session.needs_choice
     assert session.choice_options == ()
-    with pytest.raises(UnsupportedSimulationError, match="pool identity is not loaded"):
+    with pytest.raises(UnsupportedSimulationError, match="selected generated outcome is unsupported: TLC_222"):
         session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
     assert not session.is_valid and session.unsupported_outcome
     for name in ("result", "is_complete", "needs_choice", "choice_options"):

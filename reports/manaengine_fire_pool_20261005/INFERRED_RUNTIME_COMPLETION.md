@@ -53,4 +53,5 @@ The registry and summary regenerate only to refresh `observation_source_sha256` 
 - Requested baseline: `eb3715f5db8629bff226f0ad4630f33db4312090`.
 - Work was performed in the isolated worktree `C:\Users\Максим\.codex\worktrees\phase-4j1-inferred-fire\ManaMind`; primary `E:\ManaMind` was not modified.
 - Source audit and the old candidate manifest were preserved without edits.
-- Hosted Source CI and ManaEngine CI have not yet been run for the completion commit; their Windows and Ubuntu jobs remain a required post-push gate.
+- Hosted Source CI run [37313767634](https://github.com/MaksimOrekhov/manamind/actions/runs/37313767634) passed on Ubuntu and Windows, including generated-artifact reproduction and pytest.
+- The first ManaEngine CI run [37313767660](https://github.com/MaksimOrekhov/manamind/actions/runs/37313767660) built and passed CTest on both Ubuntu and Windows, then exposed two Python assertions that still expected the Fire pool to be absent. The production adapter now loads the inferred manifest, so both tests were corrected to assert fail-closed handling of the deterministic unsupported sampled outcome `TLC_222`. The two focused tests and full local pytest passed after that correction. The post-correction hosted ManaEngine run is required to close this finding.
