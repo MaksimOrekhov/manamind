@@ -24,7 +24,7 @@ enum class SummonCondition { None, HoldingDragon };
 enum class DiscardSpellSchool { None, Nature, Fire };
 enum class PoolPredicateKind { StandardSpellSchool, StandardSpellBaseCost };
 enum class PoolClassPolicy { AnyClass, NonNeutralClass };
-enum class PoolMembershipStatus { Candidate, MembershipReviewed };
+enum class PoolMembershipStatus { Candidate, MembershipReviewed, ReviewedInferred };
 enum class PoolDependencyStatus { Open, DependencyClosed };
 enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
 enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
@@ -32,7 +32,7 @@ enum class DarkGiftRuntimeMembershipStatus { Unresolved };
 enum class DarkGiftSamplerStatus { Unverified };
 // ArcaneBarrageTargetingContractUnverified covers only enemy-hero pool membership, distinct sampling and
 // insufficient-candidate semantics (k=min(2,n), n=0 included). It does not cover Arcane Barrage topology.
-enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified, MortalQueuedEotSourceUnverified, ArcaneBarrageTargetingContractUnverified };
+enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified, MortalQueuedEotSourceUnverified, ArcaneBarrageTargetingContractUnverified, FirePoolMembershipInferred };
 const char* evidence_constraint_id(EvidenceConstraint constraint);
 struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
 struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };

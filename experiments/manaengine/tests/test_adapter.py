@@ -234,6 +234,7 @@ def test_safe_existing_primitive_harvest_declarations_reach_adapter_and_policy()
 
 
 def test_vulcanos_colossal_and_plume_declarations_reach_native_catalog() -> None:
+    from pathlib import Path
     from manamind.integrations.manaengine.engine import _definition_rows, _load_native
 
     definitions = {row.card_id: row for row in _definition_rows()}
@@ -247,12 +248,51 @@ def test_vulcanos_colossal_and_plume_declarations_reach_native_catalog() -> None
     for plume in (left, right):
         assert plume.support_state == "SUPPORTED" and plume.rules_contract_reviewed
         assert (plume.attack, plume.health, plume.race) == (1, 5, "ELEMENTAL")
-        assert plume.takes_damage_pool_id == "fire_spell_standard_20261001_candidate_v1"
+        assert plume.takes_damage_pool_id == "fire_spell_standard_253932_inferred_v1"
         assert plume.takes_damage_cost_delta == -3
 
-    # No runtime manifest is supplied: a Plume reaction must fail closed before RNG.
+    # The pinned inferred manifest is supplied explicitly for simulation, with training still blocked by evidence debt.
     native = _load_native()
-    native.CardCatalog(list(definitions.values()), [], "", "", _native_dark_gift_manifests(native))
+    from manamind.integrations.manaengine.pool_manifest import load_pool_manifest
+    root = Path(__file__).resolve().parents[3]
+    manifest = load_pool_manifest(root / "experiments/manaengine/data/pools/fire_spell_standard_253932_inferred_v1.json",
+                                  expected_profile_id="standard_full_20261001_v1", expected_as_of_date="2026-10-01",
+                                  metadata_snapshot_path=root / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+                                  standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                                  expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+    native.CardCatalog(list(definitions.values()), [manifest.to_native(native)], manifest.metadata_snapshot_id,
+                       manifest.metadata_snapshot_sha256, _native_dark_gift_manifests(native))
+
+
+def test_plume_inferred_fire_runtime_records_debt_only_when_sampled() -> None:
+    from manamind.integrations.manaengine.engine import ManaEngineSession
+
+    filler = "CORE_EX1_145"
+    sampled = False
+    for seed in range(32):
+        session = ManaEngineSession(["CATA_488", *([filler] * 29)], [filler] * 30,
+                                    player1_class="MAGE", player2_class="MAGE", shuffle=False,
+                                    random_seed=seed)
+        assert session.evidence_constraints == ()
+        for _ in range(18):
+            actions = session.legal_actions()
+            root = next((action for action in actions if action.get("card_id") == "CATA_488"), None)
+            if root is not None:
+                session.apply_action(root)
+                break
+            session.apply_action(next(action for action in actions if action["type"] == "END_TURN"))
+        else:
+            pytest.fail("Vulcanos did not become playable during the turn progression")
+        try:
+            session.apply_action(next(action for action in session.legal_actions() if action["type"] == "END_TURN"))
+        except UnsupportedSimulationError:
+            # Unsupported Fire outcomes still carry inferred-membership debt after sampling.
+            pass
+        if session.evidence_constraints:
+            assert session.evidence_constraints == ("FIRE_POOL_MEMBERSHIP_INFERRED",)
+            sampled = True
+            break
+    assert sampled, "Vulcanos Plume should sample the admitted inferred pool on its first damage trigger"
 
 
 def test_effect_target_boundaries_declarations_and_adapter() -> None:
@@ -917,9 +957,10 @@ def test_finite_pool_manifests_are_strict_and_native_compatible(tmp_path) -> Non
     snapshot = root / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json"
     pool_dir = root / "experiments/manaengine/data/pools"
     manifests = sorted(path for path in pool_dir.glob("*.json") if path.name.startswith(("fire_spell_", "whelp_")))
-    assert len(manifests) == 4
+    assert len(manifests) == 5
     native = _load_native()
     expected_counts = {"fire_spell_standard_20261001_candidate_v1.json": 33,
+                       "fire_spell_standard_253932_inferred_v1.json": 33,
                        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1.json": 77,
                        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1.json": 65,
                        "whelp_one_cost_spell_standard_20261001_class_candidate_v1.json": 63}
@@ -929,12 +970,55 @@ def test_finite_pool_manifests_are_strict_and_native_compatible(tmp_path) -> Non
                                      standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
                                      expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
         assert document.count == expected_counts[path.name]
-        assert document.membership_status == "CANDIDATE"
+        expected_status = "REVIEWED_INFERRED" if path.name == "fire_spell_standard_253932_inferred_v1.json" else "CANDIDATE"
+        assert document.membership_status == expected_status
         assert document.dependency_status == "OPEN"
         assert not document.training_eligible
         native_manifest = document.to_native(native)
         native.CardCatalog([], [native_manifest], document.metadata_snapshot_id,
                            document.metadata_snapshot_sha256)
+
+    inferred_path = pool_dir / "fire_spell_standard_253932_inferred_v1.json"
+    inferred_raw = json.loads(inferred_path.read_text(encoding="utf-8"))
+    assert inferred_raw["pool_id"] == "fire_spell_standard_253932_inferred_v1"
+    assert inferred_raw["as_of_date"] == "2026-10-01"
+    assert inferred_raw["metadata_snapshot"]["id"].endswith("20261001_enUS.json")
+    assert inferred_raw["membership_status"] == "REVIEWED_INFERRED"
+    assert inferred_raw["dependency_status"] == "OPEN" and inferred_raw["training_eligible"] is False
+    assert inferred_raw["card_ids"] == sorted(set(inferred_raw["card_ids"])) and len(inferred_raw["card_ids"]) == 33
+    candidate_raw = json.loads((pool_dir / "fire_spell_standard_20261001_candidate_v1.json").read_text(encoding="utf-8"))
+    assert candidate_raw["membership_status"] == "CANDIDATE"
+    assert candidate_raw["card_ids"] == inferred_raw["card_ids"]
+    assert candidate_raw["predicate"] == inferred_raw["predicate"]
+    assert candidate_raw["metadata_snapshot"] == inferred_raw["metadata_snapshot"]
+    assert candidate_raw["sorted_membership_sha256"] == inferred_raw["sorted_membership_sha256"] == "480f5971bdf90a339f08142a9f2e47c7650be1ddd6973241960885b20b3e0e87"
+    expected_inferred = json.loads(json.dumps(candidate_raw))
+    expected_inferred["pool_id"] = "fire_spell_standard_253932_inferred_v1"
+    expected_inferred["membership_status"] = "REVIEWED_INFERRED"
+    expected_inferred["exclusions"][-1]["rationale"] = (
+        "Exhaustive runtime membership remains unresolved. Project policy admits this exact 33-card build-253932 candidate for simulation only; this inference is not rules verification and carries FIRE_POOL_MEMBERSHIP_INFERRED evidence debt whenever sampled."
+    )
+    expected_inferred["exclusions"][-1]["evidence_ref"] = "reports/manaengine_fire_pool_20261005/FIRE_POOL_RUNTIME_MEMBERSHIP_AUDIT.md"
+    from manamind.integrations.manaengine.pool_manifest import _predicate_fingerprint
+    expected_inferred["predicate_rules_fingerprint"] = _predicate_fingerprint(expected_inferred)
+    assert inferred_raw == expected_inferred
+
+    reviewed_with_debt = json.loads(json.dumps(inferred_raw))
+    reviewed_with_debt["membership_status"] = "MEMBERSHIP_REVIEWED"
+    malformed = tmp_path / "reviewed_with_unresolved_exclusion.json"
+    malformed.write_text(json.dumps(reviewed_with_debt), encoding="utf-8")
+    with pytest.raises(ValueError, match="cannot contain unresolved"):
+        load_pool_manifest(malformed, expected_profile_id="standard_full_20261001_v1", expected_as_of_date="2026-10-01",
+                           metadata_snapshot_path=snapshot, standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                           expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
+
+    wrong_build = json.loads(json.dumps(inferred_raw))
+    wrong_build["as_of_date"] = "2026-10-06"
+    malformed.write_text(json.dumps(wrong_build), encoding="utf-8")
+    with pytest.raises(ValueError, match="identity mismatch"):
+        load_pool_manifest(malformed, expected_profile_id="standard_full_20261001_v1", expected_as_of_date="2026-10-01",
+                           metadata_snapshot_path=snapshot, standard_roots_path=root / "data/cards/standard_roots_20261001_enUS.json",
+                           expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json")
 
     raw = json.loads(manifests[0].read_text(encoding="utf-8"))
     raw["card_ids"].reverse()
@@ -1275,6 +1359,16 @@ def test_mortal_queued_eot_source_constraint_is_registered_and_blocks_admission(
     constraint = "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED"
     assert constraint in EVIDENCE_CONSTRAINT_IDS
     # Evidence debt blocks canonical admission independently of the global gate.
+    with pytest.raises(UnsupportedSimulationError, match=constraint):
+        require_canonical_training_admission((constraint,), global_gate_blocked=False)
+
+
+def test_inferred_fire_pool_evidence_is_registered_and_blocks_canonical_admission() -> None:
+    from manamind.domain.game_state import EVIDENCE_CONSTRAINT_IDS
+    from manamind.integrations.manaengine.engine import require_canonical_training_admission
+
+    constraint = "FIRE_POOL_MEMBERSHIP_INFERRED"
+    assert constraint in EVIDENCE_CONSTRAINT_IDS
     with pytest.raises(UnsupportedSimulationError, match=constraint):
         require_canonical_training_admission((constraint,), global_gate_blocked=False)
 

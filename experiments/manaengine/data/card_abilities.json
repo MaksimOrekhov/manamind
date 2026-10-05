@@ -924,14 +924,14 @@
     "CATA_488t": {
       "ability": "TAKES_DAMAGE_GENERATE",
       "support_state": "SUPPORTED",
-      "takes_damage_pool_id": "fire_spell_standard_20261001_candidate_v1",
+      "takes_damage_pool_id": "fire_spell_standard_253932_inferred_v1",
       "takes_damage_cost_delta": -3,
       "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
     },
     "CATA_488t2": {
       "ability": "TAKES_DAMAGE_GENERATE",
       "support_state": "SUPPORTED",
-      "takes_damage_pool_id": "fire_spell_standard_20261001_candidate_v1",
+      "takes_damage_pool_id": "fire_spell_standard_253932_inferred_v1",
       "takes_damage_cost_delta": -3,
       "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
     },

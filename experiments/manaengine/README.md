@@ -26,8 +26,13 @@ Generation (TakesDamage) reactions inside hero-containing areas, combat and comp
 Secrets remain guarded where ordering is unreviewed. A first-spell-damage (Raincaller)
 reaction is a separate, order-insensitive family and is supported alongside them; one
 entity being both consumer and watcher stays unsupported.
-Vulcanos's Fire pool remains blocked. Scope, tests and remaining
-limits are recorded in `reports/manaengine_damage_group_20261005/COMPLETION.md`,
+Vulcanos's Fire pool can now be sampled from an explicitly `REVIEWED_INFERRED`
+33-card manifest. This permits bounded simulation while attaching
+`FIRE_POOL_MEMBERSHIP_INFERRED` evidence debt on each sample; it does not
+establish exact Hearthstone membership, rules verification, or training
+eligibility. The unresolved membership audit remains authoritative. Scope,
+tests and remaining limits are recorded in
+`reports/manaengine_damage_group_20261005/COMPLETION.md`,
 `REMEDIATION_SONNET.md` and the mortality table in `MORTALITY_POLICY.md`.
 
 Random-distinct Damage (Phase 4I.1, bounded): the declarative selectors

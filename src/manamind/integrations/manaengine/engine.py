@@ -14,7 +14,7 @@ from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
 from manamind.domain.game_state import EVIDENCE_CONSTRAINT_IDS, GameState
 from manamind.domain.serialization import game_state_from_dict
-from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest
+from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest, load_pool_manifest
 
 _NATIVE: ModuleType | None = None
 _ROOT = Path(__file__).resolve().parents[4]
@@ -345,9 +345,18 @@ class ManaEngineSession:
                 _ROOT / "experiments/manaengine/data/pools/dark_gift_launch_review_20261004_v1.json",
                 _ROOT / "experiments/manaengine/data/dark_gift_option_metadata.json",
             )
+            fire_pool = load_pool_manifest(
+                _ROOT / "experiments/manaengine/data/pools/fire_spell_standard_253932_inferred_v1.json",
+                expected_profile_id="standard_full_20261001_v1",
+                expected_as_of_date="2026-10-01",
+                metadata_snapshot_path=_ROOT / "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+                standard_roots_path=_ROOT / "data/cards/standard_roots_20261001_enUS.json",
+                expected_metadata_snapshot_id="data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+            )
             rows, metadata = _load_definitions(catalog_path)
             runtime = _NATIVE_CATALOG_CACHE[catalog_key] = _RuntimeCatalog(
-                native.CardCatalog(rows, [], "", "", [option_manifest.to_native(native)]), metadata
+                native.CardCatalog(rows, [fire_pool.to_native(native)], fire_pool.metadata_snapshot_id,
+                                   fire_pool.metadata_snapshot_sha256, [option_manifest.to_native(native)]), metadata
             )
         # Enrichment always uses this session's own catalog metadata, never whichever catalog was loaded last.
         self._card_metadata = runtime.card_metadata

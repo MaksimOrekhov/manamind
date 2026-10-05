@@ -18,7 +18,7 @@ _POOL_FIELDS = {
 _PREDICATE_FIELDS = {"kind", "school", "base_cost", "class_policy"}
 _PREDICATES = {"STANDARD_SPELL_SCHOOL", "STANDARD_SPELL_BASE_COST"}
 _CLASS_POLICIES = {"ANY_CLASS", "NON_NEUTRAL_CLASS"}
-_MEMBERSHIP = {"CANDIDATE", "MEMBERSHIP_REVIEWED"}
+_MEMBERSHIP = {"CANDIDATE", "MEMBERSHIP_REVIEWED", "REVIEWED_INFERRED"}
 _DEPENDENCY = {"OPEN", "DEPENDENCY_CLOSED"}
 _EXCLUSION_CATEGORIES = {
     "QUEST", "RUNE", "NON_GENERATABLE", "CLASS_POLICY", "NEUTRAL_POLICY",
@@ -276,6 +276,7 @@ def load_pool_manifest(
     if not isinstance(raw["exclusions"], list):
         raise ValueError("pool exclusions must be a list")
     exclusions = []
+    unresolved_exclusions = []
     for exclusion in raw["exclusions"]:
         fields = {"category", "status", "card_ids", "rationale", "evidence_ref"}
         if not isinstance(exclusion, dict) or set(exclusion) != fields:
@@ -289,7 +290,27 @@ def load_pool_manifest(
             raise ValueError("pool exclusion rationale/evidence identity is invalid")
         if exclusion["status"] == "REVIEWED_EXCLUDED" and set(ids).intersection(excluded_ids):
             raise ValueError("reviewed excluded identity also appears in pool membership")
+        if exclusion["status"] == "UNRESOLVED":
+            unresolved_exclusions.append(exclusion)
         exclusions.append(PoolExclusionRecord(exclusion["category"], exclusion["status"], tuple(excluded_ids), exclusion["rationale"], exclusion["evidence_ref"]))
+    if raw["membership_status"] == "MEMBERSHIP_REVIEWED" and unresolved_exclusions:
+        raise ValueError("MEMBERSHIP_REVIEWED pool cannot contain unresolved exclusion rows")
+    if raw["membership_status"] == "REVIEWED_INFERRED":
+        inferred_evidence_ref = "reports/manaengine_fire_pool_20261005/FIRE_POOL_RUNTIME_MEMBERSHIP_AUDIT.md"
+        if raw["training_eligible"] or not any(
+            row["category"] == "NON_GENERATABLE" and row["evidence_ref"] == inferred_evidence_ref
+            for row in unresolved_exclusions
+        ):
+            raise ValueError("REVIEWED_INFERRED pool requires explicit unresolved membership evidence and cannot be training-eligible")
+        if (raw["pool_id"] != "fire_spell_standard_253932_inferred_v1" or
+                raw["format_profile_id"] != "standard_full_20261001_v1" or
+                raw["as_of_date"] != "2026-10-01" or
+                raw["metadata_snapshot"]["id"] != "data/cards/source_snapshots/cards_collectible_20261001_enUS.json" or
+                raw["metadata_snapshot"]["sha256"] != "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930" or
+                len(ids) != 33 or raw["sorted_membership_sha256"] != "480f5971bdf90a339f08142a9f2e47c7650be1ddd6973241960885b20b3e0e87" or
+                predicate["kind"] != "STANDARD_SPELL_SCHOOL" or predicate["school"] != "FIRE" or
+                predicate["class_policy"] != "ANY_CLASS"):
+            raise ValueError("REVIEWED_INFERRED Fire pool has the wrong pinned build/snapshot identity or membership")
     if not _SHA256.fullmatch(str(raw["predicate_rules_fingerprint"])) or raw["predicate_rules_fingerprint"] != _predicate_fingerprint(raw):
         raise ValueError("pool predicate/rules fingerprint mismatch")
     return PoolManifestDocument(

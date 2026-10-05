@@ -6,7 +6,7 @@
 #include <unordered_set>
 #include <utility>
 namespace manaengine {
-const char* evidence_constraint_id(EvidenceConstraint constraint){switch(constraint){case EvidenceConstraint::DarkGiftSamplerUnverified:return "DARK_GIFT_SAMPLER_UNVERIFIED";case EvidenceConstraint::DarkGiftRuntimeMembershipUnresolved:return "DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED";case EvidenceConstraint::RebornMultiDeathSlotUnverified:return "REBORN_MULTI_DEATH_SLOT_UNVERIFIED";case EvidenceConstraint::MortalQueuedEotSourceUnverified:return "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED";case EvidenceConstraint::ArcaneBarrageTargetingContractUnverified:return "ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED";}throw std::invalid_argument("unknown evidence constraint");}
+const char* evidence_constraint_id(EvidenceConstraint constraint){switch(constraint){case EvidenceConstraint::DarkGiftSamplerUnverified:return "DARK_GIFT_SAMPLER_UNVERIFIED";case EvidenceConstraint::DarkGiftRuntimeMembershipUnresolved:return "DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED";case EvidenceConstraint::RebornMultiDeathSlotUnverified:return "REBORN_MULTI_DEATH_SLOT_UNVERIFIED";case EvidenceConstraint::MortalQueuedEotSourceUnverified:return "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED";case EvidenceConstraint::ArcaneBarrageTargetingContractUnverified:return "ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED";case EvidenceConstraint::FirePoolMembershipInferred:return "FIRE_POOL_MEMBERSHIP_INFERRED";}throw std::invalid_argument("unknown evidence constraint");}
 namespace { bool is_minion(const CardDefinition& c){return c.card_type=="MINION";} bool is_spell(const CardDefinition& c){return c.card_type=="SPELL";} bool is_weapon(const CardDefinition& c){return c.card_type=="WEAPON";} bool is_secret(const CardDefinition& c){return c.secret;} }
 void GameSession::trace_event(std::string event){if(state_.trace_enabled)state_.trace.push_back(std::move(event));}
 void GameSession::assign_activation_sequence(CardInstance& source){source.activation_sequence=state_.next_event_sequence++;}
@@ -15,10 +15,12 @@ void GameSession::generate_random_card_to_hand(int owner,const std::string& pool
  const auto pool_it=catalog_->pools_->find(pool_id);
  if(pool_it==catalog_->pools_->end()){state_.unsupported="generated-card pool identity is not loaded: "+pool_id;throw UnsupportedSimulationError(*state_.unsupported);}
  const auto& pool=pool_it->second;
- if(pool.membership_status!=PoolMembershipStatus::MembershipReviewed){state_.unsupported="candidate pool cannot be used for runtime generation: "+pool_id;throw UnsupportedSimulationError(*state_.unsupported);}
+ if(pool.membership_status==PoolMembershipStatus::Candidate){state_.unsupported="candidate pool cannot be used for runtime generation: "+pool_id;throw UnsupportedSimulationError(*state_.unsupported);}
  if(pool.card_ids.empty()){state_.unsupported="empty reviewed pool cannot generate a card: "+pool_id;throw UnsupportedSimulationError(*state_.unsupported);}
  if(state_.players[owner].hand.size()>=10){state_.unsupported="generated-card hand-full ordering is unreviewed; failed before RNG consumption";throw UnsupportedSimulationError(*state_.unsupported);}
  const auto& generated_id=pool.card_ids[bounded_random(pool.card_ids.size())];
+ trace_event("POOL_SAMPLE pool="+pool_id+" card="+generated_id);
+ if(pool.membership_status==PoolMembershipStatus::ReviewedInferred)state_.evidence_constraints.insert(EvidenceConstraint::FirePoolMembershipInferred);
  const auto definition=catalog_->definitions_->find(generated_id);
  if(definition==catalog_->definitions_->end()){state_.unsupported="selected generated outcome has no pinned CardDefinition: "+generated_id;throw UnsupportedSimulationError(*state_.unsupported);}
  if(definition->second.support_state=="UNSUPPORTED"){state_.unsupported="selected generated outcome is unsupported: "+generated_id;throw UnsupportedSimulationError(*state_.unsupported);}
