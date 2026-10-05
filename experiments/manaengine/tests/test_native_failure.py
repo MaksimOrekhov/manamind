@@ -100,3 +100,36 @@ def test_t16_attempt_propagates_actual_native_resource_exception():
     with pytest.raises(MemoryError):
         attempt_action(parent, {"type": "END_TURN"}, perspective="PLAYER1")
     assert parent.is_valid and module.snapshot()["code"] == "RESOURCE_EXHAUSTED"
+
+
+@pytest.mark.parametrize("card_type,ability", [("LOCATION", "COIN_MANA"), ("SPELL", "NEXT_DEMON_DISCOUNT")])
+def test_t06_real_attempt_declaration_false_negatives_now_defects(card_type, ability):
+    from manamind.integrations.manaengine import AttemptReason, ManaEngineSession, SimulationOutcome, attempt_action
+
+    native = _load_native()
+    definitions = []
+    for card_id, kind, behavior, support in (
+        ("TEST_FILLER", "MINION", "NONE", "VERIFIED_VANILLA"),
+        ("HERO_08bp", "HERO_POWER", "TARGET_DAMAGE", "SUPPORTED"),
+        ("TEST_MISSING_DISPATCH", card_type, ability, "SUPPORTED"),
+    ):
+        row = native.CardDefinition()
+        row.card_id, row.card_type, row.ability, row.support_state = card_id, kind, behavior, support
+        row.rules_contract_reviewed = True
+        row.cost = 1
+        if kind == "MINION":
+            row.attack, row.health = 1, 1
+        if card_id == "HERO_08bp":
+            row.damage, row.cost = 1, 2
+        definitions.append(row)
+    deck = ["TEST_MISSING_DISPATCH"] + ["TEST_FILLER"] * 29
+    parent = object.__new__(ManaEngineSession)
+    parent._unsupported_exception, parent._card_metadata = native.UnsupportedSimulationError, {}
+    parent._native = native.GameSession(deck, deck, native.CardCatalog(definitions), 31, False, "MAGE", "MAGE")
+    action = next(a for a in parent._native.legal_actions() if a.get("card_id") == "TEST_MISSING_DISPATCH")
+    before = parent.observation("PLAYER1")
+    result = attempt_action(parent, action)
+    assert result.outcome == SimulationOutcome.ENGINE_DEFECT and result.reason == AttemptReason.NATIVE_ENGINE_DEFECT
+    assert result.diagnostics.native_failure.code == "MISSING_DISPATCH_HANDLER"
+    assert not result.fallback_eligible and result.state is result.child is None
+    assert parent.is_valid and parent.failure is None and parent.observation("PLAYER1") == before

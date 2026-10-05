@@ -84,4 +84,3 @@ void test_typed_native_failure_v1(){
  }
 }
 }
-
