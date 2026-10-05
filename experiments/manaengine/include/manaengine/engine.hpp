@@ -1,4 +1,5 @@
 #pragma once
+#include "manaengine/failure.hpp"
 #include <array>
 #include <cstdint>
 #include <deque>
@@ -65,10 +66,6 @@ void validate_dark_gift_option_manifest(const DarkGiftOptionManifest& manifest);
 // without replacement; exclude_previous_target removes the card's explicit target (bound by an earlier explicit Damage
 // step) from the candidates; evidence_constraint is the reviewed debt recorded whenever the instruction executes.
 struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; SummonCondition summon_condition=SummonCondition::None; int conditional_extra_count=0; DiscardSpellSchool discard_school=DiscardSpellSchool::None; bool requires_previous_discard=false; int random_count=0; bool exclude_previous_target=false; std::optional<EvidenceConstraint> evidence_constraint; };
-class UnsupportedSimulationError : public std::runtime_error {
-public:
-    using std::runtime_error::runtime_error;
-};
 struct CardDefinition {
     std::string card_id, name, card_type="UNKNOWN_TYPE", card_class="UNKNOWN_CLASS", race, spell_school;
     std::string ability="NONE", generated_card, transform_card, support_state="UNSUPPORTED";
