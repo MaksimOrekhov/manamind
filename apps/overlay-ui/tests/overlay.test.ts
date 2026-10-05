@@ -1,3 +1,4 @@
+import itemSource from '../src/components/RecommendationItem.vue?raw'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { STORAGE_KEY, initLocale, locale, setLocale, type Locale } from '../src/i18n'
@@ -142,7 +143,7 @@ describe('localization', () => {
     setLocale('ru')
     expect(mount(EvaluationBadge, { props: { source: 'EXACT' } }).text()).toContain('ТОЧНО')
     expect(mount(EvaluationBadge, { props: { source: 'NEURAL' } }).text()).toContain('НЕЙРО')
-    expect(mount(EvaluationBadge, { props: { source: 'INFERRED' } }).text()).toContain('ПРЕДПОЛ.')
+    expect(mount(EvaluationBadge, { props: { source: 'INFERRED' } }).text()).toContain('С ДОПУЩ.')
     expect(mount(EvaluationBadge, { props: { source: 'UNAVAILABLE' } }).text()).toContain('Н/Д')
     expect(mount(EvaluationBadge, { props: { source: 'EXACT' } }).attributes('title')).toBe('Точный расчёт движком')
   })
@@ -166,6 +167,7 @@ describe('localization', () => {
     expect(ready).toContain('640 мс')
     expect(ready).toContain('Закончить ход')
     expect(ready).toContain('Нейро 1')
+    expect(ready).toContain('С допущ. 1')
   })
 
   it('switching language does not change score, rank or source semantics', async () => {
@@ -192,5 +194,31 @@ describe('localization', () => {
     })
     expect(w.get('[data-testid=score]').text()).toBe('—')
     expect(w.text()).toContain('Н/Д')
+  })
+
+  it('uses the "with assumptions" wording for INFERRED in Russian only', () => {
+    setLocale('ru')
+    const ru = mount(EvaluationBadge, { props: { source: 'INFERRED' } })
+    expect(ru.text()).toContain('С ДОПУЩ.')
+    expect(ru.text()).not.toContain('ПРЕДПОЛ')
+    expect(ru.attributes('title')).toBe('Расчёт с допущениями · правила подтверждены не полностью')
+    setLocale('en')
+    const en = mount(EvaluationBadge, { props: { source: 'INFERRED' } })
+    expect(en.text()).toContain('INFERRED')
+    expect(en.text()).not.toContain('С ДОПУЩ')
+  })
+
+  it('does not strike through unavailable recommendations', () => {
+    setLocale('ru')
+    const w = mount(RecommendationItem, {
+      props: { rec: { id: 'x', rank: 4, label: 'Использовать локацию', source: 'UNAVAILABLE' } },
+    })
+    const label = w.get('.item__label')
+    expect(w.classes()).toContain('item--na')
+    expect(label.attributes('style') ?? '').not.toContain('line-through')
+    expect(label.classes().join(' ')).not.toMatch(/strike|line-through/)
+    expect(itemSource).not.toContain('line-through')
+    expect(w.get('[data-testid=score]').text()).toBe('—')
+    expect(w.get('.badge__label').text()).toBe('Н/Д')
   })
 })

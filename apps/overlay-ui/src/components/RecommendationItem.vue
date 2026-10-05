@@ -96,7 +96,6 @@ const notes = computed(() =>
 .item--top .item__score { font-size: 24px; color: var(--c-accent); }
 .item--na .item__label,
 .item--na .item__score { color: var(--c-muted); }
-.item--na .item__label { text-decoration: line-through; text-decoration-color: var(--c-border); }
 .item__chev { color: var(--c-muted); font-size: 11px; }
 .item__notes {
   margin: 0;

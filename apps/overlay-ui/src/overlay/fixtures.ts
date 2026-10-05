@@ -46,7 +46,7 @@ export const FIXTURE_KEYS = ['idle', 'thinking', 'exact', 'mixed', 'partial', 'e
 export function getFixtures(l: Locale): FixtureEntry[] {
   const x = (k: TextKey) => TEXT[k][l]
   const EXACT = [translate(l, 'summary.exact')]
-  const INFERRED = [translate(l, 'summary.inferred'), translate(l, 'note.rulesNotVerified')]
+  const INFERRED = [translate(l, 'note.inferredDone'), translate(l, 'note.rulesNotVerified')]
   const NEURAL = [translate(l, 'summary.neural'), translate(l, 'note.noExactChild')]
   const NA = [translate(l, 'summary.unavailable')]
 
