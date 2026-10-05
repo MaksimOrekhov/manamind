@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "source": "RosettaStone pinned card metadata; token identity matched to official Living Roots text",
+  "cards": [
+    {
+      "id": "AT_037t",
+      "name": "Sapling",
+      "type": "MINION",
+      "cardClass": "NEUTRAL",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "races": [
+        "TREANT"
+      ],
+      "collectible": false
+    }
+  ]
+}

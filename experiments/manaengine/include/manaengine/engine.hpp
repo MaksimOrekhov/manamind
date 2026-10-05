@@ -13,8 +13,8 @@
 namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
-enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell };
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion };
+enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell, BuffMinion, ModifyWeaponAttack };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
@@ -68,6 +68,7 @@ struct CardDefinition {
     std::string choice_pool, secret_trigger="NONE", secret_effect="NONE";
     std::string shatter_left_card, shatter_right_card;
     std::vector<EffectStep> effects;
+    std::vector<EffectStep> choose_one_a, choose_one_b;
     std::vector<std::string> minion_types;
     std::string kindred_copy_contract="NONE";
     std::string takes_damage_pool_id;
@@ -89,6 +90,7 @@ struct CardDefinition {
     bool dark_gift_requires_battlecry=false, dark_gift_requires_positive_attack=false;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
     bool prepare=false, secret=false;
+    bool requires_friendly_weapon=false;
 };
 class CardCatalog {
 public:
@@ -107,7 +109,7 @@ private:
 enum class ActionType { PlayCard, Attack, HeroPower, EndTurn, ChooseCard, PrepareCard };
 struct Action {
     ActionType type=ActionType::EndTurn;
-    int hand_index=-1, attacker_entity_id=-1, target_entity_id=-1, choice_index=-1;
+    int hand_index=-1, attacker_entity_id=-1, target_entity_id=-1, choice_index=-1, choose_one=0;
     // Semantic fields cross the policy boundary; entity IDs remain execution handles.
     std::string card_id, card_type, source_card_id, target_card_id, choice_card_id;
     int card_cost=-1, card_attack=-1, card_health=-1, card_durability=-1;
@@ -122,7 +124,7 @@ struct Action {
     bool execution_equal(const Action& other) const {
         return type==other.type && hand_index==other.hand_index &&
                attacker_entity_id==other.attacker_entity_id &&
-               target_entity_id==other.target_entity_id && choice_index==other.choice_index;
+               target_entity_id==other.target_entity_id && choice_index==other.choice_index && choose_one==other.choose_one;
     }
 };
 struct ObservedCard {
@@ -201,7 +203,7 @@ private:
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
     enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity, EnemyAreaDamage };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
-    enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand };
+    enum class ContinuationKind { BuffSelectedMinion, AddSelectedCardToHand, SelectChooseOneMode, ResolveChooseOneTarget };
     enum class Zone { Deck, Hand, Board, Weapon, Secret, Graveyard };
     enum class ShatterFragment { None, Left, Right, Solo };
     struct PersistentModifier { std::string source_card_id; int attack_delta=0, health_delta=0, cost_delta=0; bool taunt=false, lifesteal=false, charge=false; };
@@ -235,7 +237,7 @@ private:
       std::vector<CardInstance> graveyard; std::vector<CardInstance> secrets;
       std::optional<WeaponState> weapon; std::vector<TimedEffect> timed_effects; };
     struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; int target_entity_id=-1; EventWindow window=EventWindow::OpponentCastsSpell; };
-    struct PendingChoice { int owner=0; std::vector<int> options; std::vector<std::string> card_options, card_dark_gifts; int choice_cost_delta=0; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; };
+    struct PendingChoice { int owner=0; std::vector<int> options; std::vector<std::string> card_options, card_dark_gifts; int choice_cost_delta=0; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; EffectStep selected_effect; std::string source_card_id; int source_entity=-1, persistent_bonus=0, selected_mode=0; };
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;

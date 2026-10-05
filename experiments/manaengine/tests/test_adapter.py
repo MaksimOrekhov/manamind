@@ -68,6 +68,51 @@ def test_bookkeeper_phase_model_runes_history_adapter_and_policy() -> None:
     assert encoded.global_features[encoder.global_feature_names.index("self_previous_minion_type_elemental")] > 0
 
 
+def test_choose_one_mode_and_target_continuation_adapter_policy_clone() -> None:
+    deck = ["CORE_AT_037"] * 30
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    play = next(action for action in session.legal_actions() if action.get("card_id") == "CORE_AT_037")
+    session.apply_action(play)
+    modes = session.legal_actions()
+    assert [action["choose_one"] for action in modes] == [1, 2]
+    assert all(action["source_card_id"] == "CORE_AT_037" for action in modes)
+    features = encode_legal_actions(modes)
+    assert features.shape[0] == 2
+    assert [int(row[26]) for row in features] == [1, 0]
+    assert [int(row[27]) for row in features] == [0, 1]
+
+    clone = session.clone()
+    damage_mode = next(action for action in modes if action["choose_one"] == 1)
+    session.apply_action(damage_mode)
+    targets = session.legal_actions()
+    enemy_hero = next(action for action in targets if action["target_is_hero"] and not action["target_is_self"])
+    assert enemy_hero["choose_one"] == 1
+    assert encode_legal_actions(targets).shape[0] == len(targets)
+    clone_summon = next(action for action in clone.legal_actions() if action["choose_one"] == 2)
+    clone.apply_action(clone_summon)
+    clone_state = clone.observation()
+    assert sum(minion.card.card_id == "AT_037t" for minion in clone_state.self_player.board) == 2
+    assert session.observation().self_player.board == ()
+    result = session.apply_action(enemy_hero)
+    assert result.opponent.hero_health == 28
+    assert result.self_player.board == ()
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+    conditional = ManaEngineSession(["EDR_570"] * 30, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    ominous = next(action for action in conditional.legal_actions() if action.get("card_id") == "EDR_570")
+    conditional.apply_action(ominous)
+    assert [action["choose_one"] for action in conditional.legal_actions()] == [1]
+    assert encode_legal_actions(conditional.legal_actions()).shape[0] == 1
+
+
+def test_deadly_poison_requires_current_friendly_weapon_in_adapter() -> None:
+    deck = ["CORE_CS2_074"] * 30
+    session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    actions = session.legal_actions()
+    assert all(action.get("card_id") != "CORE_CS2_074" for action in actions)
+    assert encode_legal_actions(actions).shape[0] == len(actions)
+
+
 def test_overheat_school_discard_declaration_reaches_adapter() -> None:
     deck = ["FIR_906", "JAIL_805", *(["CORE_EX1_145"] * 28)]
     session = ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)

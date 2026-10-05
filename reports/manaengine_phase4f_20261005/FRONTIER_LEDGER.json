@@ -1,0 +1,1923 @@
+{
+  "schema_version": 1,
+  "report_id": "manaengine_fire_whelp_frontier_20261005_v1",
+  "profile_id": "standard_full_20261001_v1",
+  "as_of_date": "2026-10-05",
+  "classification_basis": "ManaEngine declarations are checked independently from canonical RosettaStone route registration. A declaration is not scoped verified unless canonical evidence is current. Explicit prior dispositions are used only for the listed reviewed frontier cases; unreviewed remainder is conservatively queued as bounded-capability triage, not certified as bounded.",
+  "classification_axes_note": "The classification is per-card implementation/rules triage. Pool membership, pool dependency closure and training eligibility remain separately reported facts and are not inferred from it.",
+  "pool_manifests": {
+    "fire_spell_standard_20261001_candidate_v1": {
+      "count": 33,
+      "membership_status": "CANDIDATE",
+      "dependency_status": "OPEN",
+      "training_eligible": false,
+      "count_recomputed": 33,
+      "membership_sha256_recomputed": "847d2a1baf50c1962beed750a7aad1ed810c696e213fd1e467b06683330da4cb"
+    },
+    "whelp_one_cost_spell_standard_20261001_raw_candidate_v1": {
+      "count": 77,
+      "membership_status": "CANDIDATE",
+      "dependency_status": "OPEN",
+      "training_eligible": false,
+      "count_recomputed": 77,
+      "membership_sha256_recomputed": "653e64289d1a63b2e7511eca748ace805ab1f189dfa75c5ff17032ef34dc4c3f"
+    },
+    "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1": {
+      "count": 65,
+      "membership_status": "CANDIDATE",
+      "dependency_status": "OPEN",
+      "training_eligible": false,
+      "count_recomputed": 65,
+      "membership_sha256_recomputed": "be88008db805357797018f11e4b75bfdbf50f09bb663290f5b5af849ea4e68c8"
+    },
+    "whelp_one_cost_spell_standard_20261001_class_candidate_v1": {
+      "count": 63,
+      "membership_status": "CANDIDATE",
+      "dependency_status": "OPEN",
+      "training_eligible": false,
+      "count_recomputed": 63,
+      "membership_sha256_recomputed": "21d02986ff8c09e8371915baa128cd8ee412d3429b3e7933ed61c0b66079422b"
+    }
+  },
+  "pool_classification_counts": {
+    "fire_spell_standard_20261001_candidate_v1": {
+      "IMPLEMENTED_BUT_RULES_BLOCKED": 14,
+      "RULES_EVIDENCE_REQUIRED": 7,
+      "MISSING_BOUNDED_CAPABILITY": 10,
+      "DEPENDENCY_BLOCKED": 1,
+      "MISSING_MAJOR_ARCHITECTURE": 1
+    },
+    "whelp_one_cost_spell_standard_20261001_raw_candidate_v1": {
+      "MISSING_BOUNDED_CAPABILITY": 49,
+      "IMPLEMENTED_BUT_RULES_BLOCKED": 20,
+      "MISSING_MAJOR_ARCHITECTURE": 3,
+      "RULES_EVIDENCE_REQUIRED": 2,
+      "DEPENDENCY_BLOCKED": 3
+    },
+    "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1": {
+      "MISSING_BOUNDED_CAPABILITY": 37,
+      "IMPLEMENTED_BUT_RULES_BLOCKED": 20,
+      "MISSING_MAJOR_ARCHITECTURE": 3,
+      "RULES_EVIDENCE_REQUIRED": 2,
+      "DEPENDENCY_BLOCKED": 3
+    },
+    "whelp_one_cost_spell_standard_20261001_class_candidate_v1": {
+      "MISSING_BOUNDED_CAPABILITY": 35,
+      "IMPLEMENTED_BUT_RULES_BLOCKED": 20,
+      "MISSING_MAJOR_ARCHITECTURE": 3,
+      "RULES_EVIDENCE_REQUIRED": 2,
+      "DEPENDENCY_BLOCKED": 3
+    }
+  },
+  "unique_candidate_roots": 105,
+  "unique_classification_counts": {
+    "IMPLEMENTED_BUT_RULES_BLOCKED": 31,
+    "RULES_EVIDENCE_REQUIRED": 9,
+    "MISSING_BOUNDED_CAPABILITY": 57,
+    "DEPENDENCY_BLOCKED": 4,
+    "MISSING_MAJOR_ARCHITECTURE": 4
+  },
+  "cards": [
+    {
+      "card_id": "CAP_002",
+      "name": "Follow the Footsteps",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CAP_006",
+      "name": "Tricks of the Trade",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CAP_101",
+      "name": "Follow the Fuse",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CAP_402",
+      "name": "Follow the Evidence",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_136",
+      "name": "Azshara's Triumph",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_302",
+      "name": "Mend",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_303",
+      "name": "Purifying Breath",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_485",
+      "name": "Sleet Storm",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_528",
+      "name": "Sigil of the Seas",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_MAJOR_ARCHITECTURE",
+      "classification_rationale": "start-of-turn scheduler contract not established",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_554",
+      "name": "Earthen Roar",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "target count is clear from 'pick another', but exact set-Health and resolution semantics need review",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_581",
+      "name": "Decimation",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "improved amount and area-damage snapshot/order unresolved",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_582",
+      "name": "Searing Fissure",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "CS2_045e"
+      ],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_585",
+      "name": "Torch",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CATA_621",
+      "name": "Gelbin's Triumph",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_AT_037",
+      "name": "Living Roots",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "AT_037a",
+        "AT_037b",
+        "AT_037t"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_AT_055",
+      "name": "Flash Heal",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_BAR_801",
+      "name": "Wound Prey",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/STALE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "STALE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "BAR_035t",
+        "BAR_801"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_BOT_222",
+      "name": "Spirit Bomb",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_BOT_451",
+      "name": "Voltaic Burst",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "BOT_102t"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS1_130",
+      "name": "Holy Smite",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_004",
+      "name": "Power Word: Shield",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "DEPENDENCY_BLOCKED",
+      "classification_rationale": "source dependencies exist but are not reviewed closed",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "STALE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "CS2_004e"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_029",
+      "name": "Fireball",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_032",
+      "name": "Flamestrike",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_062",
+      "name": "Hellfire",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_074",
+      "name": "Deadly Poison",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "CS2_074e"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_CS2_108",
+      "name": "Execute",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_DS1_184",
+      "name": "Tracking",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_DS1_185",
+      "name": "Arcane Shot",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_EX1_238",
+      "name": "Lightning Bolt",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_EX1_302",
+      "name": "Mortal Coil",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_EX1_391",
+      "name": "Slam",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_EX1_610",
+      "name": "Explosive Trap",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_GIL_836",
+      "name": "Blazing Invocation",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_LOOT_101",
+      "name": "Explosive Runes",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_SW_108",
+      "name": "First Flame",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/STALE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "STALE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "SW_108",
+        "SW_108t"
+      ],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_WON_337",
+      "name": "Ironforge Portal",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "DEPENDENCY_BLOCKED",
+      "classification_rationale": "source dependencies exist but are not reviewed closed",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [
+        "KAR_091"
+      ],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_WON_350",
+      "name": "I Know a Guy",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "CORE_YOP_001",
+      "name": "Illidari Studies",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "Core_LOE_115",
+      "name": "Raven Idol",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "DEPENDENCY_BLOCKED",
+      "classification_rationale": "source dependencies exist but are not reviewed closed",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [
+        "LOE_115",
+        "LOE_115a",
+        "LOE_115b"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "DINO_406",
+      "name": "Fire Breath",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "eligible Elemental zones and damage/buff timing require review",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "ICC_210e"
+      ],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "DINO_417",
+      "name": "Soulrest Ceremony",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_MAJOR_ARCHITECTURE",
+      "classification_rationale": "instance-specific end-turn destruction is not represented",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_251",
+      "name": "Dragonscale Armaments",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_273",
+      "name": "Symbiosis",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_522",
+      "name": "Mimicry",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_528",
+      "name": "Nightmare Fuel",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_531",
+      "name": "Siphoning Growth",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_570",
+      "name": "Ominous Nightmares",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_811",
+      "name": "Rite of Atrocity",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_813",
+      "name": "Morbid Swarm",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_MAJOR_ARCHITECTURE",
+      "classification_rationale": "Death Knight Corpse resource and conditional continuation absent",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "EDR_872",
+      "name": "Spark of Life",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "END_017",
+      "name": "Battle at the End Time",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "END_020",
+      "name": "Eternal Toil",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "END_024",
+      "name": "Flames of Infinity",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "END_025",
+      "name": "Eternal Firebolt",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "END_027",
+      "name": "Wings of Eternity",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_900",
+      "name": "Cremate",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_906",
+      "name": "Overheat",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_909",
+      "name": "Bursting Shot",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "distinctness, target timing, short-target and packet order unresolved",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_910",
+      "name": "Scorching Winds",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "first target and follow-up/discard timing unresolved",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_911",
+      "name": "Smoldering Grove",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_914",
+      "name": "Smoldering Strength",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_916",
+      "name": "Smoldering Ascent",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_920",
+      "name": "Smoke Bomb",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_923",
+      "name": "Flames of the Firelord",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "held-card cost snapshot and target timing unresolved",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_939",
+      "name": "Shadowflame Suffusion",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_941",
+      "name": "Searing Reflection",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "FIR_954",
+      "name": "Conflagrate",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is IMPLEMENTED_UNVERIFIED/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_125",
+      "name": "Cold Snap",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_307",
+      "name": "Crowd Control",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "deck-size snapshot and repeat/death boundary unresolved",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_319",
+      "name": "The Skeleton Key",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_386",
+      "name": "Scramble for Gear",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_732",
+      "name": "Void Soul",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_801",
+      "name": "Molten Gold",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "JAIL_940",
+      "name": "Undeath Sentence",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "MEND_300",
+      "name": "Tame Pet",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_006",
+      "name": "Mirror Dimension",
+      "manaengine_declaration": true,
+      "manaengine_support_state": "SUPPORTED",
+      "classification": "IMPLEMENTED_BUT_RULES_BLOCKED",
+      "classification_rationale": "ManaEngine declaration is SUPPORTED; canonical rules state is UNKNOWN/NO_SCOPED_EVIDENCE",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_026",
+      "name": "Entropic Continuity",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_039",
+      "name": "Deja Vu",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_212",
+      "name": "Lightning Rod",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "second random-target timing after first damage unresolved",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_447",
+      "name": "Power Word: Barrier",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "DEPENDENCY_BLOCKED",
+      "classification_rationale": "source dependencies exist but are not reviewed closed",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "STALE",
+      "static_dependency_status": "UNREVIEWED",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [
+        "ULD_191e"
+      ],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_701",
+      "name": "Waveshaping",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "IMPLEMENTED_UNVERIFIED",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TIME_EVENT_999",
+      "name": "Sands of Time",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_221",
+      "name": "Sizzling Swarm",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_MAJOR_ARCHITECTURE",
+      "classification_rationale": "random-damage outcome drives summon count and deathrattle dependency",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_222",
+      "name": "Flight of the Firehawk",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_227",
+      "name": "Lava Flow",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "RULES_EVIDENCE_REQUIRED",
+      "classification_rationale": "lowest-Health reselection, ties and packet ordering unresolved",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_229",
+      "name": "Spirit of the Mountain",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_235",
+      "name": "Life Cycle",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_239",
+      "name": "Restore the Wild",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_426",
+      "name": "Dive the Golakka Depths",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_433",
+      "name": "Reanimate the Terror",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_435",
+      "name": "Crypt Map",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_442",
+      "name": "Submerged Map",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_446",
+      "name": "Escape the Underfel",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_460",
+      "name": "The Forbidden Sequence",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_464",
+      "name": "Mountain Map",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_513",
+      "name": "Lie in Wait",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_517",
+      "name": "Knockback",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_602",
+      "name": "Enter the Lost City",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_631",
+      "name": "Unleash the Colossus",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_632",
+      "name": "Story of Sulfuras",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "fire_spell_standard_20261001_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_817",
+      "name": "Reach Equilibrium",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_824",
+      "name": "Odd Map",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_830",
+      "name": "The Food Chain",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_900",
+      "name": "Hive Map",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "UNRESOLVED",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_class_candidate_v1"
+      ]
+    },
+    {
+      "card_id": "TLC_EVENT_400",
+      "name": "Storm the Gates",
+      "manaengine_declaration": false,
+      "manaengine_support_state": null,
+      "classification": "MISSING_BOUNDED_CAPABILITY",
+      "classification_rationale": "no current declaration or reviewed route; capability scope needs triage",
+      "canonical_rules_status": "UNKNOWN",
+      "canonical_evidence_validity": "NO_SCOPED_EVIDENCE",
+      "static_dependency_status": "NO_STATIC_SOURCE_REFERENCE_DETECTED_NOT_PROOF_OF_NONE",
+      "dynamic_dependency_status": "NOT_DETECTED_BY_HEURISTIC_NOT_PROOF_OF_NONE",
+      "known_source_candidates": [],
+      "pool_memberships": [
+        "whelp_one_cost_spell_standard_20261001_raw_candidate_v1",
+        "whelp_one_cost_spell_standard_20261001_nonquest_anyclass_candidate_v1"
+      ]
+    }
+  ]
+}

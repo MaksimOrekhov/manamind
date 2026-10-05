@@ -849,6 +849,63 @@
       "choice_count": 3,
       "dark_gift_option_pool_id": "dark_gift_launch_review_20261004_v1",
       "reviewed_rules_text": "Discover a Deathrattle minion with a Dark Gift."
+    },
+    "CORE_AT_037": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Choose One - Deal $2 damage; or Summon two 1/1 Saplings.",
+      "choose_one_a": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 2
+        }
+      ],
+      "choose_one_b": [
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 2,
+          "summon_card": "AT_037t"
+        }
+      ]
+    },
+    "EDR_570": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Choose One - Deal $1 damage to all minions; or Give a damaged minion +2/+2.",
+      "choose_one_a": [
+        {
+          "kind": "DAMAGE",
+          "target": "ALL_MINIONS",
+          "amount": 1
+        }
+      ],
+      "choose_one_b": [
+        {
+          "kind": "BUFF_MINION",
+          "target": "EXPLICIT_DAMAGED_MINION",
+          "amount": 2
+        }
+      ]
+    },
+    "AT_037t": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": ""
+    },
+    "CORE_CS2_074": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "requires_friendly_weapon": true,
+      "reviewed_rules_text": "Give your weapon +2 Attack.",
+      "effects": [
+        {
+          "kind": "MODIFY_WEAPON_ATTACK",
+          "target": "FRIENDLY_WEAPON",
+          "amount": 2
+        }
+      ]
     }
   }
 }
