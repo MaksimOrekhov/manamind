@@ -101,8 +101,9 @@ No remote branches have been deleted yet. Deletion will occur only after the fin
 | `codex/manaengine-first-deck` | `b39e73e9dca6adf34548febb95ea769d6b13e540` | deleted normally after main CI passed |
 | `claude/dark-gift-prototype` | `f73cabdad60d6c02b689afd809c7bae455557def` | deleted normally after main CI passed |
 | `claude/reborn-prototype` | `a35ddc6f0b0bd736d6a3b30e2a31884e39204cc1` | deleted normally after main CI passed |
+| `work/repository-consolidation` (temporary task branch) | `e2f26a39fcc7a59c8f14b61883e97d96f024a3be` | scheduled for deletion after this final report commit is on `main` |
 
-The remote branch listing after deletion contains only `main` and `work/repository-consolidation`; all five expected source/prototype refs are absent. The final main SHA is the closeout commit containing this report; its exact SHA is recorded by Git and in the final task summary (a commit cannot embed its own hash).
+After this report commit is promoted, the temporary task branch will be removed so `main` is the only remote branch. The final main SHA is the closeout commit containing this report; its exact SHA is recorded by Git and in the final task summary (a commit cannot embed its own hash).
 
 ## Local branches and remaining cleanup
 
