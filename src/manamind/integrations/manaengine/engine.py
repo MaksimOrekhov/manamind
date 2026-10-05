@@ -129,7 +129,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.attack = card.attack or 0
         d.health = card.health or 0
         d.durability = card.durability or 0
-        d.reborn = "REBORN" in card.mechanics
+        d.reborn = d.card_type == "MINION" and "REBORN" in card.mechanics
         d.rush = "RUSH" in card.mechanics
         d.taunt = "TAUNT" in card.mechanics
         spec = overrides.get(card.card_id, {})

@@ -1166,3 +1166,15 @@ def test_intrinsic_reborn_adapter_identity_visibility_clone_and_debt(multi_death
         game_state_from_dict(invalid)
     # Existing action schema remains sufficient; no ID-specific policy feature.
     assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+
+def test_intrinsic_reborn_metadata_does_not_enable_granted_dark_gift_reborn() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows
+
+    definitions = {d.card_id: d for d in _definition_rows()}
+    assert definitions["CORE_ULD_723"].reborn is True
+    # The option's REBORN tag describes a grant, not an intrinsic minion.
+    option = definitions["EDR_100t9"]
+    assert option.card_type == "SPELL" and option.reborn is False
+    assert option.support_state == "UNSUPPORTED" and "REBORN" in option.dark_gift_keywords
+    assert all(d.card_type == "MINION" and d.health > 0 for d in definitions.values() if d.reborn)
