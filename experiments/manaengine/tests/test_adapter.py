@@ -233,6 +233,28 @@ def test_safe_existing_primitive_harvest_declarations_reach_adapter_and_policy()
     assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
 
 
+def test_vulcanos_colossal_and_plume_declarations_reach_native_catalog() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows, _load_native
+
+    definitions = {row.card_id: row for row in _definition_rows()}
+    root = definitions["CATA_488"]
+    left = definitions["CATA_488t"]
+    right = definitions["CATA_488t2"]
+    assert root.support_state == "SUPPORTED" and root.rules_contract_reviewed
+    assert root.ability == "END_TURN_OTHER_MINIONS_DAMAGE" and root.damage == 3
+    assert root.colossal_appendages == ["CATA_488t", "CATA_488t2"]
+    assert (root.cost, root.attack, root.health, root.race) == (7, 4, 8, "ELEMENTAL")
+    for plume in (left, right):
+        assert plume.support_state == "SUPPORTED" and plume.rules_contract_reviewed
+        assert (plume.attack, plume.health, plume.race) == (1, 5, "ELEMENTAL")
+        assert plume.takes_damage_pool_id == "fire_spell_standard_20261001_candidate_v1"
+        assert plume.takes_damage_cost_delta == -3
+
+    # No runtime manifest is supplied: a Plume reaction must fail closed before RNG.
+    native = _load_native()
+    native.CardCatalog(list(definitions.values()), [], "", "", _native_dark_gift_manifests(native))
+
+
 def test_effect_target_boundaries_declarations_and_adapter() -> None:
     from manamind.integrations.manaengine.engine import _definition_rows
 

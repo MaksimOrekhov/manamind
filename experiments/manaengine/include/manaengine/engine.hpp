@@ -70,6 +70,8 @@ struct CardDefinition {
     std::vector<EffectStep> effects;
     std::vector<EffectStep> choose_one_a, choose_one_b;
     std::vector<std::string> minion_types;
+    // Spatial left-to-right appendage identity for the intrinsic Colossal hook.
+    std::vector<std::string> colossal_appendages;
     std::string kindred_copy_contract="NONE";
     std::string takes_damage_pool_id;
     int takes_damage_cost_delta=0;
@@ -199,8 +201,9 @@ private:
     enum class Ability { None, CoinMana, TargetDamage, MinionDamageGenerate, RandomMissiles, Discover, DestroyEnemyWeapon,
       FreezeDamage, LifestealDamage, Backstab,
       NextSpellDiscount, NextDemonDiscount, HeroAttackDraw, EndTurnEnemyAreaDamage,
+      EndTurnOtherMinionsDamage,
       EndTurnEnemyHeroDamage, ReinforcementAura, RecruiterSummonRush, CastRandomSecrets, SpellDamageAura, DeathrattleDraw,
-      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack, SpellDamageHandDeck, DarkGiftOption };
+      EffectComposition, DeathrattleGenerate, RuntimeChoiceFixture, HeldSpellCostReduction, SpellDamageGainsAttack, SpellDamageHandDeck, DarkGiftOption, TakesDamageGenerate };
     enum class EventWindow { OpponentCastsSpell, FriendlyMinionAttacked, FriendlyHeroAttacked, EnemyMinionAttacks, OpponentPlaysMinion, OpponentTurnEnds };
     enum class SecretEffect { Counterspell, IceBarrier, OasisAlly, MysticMisdirection, ExplosiveRunes, FlamesOfInfinity, EnemyAreaDamage };
     enum class TriggerKind { Battlecry, AfterHeroAttack, EndTurn, Deathrattle, SecretWindow };
@@ -266,6 +269,7 @@ private:
     void resolve_damage_occurrence(const DamageOccurrence& occurrence);
     void generate_random_card_to_hand(int owner,const std::string& pool_id,GeneratedInstanceModifiers modifiers);
     void summon_fixed(int owner,const std::string& card_id,int count);
+    void enter_board_with_appendages(int owner,CardInstance instance,int position);
     void validate_instance_copy_v1(const CardInstance& source,int owner,Zone expected);
     void summon_instance_copy_v1(int owner,int source_entity);
     bool kindred_qualified(int owner,const CardDefinition& definition) const;

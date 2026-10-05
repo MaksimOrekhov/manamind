@@ -910,6 +910,30 @@
     "CORE_ULD_723": {
       "ability": "NONE",
       "support_state": "VERIFIED_VANILLA"
+    },
+    "CATA_488": {
+      "ability": "END_TURN_OTHER_MINIONS_DAMAGE",
+      "support_state": "SUPPORTED",
+      "damage": 3,
+      "colossal_appendages": [
+        "CATA_488t",
+        "CATA_488t2"
+      ],
+      "reviewed_rules_text": "Colossal +2 At the end of your turn, deal 3 damage to all other minions."
+    },
+    "CATA_488t": {
+      "ability": "TAKES_DAMAGE_GENERATE",
+      "support_state": "SUPPORTED",
+      "takes_damage_pool_id": "fire_spell_standard_20261001_candidate_v1",
+      "takes_damage_cost_delta": -3,
+      "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
+    },
+    "CATA_488t2": {
+      "ability": "TAKES_DAMAGE_GENERATE",
+      "support_state": "SUPPORTED",
+      "takes_damage_pool_id": "fire_spell_standard_20261001_candidate_v1",
+      "takes_damage_cost_delta": -3,
+      "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
     }
   }
 }

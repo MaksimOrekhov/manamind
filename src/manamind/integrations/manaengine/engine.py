@@ -93,6 +93,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         _ROOT / "experiments/manaengine/data/overload_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/dark_gift_option_metadata.json",
         _ROOT / "experiments/manaengine/data/choice_mode_dependency_metadata.json",
+        _ROOT / "experiments/manaengine/data/colossal_appendage_dependency_metadata.json",
     ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
@@ -156,6 +157,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
             "damage_outcome_amount", "requires_friendly_weapon",
             "dark_gift_option_pool_id", "dark_gift_attack", "dark_gift_health", "dark_gift_cost",
             "dark_gift_keywords", "dark_gift_requires_battlecry", "dark_gift_requires_positive_attack",
+            "colossal_appendages", "takes_damage_pool_id", "takes_damage_cost_delta",
         }
         unknown = set(spec) - allowed_fields - {"support_state", "ability", "effects", "choose_one_a", "choose_one_b", "deck_draw_filter", "reviewed_rules_text", "damage_outcome_condition", "damage_outcome_followup"}
         if unknown:
@@ -181,6 +183,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         for key, value in spec.items():
             if key in allowed_fields:
                 setattr(d, key, value)
+        d.colossal_appendages = [str(value) for value in spec.get("colossal_appendages", ())]
         if "dark_gift_keywords" in spec:
             d.dark_gift_keywords = [str(value).upper() for value in spec["dark_gift_keywords"]]
         raw_effects = spec.get("effects", [])
@@ -224,7 +227,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         result.append(d)
     by_id = {row.card_id: row for row in result}
     for definition in result:
-        dependencies = (definition.shatter_left_card, definition.shatter_right_card, definition.transform_card)
+        dependencies = (definition.shatter_left_card, definition.shatter_right_card, definition.transform_card, *definition.colossal_appendages)
         dependencies += tuple(effect.summon_card for effect in definition.effects if effect.summon_card)
         dependencies += tuple(effect.summon_card for effect in (*definition.choose_one_a, *definition.choose_one_b) if effect.summon_card)
         if any(dep and (dep not in by_id or by_id[dep].support_state == "UNSUPPORTED") for dep in dependencies):

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json?audit=vulcanos-20261004",
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "cards": [
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 123666,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    },
+    {
+      "attack": 1,
+      "cardClass": "MAGE",
+      "cost": 2,
+      "dbfId": 128032,
+      "elite": true,
+      "health": 5,
+      "id": "CATA_488t2",
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "name": "Plume of Vulcanos",
+      "race": "ELEMENTAL",
+      "races": [
+        "ELEMENTAL"
+      ],
+      "set": "CATACLYSM",
+      "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+      "type": "MINION"
+    }
+  ]
+}
