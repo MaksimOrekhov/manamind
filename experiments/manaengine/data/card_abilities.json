@@ -906,6 +906,10 @@
           "amount": 2
         }
       ]
+    },
+    "CORE_ULD_723": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
     }
   }
 }

@@ -1094,3 +1094,75 @@ def test_dark_gift_evidence_debt_is_session_scoped_cloned_serialized_and_admissi
     invalid["evidence_constraints"] = ["UNRECOGNIZED_CONSTRAINT"]
     with pytest.raises(ValueError, match="Unknown evidence constraints"):
         game_state_from_dict(invalid)
+
+
+@pytest.mark.parametrize("multi_death", [False, True])
+def test_intrinsic_reborn_adapter_identity_visibility_clone_and_debt(multi_death: bool) -> None:
+    from dataclasses import asdict, replace
+
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+    from manamind.encoding.entity_encoder import STATE_FLAG_NAMES
+    from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
+    from manamind.integrations.manaengine.engine import require_canonical_training_admission
+
+    filler = "CORE_EX1_145"
+    count = 2 if multi_death else 1
+    opponent_damage = "CORE_CS2_032" if multi_death else "CORE_DS1_185"
+    session = ManaEngineSession([*(["CORE_ULD_723"] * count), *([filler] * (30 - count))],
+                                [opponent_damage, *([filler] * 29)],
+                                player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    clean_branch = session.clone()
+    original_ids = []
+    for _ in range(20):
+        actions = session.legal_actions()
+        root = next((a for a in actions if a.get("card_id") == "CORE_ULD_723"), None)
+        if root is not None:
+            state = session.apply_action(root)
+            original_ids.append(session._native.observation("PLAYER1")["self_player"]["board"][-1]["entity_id"])
+            continue
+        damage = next((a for a in actions if a.get("card_id") == opponent_damage
+                       and (multi_death or a.get("target_entity_id") in original_ids)), None)
+        if damage is not None and len(original_ids) == count:
+            before = session.observation("PLAYER1")
+            assert all(m.reborn is True for m in before.self_player.board)
+            before_encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+            assert (before_encoder.encode(before).self_board.state_flags[:count, STATE_FLAG_NAMES.index("reborn")] == 1).all()
+            assert all(m.reborn is True for m in session.observation("PLAYER2").opponent.board)
+            pre_damage_clone = session.clone()
+            session.apply_action(damage)
+            pre_damage_clone.apply_action(damage)
+            state = session.observation("PLAYER1")
+            assert pre_damage_clone.observation("PLAYER1") == state
+            break
+        session.apply_action(next(a for a in actions if a["type"] == "END_TURN"))
+    else:
+        pytest.fail("bounded Reborn fixture did not reach the damage action")
+
+    assert session.is_valid and len(state.self_player.board) == count
+    assert all(m.current_health == 1 and m.reborn is False and m.can_attack is False
+               for m in state.self_player.board)
+    assert all(m["entity_id"] not in original_ids
+               for m in session._native.observation("PLAYER1")["self_player"]["board"])
+    expected = ("REBORN_MULTI_DEATH_SLOT_UNVERIFIED",) if multi_death else ()
+    assert state.evidence_constraints == session.evidence_constraints == expected
+    assert clean_branch.evidence_constraints == ()
+    assert session.clone().evidence_constraints == expected
+    assert game_state_from_dict(asdict(state)) == state
+    assert STATE_ENCODING_SCHEMA_VERSION == 16
+    encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+    encoded = encoder.encode(state)
+    assert (encoded.self_board.state_flags[:, STATE_FLAG_NAMES.index("reborn")] == 0).all()
+    assert (encoded.global_features == encoder.encode(replace(state, evidence_constraints=())).global_features).all()
+    if multi_death:
+        with pytest.raises(UnsupportedSimulationError, match="REBORN_MULTI_DEATH_SLOT_UNVERIFIED"):
+            require_canonical_training_admission(expected, global_gate_blocked=False)
+    else:
+        require_canonical_training_admission(expected, global_gate_blocked=False)
+    invalid = asdict(state)
+    invalid["evidence_constraints"] = ["REBORN_UNKNOWN_CONSTRAINT"]
+    with pytest.raises(ValueError, match="Unknown evidence constraints"):
+        game_state_from_dict(invalid)
+    # Existing action schema remains sufficient; no ID-specific policy feature.
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())

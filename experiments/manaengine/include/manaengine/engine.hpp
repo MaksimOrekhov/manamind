@@ -28,7 +28,7 @@ enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
 enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
 enum class DarkGiftRuntimeMembershipStatus { Unresolved };
 enum class DarkGiftSamplerStatus { Unverified };
-enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved };
+enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified };
 const char* evidence_constraint_id(EvidenceConstraint constraint);
 struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
 struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };
@@ -89,6 +89,7 @@ struct CardDefinition {
     std::vector<std::string> dark_gift_keywords;
     bool dark_gift_requires_battlecry=false, dark_gift_requires_positive_attack=false;
     bool rush=false, taunt=false, lifesteal=false, collectible=false, battlecry=false;
+    bool reborn=false; // Reviewed intrinsic keyword, not a granted restoration variant.
     bool prepare=false, secret=false;
     bool requires_friendly_weapon=false;
 };
@@ -137,7 +138,7 @@ struct ObservedCard {
     int cost=0, current_cost=0, attack=0, health=0, durability=0, current_durability=0, current_spell_damage=0;
     int current_attack=0, current_health=0, board_position=0, entity_id=-1;
     bool can_attack=false, rush=false, frozen=false, taunt=false, divine_shield=false, lifesteal=false;
-    bool stealth=false, silenced=false, immune=false, charge=false;
+    bool stealth=false, silenced=false, immune=false, charge=false, reborn=false;
     std::vector<std::string> dark_gifts;
     int max_health=0;
 };
@@ -218,6 +219,7 @@ private:
       int attack=0,health=0,max_health=0,durability=0,current_durability=0,freeze_expire_owner_turn=0;
       bool can_attack=false,rush=false,rush_only=false,frozen=false,taunt=false,divine_shield=false,lifesteal=false;
       bool stealth=false,silenced=false,immune=false,has_attacked_this_turn=false,charge=false;
+      bool reborn=false; // Active and unconsumed on this entity.
       int prepare_locked_turn=-1;
       std::uint64_t activation_sequence=0;
       std::vector<PersistentModifier> persistent_modifiers;
@@ -287,6 +289,8 @@ private:
     void require_supported_modifier_lifecycle();
     static std::vector<std::string> dark_gift_ids(const CardInstance& instance);
     void update_held_card_spell_progress(int owner);
+    struct RebornPending { int owner=0; std::string card_id; int dead_entity_id=-1, recorded_slot=0; std::uint64_t play_order=0; };
+    void resolve_reborns(std::vector<RebornPending> pending,const std::array<std::vector<std::pair<int,std::string>>,2>& survivor_board);
     void resolve_trigger(const Trigger& trigger); void stabilize(); void summon_from_deck(int owner,int max_cost,int count,bool grant_rush);
     int random_index(std::size_t count); void update_result();
     void trace_event(std::string event);

@@ -29,7 +29,7 @@ def _rules_coverage(metadata: dict[str, Any], spec: dict[str, Any]) -> bool:
     text = re.sub(r"<[^>]+>|\[x\]", "", str(metadata.get("text", "")))
     text = " ".join(text.split())
     if spec.get("ability", "NONE") == "NONE":
-        keywords = {"TAUNT", "RUSH", "LIFESTEAL"}
+        keywords = {"TAUNT", "RUSH", "LIFESTEAL", "REBORN"}
         words = set(text.upper().replace(",", " ").split())
         return words <= keywords and set(metadata.get("mechanics", ())) <= keywords
     return text == spec.get("reviewed_rules_text")
@@ -129,6 +129,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.attack = card.attack or 0
         d.health = card.health or 0
         d.durability = card.durability or 0
+        d.reborn = "REBORN" in card.mechanics
         d.rush = "RUSH" in card.mechanics
         d.taunt = "TAUNT" in card.mechanics
         spec = overrides.get(card.card_id, {})
