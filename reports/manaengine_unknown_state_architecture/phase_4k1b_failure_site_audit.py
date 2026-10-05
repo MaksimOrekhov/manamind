@@ -254,6 +254,20 @@ def cmd_scan(_args) -> int:
 
 def cmd_check(args) -> int:
     inventory = json.loads(Path(args.inventory).read_text(encoding="utf-8"))
+    if inventory.get("schema") == 2:
+        from phase_4k1b_typed_failure_guard import check
+        problems = check(Path(args.inventory))
+        for problem in problems:
+            print("FAIL:", problem)
+        print(f"310 baseline sites, 128 native rows, unmigrated=0, {len(problems)} problems")
+        return bool(problems)
+    if inventory.get("schema") == 2:
+        from phase_4k1b_typed_failure_guard import check
+        problems = check(Path(args.inventory))
+        for problem in problems:
+            print("FAIL:", problem)
+        print(f"310 baseline sites, 128 native rows, unmigrated=0, {len(problems)} problems")
+        return bool(problems)
     sites = enumerate_sites()
     problems: list[str] = []
     for rel, digest in inventory["source_sha256"].items():

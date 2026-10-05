@@ -10,7 +10,7 @@ import pytest
 from manamind.domain.card import CardFeatures
 from manamind.domain.game_state import GameState, PlayerObservation
 from manamind.integrations.manaengine import (
-    AttemptDiagnostics, AttemptReason, InvalidParentSession, ManaEngineSession,
+    AttemptDiagnostics, AttemptReason, EngineDefectError, FailureKind, InvalidParentSession, ManaEngineSession, NativeFailure,
     SimulationAttempt, SimulationOutcome, UnsupportedSimulationError, acting_seat, attempt_action,
 )
 from manamind.integrations.manaengine.engine import _EXECUTION_FIELDS, _execution_key
@@ -24,6 +24,7 @@ class FakeSession:
     active: str = "PLAYER1"
     is_valid: bool = True
     evidence_constraints: tuple[str, ...] = ()
+    failure: NativeFailure | None = None
     unsupported_outcome: str | None = None
     diagnostic_trace: tuple[str, ...] = ()
     actions: list[dict] = field(default_factory=lambda: [{"type": "END_TURN", "card_cost": 0}])
@@ -80,7 +81,11 @@ class FakeSession:
             }
             self.unsupported_outcome = messages[self.behavior]
             self.diagnostic_trace = tuple(f"trace-{i}" for i in range(40))
-            raise UnsupportedSimulationError(self.unsupported_outcome)
+            kind = FailureKind.UNSUPPORTED if self.behavior in {"unsupported", "valid_unsupported"} else FailureKind.ENGINE_DEFECT
+            code = "UNSUPPORTED_GENERATED_CARD" if kind == FailureKind.UNSUPPORTED else "UNEXPECTED_EXCEPTION"
+            self.failure = NativeFailure(kind, code, self.unsupported_outcome)
+            cls = EngineDefectError if kind == FailureKind.ENGINE_DEFECT else UnsupportedSimulationError
+            raise cls(self.unsupported_outcome, failure=self.failure)
         return {"ignored": "post-action ACTIVE view"}
 
 
@@ -151,11 +156,11 @@ def test_sa10_stale_wrong_turn_or_unknown_execution_is_not_legal(action):
 
 
 @pytest.mark.parametrize("behavior, reason", [
-    ("normalized", AttemptReason.NATIVE_EXCEPTION_NORMALIZED),
-    ("mutation", AttemptReason.NATIVE_CATCH_ALL), ("reaction", AttemptReason.NATIVE_CATCH_ALL),
+    ("normalized", AttemptReason.NATIVE_ENGINE_DEFECT),
+    ("mutation", AttemptReason.NATIVE_ENGINE_DEFECT), ("reaction", AttemptReason.NATIVE_ENGINE_DEFECT),
     ("valid_unsupported", AttemptReason.ATTEMPT_INVARIANT_VIOLATED),
 ])
-def test_sa11_native_defect_heuristic(behavior, reason):
+def test_sa11_native_defect_typing(behavior, reason):
     result = attempt_action(FakeSession(behavior=behavior), END)
     assert result.outcome == SimulationOutcome.ENGINE_DEFECT and result.reason == reason
     assert not result.fallback_eligible and result.state is result.child is None
@@ -169,7 +174,8 @@ def test_sa14_deterministic_attempt_does_not_advance_parent_rng():
 
 
 def test_sa16_enumeration_unavailable_and_ordinary_adapter_error():
-    result = attempt_action(FakeSession(enumeration_error=UnsupportedSimulationError("draw unavailable")), END)
+    result = attempt_action(FakeSession(enumeration_error=UnsupportedSimulationError("draw unavailable", failure=NativeFailure(
+        FailureKind.UNSUPPORTED, "UNSUPPORTED_CARD_IN_ACTIVE_HAND", "draw unavailable"))), END)
     assert result.reason == AttemptReason.ENUMERATION_UNAVAILABLE and result.fallback_eligible
     bad = attempt_action(FakeSession(enumeration_error=RuntimeError("enumeration bug")), END)
     assert bad.reason == AttemptReason.ADAPTER_FAILURE and not bad.fallback_eligible
@@ -191,13 +197,13 @@ def test_sa17_native_helper_key_mapping_and_exception_normalization():
         pass
 
     native_actions = [{"type": "CHOOSE_CARD", "choice_index": 2, "choose_one": 1, "card_cost": 3}]
-    native = SimpleNamespace(legal_actions=lambda: native_actions, apply_action=lambda action: {"received": action})
+    native = SimpleNamespace(legal_actions=lambda: native_actions, apply_action_unobserved=lambda action: None)
     session = object.__new__(ManaEngineSession)
     session._native = native
     session._unsupported_exception = NativeUnsupported
     legal = session._legal_execution_keys()
     assert list(legal) == [("CHOOSE_CARD", -1, -1, -1, 2, 1)]
-    assert session._apply_raw(legal[next(iter(legal))]) == {"received": native_actions[0]}
+    assert session._apply_raw(legal[next(iter(legal))]) is None
 
     def reject():
         raise NativeUnsupported("unsupported enumeration")

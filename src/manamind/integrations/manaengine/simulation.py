@@ -13,7 +13,10 @@ from typing import Any, Mapping
 
 from manamind.domain.game_state import GameState
 
-from .engine import ManaEngineSession, UnsupportedSimulationError, _EXECUTION_FIELDS, _execution_key
+from .engine import (
+    FailureKind, ManaEngineSession, NativeFailure, UnsupportedSimulationError,
+    _EXECUTION_FIELDS, _execution_key,
+)
 
 
 class SimulationOutcome(str, Enum):
@@ -27,7 +30,13 @@ class AttemptReason(str, Enum):
     ILLEGAL_MALFORMED = "ILLEGAL_MALFORMED"
     ILLEGAL_NOT_LEGAL = "ILLEGAL_NOT_LEGAL"
     NATIVE_UNSUPPORTED = "NATIVE_UNSUPPORTED"
+    NATIVE_RULE_UNRESOLVED = "NATIVE_RULE_UNRESOLVED"
+    NATIVE_BUDGET_LIMIT = "NATIVE_BUDGET_LIMIT"
+    NATIVE_ENGINE_DEFECT = "NATIVE_ENGINE_DEFECT"
+    NATIVE_FAILURE_UNTYPED = "NATIVE_FAILURE_UNTYPED"
     ENUMERATION_UNAVAILABLE = "ENUMERATION_UNAVAILABLE"
+    ENUMERATION_DEFECT = "ENUMERATION_DEFECT"
+    # Deprecated compatibility names; never emitted by typed classification.
     NATIVE_EXCEPTION_NORMALIZED = "NATIVE_EXCEPTION_NORMALIZED"
     NATIVE_CATCH_ALL = "NATIVE_CATCH_ALL"
     ATTEMPT_INVARIANT_VIOLATED = "ATTEMPT_INVARIANT_VIOLATED"
@@ -36,14 +45,36 @@ class AttemptReason(str, Enum):
     ADAPTER_FAILURE = "ADAPTER_FAILURE"
 
 
+_UNSIMULATABLE_REASONS = {
+    AttemptReason.NATIVE_UNSUPPORTED, AttemptReason.NATIVE_RULE_UNRESOLVED,
+    AttemptReason.NATIVE_BUDGET_LIMIT, AttemptReason.ENUMERATION_UNAVAILABLE,
+}
+_FALLBACK_REASONS = frozenset({
+    AttemptReason.NATIVE_UNSUPPORTED, AttemptReason.NATIVE_RULE_UNRESOLVED,
+    AttemptReason.ENUMERATION_UNAVAILABLE,
+})
 _REASONS = {
     SimulationOutcome.ILLEGAL: {AttemptReason.ILLEGAL_MALFORMED, AttemptReason.ILLEGAL_NOT_LEGAL},
-    SimulationOutcome.UNSIMULATABLE: {AttemptReason.NATIVE_UNSUPPORTED, AttemptReason.ENUMERATION_UNAVAILABLE},
-    SimulationOutcome.ENGINE_DEFECT: set(AttemptReason) - {
+    SimulationOutcome.UNSIMULATABLE: _UNSIMULATABLE_REASONS,
+    SimulationOutcome.ENGINE_DEFECT: set(AttemptReason) - _UNSIMULATABLE_REASONS - {
         AttemptReason.ILLEGAL_MALFORMED, AttemptReason.ILLEGAL_NOT_LEGAL,
-        AttemptReason.NATIVE_UNSUPPORTED, AttemptReason.ENUMERATION_UNAVAILABLE,
     },
 }
+
+
+def _classification(failure: NativeFailure | None, *, enumeration: bool = False):
+    if failure is None or failure.code == "LEGACY_UNTYPED":
+        return SimulationOutcome.ENGINE_DEFECT, AttemptReason.NATIVE_FAILURE_UNTYPED
+    if failure.kind == FailureKind.ENGINE_DEFECT:
+        return (SimulationOutcome.ENGINE_DEFECT,
+                AttemptReason.ENUMERATION_DEFECT if enumeration else AttemptReason.NATIVE_ENGINE_DEFECT)
+    if failure.kind == FailureKind.BUDGET_LIMIT:
+        return SimulationOutcome.UNSIMULATABLE, AttemptReason.NATIVE_BUDGET_LIMIT
+    if enumeration:
+        return SimulationOutcome.UNSIMULATABLE, AttemptReason.ENUMERATION_UNAVAILABLE
+    return (SimulationOutcome.UNSIMULATABLE,
+            AttemptReason.NATIVE_UNSUPPORTED if failure.kind == FailureKind.UNSUPPORTED
+            else AttemptReason.NATIVE_RULE_UNRESOLVED)
 
 
 def _strings(values: Any) -> tuple[str, ...]:
@@ -59,6 +90,7 @@ def _strings(values: Any) -> tuple[str, ...]:
 class AttemptDiagnostics:
     """Immutable failure snapshot; never owns a session or native handle."""
 
+    native_failure: NativeFailure | None = None
     exception_type: str | None = None
     exception_message: str | None = None
     unsupported_outcome: str | None = None
@@ -66,6 +98,8 @@ class AttemptDiagnostics:
     trace_tail: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        if self.native_failure is not None and not isinstance(self.native_failure, NativeFailure):
+            raise ValueError("native_failure must be an immutable NativeFailure")
         for name in ("exception_type", "exception_message", "unsupported_outcome"):
             if getattr(self, name) is not None and not isinstance(getattr(self, name), str):
                 raise ValueError(f"{name} must be a string or None")
@@ -129,7 +163,7 @@ class SimulationAttempt:
 
     @property
     def fallback_eligible(self) -> bool:
-        return self.outcome == SimulationOutcome.UNSIMULATABLE
+        return self.outcome == SimulationOutcome.UNSIMULATABLE and self.reason in _FALLBACK_REASONS
 
     @property
     def has_evidence_debt(self) -> bool:
@@ -160,7 +194,9 @@ def _diagnostics(session: ManaEngineSession, exc: Exception | None) -> AttemptDi
             return ()
 
     unsupported = read("unsupported_outcome", None)
+    native_failure = read("failure", None) or getattr(exc, "failure", None)
     return AttemptDiagnostics(
+        native_failure=native_failure if isinstance(native_failure, NativeFailure) else None,
         exception_type=type(exc).__name__ if exc is not None else None,
         exception_message=str(exc) if exc is not None else None,
         unsupported_outcome=unsupported if isinstance(unsupported, str) else None,
@@ -176,9 +212,8 @@ def attempt_action(
     """Try one canonical legal action on a clone, preserving parent state and RNG.
 
     The root seat is resolved once. apply_action's post-action ACTIVE view is
-    deliberately ignored. Only UNSIMULATABLE is eligible for future fallback.
-    Native defect classification is a temporary heuristic with incomplete
-    recall; exact native failure typing belongs to Phase 4K.1b.
+    deliberately ignored. Typed kind/code owns classification; the explicit
+    fallback allowlist excludes budgets, defects and all untyped failures.
     """
     if not parent.is_valid:
         raise InvalidParentSession("attempt root is invalid/poisoned")
@@ -205,7 +240,7 @@ def attempt_action(
     except MemoryError:
         raise
     except UnsupportedSimulationError as exc:
-        return failure(SimulationOutcome.UNSIMULATABLE, AttemptReason.ENUMERATION_UNAVAILABLE, parent, exc)
+        return failure(*_classification(exc.failure, enumeration=True), parent, exc)
     except Exception as exc:
         return failure(SimulationOutcome.ENGINE_DEFECT, AttemptReason.ADAPTER_FAILURE, parent, exc)
     if key not in legal:
@@ -228,18 +263,14 @@ def attempt_action(
         raise
     except UnsupportedSimulationError as exc:
         try:
-            message = str(exc)
-            if message.startswith("action failed after mutation: "):
-                reason = AttemptReason.NATIVE_EXCEPTION_NORMALIZED
-            elif message == child.unsupported_outcome and message in {
-                "damage group: mutation failed", "damage group: reaction failed",
-            }:
-                reason = AttemptReason.NATIVE_CATCH_ALL
-            elif child.is_valid:
-                reason = AttemptReason.ATTEMPT_INVARIANT_VIOLATED
-            else:
-                return failure(SimulationOutcome.UNSIMULATABLE, AttemptReason.NATIVE_UNSUPPORTED, child, exc)
-            return failure(SimulationOutcome.ENGINE_DEFECT, reason, child, exc)
+            if child.is_valid:
+                return failure(SimulationOutcome.ENGINE_DEFECT, AttemptReason.ATTEMPT_INVARIANT_VIOLATED, child, exc)
+            stored = child.failure
+            if exc.failure is not None and stored != exc.failure and (
+                stored is not None or exc.failure.code != "LEGACY_UNTYPED"
+            ):
+                return failure(SimulationOutcome.ENGINE_DEFECT, AttemptReason.ATTEMPT_INVARIANT_VIOLATED, child, exc)
+            return failure(*_classification(exc.failure or stored), child, exc)
         except MemoryError:
             raise
         except Exception as classification_exc:

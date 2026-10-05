@@ -30,7 +30,7 @@ void test_damage_group_failure_funnel(){ // remediation: T01/T02/T03 and the pub
  auto defs=catalog();auto bad=def("TEST_AREA_THEN_HEAL","SPELL",1,0,0,"EFFECT_COMPOSITION");bad.effects={effect(EffectKind::Damage,TargetSelector::EnemyMinions,1),effect(EffectKind::Heal,TargetSelector::ExplicitCharacter,1)};defs.push_back(bad);
  std::vector<std::string> deck(30,"TEST_FILLER");GameSession g(deck,deck,defs,123,false,"MAGE","MAGE");TestAccess::reset(g);TestAccess::hand(g,0,"TEST_AREA_THEN_HEAL");const int victim=TestAccess::minion(g,1,"POOL_LOW_A",1,1);
  check(throws_unsupported([&]{g.apply_action(play(g,victim));}),"T03 bare throw after area mutation");
- check(!g.is_valid()&&g.unsupported_outcome().value_or("").find("action failed after mutation")!=std::string::npos&&g.unsupported_outcome().value_or("").find("cannot heal")!=std::string::npos,"T03 funnel poisons with a stable diagnostic carrying the original reason");
+ check(!g.is_valid()&&g.failure()->code==FailureCode::HEAL_MORTALLY_WOUNDED_UNREVIEWED&&g.unsupported_outcome().value_or("").find("cannot heal")!=std::string::npos,"T03 funnel poisons with a stable diagnostic carrying the original reason");
  check(TestAccess::player(g,1).board[0].health==0&&TestAccess::player(g,0).hand.empty()&&TestAccess::frame_depth(g)==0,"T03 mutation retained diagnostically");
  check_poisoned_surface(g,"T03");
  // A malformed synthetic Secret reaches std::invalid_argument only after the opponent's minion play mutates state.

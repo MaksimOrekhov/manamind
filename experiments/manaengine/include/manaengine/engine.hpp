@@ -1,6 +1,7 @@
 #pragma once
-#include "manaengine/failure.hpp"
 #include <array>
+#include <functional>
+#include "manaengine/failure.hpp"
 #include <cstdint>
 #include <deque>
 #include <memory>
@@ -187,6 +188,7 @@ public:
     void validate_invariants() const;
     bool is_valid() const;
     std::optional<std::string> unsupported_outcome() const;
+    const std::optional<FailureRecord>& failure() const noexcept;
     const std::set<EvidenceConstraint>& evidence_constraints() const;
     std::optional<std::string> result() const;
     bool needs_choice() const;
@@ -283,7 +285,9 @@ private:
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;
-      std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result,unsupported;
+      std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result; std::optional<FailureRecord> failure;
+  // Constructed before mutation, so resource poisoning survives diagnostic allocation failure.
+  FailureRecord emergency_resource_failure{FailureCode::RESOURCE_EXHAUSTED,"std::bad_alloc","diagnostic allocation unavailable"}; std::string failure_context;
       std::set<EvidenceConstraint> evidence_constraints;
       std::vector<DamageGroupFrame> damage_frames;
       std::uint64_t next_damage_group_id=1;
@@ -340,7 +344,11 @@ private:
     int resolve_effects(const CardDefinition& def,const SpellEffectContext& context,int target_id);
     int resolve_random_distinct_damage(const CardDefinition& def,const SpellEffectContext& context,const EffectStep& step,int previous_target);
     void begin_discover(int owner,const CardDefinition& source);
-    [[noreturn]] void reject_unsupported(std::string reason);
+    void record_failure(FailureRecord record,bool allocation_free=false);
+    void append_failure_context(const std::string& context);
+    [[noreturn]] void fail(FailureCode code, std::string detail);
+    [[noreturn]] void rethrow_stored() const;
+    void execute_guarded(const std::function<void()>& operation);
     bool dark_gift_eligible(const CardDefinition& minion,const CardDefinition& gift) const;
     void apply_dark_gift(CardInstance& instance,const std::string& gift_id);
     void project_modifiers(CardInstance& instance,const CardDefinition& definition) const;

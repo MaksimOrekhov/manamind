@@ -5,6 +5,8 @@ import importlib.util
 import json
 import os
 import re
+from dataclasses import dataclass
+from enum import Enum
 from importlib.machinery import EXTENSION_SUFFIXES
 from pathlib import Path
 from types import MappingProxyType, ModuleType
@@ -45,8 +47,121 @@ def _rules_coverage(metadata: dict[str, Any], spec: dict[str, Any]) -> bool:
     return text == spec.get("reviewed_rules_text")
 
 
+class FailureKind(str, Enum):
+    UNSUPPORTED = "UNSUPPORTED"
+    RULE_UNRESOLVED = "RULE_UNRESOLVED"
+    BUDGET_LIMIT = "BUDGET_LIMIT"
+    ENGINE_DEFECT = "ENGINE_DEFECT"
+
+
+_FAILURE_CODE_KINDS = {
+    "LEGACY_UNTYPED": FailureKind.ENGINE_DEFECT,
+    "DAMAGE_DEPTH_BUDGET_EXCEEDED": FailureKind.BUDGET_LIMIT,
+    "DAMAGE_PACKET_BUDGET_EXCEEDED": FailureKind.BUDGET_LIMIT,
+    "DAMAGE_WORK_BUDGET_EXCEEDED": FailureKind.BUDGET_LIMIT,
+    "CATALOG_REFERENCE_MISSING": FailureKind.ENGINE_DEFECT,
+    "DAMAGE_FRAME_PROTOCOL_VIOLATION": FailureKind.ENGINE_DEFECT,
+    "DAMAGE_TARGET_LOST": FailureKind.ENGINE_DEFECT,
+    "DECLARATION_CONTRACT_VIOLATION": FailureKind.ENGINE_DEFECT,
+    "INVALID_DAMAGE_PACKET": FailureKind.ENGINE_DEFECT,
+    "INVARIANT_VIOLATION": FailureKind.ENGINE_DEFECT,
+    "LEGALITY_EXECUTION_MISMATCH": FailureKind.ENGINE_DEFECT,
+    "MISSING_DISPATCH_HANDLER": FailureKind.ENGINE_DEFECT,
+    "NUMERIC_RANGE_VIOLATION": FailureKind.ENGINE_DEFECT,
+    "QUIESCENCE_VIOLATED": FailureKind.ENGINE_DEFECT,
+    "RESOURCE_EXHAUSTED": FailureKind.ENGINE_DEFECT,
+    "UNEXPECTED_EXCEPTION": FailureKind.ENGINE_DEFECT,
+    "UNKNOWN_EXCEPTION": FailureKind.ENGINE_DEFECT,
+    "COLOSSAL_CAPACITY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "COLOSSAL_TRANSFORM_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "CONTROL_CHANGE_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "DAMAGE_OUTCOME_TARGET_UNRESOLVED": FailureKind.RULE_UNRESOLVED,
+    "DAMAGE_REACTION_ORDER_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "DAMAGE_SOURCE_BOUNDARY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "DARK_GIFT_ASSIGNMENT_UNRESOLVED": FailureKind.RULE_UNRESOLVED,
+    "DARK_GIFT_STACKING_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "DISCOVER_POOL_INCOMPLETE": FailureKind.RULE_UNRESOLVED,
+    "EOT_SOURCE_BOUNDARY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "GENERATION_HAND_FULL_ORDER_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "HEAL_MORTALLY_WOUNDED_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "INSTANCE_COPY_SOURCE_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "MODIFIER_LIFETIME_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "OVERLOAD_CAPACITY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "POOL_EMPTY_SEMANTICS_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "POOL_IDENTITY_NOT_LOADED": FailureKind.RULE_UNRESOLVED,
+    "POOL_MEMBERSHIP_CANDIDATE_ONLY": FailureKind.RULE_UNRESOLVED,
+    "RANDOM_SECRET_POOL_MEMBERSHIP_MISMATCH": FailureKind.RULE_UNRESOLVED,
+    "RANDOM_SELECTION_PENDING_DEATH_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "REBORN_ORDERING_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "SHATTER_MODIFIER_INHERITANCE_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "SHATTER_MODIFIER_MERGE_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "SPELL_DAMAGE_SOURCE_BOUNDARY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "TAKES_DAMAGE_BOUNDARY_UNREVIEWED": FailureKind.RULE_UNRESOLVED,
+    "UNSUPPORTED_CARD_BEHAVIOR": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_CARD_ENTERED_HAND": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_CARD_IN_ACTIVE_HAND": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_DARK_GIFT_OUTCOME": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_DISCARD_TRIGGER": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_DISCOVER_OUTCOME": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_GENERATED_CARD": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_GENERATED_CARD_UNDEFINED": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_HERO_CLASS": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_MINION_HISTORY_TYPE": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_RANDOM_SECRET_OUTCOME": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_SECRET_DEPENDENCY": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_SUMMONED_CARD": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_TRANSFORM_OUTCOME": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_VANILLA_SPELL": FailureKind.UNSUPPORTED,
+}
+
+
+@dataclass(frozen=True, slots=True)
+class NativeFailure:
+    """Scalar native failure snapshot; code owns kind, never diagnostic text."""
+
+    kind: FailureKind
+    code: str
+    detail: str
+    context: str = ""
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.kind, FailureKind) or _FAILURE_CODE_KINDS.get(self.code) != self.kind:
+            raise ValueError("unknown native failure code or inconsistent kind/code")
+        if not isinstance(self.detail, str) or not isinstance(self.context, str):
+            raise ValueError("native failure detail/context must be strings")
+
+
 class UnsupportedSimulationError(RuntimeError):
-    """The requested branch reached card behavior without a verified implementation."""
+    """Compatibility base for all failures, including defects and policy gates.
+
+    New consumers must inspect failure.kind; catching this base does not mean
+    that a branch is eligible for fallback. Untyped exceptions are defects.
+    """
+
+    def __init__(self, detail: str, *, failure: NativeFailure | None = None) -> None:
+        super().__init__(detail)
+        if failure is not None and detail != failure.detail:
+            raise ValueError("exception detail must equal native failure detail")
+        self.failure = failure
+
+
+class EngineDefectError(UnsupportedSimulationError):
+    """Typed engine defect; remains catchable through the compatibility base."""
+
+
+def _failure_from_native(raw: Mapping[str, Any]) -> NativeFailure:
+    return NativeFailure(FailureKind(raw["kind"]), raw["code"], raw["detail"], raw["context"])
+
+
+def _wrap_native(exc: Exception) -> UnsupportedSimulationError:
+    try:
+        failure = _failure_from_native({name: getattr(exc, name) for name in ("kind", "code", "detail", "context")})
+    except MemoryError:
+        raise
+    except Exception:
+        failure = NativeFailure(FailureKind.ENGINE_DEFECT, "LEGACY_UNTYPED", str(exc), "missing/invalid native failure payload")
+    cls = EngineDefectError if failure.kind == FailureKind.ENGINE_DEFECT else UnsupportedSimulationError
+    return cls(failure.detail, failure=failure)
 
 
 _EXECUTION_FIELDS = ("type", "hand_index", "attacker_entity_id", "target_entity_id", "choice_index", "choose_one")
@@ -352,7 +467,8 @@ class ManaEngineSession:
         native = _load_native()
         self._unsupported_exception = native.UnsupportedSimulationError
         if player1_class.upper() != "MAGE" or player2_class.upper() != "MAGE":
-            raise UnsupportedSimulationError("ManaEngine session requires implemented hero powers; only Mage mirror is supported")
+            raise UnsupportedSimulationError("ManaEngine session requires implemented hero powers; only Mage mirror is supported", failure=NativeFailure(
+                FailureKind.UNSUPPORTED, "UNSUPPORTED_HERO_CLASS", "ManaEngine session requires implemented hero powers; only Mage mirror is supported"))
         catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
         catalog_key = str(catalog_file.resolve())
         runtime = _NATIVE_CATALOG_CACHE.get(catalog_key)
@@ -385,7 +501,7 @@ class ManaEngineSession:
         try:
             raw = self._native.observation(perspective)
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
+            raise _wrap_native(exc) from exc
         return _export_state(dict(raw), self.evidence_constraints, self._card_metadata)
 
     def legal_actions(self) -> tuple[dict[str, Any], ...]:
@@ -394,7 +510,7 @@ class ManaEngineSession:
         try:
             raw_actions = self._native.legal_actions()
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
+            raise _wrap_native(exc) from exc
         for raw in raw_actions:
             action = dict(raw)
             if action["type"] in {"PLAY_CARD", "PREPARE_CARD"}:
@@ -417,27 +533,28 @@ class ManaEngineSession:
         try:
             raw_actions = self._native.legal_actions()
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
+            raise _wrap_native(exc) from exc
         result = {}
         for raw in raw_actions:
             action = dict(raw)
             key = _execution_key(action)
             if key in result:
-                raise RuntimeError("native legal actions contain a duplicate execution key")
+                raise EngineDefectError("native legal actions contain a duplicate execution key", failure=NativeFailure(
+                    FailureKind.ENGINE_DEFECT, "INVARIANT_VIOLATION", "native legal actions contain a duplicate execution key"))
             result[key] = action
         return result
 
-    def _apply_raw(self, action: Mapping[str, Any]) -> dict[str, Any]:
-        """Apply on this session and return the post-action ACTIVE-seat dictionary."""
+    def _apply_raw(self, action: Mapping[str, Any]) -> None:
+        """Apply without exporting an observation; the attempt exports its fixed seat later."""
         try:
-            raw = self._native.apply_action(dict(action))
+            self._native.apply_action_unobserved(dict(action))
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
-        return dict(raw)
+            raise _wrap_native(exc) from exc
 
     def apply_action(self, action: dict[str, Any]) -> GameState:
         """Mutate this session; return the post-action ACTIVE-seat view (also after END_TURN)."""
-        return _export_state(self._apply_raw(action), self.evidence_constraints, self._card_metadata)
+        self._apply_raw(action)
+        return self.observation("ACTIVE")
 
     def clone(self) -> "ManaEngineSession":
         duplicate = object.__new__(ManaEngineSession)
@@ -446,7 +563,7 @@ class ManaEngineSession:
         try:
             duplicate._native = self._native.clone()
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
+            raise _wrap_native(exc) from exc
         return duplicate
 
     @property
@@ -482,7 +599,7 @@ class ManaEngineSession:
         try:
             return getattr(self._native, name)
         except self._unsupported_exception as exc:
-            raise UnsupportedSimulationError(str(exc)) from exc
+            raise _wrap_native(exc) from exc
 
     @property
     def choice_options(self) -> tuple[int, ...]:
@@ -495,6 +612,11 @@ class ManaEngineSession:
     @property
     def is_valid(self) -> bool:
         return bool(self._native.is_valid)
+
+    @property
+    def failure(self) -> NativeFailure | None:
+        raw = getattr(self._native, "failure", None)
+        return _failure_from_native(raw) if raw is not None else None
 
     @property
     def unsupported_outcome(self) -> str | None:

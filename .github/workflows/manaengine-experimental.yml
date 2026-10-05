@@ -5,6 +5,7 @@ on:
     branches: ["**"]
     paths:
       - "experiments/manaengine/**"
+      - "reports/manaengine_unknown_state_architecture/**"
       - "reports/manaengine_phase4_20261003/**"
       - "reports/manaengine_phase4b_20261004/**"
       - "data/cards/**"
@@ -20,6 +21,7 @@ on:
   pull_request:
     paths:
       - "experiments/manaengine/**"
+      - "reports/manaengine_unknown_state_architecture/**"
       - "reports/manaengine_phase4_20261003/**"
       - "reports/manaengine_phase4b_20261004/**"
       - "data/cards/**"
@@ -81,4 +83,4 @@ jobs:
         env:
           PYTHONPATH: src
           MANAMIND_MANAENGINE_BUILD: ${{ github.workspace }}/build/manaengine/python
-        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py experiments/manaengine/tests/test_simulation_attempt.py tests/test_pipeline.py tests/test_policy_action_semantics.py tests/test_simulation_attempt_contract.py
+        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py experiments/manaengine/tests/test_simulation_attempt.py experiments/manaengine/tests/test_native_failure.py tests/test_native_failure_contract.py tests/test_pipeline.py tests/test_policy_action_semantics.py tests/test_simulation_attempt_contract.py

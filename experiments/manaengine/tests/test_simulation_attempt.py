@@ -113,6 +113,7 @@ def test_sa02_sa05_sa06_sa07_sa08_sa12_sa13_sa14_real_fire_seed_scan():
         else:
             assert result.outcome == SimulationOutcome.UNSIMULATABLE
             assert result.reason == AttemptReason.NATIVE_UNSUPPORTED and result.fallback_eligible
+            assert result.diagnostics.native_failure.code == "UNSUPPORTED_GENERATED_CARD"
             assert result.state is result.child is None and result.evidence_constraints == ()
             assert result.diagnostics.evidence_at_failure == FIRE
             match = re.search(r"selected generated outcome is unsupported: (\w+)", result.diagnostics.unsupported_outcome)
@@ -155,6 +156,7 @@ def test_sa16_hidden_unsupported_next_draw_only_poisons_clone():
     result = attempt_action(parent, end(parent))
     assert result.outcome == SimulationOutcome.UNSIMULATABLE and result.reason == AttemptReason.NATIVE_UNSUPPORTED
     assert result.state is result.child is None and result.fallback_eligible
+    assert result.diagnostics.native_failure.code == "UNSUPPORTED_CARD_ENTERED_HAND"
     assert "unsupported" in result.diagnostics.unsupported_outcome.lower()
     assert snapshot(parent) == before
 
@@ -251,8 +253,8 @@ def test_sa11_actual_postmutation_std_exception_is_engine_defect():
     before = snapshot(parent)
     result = attempt_action(parent, action)
     assert result.outcome == SimulationOutcome.ENGINE_DEFECT
-    assert result.reason == AttemptReason.NATIVE_EXCEPTION_NORMALIZED and not result.fallback_eligible
+    assert result.reason == AttemptReason.NATIVE_ENGINE_DEFECT and not result.fallback_eligible
     assert result.state is result.child is None
     assert "unknown Secret effect" in result.diagnostics.exception_message
-    assert "action failed after mutation: " in result.diagnostics.unsupported_outcome
+    assert result.diagnostics.native_failure.code == "DECLARATION_CONTRACT_VIOLATION"
     assert snapshot(parent) == before
