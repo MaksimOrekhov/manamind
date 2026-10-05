@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "backend": "manaengine",
+  "contract_id": "damage_group_local_v1",
+  "baseline_revision": "b659343f437e968bceb08041e9ac0b3893c16f73",
+  "normalized_hash_algorithm": "sha256; file bytes CRLF -> LF; aggregate sorted compact JSON",
+  "baseline_source_fingerprint": "fab29a32ab7a8c49cf205eb088102d9e2eab9585b20381eeb485b3a57349ea1f",
+  "implementation_source_fingerprint": "ac55f42e32bfda0890534814efae12894670c5283a3682fd89ff0348b4b6fef2",
+  "baseline_files": {
+    "experiments/manaengine/CMakeLists.txt": "a840122d3325655a4a1bff13c94176e0c5ac2653390a35b90263e5912a4c9888",
+    "experiments/manaengine/data/card_abilities.json": "c1ad854503993240ac7e753a6a5edb27dca91bb45a29703721c32aaa83736b68",
+    "experiments/manaengine/include/manaengine/engine.hpp": "9f3f2f900e9ba87c5c7c0f09a2e591f9767df28e9d3da4dbd49a8f79b17e5374",
+    "experiments/manaengine/src/damage_group.cpp": null,
+    "experiments/manaengine/src/engine.cpp": "fcf606f84e474edf17c30abf91cb26a5da86059314eba3b9a3ce3f3e4a382bfc",
+    "experiments/manaengine/src/pool_manifest.cpp": "f9ba24f773c494c2a53474db2e4f1a56e0fec577939e98ebf7e59b72bc79d712",
+    "experiments/manaengine/src/python_bindings.cpp": "66766961288c36aea6040a5775311e1be95bb5fe3e8dff91a9a6fdfde035fec2",
+    "src/manamind/integrations/manaengine/engine.py": "720b9caaf41b50286f851ac27c3eea733f55475c31445aad91e1f7320642aa16"
+  },
+  "implementation_files": {
+    "experiments/manaengine/CMakeLists.txt": "386d2386f28841932ccfb2779ef08018dd6ab5b1a9a701c53e90a66202978b46",
+    "experiments/manaengine/data/card_abilities.json": "c1ad854503993240ac7e753a6a5edb27dca91bb45a29703721c32aaa83736b68",
+    "experiments/manaengine/include/manaengine/engine.hpp": "3dce5794f0406d32b46efd865f388d86ba39b9702349dfdfe021a00f23e59b60",
+    "experiments/manaengine/src/damage_group.cpp": "d1176d7209aae590560b420b2b8ee09b63e77df853d0b3d87d2fb7a22f708b38",
+    "experiments/manaengine/src/engine.cpp": "d439a55c4e939ed89303353854ff572a0268ae7985ab9f7206287a9648186a69",
+    "experiments/manaengine/src/pool_manifest.cpp": "f9ba24f773c494c2a53474db2e4f1a56e0fec577939e98ebf7e59b72bc79d712",
+    "experiments/manaengine/src/python_bindings.cpp": "66766961288c36aea6040a5775311e1be95bb5fe3e8dff91a9a6fdfde035fec2",
+    "src/manamind/integrations/manaengine/engine.py": "f2e83291d91f1b33368caa4fdf5e7b32ed4d6b4129b428b1751797d295e0bc8e"
+  },
+  "native_module_path": "C:\\Users\\\u041c\u0430\u043a\u0441\u0438\u043c\\.codex\\worktrees\\manaengine-first-deck\\ManaMind\\experiments\\manaengine\\build-damage-group-v1\\python\\manaengine_native.cp312-win_amd64.pyd",
+  "native_module_sha256": "72e82f3a72907339a1bd01f04b6918655d4b5a4be0fd8df4a83dcbeeef2c4edb",
+  "native_tests_sha256": "e643747603e46115f31688425711bf5e5b01f2642fe297d8391c24433937058e",
+  "observation_schema_version": 16,
+  "canonical_output_bytes_changed": false,
+  "rules_admission_promotion": false
+}

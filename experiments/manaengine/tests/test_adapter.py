@@ -1200,3 +1200,62 @@ def test_intrinsic_reborn_metadata_does_not_enable_granted_dark_gift_reborn() ->
     assert option.card_type == "SPELL" and option.reborn is False
     assert option.support_state == "UNSUPPORTED" and "REBORN" in option.dark_gift_keywords
     assert all(d.card_type == "MINION" and d.health > 0 for d in definitions.values() if d.reborn)
+
+
+def test_damage_group_vulcanos_barrier_poison_and_quiescent_clone() -> None:
+    deck = ["CATA_488", *(["CORE_EX1_145"] * 29)]
+    opponent = ["CORE_EX1_145"] * 30
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    session.set_diagnostic_trace(True)
+    for _ in range(24):
+        actions = session.legal_actions()
+        root = next((a for a in actions if a.get("card_id") == "CATA_488"), None)
+        if root is not None:
+            session.apply_action(root)
+            break
+        session.apply_action(next(a for a in actions if a["type"] == "END_TURN"))
+    else:
+        pytest.fail("Vulcanos did not reach the bounded play action")
+    state = session.observation("PLAYER1")
+    assert [m.current_health for m in state.self_player.board] == [5, 8, 5]
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+    clone = session.clone()
+    end = next(a for a in session.legal_actions() if a["type"] == "END_TURN")
+    for branch in (session, clone):
+        with pytest.raises(UnsupportedSimulationError, match="pool identity is not loaded"):
+            branch.apply_action(end)
+        assert not branch.is_valid
+        trace = list(branch.diagnostic_trace)
+        barrier = next(i for i, row in enumerate(trace) if "GROUP_MUTATIONS_COMPLETE" in row)
+        reaction = next(i for i, row in enumerate(trace) if "DAMAGE_REACTION" in row)
+        packets = [row for row in trace[:barrier] if row.startswith("DAMAGE source=")]
+        assert len(packets) == 2 and all("amount=3" in row for row in packets)
+        assert barrier < reaction
+        for access in (branch.legal_actions, branch.observation, branch.clone):
+            with pytest.raises(UnsupportedSimulationError):
+                access()
+    assert session.diagnostic_trace == clone.diagnostic_trace
+    # Failed state is available only as diagnostic trace, never a policy observation.
+
+
+def test_damage_group_minion_area_trace_and_policy_schema() -> None:
+    from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
+
+    deck = ["CATA_582", *(["CORE_EX1_145"] * 29)]
+    opponent = ["CORE_EX1_145"] * 30
+    session = ManaEngineSession(deck, opponent, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    session.set_diagnostic_trace(True)
+    for _ in range(6):
+        actions = session.legal_actions()
+        root = next((a for a in actions if a.get("card_id") == "CATA_582"), None)
+        if root is not None:
+            session.apply_action(root)
+            break
+        session.apply_action(next(a for a in actions if a["type"] == "END_TURN"))
+    else:
+        pytest.fail("Searing Winds did not reach the bounded action")
+    assert session.is_valid and STATE_ENCODING_SCHEMA_VERSION == 16
+    assert any("GROUP_MUTATIONS_COMPLETE" in row for row in session.diagnostic_trace)
+    state = session.observation("PLAYER1")
+    assert state.self_player.hero_attack == 3
+    assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())

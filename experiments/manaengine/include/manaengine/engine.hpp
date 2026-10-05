@@ -168,6 +168,7 @@ struct Observation {
 };
 class GameSession {
 public:
+    GameSession(GameSession&&)=default;
     GameSession(std::vector<std::string> player1_deck, std::vector<std::string> player2_deck,
                 std::vector<CardDefinition> definitions, std::uint64_t seed=0, bool shuffle=true,
                 std::string player1_class="UNKNOWN_CLASS", std::string player2_class="UNKNOWN_CLASS");
@@ -192,6 +193,7 @@ public:
     void set_trace_enabled(bool enabled);
     const std::vector<std::string>& diagnostic_trace() const;
 private:
+    GameSession(const GameSession&)=default; // Public clone enforces quiescence.
     static constexpr int damage_boundary_contract_version=1;
     enum class DamageEvaluationContract { CurrentAtStep, MissileTotal };
     struct SpellEffectContext {
@@ -243,11 +245,45 @@ private:
       std::optional<WeaponState> weapon; std::vector<TimedEffect> timed_effects; };
     struct Trigger { TriggerKind kind; int owner; int entity_id=-1; std::string card_id; int target_entity_id=-1; EventWindow window=EventWindow::OpponentCastsSpell; };
     struct PendingChoice { int owner=0; std::vector<int> options; std::vector<std::string> card_options, card_dark_gifts; int choice_cost_delta=0; ContinuationKind continuation=ContinuationKind::BuffSelectedMinion; EffectStep selected_effect; std::string source_card_id; int source_entity=-1, persistent_bonus=0, selected_mode=0; };
+    enum class DamageDispatch { ApplyAllThenReact, SinglePacketThenReact };
+    enum class DamageEventOrder { MinionEntrySequence, SingleTarget, ScalarOnly };
+    enum class DamageFrameStage { Apply, DispatchEvent, DispatchReaction, Complete };
+    enum class ReactionKind { SelfTakesDamageV1, FirstSpellDamageAttackV1 };
+    enum class Prevention { None, Zero, Immune, DivineShield };
+    struct EntityHandle { int entity_id=-1, controller=-1; std::uint64_t entry_sequence=0; std::string card_id; bool silenced=false; };
+    struct DamagePacketIntent {
+      int source_entity=-1, source_controller=0; EntityHandle target;
+      int amount=0; DamageKind kind=DamageKind::Effect;
+      DamageAttribution attribution=DamageAttribution::None; bool lifesteal=false;
+    };
+    struct DamageReactionSnapshot {
+      ReactionKind kind=ReactionKind::SelfTakesDamageV1; EntityHandle consumer;
+      std::string pool_id; int value=0;
+    };
+    struct PacketOutcome {
+      DamagePacketIntent intent; Prevention prevention=Prevention::None;
+      int reported_damage=0; std::int64_t health_delta=0, armor_delta=0;
+      std::uint64_t event_sequence=0;
+      std::optional<DamageReactionSnapshot> self_reaction;
+    };
+    struct DamageGroupFrame {
+      std::uint64_t group_id=0,parent_group_id=0;
+      DamageDispatch dispatch=DamageDispatch::SinglePacketThenReact;
+      DamageEventOrder order=DamageEventOrder::SingleTarget;
+      DamageFrameStage stage=DamageFrameStage::Apply;
+      std::vector<PacketOutcome> outcomes;
+      std::vector<DamageReactionSnapshot> current_event_reactions;
+      std::vector<EntityHandle> board_sources;
+      std::size_t event_cursor=0,reaction_cursor=0;
+    };
     struct EngineState { int active=0,turn_number=1,next_entity_id=100; std::uint64_t next_event_sequence=1; std::array<PlayerState,2> players;
       std::deque<Trigger> triggers,deathrattles; std::optional<PendingChoice> pending_choice;
       bool trace_enabled=false; std::vector<std::string> trace;
       std::mt19937_64 rng; std::uint64_t next_damage_sequence=1; std::optional<std::string> result,unsupported;
-      std::set<EvidenceConstraint> evidence_constraints; };
+      std::set<EvidenceConstraint> evidence_constraints;
+      std::vector<DamageGroupFrame> damage_frames;
+      std::uint64_t next_damage_group_id=1;
+      std::size_t damage_work=0; };
     struct DamageOccurrence {
       int damage_source_entity_id=-1, damaged_entity_id=-1, damaged_controller=-1;
       DamageKind damage_kind=DamageKind::Effect; DamageAttribution attribution=DamageAttribution::None;
@@ -266,6 +302,19 @@ private:
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);
     int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
+    EntityHandle damage_target_handle(int target);
+    DamagePacketIntent damage_intent(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
+    bool has_damage_reaction(const DamagePacketIntent& packet) const;
+    void guard_scalar_damage(const std::vector<DamagePacketIntent>& packets);
+    void guard_area_spell_modifiers(const std::vector<DamagePacketIntent>& packets);
+    PacketOutcome apply_damage_packet(const DamagePacketIntent& packet);
+    std::size_t open_damage_group(std::vector<DamagePacketIntent> packets,DamageDispatch dispatch,DamageEventOrder order);
+    void dispatch_damage_event(std::size_t frame_index);
+    int close_damage_group(std::size_t frame_index);
+    int run_damage_group(std::vector<DamagePacketIntent> packets,DamageDispatch dispatch,DamageEventOrder order);
+    void require_quiescent() const;
+    void consume_damage_work();
+    void validate_damage_frame_sources(std::size_t frame_index);
     void resolve_damage_occurrence(const DamageOccurrence& occurrence);
     void generate_random_card_to_hand(int owner,const std::string& pool_id,GeneratedInstanceModifiers modifiers);
     void summon_fixed(int owner,const std::string& card_id,int count);
@@ -277,7 +326,6 @@ private:
     void transform_board(int owner,int entity,const std::string& card_id);
     void resolve_play(int hand_index,int target_id); void resolve_spell(const CardDefinition& def,int owner,int target_id,int card_spell_damage=0,int source_entity=-1);
     int evaluate_spell_damage(const SpellEffectContext& context,int base_amount);
-    void record_spell_damage_event(int owner,int amount);
     bool resolve_secret_window(EventWindow window,int event_owner,int subject_entity_id=-1);
     bool resolve_secret_instance(int secret_owner,int entity_id,EventWindow window,int subject_entity_id=-1);
     bool resolve_attack_secret_windows(int attacker_owner,int attacker_entity_id,bool hero_attack,int target_entity_id);

@@ -9,9 +9,23 @@ This is an isolated C++20 backend experiment. RosettaStone stays the reference b
 Prototype event pass:
 
 1. Resolve queued triggers FIFO.
-2. Remove all currently dead minions in player/board order.
+2. Remove all currently dead minions in activation/entry order.
 3. Queue and resolve their deathrattles FIFO.
 4. Repeat until both queues and death set are empty.
+
+`damage_group_local_v1` separates synchronous damage mutation from reactions.
+Ordinary admitted minion areas apply every packet before dispatching successful
+damage events in entry order. Sequential instructions and missiles complete each
+packet's reactions before continuing. The existing outer phase owns deaths;
+group completion never calls the global death drain. Value-owned internal frames
+are hidden from observations, and public action/observation/clone access requires
+quiescence. Unsupported branches preserve diagnostic mutations and RNG, reject
+continuation, and never become successful terminal episodes.
+
+Hero-containing reactive areas, reactive combat, compound Secret reactions and
+mixed self/first-spell-damage triggers remain guarded where ordering is unreviewed.
+Vulcanos's Fire pool and Arcane Barrage remain blocked. Scope, tests and remaining
+limits are recorded in `reports/manaengine_damage_group_20261005/COMPLETION.md`.
 
 `clone()` is a deep value-copy of all session state, including the `std::mt19937_64` state and pending choice. Choice is a typed continuation: the native board-choice fixture selects a current friendly minion, while the Phase 3 `CORE_GIL_836` Discover samples the complete pinned Standard class/neutral Battlecry-minion pool and generates the selected card into hand. Unsupported pool outcomes remain visible and invalidate the branch when selected. The precise bounded contract is in `reports/manaengine_hardening_20261003/PACKAGE_B_COMPLETION.md`. This is deliberately not the full Hearthstone event/death/choice specification.
 

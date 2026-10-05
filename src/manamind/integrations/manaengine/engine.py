@@ -325,7 +325,11 @@ class ManaEngineSession:
     def observation(self, perspective: str = "ACTIVE") -> GameState:
         if perspective not in {"ACTIVE", "PLAYER1", "PLAYER2"}:
             raise ValueError("perspective must be ACTIVE, PLAYER1, or PLAYER2")
-        return _export_state(dict(self._native.observation(perspective)), self.evidence_constraints)
+        try:
+            raw = self._native.observation(perspective)
+        except self._unsupported_exception as exc:
+            raise UnsupportedSimulationError(str(exc)) from exc
+        return _export_state(dict(raw), self.evidence_constraints)
 
     def legal_actions(self) -> tuple[dict[str, Any], ...]:
         state = self.observation()
@@ -361,7 +365,10 @@ class ManaEngineSession:
     def clone(self) -> "ManaEngineSession":
         duplicate = object.__new__(ManaEngineSession)
         duplicate._unsupported_exception = self._unsupported_exception
-        duplicate._native = self._native.clone()
+        try:
+            duplicate._native = self._native.clone()
+        except self._unsupported_exception as exc:
+            raise UnsupportedSimulationError(str(exc)) from exc
         return duplicate
 
     @property
