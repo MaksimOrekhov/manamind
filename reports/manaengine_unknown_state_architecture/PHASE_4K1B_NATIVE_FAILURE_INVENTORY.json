@@ -1,0 +1,6226 @@
+{
+ "schema": 1,
+ "audited_commit": "a03591ab1f97395e2761f66ff9f74359477fc77a",
+ "source_sha256": {
+  "src/engine.cpp": "e9e3979e5c1d2814fcaf7d121445f392b73f70cc70da20956df5aec07d6a050e",
+  "src/damage_group.cpp": "01f2a23a8678f6df23dfa698be98f2791f0ddc7c5087471d7727f68e44278584",
+  "src/pool_manifest.cpp": "a58da672a92ad2bb6e5bd6f081a6fb91754df4dfb48557ffb5678764c8ddf756",
+  "src/python_bindings.cpp": "416be9ab31b8342f32e366614d27613b67fbd37d3ed014ececf5e486bd2bcf41"
+ },
+ "method": {
+  "site_enumeration": "reports/manaengine_unknown_state_architecture/phase_4k1b_failure_site_audit.py (tokenised scan; `check` verifies this file)",
+  "dynamic_hits": "first-hit tracing of every site (instrument command) while running the existing native test executable and the ManaEngine pytest files; 'inject' = fired only through TestAccess/crafted catalogs",
+  "limits": "dynamic evidence is existing-suite coverage only, not exhaustive reachability; reachability labels are reasoned from source"
+ },
+ "totals": {
+  "native_sites": 310,
+  "by_kind": {
+   "at_call": 12,
+   "catalog_reject_call": 7,
+   "catch": 6,
+   "echo": 13,
+   "reject": 53,
+   "throw:UnsupportedSimulationError": 27,
+   "throw:std::invalid_argument": 132,
+   "throw:std::logic_error": 23,
+   "throw:std::out_of_range": 2,
+   "write_soft": 8,
+   "write_throw": 27
+  },
+  "native_rows": 128,
+  "by_classification": {
+   "ENGINE_DEFECT": {
+    "rows": 54,
+    "sites": 91
+   },
+   "RULE_UNRESOLVED": {
+    "rows": 35,
+    "sites": 42
+   },
+   "DESIGN_UNSUPPORTED": {
+    "rows": 17,
+    "sites": 17
+   },
+   "ECHO": {
+    "rows": 6,
+    "sites": 13
+   },
+   "FUNNEL": {
+    "rows": 6,
+    "sites": 12
+   },
+   "ILLEGAL_OR_CALLER_ERROR": {
+    "rows": 4,
+    "sites": 5
+   },
+   "BUDGET_LIMIT": {
+    "rows": 3,
+    "sites": 3
+   },
+   "ENVIRONMENT_OR_ADAPTER_FAILURE": {
+    "rows": 3,
+    "sites": 127
+   }
+  },
+  "python_verdict_by_row": {
+   "correct": {
+    "rows": 72,
+    "sites": 100
+   },
+   "FALSE_NEGATIVE": {
+    "rows": 34,
+    "sites": 47
+   },
+   "n/a": {
+    "rows": 22,
+    "sites": 163
+   }
+  },
+  "python_boundary_rows": 12,
+  "python_boundary_sites": 16,
+  "total_audited_sites": 326,
+  "dynamic": {
+   "native_exe_sites_hit": 76,
+   "python_sites_hit": 18,
+   "sites_hit_any": 77
+  }
+ },
+ "reason_codes": [
+  {
+   "code": "DAMAGE_DEPTH_BUDGET_EXCEEDED",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "rows": [
+    "NF-111"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DAMAGE_PACKET_BUDGET_EXCEEDED",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "rows": [
+    "NF-113"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DAMAGE_WORK_BUDGET_EXCEEDED",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "rows": [
+    "NF-102"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "CATALOG_REFERENCE_MISSING",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-015"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DAMAGE_FRAME_PROTOCOL_VIOLATION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-079",
+    "NF-112",
+    "NF-119",
+    "NF-120"
+   ],
+   "sites": 10
+  },
+  {
+   "code": "DAMAGE_TARGET_LOST",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-104",
+    "NF-108"
+   ],
+   "sites": 2
+  },
+  {
+   "code": "DECLARATION_CONTRACT_VIOLATION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-012",
+    "NF-013",
+    "NF-021",
+    "NF-024",
+    "NF-038",
+    "NF-042",
+    "NF-050",
+    "NF-051",
+    "NF-055",
+    "NF-058",
+    "NF-060",
+    "NF-063",
+    "NF-064"
+   ],
+   "sites": 13
+  },
+  {
+   "code": "INVALID_DAMAGE_PACKET",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-105",
+    "NF-115"
+   ],
+   "sites": 8
+  },
+  {
+   "code": "INVARIANT_VIOLATION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-001",
+    "NF-010",
+    "NF-017",
+    "NF-020",
+    "NF-028",
+    "NF-030",
+    "NF-035",
+    "NF-036",
+    "NF-053",
+    "NF-066",
+    "NF-070",
+    "NF-078",
+    "NF-080",
+    "NF-087",
+    "NF-091",
+    "NF-092",
+    "NF-093",
+    "NF-096",
+    "NF-133"
+   ],
+   "sites": 42
+  },
+  {
+   "code": "LEGACY_UNTYPED",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [],
+   "sites": 0,
+   "note": "infrastructure code: fail-safe default for any throw or reject that has not been migrated to a typed code"
+  },
+  {
+   "code": "LEGALITY_EXECUTION_MISMATCH",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-054",
+    "NF-056",
+    "NF-059",
+    "NF-062",
+    "NF-065",
+    "NF-089"
+   ],
+   "sites": 8
+  },
+  {
+   "code": "MISSING_DISPATCH_HANDLER",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-048",
+    "NF-067",
+    "NF-074"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "NUMERIC_RANGE_VIOLATION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-008",
+    "NF-114",
+    "NF-123"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "QUIESCENCE_VIOLATED",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-101"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "RESOURCE_EXHAUSTED",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-084"
+   ],
+   "sites": 0,
+   "note": "infrastructure code: std::bad_alloc reaches the std::exception funnel (NF-084); the funnel must record it and rethrow the original so pybind raises MemoryError"
+  },
+  {
+   "code": "UNEXPECTED_EXCEPTION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-084",
+    "NF-117",
+    "NF-126"
+   ],
+   "sites": 6
+  },
+  {
+   "code": "UNKNOWN_EXCEPTION",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "rows": [
+    "NF-085"
+   ],
+   "sites": 2
+  },
+  {
+   "code": "COLOSSAL_CAPACITY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-037"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "COLOSSAL_TRANSFORM_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-040"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "CONTROL_CHANGE_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-081",
+    "NF-103",
+    "NF-116"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "DAMAGE_OUTCOME_TARGET_UNRESOLVED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-052"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DAMAGE_REACTION_ORDER_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-106",
+    "NF-110",
+    "NF-121",
+    "NF-125"
+   ],
+   "sites": 4
+  },
+  {
+   "code": "DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-118",
+    "NF-122"
+   ],
+   "sites": 4
+  },
+  {
+   "code": "DARK_GIFT_ASSIGNMENT_UNRESOLVED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-043"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DARK_GIFT_STACKING_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-023"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "DISCOVER_POOL_INCOMPLETE",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-041"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "EOT_SOURCE_BOUNDARY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-071"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "GENERATION_HAND_FULL_ORDER_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-005"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "HEAL_MORTALLY_WOUNDED_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-061"
+   ],
+   "sites": 2
+  },
+  {
+   "code": "INSTANCE_COPY_SOURCE_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-033",
+    "NF-034"
+   ],
+   "sites": 2
+  },
+  {
+   "code": "MODIFIER_LIFETIME_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-025"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "OVERLOAD_CAPACITY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-090"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "POOL_EMPTY_SEMANTICS_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-004"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "POOL_IDENTITY_NOT_LOADED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-002"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "POOL_MEMBERSHIP_CANDIDATE_ONLY",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-003"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "RANDOM_SECRET_POOL_MEMBERSHIP_MISMATCH",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-072"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "RANDOM_SELECTION_PENDING_DEATH_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-049"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "REBORN_ORDERING_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-076",
+    "NF-077"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "SHATTER_MODIFIER_INHERITANCE_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-018"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "SHATTER_MODIFIER_MERGE_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-019"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "SPELL_DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-045",
+    "NF-068",
+    "NF-107"
+   ],
+   "sites": 4
+  },
+  {
+   "code": "TAKES_DAMAGE_BOUNDARY_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [
+    "NF-029"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_CARD_BEHAVIOR",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-011"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_CARD_ENTERED_HAND",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-016"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_CARD_IN_ACTIVE_HAND",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-027"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_DARK_GIFT_OUTCOME",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-022"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_DISCARD_TRIGGER",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-057"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_DISCOVER_OUTCOME",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-086"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_GENERATED_CARD",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-007",
+    "NF-046",
+    "NF-075"
+   ],
+   "sites": 3
+  },
+  {
+   "code": "UNSUPPORTED_GENERATED_CARD_UNDEFINED",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-006"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_HERO_CLASS",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-014"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_MINION_HISTORY_TYPE",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-031"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_RANDOM_SECRET_OUTCOME",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-073"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_SECRET_DEPENDENCY",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-069"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_SUMMONED_CARD",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-044"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_TRANSFORM_OUTCOME",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-039"
+   ],
+   "sites": 1
+  },
+  {
+   "code": "UNSUPPORTED_VANILLA_SPELL",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [
+    "NF-047"
+   ],
+   "sites": 1
+  }
+ ],
+ "pybind_translation": [
+  {
+   "native": "UnsupportedSimulationError (registered; base builtins.Exception)",
+   "python": "manaengine_native.UnsupportedSimulationError; the adapter re-raises manamind...UnsupportedSimulationError(RuntimeError) with only the message"
+  },
+  {
+   "native": "std::invalid_argument",
+   "python": "ValueError"
+  },
+  {
+   "native": "std::out_of_range",
+   "python": "IndexError"
+  },
+  {
+   "native": "std::logic_error / std::runtime_error / other std::exception",
+   "python": "RuntimeError"
+  },
+  {
+   "native": "std::bad_alloc",
+   "python": "MemoryError (but execute_action's catch(const std::exception&) normalises it first, so Python never sees it)"
+  },
+  {
+   "native": "py::key_error / py::cast_error from action_from_dict",
+   "python": "KeyError / RuntimeError"
+  }
+ ],
+ "rows": [
+  {
+   "id": "NF-001",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    14
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "generated-card owner is outside the two-player session",
+   "condition": "owner outside 0..1 (callers pass handle controllers)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Impossible argument from engine-internal caller."
+  },
+  {
+   "id": "NF-002",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "generated-card pool identity is not loaded"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    16
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "generated-card pool identity is not loaded: ",
+   "condition": "takes_damage_pool_id names a manifest absent from the catalog",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "POOL_IDENTITY_NOT_LOADED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "Catalog does not cross-check takes_damage_pool_id against loaded pools; a supported TakesDamage declaration can therefore reach it."
+  },
+  {
+   "id": "NF-003",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "candidate pool cannot be used"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    18
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "candidate pool cannot be used for runtime generation: ",
+   "condition": "pool membership_status == CANDIDATE",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "POOL_MEMBERSHIP_CANDIDATE_ONLY",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-004",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "empty reviewed pool"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    19
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "empty reviewed pool cannot generate a card: ",
+   "condition": "reviewed manifest with zero members",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "POOL_EMPTY_SEMANTICS_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "validate_pool_manifest accepts count 0, so the engine refuses at use; real empty-pool behaviour is unreviewed."
+  },
+  {
+   "id": "NF-005",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "generated-card hand-full ordering"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    20
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "generated-card hand-full ordering is unreviewed; failed before RNG consumption",
+   "condition": "owner hand already holds 10 cards",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "GENERATION_HAND_FULL_ORDER_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "'failed before RNG consumption' is true for this generation only; earlier steps of the action may have consumed RNG."
+  },
+  {
+   "id": "NF-006",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "selected generated outcome has no pinned"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    25
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "selected generated outcome has no pinned CardDefinition: ",
+   "condition": "sampled pool member has no CardDefinition",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_GENERATED_CARD_UNDEFINED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T03",
+   "confidence": "medium",
+   "notes": "Manifest/catalog cross-check missing at load; if added the site becomes unreachable (then ENGINE_DEFECT)."
+  },
+  {
+   "id": "NF-007",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "selected generated outcome is unsupported"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    26
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "selected generated outcome is unsupported: ",
+   "condition": "sampled pool member has support_state UNSUPPORTED (no reroll)",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_GENERATED_CARD",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": "The canonical A-class case: real Fire-pool sample, covered by SA06 and test_adapter TLC_222."
+  },
+  {
+   "id": "NF-008",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "write_throw",
+     "msg": "generated instance cost modifier overflow"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    29
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "generated instance cost modifier overflow",
+   "condition": "int overflow of fresh instance cost_delta + modifier",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "NUMERIC_RANGE_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Unreachable: a fresh instance has cost_delta 0, so the sum always fits an int."
+  },
+  {
+   "id": "NF-009",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "generate_random_card_to_hand",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "generate_random_card_to_hand",
+   "lines": [
+    33
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "rethrow of state_.unsupported after enter_hand",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "echo",
+   "python_today": "U/NU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": "Dead behind NF-007 for UNSUPPORTED cards; must become rethrow_stored()."
+  },
+  {
+   "id": "NF-010",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "activate_secret",
+     "kind": "throw:std::logic_error"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "activate_secret",
+   "lines": [
+    35
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "only Secret cards can enter Secret zone",
+   "condition": "non-Secret card routed to the Secret zone",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-011",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "ability_of",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "unsupported card effect"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "ability_of",
+   "lines": [
+    70
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "unsupported card effect: ",
+   "condition": "card with ability NONE that is not VERIFIED_VANILLA reached dispatch",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (static); funnel adds prefix",
+   "python_today": "U/NU (correct only by luck)",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_CARD_BEHAVIOR",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": "Called from legal_actions/observation (CONST), resolve_play, stabilize, end-turn reactions. Must be a typed throw because the callee is static/const and cannot poison."
+  },
+  {
+   "id": "NF-012",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "ability_of",
+     "kind": "throw:std::invalid_argument",
+     "msg": "unknown ManaEngine ability"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "ability_of",
+   "lines": [
+    71
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown ManaEngine ability: ",
+   "condition": "ability string outside the catalog allowlist",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Unreachable after CardCatalog validation."
+  },
+  {
+   "id": "NF-013",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "secret_effect_of",
+     "kind": "throw:std::invalid_argument",
+     "msg": "unknown Secret effect"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "secret_effect_of",
+   "lines": [
+    77
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown Secret effect on ",
+   "condition": "secret_effect string outside the allowlist",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (SA11)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T06",
+   "confidence": "high",
+   "notes": "Reached by SA11 through a crafted catalog: secret=true with ability NONE bypasses the SECRET contract validation (validation gap)."
+  },
+  {
+   "id": "NF-014",
+   "scope": "construct",
+   "selectors": [
+    {
+     "function": "GameSession",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "session requires implemented hero powers"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "GameSession",
+   "lines": [
+    132
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "session requires implemented hero powers; only Mage mirror supported",
+   "condition": "player class is not MAGE",
+   "mutation": "LOAD",
+   "rng": "N",
+   "poison_today": "none (no session exists)",
+   "python_today": "n/a (adapter raises first)",
+   "python_verdict": "n/a",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_HERO_CLASS",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": "The Python adapter raises its own UnsupportedSimulationError before the native constructor runs."
+  },
+  {
+   "id": "NF-015",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "card",
+     "kind": "throw:std::out_of_range"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "card",
+   "lines": [
+    137
+   ],
+   "mechanism": [
+    "throw:std::out_of_range"
+   ],
+   "message": "Card missing from prototype catalog: ",
+   "condition": "card id absent from the catalog",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "D/AF in enumeration; D/NEN in execution",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "CATALOG_REFERENCE_MISSING",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": "Dangling references: generated_card, transform_card and hard-coded CS2_tk1/CORE_CS2_033/HERO_08bp are not validated at load. At construction a deck id missing from the catalog is a CALLER error (pybind: IndexError) and should be validated up front."
+  },
+  {
+   "id": "NF-016",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "enter_hand",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "enter_hand",
+   "lines": [
+    141
+   ],
+   "mechanism": [
+    "write_soft"
+   ],
+   "message": "unsupported card entered player hand; simulation branch invalid",
+   "condition": "an UNSUPPORTED card enters a hand (draw, generation, Discover, Deathrattle)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 soft (first-wins), continues",
+   "python_today": "U/NU (via the end-of-action echo)",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_CARD_ENTERED_HAND",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": "Also fires inside the constructor's opening draw: the session is born poisoned."
+  },
+  {
+   "id": "NF-017",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "remove_card_from_hand",
+     "kind": "throw:std::out_of_range"
+    },
+    {
+     "function": "remove_card_from_hand",
+     "kind": "at_call"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "remove_card_from_hand",
+   "lines": [
+    143,
+    144
+   ],
+   "mechanism": [
+    "at_call",
+    "throw:std::out_of_range"
+   ],
+   "message": "",
+   "condition": "hand position out of range",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-018",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "shatter_on_hand_entry",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "shatter_on_hand_entry",
+   "lines": [
+    151
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Shatter pre-split modifier inheritance requires independent rules verification",
+   "condition": "Shatter source carries cost/damage/counter/enchant modifiers",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "SHATTER_MODIFIER_INHERITANCE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-019",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "update_shatter_links",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "update_shatter_links",
+   "lines": [
+    153
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Shatter merge of instance modifiers requires rules verification",
+   "condition": "recombining fragments carry modifiers",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "SHATTER_MODIFIER_MERGE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-020",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "bounded_random",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "bounded_random",
+   "lines": [
+    155
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "empty random candidate set",
+   "condition": "empty candidate set reached the sampler",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Every caller checks non-emptiness first; reaching it is a caller defect. Throws before consuming RNG."
+  },
+  {
+   "id": "NF-021",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_dark_gift",
+     "kind": "throw:std::logic_error"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "apply_dark_gift",
+   "lines": [
+    173
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "Dark Gift applies only to a declared minion option",
+   "condition": "gift is not a DARK_GIFT_OPTION or target is not a minion",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-022",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_dark_gift",
+     "kind": "write_throw",
+     "msg": "Dark Gift outcome is unsupported"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "apply_dark_gift",
+   "lines": [
+    173
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Dark Gift outcome is unsupported: ",
+   "condition": "selected launch-reviewed gift has support_state UNSUPPORTED (never rerolled)",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_DARK_GIFT_OUTCOME",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": "Fires before any game-visible mutation (only the entity-id counter has advanced), yet still poisons the session."
+  },
+  {
+   "id": "NF-023",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_dark_gift",
+     "kind": "write_throw",
+     "msg": "Dark Gift v1 applies once"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "apply_dark_gift",
+   "lines": [
+    173
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Dark Gift v1 applies once to a fresh hand minion",
+   "condition": "gift applied to a non-fresh or non-hand instance",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DARK_GIFT_STACKING_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "Production ChooseCard builds a fresh instance, so only TestAccess reaches it; it is a deliberate v1 fence."
+  },
+  {
+   "id": "NF-024",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_dark_gift",
+     "kind": "write_throw",
+     "msg": "Dark Gift keyword is not executable"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "apply_dark_gift",
+   "lines": [
+    173
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Dark Gift keyword is not executable: ",
+   "condition": "supported gift declares a keyword outside {TAUNT,LIFESTEAL,CHARGE}",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Unreachable: CardCatalog rejects it at load for supported gifts."
+  },
+  {
+   "id": "NF-025",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "require_supported_modifier_lifecycle"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "require_supported_modifier_lifecycle",
+   "lines": [
+    174
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "",
+   "condition": "persistent modifier in a deck / on a Secret / on a Silenced minion",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw (lambda `fail`)",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "MODIFIER_LIFETIME_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "The statement pair is `state_.unsupported=reason; throw UnsupportedSimulationError(reason)`."
+  },
+  {
+   "id": "NF-026",
+   "scope": "enumerate",
+   "selectors": [
+    {
+     "function": "legal_actions",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "legal_actions",
+   "lines": [
+    189
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "duplicate of require_quiescent's poison check",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "echo",
+   "python_today": "U/EU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": "Dead code: require_quiescent() on the previous line already threw."
+  },
+  {
+   "id": "NF-027",
+   "scope": "enumerate",
+   "selectors": [
+    {
+     "function": "legal_actions",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "unsupported card is available"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "legal_actions",
+   "lines": [
+    192
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "unsupported card is available to the active player",
+   "condition": "active hand contains an UNSUPPORTED card",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const; no poison)",
+   "python_today": "U/EU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_CARD_IN_ACTIVE_HAND",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T08",
+   "confidence": "high",
+   "notes": "Natural flows poison earlier via enter_hand (NF-016), so a non-poisoned session reaches it only through injected state. This is the Phase 4K.1c integration point (safe unsupported-held-card semantics)."
+  },
+  {
+   "id": "NF-028",
+   "scope": "enumerate",
+   "selectors": [
+    {
+     "function": "semantic_legal_actions",
+     "kind": "at_call"
+    }
+   ],
+   "site_count": 3,
+   "file": "src/engine.cpp",
+   "function": "semantic_legal_actions",
+   "lines": [
+    215,
+    218
+   ],
+   "mechanism": [
+    "at_call"
+   ],
+   "message": "",
+   "condition": "hand/choice index out of range while describing actions",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "D/AF",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T08",
+   "confidence": "high",
+   "notes": "std::out_of_range -> pybind IndexError, which 4K.1 labels ADAPTER_FAILURE."
+  },
+  {
+   "id": "NF-029",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_damage_occurrence",
+     "kind": "reject",
+     "msg": "TakesDamage v1 source lifetime"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_damage_occurrence",
+   "lines": [
+    230
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "TakesDamage v1 source lifetime/controller/silence boundary was crossed",
+   "condition": "consumer died/left/changed controller/was silenced before its checkpoint (lethal consumer included)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "TAKES_DAMAGE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "native_tests 'lethal consumer invalidates bounded v1'."
+  },
+  {
+   "id": "NF-030",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_damage_occurrence",
+     "kind": "reject",
+     "msg": "TakesDamage v1 captured consumer descriptor"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_damage_occurrence",
+   "lines": [
+    233
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "TakesDamage v1 captured consumer descriptor changed before packet checkpoint",
+   "condition": "immutable catalog descriptor differs from the captured copy",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-031",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "played_types",
+     "kind": "throw:UnsupportedSimulationError"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "played_types",
+   "lines": [
+    244
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "unreviewed minion history type: ",
+   "condition": "minion race outside the 12 tracked history types",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (static); record_minion_play records it",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_MINION_HISTORY_TYPE",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-032",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "record_minion_play",
+     "kind": "catch"
+    },
+    {
+     "function": "record_minion_play",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "record_minion_play",
+   "lines": [
+    252
+   ],
+   "mechanism": [
+    "catch",
+    "write_soft"
+   ],
+   "message": "",
+   "condition": "catch UnsupportedSimulationError, assign e.what(), rethrow",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite (unguarded)",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "(records typed Unsupported)",
+   "fallback_eligible": "n/a",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": "Unconditional assignment: overwrites an earlier stored reason, unlike reject_unsupported."
+  },
+  {
+   "id": "NF-033",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "validate_instance_copy_v1",
+     "kind": "write_throw",
+     "msg": "INSTANCE_COPY_V1: unreviewed source state"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "validate_instance_copy_v1",
+   "lines": [
+    271
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "INSTANCE_COPY_V1: unreviewed source state",
+   "condition": "Kindred copy source carries modifiers/keywords or a pending death",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "INSTANCE_COPY_SOURCE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-034",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "validate_instance_copy_v1",
+     "kind": "write_throw",
+     "msg": "INSTANCE_COPY_V1: non-rightmost"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "validate_instance_copy_v1",
+   "lines": [
+    273
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "INSTANCE_COPY_V1: non-rightmost source",
+   "condition": "copy source is not the rightmost minion",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "INSTANCE_COPY_SOURCE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-035",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "summon_instance_copy_v1",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "summon_instance_copy_v1",
+   "lines": [
+    279
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "INSTANCE_COPY_V1: source unavailable",
+   "condition": "source minion missing right after it entered the board",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-036",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "enter_board_with_appendages",
+     "kind": "throw:std::logic_error"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "enter_board_with_appendages",
+   "lines": [
+    295
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "board insertion position is invalid",
+   "condition": "insertion position outside the board",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-037",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "enter_board_with_appendages",
+     "kind": "reject"
+    },
+    {
+     "function": "summon_fixed",
+     "kind": "reject"
+    },
+    {
+     "function": "resolve_play",
+     "kind": "reject",
+     "msg": "Colossal"
+    }
+   ],
+   "site_count": 3,
+   "file": "src/engine.cpp",
+   "function": "enter_board_with_appendages",
+   "lines": [
+    296,
+    312,
+    466
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Colossal v1 requires enough board capacity for the body and every appendage",
+   "condition": "board lacks room for the Colossal body plus every appendage",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "COLOSSAL_CAPACITY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "resolve_play's guard fires BEFORE the hand removal (PRE); legal_actions only checks board.size()>=7, so a legal action is later unsimulatable."
+  },
+  {
+   "id": "NF-038",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "summon_fixed",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "summon_fixed",
+   "lines": [
+    307
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "unsupported fixed summon dependency: ",
+   "condition": "fixed-summon dependency unsupported or not a minion",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "CardCatalog validates SummonFixed dependencies at load, so this is unreachable."
+  },
+  {
+   "id": "NF-039",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "transform_board",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "transform_board",
+   "lines": [
+    321
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "unsupported Transform outcome: ",
+   "condition": "transform target token has support_state UNSUPPORTED",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_TRANSFORM_OUTCOME",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-040",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "transform_board",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "transform_board",
+   "lines": [
+    321
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Transform into Colossal is outside the reviewed Colossal v1 contract",
+   "condition": "transform into a Colossal definition",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "COLOSSAL_TRANSFORM_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-041",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "begin_discover",
+     "kind": "reject",
+     "msg": "complete pinned Discover pool"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "begin_discover",
+   "lines": [
+    331
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "complete pinned Discover pool has fewer options than the card requests",
+   "condition": "catalog-derived pool smaller than choice_count",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DISCOVER_POOL_INCOMPLETE",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "Impossible with the full Standard catalog; reachable with partial test catalogs."
+  },
+  {
+   "id": "NF-042",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "begin_discover",
+     "kind": "reject",
+     "msg": "Dark Gift option manifest is not loaded"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "begin_discover",
+   "lines": [
+    331
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Dark Gift option manifest is not loaded: ",
+   "condition": "Discover card names a manifest that is not loaded",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "CardCatalog already validates this at load; native test drops the manifest after construction."
+  },
+  {
+   "id": "NF-043",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "begin_discover",
+     "kind": "reject",
+     "msg": "no distinct eligible Dark Gift"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "begin_discover",
+   "lines": [
+    331
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "no distinct eligible Dark Gift assignment for the Discover options",
+   "condition": "sampled options admit no distinct eligible gift assignment",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DARK_GIFT_ASSIGNMENT_UNRESOLVED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-044",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "summon_from_deck",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "summon_from_deck",
+   "lines": [
+    333
+   ],
+   "mechanism": [
+    "write_soft"
+   ],
+   "message": "dynamic pool selected an unsupported outcome; simulation branch invalid",
+   "condition": "dynamic deck pool sampled an UNSUPPORTED minion",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 soft (guarded, continues)",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_SUMMONED_CARD",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-045",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "evaluate_spell_damage",
+     "kind": "write_throw"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "evaluate_spell_damage",
+   "lines": [
+    342
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "damage-boundary v1: mortally wounded Spell Damage source before instruction",
+   "condition": "mortally wounded Spell Damage source before the next instruction",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "SPELL_DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-046",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_spell",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_spell",
+   "lines": [
+    365
+   ],
+   "mechanism": [
+    "write_soft"
+   ],
+   "message": "generated an unsupported card outcome; simulation branch invalid",
+   "condition": "MinionDamageGenerate produced an UNSUPPORTED card",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 soft (guarded, continues)",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_GENERATED_CARD",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-047",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_spell",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "vanilla/no-effect spell"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_spell",
+   "lines": [
+    373
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "vanilla/no-effect spell cannot be resolved as an effect spell",
+   "condition": "VERIFIED_VANILLA spell resolved as an effect spell",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_VANILLA_SPELL",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T01",
+   "confidence": "medium",
+   "notes": "A reviewed no-effect spell is trivially simulable in the real game; the refusal is a deliberate non-implementation."
+  },
+  {
+   "id": "NF-048",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_spell",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "effect handler is not implemented"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_spell",
+   "lines": [
+    374
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "effect handler is not implemented for selected card",
+   "condition": "SUPPORTED spell ability has no spell handler",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "MISSING_DISPATCH_HANDLER",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": "Correct-declaration test: a registry-admitted SUPPORTED card must be executable, so reaching this means a declaration/dispatch defect."
+  },
+  {
+   "id": "NF-049",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "write_throw",
+     "msg": "damage-boundary v1: pending board death"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    397
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "damage-boundary v1: pending board death before random minion selection",
+   "condition": "RandomEnemyMinion with a mortally wounded minion on any board",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "RANDOM_SELECTION_PENDING_DEATH_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-050",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "invalid selector for Damage"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    408
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "invalid selector for Damage effect",
+   "condition": "Damage step with a selector the catalog forbids",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-051",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "damage outcome v1 requires exactly"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    416
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "damage outcome v1 requires exactly the selected minion target",
+   "condition": "damage-outcome card produced a target set other than {selected}",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Catalog guarantees a single explicit-minion Damage step."
+  },
+  {
+   "id": "NF-052",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "damage outcome target left the board"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    416
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "damage outcome target left the board before its outcome check",
+   "condition": "outcome check after damage cannot find the target",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_OUTCOME_TARGET_UNRESOLVED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "Unreachable today (dead minions stay in Play until stabilize); a deliberate fence for future reactions. Treat a firing today as a defect indicator."
+  },
+  {
+   "id": "NF-053",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "target owner is outside"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    416
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "target owner is outside the two-player session",
+   "condition": "target owner outside 0..1",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-054",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "ModifyWeaponAttack requires"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    425
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "ModifyWeaponAttack requires the current friendly weapon instance",
+   "condition": "requires_friendly_weapon card resolved without a weapon",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": "legal_actions guards this; an earlier step or secret removing the weapon would make it a fence instead."
+  },
+  {
+   "id": "NF-055",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "BuffMinion requires an explicitly"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    426
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "BuffMinion requires an explicitly selected damaged minion",
+   "condition": "BuffMinion with a non-damaged-minion selector",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-056",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "BuffMinion target is no longer"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    426
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "BuffMinion target is no longer damaged and alive",
+   "condition": "BuffMinion target dead/undamaged/gone after legality said it was valid",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-057",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "selected discarded spell has an unsupported discard trigger"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    427
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "selected discarded spell has an unsupported discard trigger",
+   "condition": "random discard picked a card with INVISIBLEDEATHRATTLE/DISCARD_TRIGGER",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_DISCARD_TRIGGER",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": "Valid game outcome of a random pick; the engine does not model the trigger. No reroll."
+  },
+  {
+   "id": "NF-058",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "DestroyMinion requires"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    428
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "DestroyMinion requires a side-constrained minion target",
+   "condition": "DestroyMinion with an unconstrained selector",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-059",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "DestroyMinion target is no longer"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    428
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "DestroyMinion target is no longer on the board",
+   "condition": "destroy target missing after legality",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-060",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "Heal requires an explicit"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    429
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "Heal requires an explicit character target",
+   "condition": "Heal with a non-explicit selector",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-061",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "cannot heal a minion already pending death"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    430,
+    431
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "cannot heal a minion already pending death",
+   "condition": "Heal / HealMinionToFull on a minion with health <= 0 (two sites)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "HEAL_MORTALLY_WOUNDED_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": "Reachable by multi-step effect cards whose earlier step makes the target mortal."
+  },
+  {
+   "id": "NF-062",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "Heal target is no longer"
+    },
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "HealMinionToFull target is no longer"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    430,
+    431
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "Heal target is no longer a character",
+   "condition": "heal target missing after legality (two sites)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-063",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_effects",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "HealMinionToFull requires"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_effects",
+   "lines": [
+    431
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "HealMinionToFull requires an explicit minion target",
+   "condition": "HealMinionToFull with a non-minion selector",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-064",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_random_distinct_damage",
+     "kind": "reject",
+     "msg": "random-distinct Damage is reviewed only for spells"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_random_distinct_damage",
+   "lines": [
+    442
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "random-distinct Damage is reviewed only for spells",
+   "condition": "RandomDistinct step on a non-spell",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DECLARATION_CONTRACT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "CardCatalog already restricts it to spells."
+  },
+  {
+   "id": "NF-065",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_random_distinct_damage",
+     "kind": "reject",
+     "msg": "random-distinct exclusion"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_random_distinct_damage",
+   "lines": [
+    445
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "random-distinct exclusion requires the card's explicit target",
+   "condition": "exclude_previous_target without an explicit action target",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-066",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_play",
+     "kind": "at_call"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_play",
+   "lines": [
+    466
+   ],
+   "mechanism": [
+    "at_call"
+   ],
+   "message": "",
+   "condition": "hand index outside the hand (legality already verified)",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-067",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_play",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "unsupported card type"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_play",
+   "lines": [
+    484
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "unsupported card type selected for play",
+   "condition": "SUPPORTED card of a type that is not MINION/WEAPON/SPELL",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "MISSING_DISPATCH_HANDLER",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": "Fires after the card left the hand and mana was paid. Correct-declaration test: a registry-admitted card cannot have an unmodelled type."
+  },
+  {
+   "id": "NF-068",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_secret_instance",
+     "kind": "write_throw",
+     "msg": "enemy-area Secret damage"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_secret_instance",
+   "lines": [
+    503
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "enemy-area Secret damage: unresolved pending Spell Damage source at trigger",
+   "condition": "pending mortal Spell Damage source at an enemy-area Secret trigger",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "SPELL_DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-069",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_secret_instance",
+     "kind": "write_throw",
+     "msg": "Oasis Ally"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_secret_instance",
+   "lines": [
+    505
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Oasis Ally requires unsupported Water Elemental Freeze-on-damage",
+   "condition": "Water Elemental token (CORE_CS2_033) is UNSUPPORTED",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_SECRET_DEPENDENCY",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T01",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-070",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_secret_instance",
+     "kind": "throw:std::logic_error"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_secret_instance",
+   "lines": [
+    519
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "unreachable configured Secret effect: ",
+   "condition": "unreachable configured Secret effect",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-071",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_end_turn_reactions",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_end_turn_reactions",
+   "lines": [
+    547
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: queued EOT source lifetime/descriptor changed",
+   "condition": "queued end-of-turn source left Play / changed controller / was silenced",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "EOT_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "Message begins 'damage group:' but the site lives in the end-turn orchestrator."
+  },
+  {
+   "id": "NF-072",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_trigger",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "random Secret predicate"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_trigger",
+   "lines": [
+    573
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "random Secret predicate does not match the reviewed pinned membership",
+   "condition": "catalog-derived Mage Secret pool differs from the reviewed pinned membership",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "RANDOM_SECRET_POOL_MEMBERSHIP_MISMATCH",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-073",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_trigger",
+     "kind": "write_throw",
+     "msg": "random Mage Secret outcome"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_trigger",
+   "lines": [
+    573
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "random Mage Secret outcome is unsupported: ",
+   "condition": "sampled Mage Secret has support_state UNSUPPORTED",
+   "mutation": "POST",
+   "rng": "Y",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_RANDOM_SECRET_OUTCOME",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-074",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_trigger",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "missing Battlecry handler"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_trigger",
+   "lines": [
+    573
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "missing Battlecry handler for supported card",
+   "condition": "queued Battlecry ability with no handler case",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "none (funnel prefixes)",
+   "python_today": "U/NU (unprefixed)",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "MISSING_DISPATCH_HANDLER",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "medium",
+   "notes": "Only abilities with a handler are queued, so it is unreachable."
+  },
+  {
+   "id": "NF-075",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_trigger",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_trigger",
+   "lines": [
+    574
+   ],
+   "mechanism": [
+    "write_soft"
+   ],
+   "message": "deathrattle generated an unsupported card outcome; simulation branch invalid",
+   "condition": "Deathrattle generated an UNSUPPORTED card",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 soft (guarded, continues)",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_GENERATED_CARD",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-076",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_reborns",
+     "kind": "reject",
+     "msg": "Reborn: intervening"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "resolve_reborns",
+   "lines": [
+    584,
+    587
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Reborn: intervening death requires unreviewed ordering",
+   "condition": "intervening death or board mutation between removal and Reborn return (two sites)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "REBORN_ORDERING_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 2,
+    "python": 0,
+    "any": 2
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-077",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_reborns",
+     "kind": "reject",
+     "msg": "Reborn: full board"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_reborns",
+   "lines": [
+    592
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Reborn: full board return requires unreviewed ordering",
+   "condition": "Reborn return would exceed the board capacity",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "REBORN_ORDERING_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-078",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "resolve_reborns",
+     "kind": "reject",
+     "msg": "Reborn: unsupported intrinsic"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "resolve_reborns",
+   "lines": [
+    593
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Reborn: unsupported intrinsic definition",
+   "condition": "mixed: structural (non-minion / no Reborn / health<=0) and coverage (UNSUPPORTED definition)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": "SPLIT REQUIRED: only the support_state == UNSUPPORTED sub-condition could ever be DESIGN_UNSUPPORTED."
+  },
+  {
+   "id": "NF-079",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "stabilize",
+     "kind": "reject",
+     "msg": "damage group: outer death drain"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "stabilize",
+   "lines": [
+    604
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: outer death drain requires empty frame stack",
+   "condition": "stabilize() entered with an open damage frame",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_FRAME_PROTOCOL_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-080",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "stabilize",
+     "kind": "reject",
+     "msg": "death handle disappeared"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "stabilize",
+   "lines": [
+    617
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "death handle disappeared during batch removal",
+   "condition": "queued death entity missing from the board",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-081",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "stabilize",
+     "kind": "reject",
+     "msg": "Reborn: control-changed"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "stabilize",
+   "lines": [
+    621
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "Reborn: control-changed source is outside the reviewed contract",
+   "condition": "dying Reborn minion changed controller",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "CONTROL_CHANGE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-082",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_action",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "apply_action",
+   "lines": [
+    646
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "action is not legal in the current position",
+   "condition": "action is not in the legal set",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none (documented non-poisoning)",
+   "python_today": "n/a (ILLEGAL_NOT_LEGAL first)",
+   "python_verdict": "n/a",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "future_kind": "(not a FailureKind: non-poisoning ILLEGAL)",
+   "reason_code": "(not a FailureCode)",
+   "fallback_eligible": false,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T10",
+   "confidence": "high",
+   "notes": "attempt_action pre-checks legality, so it never reaches this."
+  },
+  {
+   "id": "NF-083",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_action",
+     "kind": "catch",
+     "line": 648
+    },
+    {
+     "function": "apply_action",
+     "kind": "write_soft",
+     "line": 648
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "apply_action",
+   "lines": [
+    648
+   ],
+   "mechanism": [
+    "catch",
+    "write_soft"
+   ],
+   "message": "",
+   "condition": "catch UnsupportedSimulationError: clear frames, store 'action failed after mutation: <what>' if unset, bare rethrow",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins; rethrow keeps original",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "(typed funnel: preserve)",
+   "fallback_eligible": "n/a",
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 2,
+    "python": 1,
+    "any": 2
+   },
+   "new_test": "T06",
+   "confidence": "high",
+   "notes": "The stored text gets the prefix but the rethrown exception does not, so Python never sees the prefix for direct Unsupported throws."
+  },
+  {
+   "id": "NF-084",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_action",
+     "kind": "catch",
+     "line": 649
+    },
+    {
+     "function": "apply_action",
+     "kind": "write_throw",
+     "line": 649
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "apply_action",
+   "lines": [
+    649
+   ],
+   "mechanism": [
+    "catch",
+    "write_throw"
+   ],
+   "message": "",
+   "condition": "catch std::exception: store prefix+what if unset, throw UnsupportedSimulationError(stored)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins; original type/what lost",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "UNEXPECTED_EXCEPTION",
+   "fallback_eligible": "n/a",
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 2,
+    "python": 2,
+    "any": 2
+   },
+   "new_test": "T06",
+   "confidence": "high",
+   "notes": "std::bad_alloc is a std::exception, so out-of-memory is also normalised here and Python never sees MemoryError."
+  },
+  {
+   "id": "NF-085",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_action",
+     "kind": "catch",
+     "line": 650
+    },
+    {
+     "function": "apply_action",
+     "kind": "write_throw",
+     "line": 650
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "apply_action",
+   "lines": [
+    650
+   ],
+   "mechanism": [
+    "catch",
+    "write_throw"
+   ],
+   "message": "",
+   "condition": "catch(...): store 'unknown exception', throw Unsupported",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "D/NEN",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "UNKNOWN_EXCEPTION",
+   "fallback_eligible": "n/a",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-086",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "execute_action",
+     "kind": "write_throw",
+     "msg": "Discover selected unsupported outcome"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "execute_action",
+   "lines": [
+    654
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Discover selected unsupported outcome ",
+   "condition": "player chose a Discover option whose card is UNSUPPORTED",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "reason_code": "UNSUPPORTED_DISCOVER_OUTCOME",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T03",
+   "confidence": "high",
+   "notes": "Pre-mutation, but the clone is poisoned; the decision depends only on visible data, so the unsimulatable status is known at enumeration time."
+  },
+  {
+   "id": "NF-087",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "execute_action",
+     "kind": "at_call"
+    }
+   ],
+   "site_count": 5,
+   "file": "src/engine.cpp",
+   "function": "execute_action",
+   "lines": [
+    654,
+    655
+   ],
+   "mechanism": [
+    "at_call"
+   ],
+   "message": "",
+   "condition": "choice/hand index out of range after legality (5 call sites)",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-088",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "execute_action",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 8,
+   "file": "src/engine.cpp",
+   "function": "execute_action",
+   "lines": [
+    654,
+    656,
+    658,
+    659,
+    660,
+    665,
+    666,
+    667
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "`if(state_.unsupported) throw ...` after stabilize / end of each action type (8 sites)",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "echo",
+   "python_today": "U/NU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 2
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": "This is what turns the four soft writes (NF-016/044/046/075) into exceptions at the end of the action."
+  },
+  {
+   "id": "NF-089",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "execute_action",
+     "kind": "throw:std::logic_error",
+     "msg": "Prepare action"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "execute_action",
+   "lines": [
+    655
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "Prepare action was advertised without spendable mana",
+   "condition": "Prepare advertised without spendable mana",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none (funnel normalises)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "LEGALITY_EXECUTION_MISMATCH",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T06",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-090",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "execute_action",
+     "kind": "write_throw",
+     "msg": "Overload debt"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "execute_action",
+   "lines": [
+    667
+   ],
+   "mechanism": [
+    "write_throw"
+   ],
+   "message": "Overload debt exceeds the next turn crystal capacity; simulation branch invalid",
+   "condition": "pending/active overload exceeds the next turn's crystals",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 overwrite + throw",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "OVERLOAD_CAPACITY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "Reachable by a valid Overload play; not covered by any existing test (no dynamic hit)."
+  },
+  {
+   "id": "NF-091",
+   "scope": "test-only",
+   "selectors": [
+    {
+     "function": "validate_invariants",
+     "kind": "throw:std::logic_error",
+     "msg_re": "^(duplicate entity|entity zone|Prepare lock|dead entity|zone capacity|mana invariant|weapon instance)"
+    }
+   ],
+   "site_count": 7,
+   "file": "src/engine.cpp",
+   "function": "validate_invariants",
+   "lines": [
+    672,
+    673
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "duplicate entity instance ID",
+   "condition": "identity / zone / capacity / mana / weapon invariants",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T22",
+   "confidence": "high",
+   "notes": "validate_invariants() is called ONLY by native tests; no runtime path runs it."
+  },
+  {
+   "id": "NF-092",
+   "scope": "test-only",
+   "selectors": [
+    {
+     "function": "validate_invariants",
+     "kind": "throw:std::logic_error",
+     "msg_re": "Shatter"
+    }
+   ],
+   "site_count": 5,
+   "file": "src/engine.cpp",
+   "function": "validate_invariants",
+   "lines": [
+    672
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "unlinked hand card has Shatter metadata",
+   "condition": "Shatter fragment metadata invariants (5 sites)",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T22",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-093",
+   "scope": "test-only",
+   "selectors": [
+    {
+     "function": "validate_invariants",
+     "kind": "throw:std::logic_error",
+     "msg_re": "activation sequence|terminal state"
+    }
+   ],
+   "site_count": 4,
+   "file": "src/engine.cpp",
+   "function": "validate_invariants",
+   "lines": [
+    674
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "active board source activation sequence is invalid",
+   "condition": "activation-sequence and terminal-action invariants (4 sites)",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T22",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-094",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "begin_prototype_choice",
+     "kind": "throw:std::logic_error"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/engine.cpp",
+   "function": "begin_prototype_choice",
+   "lines": [
+    686
+   ],
+   "mechanism": [
+    "throw:std::logic_error"
+   ],
+   "message": "choice unavailable",
+   "condition": "demo API precondition: choice unavailable / no candidates",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none",
+   "python_today": "n/a (demo API)",
+   "python_verdict": "n/a",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "future_kind": "(not a FailureKind: non-poisoning ILLEGAL)",
+   "reason_code": "(not a FailureCode)",
+   "fallback_eligible": false,
+   "reachability": "untested",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T10",
+   "confidence": "high",
+   "notes": "Prototype-only API; not on the attempt path."
+  },
+  {
+   "id": "NF-095",
+   "scope": "observe",
+   "selectors": [
+    {
+     "function": "observation",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "observation",
+   "lines": [
+    689
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "perspective must be 0 or 1",
+   "condition": "perspective outside 0..1",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "future_kind": "(not a FailureKind: non-poisoning ILLEGAL)",
+   "reason_code": "(not a FailureCode)",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T10",
+   "confidence": "high",
+   "notes": "Unreachable from Python: the binding maps any unknown perspective string to 0, and the adapter validates the three allowed values."
+  },
+  {
+   "id": "NF-096",
+   "scope": "observe",
+   "selectors": [
+    {
+     "function": "evidence_constraint_id",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/engine.cpp",
+   "function": "evidence_constraint_id",
+   "lines": [
+    9
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown evidence constraint",
+   "condition": "impossible EvidenceConstraint enumerator",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T22",
+   "confidence": "high",
+   "notes": "Called by the evidence_constraints binding property (export path)."
+  },
+  {
+   "id": "NF-100",
+   "scope": "enumerate",
+   "selectors": [
+    {
+     "function": "require_quiescent",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "require_quiescent",
+   "lines": [
+    11
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "any public accessor on a poisoned session",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "echo",
+   "python_today": "U/EU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": "Guards legal_actions/observation/clone/is_complete/result/needs_choice/choice_options/begin_prototype_choice. is_valid/unsupported_outcome/seed/evidence/trace do not check it."
+  },
+  {
+   "id": "NF-101",
+   "scope": "enumerate",
+   "selectors": [
+    {
+     "function": "require_quiescent",
+     "kind": "throw:UnsupportedSimulationError",
+     "msg": "damage group: public access"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "require_quiescent",
+   "lines": [
+    12
+   ],
+   "mechanism": [
+    "throw:UnsupportedSimulationError"
+   ],
+   "message": "damage group: public access requires quiescent state",
+   "condition": "public access while a damage frame is open (frames cleared on every escaping failure, so this is a leak)",
+   "mutation": "CONST",
+   "rng": "N",
+   "poison_today": "none (const)",
+   "python_today": "U/EU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "QUIESCENCE_VIOLATED",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T08",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-102",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "consume_damage_work",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "consume_damage_work",
+   "lines": [
+    15
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: action execution budget exhausted",
+   "condition": "more than 4096 packets+reactions in one action",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "reason_code": "DAMAGE_WORK_BUDGET_EXCEEDED",
+   "fallback_eligible": "policy: false initially",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T04",
+   "confidence": "medium",
+   "notes": "No supported content nests or chains reactions, so a trip signals a runaway loop; fallback eligibility must stay false until reviewed (Q-B1)."
+  },
+  {
+   "id": "NF-103",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "damage_target_handle",
+     "kind": "reject",
+     "msg": "damage group: target ownership"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "damage_target_handle",
+   "lines": [
+    21
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: target ownership/activation boundary",
+   "condition": "minion controller/owner differs, or activation_sequence == 0",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "CONTROL_CHANGE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "SPLIT REQUIRED: control change is a rules fence; activation_sequence==0 is a structural defect."
+  },
+  {
+   "id": "NF-104",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "damage_target_handle",
+     "kind": "reject",
+     "msg": "damage group: target identity is not in Play"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "damage_target_handle",
+   "lines": [
+    24
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: target identity is not in Play",
+   "condition": "packet target is neither a hero nor on a board",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_TARGET_LOST",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-105",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "guard_scalar_damage",
+     "kind": "reject",
+     "msg": "damage group: invalid scalar controller"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "guard_scalar_damage",
+   "lines": [
+    41
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: invalid scalar controller",
+   "condition": "packet source_controller outside 0..1",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVALID_DAMAGE_PACKET",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-106",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "guard_scalar_damage",
+     "kind": "reject",
+     "msg": "damage group: reactive combat"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "guard_scalar_damage",
+   "lines": [
+    42
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: reactive combat/hero-area/compound ordering is not reviewed",
+   "condition": "combat/hero-area/compound damage to a TakesDamage consumer",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_REACTION_ORDER_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-107",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "guard_area_spell_modifiers",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/damage_group.cpp",
+   "function": "guard_area_spell_modifiers",
+   "lines": [
+    48,
+    54
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: mortally wounded Spell Damage source before area",
+   "condition": "area spell with a mortal or conditionally changing Spell Damage source (2 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "SPELL_DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "public",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-108",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "apply_damage_packet",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "apply_damage_packet",
+   "lines": [
+    77
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: frozen target disappeared during mutation",
+   "condition": "target vanished between group open and mutation ('frozen target' message is misleading)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_TARGET_LOST",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-109",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    92
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "entry guard on a poisoned session",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "echo",
+   "python_today": "U/NU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-110",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: active Choice"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    93
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: active Choice/suspension is outside contract",
+   "condition": "damage dealt while a Choice/suspension is pending",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_REACTION_ORDER_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-111",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: nested depth"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    94
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: nested depth budget exhausted",
+   "condition": "64 nested damage frames",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "reason_code": "DAMAGE_DEPTH_BUDGET_EXCEEDED",
+   "fallback_eligible": "policy: false initially",
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T04",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-112",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: unknown dispatch"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: unknown event order"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: single packet contract"
+    }
+   ],
+   "site_count": 3,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    95,
+    96,
+    97
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: unknown dispatch contract",
+   "condition": "unknown dispatch/order enumerator or packet-count contract (3 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_FRAME_PROTOCOL_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-113",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: packet buffer"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    98
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: packet buffer/action budget exhausted",
+   "condition": "packet buffer larger than the remaining action budget",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "BUDGET_LIMIT",
+   "future_kind": "BudgetLimit",
+   "reason_code": "DAMAGE_PACKET_BUDGET_EXCEEDED",
+   "fallback_eligible": "policy: false initially",
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T04",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-114",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: identity counter"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    99
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: identity counter exhausted",
+   "condition": "2^64 group/sequence counter exhausted",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "NUMERIC_RANGE_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "Deliberate bound but unreachable in practice; reaching it implies a corrupted counter, so it is a defect, not a game branch."
+  },
+  {
+   "id": "NF-115",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: invalid source"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: unknown damage kind"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: unknown attribution"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: DirectSpell"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: duplicate or stale"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: hero is outside"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: source hero controller"
+    }
+   ],
+   "site_count": 7,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    102,
+    103,
+    104,
+    105,
+    107,
+    108,
+    110
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: invalid source/controller/amount",
+   "condition": "malformed packet: bad source/controller/amount, unknown kind/attribution, DirectSpell w/o Spell, duplicate/stale target, hero in minion order (7 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVALID_DAMAGE_PACKET",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 3,
+    "python": 0,
+    "any": 3
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": "All seven are structural. native DG23 injects negative amount, stale handle, controller 3 and duplicate packets and only asserts 'fails closed'."
+  },
+  {
+   "id": "NF-116",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "reject",
+     "msg": "damage group: source controller changed"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    111
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: source controller changed",
+   "condition": "source minion's controller differs from the packet controller",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "CONTROL_CHANGE_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": ""
+  },
+  {
+   "id": "NF-117",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "open_damage_group",
+     "kind": "catch"
+    },
+    {
+     "function": "open_damage_group",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/damage_group.cpp",
+   "function": "open_damage_group",
+   "lines": [
+    127
+   ],
+   "mechanism": [
+    "catch",
+    "write_soft"
+   ],
+   "message": "",
+   "condition": "catch(...) around the packet-mutation loop: pop frame, store 'damage group: mutation failed' if unset, rethrow",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins; original type/what lost",
+   "python_today": "D/NCA (fake-only)",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "UNEXPECTED_EXCEPTION",
+   "fallback_eligible": "n/a",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T07",
+   "confidence": "high",
+   "notes": "The write never executes in any existing test: every exception reaching it already carries a stored reason. Only an exception that bypasses reject_unsupported (out_of_range from card(), bad_alloc, an unwritten direct Unsupported throw) would write it."
+  },
+  {
+   "id": "NF-118",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "validate_damage_frame_sources",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "validate_damage_frame_sources",
+   "lines": [
+    134
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: source lifetime/descriptor changed",
+   "condition": "damage source left Play / changed controller or silence before a reaction",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-119",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "validate_damage_frame_sources",
+     "kind": "at_call"
+    },
+    {
+     "function": "dispatch_damage_event",
+     "kind": "at_call"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/damage_group.cpp",
+   "function": "validate_damage_frame_sources",
+   "lines": [
+    131,
+    140
+   ],
+   "mechanism": [
+    "at_call"
+   ],
+   "message": "",
+   "condition": "frame index outside the frame stack (2 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "none until wrapper stores 'reaction failed'",
+   "python_today": "D/NEN (masked as U/NU if S0 already set)",
+   "python_verdict": "correct",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_FRAME_PROTOCOL_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-120",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: child must finish"
+    },
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: invalid event"
+    },
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: unfinished nested"
+    },
+    {
+     "function": "close_damage_group",
+     "kind": "reject"
+    }
+   ],
+   "site_count": 4,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    138,
+    141,
+    178,
+    185
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: child must finish before parent resumes",
+   "condition": "frame-stack / cursor discipline broken (4 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "DAMAGE_FRAME_PROTOCOL_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-121",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: damaged consumer is also"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    153
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: damaged consumer is also its own spell-damage watcher",
+   "condition": "damaged TakesDamage consumer is also its own first-spell-damage watcher",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_REACTION_ORDER_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-122",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: consumer descriptor"
+    },
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: spell reaction lifetime"
+    },
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: spell reaction removed"
+    }
+   ],
+   "site_count": 3,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    161,
+    168,
+    174
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: consumer descriptor changed",
+   "condition": "reaction consumer changed card/controller/silence or was removed (3 sites)",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_SOURCE_BOUNDARY_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T02",
+   "confidence": "medium",
+   "notes": "NF 'spell reaction lifetime' also compares a catalog constant (spell_damage_attack); split that structural sub-condition out."
+  },
+  {
+   "id": "NF-123",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: attack reaction overflow"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    171
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: attack reaction overflow",
+   "condition": "int overflow adding spell-damage attack",
+   "mutation": "POST",
+   "rng": "N",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "FALSE_NEGATIVE",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "NUMERIC_RANGE_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T05",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-124",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "echo"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    176
+   ],
+   "mechanism": [
+    "echo"
+   ],
+   "message": "",
+   "condition": "echo after a reaction",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "echo",
+   "python_today": "U/NU",
+   "python_verdict": "n/a",
+   "classification": "ECHO",
+   "future_kind": "(rethrow stored FailureRecord)",
+   "reason_code": "(inherits stored failure)",
+   "fallback_eligible": "inherits stored",
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T09",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-125",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "dispatch_damage_event",
+     "kind": "reject",
+     "msg": "damage group: unexpected Choice"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/damage_group.cpp",
+   "function": "dispatch_damage_event",
+   "lines": [
+    177
+   ],
+   "mechanism": [
+    "reject"
+   ],
+   "message": "damage group: unexpected Choice/suspension during reaction",
+   "condition": "a reaction opened a Choice/suspension",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins",
+   "python_today": "U/NU",
+   "python_verdict": "correct",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "reason_code": "DAMAGE_REACTION_ORDER_UNREVIEWED",
+   "fallback_eligible": true,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T02",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-126",
+   "scope": "execute",
+   "selectors": [
+    {
+     "function": "run_damage_group",
+     "kind": "catch"
+    },
+    {
+     "function": "run_damage_group",
+     "kind": "write_soft"
+    }
+   ],
+   "site_count": 2,
+   "file": "src/damage_group.cpp",
+   "function": "run_damage_group",
+   "lines": [
+    194
+   ],
+   "mechanism": [
+    "catch",
+    "write_soft"
+   ],
+   "message": "",
+   "condition": "catch(...) around dispatch: pop frames to entry depth, store 'damage group: reaction failed' if unset, rethrow",
+   "mutation": "POST",
+   "rng": "P",
+   "poison_today": "S0 first-wins; original type/what lost",
+   "python_today": "D/NCA (fake-only)",
+   "python_verdict": "n/a",
+   "classification": "FUNNEL",
+   "future_kind": "(typed funnel)",
+   "reason_code": "UNEXPECTED_EXCEPTION",
+   "fallback_eligible": "n/a",
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 1,
+    "any": 1
+   },
+   "new_test": "T07",
+   "confidence": "high",
+   "notes": "The catch is entered by every damage failure; the write itself never executed in the existing suites."
+  },
+  {
+   "id": "NF-130",
+   "scope": "load",
+   "selectors": [
+    {
+     "function": "CardCatalog",
+     "kind": "throw:std::invalid_argument"
+    },
+    {
+     "function": "CardCatalog",
+     "kind": "catalog_reject_call"
+    }
+   ],
+   "site_count": 102,
+   "file": "src/engine.cpp",
+   "function": "CardCatalog",
+   "lines": [
+    82,
+    83,
+    84,
+    85,
+    90,
+    91,
+    95,
+    97,
+    98,
+    99,
+    100,
+    102,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    115,
+    119,
+    122,
+    125,
+    126
+   ],
+   "mechanism": [
+    "catalog_reject_call",
+    "throw:std::invalid_argument"
+   ],
+   "message": "intrinsic Reborn requires a positive-health minion",
+   "condition": "catalog declaration validation (shape/contract/dependency/allowlist checks)",
+   "mutation": "LOAD",
+   "rng": "N",
+   "poison_today": "none (no session)",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ENVIRONMENT_OR_ADAPTER_FAILURE",
+   "future_kind": "(load/adapter failure, not a session FailureKind)",
+   "reason_code": "(load-time ValueError)",
+   "fallback_eligible": false,
+   "reachability": "public",
+   "evidence": "py",
+   "dynamic_hits": {
+    "native": 20,
+    "python": 6,
+    "any": 20
+   },
+   "new_test": "T11",
+   "confidence": "high",
+   "notes": "Surfaces as ValueError from native.CardCatalog(...). Never on the attempt path; families are tabulated in the report appendix."
+  },
+  {
+   "id": "NF-131",
+   "scope": "load",
+   "selectors": [
+    {
+     "function": "validate_pool_manifest",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 18,
+   "file": "src/pool_manifest.cpp",
+   "function": "validate_pool_manifest",
+   "lines": [
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    64,
+    65,
+    66,
+    67,
+    68
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown pool manifest schema version",
+   "condition": "pool manifest identity/hash/status validation",
+   "mutation": "LOAD",
+   "rng": "N",
+   "poison_today": "none (no session)",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ENVIRONMENT_OR_ADAPTER_FAILURE",
+   "future_kind": "(load/adapter failure, not a session FailureKind)",
+   "reason_code": "(load-time ValueError)",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 4,
+    "python": 0,
+    "any": 4
+   },
+   "new_test": "T11",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-132",
+   "scope": "load",
+   "selectors": [
+    {
+     "function": "validate_dark_gift_option_manifest",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 7,
+   "file": "src/pool_manifest.cpp",
+   "function": "validate_dark_gift_option_manifest",
+   "lines": [
+    71,
+    72,
+    74,
+    75,
+    76,
+    77,
+    78
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown Dark Gift manifest version",
+   "condition": "Dark Gift manifest validation",
+   "mutation": "LOAD",
+   "rng": "N",
+   "poison_today": "none (no session)",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ENVIRONMENT_OR_ADAPTER_FAILURE",
+   "future_kind": "(load/adapter failure, not a session FailureKind)",
+   "reason_code": "(load-time ValueError)",
+   "fallback_eligible": false,
+   "reachability": "injection",
+   "evidence": "native",
+   "dynamic_hits": {
+    "native": 1,
+    "python": 0,
+    "any": 1
+   },
+   "new_test": "T11",
+   "confidence": "high",
+   "notes": ""
+  },
+  {
+   "id": "NF-133",
+   "scope": "load",
+   "selectors": [
+    {
+     "function": "predicate_name",
+     "kind": "throw:std::invalid_argument"
+    },
+    {
+     "function": "class_policy_name",
+     "kind": "throw:std::invalid_argument"
+    },
+    {
+     "function": "exclusion_name",
+     "kind": "throw:std::invalid_argument"
+    },
+    {
+     "function": "exclusion_status_name",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 4,
+   "file": "src/pool_manifest.cpp",
+   "function": "predicate_name",
+   "lines": [
+    38,
+    39,
+    40,
+    41
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown pool predicate kind",
+   "condition": "impossible pool enumerator reached a name table (4 sites)",
+   "mutation": "LOAD",
+   "rng": "N",
+   "poison_today": "none",
+   "python_today": "n/a",
+   "python_verdict": "n/a",
+   "classification": "ENGINE_DEFECT",
+   "future_kind": "EngineDefect",
+   "reason_code": "INVARIANT_VIOLATION",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T11",
+   "confidence": "high",
+   "notes": "Impossible-enum defaults: ENGINE_DEFECT in kind, but raised during manifest load, so they never reach a session."
+  },
+  {
+   "id": "NF-134",
+   "scope": "binding",
+   "selectors": [
+    {
+     "function": "action_from_dict",
+     "kind": "throw:std::invalid_argument"
+    }
+   ],
+   "site_count": 1,
+   "file": "src/python_bindings.cpp",
+   "function": "action_from_dict",
+   "lines": [
+    15
+   ],
+   "mechanism": [
+    "throw:std::invalid_argument"
+   ],
+   "message": "unknown ManaEngine action type",
+   "condition": "unknown action type string in the apply_action binding",
+   "mutation": "PRE",
+   "rng": "N",
+   "poison_today": "none",
+   "python_today": "n/a (ILLEGAL_MALFORMED first)",
+   "python_verdict": "n/a",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "future_kind": "(not a FailureKind: non-poisoning ILLEGAL)",
+   "reason_code": "(not a FailureCode)",
+   "fallback_eligible": false,
+   "reachability": "unreachable",
+   "evidence": "none",
+   "dynamic_hits": {
+    "native": 0,
+    "python": 0,
+    "any": 0
+   },
+   "new_test": "T10",
+   "confidence": "high",
+   "notes": "Python adapter canonicalises actions first."
+  }
+ ],
+ "python_boundary": [
+  {
+   "id": "PB-01",
+   "file": "src/manamind/integrations/manaengine/engine.py",
+   "function": "_load_native",
+   "lines": "78-85",
+   "site_count": 2,
+   "mechanism": "RuntimeError/ImportError when the extension is missing/unloadable",
+   "classification": "ENVIRONMENT_OR_ADAPTER_FAILURE",
+   "notes": "not a simulation failure; attempt_action never reaches it"
+  },
+  {
+   "id": "PB-02",
+   "file": "engine.py",
+   "function": "ManaEngineSession.__init__",
+   "lines": "355",
+   "site_count": 1,
+   "mechanism": "non-Mage class: Python-level UnsupportedSimulationError before the native constructor",
+   "classification": "DESIGN_UNSUPPORTED",
+   "notes": "same semantic as NF-014 (UNSUPPORTED_HERO_CLASS); pre-session"
+  },
+  {
+   "id": "PB-03",
+   "file": "engine.py",
+   "function": "observation / legal_actions / _legal_execution_keys / _apply_raw / clone / _poison_checked",
+   "lines": "387,396,419,434,448,484",
+   "site_count": 6,
+   "mechanism": "except native.UnsupportedSimulationError -> raise Python UnsupportedSimulationError(str(exc)) from exc",
+   "classification": "TRANSLATION (information-losing)",
+   "notes": "6 sites; today copy only the message. 4K.1b must copy kind/code/detail/context (or wrap) so no typing is lost"
+  },
+  {
+   "id": "PB-04",
+   "file": "engine.py",
+   "function": "_legal_execution_keys",
+   "lines": "426",
+   "site_count": 1,
+   "mechanism": "RuntimeError: native legal actions contain a duplicate execution key",
+   "classification": "ENGINE_DEFECT",
+   "notes": "enumeration defect detected in Python; 4K.1 reports ADAPTER_FAILURE (defect outcome, correct) - give it a precise reason"
+  },
+  {
+   "id": "PB-05",
+   "file": "engine.py",
+   "function": "legal_actions",
+   "lines": "400-411",
+   "site_count": 1,
+   "mechanism": "enrichment indexes state.self_hand[hand_index]; IndexError/KeyError if native/observation disagree",
+   "classification": "ENGINE_DEFECT",
+   "notes": "public legal_actions only; attempt path uses _legal_execution_keys"
+  },
+  {
+   "id": "PB-06",
+   "file": "engine.py",
+   "function": "_export_state / game_state_from_dict",
+   "lines": "283-327",
+   "site_count": 1,
+   "mechanism": "malformed observation dict -> KeyError/ValueError during domain export",
+   "classification": "ENGINE_DEFECT",
+   "notes": "attempt maps it to EXPORT_FAILED (correct outcome)"
+  },
+  {
+   "id": "PB-07",
+   "file": "engine.py",
+   "function": "require_canonical_training_admission",
+   "lines": "335,340",
+   "site_count": 2,
+   "mechanism": "raises UnsupportedSimulationError as a POLICY gate (evidence debt / global gate)",
+   "classification": "POLICY_GATE",
+   "notes": "reuses the simulation exception class; must never be consumed as an UNSIMULATABLE signal - another reason to classify only on typed attributes"
+  },
+  {
+   "id": "PB-08",
+   "file": "engine.py",
+   "function": "_execution_key",
+   "lines": "58,63",
+   "site_count": 2,
+   "mechanism": "ValueError for malformed action mappings",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "notes": "attempt maps to ILLEGAL_MALFORMED"
+  },
+  {
+   "id": "PB-09",
+   "file": "python_bindings.cpp",
+   "function": "register_exception<UnsupportedSimulationError>",
+   "lines": "18",
+   "site_count": 0,
+   "mechanism": "native class derives from builtins.Exception (NOT RuntimeError) and carries no attributes",
+   "classification": "TRANSLATION",
+   "notes": "typed payload must be attached here (custom translator)"
+  },
+  {
+   "id": "PB-10",
+   "file": "python_bindings.cpp",
+   "function": "apply_action lambda",
+   "lines": "44",
+   "site_count": 0,
+   "mechanism": "apply and observation export are coupled: any observation failure after a successful apply escapes as the apply failure",
+   "classification": "ENGINE_DEFECT (export)",
+   "notes": "yields the 4K.1 ATTEMPT_INVARIANT_VIOLATED case (valid child + exception); split apply from export"
+  },
+  {
+   "id": "PB-11",
+   "file": "python_bindings.cpp",
+   "function": "observation lambda",
+   "lines": "44",
+   "site_count": 0,
+   "mechanism": "any perspective string other than PLAYER2/ACTIVE silently maps to seat 0",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "notes": "the Python adapter validates the three allowed values; the binding does not"
+  },
+  {
+   "id": "PB-12",
+   "file": "python_bindings.cpp",
+   "function": "action_from_dict",
+   "lines": "15",
+   "site_count": 0,
+   "mechanism": "missing key -> KeyError; bad value type -> RuntimeError (cast); unknown type -> ValueError",
+   "classification": "ILLEGAL_OR_CALLER_ERROR",
+   "notes": "never reached by attempt_action (canonical dicts only)"
+  }
+ ]
+}
