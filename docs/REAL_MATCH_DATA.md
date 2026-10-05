@@ -21,7 +21,7 @@ Hearthstone's game log is enabled through `log.config`. Hearthstone Deck Tracker
 
 The audit prints only the format, ranked classification, completion state, result labels, and turn count. It does not print BattleTags or player names. Keep raw logs under `data/raw/`; Git ignores that directory. Do not send the log to a website or commit it.
 
-The parser currently rejects files with more than one match because it cannot safely associate each match with its mode metadata yet. Starting Hearthstone fresh and copying the log after just one match keeps this intake check unambiguous. If the report says the match is incomplete or the mode is missing, preserve the report and tell me; do not convert that match.
+The single-match tools reject files with more than one match (the automatic collector below isolates matches first) because it cannot safely associate each match with its mode metadata yet. Starting Hearthstone fresh and copying the log after just one match keeps this intake check unambiguous. If the report says the match is incomplete or the mode is missing, preserve the report and tell me; do not convert that match.
 
 ## After the audit
 
@@ -42,6 +42,28 @@ When several copied logs are ready, put all `.log` files in `data/raw/` and run 
 ```
 
 The batch command audits each file, imports eligible new matches, skips duplicate matches, and prints a compact JSON summary. You do not need to run the single-file audit and importer for every log. Keep collecting unique completed Ranked Standard matches; when a batch is ready, run the command and review the summary before preparing training data.
+
+## Automatic local collection
+
+`scripts/collect_power_logs.py` watches a Hearthstone `Logs` folder and imports each finished Ranked Standard match once, without copying `Power.log` by hand. It only collects data: it never trains, touches checkpoints, ManaEngine rules or the registry.
+
+```powershell
+# one pass over the current logs, then exit
+.\.venv\Scripts\python.exe .\scripts\collect_power_logs.py --logs-root "<Hearthstone>\Logs" --once
+
+# continuous mode: leave it running while you play; stop with Ctrl+C
+.\.venv\Scripts\python.exe .\scripts\collect_power_logs.py --logs-root "<Hearthstone>\Logs" --poll-seconds 5
+```
+
+`--logs-root` may also come from the `MANAMIND_HEARTHSTONE_LOGS` environment variable; there is no hard-coded path or log-location discovery. Options: `--raw-output` (default `data/raw/collected/`), `--processed-output` (default `data/processed_real/`), `--cards`, `--max-sessions` (default 3). Raw per-match slices, the state file and `collector_last_summary.json` stay under the git-ignored `data/raw/`; examples go to the git-ignored `data/processed_real/`. Console output shows only status, result, turn count and counts, never names or log lines. Log lines in the raw slices are original log data, so keep them local.
+
+**How a match is isolated.** `hslog`'s `game_meta` is a single dict for the whole parse (last value wins; a game without mode lines inherits the previous game's), so a multi-game log cannot be passed to the single-match tools. In real logs the `GameType` / `FormatType` lines are printed inside the section that begins at each `GameState.DebugPrintPower() - CREATE_GAME` line. The collector cuts the stream at those lines and parses each section with its own parser. It admits a game only if its own section has exactly one consistent `GameType` and `FormatType` and a top-level `GameEntity STATE=COMPLETE` (EOF is never completion). The section up to that line is then run through the unchanged `audit_log` and `import_power_log`, so the importer's contracts hold. Checked on local real logs: collector output has the same trajectory fingerprint as a direct import of the whole single-match file.
+
+**Statuses.** `IMPORTED`, `SKIPPED_ALREADY_IMPORTED`, `SKIPPED_NOT_RANKED`, `SKIPPED_NOT_STANDARD`, `SKIPPED_METADATA_AMBIGUOUS` (missing, conflicting or parser-disagreeing mode lines), `SKIPPED_MID_GAME_START` (section already past turn 0 at `CREATE_GAME`, e.g. a reconnect re-dump) are final. `SKIPPED_INCOMPLETE` (match still running) and `PARSE_FAILED` are retried on later polls; a failure never stops the collector.
+
+**Duplicates and restarts.** A match is identified by a hash of its `CREATE_GAME` header (it contains a per-game seed), recorded in `data/raw/collected/collector_state.json`. If that file is lost, the importer's trajectory fingerprint still rejects the same match. Re-running over the same logs, `Power_old.log` rotations and new `Hearthstone_<timestamp>` folders therefore do not create duplicates. Each poll scans `Power*.log` in the root plus the newest `--max-sessions` session folders, and re-reads a file only when its size or modification time changed.
+
+**Limits.** Matches are admitted only from the local client's own log, as before; the single-match local-player inference still applies. Reconnect re-dumps and matches whose mode lines are absent are skipped, not recovered. Only top-level `GameState` lines are used (`PowerTaskList` duplicates are ignored by `hslog`). Deleting `collector_state.json` is safe. Training data from this path is still subject to the "collect varied wins and losses first" guidance below.
 
 ## Prepare a small pilot split
 
