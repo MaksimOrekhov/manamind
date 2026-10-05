@@ -4,10 +4,14 @@ Starting main SHA: `7268ff6e173c330e6456d4790296cf57916e43f1`
 
 Implementation commit SHA: `dc67da81209cf362f0eef6df6fa4a5a5e0831813`.
 
-Final publication revision: pending hosted checks and main promotion.
+Final SHA: the containing commit of this accepted completion record, obtainable
+without a self-referential SHA literal with:
+`git log -1 --format=%H -- reports/manaengine_unknown_state_architecture/PHASE_4K1_COMPLETION.md`.
+The final exact published SHA is also reported in the task completion response.
+Pre-publication verified revision: `dd33c2a8fb685827651543e5a9f9ee3856d3032a`;
+its production/test/workflow tree is identical to the implementation commit.
 
-Verdict at this record revision: `PHASE_4K1_PARTIAL` (local acceptance passed;
-hosted acceptance pending).
+Verdict: `PHASE_4K1_ACCEPTED` (local and hosted acceptance passed).
 
 ## Scope and implementation
 
@@ -145,11 +149,21 @@ cancelled Ubuntu during dependency installation. Pytest did not run in that
 Source attempt. This is not a source-validation PASS.
 
 The connected GitHub integration rejected the job rerun with HTTP 403 (no
-Actions write permission). Publishing this factual report starts another
-Source run without changing the validated implementation. ManaEngine run
-[37337594823](https://github.com/MaksimOrekhov/manamind/actions/runs/37337594823)
-is being checked separately. Both required Windows/Ubuntu matrices must pass
-before normal fast-forward promotion of main.
+Actions write permission). The report-only follow-up commit started a fresh
+Source run without changing the validated production/test/workflow tree.
+
+| Workflow / exact revision | Ubuntu | Windows |
+|---|---|---|
+| [ManaEngine 37337594823](https://github.com/MaksimOrekhov/manamind/actions/runs/37337594823), `dc67da81209cf362f0eef6df6fa4a5a5e0831813` | PASS: CTest 1/1, pytest 172 | PASS: CTest 1/1, pytest 172 |
+| [Source 37338084461](https://github.com/MaksimOrekhov/manamind/actions/runs/37338084461), `dd33c2a8fb685827651543e5a9f9ee3856d3032a` | PASS: Ruff, identity guard, 36 reproduced outputs, clean diff, pytest 172 | PASS: all steps including pytest |
+
+Verified job IDs: ManaEngine Ubuntu `111856198515`, Windows `111856198579`;
+Source Ubuntu `111857852182`, Windows `111857852683`. Source pytest genuinely
+executed; it was not bypassed or counted from the earlier skipped attempt.
+Only this report changed after the accepted hosted implementation tests.
+Publication uses normal fast-forward promotion after origin/main recheck;
+applicable publication/main CI is checked again before the final response and
+remote temporary-branch removal.
 
 ## Known limitations and stop boundary
 
