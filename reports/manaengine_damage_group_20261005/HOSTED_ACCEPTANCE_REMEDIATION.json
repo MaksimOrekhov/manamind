@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "contract_id": "damage_group_local_v1",
+  "implementation_commit": "d5ed84e1efd15a6a576ca6f38ae6682a92291006",
+  "log_access": "job logs require authentication and were not readable; step conclusions from the public Actions API",
+  "runs": [
+    {
+      "run_id": 37290734716,
+      "name": "Source and generated artifact checks",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37290734716",
+      "head_sha": "d5ed84e1efd15a6a576ca6f38ae6682a92291006",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "job_id": 111700257085,
+          "name": "source (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-05T09:32:45Z",
+          "completed_at": "2026-10-05T09:34:40Z",
+          "steps": [
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:47Z",
+              "completed_at": "2026-10-05T09:33:01Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@v5",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:01Z",
+              "completed_at": "2026-10-05T09:33:08Z"
+            },
+            {
+              "number": 4,
+              "name": "Run python -m pip install -e \".[dev,replays]\"",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:08Z",
+              "completed_at": "2026-10-05T09:34:13Z"
+            },
+            {
+              "number": 5,
+              "name": "Python correctness diagnostics",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:13Z",
+              "completed_at": "2026-10-05T09:34:14Z"
+            },
+            {
+              "number": 6,
+              "name": "Generator card-identity guard",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:14Z",
+              "completed_at": "2026-10-05T09:34:14Z"
+            },
+            {
+              "number": 7,
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:14Z",
+              "completed_at": "2026-10-05T09:34:19Z"
+            },
+            {
+              "number": 8,
+              "name": "Run git diff --exit-code",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:19Z",
+              "completed_at": "2026-10-05T09:34:20Z"
+            },
+            {
+              "number": 9,
+              "name": "Run python -m pytest -q",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:20Z",
+              "completed_at": "2026-10-05T09:34:35Z"
+            }
+          ]
+        },
+        {
+          "job_id": 111700257414,
+          "name": "source (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-05T09:32:44Z",
+          "completed_at": "2026-10-05T09:34:21Z",
+          "steps": [
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:46Z",
+              "completed_at": "2026-10-05T09:32:50Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@v5",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:50Z",
+              "completed_at": "2026-10-05T09:33:09Z"
+            },
+            {
+              "number": 4,
+              "name": "Run python -m pip install -e \".[dev,replays]\"",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:09Z",
+              "completed_at": "2026-10-05T09:34:03Z"
+            },
+            {
+              "number": 5,
+              "name": "Python correctness diagnostics",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:03Z",
+              "completed_at": "2026-10-05T09:34:03Z"
+            },
+            {
+              "number": 6,
+              "name": "Generator card-identity guard",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:03Z",
+              "completed_at": "2026-10-05T09:34:03Z"
+            },
+            {
+              "number": 7,
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:03Z",
+              "completed_at": "2026-10-05T09:34:06Z"
+            },
+            {
+              "number": 8,
+              "name": "Run git diff --exit-code",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:06Z",
+              "completed_at": "2026-10-05T09:34:07Z"
+            },
+            {
+              "number": 9,
+              "name": "Run python -m pytest -q",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:07Z",
+              "completed_at": "2026-10-05T09:34:19Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "run_id": 37290734711,
+      "name": "ManaEngine experimental",
+      "url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37290734711",
+      "head_sha": "d5ed84e1efd15a6a576ca6f38ae6682a92291006",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "job_id": 111700252921,
+          "name": "ubuntu-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-05T09:32:44Z",
+          "completed_at": "2026-10-05T09:35:39Z",
+          "steps": [
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:46Z",
+              "completed_at": "2026-10-05T09:32:52Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@v5",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:52Z",
+              "completed_at": "2026-10-05T09:33:32Z"
+            },
+            {
+              "number": 4,
+              "name": "Install build and adapter dependencies",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:32Z",
+              "completed_at": "2026-10-05T09:34:35Z"
+            },
+            {
+              "number": 5,
+              "name": "Run ilammy/msvc-dev-cmd@v1",
+              "conclusion": "skipped",
+              "started_at": "2026-10-05T09:34:35Z",
+              "completed_at": "2026-10-05T09:34:35Z"
+            },
+            {
+              "number": 6,
+              "name": "Configure Windows with MSVC",
+              "conclusion": "skipped",
+              "started_at": "2026-10-05T09:34:35Z",
+              "completed_at": "2026-10-05T09:34:35Z"
+            },
+            {
+              "number": 7,
+              "name": "Configure Unix",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:35Z",
+              "completed_at": "2026-10-05T09:34:37Z"
+            },
+            {
+              "number": 8,
+              "name": "Release build",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:37Z",
+              "completed_at": "2026-10-05T09:35:12Z"
+            },
+            {
+              "number": 9,
+              "name": "CTest",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:35:12Z",
+              "completed_at": "2026-10-05T09:35:14Z"
+            },
+            {
+              "number": 10,
+              "name": "Python adapter and policy schema tests",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:35:14Z",
+              "completed_at": "2026-10-05T09:35:36Z"
+            }
+          ]
+        },
+        {
+          "job_id": 111700253031,
+          "name": "windows-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-10-05T09:32:44Z",
+          "completed_at": "2026-10-05T09:36:20Z",
+          "steps": [
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:32:46Z",
+              "completed_at": "2026-10-05T09:33:04Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@v5",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:04Z",
+              "completed_at": "2026-10-05T09:33:12Z"
+            },
+            {
+              "number": 4,
+              "name": "Install build and adapter dependencies",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:33:12Z",
+              "completed_at": "2026-10-05T09:34:27Z"
+            },
+            {
+              "number": 5,
+              "name": "Run ilammy/msvc-dev-cmd@v1",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:27Z",
+              "completed_at": "2026-10-05T09:34:32Z"
+            },
+            {
+              "number": 6,
+              "name": "Configure Windows with MSVC",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:32Z",
+              "completed_at": "2026-10-05T09:34:40Z"
+            },
+            {
+              "number": 7,
+              "name": "Configure Unix",
+              "conclusion": "skipped",
+              "started_at": "2026-10-05T09:34:40Z",
+              "completed_at": "2026-10-05T09:34:40Z"
+            },
+            {
+              "number": 8,
+              "name": "Release build",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:34:40Z",
+              "completed_at": "2026-10-05T09:35:44Z"
+            },
+            {
+              "number": 9,
+              "name": "CTest",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:35:44Z",
+              "completed_at": "2026-10-05T09:35:47Z"
+            },
+            {
+              "number": 10,
+              "name": "Python adapter and policy schema tests",
+              "conclusion": "success",
+              "started_at": "2026-10-05T09:35:47Z",
+              "completed_at": "2026-10-05T09:36:15Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
