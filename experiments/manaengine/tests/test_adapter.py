@@ -1234,6 +1234,13 @@ def test_damage_group_vulcanos_barrier_poison_and_quiescent_clone() -> None:
         for access in (branch.legal_actions, branch.observation, branch.clone):
             with pytest.raises(UnsupportedSimulationError):
                 access()
+        # A poisoned session is never a terminal episode, a pending-choice state or a training sample.
+        for name in ("result", "is_complete", "needs_choice", "choice_options"):
+            with pytest.raises(UnsupportedSimulationError):
+                getattr(branch, name)
+        assert branch.unsupported_outcome and branch.diagnostic_trace
+        with pytest.raises(UnsupportedSimulationError):
+            branch.apply_action(end)
     assert session.diagnostic_trace == clone.diagnostic_trace
     # Failed state is available only as diagnostic trace, never a policy observation.
 
@@ -1259,3 +1266,37 @@ def test_damage_group_minion_area_trace_and_policy_schema() -> None:
     state = session.observation("PLAYER1")
     assert state.self_player.hero_attack == 3
     assert encode_legal_actions(session.legal_actions()).shape[0] == len(session.legal_actions())
+
+
+def test_mortal_queued_eot_source_constraint_is_registered_and_blocks_admission() -> None:
+    from manamind.domain.game_state import EVIDENCE_CONSTRAINT_IDS
+    from manamind.integrations.manaengine.engine import require_canonical_training_admission
+
+    constraint = "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED"
+    assert constraint in EVIDENCE_CONSTRAINT_IDS
+    # Evidence debt blocks canonical admission independently of the global gate.
+    with pytest.raises(UnsupportedSimulationError, match=constraint):
+        require_canonical_training_admission((constraint,), global_gate_blocked=False)
+
+
+def test_poisoned_session_accessors_are_adapter_errors_not_native_state() -> None:
+    deck = ["CATA_488", *(["CORE_EX1_145"] * 29)]
+    session = ManaEngineSession(deck, ["CORE_EX1_145"] * 30, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    for _ in range(24):
+        actions = session.legal_actions()
+        root = next((a for a in actions if a.get("card_id") == "CATA_488"), None)
+        if root is not None:
+            session.apply_action(root)
+            break
+        session.apply_action(next(a for a in actions if a["type"] == "END_TURN"))
+    else:
+        pytest.fail("Vulcanos did not reach the bounded play action")
+    # Healthy session: accessors work and report in-progress state.
+    assert session.result is None and not session.is_complete and not session.needs_choice
+    assert session.choice_options == ()
+    with pytest.raises(UnsupportedSimulationError, match="pool identity is not loaded"):
+        session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    assert not session.is_valid and session.unsupported_outcome
+    for name in ("result", "is_complete", "needs_choice", "choice_options"):
+        with pytest.raises(UnsupportedSimulationError):
+            getattr(session, name)

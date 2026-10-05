@@ -28,7 +28,7 @@ enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
 enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
 enum class DarkGiftRuntimeMembershipStatus { Unresolved };
 enum class DarkGiftSamplerStatus { Unverified };
-enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified };
+enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified, MortalQueuedEotSourceUnverified };
 const char* evidence_constraint_id(EvidenceConstraint constraint);
 struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
 struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };
@@ -304,7 +304,7 @@ private:
     int deal_damage(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
     EntityHandle damage_target_handle(int target);
     DamagePacketIntent damage_intent(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal=false,DamageAttribution attribution=DamageAttribution::None);
-    bool has_damage_reaction(const DamagePacketIntent& packet) const;
+    bool has_self_damage_reaction(const DamagePacketIntent& packet) const;
     void guard_scalar_damage(const std::vector<DamagePacketIntent>& packets);
     void guard_area_spell_modifiers(const std::vector<DamagePacketIntent>& packets);
     PacketOutcome apply_damage_packet(const DamagePacketIntent& packet);
@@ -313,6 +313,7 @@ private:
     int close_damage_group(std::size_t frame_index);
     int run_damage_group(std::vector<DamagePacketIntent> packets,DamageDispatch dispatch,DamageEventOrder order);
     void require_quiescent() const;
+    void execute_action(const Action& action);
     void consume_damage_work();
     void validate_damage_frame_sources(std::size_t frame_index);
     void resolve_damage_occurrence(const DamageOccurrence& occurrence);

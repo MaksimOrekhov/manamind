@@ -55,3 +55,18 @@ Its numeric test/CI results describe what executed then and remain historical fa
 ## Evidence action in a future implementation
 
 Do not edit old PASS traces or fingerprints. New semantic implementation must create new evidence with its actual source/build identity, qualify/reverify affected families and consume current pool status honestly. Scenarios expected to change must be changed with independent rationale, not merely to recover a green suite. This report promotes nothing and changes no canonical outputs.
+
+## Phase 4H.3 update (implemented behavior; the rows above remain the original proposal-time analysis)
+
+Authoritative current mortality and consumer behavior: [MORTALITY_POLICY.md](MORTALITY_POLICY.md). Additions and
+corrections to this matrix:
+
+| Consumer | Implemented route | Note |
+|---|---|---|
+| `JAIL_805` | Lifesteal `ENEMY_MINIONS` area, minion-entry order | Shield/Immune give no heal; omitted from the original matrix |
+| `JAIL_805t` | same effect list through a minion Battlecry (Effect kind) | no Spell Damage, no Raincaller |
+| `CORE_EX1_129` | enemy-minion area, then Draw after the group completes | one consumer may react normally |
+| `CATA_999` | single EOT hero packet | mortal queued source resolves with `MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED` |
+| `CATA_475` | EOT enemy area plus hero, scalar-only group | mortal queued source carries the same debt; a reactive consumer among targets is rejected before mutation |
+| `CORE_EX1_610` Explosive Trap | scalar-only attack-window area | keeps its `health>0` target filter, inconsistent with the AoE-includes-mortal rule but unreachable at present |
+| Raincaller (`CATA_487`) | first-spell-damage attack gain | single reaction family: supported with hero-containing areas, compound Secrets and beside one generation consumer in minion areas; still rejected when the same entity is both watcher and consumer |

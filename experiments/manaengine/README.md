@@ -22,10 +22,21 @@ are hidden from observations, and public action/observation/clone access require
 quiescence. Unsupported branches preserve diagnostic mutations and RNG, reject
 continuation, and never become successful terminal episodes.
 
-Hero-containing reactive areas, reactive combat, compound Secret reactions and
-mixed self/first-spell-damage triggers remain guarded where ordering is unreviewed.
+Generation (TakesDamage) reactions inside hero-containing areas, combat and compound
+Secrets remain guarded where ordering is unreviewed. A first-spell-damage (Raincaller)
+reaction is a separate, order-insensitive family and is supported alongside them; one
+entity being both consumer and watcher stays unsupported.
 Vulcanos's Fire pool and Arcane Barrage remain blocked. Scope, tests and remaining
-limits are recorded in `reports/manaengine_damage_group_20261005/COMPLETION.md`.
+limits are recorded in `reports/manaengine_damage_group_20261005/COMPLETION.md`,
+`REMEDIATION_SONNET.md` and the mortality table in `MORTALITY_POLICY.md`.
+
+Failure funnel: `apply_action()` rejects illegal input before any mutation and leaves the
+session valid. Any failure after execution starts poisons the session (first reason kept),
+clears hidden frames and rethrows. A poisoned session refuses `legal_actions`, `clone`,
+`observation`, `result`, `is_complete`, `needs_choice`, `choice_options` and further actions;
+`is_valid`, `unsupported_outcome`, `evidence_constraints` and `diagnostic_trace` stay available
+as diagnostics only. A queued EOT source that is mortally wounded but still in Play resolves
+under the phase model and records `MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED` until replay evidence exists.
 
 `clone()` is a deep value-copy of all session state, including the `std::mt19937_64` state and pending choice. Choice is a typed continuation: the native board-choice fixture selects a current friendly minion, while the Phase 3 `CORE_GIL_836` Discover samples the complete pinned Standard class/neutral Battlecry-minion pool and generates the selected card into hand. Unsupported pool outcomes remain visible and invalidate the branch when selected. The precise bounded contract is in `reports/manaengine_hardening_20261003/PACKAGE_B_COMPLETION.md`. This is deliberately not the full Hearthstone event/death/choice specification.
 

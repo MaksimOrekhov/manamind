@@ -399,13 +399,20 @@ class ManaEngineSession:
         """Enter the non-card-specific runtime-derived choice demo scenario."""
         self._native.begin_prototype_choice(max_attack)
 
+    def _poison_checked(self, name: str) -> Any:
+        """Read a native state accessor; a poisoned session is never a usable state."""
+        try:
+            return getattr(self._native, name)
+        except self._unsupported_exception as exc:
+            raise UnsupportedSimulationError(str(exc)) from exc
+
     @property
     def choice_options(self) -> tuple[int, ...]:
-        return tuple(self._native.choice_options)
+        return tuple(self._poison_checked("choice_options"))
 
     @property
     def is_complete(self) -> bool:
-        return bool(self._native.is_complete)
+        return bool(self._poison_checked("is_complete"))
 
     @property
     def is_valid(self) -> bool:
@@ -417,11 +424,11 @@ class ManaEngineSession:
 
     @property
     def needs_choice(self) -> bool:
-        return bool(self._native.needs_choice)
+        return bool(self._poison_checked("needs_choice"))
 
     @property
     def result(self) -> str | None:
-        return self._native.result
+        return self._poison_checked("result")
 
     @property
     def seed(self) -> int:

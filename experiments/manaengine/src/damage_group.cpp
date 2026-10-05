@@ -26,23 +26,20 @@ GameSession::EntityHandle GameSession::damage_target_handle(int target){
 GameSession::DamagePacketIntent GameSession::damage_intent(int source,int target,int amount,DamageKind kind,int controller,bool lifesteal,DamageAttribution attribution){
  return {source,controller,damage_target_handle(target),amount,kind,attribution,lifesteal};
 }
-bool GameSession::has_damage_reaction(const DamagePacketIntent& packet) const {
+// Only generation (SelfTakesDamageV1) is order-sensitive: it consumes RNG and fills a hand. The first-spell-damage
+// attack gain touches neither, so a Raincaller reaction never needs an ordering contract by itself.
+bool GameSession::has_self_damage_reaction(const DamagePacketIntent& packet) const {
  if(packet.amount<=0)return false;
  for(const auto& side:state_.players)for(const auto& m:side.board)if(m.entity_id==packet.target.entity_id){
   if(m.immune||m.divine_shield)return false;
   if(!m.silenced&&!card(m.card_id).takes_damage_pool_id.empty())return true;
- }
- if(packet.kind==DamageKind::Spell)for(const auto& m:state_.players[packet.source_controller].board){
-  const auto counter=m.counters.find("spell_damage_attack_turn");
-  if(!m.silenced&&ability_of(card(m.card_id))==Ability::SpellDamageGainsAttack&&
-    (counter==m.counters.end()||counter->second!=state_.turn_number))return true;
  }
  return false;
 }
 void GameSession::guard_scalar_damage(const std::vector<DamagePacketIntent>& packets){
  for(const auto& packet:packets){
   if(packet.source_controller<0||packet.source_controller>1)reject_unsupported("damage group: invalid scalar controller");
-  if(has_damage_reaction(packet))reject_unsupported("damage group: reactive combat/hero-area/compound ordering is not reviewed");
+  if(has_self_damage_reaction(packet))reject_unsupported("damage group: reactive combat/hero-area/compound ordering is not reviewed");
  }
 }
 void GameSession::guard_area_spell_modifiers(const std::vector<DamagePacketIntent>& packets){
@@ -150,8 +147,10 @@ void GameSession::dispatch_damage_event(std::size_t index){
    if(!m.silenced&&ability_of(d)==Ability::SpellDamageGainsAttack&&(counter==m.counters.end()||counter->second!=state_.turn_number))
     frame.current_event_reactions.push_back({ReactionKind::FirstSpellDamageAttackV1,{m.entity_id,m.controller,m.activation_sequence,m.card_id},{},d.spell_damage_attack});
   }
-  const bool self=out.self_reaction.has_value();
-  if(self&&frame.current_event_reactions.size()>1)reject_unsupported("damage group: mixed spell/self reaction order is not reviewed");
+  // Generation and the Raincaller attack gain are independent; their relative order is unobservable.
+  // The one unreviewed shape is the damaged consumer itself also being the first-spell-damage watcher.
+  if(out.self_reaction)for(const auto& r:frame.current_event_reactions)if(r.kind==ReactionKind::FirstSpellDamageAttackV1&&r.consumer.entity_id==out.self_reaction->consumer.entity_id)
+   reject_unsupported("damage group: damaged consumer is also its own spell-damage watcher");
   std::stable_sort(frame.current_event_reactions.begin(),frame.current_event_reactions.end(),[](const auto& a,const auto& b){return a.consumer.entry_sequence<b.consumer.entry_sequence;});
  }
  frame.stage=DamageFrameStage::DispatchReaction;
