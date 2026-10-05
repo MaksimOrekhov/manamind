@@ -81,4 +81,4 @@ jobs:
         env:
           PYTHONPATH: src
           MANAMIND_MANAENGINE_BUILD: ${{ github.workspace }}/build/manaengine/python
-        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py tests/test_pipeline.py tests/test_policy_action_semantics.py
+        run: python -m pytest -q -p no:cacheprovider experiments/manaengine/tests/test_adapter.py experiments/manaengine/tests/test_simulation_attempt.py tests/test_pipeline.py tests/test_policy_action_semantics.py tests/test_simulation_attempt_contract.py
