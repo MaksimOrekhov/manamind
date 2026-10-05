@@ -1,22 +1,20 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { SOURCE_INFO } from '../overlay/format'
+import { SOURCE_ICON, sourceBadge, sourceSummary } from '../overlay/format'
 import type { EvaluationSource } from '../overlay/types'
 
-const props = defineProps<{ source: EvaluationSource }>()
-const info = computed(() => SOURCE_INFO[props.source])
+defineProps<{ source: EvaluationSource }>()
 </script>
 
 <template>
   <span
     class="badge"
     :class="`badge--${source.toLowerCase()}`"
-    :title="info.summary"
-    :aria-label="info.summary"
+    :title="sourceSummary(source)"
+    :aria-label="sourceSummary(source)"
     data-testid="source-badge"
   >
-    <span class="badge__icon" aria-hidden="true">{{ info.icon }}</span>
-    <span class="badge__label">{{ info.label }}</span>
+    <span class="badge__icon" aria-hidden="true">{{ SOURCE_ICON[source] }}</span>
+    <span class="badge__label">{{ sourceBadge(source) }}</span>
   </span>
 </template>
 

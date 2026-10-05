@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../i18n'
 import type { OverlayState } from '../overlay/types'
 import OverlayFooter from './OverlayFooter.vue'
 import OverlayHeader from './OverlayHeader.vue'
@@ -13,7 +14,7 @@ const showList = computed(
 </script>
 
 <template>
-  <section class="panel" aria-label="ManaMind recommendations">
+  <section class="panel" :aria-label="t('a11y.panel')">
     <OverlayHeader :state="state" />
     <div v-if="showList" class="panel__body">
       <RecommendationList :recommendations="state.recommendations" />

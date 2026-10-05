@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SOURCE_INFO, countSources } from '../overlay/format'
+import { t } from '../i18n'
+import { SOURCE_ICON, countSources, sourceCountLabel, sourceSummary } from '../overlay/format'
 import type { EvaluationSource, Recommendation } from '../overlay/types'
 
 const props = defineProps<{ recommendations: Recommendation[] }>()
 const counts = computed(() => countSources(props.recommendations))
 const order: EvaluationSource[] = ['EXACT', 'INFERRED', 'NEURAL', 'UNAVAILABLE']
 const visible = computed(() => order.filter((s) => counts.value[s] > 0))
-const name = (s: EvaluationSource) => (s === 'UNAVAILABLE' ? 'N/A' : s.charAt(0) + s.slice(1).toLowerCase())
 </script>
 
 <template>
-  <footer class="foot" aria-label="Evaluation source summary">
-    <span v-for="s in visible" :key="s" class="foot__item" :title="SOURCE_INFO[s].summary">
-      <span aria-hidden="true">{{ SOURCE_INFO[s].icon }}</span>
-      {{ name(s) }} {{ counts[s] }}
+  <footer class="foot" :aria-label="t('a11y.sourceSummary')">
+    <span v-for="s in visible" :key="s" class="foot__item" :title="sourceSummary(s)">
+      <span aria-hidden="true">{{ SOURCE_ICON[s] }}</span>
+      {{ sourceCountLabel(s) }} {{ counts[s] }}
     </span>
   </footer>
 </template>

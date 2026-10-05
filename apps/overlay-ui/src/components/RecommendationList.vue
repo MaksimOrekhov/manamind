@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { t } from '../i18n'
 import { sortByRank } from '../overlay/format'
 import type { Recommendation } from '../overlay/types'
 import RecommendationItem from './RecommendationItem.vue'
@@ -9,7 +10,7 @@ const ordered = computed(() => sortByRank(props.recommendations))
 </script>
 
 <template>
-  <ol class="list" aria-label="Recommended actions">
+  <ol class="list" :aria-label="t('a11y.list')">
     <RecommendationItem v-for="r in ordered" :key="r.id" :rec="r" />
   </ol>
 </template>

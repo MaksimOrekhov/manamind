@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { SOURCE_INFO, formatScore } from '../overlay/format'
+import { t } from '../i18n'
+import { formatScore, sourceSummary } from '../overlay/format'
 import type { Recommendation } from '../overlay/types'
 import EvaluationBadge from './EvaluationBadge.vue'
 
@@ -9,7 +10,7 @@ const open = ref(false)
 const detailsId = computed(() => `details-${props.rec.id}`)
 const unavailable = computed(() => props.rec.source === 'UNAVAILABLE')
 const notes = computed(() =>
-  props.rec.evidence?.length ? props.rec.evidence : [SOURCE_INFO[props.rec.source].summary],
+  props.rec.evidence?.length ? props.rec.evidence : [sourceSummary(props.rec.source)],
 )
 </script>
 
@@ -28,14 +29,14 @@ const notes = computed(() =>
         <span v-if="rec.detail" class="item__detail">{{ rec.detail }}</span>
         <EvaluationBadge :source="rec.source" />
       </span>
-      <span class="item__score" data-testid="score" :aria-label="`Win probability ${formatScore(rec.score)}`">
+      <span class="item__score" data-testid="score" :aria-label="`${t('a11y.winProbability')} ${formatScore(rec.score)}`">
         {{ formatScore(rec.score) }}
       </span>
       <span class="item__chev" aria-hidden="true">{{ open ? '▾' : '▸' }}</span>
     </button>
     <ul v-if="open" :id="detailsId" class="item__notes" data-testid="details">
       <li v-for="n in notes" :key="n">{{ n }}</li>
-      <li v-if="rec.fallbackEligible" class="item__muted">Fallback eligible</li>
+      <li v-if="rec.fallbackEligible" class="item__muted">{{ t('note.fallbackEligible') }}</li>
     </ul>
   </li>
 </template>

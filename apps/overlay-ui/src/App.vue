@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import OverlayPanel from './components/OverlayPanel.vue'
-import { FIXTURES } from './overlay/fixtures'
+import { locale } from './i18n'
+import { getFixtures } from './overlay/fixtures'
 
 // Dev-only fixture switcher: lives outside the overlay panel and is stripped from production builds.
 const isDev = import.meta.env.DEV
 const current = ref('mixed')
-const state = computed(() => (FIXTURES.find((f) => f.key === current.value) ?? FIXTURES[0]).state)
+const FIXTURES = computed(() => getFixtures(locale.value))
+const state = computed(() => (FIXTURES.value.find((f) => f.key === current.value) ?? FIXTURES.value[0]).state)
 </script>
 
 <template>

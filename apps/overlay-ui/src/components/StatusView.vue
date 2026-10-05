@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { statusMessage } from '../overlay/format'
 import type { OverlayState } from '../overlay/types'
 
 defineProps<{ state: OverlayState }>()
@@ -9,7 +10,7 @@ defineProps<{ state: OverlayState }>()
     <span v-if="state.status === 'THINKING'" class="status__pulse" aria-hidden="true" />
     <span v-else-if="state.status === 'ERROR'" class="status__icon" aria-hidden="true">!</span>
     <span v-else class="status__icon" aria-hidden="true">{{ state.activePlayer === 'OPPONENT' ? '…' : '○' }}</span>
-    <p class="status__msg">{{ state.message }}</p>
+    <p class="status__msg">{{ statusMessage(state) }}</p>
   </div>
 </template>
 

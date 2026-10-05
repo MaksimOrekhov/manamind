@@ -1,3 +1,4 @@
+import { t, type MessageKey } from '../i18n'
 import type { EvaluationSource, OverlayState, Recommendation } from './types'
 
 /** 0.6739 -> "67%". Missing / non-finite scores render as an em dash. */
@@ -21,28 +22,42 @@ export function countSources(recs: readonly Recommendation[]): SourceCounts {
 
 export function formatLatency(ms: number | undefined): string | undefined {
   if (ms === undefined) return undefined
-  return ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${Math.round(ms)} ms`
+  return ms >= 1000 ? `${(ms / 1000).toFixed(1)} ${t('unit.s')}` : `${Math.round(ms)} ${t('unit.ms')}`
 }
 
-export interface SourceInfo {
-  /** Player-facing label. */
-  label: string
-  /** Non-color shape cue. */
-  icon: string
-  /** One-line explanation, also used as tooltip. */
-  summary: string
+/** Non-color shape cue per source; text comes from the i18n module. */
+export const SOURCE_ICON: Record<EvaluationSource, string> = {
+  EXACT: '●',
+  INFERRED: '◐',
+  NEURAL: '◆',
+  UNAVAILABLE: '✕',
 }
 
-export const SOURCE_INFO: Record<EvaluationSource, SourceInfo> = {
-  EXACT: { label: 'EXACT', icon: '●', summary: 'Exact simulation' },
-  INFERRED: { label: 'INFERRED', icon: '◐', summary: 'Inferred simulation · evidence debt' },
-  NEURAL: { label: 'NEURAL', icon: '◆', summary: 'Neural fallback · estimated, no exact result' },
-  UNAVAILABLE: { label: 'N/A', icon: '✕', summary: 'Engine could not simulate action' },
+const SOURCE_KEYS: Record<EvaluationSource, { badge: MessageKey; summary: MessageKey; count: MessageKey }> = {
+  EXACT: { badge: 'badge.exact', summary: 'summary.exact', count: 'count.exact' },
+  INFERRED: { badge: 'badge.inferred', summary: 'summary.inferred', count: 'count.inferred' },
+  NEURAL: { badge: 'badge.neural', summary: 'summary.neural', count: 'count.neural' },
+  UNAVAILABLE: { badge: 'badge.unavailable', summary: 'summary.unavailable', count: 'count.unavailable' },
 }
+
+export const sourceBadge = (s: EvaluationSource): string => t(SOURCE_KEYS[s].badge)
+export const sourceSummary = (s: EvaluationSource): string => t(SOURCE_KEYS[s].summary)
+export const sourceCountLabel = (s: EvaluationSource): string => t(SOURCE_KEYS[s].count)
 
 export function statusLabel(state: OverlayState): string {
-  if (state.status === 'IDLE') return 'Idle'
-  if (state.status === 'THINKING') return 'Analyzing'
-  if (state.status === 'ERROR') return 'Error'
-  return state.activePlayer === 'OPPONENT' ? 'Waiting' : 'Ready'
+  if (state.status === 'IDLE') return t('status.idle')
+  if (state.status === 'THINKING') return t('status.thinking')
+  if (state.status === 'ERROR') return t('status.error')
+  return state.activePlayer === 'OPPONENT' ? t('status.waiting') : t('status.ready')
+}
+
+/**
+ * Message for non-list states. Idle / analyzing / waiting texts are owned by the
+ * overlay and localized here; an error message supplied by the runtime is shown as-is.
+ */
+export function statusMessage(state: OverlayState): string {
+  if (state.status === 'ERROR') return state.message ?? t('msg.error')
+  if (state.status === 'IDLE') return t('msg.idle')
+  if (state.status === 'THINKING') return t('msg.thinking')
+  return t('msg.waiting')
 }

@@ -29,9 +29,18 @@ The fixture switcher is rendered only when `import.meta.env.DEV` is true, so it 
 
 Each badge differs by icon, text and border style, not just color. Internal terms such as `REVIEWED_INFERRED` are not shown as player-facing labels. Details appear in the expandable row (the row is a button, so it works with Enter and Space).
 
+## Localization (RU / EN)
+
+Russian is the default; English is available through the compact `RU | EN` switch in the header. The choice is stored in `localStorage` (`manamind.overlay.locale`) and `<html lang>` follows it. No i18n library is used: `src/i18n/messages.ts` holds typed keys for both languages and `src/i18n/index.ts` exposes `locale`, `setLocale()` and `t()`.
+
+Two kinds of text are handled differently:
+
+- **Overlay-owned strings** (statuses, "no active match", "analyzing", source badges and tooltips, counters, "Turn", latency units, accessibility labels) are localized by the UI. The runtime DTO carries no locale fields for them; idle, analyzing and waiting texts are derived from `status` / `activePlayer`.
+- **Runtime-provided content** (card and action labels, details, evidence notes, an engine error `message`) is treated as display-ready and already localized by the runtime or client metadata. The UI renders it as-is. There is deliberately no Hearthstone card-name translator here. The localized mock action names in `src/overlay/fixtures.ts` exist only to imitate that.
+
 ## DTO boundary
 
-`src/overlay/types.ts` defines presentation DTOs (`OverlayState`, `Recommendation`, `EvaluationSource`). They are deliberately not bound to any Python class. Components only consume these types. Mapping from runtime output to the DTOs is a separate future layer and does not exist yet. Scores are win probability for SELF in `[0, 1]`; a missing score is rendered as `—` and is never invented.
+`src/overlay/types.ts` defines presentation DTOs (`OverlayState`, `Recommendation`, `EvaluationSource`). They are deliberately not bound to any Python class. Components only consume these types. The DTO has no locale field. Mapping from runtime output to the DTOs is a separate future layer and does not exist yet. Scores are win probability for SELF in `[0, 1]`; a missing score is rendered as `—` and is never invented.
 
 ## Future integration (not implemented)
 
