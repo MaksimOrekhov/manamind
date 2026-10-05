@@ -39,9 +39,9 @@ void test_typed_native_failure_v1(){
   check(TestAccess::frame_depth(s)==0&&TestAccess::player(s,0).board[0].health==5,"budget never truncates valid damage");
  }
  // NF-103 audited split: zero activation is structural; controller movement is unresolved rules.
- for(bool structural:{false,true}){auto s=game();TestAccess::reset(s);const int target=TestAccess::minion(s,0,"TEST_FILLER",1,5);
-  if(structural)TestAccess::player(s,0).board[0].activation_sequence=0;else TestAccess::player(s,0).board[0].controller=1;
-  expect_failure(s,structural?FailureCode::INVARIANT_VIOLATION:FailureCode::CONTROL_CHANGE_UNREVIEWED,[&]{TestAccess::guarded(s,[&]{TestAccess::packet_damage(s,-1,target,1,DamageKind::Effect);});});
+ for(int boundary=0;boundary<3;++boundary){auto s=game();TestAccess::reset(s);const int target=TestAccess::minion(s,0,"TEST_FILLER",1,5);
+  if(boundary>0)TestAccess::player(s,0).board[0].activation_sequence=0;if(boundary!=1)TestAccess::player(s,0).board[0].controller=1;
+  expect_failure(s,boundary>0?FailureCode::INVARIANT_VIOLATION:FailureCode::CONTROL_CHANGE_UNREVIEWED,[&]{TestAccess::guarded(s,[&]{TestAccess::packet_damage(s,-1,target,1,DamageKind::Effect);});});
  }
  // T17: a subsequent defect upgrades a soft coverage failure and retains its cause.
  auto upgrade=game();TestAccess::reset(upgrade);

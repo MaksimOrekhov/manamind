@@ -18,8 +18,9 @@ GameSession::EntityHandle GameSession::damage_target_handle(int target){
  const int hero=owner_from_hero_id(target);
  if(hero>=0&&hero<2)return {target,hero,0,{}};
  for(int owner=0;owner<2;++owner)for(const auto& m:state_.players[owner].board)if(m.entity_id==target){
-  if(m.controller!=owner||m.owner!=owner)/* NF-103:0 */ fail(FailureCode::CONTROL_CHANGE_UNREVIEWED, "damage group: target ownership/activation boundary");
+  // Structural corruption is decisive even when ownership is also outside the reviewed boundary.
   if(m.activation_sequence==0)/* NF-103:0:structural */ fail(FailureCode::INVARIANT_VIOLATION, "damage group: target ownership/activation boundary");
+  if(m.controller!=owner||m.owner!=owner)/* NF-103:0 */ fail(FailureCode::CONTROL_CHANGE_UNREVIEWED, "damage group: target ownership/activation boundary");
   return {target,owner,m.activation_sequence,m.card_id,m.silenced};
  }
  /* NF-104:0 */ fail(FailureCode::DAMAGE_TARGET_LOST, "damage group: target identity is not in Play");

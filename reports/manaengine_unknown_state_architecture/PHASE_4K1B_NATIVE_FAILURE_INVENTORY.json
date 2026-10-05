@@ -8637,7 +8637,7 @@
     "baseline_line": 21,
     "baseline_source": "reject_unsupported(\"damage group: target ownership/activation boundary\")",
     "status": "TYPED",
-    "current_line": 21
+    "current_line": 22
    },
    {
     "marker": "NF-104:0",
@@ -8649,7 +8649,7 @@
     "baseline_line": 24,
     "baseline_source": "reject_unsupported(\"damage group: target identity is not in Play\")",
     "status": "TYPED",
-    "current_line": 25
+    "current_line": 26
    },
    {
     "marker": "NF-105:0",
@@ -8661,7 +8661,7 @@
     "baseline_line": 41,
     "baseline_source": "reject_unsupported(\"damage group: invalid scalar controller\")",
     "status": "TYPED",
-    "current_line": 42
+    "current_line": 43
    },
    {
     "marker": "NF-106:0",
@@ -8673,7 +8673,7 @@
     "baseline_line": 42,
     "baseline_source": "reject_unsupported(\"damage group: reactive combat/hero-area/compound ordering is not reviewed\")",
     "status": "TYPED",
-    "current_line": 43
+    "current_line": 44
    },
    {
     "marker": "NF-107:0",
@@ -8685,7 +8685,7 @@
     "baseline_line": 48,
     "baseline_source": "reject_unsupported(\"damage group: mortally wounded Spell Damage source before area\")",
     "status": "TYPED",
-    "current_line": 49
+    "current_line": 50
    },
    {
     "marker": "NF-107:1",
@@ -8697,7 +8697,7 @@
     "baseline_line": 54,
     "baseline_source": "reject_unsupported(\"damage group: conditional/mortal Spell Damage change inside area is not reviewed\")",
     "status": "TYPED",
-    "current_line": 55
+    "current_line": 56
    },
    {
     "marker": "NF-108:0",
@@ -8709,7 +8709,7 @@
     "baseline_line": 77,
     "baseline_source": "reject_unsupported(\"damage group: frozen target disappeared during mutation\")",
     "status": "TYPED",
-    "current_line": 78
+    "current_line": 79
    },
    {
     "marker": "NF-109:0",
@@ -8721,7 +8721,7 @@
     "baseline_line": 92,
     "baseline_source": "throw UnsupportedSimulationError(*state_.unsupported)",
     "status": "TYPED_ECHO",
-    "current_line": 93
+    "current_line": 94
    },
    {
     "marker": "NF-110:0",
@@ -8733,7 +8733,7 @@
     "baseline_line": 93,
     "baseline_source": "reject_unsupported(\"damage group: active Choice/suspension is outside contract\")",
     "status": "TYPED",
-    "current_line": 94
+    "current_line": 95
    },
    {
     "marker": "NF-111:0",
@@ -8745,7 +8745,7 @@
     "baseline_line": 94,
     "baseline_source": "reject_unsupported(\"damage group: nested depth budget exhausted\")",
     "status": "TYPED",
-    "current_line": 95
+    "current_line": 96
    },
    {
     "marker": "NF-112:0",
@@ -8757,7 +8757,7 @@
     "baseline_line": 95,
     "baseline_source": "reject_unsupported(\"damage group: unknown dispatch contract\")",
     "status": "TYPED",
-    "current_line": 96
+    "current_line": 97
    },
    {
     "marker": "NF-112:1",
@@ -8769,7 +8769,7 @@
     "baseline_line": 96,
     "baseline_source": "reject_unsupported(\"damage group: unknown event order\")",
     "status": "TYPED",
-    "current_line": 97
+    "current_line": 98
    },
    {
     "marker": "NF-112:2",
@@ -8781,7 +8781,7 @@
     "baseline_line": 97,
     "baseline_source": "reject_unsupported(\"damage group: single packet contract requires one target\")",
     "status": "TYPED",
-    "current_line": 98
+    "current_line": 99
    },
    {
     "marker": "NF-113:0",
@@ -8793,7 +8793,7 @@
     "baseline_line": 98,
     "baseline_source": "reject_unsupported(\"damage group: packet buffer/action budget exhausted\")",
     "status": "TYPED",
-    "current_line": 99
+    "current_line": 100
    },
    {
     "marker": "NF-114:0",
@@ -8805,7 +8805,7 @@
     "baseline_line": 99,
     "baseline_source": "reject_unsupported(\"damage group: identity counter exhausted\")",
     "status": "TYPED",
-    "current_line": 100
+    "current_line": 101
    },
    {
     "marker": "NF-115:0",
@@ -8817,7 +8817,7 @@
     "baseline_line": 102,
     "baseline_source": "reject_unsupported(\"damage group: invalid source/controller/amount\")",
     "status": "TYPED",
-    "current_line": 103
+    "current_line": 104
    },
    {
     "marker": "NF-115:1",
@@ -8829,7 +8829,7 @@
     "baseline_line": 103,
     "baseline_source": "reject_unsupported(\"damage group: unknown damage kind\")",
     "status": "TYPED",
-    "current_line": 104
+    "current_line": 105
    },
    {
     "marker": "NF-115:2",
@@ -8841,7 +8841,7 @@
     "baseline_line": 104,
     "baseline_source": "reject_unsupported(\"damage group: unknown attribution\")",
     "status": "TYPED",
-    "current_line": 105
+    "current_line": 106
    },
    {
     "marker": "NF-115:3",
@@ -8853,7 +8853,7 @@
     "baseline_line": 105,
     "baseline_source": "reject_unsupported(\"damage group: DirectSpell requires Spell damage\")",
     "status": "TYPED",
-    "current_line": 106
+    "current_line": 107
    },
    {
     "marker": "NF-115:4",
@@ -8865,7 +8865,7 @@
     "baseline_line": 107,
     "baseline_source": "reject_unsupported(\"damage group: duplicate or stale target\")",
     "status": "TYPED",
-    "current_line": 108
+    "current_line": 109
    },
    {
     "marker": "NF-115:5",
@@ -8877,7 +8877,7 @@
     "baseline_line": 108,
     "baseline_source": "reject_unsupported(\"damage group: hero is outside minion-area order\")",
     "status": "TYPED",
-    "current_line": 109
+    "current_line": 110
    },
    {
     "marker": "NF-115:6",
@@ -8889,7 +8889,7 @@
     "baseline_line": 110,
     "baseline_source": "reject_unsupported(\"damage group: source hero controller changed\")",
     "status": "TYPED",
-    "current_line": 111
+    "current_line": 112
    },
    {
     "marker": "NF-116:0",
@@ -8901,7 +8901,7 @@
     "baseline_line": 111,
     "baseline_source": "reject_unsupported(\"damage group: source controller changed\")",
     "status": "TYPED",
-    "current_line": 112
+    "current_line": 113
    },
    {
     "marker": "NF-117:0",
@@ -8913,7 +8913,7 @@
     "baseline_line": 127,
     "baseline_source": "catch(...)",
     "status": "TYPED_FUNNEL_OR_WRAPPER",
-    "current_line": 128
+    "current_line": 129
    },
    {
     "marker": "NF-117:1",
@@ -8925,7 +8925,7 @@
     "baseline_line": 127,
     "baseline_source": "state_.unsupported=\"damage group: mutation failed\"",
     "status": "TYPED_FUNNEL_OR_WRAPPER",
-    "current_line": 128
+    "current_line": 129
    },
    {
     "marker": "NF-118:0",
@@ -8937,7 +8937,7 @@
     "baseline_line": 134,
     "baseline_source": "reject_unsupported(\"damage group: source lifetime/descriptor changed\")",
     "status": "TYPED",
-    "current_line": 136
+    "current_line": 137
    },
    {
     "marker": "NF-119:0",
@@ -8949,7 +8949,7 @@
     "baseline_line": 131,
     "baseline_source": ".at(index)",
     "status": "TYPED",
-    "current_line": 133
+    "current_line": 134
    },
    {
     "marker": "NF-119:1",
@@ -8961,7 +8961,7 @@
     "baseline_line": 140,
     "baseline_source": ".at(index)",
     "status": "TYPED",
-    "current_line": 142
+    "current_line": 143
    },
    {
     "marker": "NF-120:0",
@@ -8973,7 +8973,7 @@
     "baseline_line": 138,
     "baseline_source": "reject_unsupported(\"damage group: child must finish before parent resumes\")",
     "status": "TYPED",
-    "current_line": 140
+    "current_line": 141
    },
    {
     "marker": "NF-120:1",
@@ -8985,7 +8985,7 @@
     "baseline_line": 141,
     "baseline_source": "reject_unsupported(\"damage group: invalid event continuation\")",
     "status": "TYPED",
-    "current_line": 143
+    "current_line": 144
    },
    {
     "marker": "NF-120:2",
@@ -8997,7 +8997,7 @@
     "baseline_line": 178,
     "baseline_source": "reject_unsupported(\"damage group: unfinished nested child\")",
     "status": "TYPED",
-    "current_line": 181
+    "current_line": 182
    },
    {
     "marker": "NF-120:3",
@@ -9009,7 +9009,7 @@
     "baseline_line": 185,
     "baseline_source": "reject_unsupported(\"damage group: incomplete close\")",
     "status": "TYPED",
-    "current_line": 188
+    "current_line": 189
    },
    {
     "marker": "NF-121:0",
@@ -9021,7 +9021,7 @@
     "baseline_line": 153,
     "baseline_source": "reject_unsupported(\"damage group: damaged consumer is also its own spell-damage watcher\")",
     "status": "TYPED",
-    "current_line": 155
+    "current_line": 156
    },
    {
     "marker": "NF-122:0",
@@ -9033,7 +9033,7 @@
     "baseline_line": 161,
     "baseline_source": "reject_unsupported(\"damage group: consumer descriptor changed\")",
     "status": "TYPED",
-    "current_line": 163
+    "current_line": 164
    },
    {
     "marker": "NF-122:1",
@@ -9045,7 +9045,7 @@
     "baseline_line": 168,
     "baseline_source": "reject_unsupported(\"damage group: spell reaction lifetime/descriptor changed\")",
     "status": "TYPED",
-    "current_line": 170
+    "current_line": 171
    },
    {
     "marker": "NF-122:2",
@@ -9057,7 +9057,7 @@
     "baseline_line": 174,
     "baseline_source": "reject_unsupported(\"damage group: spell reaction removed\")",
     "status": "TYPED",
-    "current_line": 177
+    "current_line": 178
    },
    {
     "marker": "NF-123:0",
@@ -9069,7 +9069,7 @@
     "baseline_line": 171,
     "baseline_source": "reject_unsupported(\"damage group: attack reaction overflow\")",
     "status": "TYPED",
-    "current_line": 174
+    "current_line": 175
    },
    {
     "marker": "NF-124:0",
@@ -9081,7 +9081,7 @@
     "baseline_line": 176,
     "baseline_source": "throw UnsupportedSimulationError(*state_.unsupported)",
     "status": "TYPED_ECHO",
-    "current_line": 179
+    "current_line": 180
    },
    {
     "marker": "NF-125:0",
@@ -9093,7 +9093,7 @@
     "baseline_line": 177,
     "baseline_source": "reject_unsupported(\"damage group: unexpected Choice/suspension during reaction\")",
     "status": "TYPED",
-    "current_line": 180
+    "current_line": 181
    },
    {
     "marker": "NF-126:0",
@@ -9105,7 +9105,7 @@
     "baseline_line": 194,
     "baseline_source": "catch(...)",
     "status": "TYPED_FUNNEL_OR_WRAPPER",
-    "current_line": 197
+    "current_line": 198
    },
    {
     "marker": "NF-126:1",
@@ -9117,7 +9117,7 @@
     "baseline_line": 194,
     "baseline_source": "state_.unsupported=\"damage group: reaction failed\"",
     "status": "TYPED_FUNNEL_OR_WRAPPER",
-    "current_line": 197
+    "current_line": 198
    },
    {
     "marker": "NF-130:0",
@@ -10725,13 +10725,13 @@
     "file": "src/damage_group.cpp",
     "code": "INVARIANT_VIOLATION",
     "status": "AUDIT_APPROVED_SPLIT",
-    "current_line": 171
+    "current_line": 172
    }
   ],
   "source_sha256": {
    "include/manaengine/engine.hpp": "8b9c8a52146ec4d3d5aa6b81ff901d721ca0da97464bce03959a9727f8337c42",
    "include/manaengine/failure.hpp": "4629af8d72a9fd7089db9125c244d8226dd8b295ff676b57f6d6f177c2ae48b9",
-   "src/damage_group.cpp": "4dd3c00a81f2c57e9bee5caad1c12a3c10fd9e45509a1f8a6df723dae1b6e1a0",
+   "src/damage_group.cpp": "42a8e03ced36e525bbe33cecd37de46c04d5da827fd15ec22f273508e33a0b3f",
    "src/engine.cpp": "d6f1d789d40ffe3289bca14c1ab74c0c3740b5f033e718ba6a3e62c88a09ebdc",
    "src/failure.cpp": "f8559a77747fb0b9ff0008f10c130d5fa981e76b929d7cc6db0d238db08b1a9d",
    "src/pool_manifest.cpp": "aa54beda7784f8c4bcbf7ca3eaae8044a6085137aedcb4010da9d409ef83d5b9",
