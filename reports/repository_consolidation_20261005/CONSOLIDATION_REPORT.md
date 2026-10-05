@@ -70,7 +70,16 @@ The regression runs include Dark Gift, Reborn, and adapter cache-isolation cover
 
 ## Hosted CI and promotion
 
-Temporary branch push: pending. Source and ManaEngine experimental hosted CI (Ubuntu and Windows): pending. Fast-forward promotion to `main`: pending. Final consolidated SHA and final `main` SHA: pending.
+Temporary branch `work/repository-consolidation` was pushed at `93737f77a72513db22e365b7126bbf617ee627a2`.
+
+Hosted CI on that SHA:
+
+| Workflow | Run | Windows | Ubuntu |
+|---|---|---|---|
+| Source and generated artifact checks | [37318571212](https://github.com/MaksimOrekhov/manamind/actions/runs/37318571212) | PASS | PASS |
+| ManaEngine experimental (`workflow_dispatch`) | [37318825160](https://github.com/MaksimOrekhov/manamind/actions/runs/37318825160) | PASS | PASS |
+
+Fast-forward promotion to `main`: pending. Final consolidated SHA and final `main` SHA: pending.
 
 ## Remote branch cleanup
 
