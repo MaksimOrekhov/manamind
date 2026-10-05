@@ -44,7 +44,13 @@ checkpoint was intentionally changed.
   `vendor/RosettaStone/Resources` directory.
 - Ruff: unavailable in this checkout (`python -m ruff` reports `No module
   named ruff`). No environment was installed or modified.
-- No Python, native, or CI suite was run; this change is documentation-only.
+- No local Python or native suite was run; this change is documentation-only.
+- Hosted workflows on commit `76b26e15c435a0470a1b7abe2fc2c8e1e6ef1b1e`
+  completed successfully: Source CI on Windows and Ubuntu (including generated
+  artifact check and pytest), and ManaEngine CI on Windows and Ubuntu (release
+  build plus adapter/policy-schema checks). Their success verifies that
+  documentation commit; the following report-only commit does not change
+  executable or generated inputs.
 
 ## Remaining terminology debt
 
