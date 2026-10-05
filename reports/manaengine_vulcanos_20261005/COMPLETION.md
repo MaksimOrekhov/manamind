@@ -43,7 +43,8 @@ Official and supporting sources, admitted capacity, partial-capacity uncertainty
 - Candidate pool regeneration reproduced Fire=33, Whelp raw=77, and variants=65/63 with unchanged candidate manifest hashes.
 - Frontier ledger regenerated and `--check` passed: 105 unique candidate roots across the four pools.
 - `git diff --check`: PASS.
-- Hosted Source CI and ManaEngine Windows/Ubuntu CI: pending push at time this record was authored; final hosted results will be recorded after completion.
+- Hosted Source CI: PASS on Windows and Ubuntu. Both jobs completed lint, identity guard, generated-artifact check, clean diff check, and pytest. [Run 65](https://github.com/MaksimOrekhov/manamind/actions/runs/37274537724).
+- Hosted ManaEngine CI: PASS on Windows and Ubuntu. Both jobs completed Release build, CTest, and adapter/policy pytest. [Run 42](https://github.com/MaksimOrekhov/manamind/actions/runs/37274537764).
 
 ## Measured work
 
