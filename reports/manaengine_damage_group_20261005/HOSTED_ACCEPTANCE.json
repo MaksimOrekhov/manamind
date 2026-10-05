@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "backend": "manaengine",
+  "contract_id": "damage_group_local_v1",
+  "implementation_commit": "e77d985dd42e573d7068c93971def5a736d8c6c4",
+  "runs": [
+    {
+      "id": 37285853826,
+      "name": "Source and generated artifact checks",
+      "head_sha": "e77d985dd42e573d7068c93971def5a736d8c6c4",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37285853826",
+      "created_at": "2026-10-05T08:47:38Z",
+      "updated_at": "2026-10-05T08:50:40Z",
+      "jobs": [
+        {
+          "id": 111684443502,
+          "name": "source (ubuntu-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Python correctness diagnostics",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Generator card-identity guard",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 111684443834,
+          "name": "source (windows-latest)",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Python correctness diagnostics",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Generator card-identity guard",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run python scripts/check_generated_artifacts.py",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run git diff --exit-code",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run python -m pytest -q",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 37285853525,
+      "name": "ManaEngine experimental",
+      "head_sha": "e77d985dd42e573d7068c93971def5a736d8c6c4",
+      "status": "completed",
+      "conclusion": "success",
+      "html_url": "https://github.com/MaksimOrekhov/manamind/actions/runs/37285853525",
+      "created_at": "2026-10-05T08:47:37Z",
+      "updated_at": "2026-10-05T08:51:32Z",
+      "jobs": [
+        {
+          "id": 111684442955,
+          "name": "windows-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 111684443158,
+          "name": "ubuntu-latest / ManaEngine",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Release build",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "CTest",
+              "status": "completed",
+              "conclusion": "success"
+            },
+            {
+              "name": "Python adapter and policy schema tests",
+              "status": "completed",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

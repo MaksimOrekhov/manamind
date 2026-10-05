@@ -2,12 +2,13 @@
 
 ## Verdict and revision boundary
 
-**DAMAGE_GROUP_LOCAL_V1_PARTIAL** — local acceptance passed; hosted acceptance pending at the implementation commit.
+**DAMAGE_GROUP_LOCAL_V1_ACCEPTED** — the reviewed bounded contract passed local and hosted acceptance. This is not full card/pool/deck admission.
 
 - Branch: `codex/manaengine-first-deck`.
 - Implementation baseline: `b659343f437e968bceb08041e9ac0b3893c16f73`.
 - RosettaStone gitlink remains `f34da0d3fcb5ad312f7e2acf634d0536b044d29a`; no RosettaStone production changes or native-evidence promotion.
-- Implementation commit and final report HEAD: recorded after hosted verification below. A report cannot contain its own future Git hash; the report commit is the final document revision.
+- Implementation commit: `e77d985dd42e573d7068c93971def5a736d8c6c4`.
+- Final HEAD: the subsequent documentation-only commit titled `docs(manaengine): record damage group hosted acceptance`. Its exact SHA is returned in the task completion; a report cannot contain its own future Git hash. Production/test tree equality is checked against the implementation commit before push.
 
 ## Delivered contract
 
@@ -73,7 +74,7 @@ Final build: `experiments/manaengine/build-damage-group-v1`, Release / Ninja / M
 | Full native `manaengine_tests` | **65 groups / 1707 assertions PASS** |
 | CTest | **1/1 PASS**, invokes full native suite |
 | Full pytest | **92 passed**, 10.55 s |
-| Native adapter + pipeline + policy | **66 passed**, repeated after final pointer-lifetime cleanup |
+| Native adapter + pipeline + policy | **66 passed**, 15.85 s after final pointer-lifetime cleanup |
 | Ruff (including adapter tests) | PASS |
 | Generic card-identity/CUSTOM ownership guard | PASS, 201 reviewed existing exceptions |
 | `check_generated_artifacts.py` | PASS, **36 pinned outputs reproduced** |
@@ -85,7 +86,7 @@ Python adds real Mage-session Vulcanos failure/clone/poison boundary and minion-
 
 ## Correction/build effort
 
-- Timer start: **2026-10-05 07:56:18 UTC**; excludes initial instruction/repository reading. Local work remains an observed elapsed interval, not a retroactively inferred CPU-time measurement. Final elapsed and CI waiting recorded below.
+- Timer start: **2026-10-05 07:56:18 UTC**; excludes initial instruction/repository reading. Implementation/local-check/report interval to hosted dispatch at 08:47:37: **51 min 19 s**. Hosted workflows finished by 08:51:32 (**3 min 55 s** from dispatch); acceptance evidence/log review was completed at 08:53:24 (**57 min 06 s** from timer start). These are observed intervals, including checks/builds, not CPU-time estimates. Final documentation push and its Source CI are additional bookkeeping.
 - **12 local build invocations**: eight incremental implementation iterations, one fresh diagnosed build, one prefix-reconfigure/no-op, one forced consumer rebuild to restore header dependency tracking, one final pointer-lifetime rebuild.
 - One substantive semantic correction during implementation: initial area modifier guard overrejected an already admitted static-aura death case; refined it without relaxing conditional activation or next-step mortality guards.
 - Test/fixture correction rounds: invalid-attribution poison expectations/public inspection; guarded hero/Runes mixed cases; adapter unsupported class -> supported Mage fixture and misplaced existing assertion restored. Final pointer-lifetime review tightened source code without changing intended outcomes.
@@ -105,6 +106,15 @@ Python adds real Mage-session Vulcanos failure/clone/poison boundary and minion-
 
 ## Hosted acceptance and stop
 
-Pending implementation push: Source Windows/Ubuntu must actually execute pytest and artifact checks; ManaEngine Windows/Ubuntu must actually execute Release build, CTest and adapter/policy steps. This section will record run IDs, commit SHA, URLs and individual step results after they finish. Final documentation-only HEAD can reuse implementation native CI only with identical production/test trees explicitly established, while its own Source CI must pass.
+Implementation SHA for every job below: `e77d985dd42e573d7068c93971def5a736d8c6c4`. [HOSTED_ACCEPTANCE.json](HOSTED_ACCEPTANCE.json) preserves actual API run/job/step conclusions. Completed-job logs were also inspected for the executed counts.
 
-After hosted acceptance, push the final report and stop. No architecture stop-condition was encountered; remaining unsupported combinations are deliberate admission bounds, not a hidden scheduler redesign.
+| Hosted job | Actual acceptance |
+|---|---|
+| [Source Ubuntu](https://github.com/MaksimOrekhov/manamind/actions/runs/37285853826/job/111684443502) | SUCCESS; 36 outputs reproduced, identity/Ruff checks and **92 pytest tests**, 9.94 s |
+| [Source Windows](https://github.com/MaksimOrekhov/manamind/actions/runs/37285853826/job/111684443834) | SUCCESS; 36 outputs reproduced, identity/Ruff checks and **92 pytest tests**, 12.77 s |
+| [ManaEngine Ubuntu](https://github.com/MaksimOrekhov/manamind/actions/runs/37285853525/job/111684443158) | SUCCESS; actual Release build, **CTest 1/1**, **66 adapter/policy tests**, 23.08 s |
+| [ManaEngine Windows](https://github.com/MaksimOrekhov/manamind/actions/runs/37285853525/job/111684442955) | SUCCESS; actual Release build, **CTest 1/1**, **66 adapter/policy tests**, 25.25 s |
+
+The final documentation-only push changes only this report/evidence snapshot. It does not retrigger ManaEngine's path-filtered workflow; the accepted native jobs belong to the identical implementation/test tree above. Its own Source CI is awaited separately before the final response. No claim is made that a filtered-out native job ran on the document commit.
+
+Push the final report, await its Source CI, then stop. No architecture stop-condition was encountered; remaining unsupported combinations are deliberate admission bounds. Arcane Barrage, Fire pool admission, Whelp, training and search/MCTS remain outside this completion.
