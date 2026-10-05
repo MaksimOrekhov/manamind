@@ -7,8 +7,8 @@ import os
 import re
 from importlib.machinery import EXTENSION_SUFFIXES
 from pathlib import Path
-from types import ModuleType
-from typing import Any, Sequence
+from types import MappingProxyType, ModuleType
+from typing import Any, Mapping, NamedTuple, Sequence
 
 from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
@@ -18,10 +18,20 @@ from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option
 
 _NATIVE: ModuleType | None = None
 _ROOT = Path(__file__).resolve().parents[4]
-_CARD_METADATA: dict[str, CardFeatures] = {}
-_DEFINITION_CACHE: dict[str, tuple[list[Any], dict[str, CardFeatures]]] = {}
-_NATIVE_CATALOG_CACHE: dict[str, Any] = {}
-_COLLECTIBLE_IDS: set[str] = set()
+
+
+class _RuntimeCatalog(NamedTuple):
+    """The reusable runtime state of one catalog: the built native catalog and the metadata of that same catalog."""
+
+    native_catalog: Any
+    card_metadata: Mapping[str, CardFeatures]
+
+
+# Ownership contract. `_definition_rows()` returns fresh, caller-owned mutable native CardDefinition rows on every call,
+# so a caller (tests build synthetic catalogs this way) can never change what another caller or session sees.
+# `native.CardCatalog` copies the rows when it is built, so a cached catalog is likewise isolated from later row edits.
+# The only process-wide cache is this one: resolved catalog path -> immutable _RuntimeCatalog, read-only after insertion.
+_NATIVE_CATALOG_CACHE: dict[str, _RuntimeCatalog] = {}
 
 
 def _rules_coverage(metadata: dict[str, Any], spec: dict[str, Any]) -> bool:
@@ -114,15 +124,10 @@ def _parse_effect_steps(native: ModuleType, card_id: str, raw_effects: Any) -> l
     return native_effects
 
 
-def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
-    global _CARD_METADATA, _COLLECTIBLE_IDS
+def _load_definitions(catalog_path: str | Path | None = None) -> tuple[list[Any], Mapping[str, CardFeatures]]:
+    """Build fresh native definition rows and the metadata of the same catalog. Nothing here is cached or shared."""
     native = _load_native()
     catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
-    key = str(catalog_file.resolve())
-    if key in _DEFINITION_CACHE:
-        rows, metadata = _DEFINITION_CACHE[key]
-        _CARD_METADATA = metadata
-        return rows
     catalog = CardCatalog.from_json(catalog_file)
     raw_catalog = json.loads(catalog_file.read_text(encoding="utf-8-sig"))
     raw_cards = raw_catalog.get("cards", []) if isinstance(raw_catalog, dict) else raw_catalog
@@ -131,7 +136,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         for row in raw_cards
         if isinstance(row, dict)
     }
-    _COLLECTIBLE_IDS = {
+    collectible_ids = {
         str(row.get("id") or row.get("card_id") or row.get("dbfId"))
         for row in raw_cards
         if isinstance(row, dict) and row.get("collectible") is True
@@ -172,7 +177,7 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         d.card_class = card.card_class.upper()
         d.race = (card.race or "").upper()
         d.spell_school = spell_schools.get(card.card_id, "")
-        d.collectible = card.card_id in _COLLECTIBLE_IDS
+        d.collectible = card.card_id in collectible_ids
         d.battlecry = "BATTLECRY" in card.mechanics
         d.secret = "SECRET" in card.mechanics
         d.cost = card.cost or 0
@@ -251,15 +256,21 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         dependencies += tuple(effect.summon_card for effect in (*definition.choose_one_a, *definition.choose_one_b) if effect.summon_card)
         if any(dep and (dep not in by_id or by_id[dep].support_state == "UNSUPPORTED") for dep in dependencies):
             definition.support_state = "UNSUPPORTED"
-    _CARD_METADATA = records
-    _DEFINITION_CACHE[key] = (result, records)
-    return result
+    return result, MappingProxyType(records)
 
 
-def _export_state(raw: dict[str, Any], evidence_constraints: Sequence[str] = ()) -> GameState:
-    """Adapt engine observations to the shared domain schema and catalog metadata."""
+def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
+    """Fresh mutable definition rows for `catalog_path`; each call returns new objects owned by the caller."""
+    return _load_definitions(catalog_path)[0]
+
+
+def _export_state(raw: dict[str, Any], evidence_constraints: Sequence[str] = (),
+                  card_metadata: Mapping[str, CardFeatures] | None = None) -> GameState:
+    """Adapt engine observations to the shared domain schema and the metadata of the session's own catalog."""
+    metadata = card_metadata if card_metadata is not None else {}
+
     def enrich(row: dict[str, Any], *, in_hand: bool = False) -> None:
-        base = _CARD_METADATA.get(str(row.get("card_id", "")))
+        base = metadata.get(str(row.get("card_id", "")))
         if base is not None:
             row["race"] = base.race
             row["mechanics"] = list(base.mechanics)
@@ -328,17 +339,19 @@ class ManaEngineSession:
             raise UnsupportedSimulationError("ManaEngine session requires implemented hero powers; only Mage mirror is supported")
         catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
         catalog_key = str(catalog_file.resolve())
-        if catalog_key not in _NATIVE_CATALOG_CACHE:
+        runtime = _NATIVE_CATALOG_CACHE.get(catalog_key)
+        if runtime is None:
             option_manifest = load_dark_gift_option_manifest(
                 _ROOT / "experiments/manaengine/data/pools/dark_gift_launch_review_20261004_v1.json",
                 _ROOT / "experiments/manaengine/data/dark_gift_option_metadata.json",
             )
-            _NATIVE_CATALOG_CACHE[catalog_key] = native.CardCatalog(
-                _definition_rows(catalog_path), [], "", "", [option_manifest.to_native(native)]
+            rows, metadata = _load_definitions(catalog_path)
+            runtime = _NATIVE_CATALOG_CACHE[catalog_key] = _RuntimeCatalog(
+                native.CardCatalog(rows, [], "", "", [option_manifest.to_native(native)]), metadata
             )
-        else:
-            _definition_rows(catalog_path)
-        self._native = native.GameSession(list(player1_deck), list(player2_deck), _NATIVE_CATALOG_CACHE[catalog_key],
+        # Enrichment always uses this session's own catalog metadata, never whichever catalog was loaded last.
+        self._card_metadata = runtime.card_metadata
+        self._native = native.GameSession(list(player1_deck), list(player2_deck), runtime.native_catalog,
                                           random_seed, shuffle, player1_class.upper(), player2_class.upper())
 
     def observation(self, perspective: str = "ACTIVE") -> GameState:
@@ -348,7 +361,7 @@ class ManaEngineSession:
             raw = self._native.observation(perspective)
         except self._unsupported_exception as exc:
             raise UnsupportedSimulationError(str(exc)) from exc
-        return _export_state(dict(raw), self.evidence_constraints)
+        return _export_state(dict(raw), self.evidence_constraints, self._card_metadata)
 
     def legal_actions(self) -> tuple[dict[str, Any], ...]:
         state = self.observation()
@@ -379,11 +392,12 @@ class ManaEngineSession:
             raw = self._native.apply_action(dict(action))
         except self._unsupported_exception as exc:
             raise UnsupportedSimulationError(str(exc)) from exc
-        return _export_state(dict(raw), self.evidence_constraints)
+        return _export_state(dict(raw), self.evidence_constraints, self._card_metadata)
 
     def clone(self) -> "ManaEngineSession":
         duplicate = object.__new__(ManaEngineSession)
         duplicate._unsupported_exception = self._unsupported_exception
+        duplicate._card_metadata = self._card_metadata
         try:
             duplicate._native = self._native.clone()
         except self._unsupported_exception as exc:

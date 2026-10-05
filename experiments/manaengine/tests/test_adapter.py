@@ -718,10 +718,10 @@ def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
     from manamind.domain.serialization import game_state_from_dict
     from manamind.encoding import StateEncoder
     from manamind.encoding.state_encoder import GLOBAL_FEATURE_NAMES
-    from manamind.integrations.manaengine.engine import _definition_rows, _export_state, _load_native
+    from manamind.integrations.manaengine.engine import _export_state, _load_definitions, _load_native
 
     native = _load_native()
-    rows = _definition_rows()
+    rows, card_metadata = _load_definitions()
     native.CardCatalog(rows, [], "", "", _native_dark_gift_manifests(native))
     by_id = {row.card_id: row for row in rows}
     mage_secrets = {
@@ -742,7 +742,7 @@ def test_secret_catalog_and_perspective_safe_state_encoding() -> None:
         "self_player": {"hero_health": 30, "secret_count": 1, "spell_damage": 2, "known_secrets": ["CORE_EX1_287"]},
         "opponent": {"hero_health": 30, "secret_count": 1, "spell_damage": 0, "known_secrets": []},
     }
-    state = _export_state(raw)
+    state = _export_state(raw, card_metadata=card_metadata)
     assert state.self_player.known_secrets[0].card_id == "CORE_EX1_287"
     assert state.self_player.spell_damage == 2
     assert state.opponent.secret_count == 1
@@ -1568,13 +1568,10 @@ def test_arcane_barrage_unsupported_outcome_is_normalized_and_adds_no_debt_befor
     definitions = _definition_rows()
     victim = next(d for d in definitions if d.card_id == "TIME_006t1")
     # A vanilla minion that reacts to damage with a generation pool that was never loaded: the primary's reaction fails.
+    # `_definition_rows()` rows are caller-owned, so this synthetic edit cannot reach any other caller or session.
     victim.takes_damage_pool_id = "UNLOADED_POOL_FOR_ADAPTER_TEST"
     victim.takes_damage_cost_delta = -3
-    try:
-        catalog = native.CardCatalog(definitions, [], "", "", _native_dark_gift_manifests(native))
-    finally:  # keep the mutation private even if definition rows are ever shared between calls
-        victim.takes_damage_pool_id = ""
-        victim.takes_damage_cost_delta = 0
+    catalog = native.CardCatalog(definitions, [], "", "", _native_dark_gift_manifests(native))
     first_deck, second_deck = ["TIME_855", *(["CORE_EX1_145"] * 29)], ["TIME_006t1"] * 30
     session = ManaEngineSession(first_deck, second_deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
     session._unsupported_exception = native.UnsupportedSimulationError
@@ -1593,3 +1590,206 @@ def test_arcane_barrage_unsupported_outcome_is_normalized_and_adds_no_debt_befor
     for name in ("result", "is_complete", "needs_choice", "choice_options"):
         with pytest.raises(UnsupportedSimulationError):
             getattr(session, name)
+
+
+# ---- _definition_rows ownership and runtime-catalog cache isolation ---------------------------------------
+# Contract under test: `_definition_rows()` returns fresh, caller-owned mutable rows on every call; the only process-wide
+# cache is `_NATIVE_CATALOG_CACHE` (resolved catalog path -> built native catalog + that catalog's own metadata).
+def _row_fingerprint(rows):
+    """Everything a caller can observe or edit on a native CardDefinition row, as plain comparable data."""
+    return [
+        (d.card_id, d.card_type, d.card_class, d.race, d.spell_school, d.ability, d.support_state,
+         d.rules_contract_reviewed, d.collectible, d.cost, d.attack, d.health, d.durability, d.damage,
+         d.rush, d.taunt, d.lifesteal, d.battlecry, d.reborn, d.secret, d.takes_damage_pool_id,
+         d.takes_damage_cost_delta, tuple(d.required_mechanics), tuple(d.minion_types),
+         tuple(d.colossal_appendages),
+         tuple((e.kind, e.target, e.amount, e.lifesteal, e.random_count, e.exclude_previous_target,
+                e.evidence_constraint, e.summon_card) for e in d.effects))
+        for d in rows
+    ]
+
+
+@pytest.fixture
+def isolated_runtime_catalogs(monkeypatch):
+    """A private runtime-catalog cache so the order in which tests create sessions can never matter."""
+    from manamind.integrations.manaengine import engine as adapter
+
+    cache: dict = {}
+    monkeypatch.setattr(adapter, "_NATIVE_CATALOG_CACHE", cache)
+    return cache
+
+
+def _catalog_copy(tmp_path, name: str, *, murmy_race: str | None = None):
+    """A distinct catalog file; optionally changes the race of CORE_ULD_723 (Murmy) so metadata leaks are observable."""
+    import json
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[3]
+    raw = json.loads((root / "data/cards/standard_current_enUS.json").read_text(encoding="utf-8-sig"))
+    if murmy_race is not None:
+        for row in raw["cards"]:
+            if row.get("id") == "CORE_ULD_723":
+                row["race"] = murmy_race
+    path = tmp_path / name
+    path.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+    return path
+
+
+def _murmy_session(catalog_path=None) -> ManaEngineSession:
+    deck = ["CORE_ULD_723", *(["CORE_EX1_145"] * 29)]
+    return ManaEngineSession(deck, deck, player1_class="MAGE", player2_class="MAGE", shuffle=False,
+                             catalog_path=catalog_path)
+
+
+def test_definition_rows_default_path_is_stable_and_caller_owned() -> None:
+    from manamind.integrations.manaengine import engine as adapter
+
+    first, first_metadata = adapter._load_definitions()
+    second, second_metadata = adapter._load_definitions()
+    assert len(first) > 1000 and _row_fingerprint(first) == _row_fingerprint(second)
+    assert dict(first_metadata) == dict(second_metadata) and len(first_metadata) > 1000
+    assert _row_fingerprint(adapter._definition_rows()) == _row_fingerprint(first)
+    # Fresh objects on every call; the metadata mapping handed to sessions is read-only.
+    assert not any(a is b for a, b in zip(first, second))
+    with pytest.raises(TypeError):
+        first_metadata["CORE_ULD_723"] = None  # type: ignore[index]
+
+
+def test_mutating_returned_definition_rows_never_reaches_other_callers() -> None:
+    from manamind.integrations.manaengine import engine as adapter
+
+    native = adapter._load_native()
+    baseline = _row_fingerprint(adapter._definition_rows())
+    rows = adapter._definition_rows()
+    barrage = next(d for d in rows if d.card_id == "TIME_855")
+    minion = next(d for d in rows if d.card_id == "TIME_006t1")
+    barrage.support_state = "UNSUPPORTED"
+    barrage.ability = "NONE"
+    steps = barrage.effects  # the property returns copies; a nested edit only counts once it is assigned back
+    steps[1].random_count = 1
+    steps[1].target = native.TargetSelector.ENEMY_MINIONS
+    barrage.effects = steps[:1]
+    minion.takes_damage_pool_id = "LEAK_PROBE"
+    minion.required_mechanics = ["LEAK_PROBE"]
+    rows.append(native.CardDefinition())
+    rows.reverse()
+    assert _row_fingerprint(rows) != baseline  # the edits really happened to the rows we hold
+
+    for later in (adapter._definition_rows(), adapter._load_definitions()[0]):
+        assert _row_fingerprint(later) == baseline
+        later_barrage = next(d for d in later if d.card_id == "TIME_855")
+        assert (later_barrage.support_state, later_barrage.ability, len(later_barrage.effects)) == (
+            "SUPPORTED", "EFFECT_COMPOSITION", 2)
+        assert later_barrage.effects[1].random_count == 2
+        assert next(d for d in later if d.card_id == "TIME_006t1").takes_damage_pool_id == ""
+
+
+def test_distinct_catalog_paths_keep_separate_rows_metadata_and_runtime_catalogs(
+        tmp_path, isolated_runtime_catalogs) -> None:
+    from manamind.integrations.manaengine import engine as adapter
+
+    same = _catalog_copy(tmp_path, "catalog_same.json")
+    alternate = _catalog_copy(tmp_path, "catalog_alternate.json", murmy_race="DEMON")
+    same_rows, same_metadata = adapter._load_definitions(same)
+    alt_rows, alt_metadata = adapter._load_definitions(alternate)
+    changed = [a[0] for a, b in zip(_row_fingerprint(same_rows), _row_fingerprint(alt_rows)) if a != b]
+    assert changed == ["CORE_ULD_723"]
+    assert (same_metadata["CORE_ULD_723"].race, alt_metadata["CORE_ULD_723"].race) == ("MURLOC", "DEMON")
+
+    # Interleaved creation, observation only afterwards: a last-loaded global would make the earlier sessions see DEMON.
+    on_same, on_alternate, on_default = _murmy_session(same), _murmy_session(alternate), _murmy_session()
+    assert len(isolated_runtime_catalogs) == 3
+    assert on_same.observation().self_hand[0].race == "MURLOC"
+    assert on_alternate.observation().self_hand[0].race == "DEMON"
+    assert on_default.observation().self_hand[0].race == "MURLOC"
+    assert on_alternate.clone().observation().self_hand[0].race == "DEMON"
+    assert on_same.clone().observation().self_hand[0].race == "MURLOC"
+    # And again after a cache hit for each path.
+    assert _murmy_session(alternate).observation().self_hand[0].race == "DEMON"
+    assert _murmy_session(same).observation().self_hand[0].race == "MURLOC"
+    assert len(isolated_runtime_catalogs) == 3
+
+
+def test_ordinary_sessions_share_one_native_catalog_per_path(monkeypatch, tmp_path, isolated_runtime_catalogs) -> None:
+    from manamind.integrations.manaengine import engine as adapter
+
+    builds: list = []
+    real = adapter._load_definitions
+
+    def counting(path=None):
+        builds.append(path)
+        return real(path)
+
+    monkeypatch.setattr(adapter, "_load_definitions", counting)
+    sessions = [_murmy_session() for _ in range(3)]
+    assert len(builds) == 1 and len(isolated_runtime_catalogs) == 1  # one build, two cache hits
+    # Shared catalog, independent games.
+    sessions[0].apply_action(next(a for a in sessions[0].legal_actions() if a["type"] == "END_TURN"))
+    assert sessions[0].observation("PLAYER1").turn_number != sessions[1].observation("PLAYER1").turn_number
+    assert sessions[1].observation("PLAYER1") == sessions[2].observation("PLAYER1")
+    # A different path is built exactly once more, however many sessions use it.
+    other = _catalog_copy(tmp_path, "catalog_other.json")
+    _murmy_session(other)
+    _murmy_session(other)
+    assert len(builds) == 2 and len(isolated_runtime_catalogs) == 2
+
+
+def test_export_state_enrichment_uses_only_explicit_catalog_metadata() -> None:
+    import copy
+
+    from manamind.integrations.manaengine import engine as adapter
+
+    raw = {
+        "turn_number": 4,
+        "active_player": "SELF",
+        "self_player": {"hero_health": 30, "secret_count": 1, "spell_damage": 0, "known_secrets": ["CORE_EX1_287"]},
+        "opponent": {"hero_health": 30, "secret_count": 0, "spell_damage": 0, "known_secrets": []},
+    }
+    _rows, metadata = adapter._load_definitions()
+    expected = metadata["CORE_EX1_287"].mechanics
+    assert expected  # Counterspell carries catalog mechanics worth enriching with
+    assert adapter._export_state(copy.deepcopy(raw), card_metadata=metadata).self_player.known_secrets[0].mechanics == expected
+    # With no metadata passed there is no hidden fallback to some previously loaded catalog.
+    assert adapter._export_state(copy.deepcopy(raw)).self_player.known_secrets[0].mechanics == ()
+
+
+def _barrage_scenario():
+    """Fixed-seed ordinary session through an Arcane Barrage cast; returns everything observable about the outcome."""
+    from dataclasses import asdict
+
+    session = ManaEngineSession(["TIME_855", *(["CORE_EX1_145"] * 29)], ["TIME_006t1"] * 30,
+                                player1_class="MAGE", player2_class="MAGE", shuffle=False, random_seed=7)
+    actions = _advance_to_barrage(session)
+    session.set_diagnostic_trace(True)
+    cast = next(a for a in actions if a["type"] == "PLAY_CARD" and a.get("card_id") == "TIME_855" and not a["target_is_hero"])
+    state = session.apply_action(cast)
+    return asdict(state), tuple(session.diagnostic_trace), session.evidence_constraints, session.is_valid
+
+
+def _synthetic_catalog_without_barrage():
+    """Test-only synthetic mutation: private rows in which Arcane Barrage is declared unsupported."""
+    from manamind.integrations.manaengine import engine as adapter
+
+    native = adapter._load_native()
+    rows = adapter._definition_rows()
+    barrage = next(d for d in rows if d.card_id == "TIME_855")
+    barrage.support_state, barrage.ability, barrage.effects = "UNSUPPORTED", "NONE", []
+    catalog = native.CardCatalog(rows, [], "", "", _native_dark_gift_manifests(native))
+    game = native.GameSession(["TIME_855", *(["CORE_EX1_145"] * 29)], ["TIME_006t1"] * 30, catalog, 7, False, "MAGE", "MAGE")
+    # The mutation is effective in that private catalog: an unsupported card in the opening hand is refused.
+    with pytest.raises(native.UnsupportedSimulationError):
+        game.legal_actions()
+
+
+def test_synthetic_mutation_and_ordinary_sessions_are_order_independent(isolated_runtime_catalogs) -> None:
+    # Order X: synthetic mutation first, then the first ordinary session builds the runtime catalog.
+    _synthetic_catalog_without_barrage()
+    ordinary_after_synthetic = _barrage_scenario()
+    isolated_runtime_catalogs.clear()
+    # Order Y: the ordinary session builds and caches first, the synthetic mutation happens afterwards, and a further
+    # ordinary session (a cache hit) must still be unaffected.
+    ordinary_first = _barrage_scenario()
+    _synthetic_catalog_without_barrage()
+    ordinary_after_cache_hit = _barrage_scenario()
+    assert ordinary_after_synthetic == ordinary_first == ordinary_after_cache_hit
+    assert ordinary_first[2] == ("ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED",) and ordinary_first[3]
