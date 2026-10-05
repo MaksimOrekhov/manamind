@@ -79,7 +79,16 @@ Hosted CI on that SHA:
 | Source and generated artifact checks | [37318571212](https://github.com/MaksimOrekhov/manamind/actions/runs/37318571212) | PASS | PASS |
 | ManaEngine experimental (`workflow_dispatch`) | [37318825160](https://github.com/MaksimOrekhov/manamind/actions/runs/37318825160) | PASS | PASS |
 
-Fast-forward promotion to `main`: pending. Final consolidated SHA and final `main` SHA: pending.
+Fast-forward promotion completed: `main` advanced from `0b27fec85b288996535c543b2e633c85ce73d68c` to `07e2eab68d06b7357eedefdcf6126067ee8f6523`. GitHub branch metadata confirmed both `main` and `work/repository-consolidation` at that SHA before final report closeout.
+
+Post-promotion CI on `07e2eab68d06b7357eedefdcf6126067ee8f6523`:
+
+| Workflow | Run | Windows | Ubuntu |
+|---|---|---|---|
+| Source and generated artifact checks | [37319722338](https://github.com/MaksimOrekhov/manamind/actions/runs/37319722338) | PASS | PASS |
+| ManaEngine experimental | [37319722350](https://github.com/MaksimOrekhov/manamind/actions/runs/37319722350) | PASS | PASS |
+
+The report-only closeout commit below records final branch cleanup. It changes no engine, schema, card or build inputs; its Source workflow is expected to run on the resulting `main` SHA. The ManaEngine CI above ran against the complete product tree before this documentation-only closeout.
 
 ## Remote branch cleanup
 
@@ -87,11 +96,13 @@ No remote branches have been deleted yet. Deletion will occur only after the fin
 
 | Candidate branch | Former tip | Deletion result |
 |---|---|---|
-| `codex/manaengine-prototype` | `339b51ebf9d9bede781bcf448eba34a23d83a36e` | pending |
-| `codex/manaengine-hardening` | `eecc9fe9f187da5162037a4c052aca36896870d9` | pending |
-| `codex/manaengine-first-deck` | `b39e73e9dca6adf34548febb95ea769d6b13e540` | pending |
-| `claude/dark-gift-prototype` | `f73cabdad60d6c02b689afd809c7bae455557def` | pending |
-| `claude/reborn-prototype` | `a35ddc6f0b0bd736d6a3b30e2a31884e39204cc1` | pending |
+| `codex/manaengine-prototype` | `339b51ebf9d9bede781bcf448eba34a23d83a36e` | deleted normally after main CI passed |
+| `codex/manaengine-hardening` | `eecc9fe9f187da5162037a4c052aca36896870d9` | deleted normally after main CI passed |
+| `codex/manaengine-first-deck` | `b39e73e9dca6adf34548febb95ea769d6b13e540` | deleted normally after main CI passed |
+| `claude/dark-gift-prototype` | `f73cabdad60d6c02b689afd809c7bae455557def` | deleted normally after main CI passed |
+| `claude/reborn-prototype` | `a35ddc6f0b0bd736d6a3b30e2a31884e39204cc1` | deleted normally after main CI passed |
+
+The remote branch listing after deletion contains only `main` and `work/repository-consolidation`; all five expected source/prototype refs are absent. The final main SHA is the closeout commit containing this report; its exact SHA is recorded by Git and in the final task summary (a commit cannot embed its own hash).
 
 ## Local branches and remaining cleanup
 
