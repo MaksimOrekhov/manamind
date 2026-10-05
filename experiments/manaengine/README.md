@@ -29,15 +29,24 @@ omitted. `apply_action` keeps its existing post-action ACTIVE-seat behavior.
 
 The frozen `SimulationAttempt` has four outcomes: `COMPLETED`,
 `UNSIMULATABLE`, `ILLEGAL`, `ENGINE_DEFECT`. Only completion contains a
-visible state and optional child; only `UNSIMULATABLE` is eligible for future
-fallback. There is no fallback routing or scoring. Failure diagnostics contain
-strings/tuples only, including failure evidence and at most 32 trace rows.
+visible state and optional child. Only explicitly allowlisted unsupported/rule
+reasons are eligible for future fallback; budgets are excluded. There is no fallback routing or scoring. Failure diagnostics contain
+immutable scalar `NativeFailure` snapshots and strings/tuples, including failure
+evidence and at most 32 trace rows.
 
 Completed inferred Fire outcomes retain `FIRE_POOL_MEMBERSHIP_INFERRED` in
 state/result evidence. Unsupported sampled outcomes fail without reroll and
 carry failure evidence only in diagnostics. Neither changes training gates.
-The defect classifier is a temporary Python message/postcondition heuristic
-with incomplete recall; exact native typing is deferred to Phase 4K.1b.
+Phase 4K.1b implements four native failure kinds and 57 append-only codes.
+Classification reads payloads only, with no message heuristic. Native exceptions
+carry kind/code/detail/context and session `failure` exposes the stored record.
+`EngineDefectError` subclasses `UnsupportedSimulationError`; legacy untyped
+failures default to engine defects. A poisoned child is never exported.
+`BudgetLimit` is not fallback eligible. No `Q_fallback` exists.
+
+The failure inventory/source guard runs in Source CI. Test-only fault probes
+are built under `BUILD_TESTING` as a separate extension; they add no production
+cards or runtime invariant validator.
 
 A retained child is full-information internal simulation infrastructure,
 excluded from repr/equality; it is not a model feature or live observation.

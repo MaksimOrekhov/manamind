@@ -28,7 +28,8 @@ Full-state `clone()` is allowed for authoritative simulation, environment branch
 Phase 4K.1 `attempt_action` executes a canonical legal action on a clone and
 exports a valid result from a fixed root seat. Its four outcomes are
 `COMPLETED`, `UNSIMULATABLE`, `ILLEGAL` and `ENGINE_DEFECT`; only
-`UNSIMULATABLE` has `fallback_eligible=True`, with no fallback consumer yet.
+`UNSIMULATABLE` reasons for unsupported/unresolved coverage are fallback eligible;
+`NATIVE_BUDGET_LIMIT` is explicitly excluded. There is no fallback consumer yet.
 A completed `REVIEWED_INFERRED` transition retains evidence debt and remains
 blocked for canonical training. Failed attempts expose diagnostics only, with
 no state/child or transition evidence.
@@ -37,8 +38,11 @@ The result and even its outcome can depend on hidden deck/RNG state in the
 full-information clone. For example, `END_TURN` may become unsimulatable
 because an opponent hidden draw is unsupported. The retained child is an
 internal full-information handle, not a visible model feature or permission
-for live-root decision-making. Native defect classification remains a Python
-heuristic with incomplete recall pending Phase 4K.1b.
+for live-root decision-making. Phase 4K.1b classifies typed native payloads;
+diagnostic text is not used. `ENGINE_DEFECT`, untyped failures and BudgetLimit
+are never fallback eligible. Typed error records are internal diagnostic evidence,
+not model features. `Q_fallback` remains absent, and training/live-root gates
+remain unchanged.
 
 ## Observation scope
 

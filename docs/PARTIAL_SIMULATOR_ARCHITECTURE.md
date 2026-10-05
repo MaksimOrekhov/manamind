@@ -89,16 +89,16 @@ must never learn from poisoned or fabricated afterstates.
 - Phase 4K.1 implements `attempt_action` and the typed `SimulationAttempt`
   adapter boundary: canonical legality check, isolated clone execution, fixed
   root-seat export, and four outcomes. Only completed valid branches expose a
-  state/optional child. The native defect classifier is heuristic, not exact.
+  state/optional child. Phase 4K.1b adds explicit native kind/code records;
+  diagnostic text is not used to classify failures.
 
 ### ACCEPTED TARGET
 
 - A supported transition may expose a child only after it completes in a
   valid, quiescent state. An unsimulatable action has no fabricated child
   state; a future evaluator may score the state/action pair directly.
-- Future native failure typing must improve `ENGINE_DEFECT` separation beyond
-  the implemented Phase 4K.1 Python heuristic, preserving evidence provenance
-  and never exposing a poisoned child.
+- Typed native failures preserve evidence provenance and never expose a
+  poisoned child. An untyped legacy failure defaults to `ENGINE_DEFECT`.
 - Runtime may use explicitly approved finite, bounded inferred behavior while
   preserving evidence debt. This does not verify the rule or admit the result
   to canonical training.
@@ -112,7 +112,7 @@ must never learn from poisoned or fabricated afterstates.
 
 ### FUTURE / NOT IMPLEMENTED
 
-There is no exact native failure taxonomy, `Q_fallback`, unknown-ID
+There is no `Q_fallback`, unknown-ID
 robustness-training pipeline, arbitrary observed-live
 state importer, belief/determinization layer, Beam/MCTS integration, live
 replay comparator, automatic mechanic-discovery service, evidence-bundle
@@ -167,9 +167,11 @@ Record at least these axes independently:
 
 `SimulationAttempt` now exposes the typed action-attempt outcomes. Native
 session APIs still use `is_valid`, `unsupported_outcome`, evidence constraints,
-exceptions and `training_eligible`. Native reasons are not yet typed, so the
-adapter's `ENGINE_DEFECT` classification has incomplete recall until Phase
-4K.1b. Registry/dependency status and model confidence stay outside this result.
+exceptions and `training_eligible`. Phase 4K.1b adds a separate `failure`
+record: `FailureKind`, append-only `FailureCode`, diagnostic `detail` and
+`context`. The code determines the kind; missing/untyped payloads fail safe as
+engine defects. Registry/dependency status and model confidence stay outside
+this result.
 
 ## 7. `REVIEWED_INFERRED`
 
@@ -236,7 +238,7 @@ continues returning the post-action ACTIVE-seat view.
 | Outcome | Safe state/child | `fallback_eligible` |
 |---|---|---|
 | `COMPLETED` | State required; child optional with `retain_child=False` | false |
-| `UNSIMULATABLE` | Neither exists; immutable diagnostics required | true |
+| `UNSIMULATABLE` | Neither exists; immutable diagnostics required | Explicit reason allowlist; budgets excluded |
 | `ILLEGAL` | Neither exists | false |
 | `ENGINE_DEFECT` | Neither exists | false |
 
@@ -246,11 +248,29 @@ transition evidence or usable child. Diagnostics retain scalar exception and
 unsupported text, evidence strings and at most 32 trace rows; no session or
 native object references.
 
-The temporary defect heuristic recognizes normalized post-mutation exception
-messages, exact damage-group catch-all reasons and violated validity/export
-postconditions. Some native reject/direct-throw sites can still classify a true
-defect as unsupported. This accepted incomplete recall belongs to Phase 4K.1b;
-it is not exact native typing. No fallback routing/scoring is implemented.
+**IMPLEMENTED — Phase 4K.1b.** Native failures have four kinds and 57
+explicit code identities. `UNSUPPORTED` and `RULE_UNRESOLVED` map to
+`UNSIMULATABLE` and are fallback eligible; `BUDGET_LIMIT` maps to
+`UNSIMULATABLE / NATIVE_BUDGET_LIMIT` but is **not** fallback eligible.
+`ENGINE_DEFECT` and missing/untyped failures never route to fallback.
+Enumeration distinguishes unavailable coverage from an enumeration defect.
+Classification consumes typed payloads, never message prefixes.
+
+`diagnostics.native_failure` is an immutable scalar snapshot. Exceptions and
+stored records must agree. First failure wins; an engine defect may supersede
+a non-defect, retaining the previous cause in context. Damage wrappers unwind
+frames and preserve codes/provenance. The execution funnel converts unexpected
+exceptions; `std::bad_alloc` poisons the branch and remains Python `MemoryError`.
+Legacy untyped native failures use `LEGACY_UNTYPED / ENGINE_DEFECT`.
+`EngineDefectError` remains a subclass of `UnsupportedSimulationError` for
+compatibility: catching that base alone does not authorize fallback.
+No runtime `validate_invariants` invocation or fallback scoring is implemented.
+
+The accepted inventory retains original classifications and source identities;
+its migration section records all 310 audited sites, three approved split
+routes, unchanged load/caller boundaries and current source hashes.
+`phase_4k1b_failure_site_audit.py check` also enforces the token source guard.
+This mechanical coverage does not establish new card rules or training admission.
 
 A retained child is a full-information internal simulator handle, excluded
 from result repr/equality, never a model input or live observation. Even an
@@ -409,7 +429,7 @@ This is current planning direction, not a frozen interface or a promise that
 each stage must be implemented in this exact order:
 
 1. **Phase 4K.1 (implemented):** typed simulation result and safe adapter boundary.
-2. **Phase 4K.1b:** typed unsupported reasons and `ENGINE_DEFECT` separation.
+2. **Phase 4K.1b (implemented):** typed native reasons and `ENGINE_DEFECT` separation; BudgetLimit excluded from fallback.
 3. **Phase 4K.1c:** safe unsupported-held-card semantics.
 4. **Phase 4K.2:** unknown/new identity and generic action representation.
 5. **Phase 4K.3:** `Q_fallback` prototype.
