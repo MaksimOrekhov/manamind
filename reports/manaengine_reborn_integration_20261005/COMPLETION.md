@@ -1,4 +1,4 @@
-# Phase 4F.1 вЂ” Intrinsic Reborn integration completion
+# Phase 4F.1 РІР‚вЂќ Intrinsic Reborn integration completion
 
 ## Scope and result
 
@@ -8,7 +8,7 @@
 - real consumer: `CORE_ULD_723` Murmy, declaration-only (1/1); independent synthetic Rush/keywords and draw Deathrattle controls.
 - CUSTOM consumers enabled: 0. No card-ID behavior branches.
 - one shared intrinsic Reborn capability. No granted Reborn or full-enchantment restoration.
-- active implementation/verification interval: 2026-10-05 05:23:34вЂ“05:43:58 UTC, about 20m24s before report/commit/hosted CI. CI waiting excluded; final bookkeeping recorded below.
+- active implementation/verification interval: 2026-10-05 05:23:34РІР‚вЂњ05:43:58 UTC, about 20m24s before report/commit/hosted CI. CI waiting excluded; final bookkeeping recorded below.
 - verification correction cycles: 3 (reverse-order slot expectation, adapter test using domain entity_id rather than native action handle, and hosted-CI intrinsic-vs-granted metadata guard failure); production core semantic fixes: 0; shared adapter metadata fix: 1.
 - builds: 4 incremental builds; no clean build and no Rosetta rebuild.
 
@@ -48,7 +48,7 @@ All Phase 4E, 4E.1 Dark Gift and Phase 4F groups retained. Native coverage inclu
 Domain schema **16** and Policy **v3** unchanged. Existing public Reborn flag semantics retained; adapter now exports the active flag on both boards. Added stable evidence ID changes observation source fingerprint:
 
 `33ce5685f7aa926a0f604e8e2f2d1efa1e52d11de9b2d9afbee0228664b7f8dd`
-в†’ `9ec9e5a13c1a1aa54a3733bfed4513f13a2795b18ad85b3212a879baba13aaa5`.
+РІвЂ вЂ™ `9ec9e5a13c1a1aa54a3733bfed4513f13a2795b18ad85b3212a879baba13aaa5`.
 
 Initial regeneration correctly reported registry/summary stale; both regenerated, subsequent check reproduced all outputs. No fingerprints copied into verification evidence and no status promoted. Canonical registry changed only current observation identity: 1185 roots, 0 current VERIFIED_SCOPED, 27 stale scoped evidence, 192 nonroot nodes, 318 unresolved pools, training eligibility 0 remain unchanged. Verified-root delta 0; closure delta 0; training delta 0.
 
@@ -63,4 +63,15 @@ The new minion-only native guard was rebuilt after the first local adapter run; 
 
 Observed timer: start 05:23:34 UTC; final local re-verification 05:49:47 UTC, 26m13s elapsed including hosted-CI discovery interval; explicit passive sleeps 60s within that interval. This is elapsed throughput, not a claim of precisely sampled CPU/active time. Hosted CI/report bookkeeping continues separately.
 
-Corrected commit hosted Source + ManaEngine Windows/Ubuntu acceptance pending observation; results will be recorded below.
+Corrected implementation: `82d7a54b5ddf314c78aa23f90551739b070bfb8c`. Actual hosted results observed at 2026-10-05 05:55:22 UTC:
+
+| Workflow / platform | Job | Result |
+|---|---|---|
+| [Source / Windows](https://github.com/MaksimOrekhov/manamind/actions/runs/37269536380/job/111633388984) | 111633388984 | SUCCESS; generated artifacts and actual pytest steps SUCCESS |
+| [Source / Ubuntu](https://github.com/MaksimOrekhov/manamind/actions/runs/37269536380/job/111633389098) | 111633389098 | SUCCESS; generated artifacts and actual pytest steps SUCCESS |
+| [ManaEngine / Windows](https://github.com/MaksimOrekhov/manamind/actions/runs/37269536369/job/111633388856) | 111633388856 | SUCCESS; CTest and adapter/Policy steps SUCCESS |
+| [ManaEngine / Ubuntu](https://github.com/MaksimOrekhov/manamind/actions/runs/37269536369/job/111633389068) | 111633389068 | SUCCESS; CTest and adapter/Policy steps SUCCESS |
+
+The first failed hosted adapter run is retained above for auditability. No failures were relabeled baseline. Final elapsed span to hosted acceptance is 31m48s; includes passive CI waiting (separate from the initial 20m24s implementation/verification interval). Reporting-only final commit follows; it does not change compiled code or observation identity.
+
+**Verdict: bounded intrinsic Reborn integration ACCEPTED.** Murmy is enabled in the experimental backend; canonical evidence/admission remains blocked where documented. STOP after report push and final Source CI. No additional cards, pool promotion or training.
