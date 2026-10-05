@@ -294,9 +294,12 @@ class Collector:
     def _process(self, info: SegmentInfo) -> str:
         key = info.start_key
         assert key is not None
+        # Authoritative completion gates every final decision. While a section is
+        # still growing, its mode lines may simply not have been written yet, so
+        # nothing about it may be persisted as terminal.
+        if info.complete_index is None:
+            return self._finish(key, SKIPPED_INCOMPLETE)
         verdict = classify_metadata(info)
-        if verdict is None and info.complete_index is None:
-            verdict = SKIPPED_INCOMPLETE
         if verdict is not None:
             return self._finish(key, verdict)
 

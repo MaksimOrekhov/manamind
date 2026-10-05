@@ -336,3 +336,83 @@ def test_no_real_raw_or_processed_data_is_tracked_and_no_log_fixtures_exist():
     except (OSError, subprocess.CalledProcessError):
         pytest.skip("git unavailable")
     assert tracked == []
+
+
+def _line_index(lines: list[str], needle: str) -> int:
+    return next(i for i, line in enumerate(lines) if needle in line)
+
+
+def _state_games(env: Env) -> dict:
+    path = env.raw / "collector_state.json"
+    return json.loads(path.read_text(encoding="utf-8"))["games"] if path.exists() else {}
+
+
+def test_create_game_before_mode_lines_stays_retryable_then_imports(env: Env):
+    full = build_game(seed=90)
+    cut = _line_index(full, "GameType=")  # CREATE_GAME and header written, mode not yet
+    path = env.write("Power.log", to_text(full[:cut]))
+    collector = env.collector()
+    collector.scan_once()
+
+    assert collector.stats.skipped == {}
+    assert _state_games(env) == {} and collector._known == {}
+    assert env.outputs() == []
+
+    path.write_text(to_text(full), encoding="utf-8")  # rest of the match arrives
+    collector.scan_once()
+    assert collector.stats.matches_imported == 1
+    assert collector.stats.skipped == {}
+
+
+def test_only_one_of_game_type_and_format_stays_retryable(env: Env):
+    full = build_game(seed=91)
+    cut = _line_index(full, "FormatType=")  # GameType written, FormatType not yet
+    path = env.write("Power.log", to_text(full[:cut]))
+    collector = env.collector()
+    collector.scan_once()
+    assert collector.stats.skipped == {} and _state_games(env) == {}
+
+    path.write_text(to_text(full), encoding="utf-8")
+    collector.scan_once()
+    assert collector.stats.matches_imported == 1
+
+
+def test_wrong_mode_is_not_decided_until_the_game_completes(env: Env):
+    full = build_game(seed=92, game_type="GT_CASUAL")
+    cut = _line_index(full, "tag=PLAYSTATE")
+    path = env.write("Power.log", to_text(full[:cut]))
+    collector = env.collector()
+    collector.scan_once()
+    assert collector.stats.skipped == {} and _state_games(env) == {}
+
+    path.write_text(to_text(full), encoding="utf-8")
+    collector.scan_once()
+    assert collector.stats.skipped == {cpl.SKIPPED_NOT_RANKED: 1}
+
+
+def test_missing_or_conflicting_metadata_is_terminal_only_after_completion(env: Env):
+    clock = Clock()
+    missing = build_game(seed=93, game_type=None, format_type=None, clock=clock)
+    conflicting = build_game(seed=94, extra_meta=["FormatType=FT_WILD"], clock=clock)
+    env.write("Power.log", to_text(missing, conflicting))
+    collector = env.collector()
+    collector.scan_once()
+
+    assert collector.stats.skipped == {cpl.SKIPPED_METADATA_AMBIGUOUS: 2}
+    assert set(_state_games(env).values()) == {cpl.SKIPPED_METADATA_AMBIGUOUS}
+    assert env.outputs() == []
+
+
+def test_completed_casual_and_wild_keep_their_final_skip_statuses(env: Env):
+    clock = Clock()
+    casual = build_game(seed=95, game_type="GT_CASUAL", clock=clock)
+    wild = build_game(seed=96, format_type="FT_WILD", clock=clock)
+    env.write("Power.log", to_text(casual, wild))
+    collector = env.collector()
+    collector.scan_once()
+
+    assert collector.stats.skipped == {cpl.SKIPPED_NOT_RANKED: 1, cpl.SKIPPED_NOT_STANDARD: 1}
+    assert sorted(_state_games(env).values()) == sorted(
+        [cpl.SKIPPED_NOT_RANKED, cpl.SKIPPED_NOT_STANDARD]
+    )
+    assert env.outputs() == []
