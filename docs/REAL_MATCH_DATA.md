@@ -75,6 +75,40 @@ To validate imported rows, remove identical match trajectories, and make train/v
 
 The default output is `data/processed_real/pilot_splits/`, which Git ignores. The script writes `train.jsonl`, `validation.jsonl`, `test.jsonl`, and `report.json`. It balances match outcomes across the three parts when the sample allows it. With only ten matches, these splits are for checking the pipeline; validation and test metrics will be very uncertain and are not evidence of playing strength. This preparation step does not train or overwrite a model checkpoint.
 
+## Value training readiness and fixed snapshots
+
+Before preparing a training snapshot, audit the collected examples and current
+model path:
+
+```powershell
+python scripts/audit_real_training_readiness.py --input-dir <processed-real-dir> --cards data/cards/standard_current_enUS.json
+```
+
+The audit deserializes every row, checks SELF perspective, source and labels,
+sample and match integrity, encodes all states, and runs a finite ValueNetwork
+batch forward pass. Unknown visible card IDs use the encoder's shared UNK
+identity and are reported only as aggregate counts. A successful forward pass
+means **pipeline compatible**; it does not mean the data is statistically
+large enough or that the model is good.
+
+The collector may still be writing into `data/processed_real/`. Do not train
+from that live directory. Prepare a new output directory as a fixed snapshot,
+inspect its `report.json`, and keep the snapshot unchanged through training:
+
+```powershell
+python scripts/prepare_real_dataset.py --input-dir <processed-real-dir> --output-dir <snapshot-dir> --seed 42
+python scripts/train_real_value.py --dataset-dir <snapshot-dir> --checkpoint <new-candidate-checkpoint> --cards data/cards/standard_current_enUS.json --epochs 20 --batch-size 128 --seed 42
+```
+
+The training wrapper requires a prepared snapshot with train, validation and
+test files, rejects missing IDs, invalid labels, wrong source or perspective,
+duplicate sample IDs and cross-split match leakage, and delegates to the
+existing training pipeline. Always choose a new candidate checkpoint path. It
+refuses to overwrite an existing checkpoint unless `--overwrite-checkpoint`
+is explicitly provided; it never promotes a model. The optional `--smoke` flag
+runs one epoch and suppresses model-quality metrics. It is only a plumbing
+check.
+
 ## Future simulator evidence loop (not implemented)
 
 The current Power.log importer captures completed match observations and
