@@ -25,6 +25,21 @@ Only Mage hero-power sessions are admitted to ordinary development simulation. C
 
 Full-state `clone()` is allowed for authoritative simulation, environment branching and deterministic tests. BEFORE MCTS, real-game search or search-generated targets, implement an information-set/determinized search-state boundary. Never use the present full-information clone to select real-game actions. This checkpoint does not implement determinized clone or authorize search/training.
 
+Phase 4K.1 `attempt_action` executes a canonical legal action on a clone and
+exports a valid result from a fixed root seat. Its four outcomes are
+`COMPLETED`, `UNSIMULATABLE`, `ILLEGAL` and `ENGINE_DEFECT`; only
+`UNSIMULATABLE` has `fallback_eligible=True`, with no fallback consumer yet.
+A completed `REVIEWED_INFERRED` transition retains evidence debt and remains
+blocked for canonical training. Failed attempts expose diagnostics only, with
+no state/child or transition evidence.
+
+The result and even its outcome can depend on hidden deck/RNG state in the
+full-information clone. For example, `END_TURN` may become unsimulatable
+because an opponent hidden draw is unsupported. The retained child is an
+internal full-information handle, not a visible model feature or permission
+for live-root decision-making. Native defect classification remains a Python
+heuristic with incomplete recall pending Phase 4K.1b.
+
 ## Observation scope
 
 The current value-state encoder version is `STATE_ENCODING_SCHEMA_VERSION = 16` in `src/manamind/encoding/state_encoder.py`. Version 16 includes public cast counts/discounts and missing-value masks, timed effect identities/durations, SELF held progress, per-instance trigger availability, Prepare-used state, Freeze duration, SELF pending Choice candidates, and both players' current/previous own-turn minion-type presence. Type history is a canonical semantic set with UNKNOWN distinct from known empty; it contains no card/event log or entity identities. Version 15 was the preceding state contract; checkpoints with a different state-encoding schema are incompatible. The Rosetta policy action contract has a separate `POLICY_ACTION_SCHEMA_VERSION = 3` in `src/manamind/integrations/rosettastone/policy.py`. Hidden opponent choice identities, hand/deck identities, RNG state, deck order and internal activation sequence are excluded. Legal action descriptors carry effective selected-card cost. A public-state audit is not a declaration of complete Hearthstone Markov coverage: disputed ordering and future unsupported mechanics still block complete rules/admission evidence.

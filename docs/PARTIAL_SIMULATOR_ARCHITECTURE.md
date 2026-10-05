@@ -86,16 +86,19 @@ must never learn from poisoned or fabricated afterstates.
   `STATE_ENCODING_SCHEMA_VERSION = 16`; the Python source constant is
   authoritative. Current Rosetta policy-action schema is
   `POLICY_ACTION_SCHEMA_VERSION = 3`. They version different contracts.
+- Phase 4K.1 implements `attempt_action` and the typed `SimulationAttempt`
+  adapter boundary: canonical legality check, isolated clone execution, fixed
+  root-seat export, and four outcomes. Only completed valid branches expose a
+  state/optional child. The native defect classifier is heuristic, not exact.
 
 ### ACCEPTED TARGET
 
 - A supported transition may expose a child only after it completes in a
   valid, quiescent state. An unsimulatable action has no fabricated child
   state; a future evaluator may score the state/action pair directly.
-- A future typed simulation boundary must distinguish completed, ordinary
-  unsimulatable and illegal outcomes, retain rules/evidence provenance and
-  diagnostic reason, and expose a resulting state only on safe completion.
-  Internal defects remain distinguishable from ordinary unsupported rules.
+- Future native failure typing must improve `ENGINE_DEFECT` separation beyond
+  the implemented Phase 4K.1 Python heuristic, preserving evidence provenance
+  and never exposing a poisoned child.
 - Runtime may use explicitly approved finite, bounded inferred behavior while
   preserving evidence debt. This does not verify the rule or admit the result
   to canonical training.
@@ -109,8 +112,8 @@ must never learn from poisoned or fabricated afterstates.
 
 ### FUTURE / NOT IMPLEMENTED
 
-There is no typed `SimulationAttempt` API, `ENGINE_DEFECT` result type,
-`Q_fallback`, unknown-ID robustness-training pipeline, arbitrary observed-live
+There is no exact native failure taxonomy, `Q_fallback`, unknown-ID
+robustness-training pipeline, arbitrary observed-live
 state importer, belief/determinization layer, Beam/MCTS integration, live
 replay comparator, automatic mechanic-discovery service, evidence-bundle
 generator or patch-drift detector. The names and ordering in this document do
@@ -157,15 +160,16 @@ Record at least these axes independently:
 
 | Axis | Examples | What it does not prove |
 |---|---|---|
-| Simulation outcome | `COMPLETED`, `UNSIMULATABLE`, `ILLEGAL` (future typed contract) | Rules verification or model confidence |
+| Simulation outcome | `COMPLETED`, `UNSIMULATABLE`, `ILLEGAL`, `ENGINE_DEFECT` (implemented adapter contract) | Rules verification or model confidence |
 | Rules/evidence basis | reviewed contract, `REVIEWED_INFERRED`, active `EvidenceConstraint` | Dependency closure or training permission |
 | Dependency/training | dependency `OPEN`/`CLOSED`; canonical training allowed/blocked | That a single transition is mechanically executable |
 | Model uncertainty | future OOD, epistemic uncertainty, calibration | Simulator correctness or rules evidence |
 
-Current APIs do not yet expose the complete typed outcome model in this table.
-Today they include `is_valid`, `unsupported_outcome`, evidence constraints,
-exceptions and `training_eligible`; treat each according to its actual
-contract, not as a substitute for a future unified result type.
+`SimulationAttempt` now exposes the typed action-attempt outcomes. Native
+session APIs still use `is_valid`, `unsupported_outcome`, evidence constraints,
+exceptions and `training_eligible`. Native reasons are not yet typed, so the
+adapter's `ENGINE_DEFECT` classification has incomplete recall until Phase
+4K.1b. Registry/dependency status and model confidence stay outside this result.
 
 ## 7. `REVIEWED_INFERRED`
 
@@ -214,21 +218,46 @@ An ordinary unsupported transition is distinct from an engine defect. Future
 fallback may handle the former under explicit policy; it must not conceal or
 score the latter as though it were expected model uncertainty.
 
-## 10. `SimulationAttempt` target contract
+## 10. `SimulationAttempt` adapter contract
 
-**ACCEPTED TARGET — not implemented.** A future adapter boundary may be typed
-conceptually as a simulation attempt with separate fields for:
+**IMPLEMENTED — Phase 4K.1.** `attempt_action(parent, action,
+perspective=None, retain_child=True)` checks the six native execution fields
+strictly, selects the canonical action from native legality enumeration, then
+applies it on a clone. Caller metadata does not reach native apply. The parent
+state and RNG are unchanged. Invalid parents raise `InvalidParentSession`;
+invalid perspectives raise `ValueError`; `MemoryError`, `KeyboardInterrupt`
+and `SystemExit` propagate.
 
-- outcome/status;
-- resulting state, present only after safe completion;
-- rules/evidence basis and active evidence constraints;
-- unsupported or illegal reason;
-- engine-defect classification;
-- diagnostics that cannot be mistaken for a valid child.
+The default perspective resolves the acting root seat once. Explicit
+perspectives are `PLAYER1`/`PLAYER2`. The returned state is always exported
+from that fixed seat, including after `END_TURN`; public `apply_action`
+continues returning the post-action ACTIVE-seat view.
 
-Likely outcomes include completed, unsimulatable and illegal. Exact names,
-class layout and error plumbing belong to a future implementation review.
-`ENGINE_DEFECT` must remain distinguishable from an unsupported card effect.
+| Outcome | Safe state/child | `fallback_eligible` |
+|---|---|---|
+| `COMPLETED` | State required; child optional with `retain_child=False` | false |
+| `UNSIMULATABLE` | Neither exists; immutable diagnostics required | true |
+| `ILLEGAL` | Neither exists | false |
+| `ENGINE_DEFECT` | Neither exists | false |
+
+Completion evidence equals the exported `GameState.evidence_constraints`.
+Failure evidence exists only in `diagnostics.evidence_at_failure`, with no
+transition evidence or usable child. Diagnostics retain scalar exception and
+unsupported text, evidence strings and at most 32 trace rows; no session or
+native object references.
+
+The temporary defect heuristic recognizes normalized post-mutation exception
+messages, exact damage-group catch-all reasons and violated validity/export
+postconditions. Some native reject/direct-throw sites can still classify a true
+defect as unsupported. This accepted incomplete recall belongs to Phase 4K.1b;
+it is not exact native typing. No fallback routing/scoring is implemented.
+
+A retained child is a full-information internal simulator handle, excluded
+from result repr/equality, never a model input or live observation. Even an
+attempt outcome may depend on hidden deck/RNG state: `END_TURN` can fail when
+the opponent's next hidden draw is unsupported. A sampled chance transition
+is one outcome, not an expected value. No live-root decision-making is
+authorized; it needs a reviewed information-set/determinization boundary.
 
 ## 11. Neural fallback and action values
 
@@ -379,7 +408,7 @@ manifests never self-expand from one event.
 This is current planning direction, not a frozen interface or a promise that
 each stage must be implemented in this exact order:
 
-1. **Phase 4K.1:** typed simulation result and safe adapter boundary.
+1. **Phase 4K.1 (implemented):** typed simulation result and safe adapter boundary.
 2. **Phase 4K.1b:** typed unsupported reasons and `ENGINE_DEFECT` separation.
 3. **Phase 4K.1c:** safe unsupported-held-card semantics.
 4. **Phase 4K.2:** unknown/new identity and generic action representation.

@@ -15,10 +15,35 @@ training. Unsupported outcomes are not removed from pools and are not rerolled.
 The simulator fails closed when a selected transition is unsupported.
 
 The implementation described below is scoped to its current card catalog and
-session lifecycle. Terms such as a typed `SimulationAttempt`, live-root import,
-or `Q_fallback` refer to future architecture unless a later section identifies
-an implemented API. These docs do not authorize a Phase 4K implementation or
-training run.
+session lifecycle. Phase 4K.1 implements the `SimulationAttempt` adapter API;
+live-root import and `Q_fallback` remain future work. These docs do not
+authorize additional Phase 4K implementation or training.
+
+## Attempt API (Phase 4K.1)
+
+`attempt_action(parent, action, perspective=None, retain_child=True)` checks
+native legality by the six execution fields and applies the canonical native
+action on a clone. It preserves parent state/RNG and exports from a fixed
+root seat (`PLAYER1` or `PLAYER2`), resolved once from the acting parent when
+omitted. `apply_action` keeps its existing post-action ACTIVE-seat behavior.
+
+The frozen `SimulationAttempt` has four outcomes: `COMPLETED`,
+`UNSIMULATABLE`, `ILLEGAL`, `ENGINE_DEFECT`. Only completion contains a
+visible state and optional child; only `UNSIMULATABLE` is eligible for future
+fallback. There is no fallback routing or scoring. Failure diagnostics contain
+strings/tuples only, including failure evidence and at most 32 trace rows.
+
+Completed inferred Fire outcomes retain `FIRE_POOL_MEMBERSHIP_INFERRED` in
+state/result evidence. Unsupported sampled outcomes fail without reroll and
+carry failure evidence only in diagnostics. Neither changes training gates.
+The defect classifier is a temporary Python message/postcondition heuristic
+with incomplete recall; exact native typing is deferred to Phase 4K.1b.
+
+A retained child is full-information internal simulation infrastructure,
+excluded from repr/equality; it is not a model feature or live observation.
+An attempt outcome may itself depend on hidden state (for example an
+unsupported opponent next draw). A chance transition is one sampled result,
+not an expectation. No live-root use or live search is authorized.
 
 ## State and event contract
 

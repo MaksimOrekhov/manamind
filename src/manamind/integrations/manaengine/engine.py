@@ -49,6 +49,22 @@ class UnsupportedSimulationError(RuntimeError):
     """The requested branch reached card behavior without a verified implementation."""
 
 
+_EXECUTION_FIELDS = ("type", "hand_index", "attacker_entity_id", "target_entity_id", "choice_index", "choose_one")
+
+
+def _execution_key(action: Mapping[str, Any]) -> tuple[str, int, int, int, int, int]:
+    """Match native Action::execution_equal, without coercion or semantic metadata."""
+    if not isinstance(action, Mapping) or not isinstance(action.get("type"), str) or not action["type"]:
+        raise ValueError("action must be a mapping with a nonempty string type")
+    values = [action["type"]]
+    for name in _EXECUTION_FIELDS[1:]:
+        value = action.get(name, 0 if name == "choose_one" else -1)
+        if type(value) is not int:
+            raise ValueError(f"{name} must be an integer (not bool, float or string)")
+        values.append(value)
+    return tuple(values)
+
+
 def _load_native() -> ModuleType:
     global _NATIVE
     if _NATIVE is not None:
@@ -396,12 +412,32 @@ class ManaEngineSession:
             actions.append(action)
         return tuple(actions)
 
-    def apply_action(self, action: dict[str, Any]) -> GameState:
+    def _legal_execution_keys(self) -> dict[tuple[str, int, int, int, int, int], dict[str, Any]]:
+        """Enumerate canonical native actions, without observation enrichment."""
+        try:
+            raw_actions = self._native.legal_actions()
+        except self._unsupported_exception as exc:
+            raise UnsupportedSimulationError(str(exc)) from exc
+        result = {}
+        for raw in raw_actions:
+            action = dict(raw)
+            key = _execution_key(action)
+            if key in result:
+                raise RuntimeError("native legal actions contain a duplicate execution key")
+            result[key] = action
+        return result
+
+    def _apply_raw(self, action: Mapping[str, Any]) -> dict[str, Any]:
+        """Apply on this session and return the post-action ACTIVE-seat dictionary."""
         try:
             raw = self._native.apply_action(dict(action))
         except self._unsupported_exception as exc:
             raise UnsupportedSimulationError(str(exc)) from exc
-        return _export_state(dict(raw), self.evidence_constraints, self._card_metadata)
+        return dict(raw)
+
+    def apply_action(self, action: dict[str, Any]) -> GameState:
+        """Mutate this session; return the post-action ACTIVE-seat view (also after END_TURN)."""
+        return _export_state(self._apply_raw(action), self.evidence_constraints, self._card_metadata)
 
     def clone(self) -> "ManaEngineSession":
         duplicate = object.__new__(ManaEngineSession)
