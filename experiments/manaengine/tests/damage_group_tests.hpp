@@ -33,6 +33,14 @@ void test_damage_group_failure_funnel(){ // remediation: T01/T02/T03 and the pub
  check(!g.is_valid()&&g.unsupported_outcome().value_or("").find("action failed after mutation")!=std::string::npos&&g.unsupported_outcome().value_or("").find("cannot heal")!=std::string::npos,"T03 funnel poisons with a stable diagnostic carrying the original reason");
  check(TestAccess::player(g,1).board[0].health==0&&TestAccess::player(g,0).hand.empty()&&TestAccess::frame_depth(g)==0,"T03 mutation retained diagnostically");
  check_poisoned_surface(g,"T03");
+ // A malformed synthetic Secret reaches std::invalid_argument only after the opponent's minion play mutates state.
+ auto exception_defs=catalog();auto malformed_secret=def("TEST_POST_MUTATION_LOGIC_ERROR","SPELL",1,0,0);malformed_secret.secret=true;malformed_secret.secret_trigger="OPPONENT_PLAYS_MINION";malformed_secret.secret_effect="INVALID_TEST_EFFECT";exception_defs.push_back(malformed_secret);
+ GameSession standard(deck,deck,exception_defs,124,false,"MAGE","MAGE");TestAccess::reset(standard);TestAccess::hand(standard,0,"TEST_POST_MUTATION_LOGIC_ERROR");standard.apply_action(play_action_for(standard,"TEST_POST_MUTATION_LOGIC_ERROR"));TestAccess::active(standard,1);TestAccess::player(standard,1).mana=10;TestAccess::hand(standard,1,"TEST_FILLER");
+ auto standard_rng_shadow=standard.clone();const auto expected_standard_rng=TestAccess::rng_values(*standard_rng_shadow,3);bool normalized_logic_error=false;std::string original_reason;
+ try{standard.apply_action(play_action_for(standard,"TEST_FILLER"));}catch(const UnsupportedSimulationError& e){normalized_logic_error=true;original_reason=e.what();}catch(...){ }
+ check(normalized_logic_error&&original_reason.find("unknown Secret effect")!=std::string::npos,"T03 std::logic_error becomes native UnsupportedSimulationError with original reason");
+ check(!standard.is_valid()&&TestAccess::player(standard,1).board.size()==1&&TestAccess::player(standard,1).hand.empty()&&TestAccess::frame_depth(standard)==0,"T03 post-mutation state retained and damage frames cleared");
+ check(TestAccess::rng_values(standard,3)==expected_standard_rng,"T03 standard-exception normalization does not change RNG state");check_poisoned_surface(standard,"T03 standard exception");
  // RNG consumed before a later bare throw stays consumed.
  auto rdefs=catalog();auto rbad=def("TEST_RANDOM_THEN_HEAL","SPELL",1,0,0,"EFFECT_COMPOSITION");rbad.effects={effect(EffectKind::Damage,TargetSelector::RandomEnemyMinion,1),effect(EffectKind::Heal,TargetSelector::ExplicitCharacter,1)};rdefs.push_back(rbad);
  GameSession r(deck,deck,rdefs,123,false,"MAGE","MAGE");TestAccess::reset(r);TestAccess::hand(r,0,"TEST_RANDOM_THEN_HEAL");const int only=TestAccess::minion(r,1,"POOL_LOW_A",1,1);auto shadow=r.clone();TestAccess::bounded_values(*shadow,{1});

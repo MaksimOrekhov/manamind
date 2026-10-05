@@ -1300,3 +1300,76 @@ def test_poisoned_session_accessors_are_adapter_errors_not_native_state() -> Non
     for name in ("result", "is_complete", "needs_choice", "choice_options"):
         with pytest.raises(UnsupportedSimulationError):
             getattr(session, name)
+
+
+def test_post_mutation_standard_exception_is_normalized_at_adapter_boundary() -> None:
+    from manamind.integrations.manaengine.engine import (
+        _definition_rows,
+        _load_native,
+    )
+
+    native = _load_native()
+    definitions = _definition_rows()
+    secret = next(d for d in definitions if d.card_id == "CORE_LOOT_101")
+    # Synthetic malformed runtime text passes declarative catalog validation and fails
+    # with std::invalid_argument only after an opponent minion has entered play.
+    secret.ability = "NONE"
+    secret.support_state = "VERIFIED_VANILLA"
+    secret.rules_contract_reviewed = True
+    secret.required_mechanics = []
+    secret.cost = 1
+    secret.secret = True
+    secret.secret_trigger = "OPPONENT_PLAYS_MINION"
+    secret.secret_effect = "INVALID_TEST_EFFECT"
+    manifest = _native_dark_gift_manifests(native)[0]
+
+    filler_definition = next(
+        d for d in definitions
+        if d.card_type == "MINION" and d.support_state == "VERIFIED_VANILLA"
+        and d.cost <= 2 and d.attack > 0 and d.health > 0
+    )
+    filler_definition.race = ""
+    filler_definition.minion_types = []
+    filler = filler_definition.card_id
+    catalog = native.CardCatalog(definitions, [], "", "", [manifest])
+    secret_deck = ["CORE_LOOT_101", *([filler] * 29)]
+    opponent_deck = [filler] * 30
+    session = ManaEngineSession(
+        secret_deck, opponent_deck, player1_class="MAGE", player2_class="MAGE", shuffle=False
+    )
+    session._unsupported_exception = native.UnsupportedSimulationError
+    session._native = native.GameSession(
+        secret_deck, opponent_deck, catalog, 31, False, "MAGE", "MAGE"
+    )
+
+    # Invalid user input is checked before execution and leaves the session usable.
+    with pytest.raises(ValueError):
+        session.apply_action({"type": "ATTACK", "attacker_entity_id": 99999, "target_entity_id": 2})
+    assert session.is_valid
+    assert session.observation() and session.legal_actions()
+
+    secret_action = next(a for a in session.legal_actions() if a.get("card_id") == "CORE_LOOT_101")
+    session.apply_action(secret_action)
+    for _ in range(8):
+        action = next(
+            (a for a in session.legal_actions() if a.get("card_id") == filler), None
+        )
+        if action is not None:
+            with pytest.raises(UnsupportedSimulationError, match="unknown Secret effect"):
+                session.apply_action(action)
+            break
+        session.apply_action(next(a for a in session.legal_actions() if a["type"] == "END_TURN"))
+    else:
+        pytest.fail("synthetic minion did not become playable")
+
+    assert not session.is_valid
+    assert "action failed after mutation" in (session.unsupported_outcome or "")
+    assert "unknown Secret effect" in (session.unsupported_outcome or "")
+    for access in (
+        session.observation,
+        session.legal_actions,
+        session.clone,
+        lambda: session.result,
+    ):
+        with pytest.raises(UnsupportedSimulationError):
+            access()

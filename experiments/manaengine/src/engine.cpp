@@ -595,8 +595,8 @@ void GameSession::stabilize(){
 void GameSession::apply_action(const Action& a){auto legal=legal_actions();state_.damage_work=0;if(std::none_of(legal.begin(),legal.end(),[&](const Action& candidate){return candidate.execution_equal(a);}))throw std::invalid_argument("action is not legal in the current position");
  try{execute_action(a);}
  catch(const UnsupportedSimulationError& e){state_.damage_frames.clear();if(!state_.unsupported)state_.unsupported=std::string("action failed after mutation: ")+e.what();throw;}
- catch(const std::exception& e){state_.damage_frames.clear();if(!state_.unsupported)state_.unsupported=std::string("action failed after mutation: ")+e.what();throw;}
- catch(...){state_.damage_frames.clear();if(!state_.unsupported)state_.unsupported="action failed after mutation: unknown exception";throw;}
+ catch(const std::exception& e){state_.damage_frames.clear();if(!state_.unsupported)state_.unsupported=std::string("action failed after mutation: ")+e.what();throw UnsupportedSimulationError(*state_.unsupported);}
+ catch(...){state_.damage_frames.clear();if(!state_.unsupported)state_.unsupported="action failed after mutation: unknown exception";throw UnsupportedSimulationError(*state_.unsupported);}
 }
 void GameSession::execute_action(const Action& a){
  trace_event(std::string("ACTION type=")+trace_action_name(a.type)+(a.card_id.empty()?std::string{}:" card="+a.card_id));
