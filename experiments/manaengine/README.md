@@ -26,9 +26,25 @@ Generation (TakesDamage) reactions inside hero-containing areas, combat and comp
 Secrets remain guarded where ordering is unreviewed. A first-spell-damage (Raincaller)
 reaction is a separate, order-insensitive family and is supported alongside them; one
 entity being both consumer and watcher stays unsupported.
-Vulcanos's Fire pool and Arcane Barrage remain blocked. Scope, tests and remaining
+Vulcanos's Fire pool remains blocked. Scope, tests and remaining
 limits are recorded in `reports/manaengine_damage_group_20261005/COMPLETION.md`,
 `REMEDIATION_SONNET.md` and the mortality table in `MORTALITY_POLICY.md`.
+
+Random-distinct Damage (Phase 4I.1, bounded): the declarative selectors
+`RANDOM_DISTINCT_ENEMY_CHARACTERS` / `RANDOM_DISTINCT_ENEMY_MINIONS` with `random_count` (1..3) and
+`exclude_previous_target` sample `min(random_count, n)` enemies without replacement by a simulator-owned
+partial Fisher-Yates (`bounded_random(n-i)`, no reroll, `n = 0` draws nothing) over a stable candidate
+snapshot (enemy hero, then enemy board left to right; mortally wounded minions and the excluded explicit
+target removed; Stealth, Immune and Divine Shield stay eligible). Extras are one ApplyAll damage group
+with a single `CURRENT_AT_STEP` Spell Damage evaluation; the outer spell boundary owns deaths. The selector
+is valid only for a spell Damage step and malformed combinations fail closed at catalog load.
+Arcane Barrage (`TIME_855`) is declared with it (explicit enemy damage 3, then two other random enemies for 2)
+and records `ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED` whenever its extras instruction executes, including
+with zero candidates. The constraint is a typed declaration on the step, not a card-ID branch, covers only
+hero membership, distinctness and insufficient-candidate behavior (not topology), never poisons the branch and
+blocks canonical training admission. A generation consumer beside a hero extra stays guarded. The rules contract
+and its evidence debt are in `reports/manaengine_arcane_barrage_20261005/ARCANE_BARRAGE_RULES_EVIDENCE.md` and
+`IMPLEMENTATION_COMPLETION.md`. Focused native run: `manaengine_tests --arcane-barrage`.
 
 Failure funnel: `apply_action()` rejects illegal input before any mutation and leaves the
 session valid. Any failure after execution starts poisons the session (first reason kept),

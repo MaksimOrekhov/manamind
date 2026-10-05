@@ -14,7 +14,9 @@ namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell, BuffMinion, ModifyWeaponAttack };
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon };
+// Append-only: numeric identities are stable. The RandomDistinct* selectors sample min(random_count,n) enemies without
+// replacement (see EffectStep::random_count); the selector alone decides whether the enemy hero is a candidate.
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon, RandomDistinctEnemyCharacters, RandomDistinctEnemyMinions };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
@@ -28,7 +30,9 @@ enum class PoolExclusionStatus { ReviewedExcluded, Unresolved };
 enum class PoolExclusionKind { Quest, Rune, NonGeneratable, ClassPolicy, NeutralPolicy, EventPolicy, Alias, Ban, Other };
 enum class DarkGiftRuntimeMembershipStatus { Unresolved };
 enum class DarkGiftSamplerStatus { Unverified };
-enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified, MortalQueuedEotSourceUnverified };
+// ArcaneBarrageTargetingContractUnverified covers only enemy-hero pool membership, distinct sampling and
+// insufficient-candidate semantics (k=min(2,n), n=0 included). It does not cover Arcane Barrage topology.
+enum class EvidenceConstraint { DarkGiftSamplerUnverified, DarkGiftRuntimeMembershipUnresolved, RebornMultiDeathSlotUnverified, MortalQueuedEotSourceUnverified, ArcaneBarrageTargetingContractUnverified };
 const char* evidence_constraint_id(EvidenceConstraint constraint);
 struct PoolPredicate { PoolPredicateKind kind=PoolPredicateKind::StandardSpellSchool; std::string school; int base_cost=-1; PoolClassPolicy class_policy=PoolClassPolicy::AnyClass; };
 struct PoolExclusion { PoolExclusionKind category=PoolExclusionKind::Other; PoolExclusionStatus status=PoolExclusionStatus::Unresolved; std::vector<std::string> card_ids; std::string rationale, evidence_ref; };
@@ -57,7 +61,10 @@ std::string pool_membership_sha256(const std::vector<std::string>& card_ids);
 std::string pool_predicate_rules_fingerprint(const PoolManifest& manifest);
 void validate_pool_manifest(const PoolManifest& manifest);
 void validate_dark_gift_option_manifest(const DarkGiftOptionManifest& manifest);
-struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; SummonCondition summon_condition=SummonCondition::None; int conditional_extra_count=0; DiscardSpellSchool discard_school=DiscardSpellSchool::None; bool requires_previous_discard=false; };
+// Random-distinct Damage fields (valid only with a RandomDistinct* selector): random_count in 1..3 targets sampled
+// without replacement; exclude_previous_target removes the card's explicit target (bound by an earlier explicit Damage
+// step) from the candidates; evidence_constraint is the reviewed debt recorded whenever the instruction executes.
+struct EffectStep { EffectKind kind=EffectKind::Damage; TargetSelector target=TargetSelector::ExplicitCharacter; int amount=0; bool lifesteal=false; std::string summon_card; SummonCondition summon_condition=SummonCondition::None; int conditional_extra_count=0; DiscardSpellSchool discard_school=DiscardSpellSchool::None; bool requires_previous_discard=false; int random_count=0; bool exclude_previous_target=false; std::optional<EvidenceConstraint> evidence_constraint; };
 class UnsupportedSimulationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
@@ -334,6 +341,7 @@ private:
     void assign_activation_sequence(CardInstance& source);
     void resolve_end_turn_reactions(int owner);
     int resolve_effects(const CardDefinition& def,const SpellEffectContext& context,int target_id);
+    int resolve_random_distinct_damage(const CardDefinition& def,const SpellEffectContext& context,const EffectStep& step,int previous_target);
     void begin_discover(int owner,const CardDefinition& source);
     [[noreturn]] void reject_unsupported(std::string reason);
     bool dark_gift_eligible(const CardDefinition& minion,const CardDefinition& gift) const;

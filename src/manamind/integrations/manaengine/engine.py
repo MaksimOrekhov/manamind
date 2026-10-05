@@ -12,7 +12,7 @@ from typing import Any, Sequence
 
 from manamind.cards.catalog import CardCatalog
 from manamind.domain.card import CardFeatures
-from manamind.domain.game_state import GameState
+from manamind.domain.game_state import EVIDENCE_CONSTRAINT_IDS, GameState
 from manamind.domain.serialization import game_state_from_dict
 from manamind.integrations.manaengine.pool_manifest import load_dark_gift_option_manifest
 
@@ -61,6 +61,57 @@ def _load_native() -> ModuleType:
     spec.loader.exec_module(module)
     _NATIVE = module
     return module
+
+
+_EFFECT_KINDS = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED", "DESTROY_MINION", "HEAL", "HEAL_MINION_TO_FULL", "BUFF_FRIENDLY_MINIONS", "DISCARD_RANDOM_SPELL", "BUFF_MINION", "MODIFY_WEAPON_ATTACK"}
+_TARGET_SELECTORS = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "EXPLICIT_DAMAGED_ENEMY_MINION", "EXPLICIT_FRIENDLY_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "ALL_MINIONS", "SELF_HERO", "SELF", "RANDOM_ENEMY_MINION", "EXPLICIT_DAMAGED_MINION", "FRIENDLY_WEAPON", "RANDOM_DISTINCT_ENEMY_CHARACTERS", "RANDOM_DISTINCT_ENEMY_MINIONS"}
+
+
+def _parse_effect_steps(native: ModuleType, card_id: str, raw_effects: Any) -> list[Any]:
+    """Declaration -> native EffectStep list; unknown fields and malformed typed values fail closed."""
+    if not isinstance(raw_effects, list):
+        raise ValueError(f"effects must be a list for {card_id}")
+    native_effects = []
+    for effect in raw_effects:
+        if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card", "summon_condition", "conditional_extra_count", "discard_school", "requires_previous_discard", "random_count", "exclude_previous_target", "evidence_constraint"}:
+            raise ValueError(f"effect requires kind, target, amount, and only supported optional fields for {card_id}")
+        kind = str(effect["kind"]).upper()
+        target = str(effect["target"]).upper()
+        if kind not in _EFFECT_KINDS or target not in _TARGET_SELECTORS:
+            raise ValueError(f"unknown effect kind/target for {card_id}: {kind}/{target}")
+        native_effect = native.EffectStep()
+        native_effect.kind = getattr(native.EffectKind, kind)
+        native_effect.target = getattr(native.TargetSelector, target)
+        native_effect.amount = int(effect["amount"])
+        native_effect.lifesteal = bool(effect.get("lifesteal", False))
+        native_effect.summon_card = str(effect.get("summon_card", ""))
+        summon_condition = str(effect.get("summon_condition", "NONE")).upper()
+        if summon_condition not in {"NONE", "HOLDING_DRAGON"}:
+            raise ValueError(f"unknown summon_condition for {card_id}: {summon_condition}")
+        native_effect.summon_condition = getattr(native.SummonCondition, summon_condition)
+        native_effect.conditional_extra_count = int(effect.get("conditional_extra_count", 0))
+        discard_school = str(effect.get("discard_school", "NONE")).upper()
+        if discard_school not in {"NONE", "NATURE", "FIRE"}:
+            raise ValueError(f"unknown discard_school for {card_id}: {discard_school}")
+        native_effect.discard_school = getattr(native.DiscardSpellSchool, discard_school)
+        native_effect.requires_previous_discard = bool(effect.get("requires_previous_discard", False))
+        # Random-distinct fields are copied strictly (no int()/bool() coercion) so a malformed declaration
+        # fails here or in native catalog validation instead of being silently dropped or reinterpreted.
+        random_count = effect.get("random_count", 0)
+        if isinstance(random_count, bool) or not isinstance(random_count, int):
+            raise ValueError(f"random_count must be an integer for {card_id}")
+        native_effect.random_count = random_count
+        exclude_previous = effect.get("exclude_previous_target", False)
+        if not isinstance(exclude_previous, bool):
+            raise ValueError(f"exclude_previous_target must be a boolean for {card_id}")
+        native_effect.exclude_previous_target = exclude_previous
+        if "evidence_constraint" in effect:
+            constraint = effect["evidence_constraint"]
+            if not isinstance(constraint, str) or constraint not in EVIDENCE_CONSTRAINT_IDS or not hasattr(native.EvidenceConstraint, constraint):
+                raise ValueError(f"unknown evidence_constraint for {card_id}: {constraint!r}")
+            native_effect.evidence_constraint = getattr(native.EvidenceConstraint, constraint)
+        native_effects.append(native_effect)
+    return native_effects
 
 
 def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
@@ -112,8 +163,6 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]
-    effect_kinds = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED", "DESTROY_MINION", "HEAL", "HEAL_MINION_TO_FULL", "BUFF_FRIENDLY_MINIONS", "DISCARD_RANDOM_SPELL", "BUFF_MINION", "MODIFY_WEAPON_ATTACK"}
-    target_selectors = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "EXPLICIT_DAMAGED_ENEMY_MINION", "EXPLICIT_FRIENDLY_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "ALL_MINIONS", "SELF_HERO", "SELF", "RANDOM_ENEMY_MINION", "EXPLICIT_DAMAGED_MINION", "FRIENDLY_WEAPON"}
     result = []
     for card in sorted(records.values(), key=lambda c: c.card_id):
         d = native.CardDefinition()
@@ -189,41 +238,11 @@ def _definition_rows(catalog_path: str | Path | None = None) -> list[Any]:
         raw_effects = spec.get("effects", [])
         if not isinstance(raw_effects, list):
             raise ValueError(f"effects must be a list for {card.card_id}")
-        def parse_effects(raw_effects):
-            if not isinstance(raw_effects, list):
-                raise ValueError(f"effects must be a list for {card.card_id}")
-            native_effects = []
-            for effect in raw_effects:
-                if not isinstance(effect, dict) or not {"kind", "target", "amount"} <= set(effect) or set(effect) - {"kind", "target", "amount", "lifesteal", "summon_card", "summon_condition", "conditional_extra_count", "discard_school", "requires_previous_discard"}:
-                    raise ValueError(f"effect requires kind, target, amount, and only supported optional fields for {card.card_id}")
-                kind = str(effect["kind"]).upper()
-                target = str(effect["target"]).upper()
-                if kind not in effect_kinds or target not in target_selectors:
-                    raise ValueError(f"unknown effect kind/target for {card.card_id}: {kind}/{target}")
-                native_effect = native.EffectStep()
-                native_effect.kind = getattr(native.EffectKind, kind)
-                native_effect.target = getattr(native.TargetSelector, target)
-                native_effect.amount = int(effect["amount"])
-                native_effect.lifesteal = bool(effect.get("lifesteal", False))
-                native_effect.summon_card = str(effect.get("summon_card", ""))
-                summon_condition = str(effect.get("summon_condition", "NONE")).upper()
-                if summon_condition not in {"NONE", "HOLDING_DRAGON"}:
-                    raise ValueError(f"unknown summon_condition for {card.card_id}: {summon_condition}")
-                native_effect.summon_condition = getattr(native.SummonCondition, summon_condition)
-                native_effect.conditional_extra_count = int(effect.get("conditional_extra_count", 0))
-                discard_school = str(effect.get("discard_school", "NONE")).upper()
-                if discard_school not in {"NONE", "NATURE", "FIRE"}:
-                    raise ValueError(f"unknown discard_school for {card.card_id}: {discard_school}")
-                native_effect.discard_school = getattr(native.DiscardSpellSchool, discard_school)
-                native_effect.requires_previous_discard = bool(effect.get("requires_previous_discard", False))
-                native_effects.append(native_effect)
-            return native_effects
-
         raw_effects = spec.get("effects", [])
-        d.effects = parse_effects(raw_effects)
+        d.effects = _parse_effect_steps(native, card.card_id, raw_effects)
         for field in ("choose_one_a", "choose_one_b"):
             if field in spec:
-                setattr(d, field, parse_effects(spec[field]))
+                setattr(d, field, _parse_effect_steps(native, card.card_id, spec[field]))
         result.append(d)
     by_id = {row.card_id: row for row in result}
     for definition in result:

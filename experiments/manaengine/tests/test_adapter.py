@@ -1373,3 +1373,223 @@ def test_post_mutation_standard_exception_is_normalized_at_adapter_boundary() ->
     ):
         with pytest.raises(UnsupportedSimulationError):
             access()
+
+
+# ---- Phase 4I.1: Arcane Barrage (TIME_855) bounded targeting contract -------------------------------------
+BARRAGE_CONSTRAINT = "ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED"
+
+
+def _advance_to_barrage(session: ManaEngineSession, minion: str = "TIME_006t1", limit: int = 16):
+    """Player 1 passes until Arcane Barrage is castable; player 2 plays its cheap minion whenever it can."""
+    for _ in range(limit):
+        actions = session.legal_actions()
+        if session.observation("PLAYER1").active_player == "SELF":
+            if any(a["type"] == "PLAY_CARD" and a.get("card_id") == "TIME_855" for a in actions):
+                return actions
+        else:
+            play = next((a for a in actions if a["type"] == "PLAY_CARD" and a.get("card_id") == minion), None)
+            if play is not None:
+                session.apply_action(play)
+                continue
+        session.apply_action(next(a for a in actions if a["type"] == "END_TURN"))
+    pytest.fail("Arcane Barrage did not become castable during the bounded fixture progression")
+
+
+def test_every_native_evidence_constraint_is_a_registered_domain_id() -> None:
+    from manamind.domain.game_state import EVIDENCE_CONSTRAINT_IDS
+    from manamind.integrations.manaengine.engine import _load_native
+
+    native = _load_native()
+    # One parity check for every mapping: adding a native constraint without registering its canonical ID fails here.
+    assert set(native.EvidenceConstraint.__members__) == set(EVIDENCE_CONSTRAINT_IDS)
+    assert BARRAGE_CONSTRAINT in EVIDENCE_CONSTRAINT_IDS
+
+
+def test_time_855_declaration_round_trips_to_typed_native_steps_and_promotes_nothing_else() -> None:
+    import json
+    from pathlib import Path
+
+    from manamind.integrations.manaengine.engine import _definition_rows, _load_native
+
+    native = _load_native()
+    rows = {d.card_id: d for d in _definition_rows()}
+    barrage = rows["TIME_855"]
+    assert (barrage.support_state, barrage.ability, barrage.rules_contract_reviewed) == (
+        "SUPPORTED", "EFFECT_COMPOSITION", True)
+    primary, extras = barrage.effects
+    assert (primary.kind, primary.target, primary.amount) == (
+        native.EffectKind.DAMAGE, native.TargetSelector.EXPLICIT_ENEMY_CHARACTER, 3)
+    assert (primary.random_count, primary.exclude_previous_target, primary.evidence_constraint) == (0, False, None)
+    assert (extras.kind, extras.target, extras.amount) == (
+        native.EffectKind.DAMAGE, native.TargetSelector.RANDOM_DISTINCT_ENEMY_CHARACTERS, 2)
+    assert extras.random_count == 2 and extras.exclude_previous_target is True
+    assert extras.evidence_constraint == native.EvidenceConstraint.ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED
+
+    root = Path(__file__).resolve().parents[3]
+    declarations = json.loads((root / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))["cards"]
+    # Nothing in the declaration was dropped by the Python -> native conversion.
+    assert declarations["TIME_855"]["effects"][1] == {
+        "kind": "DAMAGE", "target": "RANDOM_DISTINCT_ENEMY_CHARACTERS", "amount": 2, "random_count": 2,
+        "exclude_previous_target": True, "evidence_constraint": BARRAGE_CONSTRAINT}
+    # Only TIME_855 uses the new fields; the other real random-distinct consumers stay unpromoted, and the
+    # synthetic genericity controls exist only in native tests.
+    users = sorted(
+        card_id for card_id, d in rows.items()
+        if any(e.random_count or e.exclude_previous_target or e.evidence_constraint is not None for e in d.effects))
+    assert users == ["TIME_855"]
+    for card_id in ("FIR_909", "TIME_441", "CATA_498", "CORE_CATA_007", "TIME_611"):
+        assert card_id not in declarations
+        assert card_id not in rows or rows[card_id].support_state == "UNSUPPORTED"
+    assert not [card_id for card_id in declarations if card_id.startswith("TEST_")]
+
+
+def test_random_distinct_parser_is_strict_and_native_catalog_validation_fails_closed() -> None:
+    from manamind.integrations.manaengine.engine import _load_native, _parse_effect_steps
+
+    native = _load_native()
+    base = {"kind": "DAMAGE", "target": "RANDOM_DISTINCT_ENEMY_MINIONS", "amount": 1, "random_count": 3}
+    (step,) = _parse_effect_steps(native, "CONTROL", [base])
+    assert step.target == native.TargetSelector.RANDOM_DISTINCT_ENEMY_MINIONS and step.random_count == 3
+    for malformed, message in (
+        ({**base, "random_count": True}, "random_count must be an integer"),
+        ({**base, "random_count": 2.0}, "random_count must be an integer"),
+        ({**base, "random_count": "2"}, "random_count must be an integer"),
+        ({**base, "exclude_previous_target": 1}, "exclude_previous_target must be a boolean"),
+        ({**base, "exclude_previous_target": "true"}, "exclude_previous_target must be a boolean"),
+        ({**base, "evidence_constraint": "NOT_A_CONSTRAINT"}, "unknown evidence_constraint"),
+        ({**base, "evidence_constraint": BARRAGE_CONSTRAINT.lower()}, "unknown evidence_constraint"),
+        ({**base, "evidence_constraint": None}, "unknown evidence_constraint"),
+        ({**base, "random_distinct_count": 3}, "only supported optional fields"),
+    ):
+        with pytest.raises(ValueError, match=message):
+            _parse_effect_steps(native, "CONTROL", [malformed])
+    with pytest.raises(ValueError, match="effects must be a list"):
+        _parse_effect_steps(native, "CONTROL", base)
+
+    def spell(effects: list[dict]):
+        definition = native.CardDefinition()
+        definition.card_id, definition.card_type, definition.ability = "CONTROL", "SPELL", "EFFECT_COMPOSITION"
+        definition.support_state, definition.rules_contract_reviewed = "SUPPORTED", True
+        definition.effects = _parse_effect_steps(native, "CONTROL", effects)
+        return definition
+
+    explicit = {"kind": "DAMAGE", "target": "EXPLICIT_ENEMY_CHARACTER", "amount": 3}
+    native.CardCatalog([spell([base])])
+    native.CardCatalog([spell([explicit, {**base, "target": "RANDOM_DISTINCT_ENEMY_CHARACTERS", "random_count": 2,
+                                          "exclude_previous_target": True, "evidence_constraint": BARRAGE_CONSTRAINT}])])
+    for effects in (
+        [{**base, "random_count": 0}],
+        [{**base, "random_count": 4}],
+        [{**explicit, "random_count": 2}],
+        [{**explicit, "exclude_previous_target": True}],
+        [{**explicit, "evidence_constraint": BARRAGE_CONSTRAINT}],
+        [{**base, "exclude_previous_target": True}],
+        [{**base, "evidence_constraint": "DARK_GIFT_SAMPLER_UNVERIFIED"}],
+        [{**base, "kind": "DRAW"}],
+    ):
+        with pytest.raises(ValueError):
+            native.CardCatalog([spell(effects)])
+
+
+def test_native_engine_sources_have_no_card_id_branch_for_random_distinct_targeting() -> None:
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[1]
+    sources = [*root.glob("src/*.cpp"), *root.glob("include/**/*.hpp")]
+    assert sources
+    for path in sources:
+        text = path.read_text(encoding="utf-8")
+        for card_id in ("TIME_855", "FIR_909", "TIME_441", "CATA_498", "CORE_CATA_007", "TIME_611"):
+            assert card_id not in text, f"{path.name} must not branch on {card_id}"
+
+
+def test_arcane_barrage_adapter_session_exports_constraint_and_blocks_admission() -> None:
+    from dataclasses import asdict, replace
+
+    from manamind.cards import CardCatalog
+    from manamind.domain.serialization import game_state_from_dict
+    from manamind.encoding import StateEncoder
+    from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
+    from manamind.integrations.manaengine.engine import require_canonical_training_admission
+    from manamind.integrations.rosettastone.policy import (
+        ACTION_FEATURE_NAMES,
+        POLICY_ACTION_SCHEMA_VERSION,
+        POLICY_STATE_FEATURE_NAMES,
+    )
+
+    session = ManaEngineSession(["TIME_855", *(["CORE_EX1_145"] * 29)], ["TIME_006t1"] * 30,
+                                player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    clean_branch = session.clone()
+    actions = _advance_to_barrage(session)
+    assert session.evidence_constraints == () and session.is_valid
+
+    # Barrage is a generic targeted PlayCard: the hero plus every enemy minion, nothing on the caster's side.
+    casts = [a for a in actions if a["type"] == "PLAY_CARD" and a.get("card_id") == "TIME_855"]
+    enemy_board = [m["entity_id"] for m in session._native.observation("PLAYER1")["opponent"]["board"]]
+    assert len(enemy_board) >= 2
+    assert len(casts) == 1 + len(enemy_board)
+    assert {a["target_entity_id"] for a in casts if not a["target_is_hero"]} == set(enemy_board)
+    assert sum(1 for a in casts if a["target_is_hero"]) == 1 and not any(a["target_is_self"] for a in casts)
+    assert encode_legal_actions(actions).shape[0] == len(actions)
+    # No TIME_855-specific policy feature, and no schema bump for a new evidence ID.
+    assert POLICY_ACTION_SCHEMA_VERSION == 3 and STATE_ENCODING_SCHEMA_VERSION == 16
+    assert not [n for n in (*ACTION_FEATURE_NAMES, *POLICY_STATE_FEATURE_NAMES)
+                if "TIME_855" in n or "BARRAGE" in n.upper()]
+
+    session.set_diagnostic_trace(True)
+    cast = next(a for a in casts if not a["target_is_hero"])  # a minion primary puts the hero in the extras pool
+    state = session.apply_action(cast)
+    selection = [row for row in session.diagnostic_trace if row.startswith("RANDOM_DISTINCT_SELECTION")]
+    assert len(selection) == 1 and f"candidates={len(enemy_board)}" in selection[0] and "requested=2" in selection[0]
+
+    expected = (BARRAGE_CONSTRAINT,)
+    assert session.is_valid and not session.training_eligible
+    assert session.evidence_constraints == expected and state.evidence_constraints == expected
+    assert clean_branch.evidence_constraints == () and session.clone().evidence_constraints == expected
+    assert game_state_from_dict(asdict(state)).evidence_constraints == expected
+    assert session.observation("PLAYER1").evidence_constraints == expected
+
+    # The evidence debt blocks canonical admission on its own, independent of the global gate.
+    with pytest.raises(UnsupportedSimulationError, match=BARRAGE_CONSTRAINT):
+        session.require_training_admission()
+    with pytest.raises(UnsupportedSimulationError, match=BARRAGE_CONSTRAINT):
+        require_canonical_training_admission(session.evidence_constraints, global_gate_blocked=False)
+
+    # It is session-level debt, never a player-visible feature.
+    encoder = StateEncoder(CardCatalog.from_json("data/cards/standard_current_enUS.json"))
+    assert (encoder.encode(state).global_features
+            == encoder.encode(replace(state, evidence_constraints=())).global_features).all()
+
+
+def test_arcane_barrage_unsupported_outcome_is_normalized_and_adds_no_debt_before_the_extras() -> None:
+    from manamind.integrations.manaengine.engine import _definition_rows, _load_native
+
+    native = _load_native()
+    definitions = _definition_rows()
+    victim = next(d for d in definitions if d.card_id == "TIME_006t1")
+    # A vanilla minion that reacts to damage with a generation pool that was never loaded: the primary's reaction fails.
+    victim.takes_damage_pool_id = "UNLOADED_POOL_FOR_ADAPTER_TEST"
+    victim.takes_damage_cost_delta = -3
+    try:
+        catalog = native.CardCatalog(definitions, [], "", "", _native_dark_gift_manifests(native))
+    finally:  # keep the mutation private even if definition rows are ever shared between calls
+        victim.takes_damage_pool_id = ""
+        victim.takes_damage_cost_delta = 0
+    first_deck, second_deck = ["TIME_855", *(["CORE_EX1_145"] * 29)], ["TIME_006t1"] * 30
+    session = ManaEngineSession(first_deck, second_deck, player1_class="MAGE", player2_class="MAGE", shuffle=False)
+    session._unsupported_exception = native.UnsupportedSimulationError
+    session._native = native.GameSession(first_deck, second_deck, catalog, 31, False, "MAGE", "MAGE")
+
+    actions = _advance_to_barrage(session)
+    cast = next(a for a in actions if a["type"] == "PLAY_CARD" and a.get("card_id") == "TIME_855" and not a["target_is_hero"])
+    with pytest.raises(UnsupportedSimulationError, match="pool identity is not loaded"):
+        session.apply_action(cast)
+    # The primary's reaction failed before the extras instruction, so no targeting debt exists; the branch is invalid.
+    assert not session.is_valid and "pool identity is not loaded" in (session.unsupported_outcome or "")
+    assert session.evidence_constraints == ()
+    for access in (session.observation, session.legal_actions, session.clone):
+        with pytest.raises(UnsupportedSimulationError):
+            access()
+    for name in ("result", "is_complete", "needs_choice", "choice_options"):
+        with pytest.raises(UnsupportedSimulationError):
+            getattr(session, name)

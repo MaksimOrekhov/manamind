@@ -6,7 +6,7 @@
 #include <unordered_set>
 #include <utility>
 namespace manaengine {
-const char* evidence_constraint_id(EvidenceConstraint constraint){switch(constraint){case EvidenceConstraint::DarkGiftSamplerUnverified:return "DARK_GIFT_SAMPLER_UNVERIFIED";case EvidenceConstraint::DarkGiftRuntimeMembershipUnresolved:return "DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED";case EvidenceConstraint::RebornMultiDeathSlotUnverified:return "REBORN_MULTI_DEATH_SLOT_UNVERIFIED";case EvidenceConstraint::MortalQueuedEotSourceUnverified:return "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED";}throw std::invalid_argument("unknown evidence constraint");}
+const char* evidence_constraint_id(EvidenceConstraint constraint){switch(constraint){case EvidenceConstraint::DarkGiftSamplerUnverified:return "DARK_GIFT_SAMPLER_UNVERIFIED";case EvidenceConstraint::DarkGiftRuntimeMembershipUnresolved:return "DARK_GIFT_RUNTIME_MEMBERSHIP_UNRESOLVED";case EvidenceConstraint::RebornMultiDeathSlotUnverified:return "REBORN_MULTI_DEATH_SLOT_UNVERIFIED";case EvidenceConstraint::MortalQueuedEotSourceUnverified:return "MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED";case EvidenceConstraint::ArcaneBarrageTargetingContractUnverified:return "ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED";}throw std::invalid_argument("unknown evidence constraint");}
 namespace { bool is_minion(const CardDefinition& c){return c.card_type=="MINION";} bool is_spell(const CardDefinition& c){return c.card_type=="SPELL";} bool is_weapon(const CardDefinition& c){return c.card_type=="WEAPON";} bool is_secret(const CardDefinition& c){return c.secret;} }
 void GameSession::trace_event(std::string event){if(state_.trace_enabled)state_.trace.push_back(std::move(event));}
 void GameSession::assign_activation_sequence(CardInstance& source){source.activation_sequence=state_.next_event_sequence++;}
@@ -81,6 +81,24 @@ CardCatalog::CardCatalog(std::vector<CardDefinition> definitions,std::vector<Poo
  for(const auto& [id,d]:*cards){if(d.spell_damage<0||d.damaged_spell_damage<0||d.deathrattle_draw_count<0||d.spell_damage_attack<0||d.spell_damage_grant<0)throw std::invalid_argument("Spell Damage, trigger Attack, and deathrattle draw values cannot be negative: "+id);if((d.ability=="SPELL_DAMAGE_AURA")!=(d.damaged_spell_damage>0))throw std::invalid_argument("SPELL_DAMAGE_AURA requires a positive damaged-only Spell Damage value: "+id);if((d.ability=="DEATHRATTLE_DRAW")!=(d.deathrattle_draw_count>0))throw std::invalid_argument("DEATHRATTLE_DRAW requires a positive draw count: "+id);if(d.ability!="DEATHRATTLE_DRAW"&&d.deck_draw_filter!=DeckDrawFilter::Any)throw std::invalid_argument("deck draw filter is valid only for DEATHRATTLE_DRAW: "+id);if(d.ability=="DEATHRATTLE_DRAW"&&!is_minion(d))throw std::invalid_argument("DEATHRATTLE_DRAW requires a minion: "+id);if((d.ability=="SPELL_DAMAGE_GAINS_ATTACK")!=(d.spell_damage_attack>0))throw std::invalid_argument("SPELL_DAMAGE_GAINS_ATTACK requires a positive spell_damage_attack value: "+id);if(d.ability=="SPELL_DAMAGE_GAINS_ATTACK"&&!is_minion(d))throw std::invalid_argument("SPELL_DAMAGE_GAINS_ATTACK requires a minion: "+id);if((d.ability=="SPELL_DAMAGE_HAND_DECK")!=(d.spell_damage_grant>0))throw std::invalid_argument("SPELL_DAMAGE_HAND_DECK requires a positive spell_damage_grant and other abilities must not declare one: "+id);if(d.ability=="SPELL_DAMAGE_HAND_DECK"&&(!is_minion(d)||!d.battlecry))throw std::invalid_argument("SPELL_DAMAGE_HAND_DECK requires a minion Battlecry: "+id);if((d.spell_damage>0||d.damaged_spell_damage>0)&&!is_minion(d))throw std::invalid_argument("Spell Damage aura requires a minion: "+id);}
  for(const auto& [id,d]:*cards)for(const auto& e:d.effects){if(e.kind==EffectKind::DestroyMinion&&e.target!=TargetSelector::ExplicitDamagedEnemyMinion&&e.target!=TargetSelector::ExplicitFriendlyMinion)throw std::invalid_argument("DestroyMinion requires a side-constrained minion target: "+id);if((e.target==TargetSelector::ExplicitDamagedEnemyMinion||e.target==TargetSelector::ExplicitFriendlyMinion)&&e.kind!=EffectKind::DestroyMinion)throw std::invalid_argument("side-constrained minion selectors require DestroyMinion: "+id);if(e.target==TargetSelector::ExplicitDamagedMinion&&e.kind!=EffectKind::BuffMinion)throw std::invalid_argument("ExplicitDamagedMinion requires BuffMinion: "+id);if(e.target==TargetSelector::FriendlyWeapon&&e.kind!=EffectKind::ModifyWeaponAttack)throw std::invalid_argument("FriendlyWeapon requires ModifyWeaponAttack: "+id);if((e.target==TargetSelector::AllMinions||e.target==TargetSelector::SelfHero)&&e.kind!=EffectKind::Damage)throw std::invalid_argument("area/self-hero selectors require Damage: "+id);if(e.kind==EffectKind::Heal&&(e.target!=TargetSelector::ExplicitCharacter||e.amount<=0))throw std::invalid_argument("Heal requires EXPLICIT_CHARACTER and a positive amount: "+id);if(e.kind==EffectKind::HealMinionToFull&&(e.target!=TargetSelector::ExplicitMinion||e.amount!=0))throw std::invalid_argument("HealMinionToFull requires EXPLICIT_MINION and zero amount: "+id);}
  for(const auto& [id,d]:*cards)if(d.secret_effect=="ENEMY_AREA_DAMAGE"&&(d.secret_trigger!="FRIENDLY_HERO_ATTACKED"||d.damage<=0))throw std::invalid_argument("ENEMY_AREA_DAMAGE requires FRIENDLY_HERO_ATTACKED and positive damage: "+id);
+ // Random-distinct Damage v1: one bounded declarative operation. Every malformed combination fails closed at load.
+ for(const auto& [id,d]:*cards){
+  const auto random_distinct=[](TargetSelector t){return t==TargetSelector::RandomDistinctEnemyCharacters||t==TargetSelector::RandomDistinctEnemyMinions;};
+  const auto explicit_damage=[](const EffectStep& e){return e.kind==EffectKind::Damage&&(e.target==TargetSelector::ExplicitCharacter||e.target==TargetSelector::ExplicitEnemyCharacter||e.target==TargetSelector::ExplicitMinion);};
+  const auto reject=[&](const std::string& why){throw std::invalid_argument(why+": "+id);};
+  for(const auto* mode:{&d.choose_one_a,&d.choose_one_b})for(const auto& e:*mode)if(random_distinct(e.target)||e.random_count!=0||e.exclude_previous_target||e.evidence_constraint)reject("random-distinct fields are not valid in Choose One modes");
+  int random_steps=0;
+  for(std::size_t i=0;i<d.effects.size();++i){
+   const auto& e=d.effects[i];
+   if(!random_distinct(e.target)){if(e.random_count!=0||e.exclude_previous_target||e.evidence_constraint)reject("random_count, exclude_previous_target and evidence_constraint require a RandomDistinct selector");continue;}
+   ++random_steps;
+   if(e.kind!=EffectKind::Damage||!is_spell(d)||e.amount<=0||e.lifesteal)reject("RandomDistinct selectors require a positive non-Lifesteal Damage step on a spell");
+   if(e.random_count<1||e.random_count>3)reject("RandomDistinct random_count must be within 1..3");
+   if(e.evidence_constraint&&*e.evidence_constraint!=EvidenceConstraint::ArcaneBarrageTargetingContractUnverified)reject("RandomDistinct evidence_constraint is outside the reviewed allowlist");
+   if(e.exclude_previous_target&&!std::any_of(d.effects.begin(),d.effects.begin()+static_cast<std::ptrdiff_t>(i),explicit_damage))reject("exclude_previous_target requires an earlier explicit-target Damage step");
+  }
+  if(random_steps>1)reject("at most one RandomDistinct instruction is reviewed per card");
+ }
  for(const auto& [id,d]:*cards){const auto condition=d.damage_outcome_condition;const auto followup=d.damage_outcome_followup;const bool allowed=(condition==DamageOutcomeCondition::MortallyWounded&&(followup==DamageOutcomeFollowup::DrawSelf||followup==DamageOutcomeFollowup::HealEnemyHero))||(condition==DamageOutcomeCondition::Survives&&followup==DamageOutcomeFollowup::DrawSelf)||(condition==DamageOutcomeCondition::Always&&followup==DamageOutcomeFollowup::DrawTargetOwner);if((condition!=DamageOutcomeCondition::None&&!allowed)||(condition==DamageOutcomeCondition::None&&followup!=DamageOutcomeFollowup::None))throw std::invalid_argument("unsupported damage outcome condition/follow-up pair: "+id);}
  for(const auto& [id,d]:*cards)if(d.damage_outcome_followup==DamageOutcomeFollowup::DrawTargetOwner&&d.damage_outcome_amount!=0)throw std::invalid_argument("DRAW_TARGET_OWNER does not accept a numeric amount: "+id);
  for(const auto& [id,d]:*cards){const bool conditioned=d.damage_outcome_condition!=DamageOutcomeCondition::None;const bool followup=d.damage_outcome_followup!=DamageOutcomeFollowup::None;if(conditioned!=followup)throw std::invalid_argument("damage outcome condition and follow-up must be declared together: "+id);if(!conditioned){if(d.damage_outcome_amount!=0)throw std::invalid_argument("damage_outcome_amount requires an outcome follow-up: "+id);continue;}if(d.ability!="EFFECT_COMPOSITION"||!is_spell(d)||d.effects.size()!=1||d.effects.front().kind!=EffectKind::Damage||d.effects.front().target!=TargetSelector::ExplicitMinion||d.effects.front().amount<=0||d.effects.front().lifesteal)throw std::invalid_argument("damage outcome v1 requires one positive explicit-minion spell damage step: "+id);if((d.damage_outcome_followup==DamageOutcomeFollowup::DrawSelf&&d.damage_outcome_amount!=0)||(d.damage_outcome_followup==DamageOutcomeFollowup::HealEnemyHero&&d.damage_outcome_amount<=0))throw std::invalid_argument("invalid damage outcome follow-up amount: "+id);}
@@ -363,6 +381,7 @@ int GameSession::resolve_effects(const CardDefinition& d,const SpellEffectContex
  bool previous_discard_succeeded=false;
  for(const auto& e:d.effects){if(e.requires_previous_discard&&!previous_discard_succeeded){previous_discard_succeeded=false;continue;}previous_discard_succeeded=false;switch(e.kind){
   case EffectKind::Damage:{
+   if(e.target==TargetSelector::RandomDistinctEnemyCharacters||e.target==TargetSelector::RandomDistinctEnemyMinions){total_damage+=resolve_random_distinct_damage(d,context,e,target);break;}
    const int amount=is_spell(d)?evaluate_spell_damage(context,e.amount):e.amount;
    std::vector<int> targets;
    if(e.target==TargetSelector::ExplicitCharacter||e.target==TargetSelector::ExplicitEnemyCharacter||e.target==TargetSelector::ExplicitMinion)targets.push_back(target);
@@ -409,6 +428,36 @@ int GameSession::resolve_effects(const CardDefinition& d,const SpellEffectContex
  health=std::min(30,health+e.amount);}else{bool found=false;for(auto& side:state_.players)for(auto& minion:side.board)if(minion.entity_id==target){if(minion.health<=0)throw UnsupportedSimulationError("cannot heal a minion already pending death");minion.health=std::min(minion.max_health,minion.health+e.amount);found=true;}if(!found)throw UnsupportedSimulationError("Heal target is no longer a character");}break;}
   case EffectKind::HealMinionToFull:{if(e.target!=TargetSelector::ExplicitMinion)throw UnsupportedSimulationError("HealMinionToFull requires an explicit minion target");bool found=false;for(auto& side:state_.players)for(auto& minion:side.board)if(minion.entity_id==target){if(minion.health<=0)throw UnsupportedSimulationError("cannot heal a minion already pending death");minion.health=minion.max_health;found=true;}if(!found)throw UnsupportedSimulationError("HealMinionToFull target is no longer a minion");break;}
  }}trace_event("EFFECT_END card="+d.card_id);return total_damage;
+}
+// Random-distinct Damage v1 (simulator-owned, not Blizzard's PRNG): sample min(random_count,n) enemies without replacement.
+// Candidates are snapshotted once, in stable order (enemy hero, then enemy board left to right), after every earlier step and
+// its reactions. Mortally wounded minions and the excluded explicit target are removed by identity; Stealth, Immune and Divine
+// Shield stay eligible and are never filtered by implementation support. Selection is a partial Fisher-Yates with one
+// bounded_random(n-i) draw per selected target: no reroll, no retry, n=0 draws nothing and emits nothing. The packets form
+// one ApplyAll group evaluated once (CURRENT_AT_STEP); there is no inner death drain, the outer spell boundary owns it.
+int GameSession::resolve_random_distinct_damage(const CardDefinition& d,const SpellEffectContext& context,const EffectStep& e,int previous_target){
+ const int owner=context.owner;
+ if(!is_spell(d))reject_unsupported("random-distinct Damage is reviewed only for spells");
+ // Reaching the instruction carries the declared evidence debt even with no candidate; it never poisons the branch.
+ if(e.evidence_constraint)state_.evidence_constraints.insert(*e.evidence_constraint);
+ if(e.exclude_previous_target&&previous_target<0)reject_unsupported("random-distinct exclusion requires the card's explicit target");
+ std::vector<int> candidates;
+ if(e.target==TargetSelector::RandomDistinctEnemyCharacters)candidates.push_back(hero_entity_id(1-owner));
+ for(const auto& m:state_.players[1-owner].board)if(m.health>0)candidates.push_back(m.entity_id);
+ if(e.exclude_previous_target)candidates.erase(std::remove(candidates.begin(),candidates.end(),previous_target),candidates.end());
+ const std::size_t pool=candidates.size(),count=std::min(pool,static_cast<std::size_t>(e.random_count));
+ std::vector<int> selected;selected.reserve(count);
+ for(std::size_t i=0;i<count;++i){const auto picked=i+bounded_random(pool-i);std::swap(candidates[i],candidates[picked]);selected.push_back(candidates[i]);}
+ std::string ids;for(int id:selected)ids+=(ids.empty()?"":",")+std::to_string(id);
+ trace_event("RANDOM_DISTINCT_SELECTION source="+std::to_string(context.source_entity)+" candidates="+std::to_string(pool)+" requested="+std::to_string(e.random_count)+" selected="+ids);
+ if(selected.empty())return 0;
+ const int amount=evaluate_spell_damage(context,e.amount);
+ std::vector<DamagePacketIntent> packets;packets.reserve(selected.size());
+ bool hero=false;
+ for(int id:selected){hero=hero||id==hero_entity_id(0)||id==hero_entity_id(1);packets.push_back(damage_intent(context.source_entity,id,amount,DamageKind::Spell,owner,false,DamageAttribution::DirectSpell));}
+ // Minion-only extras reuse the reviewed minion-entry event order; a hero among them keeps the conservative scalar path,
+ // whose existing guard rejects a generation consumer beside it before any extras mutation.
+ return run_damage_group(std::move(packets),DamageDispatch::ApplyAllThenReact,hero?DamageEventOrder::ScalarOnly:DamageEventOrder::MinionEntrySequence);
 }
 void GameSession::resolve_play(int index,int target){
  auto& p=state_.players[state_.active];

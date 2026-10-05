@@ -934,6 +934,26 @@
       "takes_damage_pool_id": "fire_spell_standard_20261001_candidate_v1",
       "takes_damage_cost_delta": -3,
       "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
+    },
+    "TIME_855": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $3 damage to an enemy and $2 damage to two other random ones.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_ENEMY_CHARACTER",
+          "amount": 3
+        },
+        {
+          "kind": "DAMAGE",
+          "target": "RANDOM_DISTINCT_ENEMY_CHARACTERS",
+          "amount": 2,
+          "random_count": 2,
+          "exclude_previous_target": true,
+          "evidence_constraint": "ARCANE_BARRAGE_TARGETING_CONTRACT_UNVERIFIED"
+        }
+      ]
     }
   }
 }
