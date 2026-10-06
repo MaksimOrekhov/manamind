@@ -1,0 +1,496 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "manamind.evidence.schema/proposal-1",
+  "title": "ManaMind real-log evidence records (PROPOSAL - not frozen, not implemented)",
+  "$comment": "ILLUSTRATIVE EXAMPLES: the two records under examples are built from one real window (a SELF-played unsupported card with a gated battlecry) and from the aggregate of all seven local observations of that card; handles, line numbers, hashes and the game key are placeholders, the aggregate counts are the measured ones. EVIDENCE-0A design proposal. Two record types: Observation (one causal window around one card/effect in one game) and CardAggregate (many observations of one card). FACTS (read directly from the log) and INFERENCES (derived, with their inputs and assumptions) are separate arrays and never mix. Nothing here is player-visible model input: the evidence store is an offline rules-research lane (see section 8 of the report). No record may contain player names, BattleTags, account ids or raw log text. Entity ids are per-game handles used only for intra-record references.",
+  "oneOf": [
+    { "$ref": "#/$defs/Observation" },
+    { "$ref": "#/$defs/CardAggregate" }
+  ],
+  "$defs": {
+    "Visibility": {
+      "description": "What the local player could have seen at that moment. PUBLIC_TO_SELF: on screen to SELF (public zones, own hand, identities revealed by play). SELF_PRIVATE: SELF-only knowledge (own hand, own secrets). OFFLINE_ONLY_HIDDEN: present in the raw log but not visible to SELF (opponent hand/deck/secret identities, OVERRIDE_HISTORY reveals, SHOW+HIDE transients, setaside/removed entities). Default when undecided: OFFLINE_ONLY_HIDDEN.",
+      "enum": ["PUBLIC_TO_SELF", "SELF_PRIVATE", "OFFLINE_ONLY_HIDDEN"]
+    },
+    "Side": { "enum": ["SELF", "OPPONENT", "NEUTRAL"] },
+    "Role": {
+      "enum": [
+        "PLAYED_CARD", "HERO_POWER_USE", "LOCATION_ACTIVATION", "ATTACKER",
+        "TRIGGER_SOURCE", "DEATHRATTLE_SOURCE", "TURN_PHASE_TRIGGER_SOURCE",
+        "ENCHANTMENT_SOURCE", "SECRET_OR_QUEST_SOURCE", "GENERATED_OUTCOME", "CONTROL_SAMPLE"
+      ]
+    },
+    "SupportState": {
+      "description": "Card-level ManaEngine support at extraction time. Taken from a fingerprinted support inventory exported from the engine's effective definitions (preferred) or, if unavailable, from the declaration file as a proxy that can only over-state support.",
+      "enum": [
+        "SUPPORTED", "VERIFIED_VANILLA",
+        "UNSUPPORTED_DECLARED", "UNSUPPORTED_NO_DECLARATION",
+        "UNSUPPORTED_CONTRACT_UNREVIEWED", "UNSUPPORTED_DEPENDENCY",
+        "NOT_IN_ENGINE_CATALOG", "UNKNOWN_INVENTORY_MISSING"
+      ]
+    },
+    "RegistryScope": {
+      "enum": ["STANDARD_ROOT", "DEPENDENCY_NODE", "COLLECTIBLE_NOT_STANDARD_ROOT", "NON_COLLECTIBLE", "UNKNOWN_ID"]
+    },
+    "Triage": {
+      "description": "Reuses the classes proposed in PARTIAL_SIMULATOR_ARCHITECTURE section 17. For a card the engine does not support there is no engine expectation, so the only reachable values are NOVEL_OBSERVATION and PATCH_DRIFT_SUSPECTED. KNOWN_EXPECTED / KNOWN_INFERRED_CONFIRMED / ENGINE_CONTRADICTION need an engine expectation and a replay comparator (not implemented).",
+      "enum": ["NOVEL_OBSERVATION", "KNOWN_EXPECTED", "KNOWN_INFERRED_CONFIRMED", "ENGINE_CONTRADICTION", "PATCH_DRIFT_SUSPECTED"]
+    },
+    "AttributionBasis": {
+      "description": "Why an effect is attributed to a card. Precedence: CREATOR_TAG > LAST_AFFECTED_BY_SAME_UNIT > UNIT_OWNER. NESTED_ONLY means the effect sits inside the window but belongs to another unit (a reaction); it is never counted in the subject's effect profile. UNATTRIBUTED facts are kept but excluded from claims.",
+      "enum": ["CREATOR_TAG", "LAST_AFFECTED_BY_SAME_UNIT", "UNIT_OWNER", "NESTED_ONLY", "UNATTRIBUTED"]
+    },
+    "FactKind": {
+      "enum": [
+        "BLOCK_STRUCTURE", "PLAY_TARGET", "COST_PAYMENT", "DAMAGE_PACKET", "HEALING_PACKET",
+        "ZONE_MOVE", "ENTITY_CREATED", "ENTITY_TRANSFORMED", "ENTITY_REVEALED",
+        "ENCHANTMENT_ATTACHED", "ENCHANTMENT_REMOVED", "STAT_DELTA", "KEYWORD_DELTA",
+        "DEATH", "CHOICE_OFFERED", "CHOICE_MADE", "TARGET_LEGALITY", "TURN_STEP_CONTEXT"
+      ]
+    },
+    "InferenceKind": {
+      "enum": [
+        "CONDITION_EVALUATED_FROM_BEFORE_STATE", "DEATH_BY_DAMAGE", "DESTROY_WITHOUT_DAMAGE",
+        "STAT_CHANGE_EXPLAINED_BY_ENCHANTMENT", "STAT_CHANGE_UNEXPLAINED", "SPELL_DAMAGE_OR_MODIFIER_PRESENT",
+        "DIVINE_SHIELD_ABSORBED", "BATTLECRY_FROM_OWN_POWER_BLOCK", "REPEATED_TRIGGER_COUNT",
+        "HIDDEN_CONDITION_IMPLIED_BY_OUTCOME", "CANDIDATE_SET_FROM_BEFORE_STATE"
+      ]
+    },
+    "ConfounderKind": {
+      "enum": [
+        "FOREIGN_ENCHANTMENT_ACTIVE", "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW", "STALE_LAST_AFFECTED_BY",
+        "MULTIPLE_OWNER_UNITS", "AURA_RECALC_OUTSIDE_BLOCK", "UNKNOWN_TAG_IDS_IN_WINDOW",
+        "HIDDEN_CONDITION_INPUT", "DAMAGE_OR_HEAL_MODIFIER_PRESENT", "MISSING_CREATOR_TAG",
+        "MODE_OR_BUILD_OUTSIDE_SCOPE"
+      ]
+    },
+    "EntityRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handle"],
+      "properties": {
+        "handle": { "type": "integer", "description": "Per-game entity id. Intra-record reference only; never a model input." },
+        "card_id": { "type": ["string", "null"], "description": "Null when the identity was not visible at that moment." },
+        "side": { "$ref": "#/$defs/Side" },
+        "card_type": { "type": ["string", "null"] },
+        "zone": { "type": ["string", "null"] },
+        "support_state": { "$ref": "#/$defs/SupportState" }
+      }
+    },
+    "Fact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fact_id", "kind", "unit_id", "visibility", "raw_ref", "attribution", "data"],
+      "properties": {
+        "fact_id": { "type": "string" },
+        "kind": { "$ref": "#/$defs/FactKind" },
+        "unit_id": { "type": "string", "description": "Which unit (block) of the window the packet sat in." },
+        "visibility": { "$ref": "#/$defs/Visibility" },
+        "raw_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["line_in_game", "packet_ordinal"],
+          "properties": {
+            "line_in_game": { "type": "integer", "description": "Line number inside the per-game section (same convention as the live snapshot's source.line_in_game). Points into the local raw slice; no raw text is stored." },
+            "packet_ordinal": { "type": "integer" }
+          }
+        },
+        "attribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["basis"],
+          "properties": {
+            "basis": { "$ref": "#/$defs/AttributionBasis" },
+            "attributed_to": { "$ref": "#/$defs/EntityRef" }
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Kind-specific payload read directly from packets: e.g. DAMAGE_PACKET {target, amount, damage_tag_before, damage_tag_after, armor_delta}; ENTITY_CREATED {entity, creation_zone, creator, attached_to}; TARGET_LEGALITY {option_card, target, accepted, server_error_code}. Unknown numeric tag ids are kept as numeric strings, never dropped."
+        }
+      }
+    },
+    "Inference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inference_id", "kind", "derivation", "inputs", "status", "visibility"],
+      "properties": {
+        "inference_id": { "type": "string" },
+        "kind": { "$ref": "#/$defs/InferenceKind" },
+        "derivation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rule_id", "rule_version"],
+          "properties": {
+            "rule_id": { "type": "string" },
+            "rule_version": { "type": "integer" }
+          }
+        },
+        "inputs": { "type": "array", "minItems": 1, "items": { "type": "string" }, "description": "fact_ids (or inference_ids) this inference was computed from. Non-empty by construction: an inference without inputs is not allowed." },
+        "assumptions": { "type": "array", "items": { "type": "string" }, "description": "Written-out premises, e.g. 'predicate text taken from pinned card metadata, not from the log'." },
+        "result": { "description": "Kind-specific value." },
+        "status": { "enum": ["DERIVED", "ASSUMPTION_DEPENDENT"] },
+        "visibility": { "$ref": "#/$defs/Visibility", "description": "Weakest visibility among the inputs." }
+      }
+    },
+    "Confounder": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "affects_claim_kinds"],
+      "properties": {
+        "kind": { "$ref": "#/$defs/ConfounderKind" },
+        "entity": { "$ref": "#/$defs/EntityRef" },
+        "affects_claim_kinds": { "type": "array", "items": { "$ref": "#/$defs/ClaimKind" } },
+        "note": { "type": "string" }
+      }
+    },
+    "ClaimKind": {
+      "enum": [
+        "DAMAGE_AMOUNT", "HEAL_AMOUNT", "TARGET_CLASS_OBSERVED", "TARGET_LEGALITY_REQUIREMENT",
+        "SUMMON_OUTCOME", "TRANSFORM_OUTCOME", "GENERATED_OUTCOME_SET", "ENCHANTMENT_APPLIED",
+        "STAT_DELTA", "COST_MODIFICATION", "CONDITIONAL_EFFECT", "TRIGGER_STEP",
+        "DEATHRATTLE_OUTCOME", "CHOICE_OFFER", "ZONE_MOVE", "NO_VISIBLE_EFFECT"
+      ]
+    },
+    "Observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema", "observation_id", "subject", "provenance", "window", "support_detection",
+        "facts", "inferences", "confounders", "triage", "privacy"
+      ],
+      "properties": {
+        "schema": { "const": "manamind.evidence.observation/1" },
+        "observation_id": { "type": "string", "description": "Deterministic: first 16 hex of sha256(game_key16 | root_ordinal | subject_unit | extractor_version). Re-running the extractor on the same slice reproduces the same ids." },
+        "subject": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["card_id", "role", "side", "registry_scope"],
+          "properties": {
+            "card_id": { "type": "string" },
+            "role": { "$ref": "#/$defs/Role" },
+            "side": { "$ref": "#/$defs/Side" },
+            "registry_scope": { "$ref": "#/$defs/RegistryScope" },
+            "related_card_ids": { "type": "array", "items": { "type": "string" }, "description": "Other cards that own units or appear as outcomes inside the window." }
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "game_key16", "client_build", "game_type", "format_type", "rules_scope", "turn", "step", "extractor_version", "catalog_sha256"],
+          "properties": {
+            "source": { "const": "POWER_LOG" },
+            "source_kind": { "enum": ["COLLECTED_SLICE", "LIVE_RECORDING_SLICE", "RAW_POWER_LOG"] },
+            "game_key16": { "type": "string", "pattern": "^[0-9a-f]{16}$", "description": "First 16 hex of the collector's start_key (same function as the live bridge). Not a player identifier." },
+            "client_build": { "type": ["integer", "null"] },
+            "game_type": { "type": "string" },
+            "format_type": { "type": "string" },
+            "rules_scope": { "enum": ["STANDARD_PRIMARY", "OTHER_MODE_SECONDARY"], "description": "STANDARD_PRIMARY: GT_RANKED/GT_CASUAL with FT_STANDARD. Everything else (solo vs AI, Wild, Brawl) is secondary and must not be mixed into primary aggregates." },
+            "turn": { "type": "integer" },
+            "step": { "type": ["string", "null"], "description": "GameEntity STEP at the root block, e.g. MAIN_ACTION, MAIN_END." },
+            "root_line_range": { "type": "array", "items": { "type": "integer" }, "minItems": 2, "maxItems": 2 },
+            "extractor_version": { "type": "string" },
+            "catalog_sha256": { "type": "string" },
+            "hslog_version": { "type": "string" },
+            "hearthstone_pkg_version": { "type": "string" },
+            "unknown_tag_ids_in_window": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["root_block_type", "root_ordinal", "units"],
+          "properties": {
+            "root_block_type": { "enum": ["PLAY", "ATTACK", "TRIGGER", "DEATHS", "POWER", "DECK_ACTION", "OTHER"] },
+            "root_ordinal": { "type": "integer" },
+            "units": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["unit_id", "block_type", "owner", "parent_unit_id", "depth"],
+                "properties": {
+                  "unit_id": { "type": "string" },
+                  "block_type": { "type": "string" },
+                  "owner": { "$ref": "#/$defs/EntityRef" },
+                  "parent_unit_id": { "type": ["string", "null"] },
+                  "depth": { "type": "integer" },
+                  "trigger_keyword": { "type": ["string", "integer", "null"], "description": "Raw value; many current client keywords are numeric ids unknown to the installed python-hearthstone." },
+                  "has_semantic_effects": { "type": "boolean" },
+                  "relation_to_subject": { "enum": ["SUBJECT_OWN", "REACTION", "SYSTEM", "ROOT"] }
+                }
+              }
+            },
+            "empty_watcher_trigger_count": { "type": "integer", "description": "Units with no semantic effect are counted, not stored (about 78 percent of foreign TRIGGER children of PLAY blocks in the audit corpus)." }
+          }
+        },
+        "public_states": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Public (opponent identity policy 'none') SELF-perspective states produced with the project's existing projection. Hashes are mandatory; full states are optional (needed for fixture generation).",
+          "required": ["before_hash", "after_hash"],
+          "properties": {
+            "before_hash": { "type": "string" },
+            "after_hash": { "type": "string" },
+            "before": { "type": "object" },
+            "after": { "type": "object" },
+            "public_delta": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "support_detection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["inventory_id", "inventory_sha256", "basis", "subject_support_state"],
+          "properties": {
+            "inventory_id": { "type": "string" },
+            "inventory_sha256": { "type": "string" },
+            "basis": { "enum": ["ENGINE_EFFECTIVE_INVENTORY", "DECLARATION_PROXY"] },
+            "subject_support_state": { "$ref": "#/$defs/SupportState" },
+            "window_unsupported_card_ids": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "facts": { "type": "array", "items": { "$ref": "#/$defs/Fact" } },
+        "inferences": { "type": "array", "items": { "$ref": "#/$defs/Inference" } },
+        "confounders": { "type": "array", "items": { "$ref": "#/$defs/Confounder" } },
+        "triage": { "$ref": "#/$defs/Triage" },
+        "privacy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["contains_offline_only_hidden", "model_input_allowed", "names_removed"],
+          "properties": {
+            "contains_offline_only_hidden": { "type": "boolean" },
+            "model_input_allowed": { "const": false },
+            "names_removed": { "const": true }
+          }
+        }
+      }
+    },
+    "Tier": {
+      "description": "Ordinal evidence label, not a probability and never a proof. T0: one clean game. T1: >=3 clean independent games, no contradiction, identical outcome (after documented modifiers). T2: T1 and the claim held across >=2 values of at least one declared context dimension. T3: conditional claims only; T1 and >=3 controlled positives and >=2 controlled negatives with perfect agreement, predicate stated independently of the data.",
+      "enum": ["T0_SINGLE_GAME", "T1_REPEATED_GAMES", "T2_CONTEXT_VARIED", "T3_CONTROLLED_CONDITIONAL"]
+    },
+    "Claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "kind", "parameters", "support", "tier", "status"],
+      "properties": {
+        "claim_id": { "type": "string" },
+        "kind": { "$ref": "#/$defs/ClaimKind" },
+        "parameters": { "type": "object", "description": "Normalised claim, e.g. {amount: 3} or {predicate: 'SELF hand holds a spell with current cost >= 5', outcome: 'DAMAGE 3'}. Predicates must come from pinned card metadata or review, never be fitted to the observations." },
+        "support": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["clean_games", "clean_observations", "contradictions", "confounded", "unattributed"],
+          "properties": {
+            "clean_games": { "type": "integer", "description": "Unit of independence. Observations from one game never count as more than one game." },
+            "clean_observations": { "type": "integer" },
+            "context_values": { "type": "object", "description": "dimension -> {value: count}, e.g. target_kind -> {enemy_hero: 4, enemy_minion: 1}. Descriptive; absence of a value is not evidence." },
+            "controlled_positive": { "type": "integer" },
+            "controlled_negative": { "type": "integer" },
+            "outcome_only_positive": { "type": "integer", "description": "Opponent-side outcomes whose condition input was hidden." },
+            "outcome_only_negative": { "type": "integer" },
+            "contradictions": { "type": "integer" },
+            "confounded": { "type": "integer" },
+            "unattributed": { "type": "integer" },
+            "client_builds": { "type": "array", "items": { "type": "integer" } },
+            "modes": { "type": "array", "items": { "type": "string" } },
+            "sides": { "type": "array", "items": { "$ref": "#/$defs/Side" } },
+            "observed_outcomes": { "type": "object", "description": "For random/generated/transform claims: outcome card_id -> count." },
+            "unseen_mass_estimate": { "type": ["number", "null"], "description": "Good-Turing style estimate singletons/n of outcome mass not yet seen. Informational. Never closes a pool." }
+          }
+        },
+        "tier": { "$ref": "#/$defs/Tier" },
+        "status": { "enum": ["OPEN", "NEEDS_REVIEW", "CONTRADICTED", "REVIEWED_ACCEPTED", "REVIEWED_REJECTED"], "description": "REVIEWED_* are set only by a human/agent review record, never by the aggregator." },
+        "never_claimed": {
+          "type": "array",
+          "items": { "enum": ["EXHAUSTIVE_TARGET_LEGALITY", "POOL_COMPLETENESS", "POOL_PROBABILITIES", "ABSENCE_OF_HIDDEN_CONDITIONS", "EDGE_CASE_COVERAGE", "RULES_VERIFIED"] },
+          "description": "Always populated from a fixed list so a reader cannot mistake the claim for a proof."
+        }
+      }
+    },
+    "CardAggregate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "card_id", "registry_scope", "support", "counts", "claims", "priority_inputs", "review"],
+      "properties": {
+        "schema": { "const": "manamind.evidence.card_aggregate/1" },
+        "card_id": { "type": "string" },
+        "registry_scope": { "$ref": "#/$defs/RegistryScope" },
+        "support": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["inventory_sha256", "state"],
+          "properties": {
+            "inventory_sha256": { "type": "string" },
+            "state": { "$ref": "#/$defs/SupportState" }
+          }
+        },
+        "counts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["observations", "games", "self_plays", "opponent_plays", "self_decisions_with_card_legal"],
+          "properties": {
+            "observations": { "type": "integer" },
+            "games": { "type": "integer" },
+            "self_plays": { "type": "integer" },
+            "opponent_plays": { "type": "integer" },
+            "self_decisions_with_card_legal": { "type": "integer", "description": "SELF options messages in which the card was a server-validated legal action: the 'decisions affected' demand input." }
+          }
+        },
+        "claims": { "type": "array", "items": { "$ref": "#/$defs/Claim" } },
+        "priority_inputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "demand_self": { "type": "number" },
+            "demand_opponent": { "type": "number" },
+            "evidence_readiness": { "type": "number" },
+            "complexity_class": { "enum": ["AUTO", "COMPOSABLE", "MISSING_PRIMITIVE", "CUSTOM", "UNKNOWN"] },
+            "dependency_blockers": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "review": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": { "enum": ["UNREVIEWED", "IN_REVIEW", "CONTRACT_DRAFTED", "FIXTURE_APPROVED", "IMPLEMENTED_VIA_PACKAGE"] },
+            "reviewer": { "type": ["string", "null"] },
+            "review_ref": { "type": ["string", "null"] }
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "schema": "manamind.evidence.observation/1",
+      "observation_id": "0c8e4a7d19b3f2a1",
+      "subject": {
+        "card_id": "EDR_472",
+        "role": "PLAYED_CARD",
+        "side": "SELF",
+        "registry_scope": "STANDARD_ROOT",
+        "related_card_ids": ["EDR_449e", "GBL_999e"]
+      },
+      "provenance": {
+        "source": "POWER_LOG",
+        "source_kind": "COLLECTED_SLICE",
+        "game_key16": "0123456789abcdef",
+        "client_build": 253216,
+        "game_type": "GT_RANKED",
+        "format_type": "FT_STANDARD",
+        "rules_scope": "STANDARD_PRIMARY",
+        "turn": 31,
+        "step": "MAIN_ACTION",
+        "extractor_version": "evidence-0b-draft",
+        "catalog_sha256": "<sha256 of data/cards/standard_current_enUS.json>",
+        "hslog_version": "1.20.0",
+        "hearthstone_pkg_version": "9.21.1",
+        "unknown_tag_ids_in_window": ["1068", "1196", "2245"]
+      },
+      "window": {
+        "root_block_type": "PLAY",
+        "root_ordinal": 0,
+        "units": [
+          { "unit_id": "u0", "block_type": "PLAY", "owner": { "handle": 1, "card_id": "EDR_472", "side": "SELF", "card_type": "MINION" }, "parent_unit_id": null, "depth": 0, "trigger_keyword": null, "has_semantic_effects": true, "relation_to_subject": "ROOT" },
+          { "unit_id": "u1", "block_type": "TRIGGER", "owner": { "handle": 2, "card_id": "EDR_449e", "side": "SELF", "card_type": "ENCHANTMENT" }, "parent_unit_id": "u0", "depth": 1, "trigger_keyword": 0, "has_semantic_effects": true, "relation_to_subject": "REACTION" },
+          { "unit_id": "u2", "block_type": "POWER", "owner": { "handle": 1, "card_id": "EDR_472", "side": "SELF", "card_type": "MINION" }, "parent_unit_id": "u0", "depth": 1, "trigger_keyword": null, "has_semantic_effects": true, "relation_to_subject": "SUBJECT_OWN" }
+        ],
+        "empty_watcher_trigger_count": 1
+      },
+      "public_states": {
+        "before_hash": "<sha256 of canonical JSON of the public before-state>",
+        "after_hash": "<sha256 of canonical JSON of the public after-state>",
+        "public_delta": ["SELF.hand: 9 -> 8", "SELF.board: [] -> [EDR_472 3/3]", "OPP.hp: 22 -> 19"]
+      },
+      "support_detection": {
+        "inventory_id": "manaengine-support-inventory/example",
+        "inventory_sha256": "<sha256>",
+        "basis": "DECLARATION_PROXY",
+        "subject_support_state": "UNSUPPORTED_NO_DECLARATION",
+        "window_unsupported_card_ids": ["EDR_472", "EDR_449e"]
+      },
+      "facts": [
+        { "fact_id": "f1", "kind": "ZONE_MOVE", "unit_id": "u0", "visibility": "PUBLIC_TO_SELF", "raw_ref": { "line_in_game": 0, "packet_ordinal": 0 }, "attribution": { "basis": "UNIT_OWNER", "attributed_to": { "handle": 1, "card_id": "EDR_472" } }, "data": { "entity": 1, "from": "HAND", "to": "PLAY" } },
+        { "fact_id": "f2", "kind": "PLAY_TARGET", "unit_id": "u0", "visibility": "PUBLIC_TO_SELF", "raw_ref": { "line_in_game": 0, "packet_ordinal": 0 }, "attribution": { "basis": "UNIT_OWNER" }, "data": { "target": { "handle": 9, "card_id": null, "card_type": "HERO", "side": "OPPONENT" } } },
+        { "fact_id": "f3", "kind": "DAMAGE_PACKET", "unit_id": "u2", "visibility": "PUBLIC_TO_SELF", "raw_ref": { "line_in_game": 0, "packet_ordinal": 0 }, "attribution": { "basis": "LAST_AFFECTED_BY_SAME_UNIT", "attributed_to": { "handle": 1, "card_id": "EDR_472" } }, "data": { "target_handle": 9, "target_card_type": "HERO", "target_side": "OPPONENT", "amount": 3, "damage_tag_before": 8, "damage_tag_after": 11, "armor_delta": 0 } },
+        { "fact_id": "f4", "kind": "STAT_DELTA", "unit_id": "u1", "visibility": "PUBLIC_TO_SELF", "raw_ref": { "line_in_game": 0, "packet_ordinal": 0 }, "attribution": { "basis": "NESTED_ONLY", "attributed_to": { "handle": 2, "card_id": "EDR_449e" } }, "data": { "entity": 1, "tag": "COST", "old": 0, "new": 3 } }
+      ],
+      "inferences": [
+        {
+          "inference_id": "i1",
+          "kind": "CONDITION_EVALUATED_FROM_BEFORE_STATE",
+          "derivation": { "rule_id": "predicate:self_hand_holds_spell_cost_ge_5", "rule_version": 1 },
+          "inputs": ["public_states.before"],
+          "assumptions": ["predicate text taken from pinned card metadata, not fitted to the log", "SELF hand identities and current costs are fully visible in the before-state"],
+          "result": { "predicate_true": true },
+          "status": "ASSUMPTION_DEPENDENT",
+          "visibility": "SELF_PRIVATE"
+        }
+      ],
+      "confounders": [
+        { "kind": "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW", "entity": { "handle": 2, "card_id": "EDR_449e" }, "affects_claim_kinds": ["COST_MODIFICATION"], "note": "an expiring cost enchantment on the played card; not an effect of the subject" }
+      ],
+      "triage": "NOVEL_OBSERVATION",
+      "privacy": { "contains_offline_only_hidden": false, "model_input_allowed": false, "names_removed": true }
+    },
+    {
+      "schema": "manamind.evidence.card_aggregate/1",
+      "card_id": "EDR_472",
+      "registry_scope": "STANDARD_ROOT",
+      "support": { "inventory_sha256": "<sha256>", "state": "UNSUPPORTED_NO_DECLARATION" },
+      "counts": { "observations": 7, "games": 6, "self_plays": 5, "opponent_plays": 2, "self_decisions_with_card_legal": 5 },
+      "claims": [
+        {
+          "claim_id": "EDR_472:DAMAGE_AMOUNT:3",
+          "kind": "DAMAGE_AMOUNT",
+          "parameters": { "amount": 3 },
+          "support": {
+            "clean_games": 5,
+            "clean_observations": 5,
+            "context_values": { "target_kind": { "enemy_hero": 4, "enemy_minion": 1 }, "side": { "SELF": 4, "OPPONENT": 1 } },
+            "contradictions": 0,
+            "confounded": 0,
+            "unattributed": 0,
+            "client_builds": [253216],
+            "modes": ["GT_RANKED/FT_STANDARD"],
+            "sides": ["SELF", "OPPONENT"]
+          },
+          "tier": "T2_CONTEXT_VARIED",
+          "status": "NEEDS_REVIEW",
+          "never_claimed": ["EXHAUSTIVE_TARGET_LEGALITY", "ABSENCE_OF_HIDDEN_CONDITIONS", "EDGE_CASE_COVERAGE", "RULES_VERIFIED"]
+        },
+        {
+          "claim_id": "EDR_472:CONDITIONAL_EFFECT:hold_spell_cost_ge_5",
+          "kind": "CONDITIONAL_EFFECT",
+          "parameters": { "predicate": "SELF hand holds a spell with current cost >= 5", "outcome": "DAMAGE 3" },
+          "support": {
+            "clean_games": 6,
+            "clean_observations": 7,
+            "controlled_positive": 4,
+            "controlled_negative": 1,
+            "outcome_only_positive": 1,
+            "outcome_only_negative": 1,
+            "contradictions": 0,
+            "confounded": 0,
+            "unattributed": 0,
+            "client_builds": [253216],
+            "modes": ["GT_RANKED/FT_STANDARD"],
+            "sides": ["SELF", "OPPONENT"]
+          },
+          "tier": "T1_REPEATED_GAMES",
+          "status": "NEEDS_REVIEW",
+          "never_claimed": ["ABSENCE_OF_HIDDEN_CONDITIONS", "EDGE_CASE_COVERAGE", "RULES_VERIFIED"]
+        }
+      ],
+      "priority_inputs": {
+        "demand_self": 0.0049,
+        "demand_opponent": 0.0028,
+        "evidence_readiness": 0.75,
+        "complexity_class": "UNKNOWN",
+        "dependency_blockers": []
+      },
+      "review": { "state": "UNREVIEWED", "reviewer": null, "review_ref": null }
+    }
+  ]
+}
