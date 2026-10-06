@@ -31,7 +31,7 @@ def replay_game(directory: Path, catalog: CardCatalog) -> list[Snapshot]:
         count = int(row["n"])
         chunk = lines[index:index + count]
         index += count
-        events = session.feed(chunk, int(row["t"])) if count else []
+        events = session.feed(chunk, int(row["t"]), catchup=bool(row.get("catchup"))) if count else []
         events += session.tick(int(row["t"]))
         snapshots += [event for event in events if isinstance(event, Snapshot)]
     return snapshots

@@ -94,8 +94,8 @@ def test_attach_between_games_waits_for_the_next_one(tmp_path: Path):
     power = write(root / "Hearthstone_2026_10_06_10_00_00" / "Power.log", done.lines)
     runner, clock = runner_for(root)
     events = run_until_quiet(runner, clock)
-    assert runner.session.status is LiveStatus.GAME_OVER
-    assert snaps(events) == [] or all(s.status == "READY" for s in snaps(events))
+    assert runner.session.status is LiveStatus.WAITING_FOR_GAME
+    assert snaps(events) == []
     fresh = LiveLog(seed=2).create_game().mulligan().self_decision(1)
     append(power, "\n".join(fresh.lines) + "\n")
     events = run_until_quiet(runner, clock)
@@ -320,3 +320,105 @@ def test_real_logs_incremental_matches_one_shot_and_stays_private():
             assert all('"handle"' not in str(s.state) for s in snaps(events))
             checked += 1
     assert checked >= 0
+
+
+# -- startup / re-attach catch-up is silent ------------------------------------------------
+
+
+def played_game(decisions: int, *, seed: int = 1, end: bool = False, trailing: str = "none") -> LiveLog:
+    """A game with several answered SELF decisions; ``trailing``: none | decision | opponent."""
+    log = LiveLog(seed=seed).create_game().mulligan().begin_turn(1)
+    for index in range(decisions):
+        log.options()
+        log.send_option(1)
+        log.batch([f"TAG_CHANGE Entity=2 tag=RESOURCES_USED value={index + 1}"]).finish_list()
+    if trailing == "decision":
+        log.options()
+    elif trailing == "opponent":
+        log.begin_turn(2, self_turn=False)
+        log.options(legal=False)
+    if end:
+        log.complete()
+    return log
+
+
+def start(tmp_path: Path, log: LiveLog) -> tuple[LiveRunner, Clock, Path, list]:
+    root = tmp_path / "Logs"
+    power = write(root / "Hearthstone_2026_10_06_10_00_00" / "Power.log", log.lines)
+    runner, clock = runner_for(root)
+    return runner, clock, power, run_until_quiet(runner, clock)
+
+
+def test_start_between_games_emits_no_history_and_waits(tmp_path: Path):
+    runner, clock, _, events = start(tmp_path, played_game(6, end=True))
+    assert snaps(events) == []
+    assert "READY" not in status_names(events) and "GAME_OVER" not in status_names(events)
+    assert runner.session.status is LiveStatus.WAITING_FOR_GAME and runner.session.game is None
+
+
+def test_many_historical_decisions_are_not_emitted_during_catchup(tmp_path: Path):
+    runner, clock, _, events = start(tmp_path, played_game(12, trailing="opponent"))
+    assert snaps(events) == []
+    assert runner.session.status is LiveStatus.SYNCING  # mid-game, opponent turn
+
+
+def test_mid_game_attach_at_a_current_decision_emits_exactly_one(tmp_path: Path):
+    runner, clock, _, events = start(tmp_path, played_game(8, trailing="decision"))
+    found = snaps(events)
+    assert len(found) == 1 and found[0].decision["options_id"] == 9
+    assert "READY" in status_names(events)
+
+
+def test_after_catchup_new_decision_and_game_over_behave_normally(tmp_path: Path):
+    log = played_game(3, trailing="opponent")
+    runner, clock, power, events = start(tmp_path, log)
+    assert snaps(events) == [] and runner.session.status is LiveStatus.SYNCING
+    more = LiveLog(seed=1)
+    more.q, more.tick, more.options_id = log.q, log.tick + 1, log.options_id
+    more.begin_turn(3, self_turn=True).options()
+    append(power, "\n".join(more.lines) + "\n")
+    events = run_until_quiet(runner, clock)
+    assert len(snaps(events)) == 1 and runner.session.status is LiveStatus.READY
+    tail = LiveLog(seed=1)
+    tail.tick = more.tick + 1
+    tail.complete()
+    append(power, "\n".join(tail.lines) + "\n")
+    events = run_until_quiet(runner, clock)
+    assert status_names(events) == ["GAME_OVER"] and snaps(events) == []
+
+
+def test_new_session_and_file_rebuild_are_silent_too(tmp_path: Path):
+    runner, clock, power, _ = start(tmp_path, played_game(2, trailing="decision"))
+    root = tmp_path / "Logs"
+    write(root / "Hearthstone_2026_10_06_11_00_00" / "Power.log", played_game(5, seed=7, end=True).lines)
+    events = run_until_quiet(runner, clock)
+    assert snaps(events) == [] and runner.session.status is LiveStatus.WAITING_FOR_GAME
+
+    runner2, clock2, power2, _ = start(tmp_path / "b", played_game(2, trailing="opponent"))
+    write(power2, played_game(7, seed=9, trailing="opponent").lines[:400])
+    events = run_until_quiet(runner2, clock2)
+    assert snaps(events) == []  # the rebuilt game is not replayed as live decisions
+
+
+def test_recorder_skips_suppressed_history_and_replay_stays_identical(tmp_path: Path):
+    from manamind.live.recorder import Recorder
+    from manamind.live.replay import verify_replay
+
+    # A finished historical game is not recorded at all.
+    root = tmp_path / "Logs"
+    write(root / "Hearthstone_2026_10_06_10_00_00" / "Power.log", played_game(5, end=True).lines)
+    cards = ROOT / "data" / "cards" / "standard_current_enUS.json"
+    runner, clock = runner_for(root, recorder=Recorder(tmp_path / "rec", catalog_path=cards))
+    run_until_quiet(runner, clock)
+    assert not (tmp_path / "rec").exists() or not list((tmp_path / "rec").rglob("snapshots.jsonl"))
+
+    # Mid-game attach: only the current decision is recorded; replay reproduces it.
+    root2 = tmp_path / "Logs2"
+    write(root2 / "Hearthstone_2026_10_06_10_00_00" / "Power.log", played_game(6, trailing="decision").lines)
+    runner2, clock2 = runner_for(root2, recorder=Recorder(tmp_path / "rec2", catalog_path=cards))
+    events = run_until_quiet(runner2, clock2)
+    assert len(snaps(events)) == 1
+    directory = next((tmp_path / "rec2").rglob("snapshots.jsonl")).parent
+    assert len(directory.joinpath("snapshots.jsonl").read_text(encoding="utf-8").splitlines()) == 1
+    identical, recorded, replayed = verify_replay(directory, CATALOG)
+    assert identical and len(replayed) == 1

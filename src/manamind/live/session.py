@@ -91,6 +91,7 @@ class LiveSession:
         self._seq: dict[str, int] = {}
         self._spectating = False
         self._quiet = False
+        self._catchup = False
         self._events: list[LiveEvent] = []
         self.last_touched: list[GameRun] = []  # games that received lines in the last call
 
@@ -121,16 +122,37 @@ class LiveSession:
 
     # -- input ---------------------------------------------------------------
 
-    def feed(self, lines: list[str], now_ms: int, offsets: tuple[int, int] | None = None) -> list[LiveEvent]:
+    def feed(
+        self,
+        lines: list[str],
+        now_ms: int,
+        offsets: tuple[int, int] | None = None,
+        catchup: bool = False,
+    ) -> list[LiveEvent]:
+        """Process complete lines.
+
+        ``catchup`` marks lines that already existed when the source was attached or rebuilt
+        (startup, new session, file discontinuity). They are replayed internally: no historical
+        snapshot or status transition is emitted. A finished game ends in WAITING_FOR_GAME and
+        is forgotten; a running game ends in SYNCING, and only a decision that is current and
+        settled after the catch-up is emitted, normally.
+        """
         watched: dict[int, tuple[GameRun, int]] = {}
         if self.game is not None:
             watched[id(self.game)] = (self.game, len(self.game.lines))
+        saved = (self.status, self.reason)
 
         def run() -> None:
-            for line in lines:
-                self._line(line, now_ms)
-                if self.game is not None and id(self.game) not in watched:
-                    watched[id(self.game)] = (self.game, 0)
+            self._catchup = catchup
+            try:
+                for line in lines:
+                    self._line(line, now_ms)
+                    if self.game is not None and id(self.game) not in watched:
+                        watched[id(self.game)] = (self.game, 0)
+            finally:
+                self._catchup = False
+            if catchup:
+                self._finish_catchup(saved, watched)
             self._poll(now_ms)
 
         events = self._flush(run)
@@ -140,9 +162,21 @@ class LiveSession:
                 row = {"t": now_ms, "n": count}
                 if offsets is not None:
                     row["bytes"] = list(offsets)
+                if catchup:
+                    row["catchup"] = True
                 game.trace.append(row)
         self.last_touched = [game for game, _ in watched.values()]
         return events
+
+    def _finish_catchup(self, saved: tuple, watched: dict) -> None:
+        final = (self.status, self.reason)
+        self.status, self.reason = saved
+        game = self.game
+        if game is not None and game.ended:
+            final = (LiveStatus.WAITING_FOR_GAME, None)
+            watched.pop(id(game), None)  # a finished historical game is neither followed nor recorded
+            self.game = None
+        self._set(*final)
 
     def tick(self, now_ms: int, partial_line: bool = False) -> list[LiveEvent]:
         """Advance time. ``partial_line``: the tail still buffers a half-written line."""
@@ -170,7 +204,7 @@ class LiveSession:
         if (status, reason) == (self.status, self.reason):
             return
         self.status, self.reason = status, reason
-        if not self._quiet:
+        if not (self._quiet or self._catchup):
             key = self.game.game_key if self.game else None
             self._events.append(StatusEvent(status, reason, key))
 
@@ -226,7 +260,7 @@ class LiveSession:
         except ReducerError as error:
             self._untrusted(game, error.reason)
             return
-        if game.mode_state == _MODE_OK and not self._quiet:
+        if game.mode_state == _MODE_OK and not (self._quiet or self._catchup):
             self._try_emit(game)
 
     def _begin_game(self, line: str) -> None:

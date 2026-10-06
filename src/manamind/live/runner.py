@@ -41,7 +41,9 @@ class LiveRunner:
             elif batch.reset == START:
                 self.session.session_name = batch.session
             if batch.lines:
-                events += self.session.feed(batch.lines, now_ms, (batch.start_offset, batch.end_offset))
+                events += self.session.feed(
+                    batch.lines, now_ms, (batch.start_offset, batch.end_offset), catchup=batch.reset is not None
+                )
                 touched += self.session.last_touched
         events += self.session.tick(now_ms, batch.partial)
         touched += self.session.last_touched
