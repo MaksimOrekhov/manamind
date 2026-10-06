@@ -206,3 +206,37 @@ whole test matches, saves/reloads a new checkpoint, and makes no strength claim.
 Checkpoint schema is separate from RosettaStone self-play checkpoints. Use a
 new checkpoint path; overwrite is refused. Local validation and coverage limits
 are recorded in `reports/ml/ML1B_REAL_POLICY_DATASET.md`.
+
+## First real PolicyNetwork baseline (ML-1C)
+
+The bounded behavior-cloning runner is separate from the one-update smoke:
+
+```powershell
+$env:PYTHONPATH = (Join-Path (Get-Location) 'src')
+python scripts/train_real_policy.py <admitted-policy-directory> `
+  --config configs/real_policy_ml1c.json `
+  --output data/processed_policy_ml1c/<new-run-name>
+```
+
+Use a new ignored output directory. The runner audits ML-1B examples, copies an
+immutable dataset snapshot, freezes whole-match membership/config/source hashes,
+and trains the existing PolicyNetwork on chosen_action_index. Published ML-1B
+smoke-test matches remain in train for this baseline split. Validation CE alone
+selects the epoch; the selected checkpoint is saved/reloaded before final test
+metrics. The test set is consumed once reported and cannot be reused as an
+untouched holdout for subsequent tuning. No simulator or online training is used.
+
+Local outputs include frozen_experiment.json, the private snapshot, history,
+aggregate metrics/diagnostics and policy.pt. Existing outputs are never overwritten.
+The strict `manamind.training.policy_checkpoint.load_policy_checkpoint` loader
+requires the baseline format, state/action/dataset/descriptor schemas, ordered
+feature names and normalization, verifies catalog/vocabulary and split/config
+identities, and rejects incompatible weights or split leakage. It reconstructs
+the saved encoder; external metadata cannot reorder vocabulary indices. This
+format is distinct from smoke, self-play and Value checkpoints; no automatic
+migration is performed. Unknown IDs retain the existing shared UNK behavior.
+
+See [the baseline report](../reports/ml/ML1C_REAL_POLICY_BASELINE.md) for the exact
+frozen experiment and limits. Policy logits describe behavior selection, not
+win probability. This small-corpus baseline does not establish playing strength
+or authorize live integration, search or gameplay automation.
