@@ -68,7 +68,7 @@ regression controls.
 - The Value Network shares an entity encoder, uses masked mean/max zone pooling and a global-feature MLP, then returns a win/loss logit. Sigmoid estimates `P(SELF eventually wins | visible GameState)`; targets are win 1.0, loss 0.0, draw 0.5.
 - An ID absent from the saved vocabulary maps to its shared unknown identity index; available visible numeric/category/mechanic features can still carry information. The current vocabulary does not encode whether an unknown index represents a newly introduced identity or a known token absent from that checkpoint. Report unknown IDs to callers. A richer identity-status split is a target, not implemented.
 - Older value checkpoints are rejected when their state schema does not match. Checkpoints store vocabulary/catalog, model config/weights, feature names, normalization and schema. Inference uses the saved catalog; added metadata cannot reorder trained vocabulary.
-- The separate policy scores currently legal actions from visible state, ordered hand and semantic action descriptors. Engine entity IDs only apply actions. Both seats share the stochastic policy; terminal rewards are +1/-1/0. Its current checkpoint action schema is `POLICY_ACTION_SCHEMA_VERSION = 3` in `src/manamind/integrations/rosettastone/policy.py`. Policy logits are action-selection scores, not win probabilities or Q-values. Policy checkpoints and compatibility rules are separate from the Value Network.
+- The separate policy scores currently legal actions from visible state, ordered hand and semantic action descriptors. Engine entity IDs only apply actions. Both seats share the stochastic policy; terminal rewards are +1/-1/0. Its current checkpoint action schema is `POLICY_ACTION_SCHEMA_VERSION = 4` in `src/manamind/models/policy.py`. Policy logits are action-selection scores, not win probabilities or Q-values. Policy checkpoints and compatibility rules are separate from the Value Network.
 
 ### Data and result interpretation
 
@@ -102,6 +102,8 @@ Python source tests do not require a native build. Native simulator commands req
 | `benchmark_inference.py` | Single-state and batch latency |
 | `train_selfplay.py`, `evaluate_policy.py` | Separate experimental policy; use only under an authorized profile/pilot |
 | `scripts/import_power_logs.py`, `scripts/prepare_real_dataset.py` | Local real-match intake/preparation |
+| `scripts/import_policy_power_log.py`, `scripts/audit_real_policy_dataset.py` | Separate real SELF action labels and policy-data audit |
+| `scripts/smoke_real_policy.py` | Explicitly requested bounded policy plumbing smoke |
 | `configs/value_v1.yaml` | Value-model/training defaults |
 | `configs/standard_profile.json` | Pinned Standard input/output/evidence identities |
 

@@ -85,7 +85,7 @@ must never learn from poisoned or fabricated afterstates.
 - Current state-encoding version is
   `STATE_ENCODING_SCHEMA_VERSION = 16`; the Python source constant is
   authoritative. Current Rosetta policy-action schema is
-  `POLICY_ACTION_SCHEMA_VERSION = 3`. They version different contracts.
+  `POLICY_ACTION_SCHEMA_VERSION = 4`. They version different contracts.
 - Phase 4K.1 implements `attempt_action` and the typed `SimulationAttempt`
   adapter boundary: canonical legality check, isolated clone execution, fixed
   root-seat export, and four outcomes. Only completed valid branches expose a

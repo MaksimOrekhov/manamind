@@ -45,6 +45,7 @@ OBSERVATION_SOURCE_ROOTS = (
     "src/manamind/encoding",
     "src/manamind/integrations/rosettastone",
     "src/manamind/integrations/powerlog",
+    "src/manamind/models/policy.py",
     "scripts/import_power_log.py",
 )
 

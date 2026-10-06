@@ -134,3 +134,75 @@ themselves prove complete dynamic-pool membership or establish a canonical
 rules contract. No future discrepancy loop should edit production rules,
 manifests, registry statuses, or model weights automatically; those changes
 require review and the applicable evidence/regeneration workflow.
+
+
+## Real supervised policy actions (ML-1B)
+
+Policy imports are separate from the existing Value schema and live in the
+already-ignored `data/processed_policy_real/`. Each match has a JSONL of exact
+SELF labels and an `.audit.json` manifest of skipped decisions. Raw logs are
+opened read-only; neither CLI copies them. Use a new output directory for a
+new import run. Existing match IDs/files are rejected rather than overwritten.
+
+```powershell
+python scripts/import_policy_power_log.py <one-game.log> --output-dir data/processed_policy_real/run1
+python scripts/import_policy_power_log.py <Power.log> --segmented --output-dir data/processed_policy_real/run1
+python scripts/audit_real_policy_dataset.py data/processed_policy_real/run1
+```
+
+`--cards FILE` selects a local catalog. Every segmented section must independently
+prove completed Ranked Standard, SELF and a final win/loss/draw. Reconnect
+headers, GAME_RESET, spectator input and ambiguous mode/result are rejected.
+
+Records contain schema/action versions, deterministic header-based `game_id`,
+`decision_id`, the LIVE-sanitized `state`, the complete supported `legal_actions`,
+`chosen_action_index`, numeric `final_result` (SELF win 1, loss 0, draw .5),
+`source=power_log_ranked_standard` and non-model provenance (options/selection
+line numbers and before-state hash). The supervised action label is the chosen
+index; the outcome is never substituted for it or passed to the policy encoder.
+
+At the completed options-message boundary, the offline reader closes the message
+before reading the next line; the actual client task-list gate must be settled.
+State and SELF resolution use LIVE-0B. Any intervening GameState message before
+SendOption supersedes the candidate. Selection is exact by option ID, entity
+target handle and insertion position. Handles stay in memory and never enter
+model-facing actions/state. All legal targets are expanded. Minion/Location
+plays expand the one-based insertion slots of the public shared seven-slot board.
+END_TURN with error=INVALID is legal only in SELF's turn, including a menu with
+no other action. The supported kinds are PLAY_CARD, ATTACK, HERO_POWER,
+ACTIVATE_LOCATION and END_TURN. A duplicate source/menu mapping or repeated
+SendOption is ambiguous; sub-options and unsupported/unresolvable targets skip
+the entire decision, preserving a complete admitted action set. No localized
+name matching or nearest-action fallback is used. Discover/mulligan are excluded.
+Duplicate source variants are ambiguous even when another variant is invalid;
+an unaffordable normal play must not relabel Trade/Forge as PLAY_CARD. Known
+alternate hand powers and unestablished minion powers are excluded. Every chosen
+non-END_TURN action also requires a subsequent public block with the same actor
+handle before the next options message (ATTACK for attacks, PLAY otherwise).
+This corroborates the label without passing future events to the model.
+
+`manamind.training.real_policy` validates inputs, creates deterministic
+outcome-stratified partitions by whole game_id, and supports held-out cross
+entropy, top-1, top-3 (menus >=3), and mean reciprocal rank. It refuses evaluation
+on training game IDs. At least three labeled games are required for three splits;
+rare outcomes may remain unrepresented in a small held-out partition.
+
+The existing scorer was extracted to `manamind.models.policy`; RosettaStone
+imports are preserved. Policy action checkpoint schema 4 appends `play_position`
+without changing the architecture or Value StateEncoder schema. Version 3
+weights migrate with a zero-initialized new column. The inherited scorer remains
+coarse: it embeds the action-bearing card, not each target's identity, and does
+not consume every retained descriptor such as card durability. This is a model
+capacity limitation, not permission to change exact labels.
+
+Only an explicitly requested plumbing smoke should use:
+
+```powershell
+python scripts/smoke_real_policy.py data/processed_policy_real/run1 --checkpoint checkpoints/real_policy_smoke_new.pt
+```
+
+It performs one CPU update on at most 32 train decisions, evaluates separate
+whole test matches, saves/reloads a new checkpoint, and makes no strength claim.
+Checkpoint schema is separate from RosettaStone self-play checkpoints. Use a
+new checkpoint path; overwrite is refused. Local validation and coverage limits
+are recorded in `reports/ml/ML1B_REAL_POLICY_DATASET.md`.
