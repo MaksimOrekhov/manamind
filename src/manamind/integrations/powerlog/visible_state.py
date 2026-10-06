@@ -17,6 +17,8 @@ from manamind.domain.entity import BoardEntity, LocationEntity
 from manamind.domain.game_state import GameState, PlayerObservation
 
 OpponentIdentityPolicy = Literal["revealed", "none"]
+# "entity": entity-table order (offline importer behavior); "zone_position": on-screen order.
+HandOrder = Literal["entity", "zone_position"]
 
 
 def infer_local_player_id(game) -> int:
@@ -54,6 +56,7 @@ def to_visible_state(
     catalog: CardCatalog,
     *,
     opponent_identity_policy: OpponentIdentityPolicy = "revealed",
+    hand_order: HandOrder = "entity",
 ) -> GameState | None:
     turn_number = _integer(game.tags.get(GameTag.TURN), 0)
     if turn_number < 1 or game.tags.get(GameTag.STATE) != State.RUNNING:
@@ -75,10 +78,10 @@ def to_visible_state(
 
     entities = list(game.entities)
     self_observation, self_hand = _player_observation(
-        self_player, entities, catalog, is_self=True,
+        self_player, entities, catalog, is_self=True, hand_order=hand_order,
     )
     opponent_observation, opponent_hand = _player_observation(
-        opponent_player, entities, catalog, is_self=False,
+        opponent_player, entities, catalog, is_self=False, hand_order=hand_order,
     )
     if opponent_identity_policy == "none":
         # Live boundary: no opponent hand identity, even if the log carries one.
@@ -97,7 +100,7 @@ def to_visible_state(
     )
 
 
-def _player_observation(player, entities, catalog, *, is_self: bool):
+def _player_observation(player, entities, catalog, *, is_self: bool, hand_order: HandOrder = "entity"):
     controlled = [entity for entity in entities if entity.controller == player]
     hero_id = player.tags.get(GameTag.HERO_ENTITY)
     hero = next((entity for entity in controlled if entity.id == hero_id), None)
@@ -106,6 +109,10 @@ def _player_observation(player, entities, catalog, *, is_self: bool):
     hand_entities = [
         entity for entity in controlled if entity.zone == Zone.HAND
     ]
+    if hand_order == "zone_position":
+        hand_entities.sort(key=lambda entity: (
+            _integer(entity.tags.get(GameTag.ZONE_POSITION), 0), entity.id
+        ))
     hand_cards = _visible_hand_cards(hand_entities, catalog, is_self=is_self)
 
     board_entities = sorted(
