@@ -38,6 +38,17 @@ def profile_path(profile: dict, key: str) -> Path:
     return path if path.is_absolute() else ROOT / path
 
 
+# Offline observation/import implementation. The live bridge (src/manamind/live) is deliberately
+# not part of the canonical training observation identity.
+OBSERVATION_SOURCE_ROOTS = (
+    "src/manamind/domain",
+    "src/manamind/encoding",
+    "src/manamind/integrations/rosettastone",
+    "src/manamind/integrations/powerlog",
+    "scripts/import_power_log.py",
+)
+
+
 def tree_digest(directory: Path, roots: tuple[str, ...]) -> str:
     files = []
     for name in roots:
@@ -59,7 +70,7 @@ def execution_identity(profile: dict) -> dict:
         "profile_sha256": digest({k: v for k, v in profile.items() if not k.startswith("_")}),
         "engine_source_sha256": engine_identity()["source_tree_sha256"],
         "bridge_source_sha256": tree_digest(ROOT, ("integrations/rosettastone/bridge.cpp", "integrations/rosettastone/CMakeLists.txt")),
-        "observation_source_sha256": tree_digest(ROOT, ("src/manamind/domain", "src/manamind/encoding", "src/manamind/integrations/rosettastone", "scripts/import_power_log.py")),
+        "observation_source_sha256": tree_digest(ROOT, OBSERVATION_SOURCE_ROOTS),
         "rules_source_sha256": tree_digest(ROOT, ("scripts/card_rules", *tuple(p.relative_to(ROOT).as_posix() for p in sorted((ROOT / "integrations/rosettastone/card_rules").glob("*.json")) if not p.name.endswith(".evidence.json")), *tuple(p.relative_to(ROOT).as_posix() for p in sorted((ROOT / "scripts").glob("generate_*.py"))))),
         "scenario_source_sha256": tree_digest(ROOT, tuple(p.relative_to(ROOT).as_posix() for p in sorted((ROOT / "scripts").glob("verify_*.py")))),
         "catalog_sha256": hashlib.sha256(profile_path(profile, "catalog").read_bytes().replace(b"\r\n", b"\n")).hexdigest(),

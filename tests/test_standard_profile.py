@@ -26,3 +26,31 @@ def test_new_dated_profile_builds_without_python_source_edits(tmp_path):
     before = Path(profile["registry"]).read_bytes()
     subprocess.run([sys.executable, "scripts/build_standard_registry.py", "--profile", str(profile_path)], check=True, capture_output=True)
     assert Path(profile["registry"]).read_bytes() == before
+
+
+def test_observation_source_identity_covers_the_shared_power_log_package(tmp_path, monkeypatch):
+    sys.path.insert(0, "scripts")
+    import standard_profile as sp
+
+    assert "src/manamind/integrations/powerlog" in sp.OBSERVATION_SOURCE_ROOTS
+    assert not any("manamind/live" in root for root in sp.OBSERVATION_SOURCE_ROOTS)
+    for root in sp.OBSERVATION_SOURCE_ROOTS:
+        assert (sp.ROOT / root).exists()
+
+    seen = {}
+    real = sp.tree_digest
+    monkeypatch.setattr(sp, "tree_digest", lambda directory, roots: seen.setdefault(roots, real(directory, roots)))
+    profile = json.loads(Path("configs/standard_profile.json").read_text(encoding="utf-8"))
+    sp.execution_identity(profile)
+    assert sp.OBSERVATION_SOURCE_ROOTS in seen  # execution_identity hashes exactly this set
+
+    # Any change inside the package changes the digest (deterministic, private-log free).
+    package = tmp_path / "src/manamind/integrations/powerlog"
+    package.mkdir(parents=True)
+    (package / "visible_state.py").write_text("A = 1\n", encoding="utf-8")
+    roots = ("src/manamind/integrations/powerlog",)
+    before = real(tmp_path, roots)
+    (package / "visible_state.py").write_text("A = 2\n", encoding="utf-8")
+    assert real(tmp_path, roots) != before
+    (package / "exporter.py").write_text("B = 1\n", encoding="utf-8")
+    assert real(tmp_path, roots) != before
