@@ -1,7 +1,7 @@
 """Live Power.log bridge: tail, reduce, gate, sanitize and emit decision snapshots.
 
-V1 stops at a trusted, settled, sanitized state plus server-validated legal actions.
-There is no recommendation, search, network or overlay code here.
+The bridge owns trusted, settled, sanitized state and server-validated legal actions.
+The separate policy adapter ranks current actions read-only; there is no search or overlay.
 """
 
 SNAPSHOT_SCHEMA = "manamind.live.snapshot/1"

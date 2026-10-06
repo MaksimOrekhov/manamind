@@ -13,7 +13,7 @@ ManaMind is a desktop Hearthstone adviser: it observes a player-visible position
 | [Standard registry](docs/STANDARD_REGISTRY.md) | Pool/dependency contracts, admission gates and snapshot updates |
 | [RosettaStone integration](docs/ROSETTASTONE_INTEGRATION.md) | Reference backend build, bridge API and execution evidence |
 | [Real match data](docs/REAL_MATCH_DATA.md) | Local Power.log capture/import and match-level dataset preparation |
-| [Live bridge](docs/LIVE_BRIDGE.md) | Read-only live Power.log tail: sanitized state and legal actions at each SELF decision (FIRST_LIVE_STATE) |
+| [Live bridge](docs/LIVE_BRIDGE.md) | Trusted LIVE state, read-only experimental policy ranking and one-command local match collection |
 
 Current pool and coverage facts come from the profile-selected registry/report, not a copied Markdown count. [Historical records](docs/history/README.md) document experiments and scoped evidence; their old queues, resume instructions and training permissions are inactive.
 
@@ -43,7 +43,8 @@ flowchart LR
 **Implemented:** player-visible domain state, metadata catalog/vocabulary,
 state encoding, Value Network, labeled-data pipeline and inference; the
 ManaEngine deck-session adapter; RosettaStone native bridge and a separate
-experimental action policy. The ManaEngine accepts only supported transitions
+experimental action policy and a console LIVE runner that ranks complete trusted SELF menus with
+the fixed real-action ML-1C checkpoint while collecting completed matches. The ManaEngine accepts only supported transitions
 and fails closed when a transition cannot be modeled safely. Power.log capture
 and import produce gameplay data, but there is no automatic comparison of a
 real replay against ManaEngine rules.
@@ -104,6 +105,8 @@ Python source tests do not require a native build. Native simulator commands req
 | `scripts/import_power_logs.py`, `scripts/prepare_real_dataset.py` | Local real-match intake/preparation |
 | `scripts/import_policy_power_log.py`, `scripts/audit_real_policy_dataset.py` | Separate real SELF action labels and policy-data audit |
 | `scripts/smoke_real_policy.py` | Explicitly requested bounded policy plumbing smoke |
+| `scripts/run_manamind.py` | One-command read-only LIVE policy ranking, replay recording and raw match collection |
+| `scripts/replay_live_recommendations.py` | Offline policy ranking replay and ML-1B encoding parity check |
 | `configs/value_v1.yaml` | Value-model/training defaults |
 | `configs/standard_profile.json` | Pinned Standard input/output/evidence identities |
 

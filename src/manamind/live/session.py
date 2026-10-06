@@ -86,6 +86,7 @@ class LiveSession:
         self.mode_policy = mode_policy or ModePolicy()
         self.session_name = session_name
         self.status = LiveStatus.WAITING_FOR_GAME
+        self.current_snapshot: Snapshot | None = None
         self.reason: str | None = None
         self.game: GameRun | None = None
         self._seq: dict[str, int] = {}
@@ -201,12 +202,19 @@ class LiveSession:
         return events
 
     def _set(self, status: LiveStatus, reason: str | None) -> None:
+        if status is not LiveStatus.READY:
+            self.current_snapshot = None
         if (status, reason) == (self.status, self.reason):
             return
         self.status, self.reason = status, reason
         if not (self._quiet or self._catchup):
             key = self.game.game_key if self.game else None
             self._events.append(StatusEvent(status, reason, key))
+
+    def _invalidate_current(self) -> None:
+        if self.current_snapshot is not None or self.status is LiveStatus.READY:
+            self.current_snapshot = None
+            self._set(LiveStatus.SYNCING, Reason.AWAITING_DECISION)
 
     def _line(self, line: str, now_ms: int) -> None:
         spectator = _SPECTATOR_RE.match(line)
@@ -252,6 +260,8 @@ class LiveSession:
                 if owner == "PowerTaskList" and method == "DebugDump":
                     dump = DUMP_RE.match(message)
                     if dump:
+                        if int(dump.group(1)) > game.gate.q_created:
+                            self._invalidate_current()
                         game.gate.queued(int(dump.group(1)))
                 elif owner == "PowerProcessor" and method == "EndCurrentTaskList":
                     end = END_RE.match(message)
@@ -264,6 +274,7 @@ class LiveSession:
             self._try_emit(game)
 
     def _begin_game(self, line: str) -> None:
+        self._invalidate_current()
         game = GameRun()
         self.game = game
         game.lines.append(line)
@@ -288,6 +299,7 @@ class LiveSession:
             game.mid_game = True
 
     def _game_state_line(self, game: GameRun, method: str, message: str, line: str, now_ms: int) -> None:
+        self._invalidate_current()
         if method == "DebugPrintOptions":
             if game.mode_state != _MODE_OK:
                 return
@@ -380,7 +392,7 @@ class LiveSession:
         seq = self._seq.get(game.game_key, 0) + 1
         self._seq[game.game_key] = seq
         self._set(LiveStatus.READY, None)
-        self._events.append(Snapshot(
+        snapshot = Snapshot(
             seq=seq,
             status=LiveStatus.READY.value,
             reason=None,
@@ -396,7 +408,9 @@ class LiveSession:
             decision=decision,
             state_hash=state_hash(state_dict),
             source={"line_in_game": pending.line_in_game},
-        ))
+        )
+        self.current_snapshot = snapshot
+        self._events.append(snapshot)
 
     @staticmethod
     def _resolve_self(game: GameRun, board, controllers: set[int]) -> int:

@@ -1,14 +1,33 @@
 # Live bridge: FIRST_LIVE_STATE
 
 While Hearthstone runs, `scripts/live_state.py` follows the growing `Power.log` and prints one
-**sanitized, settled** snapshot at every decision point of the local player (SELF). It stops at a
-trusted state plus the server-validated legal actions. There is no recommendation, no model, no
-ManaEngine import, no search, no overlay transport, no HDT, no OCR and no memory reading.
+**sanitized, settled** snapshot at every decision point of the local player (SELF). The LIVE-0C
+runner also ranks the complete legal SELF menu with the fixed ML-1C behavior-cloning policy. It
+prints read-only experimental recommendations and uses the existing collector to retain completed
+matches. There is no ManaEngine import, search, overlay transport, HDT, OCR or memory reading.
 
 Design and evidence: [LIVE_REALTIME_BRIDGE_AUDIT.md](../reports/live_integration/LIVE_REALTIME_BRIDGE_AUDIT.md).
 This page is the operating guide.
 
 ## Start
+
+For the unified LIVE-0C workflow, from the repository root with the accepted ignored checkpoint
+at `data/processed_policy_ml1c/baseline_seed42_v1/policy.pt`:
+
+```powershell
+python scripts/run_manamind.py --logs-root "D:\Games\Hearthstone\Logs"
+```
+
+The runner follows Power.log, records replayable LIVE slices under `data/raw/live/`, and invokes
+the existing completed-match collector every five seconds. New raw matches are retained under
+`data/raw/collected/` and imported using the collector's existing rules. Those paths are ignored
+local data. `--data-root` selects another local data root; `--checkpoint` selects the exact reviewed
+ML-1C file, whose SHA-256 is checked before the strict schema loader runs. The LIVE catalog must
+match the checkpoint-owned catalog. Checkpoint or catalog failure
+disables ranking while collection continues. Collection failures are shown and retried; they do not
+relax LIVE trust gates. Stop with Ctrl+C. No automatic retraining or model reload occurs.
+
+The command below is the standalone state inspector, without policy ranking or collection:
 
 ```bash
 python scripts/live_state.py --logs-root "D:\Games\Hearthstone\Logs"
@@ -42,7 +61,7 @@ session can reach `READY`**.
 | `DISCONNECTED` | no readable log | `NO_LOGS_ROOT`, `NO_POWER_LOG`, `UNREADABLE` |
 | `WAITING_FOR_GAME` | nothing to follow | `UNSUPPORTED_MODE`, `MODE_AMBIGUOUS`, `SPECTATOR` |
 | `SYNCING` | game found, no settled decision yet | `AWAITING_DECISION`, `RECONNECT` (a `CREATE_GAME` that already has `TURN>0`), `GAME_RESET` |
-| `READY` | the last snapshot is trusted | none |
+| `READY` | the current settled decision is trusted | none |
 | `UNTRUSTED` | fail-closed, nothing is emitted for this game | `FILE_DISCONTINUITY`, `ENTITY_UNKNOWN`, `PARSE_ERROR`, `INVARIANT`, `SELF_AMBIGUOUS`, `SETTLE_TIMEOUT` |
 | `GAME_OVER` | `GameEntity STATE=COMPLETE` was seen | none |
 
@@ -52,6 +71,9 @@ Notes:
   `SETTLE_TIMEOUT` (UI not caught up after 15 s) rebuilds the game and returns to `SYNCING`; a shrunk
   or replaced file re-reads the game from its `CREATE_GAME`.
 - There is no `STALE`: log silence is normal while the opponent thinks.
+- A LIVE-0C recommendation is bound to the current READY snapshot. SendOption, any newer
+  GameState line, task-list advancement, reset, trust loss, source change and game completion
+  invalidate it. The runner prints an invalidation when a displayed ranking becomes stale.
 - Unknown `GameTag` names (new patch, older `hearthstone` package) are counted and skipped because
   they cannot be tags the bridge reads. Any other unknown enum is `PARSE_ERROR`.
 
@@ -118,6 +140,12 @@ ms, number of lines and byte range per read batch), `snapshots.jsonl`, `status.j
 (versions, client build, catalog hash, policy flags). The replay re-feeds the slice with the original
 batch boundaries and verifies that the `state_hash` sequence is identical (`--show` prints the
 snapshots). A bug report is slice + trace + meta; scrub player names from the slice before sharing it.
+
+For the reviewed policy ranking path, `scripts/replay_live_recommendations.py <recording-dir>`
+replays the same batches, scores only the decision still current at each batch end, and checks
+recorded state hashes plus repeat-ranking determinism. Optional `--admitted-dataset <dir>` checks
+model-input parity against matching admitted ML-1B decisions. Its latency percentiles measure
+scoring overhead, not Power.log delivery or UI delay.
 
 ## Current limitations
 
