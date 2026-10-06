@@ -1627,8 +1627,9 @@ def test_arcane_barrage_adapter_session_exports_constraint_and_blocks_admission(
     assert {a["target_entity_id"] for a in casts if not a["target_is_hero"]} == set(enemy_board)
     assert sum(1 for a in casts if a["target_is_hero"]) == 1 and not any(a["target_is_self"] for a in casts)
     assert encode_legal_actions(actions).shape[0] == len(actions)
-    # No TIME_855-specific policy feature, and no schema bump for a new evidence ID.
-    assert POLICY_ACTION_SCHEMA_VERSION == 3 and STATE_ENCODING_SCHEMA_VERSION == 16
+    # ML-1B added a generic placement feature in policy schema 4. A new evidence
+    # ID still does not add a card-specific feature or change the state schema.
+    assert POLICY_ACTION_SCHEMA_VERSION == 4 and STATE_ENCODING_SCHEMA_VERSION == 16
     assert not [n for n in (*ACTION_FEATURE_NAMES, *POLICY_STATE_FEATURE_NAMES)
                 if "TIME_855" in n or "BARRAGE" in n.upper()]
 
