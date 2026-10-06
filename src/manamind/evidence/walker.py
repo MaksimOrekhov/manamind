@@ -8,7 +8,7 @@ client had at that point. Events carry entity views captured at the moment they 
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from hearthstone.enums import GameTag
 from hslog.packets import (
@@ -142,6 +142,7 @@ class Walker:
         self.stats: dict[str, int] = {
             "root_blocks": 0, "subspell_packets": 0, "enchantment_creations": 0,
             "enchantment_creations_with_creator_and_attached": 0, "unknown_tag_changes": 0,
+            "late_enriched_creations": 0,
         }
         self.public_ids: set[int] = set()
         self.last_options: OptionsSnapshot | None = None
@@ -350,9 +351,39 @@ class Walker:
                 window.final[handle] = view
                 if view.zone in PUBLIC_ZONES:
                     self.public_ids.add(handle)
-        for event in window.events:
-            if event.kind == "CREATE" and event.view is not None:
-                final = window.final.get(event.entity)
+
+    def _enrich_late_creations(self, windows: list[Window]) -> None:
+        """Complete creations whose identity/type/CREATOR/ATTACHED arrive after their window.
+
+        The client often logs ``FULL_ENTITY`` with an empty card id inside a block and sends the
+        ``SHOW_ENTITY`` that carries ``CARDTYPE``/``CREATOR``/``ATTACHED`` in a later root block. A
+        window-end snapshot alone would type such an entity as unknown (measured: 148 enchantment
+        creations in the audit corpus). The enriched fields come from the end-of-game entity; zone and
+        controller stay as seen at window end so visibility is decided by what was public *then*.
+        """
+        for window in windows:
+            for event in window.events:
+                if event.kind != "CREATE" or event.entity is None:
+                    continue
+                current = window.final.get(event.entity)
+                if current is not None and current.card_type and current.card_id:
+                    continue
+                late = view_of(self.game, event.entity)
+                if late is None or not (late.card_type or late.card_id):
+                    continue
+                window.final[event.entity] = replace(
+                    late, zone=current.zone if current else late.zone,
+                    controller=current.controller if current and current.controller is not None else late.controller,
+                )
+                self.stats["late_enriched_creations"] += 1
+                for ref in (late.creator, late.attached):
+                    if ref and ref not in window.final:
+                        extra = view_of(self.game, ref)
+                        if extra is not None:
+                            window.final[ref] = extra
+        for window in windows:
+            for event in window.events:
+                final = window.final.get(event.entity) if event.kind == "CREATE" else None
                 if final is not None and final.card_type == "ENCHANTMENT":
                     self.stats["enchantment_creations"] += 1
                     if final.creator and final.attached:
@@ -383,6 +414,7 @@ class Walker:
                 for event in self._event_from(packet, None, None):
                     if windows and event.kind == "TAG" and event.semantic:
                         windows[-1].gap_events.append(event)
+        self._enrich_late_creations(windows)
         return GameWalk(windows, dict(self.stats))
 
 

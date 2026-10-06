@@ -1,6 +1,6 @@
 # EVIDENCE-0B — Unsupported-card evidence extractor: completion report
 
-**Verdict: `EVIDENCE0B_EXTRACTOR_READY`**
+**Verdict: `EVIDENCE0B_EXTRACTOR_READY`** (pre-merge follow-up in section 4a: verdict `EVIDENCE0B_PREMERGE_READY`)
 
 Date 2026-10-06. Python only. No ManaEngine, ML, policy, live, registry, card-declaration, config or overlay file was changed; no support status is written anywhere. Operating guide: [docs/EVIDENCE_PIPELINE.md](../../docs/EVIDENCE_PIPELINE.md).
 
@@ -51,7 +51,7 @@ Inputs: `data/raw/collected`, `data/raw/Power.log`, `D:\Games\Hearthstone\Logs`;
 
 **Corpus.** 40 distinct complete games (as in 0A): 25 Ranked Standard, 15 other modes. Processed 21; skipped 4 (`GAME_RESET`, a deliberate gate shared with the policy importer) and 15 non-primary.
 
-**Structural parity with 0A on the 25 Ranked Standard games** (all games, resets included): root blocks 9,303 / PLAY 1,450 / TRIGGER 7,192 / ATTACK 454 / DEATHS 166 / DECK_ACTION 35 / GAME_RESET 6 — **all identical to the audit**; PLAY windows with a foreign TRIGGER child 89.7 % (audit 89 %); every enchantment creation carries both `CREATOR` and `ATTACHED` (100 %, as audited). One difference: I count 921 enchantment creations in blocks where the audit reports 1,171 (the 100 % property holds either way; the counting rule behind the audit's number is not recoverable from its text).
+**Structural parity with 0A on the 25 Ranked Standard games** (all games, resets included): root blocks 9,303 / PLAY 1,450 / TRIGGER 7,192 / ATTACK 454 / DEATHS 166 / DECK_ACTION 35 / GAME_RESET 6 — **all identical to the audit**; PLAY windows with a foreign TRIGGER child 89.7 % (audit 89 %); every enchantment creation carries both `CREATOR` and `ATTACHED` (100 %, as audited). Enchantment creations: **1,102** after the pre-merge fix in section 4a (the first version reported 921 against the audit's 1,171).
 
 **Extraction output (21 processed games, 7,528 windows).**
 
@@ -60,20 +60,39 @@ Inputs: `data/raw/collected`, `data/raw/Power.log`, `D:\Games\Hearthstone\Logs`;
 | Observations / distinct subject cards | 2,153 / 423 |
 | Unsupported-subject observations / control samples | 2,088 / 65 |
 | Roles | played card 806, enchantment source 349, attacker 328, hero power 183, trigger 149, deathrattle 95, Location 91, turn-phase 87, control 65 |
-| Attribution tier | creator-or-same-unit 1,283 · unit-owner-only 547 · no attributed effects 323 |
-| Observations flagged ambiguous (conservative) | 1,006 (47 %); 1,004 have no confounder at all |
-| Facts by basis | unit-owner 11,639 · nested-only 5,054 · unattributed 4,396 · creator-tag 1,458 · last-affected-by-same-unit 1,401 |
-| Confounders | foreign enchantment 967 · foreign unit 722 · stale last-affected-by 417 · missing creator 240 · multiple own units 94 · aura recalculation 5 |
+| Attribution tier | creator-or-same-unit 1,400 · unit-owner-only 409 · no attributed effects 344 |
+| Observations flagged ambiguous (conservative) | 933 (43 %); 1,062 have no confounder at all |
+| Facts by basis | unit-owner 11,306 · nested-only 5,103 · unattributed 4,383 · creator-tag 1,755 · last-affected-by-same-unit 1,401 |
+| Confounders | foreign enchantment 967 · foreign unit 722 · stale last-affected-by 417 · missing creator 135 · multiple own units 94 · aura recalculation 5 |
 | Server legality facts (selected plays only) | 1,023: 794 accepted; rejections `REQ_MINION_TARGET` 182, `REQ_HERO_OR_MINION_TARGET` 28, `REQ_CAN_BE_TARGETED_BY_SPELLS` 12, others 7 |
 | Inferences | stat change explained 1,165 / unexplained 294 · death by damage 469 · destroy without damage 182 · battlecry-from-own-power 353 · repeated trigger 54 |
-| Observations containing redacted hidden facts | 497 |
+| Observations containing redacted hidden facts | 645 |
 | Support basis | `DECLARATION_PROXY` (2,079 no declaration, 9 declared unsupported) |
+
+### 4a. Pre-merge follow-up: the enchantment-creation discrepancy (921 vs 1,171)
+
+Counted independently from the packet tree of the same 25 Ranked Standard games (all in-block, `SubSpell` included, resets included):
+
+| Definition | Count |
+|---|---:|
+| `FULL_ENTITY` whose own tags say `ENCHANTMENT` | 12 |
+| `FULL_ENTITY` whose end-of-game type is `ENCHANTMENT`, in blocks (394 directly, 675 inside `SubSpell`) | 1,069 (+7 outside any block) |
+| of those, entities completed by a `SHOW_ENTITY` | 1,067 of 1,076 |
+| Distinct enchantment entities alive at game end | 1,057 |
+| Extractor v1 (type read at the end of the creating window) | 921 |
+| Extractor after the fix | 1,102 |
+
+**Cause: a real loss in v1, now fixed.** The client frequently logs `FULL_ENTITY` with an empty card id inside a block and sends the `SHOW_ENTITY` that carries `CARDTYPE`, `CREATOR` and `ATTACHED` in a **later root block** (about 150 enchantments in the non-reset games alone). v1 snapshotted entities at window end, so those creations were typed unknown and had no creator. Ruled out: `SubSpell` traversal (675 of the creations are inside `SubSpell` and were counted), deduplication (only 19 reused handles, all in `GAME_RESET` games), root/unit boundaries, observation filtering (the count is taken from raw creation events before any subject filter), and `GAME_RESET` exclusion (the measurement includes reset games; extraction still skips them).
+
+**Fix** (`Walker._enrich_late_creations`): creations still missing card id or type at window end take card id, type, `CREATOR` and `ATTACHED` from the end-of-game entity, while zone and controller stay as seen at window end so visibility is decided by what was public *then*. Measured effect on the 21 processed games: creator-tag attributions 1,458 → 1,755, missing-creator confounders 240 → 135, redacted-hidden observations 497 → 645; the independent hidden-identity check still finds 0 leaks. Regression test: `test_creation_completed_by_a_later_root_block_is_not_lost` (fails without the fix).
+
+**Residual.** 1,102 now exceeds every packet-level count I can construct (1,069 in blocks; the extra ~33 are entities that were enchantments at window end but were reset or retyped later in `GAME_RESET` games, which extraction skips). The audit's 1,171 is **not reproduced** by any definition tried (FULL_ENTITY with final type, SHOW_ENTITY with `ENCHANTMENT` type = 1,094 in blocks + 7 outside, entities alive at end, creations with a creator); it is about 6 % above the extractor and 10 % above the nearest independent packet count, and its counting rule is not stated in 0A. No evidence indicates that the extractor still drops observable creations, but this number was not matched and the audit figure should not be reused as a target. Not covered: identity enrichment of non-creation `SHOW_ENTITY` reveals that arrive after their window.
 
 **Privacy.** The run's own scan checked the output against 142 identifiers (names, BattleTags, account fragments) taken from the input: **0 leaks**. An independent check recomputed, per game, the opponent-side identities that never became public (never in PLAY/GRAVEYARD and never SELF-controlled): 50 such identities (40 distinct ids) across the 32 games SELF could be resolved for, **none appears in that game's output**. A first version of that check flagged ids that had been public earlier in the game; the corrected definition is the one above.
 
 ## 5. Tests
 
-`tests/test_evidence_extractor.py` (21), `test_evidence_pipeline.py` (9), `test_evidence_boundary.py` (3); synthetic logs only. Covered: SubSpell creation; foreign nested triggers and the empty-watcher count; CREATOR beating block owner in both directions and enchantment chains; same-unit `LAST_AFFECTED_BY` versus a stale value; foreign enchantment rewriting an effect; unattributed root packets and ambiguity; no-op windows with no negative claim; RNG outcomes as single draws; inferences as non-facts; supported/unsupported filtering with the control-sample cap; server legality evidence; opponent plays; hidden-information canaries (opponent hand/deck/secret, `OVERRIDE_HISTORY`, show-then-hide); SELF in both player orders, opponent-first, disagreement and no cross-check; unknown tag ids and numeric trigger keywords; client build and mode (`OTHER_MODE_SECONDARY`); incomplete games; determinism, dedup, refusal to overwrite, version-keyed ids; privacy canary in every output file, stdout/stderr and exception paths; leak ⇒ run fails and output removed; static import boundary and no-write-path checks; schema rejection cases. Six deliberate mutations (drop SubSpell, ignore CREATOR, expose everything, drop the root guard, ignore same-unit last-affected-by, drop NESTED_ONLY) each fail at least one test.
+`tests/test_evidence_extractor.py` (22), `test_evidence_pipeline.py` (9), `test_evidence_boundary.py` (3); synthetic logs only. Covered: SubSpell creation; foreign nested triggers and the empty-watcher count; CREATOR beating block owner in both directions and enchantment chains; same-unit `LAST_AFFECTED_BY` versus a stale value; foreign enchantment rewriting an effect; unattributed root packets and ambiguity; no-op windows with no negative claim; RNG outcomes as single draws; inferences as non-facts; supported/unsupported filtering with the control-sample cap; server legality evidence; opponent plays; hidden-information canaries (opponent hand/deck/secret, `OVERRIDE_HISTORY`, show-then-hide); SELF in both player orders, opponent-first, disagreement and no cross-check; unknown tag ids and numeric trigger keywords; client build and mode (`OTHER_MODE_SECONDARY`); incomplete games; determinism, dedup, refusal to overwrite, version-keyed ids; privacy canary in every output file, stdout/stderr and exception paths; leak ⇒ run fails and output removed; static import boundary and no-write-path checks; schema rejection cases. Six deliberate mutations (drop SubSpell, ignore CREATOR, expose everything, drop the root guard, ignore same-unit last-affected-by, drop NESTED_ONLY) each fail at least one test.
 
 Verification: `ruff check .` clean; full `pytest` 412 passed, 1 skipped (requires the RosettaStone submodule checked out in the worktree); `git diff --check` clean; `scripts/check_generated_artifacts.py` exits 0 and leaves the tree unchanged.
 

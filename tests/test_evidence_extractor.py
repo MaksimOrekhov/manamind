@@ -335,3 +335,20 @@ def test_derived_inferences_for_battlecry_blocks_and_stat_changes():
     assert "BATTLECRY_FROM_OWN_POWER_BLOCK" in kinds and "STAT_CHANGE_EXPLAINED_BY_ENCHANTMENT" in kinds
     battlecry = [i for i in minion["inferences"] if i["kind"] == "BATTLECRY_FROM_OWN_POWER_BLOCK"][0]
     assert battlecry["status"] == "ASSUMPTION_DEPENDENT" and battlecry["assumptions"]
+
+
+def test_creation_completed_by_a_later_root_block_is_not_lost():
+    """FULL_ENTITY with an empty id inside the play; CARDTYPE/CREATOR/ATTACHED arrive in a later root block."""
+    log = EvLog().create().start_turn(1, 1).hand_option(6)
+    log.power(blk("PLAY", 6, flat(tag(6, "ZONE", "PLAY"), blk("POWER", 6, full(70, "", ZONE="PLAY", CONTROLLER=1)))))
+    log.power(blk("TRIGGER", 1, show(70, "TEST_E_LATE", CARDTYPE="ENCHANTMENT", CREATOR=6, ATTACHED=41)))
+    log.complete()
+    result = run(log)
+    assert result.summary["walker_stats"]["enchantment_creations"] == 1
+    assert result.summary["walker_stats"]["enchantment_creations_with_creator_and_attached"] == 1
+    assert result.summary["walker_stats"]["late_enriched_creations"] == 1
+    spell = obs_for(result, "TEST_SPELL", "PLAYED_CARD")
+    attached = facts(spell, "ENCHANTMENT_ATTACHED")
+    assert len(attached) == 1 and attached[0]["data"]["enchantment"]["card_id"] == "TEST_E_LATE"
+    assert attached[0]["attribution"]["basis"] == "CREATOR_TAG" and attributed(attached[0]) == "TEST_SPELL"
+    assert attached[0]["data"]["attached_to"]["card_id"] == "TEST_FRIEND"
