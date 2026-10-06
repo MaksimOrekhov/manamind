@@ -34,12 +34,30 @@ def test_buffed_hand_and_cost_preserve_base_and_instance_stats_through_serializa
 
 def test_modified_weapon_matches_bridge_instance_payload():
     catalog = CardCatalog([CardFeatures(card_id="W", card_type="WEAPON", cost=3, attack=3, durability=4)])
-    entity = SimpleNamespace(card_id="W", type=CardType.WEAPON, tags={GameTag.COST: 3, GameTag.ATK: 5, GameTag.DURABILITY: 2})
+    entity = SimpleNamespace(card_id="W", type=CardType.WEAPON, tags={GameTag.COST: 3, GameTag.ATK: 5, GameTag.HEALTH: 4, GameTag.DAMAGE: 2})
     observed = _card_features(entity, catalog)
-    bridge_payload = {**asdict(catalog.get("W")), "current_cost": 3, "current_attack": 5, "current_durability": 2}
+    bridge_payload = {**asdict(catalog.get("W")), "health": 4, "current_cost": 3, "current_attack": 5, "current_durability": 2}
     assert observed == _card(bridge_payload)
     assert (observed.attack, observed.durability) == (3, 4)
     assert (observed.effective_attack, observed.effective_durability) == (5, 2)
+
+
+def test_weapon_current_durability_handles_power_log_and_legacy_tags():
+    catalog = CardCatalog([CardFeatures(card_id="W", card_type="WEAPON", durability=3)])
+    cases = (
+        ({GameTag.HEALTH: 3, GameTag.DAMAGE: 0}, 3),
+        ({GameTag.HEALTH: 3, GameTag.DAMAGE: 1}, 2),
+        ({GameTag.HEALTH: 3, GameTag.DAMAGE: 3}, 0),
+        ({GameTag.HEALTH: 3}, 3),
+        ({GameTag.HEALTH: 3, GameTag.DAMAGE: 99}, 0),
+        ({GameTag.HEALTH: 3, GameTag.DAMAGE: "broken"}, 3),
+        ({GameTag.DURABILITY: 2}, 2),
+        ({}, None),
+    )
+
+    for tags, expected in cases:
+        entity = SimpleNamespace(card_id="W", type=CardType.WEAPON, tags=tags)
+        assert _card_features(entity, catalog).current_durability == expected
 
 
 def test_unknown_tristate_survives_json_roundtrip():

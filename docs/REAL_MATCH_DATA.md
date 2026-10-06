@@ -6,6 +6,8 @@ This is the local data-intake guide, not a development priority or permission to
 
 `scripts/audit_power_log.py` checks a **single-match** local `Power.log` for three conditions: the parser identifies Ranked, identifies Standard, and sees a complete win/loss/draw result. `scripts/import_power_log.py` then converts that match into local JSONL examples: visible states immediately before top-level card-play and attack actions, from the local player's perspective, labeled with the match result. The importer never writes player names or raw replay data.
 
+For weapons, the importer derives current durability as `max(0, HEALTH - DAMAGE)`; a missing `DAMAGE` tag means zero damage. If `HEALTH` is absent, an explicit `DURABILITY` tag remains a compatibility fallback. Catalog durability is base metadata and is not used as the current value. Datasets imported before DATA-0B may therefore contain `current_durability=None` for weapons. Rebuild corrected data from raw logs into a fresh output directory; do not mix old and corrected trajectories because the serialized match fingerprint can change.
+
 Hearthstone's game log is enabled through `log.config`. Hearthstone Deck Tracker normally manages this file for its own log reading; its upstream guide describes the manual setup if needed: [Setting up the log.config](https://github.com/HearthSim/Hearthstone-Deck-Tracker/wiki/Setting-up-the-log.config). The game's protocol and `Power.log` format are documented by HearthSim: [Game State Protocol](https://hearthsim.info/docs/gamestate-protocol/).
 
 ## Capture one match

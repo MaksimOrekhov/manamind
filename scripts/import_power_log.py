@@ -369,7 +369,9 @@ def _card_features(entity, catalog: CardCatalog) -> CardFeatures:
         current_cost=_optional_int(tags.get(GameTag.COST), None),
         current_attack=(_optional_int(tags.get(GameTag.ATK), None) if card_type in {"MINION", "WEAPON"} else None),
         current_health=(_current_health(entity) if GameTag.HEALTH in tags and card_type in {"MINION", "LOCATION"} else None),
-        current_durability=(_optional_int(tags.get(GameTag.DURABILITY), None) if card_type == "WEAPON" else None),
+        current_durability=(
+            _current_weapon_durability(entity) if card_type == "WEAPON" else None
+        ),
         card_type=card_type,
         card_class=base.card_class,
         race=base.race,
@@ -402,6 +404,22 @@ def _current_health(entity) -> int:
     maximum = _integer(entity.tags.get(GameTag.HEALTH), 0)
     damage = _integer(entity.tags.get(GameTag.DAMAGE), 0)
     return max(0, maximum - damage)
+
+
+def _current_weapon_durability(entity) -> int | None:
+    """Read current weapon durability from real Power.log health/damage tags.
+
+    Older or synthetic inputs may provide only the explicit DURABILITY tag.
+    Catalog durability is base metadata and is not a current instance value.
+    """
+    if entity is None:
+        return None
+    tags = entity.tags
+    if GameTag.HEALTH in tags:
+        health = _integer(tags.get(GameTag.HEALTH), 0)
+        damage = _integer(tags.get(GameTag.DAMAGE), 0)
+        return max(0, health - damage)
+    return _optional_int(tags.get(GameTag.DURABILITY), None)
 
 
 def _integer(value, fallback: int) -> int:
