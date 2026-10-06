@@ -28,11 +28,9 @@ Known limits are listed in docs/REAL_MATCH_DATA.md.
 from __future__ import annotations
 
 import argparse
-import hashlib
 import json
 import logging
 import os
-import re
 import sys
 import time
 import uuid
@@ -41,6 +39,16 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Callable
+
+from manamind.integrations.powerlog.lines import (  # noqa: F401  (re-exported for callers/tests)
+    COMPLETE_RE as _COMPLETE_RE,
+    CREATE_GAME_RE as _CREATE_GAME_RE,
+    META_RE as _META_RE,
+    SegmentInfo,
+    inspect_segment,
+    read_complete_lines,
+    split_games,
+)
 
 try:
     from scripts.audit_power_log import audit_log
@@ -71,28 +79,6 @@ TERMINAL_STATUSES = frozenset({
 STATE_VERSION = 1
 RESULT_LABEL = {"WON": "WIN", "LOST": "LOSS", "TIED": "DRAW"}
 
-_CREATE_GAME_RE = re.compile(r"^[DWE] \S+ GameState\.DebugPrintPower\(\) - CREATE_GAME\s*$")
-_META_RE = re.compile(r"^[DWE] \S+ GameState\.DebugPrintGame\(\) - (GameType|FormatType)=(\w+)\s*$")
-_COMPLETE_RE = re.compile(
-    r"^[DWE] \S+ GameState\.DebugPrintPower\(\) - TAG_CHANGE Entity=GameEntity "
-    r"tag=STATE value=COMPLETE\b"
-)
-_PLAYER_HEADER_RE = re.compile(r"GameState\.DebugPrintPower\(\) -\s+Player EntityID=")
-_TURN_RE = re.compile(r"GameState\.DebugPrintPower\(\) -\s+tag=TURN value=(\d+)")
-
-
-@dataclass
-class SegmentInfo:
-    """Facts proven from one CREATE_GAME section; contains no log text."""
-
-    lines: list[str]
-    start_key: str | None
-    complete_index: int | None
-    game_types: set[str]
-    formats: set[str]
-    mid_game_start: bool
-
-
 @dataclass
 class Stats:
     files_seen: set[str] = field(default_factory=set)
@@ -119,46 +105,6 @@ class Stats:
         return sum(self.skipped.values())
 
 
-def split_games(lines: list[str]) -> list[list[str]]:
-    """Cut a log into per-game sections at every top-level CREATE_GAME line."""
-    sections: list[list[str]] = []
-    for line in lines:
-        if _CREATE_GAME_RE.match(line):
-            sections.append([])
-        if sections:
-            sections[-1].append(line)
-    return sections
-
-
-def inspect_segment(lines: list[str]) -> SegmentInfo:
-    game_types: set[str] = set()
-    formats: set[str] = set()
-    complete_index: int | None = None
-    header_end: int | None = None
-    mid_game_start = False
-
-    for index, line in enumerate(lines):
-        if header_end is None and _PLAYER_HEADER_RE.search(line):
-            header_end = index
-        if header_end is None:
-            turn = _TURN_RE.search(line)
-            if turn and int(turn.group(1)) > 0:
-                mid_game_start = True  # e.g. reconnect re-dump of a running game
-        meta = _META_RE.match(line)
-        if meta:
-            (game_types if meta.group(1) == "GameType" else formats).add(meta.group(2))
-        if complete_index is None and _COMPLETE_RE.match(line):
-            complete_index = index
-
-    # Identity: the CREATE_GAME header up to the first Player line. It contains the
-    # per-game seed and stays identical while the file grows and across file copies.
-    start_key = None
-    if header_end is not None:
-        digest = hashlib.sha256("\n".join(lines[:header_end]).encode("utf-8", "replace"))
-        start_key = digest.hexdigest()
-    return SegmentInfo(lines, start_key, complete_index, game_types, formats, mid_game_start)
-
-
 def classify_metadata(info: SegmentInfo) -> str | None:
     """Return a skip status when the section's own evidence is not usable, else None."""
     if info.mid_game_start:
@@ -170,15 +116,6 @@ def classify_metadata(info: SegmentInfo) -> str | None:
     if next(iter(info.formats)) != "FT_STANDARD":
         return SKIPPED_NOT_STANDARD
     return None
-
-
-def read_complete_lines(path: Path) -> list[str]:
-    """Read a possibly growing file; drop a trailing line that is not newline-terminated."""
-    with path.open("r", encoding="utf-8", errors="replace", newline="") as file:
-        text = file.read()
-    lines = text.split("\n")
-    lines.pop()  # '' after a final newline, otherwise a partially written last line
-    return [line.rstrip("\r") for line in lines]
 
 
 def candidate_files(logs_root: Path, max_sessions: int) -> list[Path]:
