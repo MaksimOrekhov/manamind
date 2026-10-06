@@ -13,6 +13,7 @@ ManaMind is a desktop Hearthstone adviser: it observes a player-visible position
 | [Standard registry](docs/STANDARD_REGISTRY.md) | Pool/dependency contracts, admission gates and snapshot updates |
 | [RosettaStone integration](docs/ROSETTASTONE_INTEGRATION.md) | Reference backend build, bridge API and execution evidence |
 | [Real match data](docs/REAL_MATCH_DATA.md) | Local Power.log capture/import and match-level dataset preparation |
+| [Live bridge](docs/LIVE_BRIDGE.md) | Read-only live Power.log tail: sanitized state and legal actions at each SELF decision (FIRST_LIVE_STATE) |
 
 Current pool and coverage facts come from the profile-selected registry/report, not a copied Markdown count. [Historical records](docs/history/README.md) document experiments and scoped evidence; their old queues, resume instructions and training permissions are inactive.
 
