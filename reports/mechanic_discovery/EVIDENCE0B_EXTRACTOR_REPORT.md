@@ -8,7 +8,7 @@ Date 2026-10-06. Python only. No ManaEngine, ML, policy, live, registry, card-de
 
 | Item | Value |
 |---|---|
-| Base | `origin/main` = `33fc46d3dd6fd3d44f654ff1ee4da29df0211ce1` ("docs(evidence): design real-log mechanic discovery"). At the end of the task `origin/main` had advanced to `6c7159b` (ML-1C: `configs/real_policy_ml1c.json`, training/metrics modules, `scripts/train_real_policy.py`, docs/report/test); none of those paths overlap this change. |
+| Base | Implemented on `33fc46d3dd6fd3d44f654ff1ee4da29df0211ce1`; rebased in the pre-merge follow-up onto `origin/main` = `6c7159b` (ML-1C: training/metrics modules, `scripts/train_real_policy.py`, config, docs/report/test), which touches no path of this change. |
 | Branch | `work/evidence0b-unsupported-card-extractor` (local, not merged, not pushed). |
 | Parsers | `hslog` 1.20.0, `hearthstone` 9.21.1. |
 | Extractor version | `evidence-0b.1`. |
