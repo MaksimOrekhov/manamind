@@ -24,7 +24,7 @@ from .gate import DUMP_RE, END_RE, SettleGate
 from .reducer import GameReducer, ReducerError
 from .snapshot import Snapshot, state_hash, state_to_dict
 from .trust import LiveStatus, ModePolicy, Reason, StatusEvent
-from .visibility import build_decision, has_legal_option, option_controllers, project_state
+from .visibility import build_decision, has_candidate_option, has_named_option, option_controllers, project_state
 
 _LINE_RE = re.compile(r"^[DWE] \S+ (\w+)\.(\w+)\(\) - (.*)$")
 _CHOSEN_RE = re.compile(r"^m_chosenEntities\[\d+\]=\[.*player=(\d+)\]\s*$")
@@ -355,7 +355,7 @@ class LiveSession:
         if game.blocked:
             return
         pending = game.gate.take_ready()
-        if pending is None or not has_legal_option(pending.packet):
+        if pending is None or not has_candidate_option(pending.packet):
             return
         try:
             game.reducer.commit()
@@ -366,7 +366,9 @@ class LiveSession:
             state = project_state(board, self_id, self.catalog, parity_view=self.parity_view)
             decision = build_decision(board, pending.packet, self_id)
             if state.active_player != "SELF":
-                raise ReducerError(Reason.INVARIANT)
+                if has_named_option(pending.packet):
+                    raise ReducerError(Reason.INVARIANT)  # validated options in the opponent's turn
+                return  # END_TURN alone: the opponent's turn, no decision
         except ReducerError as error:
             self._untrusted(game, error.reason)
             return

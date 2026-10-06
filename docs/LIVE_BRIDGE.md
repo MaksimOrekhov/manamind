@@ -59,7 +59,7 @@ Notes:
 
 `GameState` packets run ahead of the screen (median 0.3-1 s). A decision is emitted only when
 
-1. a SELF `DebugPrintOptions` message is complete and has at least one option with `error=NONE`;
+1. a SELF `DebugPrintOptions` message is complete and has at least one option with `error=NONE`, or an `END_TURN` option while it is SELF's turn (real logs always give `END_TURN` `error=INVALID`);
 2. nothing newer was read after it (any later `GameState` line, including `SendOption`, supersedes it
    and it is dropped, which also covers the player acting before the screen caught up);
 3. every task list the client queued (`PowerTaskList.DebugDump ID=n`) has finished

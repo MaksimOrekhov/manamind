@@ -497,3 +497,19 @@ def test_live_parsing_never_touches_the_card_database_or_the_network(monkeypatch
     log.options()
     events = drive(make(), log.lines)
     assert len(snapshots(events)) == 1
+
+
+def test_end_turn_is_legal_in_own_turn_even_though_its_error_is_always_invalid():
+    log = LiveLog().create_game().mulligan().begin_turn(1)
+    log.raw("GameState", "DebugPrintOptions", "id=1")
+    log.raw("GameState", "DebugPrintOptions", "option 0 type=END_TURN mainEntity= error=INVALID errorParam=")
+    events = drive(make(), log.lines)
+    found = snapshots(events)
+    assert len(found) == 1 and [a["kind"] for a in found[0].decision["legal"]] == ["END_TURN"]
+
+
+def test_end_turn_only_message_in_the_opponents_turn_is_ignored_not_untrusted():
+    session = make()
+    log = LiveLog().create_game().mulligan().begin_turn(1, self_turn=False).options(legal=False)
+    events = drive(session, log.lines)
+    assert snapshots(events) == [] and session.status is LiveStatus.SYNCING

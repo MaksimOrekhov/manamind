@@ -177,7 +177,7 @@ class LiveLog:
         self.raw("GameState", "DebugPrintOptions", f"id={self.options_id}")
         error = "NONE" if legal else "REQ_YOUR_TURN"
         self.raw("GameState", "DebugPrintOptions",
-                 f"option 0 type=END_TURN mainEntity= error={error} errorParam=")
+                 "option 0 type=END_TURN mainEntity= error=INVALID errorParam=")  # real logs: always INVALID
         self.raw("GameState", "DebugPrintOptions",
                  f"option 1 type=POWER mainEntity={desc(6, 'HAND', 1, 'CS2_029', 1)} error={error} errorParam=")
         if targets:

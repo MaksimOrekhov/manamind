@@ -91,8 +91,23 @@ def _kind(game, option) -> str:
     return "POWER"
 
 
-def has_legal_option(options_packet) -> bool:
+def _is_end_turn(option) -> bool:
+    return getattr(option.type, "name", None) == "END_TURN"
+
+
+def has_named_option(options_packet) -> bool:
+    """An option the server validated (error NONE)."""
     return any(option.error is None for option in options_packet.options)
+
+
+def has_candidate_option(options_packet) -> bool:
+    """A possible decision message: a validated option, or END_TURN.
+
+    Real logs give END_TURN ``error=INVALID`` in every message, in the opponent's turn too, so
+    its error cannot say whether it is legal. It is legal when the active player is SELF, which
+    the session checks after the state is applied.
+    """
+    return has_named_option(options_packet) or any(_is_end_turn(o) for o in options_packet.options)
 
 
 def option_controllers(game, options_packet) -> set[int]:
@@ -112,7 +127,7 @@ def build_decision(game, options_packet, self_player_id: int) -> dict:
     """The decision section: legal actions with the handles a later mapper needs."""
     legal = []
     for option in options_packet.options:
-        if option.error is not None:
+        if option.error is not None and not _is_end_turn(option):
             continue
         action = {"option_index": option.id, "kind": _kind(game, option)}
         if option.entity is not None:
