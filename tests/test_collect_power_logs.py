@@ -16,6 +16,8 @@ sys.path.insert(0, str(ROOT / "tests"))
 import collect_power_logs as cpl  # noqa: E402
 from power_log_fixtures import SECRET_NAME, Clock, build_game, to_text  # noqa: E402
 
+# The collector may load the module as ``scripts.process_completed_match``; patch that very object.
+pcm = sys.modules[cpl.process_completed_match.__module__]
 CATALOG = ROOT / "data" / "cards" / "standard_current_enUS.json"
 
 
@@ -103,7 +105,7 @@ def test_eof_is_never_completion_and_partial_last_line_is_ignored(env: Env):
 
 def test_transient_parse_failure_does_not_crash_and_is_retried(env: Env, monkeypatch):
     env.write("Power.log", to_text(build_game(seed=5)))
-    real_import = cpl.import_power_log
+    real_import = pcm.import_power_log
     calls = {"n": 0}
 
     def flaky(*args, **kwargs):
@@ -112,7 +114,7 @@ def test_transient_parse_failure_does_not_crash_and_is_retried(env: Env, monkeyp
             raise RuntimeError(f"boom {SECRET_NAME}")
         return real_import(*args, **kwargs)
 
-    monkeypatch.setattr(cpl, "import_power_log", flaky)
+    monkeypatch.setattr(pcm, "import_power_log", flaky)
     collector = env.collector()
     collector.scan_once()
     assert collector.stats.parse_failures == 1 and env.outputs() == []
