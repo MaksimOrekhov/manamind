@@ -56,6 +56,15 @@ class ProcessorResult:
     detail: dict = field(default_factory=dict)
 
 
+# Match-level gates of the Policy importer: this match is simply not usable for Policy labels.
+# Anything else (DATASET_INVALIDATED, VALUE_DATASET_DESTINATION, INVALID_MATCH_ID, PARSE_ERROR,
+# INVARIANT, or a reason added later) is operational or unknown and must surface as FAILED.
+POLICY_MATCH_SKIP_REASONS = frozenset({
+    "MODE_INELIGIBLE", "UNSUPPORTED_MODE", "MODE_AMBIGUOUS", "MID_GAME_START", "INCOMPLETE",
+    "GAME_RESET", "SELF_AMBIGUOUS", "RESULT_UNRESOLVED", "SPECTATOR", "RECONNECT",
+})
+
+
 def build_value_examples(raw_slice: Path, output_dir: Path, catalog_path: Path) -> ProcessorResult:
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -83,8 +92,9 @@ def build_policy_examples(raw_slice: Path, output_dir: Path, catalog: CardCatalo
         return ProcessorResult(OK, int(result["decisions_labeled"]), result)
     if result["game_skip_reasons"].get("DUPLICATE_MATCH"):
         return ProcessorResult(DUPLICATE, 0, result)
-    # Every importer rejection (GAME_RESET, MODE_INELIGIBLE, SELF_AMBIGUOUS, ...) is a deliberate gate.
-    return ProcessorResult(SKIPPED, 0, result)
+    if set(result["game_skip_reasons"]) <= POLICY_MATCH_SKIP_REASONS:
+        return ProcessorResult(SKIPPED, 0, result)
+    return ProcessorResult(FAILED, 0, result)
 
 
 def build_mechanic_observations(raw_slice: Path, output_dir: Path, catalog_path: Path) -> ProcessorResult:

@@ -185,3 +185,45 @@ def test_interrupted_evidence_extraction_leaves_no_final_directory_and_recovers(
     monkeypatch.setattr(pcm, "run_extraction", real)
     recovered = pcm.process_completed_match(raw, outputs, CATALOG)["observations"]
     assert recovered.status == pcm.OK and (outputs.evidence / raw.stem / "manifest.json").exists()
+
+
+def test_whitelist_covers_match_gates_but_not_operational_reasons():
+    assert {"GAME_RESET", "SELF_AMBIGUOUS", "MID_GAME_START"} <= pcm.POLICY_MATCH_SKIP_REASONS
+    assert not {"DATASET_INVALIDATED", "VALUE_DATASET_DESTINATION", "INVALID_MATCH_ID",
+                "PARSE_ERROR"} & pcm.POLICY_MATCH_SKIP_REASONS
+
+
+def test_invalidated_policy_dataset_is_a_failure(env: Env, monkeypatch, capsys):
+    env.policy.mkdir(parents=True)
+    (env.policy / "INVALIDATED.json").write_text("{}", encoding="utf-8")
+    collector = env.collector()
+    collector.scan_once()
+    assert collector.stats.processor_failures == {"policy": 1}
+    assert any("Policy examples: FAILED (DATASET_INVALIDATED)" in m for m in env.messages)
+    assert env.count()["raw"] == 1 and env.count()["value"] == 1  # nothing else is lost
+
+    raw = next(env.raw.glob("*.log"))
+    monkeypatch.setattr(sys, "argv", ["x", str(raw), "--cards", str(CATALOG),
+                                      "--value-output", str(env.processed),
+                                      "--policy-output", str(env.policy),
+                                      "--evidence-output", str(env.evidence)])
+    assert pcm.main() == 1
+    assert json.loads(capsys.readouterr().out)["processors"]["policy"]["FAILED"] == 1
+
+
+def test_value_dataset_destination_as_policy_output_is_a_failure(env: Env, tmp_path: Path):
+    raw_dir = tmp_path / "other"
+    env.collector().scan_once()
+    wrong = tmp_path / "processed_real" / "policy"
+    result = pcm.process_completed_match(
+        next(env.raw.glob("*.log")), pcm.Outputs(raw_dir / "v", wrong, raw_dir / "e"), CATALOG)["policy"]
+    assert result.status == pcm.FAILED
+    assert result.detail["game_skip_reasons"] == {"VALUE_DATASET_DESTINATION": 1}
+
+
+def test_unknown_importer_reason_fails_closed(env: Env, monkeypatch):
+    monkeypatch.setattr(pcm, "import_policy_log", lambda *a, **k: {
+        "games_imported": 0, "decisions_labeled": 0, "game_skip_reasons": {"INVALID_MATCH_ID": 1}})
+    collector = env.collector()
+    collector.scan_once()
+    assert collector.stats.processor_failures == {"policy": 1}
