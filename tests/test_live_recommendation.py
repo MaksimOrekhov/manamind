@@ -31,6 +31,7 @@ from manamind.models.policy import ACTION_FEATURE_NAMES, PolicyNetwork  # noqa: 
 from manamind.models.policy_v2 import PolicyNetworkV2, feature_contract  # noqa: E402
 from manamind.models.policy_inputs import representation_of  # noqa: E402
 from manamind.training.policy_checkpoint import identity, save_policy_checkpoint  # noqa: E402
+from test_real_policy_dataset import fixture  # noqa: E402
 from replay_live_recommendations import replay_summary  # noqa: E402
 
 CARDS = ROOT / "data/cards/standard_current_enUS.json"
@@ -300,3 +301,47 @@ def test_offline_recording_replay_keeps_rankings_and_hashes(tmp_path, recommende
     assert result["recorded_hashes_match"] and result["ranking_replay_identical"]
     assert result["scored"] == 1
     assert result["latency_ms"]["p99"] >= 0
+
+
+@pytest.mark.parametrize("policy_fails", [False, True])
+def test_live_recommendation_composes_with_post_game_datasets(tmp_path, recommender, monkeypatch, policy_fails):
+    """LIVE-0D derived processors run beside LIVE-0C without affecting recommendations or trust."""
+    scorer, _ = recommender
+    pcm = sys.modules[Collector.__init__.__globals__["process_completed_match"].__module__]
+    if policy_fails:
+        def broken(*args, **kwargs):
+            raise RuntimeError(f"private {SECRET_NAME}")
+        monkeypatch.setattr(pcm, "import_policy_log", broken)
+    logs, data, printed = tmp_path / "Logs", tmp_path / "data", []
+    lines = fixture(seed=21).lines
+    cut = next(i for i, line in enumerate(lines) if "GameState.SendOption()" in line)
+    power = write(logs / "Power.log", lines[:cut])
+    clock = Clock()
+
+    def make_runtime():
+        live = LiveRunner(logs, LiveSession(CATALOG), Recorder(data / "raw/live", catalog_path=CARDS), clock=clock)
+        collector = Collector(logs, data / "raw/collected", data / "processed_real", CARDS, emit=printed.append)
+        return run_manamind.UnifiedRuntime(live, collector, scorer, emit=printed.append, collector_seconds=0.1)
+
+    runtime = make_runtime()
+    for _ in range(6):
+        runtime.step(clock.now); clock.advance(0.2)
+    assert runtime.decisions_scored == 1 and runtime.collector.stats.matches_imported == 0
+    append(power, "\n".join(lines[cut:]) + "\n")
+    for _ in range(6):
+        runtime.step(clock.now); clock.advance(0.2)
+    assert not runtime.live_failed and runtime.active_identity is None
+    assert runtime.collector.stats.matches_imported == 1
+    assert len(list((data / "raw/collected").glob("*.log"))) == 1
+    assert len(list((data / "processed_real").glob("*.jsonl"))) == 1
+    assert len(list((data / "processed_evidence/collected").glob("*/manifest.json"))) == 1
+    assert len(list((data / "processed_policy_real/collected").glob("*.jsonl"))) == (0 if policy_fails else 1)
+    assert runtime.collector.stats.processor_failures == ({"policy": 1} if policy_fails else {})
+
+    restarted = make_runtime()
+    for _ in range(3):
+        restarted.step(clock.now); clock.advance(0.2)
+    assert restarted.collector.stats.matches_imported == 0
+    assert len(list((data / "raw/collected").glob("*.log"))) == 1
+    assert len(list((data / "processed_real").glob("*.jsonl"))) == 1
+    assert SECRET_NAME not in "\n".join(printed)
