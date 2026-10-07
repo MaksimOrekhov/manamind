@@ -28,6 +28,8 @@ from manamind.live.runner import LiveRunner  # noqa: E402
 from manamind.live.session import LiveSession  # noqa: E402
 from manamind.live.trust import LiveStatus  # noqa: E402
 from manamind.models.policy import ACTION_FEATURE_NAMES, PolicyNetwork  # noqa: E402
+from manamind.models.policy_v2 import PolicyNetworkV2, feature_contract  # noqa: E402
+from manamind.models.policy_inputs import representation_of  # noqa: E402
 from manamind.training.policy_checkpoint import identity, save_policy_checkpoint  # noqa: E402
 from replay_live_recommendations import replay_summary  # noqa: E402
 
@@ -35,10 +37,16 @@ CARDS = ROOT / "data/cards/standard_current_enUS.json"
 CATALOG = CardCatalog.from_json(CARDS)
 
 
-@pytest.fixture
-def recommender(tmp_path, monkeypatch):
+@pytest.fixture(params=[1, 2])
+def recommender(tmp_path, monkeypatch, request):
     encoder = StateEncoder(CATALOG)
-    policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
+    if request.param == 1:
+        policy = PolicyNetwork(card_count=encoder.vocabulary.card_count)
+    else:
+        contract = feature_contract(encoder)
+        policy = PolicyNetworkV2(card_count=encoder.vocabulary.card_count,
+                                 state_feature_count=len(contract["state_feature_names"]),
+                                 entity_feature_count=len(contract["entity_feature_names"]), hidden_size=16)
     split = {"dataset_sha256": "a" * 64, "game_ids": {
         "train": ["a" * 64], "validation": ["b" * 64], "test": ["c" * 64]}}
     config = {"seed": 4}
@@ -54,7 +62,8 @@ def recommender(tmp_path, monkeypatch):
 
 def test_compatible_checkpoint_and_tamper_refuse_inference(recommender, monkeypatch):
     scorer, path = recommender
-    assert scorer.checkpoint["schema"] == "manamind.real_policy_baseline/1"
+    assert scorer.checkpoint["schema"] == ("manamind.real_policy_baseline/1" if representation_of(scorer.policy) == 1
+                                           else "manamind.real_policy/2")
     import manamind.live.recommendation as recommendation
     monkeypatch.setattr(recommendation, "REVIEWED_CHECKPOINT_SHA256", "0" * 64)
     with pytest.raises(RecommendationUnavailable, match="CHECKPOINT_IDENTITY_MISMATCH"):
@@ -98,9 +107,12 @@ def test_complete_menu_targets_placements_end_turn_and_stable_rank(recommender):
     session, snap = ready(log)
     seen = []
     original = scorer.policy.forward
-    def capture(state, actions, hand, card_ids):
-        seen.append((actions.clone(), card_ids.clone()))
-        return original(state, actions, hand, card_ids)
+    def capture(*inputs):
+        if representation_of(scorer.policy) == 1:
+            seen.append((inputs[1].clone(), inputs[3].clone()))
+        else:
+            seen.append((inputs[3].clone(), inputs[4][:, 0].clone()))
+        return original(*inputs)
     scorer.policy.forward = capture
     first = scorer.score(snap, session)
     second = scorer.score(snap, session)

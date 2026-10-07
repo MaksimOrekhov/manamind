@@ -16,6 +16,7 @@ import torch
 from manamind.cards.catalog import CardCatalog
 from manamind.encoding.state_encoder import StateEncoder
 from manamind.models.policy import PolicyNetwork
+from manamind.models.policy_v2 import PolicyNetworkV2, feature_contract
 from manamind.training.policy_checkpoint import identity, load_policy_checkpoint, save_policy_checkpoint
 from manamind.training.policy_metrics import concentration, diagnostics, evaluate, uniform_metrics
 from manamind.training.real_policy import audit_dataset, encode_example, load_examples, split_matches
@@ -55,6 +56,10 @@ def validate_config(config):
     expected = {"seed", "split_seed", "hidden_size", "learning_rate", "weight_decay", "batch_size",
                 "max_epochs", "patience", "min_delta", "gradient_clip", "torch_threads", "device",
                 "previous_smoke_split_seed"}
+    if config.get("representation") == 2:
+        expected.update({"representation", "dropout"})
+        if type(config.get("dropout")) not in (int, float) or not 0 <= config["dropout"] < 1:
+            raise ValueError("Invalid dropout")
     if set(config) != expected or config["device"] != "cpu" or config["torch_threads"] != 1:
         raise ValueError("Baseline requires explicit bounded deterministic CPU config")
     for key in ("seed", "split_seed", "previous_smoke_split_seed"):
@@ -70,7 +75,7 @@ def validate_config(config):
         raise ValueError("Learning rate and gradient clip must be positive")
 
 
-def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
+def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_checkpoint: Path | None = None) -> dict:
     validate_config(config)
     catalog = CardCatalog.from_json(cards)
     audit = audit_dataset(directory, catalog)
@@ -82,6 +87,18 @@ def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
              "published_smoke_test_game_ids": old_test, "dataset_sha256": dataset_sha,
              "game_ids": {k: sorted({r["game_id"] for r in rs}) for k, rs in parts.items()},
              "decision_ids": {k: [r["decision_id"] for r in rs] for k, rs in parts.items()}}
+    representation = config.get("representation", 1)
+    reference = None
+    if representation == 2:
+        if baseline_checkpoint is None:
+            raise ValueError("Policy v2 requires an explicit frozen v1 checkpoint")
+        reference, reference_encoder, reference_payload = load_policy_checkpoint(baseline_checkpoint)
+        if not isinstance(reference, PolicyNetwork):
+            raise ValueError("Comparison reference must be policy v1")
+        experiment = reference_payload["experiment"]
+        if (experiment["dataset_sha256"] != dataset_sha or experiment["split"] != split
+                or identity(catalog.to_dict()) != reference_payload["catalog_sha256"]):
+            raise ValueError("V1/v2 data, catalog or frozen split identity mismatch")
     output.mkdir(parents=True, exist_ok=False)
     snapshot = output / "dataset"
     snapshot.mkdir()
@@ -97,6 +114,9 @@ def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
         "src/manamind/training/policy_checkpoint.py", "src/manamind/training/policy_metrics.py",
         "src/manamind/models/policy.py", "src/manamind/encoding/state_encoder.py",
         "src/manamind/integrations/powerlog/policy_import.py")]
+    if representation == 2:
+        source_paths.extend(ROOT / p for p in ("src/manamind/models/policy_v2.py",
+                                              "src/manamind/models/policy_inputs.py"))
     metadata = {"dataset_sha256": dataset_sha, "split": split, "split_sha256": identity(split),
                 "config": config, "config_sha256": identity(config),
                 "base_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
@@ -105,6 +125,8 @@ def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
                 "runtime": {"python": __import__("sys").version, "torch": str(torch.__version__),
                             "numpy": np.__version__},
                 "selection": "minimum_validation_cross_entropy_with_min_delta", "strength_claim": False}
+    if reference is not None:
+        metadata["v1_reference_sha256"] = hashlib.sha256(Path(baseline_checkpoint).read_bytes()).hexdigest()
     write_json(output / "frozen_experiment.json", metadata)
     write_json(output / "audit.json", audit)
     random.seed(config["seed"])
@@ -113,9 +135,17 @@ def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
     torch.set_num_threads(config["torch_threads"])
     torch.use_deterministic_algorithms(True)
     encoder = StateEncoder(catalog)
-    policy = PolicyNetwork(card_count=encoder.vocabulary.card_count, hidden_size=config["hidden_size"])
+    if representation == 2:
+        contract = feature_contract(encoder)
+        policy = PolicyNetworkV2(card_count=encoder.vocabulary.card_count,
+                                 state_feature_count=len(contract["state_feature_names"]),
+                                 entity_feature_count=len(contract["entity_feature_names"]),
+                                 hidden_size=config["hidden_size"], dropout=config["dropout"])
+    else:
+        policy = PolicyNetwork(card_count=encoder.vocabulary.card_count, hidden_size=config["hidden_size"])
     optimizer = torch.optim.AdamW(policy.parameters(), lr=config["learning_rate"], weight_decay=config["weight_decay"])
-    train = [(encode_example(r, encoder), r["chosen_action_index"]) for r in parts["train"]]
+    train = [(encode_example(r, encoder, representation=representation), r["chosen_action_index"])
+             for r in parts["train"]]
     rng = random.Random(config["seed"])
     initial_validation, _ = evaluate(policy, parts["validation"], encoder)
     history, best, best_epoch, best_weights, stale = [], float("inf"), 0, None, 0
@@ -164,13 +194,17 @@ def run(directory: Path, cards: Path, output: Path, config: dict) -> dict:
         learned, records = evaluate(restored, rs, saved_encoder)
         results[name] = {"learned": learned, "uniform_random_expected": uniform_metrics(rs)}
         details[name] = {"diagnostics": diagnostics(records), "concentration": concentration(rs)}
+        if reference is not None:
+            metrics, reference_records = evaluate(reference, rs, reference_encoder)
+            results[name]["frozen_v1"] = metrics
+            details[name]["v1_diagnostics"] = diagnostics(reference_records)
     result = {"selected_epoch": best_epoch, "epochs_run": len(history), "metrics": results,
               "dataset_sha256": dataset_sha, "split_sha256": identity(split),
               "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(), "strength_claim": False}
     write_json(output / "metrics.json", result)
     write_json(output / "diagnostics.json", details)
     # Exact logit round-trip, independent of ranking ties.
-    probe = encode_example(parts["validation"][0], encoder)
+    probe = encode_example(parts["validation"][0], encoder, representation=representation)
     with torch.no_grad():
         if not torch.equal(policy(*probe), restored(*probe)):
             raise ValueError("Checkpoint logit round-trip mismatch")
@@ -183,9 +217,11 @@ def main():
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--config", type=Path, default=ROOT / "configs/real_policy_ml1c.json")
+    parser.add_argument("--baseline-checkpoint", type=Path, help="V2 requires the frozen ML-1C v1 reference")
     args = parser.parse_args()
     try:
-        result = run(args.directory, args.cards, args.output, json.loads(args.config.read_text(encoding="utf-8-sig")))
+        result = run(args.directory, args.cards, args.output, json.loads(args.config.read_text(encoding="utf-8-sig")),
+                     baseline_checkpoint=args.baseline_checkpoint)
     except Exception as error:
         print(json.dumps({"result": "FAILED", "reason": type(error).__name__}), flush=True)
         return 1

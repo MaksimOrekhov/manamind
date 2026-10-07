@@ -21,6 +21,7 @@ from manamind.live.session import LiveSession
 from manamind.live.snapshot import Snapshot
 from manamind.live.trust import ModePolicy
 from manamind.training.real_policy import encode_example, load_examples
+from manamind.models.policy_inputs import representation_of
 
 
 def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict | None = None) -> dict:
@@ -60,8 +61,10 @@ def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict 
                 game = session.game
                 mapped = map_actions(game.reducer.last_options(), game.reducer.game, game.self_player_id,
                                      game_state_from_dict(snapshot.state))
-                current_inputs = _inputs(game_state_from_dict(snapshot.state), mapped.actions, recommender.encoder)
-                historical_inputs = encode_example(example, recommender.encoder)
+                representation = representation_of(recommender.policy)
+                current_inputs = _inputs(game_state_from_dict(snapshot.state), mapped.actions, recommender.encoder,
+                                         representation=representation)
+                historical_inputs = encode_example(example, recommender.encoder, representation=representation)
                 if (example["provenance"]["state_hash"] != snapshot.state_hash
                         or example["legal_actions"] != mapped.actions
                         or any(not torch.equal(a, b) for a, b in zip(current_inputs, historical_inputs))):
@@ -97,10 +100,11 @@ def main() -> int:
     parser.add_argument("recordings", nargs="+", type=Path)
     parser.add_argument("--checkpoint", type=Path,
                         default=ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt")
+    parser.add_argument("--checkpoint-sha256", help="Explicit pinned experimental checkpoint digest; defaults to ML-1C")
     parser.add_argument("--admitted-dataset", type=Path)
     args = parser.parse_args()
     try:
-        recommender = PolicyRecommender(args.checkpoint)
+        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256)
         admitted = ({row["decision_id"]: row for row in load_examples(args.admitted_dataset)}
                     if args.admitted_dataset else None)
         summary = replay_summary(args.recordings, recommender, admitted)

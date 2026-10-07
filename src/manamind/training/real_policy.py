@@ -14,9 +14,7 @@ from manamind.cards.catalog import CardCatalog
 from manamind.domain.serialization import game_state_from_dict
 from manamind.domain.policy_action import ACTION_FIELDS, ACTION_TYPES
 from manamind.live.snapshot import canonical_json, state_to_dict
-from manamind.models.policy import (
-    encode_action_card_ids, encode_hand_card_ids, encode_legal_actions, encode_policy_state,
-)
+from manamind.models.policy_inputs import encode_policy_inputs, representation_of
 
 ROW_FIELDS = {"schema_version", "action_schema_version", "game_id", "decision_id", "state",
               "legal_actions", "chosen_action_index", "final_result", "source", "provenance"}
@@ -144,16 +142,11 @@ def split_matches(rows: list[dict], seed: int = 1) -> dict[str, list[dict]]:
     return partitions
 
 
-def encode_example(row, encoder, device="cpu") -> tuple:
+def encode_example(row, encoder, device="cpu", *, representation=1) -> tuple:
     validate_example(row)
     state = game_state_from_dict(row["state"])
     actions = row["legal_actions"]
-    return (
-        torch.as_tensor(encode_policy_state(state, encoder), dtype=torch.float32, device=device),
-        torch.as_tensor(encode_legal_actions(actions), dtype=torch.float32, device=device),
-        torch.as_tensor(encode_hand_card_ids(state, encoder), dtype=torch.long, device=device),
-        torch.as_tensor(encode_action_card_ids(actions, encoder), dtype=torch.long, device=device),
-    )
+    return encode_policy_inputs(state, actions, encoder, representation=representation, device=device)
 
 
 def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str]) -> dict:
@@ -165,7 +158,7 @@ def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str]) -> dic
     policy.eval()
     with torch.no_grad():
         for row in rows:
-            logits = policy(*encode_example(row, encoder, device))
+            logits = policy(*encode_example(row, encoder, device, representation=representation_of(policy)))
             chosen = row["chosen_action_index"]
             loss += torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen], device=device)).item()
             order = torch.argsort(logits, descending=True, stable=True).tolist()

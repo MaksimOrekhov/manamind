@@ -120,6 +120,7 @@ def build_parser() -> argparse.ArgumentParser:
                         default=Path(os.environ.get("MANAMIND_HEARTHSTONE_LOGS", DEFAULT_LOGS_ROOT)))
     parser.add_argument("--checkpoint", type=Path,
                         default=ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt")
+    parser.add_argument("--checkpoint-sha256", help="Explicit pinned experimental checkpoint digest; defaults to ML-1C")
     parser.add_argument("--data-root", type=Path,
                         default=Path(os.environ.get("MANAMIND_DATA_ROOT", ROOT / "data")))
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
@@ -137,7 +138,7 @@ def main(argv: list[str] | None = None) -> int:
     logging.disable(logging.CRITICAL)
     catalog = CardCatalog.from_json(args.cards)
     try:
-        recommender = PolicyRecommender(args.checkpoint)
+        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256)
         recommender.require_catalog(catalog)
     except Exception as error:
         recommender = None

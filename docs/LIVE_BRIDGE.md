@@ -149,6 +149,12 @@ scoring overhead, not Power.log delivery or UI delay.
 
 ## Current limitations
 
+Experimental Policy v2 can be selected explicitly with both --checkpoint and
+--checkpoint-sha256 in the unified runner or recommendation replay. The default
+still pins the reviewed ML-1C file. Both versions use the same trust/privacy/menu
+and invalidation gates; the runtime catalog must match the saved catalog. See
+[the representation contract](POLICY_REPRESENTATION.md).
+
 - Only `MAIN_ACTION` decisions. Mulligan and Discover/choice states are not emitted yet.
 - No opponent hand identities (a deliberate difference from the offline importer, which exposes
   `revealed` opponent hand cards). Own secret identities are not exposed, only the count.

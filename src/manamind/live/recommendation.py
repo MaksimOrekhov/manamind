@@ -13,9 +13,7 @@ import torch
 from manamind.domain.policy_action import ACTION_FIELDS, ACTION_TYPES
 from manamind.domain.serialization import game_state_from_dict
 from manamind.integrations.powerlog.policy_actions import ActionMappingError, map_actions
-from manamind.models.policy import (
-    encode_action_card_ids, encode_hand_card_ids, encode_legal_actions, encode_policy_state,
-)
+from manamind.models.policy_inputs import encode_policy_inputs, representation_of
 from manamind.training.policy_checkpoint import identity, load_policy_checkpoint
 
 from .session import LiveSession
@@ -105,19 +103,17 @@ def _complete_menu(snapshot: Snapshot, mapped) -> None:
             raise RecommendationUnavailable("MENU_TARGET_MISMATCH")
 
 
-def _inputs(state, actions, encoder) -> tuple[torch.Tensor, ...]:
-    return (
-        torch.as_tensor(encode_policy_state(state, encoder), dtype=torch.float32),
-        torch.as_tensor(encode_legal_actions(actions), dtype=torch.float32),
-        torch.as_tensor(encode_hand_card_ids(state, encoder), dtype=torch.long),
-        torch.as_tensor(encode_action_card_ids(actions, encoder), dtype=torch.long),
-    )
+def _inputs(state, actions, encoder, *, representation=1) -> tuple[torch.Tensor, ...]:
+    return encode_policy_inputs(state, actions, encoder, representation=representation)
 
 
 class PolicyRecommender:
-    def __init__(self, checkpoint: Path) -> None:
+    def __init__(self, checkpoint: Path, *, expected_sha256: str | None = None) -> None:
         path = Path(checkpoint)
-        if hashlib.sha256(path.read_bytes()).hexdigest() != REVIEWED_CHECKPOINT_SHA256:
+        expected = REVIEWED_CHECKPOINT_SHA256 if expected_sha256 is None else expected_sha256
+        if not isinstance(expected, str) or re.fullmatch(r"[0-9a-f]{64}", expected) is None:
+            raise RecommendationUnavailable("CHECKPOINT_IDENTITY_MISMATCH")
+        if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
             raise RecommendationUnavailable("CHECKPOINT_IDENTITY_MISMATCH")
         try:
             self.policy, self.encoder, self.checkpoint = load_policy_checkpoint(path, device="cpu")
@@ -141,7 +137,8 @@ class PolicyRecommender:
             mapped = map_actions(packet, game.reducer.game, game.self_player_id, state)
             _complete_menu(snapshot, mapped)
             with torch.inference_mode():
-                logits = self.policy(*_inputs(state, mapped.actions, self.encoder))
+                logits = self.policy(*_inputs(state, mapped.actions, self.encoder,
+                                             representation=representation_of(self.policy)))
             if logits.ndim != 1 or len(logits) != len(mapped.actions) or not torch.isfinite(logits).all():
                 raise RecommendationUnavailable("INVALID_MODEL_OUTPUT")
             order = torch.argsort(logits, descending=True, stable=True).tolist()

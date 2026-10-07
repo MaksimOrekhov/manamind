@@ -7,6 +7,7 @@ from collections import Counter, defaultdict
 import torch
 
 from manamind.training.real_policy import encode_example
+from manamind.models.policy_inputs import representation_of
 
 
 def uniform_metrics(rows) -> dict:
@@ -43,7 +44,8 @@ def evaluate(policy, rows, encoder) -> tuple:
     policy.eval()
     with torch.no_grad():
         for row in rows:
-            inputs = encode_example(row, encoder)
+            representation = representation_of(policy)
+            inputs = encode_example(row, encoder, representation=representation)
             logits = policy(*inputs)
             if not torch.isfinite(logits).all():
                 raise ValueError("Nonfinite policy evaluation logits")
@@ -51,9 +53,17 @@ def evaluate(policy, rows, encoder) -> tuple:
             order = torch.argsort(logits, descending=True, stable=True).tolist()
             action = row["legal_actions"][chosen]
             prediction = row["legal_actions"][order[0]]
-            features, card_ids = inputs[1], inputs[3]
-            collision = (features == features[chosen]).all(dim=1) & (card_ids == card_ids[chosen])
-            unknown_hand = bool(inputs[2].eq(1).any())
+            if representation == 1:
+                features, card_ids = inputs[1], inputs[3]
+                collision = (features == features[chosen]).all(dim=1) & (card_ids == card_ids[chosen])
+            else:
+                features, identities, links = inputs[3:]
+                card_ids = identities[:, 0]
+                collision = ((features == features[chosen]).all(dim=1)
+                             & (identities == identities[chosen]).all(dim=1)
+                             & (links == links[chosen]).all(dim=1))
+            unknown_hand = any(encoder.vocabulary.card_id(c.get("shatter_original_card_id") or c["card_id"]) == 1
+                               for c in row["state"]["self_hand"])
             chosen_unknown = bool(card_ids[chosen] == 1) and action["type"] != "END_TURN"
             record = {"game_id": row["game_id"], "menu_size": len(order), "rank": order.index(chosen)+1,
                       "loss": torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen])).item(),

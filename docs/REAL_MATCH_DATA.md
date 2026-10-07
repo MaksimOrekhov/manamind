@@ -240,3 +240,11 @@ See [the baseline report](../reports/ml/ML1C_REAL_POLICY_BASELINE.md) for the ex
 frozen experiment and limits. Policy logits describe behavior selection, not
 win probability. This small-corpus baseline does not establish playing strength
 or authorize live integration, search or gameplay automation.
+
+## Policy representation v2 (ML-2A)
+
+[Policy representation](POLICY_REPRESENTATION.md) defines the incremental entity/
+action encoder, explicit v1/v2 checkpoint dispatch and bounded comparison on the
+same frozen ML-1C matches. Dataset/semantic schemas and privacy admission stay
+unchanged. New training uses configs/real_policy_ml2a.json with an explicit
+--baseline-checkpoint; v1 remains reproducible through its original config.
