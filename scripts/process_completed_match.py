@@ -19,6 +19,7 @@ import argparse
 import json
 import logging
 import os
+import shutil
 import sys
 import uuid
 import warnings
@@ -38,6 +39,7 @@ except ModuleNotFoundError:
 OK = "OK"
 DUPLICATE = "DUPLICATE"
 FAILED = "FAILED"
+SKIPPED = "SKIPPED"  # expected rejection by the processor's own gate; backfill cannot change it
 
 
 @dataclass
@@ -71,7 +73,9 @@ def build_value_examples(raw_slice: Path, output_dir: Path, catalog_path: Path) 
             pass
 
 
-def build_policy_examples(raw_slice: Path, output_dir: Path, catalog: CardCatalog) -> ProcessorResult:
+def build_policy_examples(raw_slice: Path, output_dir: Path, catalog: CardCatalog | Path) -> ProcessorResult:
+    if not isinstance(catalog, CardCatalog):
+        catalog = CardCatalog.from_json(catalog)
     # segmented=True: a raw slice is one CREATE_GAME section; the importer re-checks mode/completion.
     # Its game_id duplicate check makes reprocessing a no-op (DUPLICATE_MATCH).
     result = import_policy_log(raw_slice, output_dir, catalog, segmented=True)
@@ -79,27 +83,35 @@ def build_policy_examples(raw_slice: Path, output_dir: Path, catalog: CardCatalo
         return ProcessorResult(OK, int(result["decisions_labeled"]), result)
     if result["game_skip_reasons"].get("DUPLICATE_MATCH"):
         return ProcessorResult(DUPLICATE, 0, result)
-    return ProcessorResult(FAILED, 0, result)  # e.g. MODE_INELIGIBLE: reported, nothing written
+    # Every importer rejection (GAME_RESET, MODE_INELIGIBLE, SELF_AMBIGUOUS, ...) is a deliberate gate.
+    return ProcessorResult(SKIPPED, 0, result)
 
 
 def build_mechanic_observations(raw_slice: Path, output_dir: Path, catalog_path: Path) -> ProcessorResult:
-    target = Path(output_dir) / raw_slice.stem  # one fresh directory per match
+    target = Path(output_dir) / raw_slice.stem  # one directory per match; exists only when complete
     if target.exists():
         return ProcessorResult(DUPLICATE)
     target.parent.mkdir(parents=True, exist_ok=True)
-    manifest = run_extraction([raw_slice], target, catalog_path=catalog_path)
+    # Extract into a hidden sibling and rename on success, so a crash never leaves a final
+    # directory that looks like a finished extraction.
+    partial = target.parent / f".partial-{uuid.uuid4().hex}"
+    try:
+        manifest = run_extraction([raw_slice], partial, catalog_path=catalog_path)
+        os.replace(partial, target)
+    finally:
+        shutil.rmtree(partial, ignore_errors=True)
     return ProcessorResult(OK, int(manifest["summary"]["observations"]), manifest["games"])
 
 
 def process_completed_match(
     raw_slice: Path, outputs: Outputs, catalog_path: Path, *, catalog: CardCatalog | None = None,
 ) -> dict[str, ProcessorResult]:
-    """Run all processors on a saved raw slice. Never raises; failures come back as FAILED."""
+    """Run all processors on a saved raw slice. Each processor, including loading the card
+    catalog for Policy, is isolated: a failure comes back as FAILED instead of raising."""
     raw_slice = Path(raw_slice)
-    catalog = catalog or CardCatalog.from_json(catalog_path)
     steps = {
         "value": lambda: build_value_examples(raw_slice, outputs.value, catalog_path),
-        "policy": lambda: build_policy_examples(raw_slice, outputs.policy, catalog),
+        "policy": lambda: build_policy_examples(raw_slice, outputs.policy, catalog or catalog_path),
         "observations": lambda: build_mechanic_observations(raw_slice, outputs.evidence, catalog_path),
     }
     results: dict[str, ProcessorResult] = {}
@@ -130,7 +142,7 @@ def main() -> int:
     totals: dict[str, dict[str, int]] = {}
     for path in slices:
         for name, result in process_completed_match(path, outputs, args.cards, catalog=catalog).items():
-            bucket = totals.setdefault(name, {OK: 0, DUPLICATE: 0, FAILED: 0, "count": 0})
+            bucket = totals.setdefault(name, {OK: 0, DUPLICATE: 0, SKIPPED: 0, FAILED: 0, "count": 0})
             bucket[result.status] += 1
             bucket["count"] += result.count
     print(json.dumps({"matches": len(slices), "processors": totals}, sort_keys=True))

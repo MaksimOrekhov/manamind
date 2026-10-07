@@ -133,3 +133,55 @@ def test_backfill_cli_processes_a_raw_folder(env: Env, tmp_path: Path, capsys, m
     assert summary["matches"] == 1
     assert {name: p["OK"] for name, p in summary["processors"].items()} == {
         "value": 1, "policy": 1, "observations": 1}
+
+
+def test_expected_policy_rejection_is_skipped_not_a_failure(env: Env, tmp_path: Path, capsys, monkeypatch):
+    env.collector().scan_once()
+    raw = next(env.raw.glob("*.log"))
+    lines = raw.read_text(encoding="utf-8").splitlines()
+    reset = lines[-2].split("GameState")[0] + "GameState.DebugPrintPower() - BLOCK_START BlockType=GAME_RESET Entity=1"
+    reset_dir = tmp_path / "reset"
+    reset_dir.mkdir()
+    (reset_dir / "match.log").write_text("\n".join(lines[:-1] + [reset] + lines[-1:]) + "\n", encoding="utf-8")
+
+    results = pcm.process_completed_match(
+        reset_dir / "match.log", pcm.Outputs(tmp_path / "v", tmp_path / "p", tmp_path / "e"), CATALOG)
+    assert results["policy"].status == pcm.SKIPPED
+    assert results["policy"].detail["game_skip_reasons"] == {"GAME_RESET": 1}
+    assert not list((tmp_path / "p").glob("*.jsonl"))
+
+    # The backfill CLI treats it as a correct outcome, not an error.
+    monkeypatch.setattr(sys, "argv", ["x", str(reset_dir), "--cards", str(CATALOG),
+                                      "--value-output", str(tmp_path / "v2"), "--policy-output", str(tmp_path / "p2"),
+                                      "--evidence-output", str(tmp_path / "e2")])
+    pcm.main()
+    assert json.loads(capsys.readouterr().out)["processors"]["policy"]["SKIPPED"] == 1
+
+
+def test_collector_logs_policy_skip_without_counting_a_failure(env: Env, monkeypatch):
+    monkeypatch.setattr(pcm, "import_policy_log", lambda *a, **k: {
+        "games_imported": 0, "decisions_labeled": 0, "game_skip_reasons": {"GAME_RESET": 1}})
+    collector = env.collector()
+    collector.scan_once()
+    assert collector.stats.processor_failures == {}
+    assert any("Policy examples: skipped (GAME_RESET)" in m for m in env.messages)
+
+
+def test_interrupted_evidence_extraction_leaves_no_final_directory_and_recovers(env: Env, tmp_path: Path, monkeypatch):
+    env.collector().scan_once()
+    raw = next(env.raw.glob("*.log"))
+    outputs = pcm.Outputs(tmp_path / "v", tmp_path / "p", tmp_path / "e")
+    real = pcm.run_extraction
+
+    def crash_after_directory_created(inputs, output_dir, **kwargs):
+        Path(output_dir).mkdir(parents=True)
+        (Path(output_dir) / "observations.jsonl").write_text("{", encoding="utf-8")
+        raise RuntimeError("interrupted")
+
+    monkeypatch.setattr(pcm, "run_extraction", crash_after_directory_created)
+    assert pcm.process_completed_match(raw, outputs, CATALOG)["observations"].status == pcm.FAILED
+    assert list(outputs.evidence.iterdir()) == []  # neither final nor partial directory remains
+
+    monkeypatch.setattr(pcm, "run_extraction", real)
+    recovered = pcm.process_completed_match(raw, outputs, CATALOG)["observations"]
+    assert recovered.status == pcm.OK and (outputs.evidence / raw.stem / "manifest.json").exists()

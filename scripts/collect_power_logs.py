@@ -53,10 +53,14 @@ from manamind.integrations.powerlog.lines import (  # noqa: F401  (re-exported f
 
 try:
     from scripts.audit_power_log import audit_log
-    from scripts.process_completed_match import DUPLICATE, FAILED, Outputs, process_completed_match
+    from scripts.process_completed_match import (
+        DUPLICATE, FAILED, SKIPPED, Outputs, process_completed_match,
+    )
 except ModuleNotFoundError:
     from audit_power_log import audit_log
-    from process_completed_match import DUPLICATE, FAILED, Outputs, process_completed_match
+    from process_completed_match import (
+        DUPLICATE, FAILED, SKIPPED, Outputs, process_completed_match,
+    )
 
 IMPORTED = "IMPORTED"
 SKIPPED_ALREADY_IMPORTED = "SKIPPED_ALREADY_IMPORTED"
@@ -181,7 +185,6 @@ class Collector:
         self._announced: set[str] = set()
         self._failure_announced: set[str] = set()
         self._duplicate_seen: set[str] = set()
-        self._catalog_cache = None
 
     # -- state ---------------------------------------------------------------
 
@@ -271,7 +274,7 @@ class Collector:
             # The raw match is persisted before any derived dataset is attempted.
             os.replace(slice_path, raw_path)
             results = process_completed_match(
-                raw_path, self.outputs, self.catalog_path, catalog=self._catalog())
+                raw_path, self.outputs, self.catalog_path)
             value = results["value"]
             self._report_derived(results)
             if value.status == FAILED:
@@ -287,12 +290,6 @@ class Collector:
             except OSError:
                 pass
 
-    def _catalog(self):
-        if self._catalog_cache is None:
-            from manamind.cards.catalog import CardCatalog
-            self._catalog_cache = CardCatalog.from_json(self.catalog_path)
-        return self._catalog_cache
-
     def _report_derived(self, results: dict) -> None:
         self.emit(f"[{_now()}] raw match saved")
         labels = {"value": "Value examples", "policy": "Policy examples",
@@ -304,6 +301,9 @@ class Collector:
                 self.stats.processor_failures[name] = self.stats.processor_failures.get(name, 0) + 1
                 self.emit(f"[{_now()}] {labels[name]}: FAILED ({reason}); raw match kept; "
                           "backfill later with scripts/process_completed_match.py")
+            elif result.status == SKIPPED:
+                reason = ",".join(sorted(result.detail.get("game_skip_reasons", {}))) or "ineligible"
+                self.emit(f"[{_now()}] {labels[name]}: skipped ({reason})")
             elif result.status == DUPLICATE:
                 self.emit(f"[{_now()}] {labels[name]}: already present")
             else:
