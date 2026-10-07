@@ -1018,6 +1018,77 @@
     "CS2_065": {
       "ability": "NONE",
       "support_state": "VERIFIED_VANILLA"
+    },
+    "EDR_492": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Summon three 1/1 Ducklings with Rush.",
+      "effects": [
+        {
+          "kind": "SUMMON_FIXED",
+          "target": "SELF",
+          "amount": 3,
+          "summon_card": "EDR_492t"
+        }
+      ]
+    },
+    "CORE_TRL_307": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Restore #4 Health. Draw a card.",
+      "effects": [
+        {
+          "kind": "HEAL",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
+    },
+    "CORE_CS2_023": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Draw 2 cards.",
+      "effects": [
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 2
+        }
+      ]
+    },
+    "CORE_CS2_189": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Deal 1 damage.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 1
+        }
+      ]
+    },
+    "CORE_EX1_319": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Deal 3 damage to your hero.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "SELF_HERO",
+          "amount": 3
+        }
+      ]
+    },
+    "EDR_492t": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Rush</b>"
     }
   }
 }

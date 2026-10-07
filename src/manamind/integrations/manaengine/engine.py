@@ -282,6 +282,7 @@ def _load_definitions(catalog_path: str | Path | None = None) -> tuple[list[Any]
         _ROOT / "experiments/manaengine/data/choice_mode_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/colossal_appendage_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/quick1_dependency_metadata.json",
+        _ROOT / "experiments/manaengine/data/quick2_dependency_metadata.json",
     ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}

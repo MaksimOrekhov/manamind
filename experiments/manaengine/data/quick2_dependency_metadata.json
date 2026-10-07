@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "source_name": "RosettaStone legacy cards.json (vendor submodule, pinned commit f34da0d3fcb5ad312f7e2acf634d0536b044d29a)",
+  "source_sha256": "dc7d706a564948c48149dadf3d77be109a701b07f6f6a906eaa7535ee56c3d52",
+  "captured_at_utc": "2026-10-07",
+  "purpose": "Exact fixed-token identity for ENGINE-QUICK-2 Mother Duck; dependency metadata does not establish runtime rules evidence or training admission",
+  "root_id": "EDR_492",
+  "root_metadata_matches_pinned_20261001": true,
+  "identity_evidence": "Pinned Mother Duck rules text summons three 1/1 Ducklings with Rush; pinned vendor metadata identifies EDR_492t as a non-collectible 1/1 Beast with Rush. This archive supplies that dependency identity only.",
+  "cards": [
+    {
+      "attack": 1,
+      "cardClass": "NEUTRAL",
+      "collectible": false,
+      "cost": 1,
+      "dbfId": 117208,
+      "health": 1,
+      "id": "EDR_492t",
+      "mechanics": [
+        "RUSH"
+      ],
+      "name": "Duckling",
+      "race": "BEAST",
+      "races": [
+        "BEAST"
+      ],
+      "set": "EMERALD_DREAM",
+      "text": "<b>Rush</b>",
+      "type": "MINION"
+    }
+  ]
+}
