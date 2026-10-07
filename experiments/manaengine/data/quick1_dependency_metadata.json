@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source_name": "RosettaStone legacy cards.json (vendor submodule, pinned commit f34da0d3fcb5ad312f7e2acf634d0536b044d29a)",
+  "source_sha256": "dc7d706a564948c48149dadf3d77be109a701b07f6f6a906eaa7535ee56c3d52",
+  "captured_at_utc": "2026-10-07",
+  "purpose": "Exact fixed-token identity for the ENGINE-QUICK-1 Demonic Assault declaration; does not alter the Standard collectible pool or establish rules evidence",
+  "root_id": "CORE_SW_088",
+  "root_metadata_matches_pinned_20261001": true,
+  "identity_evidence": "A real Power.log observation (data/processed_evidence/collected, one game, two summons) shows CORE_SW_088 creating two CS2_065 entities; CORE_CS2_065 is a different ID and is not used.",
+  "cards": [
+    {
+      "attack": 1,
+      "cardClass": "WARLOCK",
+      "cost": 1,
+      "dbfId": 48,
+      "health": 3,
+      "id": "CS2_065",
+      "mechanics": ["TAUNT"],
+      "name": "Voidwalker",
+      "race": "DEMON",
+      "races": ["DEMON"],
+      "set": "LEGACY",
+      "text": "<b>Taunt</b>",
+      "type": "MINION"
+    }
+  ]
+}
