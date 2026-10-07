@@ -1148,6 +1148,31 @@
           "amount": 1
         }
       ]
+    },
+    "CORE_CS2_179": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Taunt</b>"
+    },
+    "CORE_GIL_558": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Lifesteal</b>"
+    },
+    "EDR_486": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Rush</b>\n<b>Lifesteal</b>"
+    },
+    "CORE_LOOT_137": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": "<b>Taunt</b>"
+    },
+    "Core_CS2_200": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA",
+      "reviewed_rules_text": ""
     }
   }
 }
