@@ -244,11 +244,14 @@ def test_unified_startup_no_history_new_game_recorder_invalidation_and_lane_fail
         runtime.step(clock.now); clock.advance(0.05)
     assert not any("#1 " in row for row in printed)
     assert collector.calls == 1 and any("collection warning" in row for row in printed)
+    assert runtime.live.session.status is LiveStatus.WAITING_FOR_GAME
     fresh = LiveLog(seed=2).create_game().mulligan().self_decision(1)
     append(power, "\n".join(fresh.lines) + "\n")
     for _ in range(6):
         runtime.step(clock.now); clock.advance(0.05)
     assert runtime.decisions_scored == 1
+    assert runtime.live.session.status is LiveStatus.READY
+    assert runtime.live.session.current_snapshot is not None
     assert any("EXPERIMENTAL_NEURAL_POLICY" in row for row in printed)
     assert list((tmp_path / "data/raw/live").rglob("snapshots.jsonl"))
     fresh.lines.clear()
@@ -304,7 +307,10 @@ def test_offline_recording_replay_keeps_rankings_and_hashes(tmp_path, recommende
 
 
 @pytest.mark.parametrize("policy_fails", [False, True])
-def test_live_recommendation_composes_with_post_game_datasets(tmp_path, recommender, monkeypatch, policy_fails):
+@pytest.mark.parametrize("recommendation_fails", [False, True])
+def test_live_recommendation_composes_with_post_game_datasets(
+    tmp_path, recommender, monkeypatch, policy_fails, recommendation_fails,
+):
     """LIVE-0D derived processors run beside LIVE-0C without affecting recommendations or trust."""
     scorer, _ = recommender
     pcm = sys.modules[Collector.__init__.__globals__["process_completed_match"].__module__]
@@ -312,6 +318,10 @@ def test_live_recommendation_composes_with_post_game_datasets(tmp_path, recommen
         def broken(*args, **kwargs):
             raise RuntimeError(f"private {SECRET_NAME}")
         monkeypatch.setattr(pcm, "import_policy_log", broken)
+    if recommendation_fails:
+        def unavailable(*args, **kwargs):
+            raise RecommendationUnavailable("INFERENCE_FAILED")
+        monkeypatch.setattr(scorer, "score", unavailable)
     logs, data, printed = tmp_path / "Logs", tmp_path / "data", []
     lines = fixture(seed=21).lines
     cut = next(i for i, line in enumerate(lines) if "GameState.SendOption()" in line)
@@ -326,17 +336,22 @@ def test_live_recommendation_composes_with_post_game_datasets(tmp_path, recommen
     runtime = make_runtime()
     for _ in range(6):
         runtime.step(clock.now); clock.advance(0.2)
-    assert runtime.decisions_scored == 1 and runtime.collector.stats.matches_imported == 0
+    assert runtime.decisions_scored == (0 if recommendation_fails else 1)
+    assert runtime.collector.stats.matches_imported == 0
+    assert runtime.live.session.status is LiveStatus.READY
+    assert runtime.live.session.current_snapshot is not None
     append(power, "\n".join(lines[cut:]) + "\n")
     for _ in range(6):
         runtime.step(clock.now); clock.advance(0.2)
     assert not runtime.live_failed and runtime.active_identity is None
+    assert runtime.live.session.status is LiveStatus.GAME_OVER
     assert runtime.collector.stats.matches_imported == 1
     assert len(list((data / "raw/collected").glob("*.log"))) == 1
     assert len(list((data / "processed_real").glob("*.jsonl"))) == 1
     assert len(list((data / "processed_evidence/collected").glob("*/manifest.json"))) == 1
     assert len(list((data / "processed_policy_real/collected").glob("*.jsonl"))) == (0 if policy_fails else 1)
     assert runtime.collector.stats.processor_failures == ({"policy": 1} if policy_fails else {})
+    assert not recommendation_fails or any("no recommendation: INFERENCE_FAILED" in row for row in printed)
 
     restarted = make_runtime()
     for _ in range(3):
@@ -345,3 +360,14 @@ def test_live_recommendation_composes_with_post_game_datasets(tmp_path, recommen
     assert len(list((data / "raw/collected").glob("*.log"))) == 1
     assert len(list((data / "processed_real").glob("*.jsonl"))) == 1
     assert SECRET_NAME not in "\n".join(printed)
+
+
+def test_unified_cli_defaults_to_reviewed_v1_and_experimental_sha_is_opt_in():
+    args = run_manamind.build_parser().parse_args([])
+    assert args.checkpoint == run_manamind.ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt"
+    assert args.checkpoint_sha256 is None  # PolicyRecommender applies its reviewed ML-1C digest.
+    experimental = run_manamind.build_parser().parse_args([
+        "--checkpoint", "policy-v2.pt", "--checkpoint-sha256", "a" * 64,
+    ])
+    assert str(experimental.checkpoint) == "policy-v2.pt"
+    assert experimental.checkpoint_sha256 == "a" * 64
