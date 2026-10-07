@@ -1018,6 +1018,65 @@
     "CS2_065": {
       "ability": "NONE",
       "support_state": "VERIFIED_VANILLA"
+    },
+    "CORE_CS2_042": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Deal 4 damage.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 4
+        }
+      ]
+    },
+    "CORE_UNG_205": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Freeze an enemy.",
+      "effects": [
+        {
+          "kind": "FREEZE",
+          "target": "EXPLICIT_ENEMY_CHARACTER",
+          "amount": 0
+        }
+      ]
+    },
+    "CORE_EX1_096": {
+      "ability": "DEATHRATTLE_DRAW",
+      "support_state": "SUPPORTED",
+      "deathrattle_draw_count": 1,
+      "reviewed_rules_text": "Deathrattle: Draw a card."
+    },
+    "CORE_EX1_011": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Restore #2 Health.",
+      "effects": [
+        {
+          "kind": "HEAL",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 2
+        }
+      ]
+    },
+    "CORE_BT_035": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Give your hero +2 Attack this turn. Draw a card.",
+      "effects": [
+        {
+          "kind": "MODIFY_HERO_ATTACK",
+          "target": "SELF",
+          "amount": 2
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
     }
   }
 }
