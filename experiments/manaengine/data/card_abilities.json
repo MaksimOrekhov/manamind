@@ -1173,6 +1173,78 @@
       "ability": "NONE",
       "support_state": "VERIFIED_VANILLA",
       "reviewed_rules_text": ""
+    },
+    "CS3_038": {
+      "ability": "NONE",
+      "support_state": "VERIFIED_VANILLA"
+    },
+    "CORE_EX1_278": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $1 damage. Draw a card.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 1
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
+    },
+    "CORE_AT_064": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $3 damage. Gain 3 Armor.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 3
+        },
+        {
+          "kind": "GAIN_ARMOR",
+          "target": "SELF",
+          "amount": 3
+        }
+      ]
+    },
+    "CORE_EX1_606": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Gain 5 Armor. Draw a card.",
+      "effects": [
+        {
+          "kind": "GAIN_ARMOR",
+          "target": "SELF",
+          "amount": 5
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
+    },
+    "RLK_709": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $2 damage to all enemies. Draw a card.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_CHARACTERS",
+          "amount": 2
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
     }
   }
 }
