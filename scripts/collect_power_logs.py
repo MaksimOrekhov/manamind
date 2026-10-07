@@ -19,8 +19,9 @@ consistent ``GameType`` and ``FormatType`` and an authoritative top-level
 time and neighbouring games are never used as evidence.
 
 The cut section (up to and including the COMPLETE line) is handed unchanged to the
-existing ``audit_log`` and ``import_power_log``, which keep their one-game
-contracts. EOF is never treated as completion.
+existing ``audit_log``, saved as the raw match, and only then passed to the isolated
+post-game processors in ``process_completed_match`` (Value, Policy, mechanic
+observations). EOF is never treated as completion.
 
 Known limits are listed in docs/REAL_MATCH_DATA.md.
 """
@@ -52,10 +53,10 @@ from manamind.integrations.powerlog.lines import (  # noqa: F401  (re-exported f
 
 try:
     from scripts.audit_power_log import audit_log
-    from scripts.import_power_log import import_power_log
+    from scripts.process_completed_match import DUPLICATE, FAILED, Outputs, process_completed_match
 except ModuleNotFoundError:
     from audit_power_log import audit_log
-    from import_power_log import import_power_log
+    from process_completed_match import DUPLICATE, FAILED, Outputs, process_completed_match
 
 IMPORTED = "IMPORTED"
 SKIPPED_ALREADY_IMPORTED = "SKIPPED_ALREADY_IMPORTED"
@@ -88,6 +89,7 @@ class Stats:
     duplicates: int = 0
     skipped: dict[str, int] = field(default_factory=dict)
     parse_failures: int = 0
+    processor_failures: dict[str, int] = field(default_factory=dict)
 
     def as_dict(self) -> dict:
         return {
@@ -98,6 +100,7 @@ class Stats:
             "duplicates": self.duplicates,
             "skipped": dict(sorted(self.skipped.items())),
             "parse_failures": self.parse_failures,
+            "processor_failures": dict(sorted(self.processor_failures.items())),
         }
 
     @property
@@ -152,6 +155,8 @@ class Collector:
         catalog_path: Path,
         *,
         state_path: Path | None = None,
+        policy_output: Path | None = None,
+        evidence_output: Path | None = None,
         max_sessions: int = 3,
         emit: Callable[[str], None] | None = None,
     ) -> None:
@@ -160,6 +165,14 @@ class Collector:
         self.processed_output = Path(processed_output)
         self.catalog_path = Path(catalog_path)
         self.state_path = Path(state_path) if state_path else self.raw_output / "collector_state.json"
+        defaults = Outputs()
+        self.outputs = Outputs(
+            value=self.processed_output,
+            policy=Path(policy_output) if policy_output
+            else self.processed_output.parent / defaults.policy.parent.name / defaults.policy.name,
+            evidence=Path(evidence_output) if evidence_output
+            else self.processed_output.parent / defaults.evidence.parent.name / defaults.evidence.name,
+        )
         self.max_sessions = max_sessions
         self.emit = emit or (lambda message: print(message, flush=True))
         self.stats = Stats()
@@ -168,6 +181,7 @@ class Collector:
         self._announced: set[str] = set()
         self._failure_announced: set[str] = set()
         self._duplicate_seen: set[str] = set()
+        self._catalog_cache = None
 
     # -- state ---------------------------------------------------------------
 
@@ -244,7 +258,7 @@ class Collector:
         pending = self.raw_output / ".pending"
         pending.mkdir(parents=True, exist_ok=True)
         slice_path = pending / f"{key[:16]}.log"
-        part_path = self.processed_output / f"{uuid.uuid4().hex}.jsonl.part"
+        raw_path = self.raw_output / f"{key[:16]}.log"
         try:
             body = "\n".join(info.lines[: info.complete_index + 1]) + "\n"
             slice_path.write_text(body, encoding="utf-8", newline="\n")
@@ -254,21 +268,46 @@ class Collector:
                 # Our section scan and the parser must agree on the mode.
                 disagree = "Ranked" in reason or "Standard" in reason or "exactly one" in reason
                 return self._finish(key, SKIPPED_METADATA_AMBIGUOUS if disagree else SKIPPED_INCOMPLETE)
-            result = import_power_log(slice_path, part_path, self.catalog_path)
-            if result.get("duplicate"):
+            # The raw match is persisted before any derived dataset is attempted.
+            os.replace(slice_path, raw_path)
+            results = process_completed_match(
+                raw_path, self.outputs, self.catalog_path, catalog=self._catalog())
+            value = results["value"]
+            self._report_derived(results)
+            if value.status == FAILED:
+                return self._finish(key, PARSE_FAILED)  # raw kept; Value is retried next poll
+            if value.status == DUPLICATE:
                 return self._finish(key, SKIPPED_ALREADY_IMPORTED)
-            self.processed_output.mkdir(parents=True, exist_ok=True)
-            os.replace(part_path, self.processed_output / f"{uuid.uuid4().hex}.jsonl")
-            os.replace(slice_path, self.raw_output / f"{key[:16]}.log")
-            return self._finish(key, IMPORTED, result)
+            return self._finish(key, IMPORTED, value.detail)
         except Exception:  # privacy: report the status only, never the exception text
             return self._finish(key, PARSE_FAILED)
         finally:
-            for leftover in (part_path, slice_path):
-                try:
-                    leftover.unlink()
-                except OSError:
-                    pass
+            try:
+                slice_path.unlink()
+            except OSError:
+                pass
+
+    def _catalog(self):
+        if self._catalog_cache is None:
+            from manamind.cards.catalog import CardCatalog
+            self._catalog_cache = CardCatalog.from_json(self.catalog_path)
+        return self._catalog_cache
+
+    def _report_derived(self, results: dict) -> None:
+        self.emit(f"[{_now()}] raw match saved")
+        labels = {"value": "Value examples", "policy": "Policy examples",
+                  "observations": "mechanic observations"}
+        for name, result in results.items():
+            if result.status == FAILED:
+                reason = result.detail.get("error") or ",".join(
+                    sorted(result.detail.get("game_skip_reasons", {}))) or "unknown"
+                self.stats.processor_failures[name] = self.stats.processor_failures.get(name, 0) + 1
+                self.emit(f"[{_now()}] {labels[name]}: FAILED ({reason}); raw match kept; "
+                          "backfill later with scripts/process_completed_match.py")
+            elif result.status == DUPLICATE:
+                self.emit(f"[{_now()}] {labels[name]}: already present")
+            else:
+                self.emit(f"[{_now()}] {labels[name]}: {result.count}")
 
     def _announce(self, key: str) -> None:
         if key not in self._announced:
@@ -353,6 +392,10 @@ def main() -> int:
     parser.add_argument("--poll-seconds", type=float, default=5.0)
     parser.add_argument("--raw-output", type=Path, default=Path("data/raw/collected"))
     parser.add_argument("--processed-output", type=Path, default=Path("data/processed_real"))
+    parser.add_argument("--policy-output", type=Path, default=None,
+                        help="default: data/processed_policy_real/collected next to --processed-output")
+    parser.add_argument("--evidence-output", type=Path, default=None,
+                        help="default: data/processed_evidence/collected next to --processed-output")
     parser.add_argument("--cards", type=Path, default=Path("data/cards/standard_current_enUS.json"))
     parser.add_argument("--max-sessions", type=int, default=3,
                         help="newest Hearthstone_<timestamp> folders to scan (default 3)")
@@ -370,6 +413,7 @@ def main() -> int:
     logging.disable(logging.CRITICAL)
     collector = Collector(
         args.logs_root, args.raw_output, args.processed_output, args.cards,
+        policy_output=args.policy_output, evidence_output=args.evidence_output,
         max_sessions=args.max_sessions,
     )
     collector.run(args.poll_seconds, once=args.once)
