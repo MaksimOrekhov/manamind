@@ -1,7 +1,49 @@
 # LIVE-0C — first read-only live policy recommendation
 
 Base: `9dc969d5e70025107d8b3099f8dcff9be85cb038` (`origin/main`, ML-1C included).
-Branch: `work/live0c-first-recommendation`. No real game smoke or merge was performed.
+Branch: `work/live0c-first-recommendation`; implementation head:
+`f4fdf1a5e7fb273cc66c09a2af88c6ad0eb507af`. No merge was performed.
+Post-validation verdict: **LIVE0C_FIRST_LIVE_RECOMMENDATION_PASS**.
+
+## Real live smoke — 2026-10-06
+
+The unified runner completed one Ranked Standard match in session
+`Hearthstone_2026_10_06_22_20_23` (game key prefix `219302142511e674`). Its trace has 47 trusted
+READY/SELF decisions. The normal LIVE replay reproduced all 47 snapshots: `IDENTICAL`. Policy
+replay reproduced the recorded state hashes and identical rankings on repeat. Of the 47 snapshots,
+29 were superseded before the end of their read batch; 18 were current, 15 were scored, and three
+were safely skipped as `AMBIGUOUS_SELECTION`. This coverage is expected for a 50 ms poller reading
+Power.log updates that can advance before the UI settles; superseded decisions were not scored.
+
+The lifecycle recording contains 48 `SYNCING`, 47 `READY`, and one `GAME_OVER` status. Every READY
+was later invalidated by a state transition; the final GAME_OVER leaves no current snapshot. The
+runner prints its initial `WAITING_FOR_GAME` before entering the poll loop. Its catch-up path
+suppresses historical snapshots, and this recording contains only the new match. Snapshots are
+SELF decisions only; no opponent-turn recommendation is eligible.
+
+For all 15 scored decisions, the full menu contained 180 action variants. All ranked top-three
+entries mapped back to that exact menu. The scored menus included 85 target variants, 23 placement
+variants, and 15 `END_TURN` options, with each action variant preserved separately. Offline action
+extraction labeled 32 of 48 decisions and skipped the rest by the existing policy-import rules.
+Fifteen scored decisions matched an actual subsequent action by exact state hash and options ID:
+top-1 agreement was **9/15** and top-3 agreement was **9/15**, with **0 unmatched** among those
+exact matches. These are descriptive results from one match, not evidence of playing strength.
+
+The completed match appears once under the existing ignored raw collection path, and the collector
+state marks it `IMPORTED`. Its processed value dataset contains 73 rows; a fresh import of this
+exact raw match produced the same dataset fingerprint. Repeating the importer against that dataset
+returned `duplicate` and created no second output.
+
+Privacy follows the contract in `docs/LIVE_BRIDGE.md`: sanitized snapshots, status events, metadata,
+and replay-rendered recommendation output contain no player names, BattleTags or account IDs. All
+47 states have an empty `opponent_known_cards` field; no hidden opponent identity enters model inputs
+or recommendations. The raw `slice.log` is intentionally unredacted replay evidence, may contain
+Power.log names, and remains local, git-ignored and untracked. It must not be shared unsanitized.
+No raw log excerpt is included here. The original console transcript was not retained; stdout
+privacy was checked against the runner's safe rendering path and reconstructed recommendation
+output rather than by byte-for-byte comparison with that console session.
+
+The observed smoke statistics do not establish general Hearthstone playing strength.
 
 The unified runner follows Power.log with the reviewed LIVE bridge, records its raw slice and
 read trace for replay, ranks only a current trusted READY/SELF/Ranked Standard/main-action
@@ -48,22 +90,21 @@ Validation: relevant LIVE/ML/collector tests, full pytest, Ruff, generator ident
 native typed-failure inventory, generated-artifact determinism and `git diff --check` passed
 locally. Hosted source CI is checked separately on the pushed branch.
 
-## One-command live smoke, when explicitly authorized
+## Unified runner command used for the smoke
 
-Run this PowerShell command on the user's machine; it uses the stable main-worktree data root
-for newly collected matches while executing the isolated LIVE-0C branch code and its exact
-ignored checkpoint:
+The completed smoke used this PowerShell command. It used the stable main-worktree data root for
+collected matches and the isolated LIVE-0C branch code with its exact ignored checkpoint:
 
 ```powershell
 & "E:\ManaMind\.venv\Scripts\python.exe" "C:\Users\Максим\.codex\worktrees\live0c-first-recommendation\ManaMind\scripts\run_manamind.py" --logs-root "D:\Games\Hearthstone\Logs" --data-root "E:\ManaMind\data"
 ```
 
-Start before a Ranked Standard game, play normally, inspect only read-only console rankings,
-then stop with Ctrl+C. Historical games should show no ranking; current SELF decisions should
-rank or explicitly decline; after GAME_OVER no ranking remains. The collector retains a completed
-match and the LIVE recording can be replayed with `scripts/live_replay.py` and
-`scripts/replay_live_recommendations.py`. No gameplay input is automated.
+The user played normally and stopped the runner after GAME_OVER. It performs no gameplay input
+automation. The completed recording replays with `scripts/live_replay.py` and
+`scripts/replay_live_recommendations.py`.
 
 ML-1C remains a weak baseline: 21 matches, class/deck concentration, validation overfitting,
 poor targeted-action accuracy and uncalibrated logits. LIVE-0C does not establish playing strength.
-The graphical overlay and a real interactive smoke remain separate follow-up work.
+Graphical overlay integration remains separate follow-up work.
+
+Final verdict: **LIVE0C_FIRST_LIVE_RECOMMENDATION_PASS**.
