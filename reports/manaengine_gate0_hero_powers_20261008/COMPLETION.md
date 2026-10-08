@@ -53,16 +53,16 @@ Provenance: `https://api.hearthstonejson.com/v1/latest/enUS/cards.json`, sha256 
 | `ruff check`, `check_generic_card_branches.py`, failure-site audit `check`, `check_generated_artifacts.py` (two runs, clean tree) | all pass |
 | Differential Mage regression | The same seeded random Mage-mirror transcript (80 games, up to 120 steps, 31,832 legal actions of which 4,839 Hero Power, all actions and both perspectives' observations hashed) run under an unmodified `origin/main` build and this build produced the identical SHA-256 `08528e4cbbd90c2ae13c3f5391ecf5e9ffcc8c8297a3dcb2834070fcaf1f3f6f` |
 
-Hosted CI (Windows and Ubuntu) status is recorded in the final report after the push. The ManaEngine experimental workflow's explicit Python file list now includes `test_hero_powers.py`.
+Hosted CI (Windows and Ubuntu) passed on `2558352`. In the review-fix commit the ManaEngine experimental workflow replaced its explicit per-file selection from `experiments/manaengine/tests` with the whole directory (adapter, simulation-attempt, native-failure, healing, QUICK-1..5 and Hero Power tests); the root-level tests stay explicitly selected. CI-only change.
 
 ## Remaining unsupported / evidence debt
 
 1. **Real-state simulation is not enabled.** There is no importer; only brand-new prototype sessions start at a base power. A real state with another class, a replaced, upgraded, Imbued or modified power, or an unknown power cannot be created and an unreviewed identity fails closed (`UNSUPPORTED_HERO_POWER`), never as the class's base power. The unsupported-card-in-hand gate is unchanged, so real Priest/Hunter/Warrior decks still fail closed on their cards.
 2. **Healing bonus on Hero Power healing is applied by specification, not by evidence** (OPEN above); the cross-side case fails closed with `HEALING_BONUS_SCOPE_UNREVIEWED`. No `EvidenceConstraint` was introduced for it.
-3. Not implemented: Imbue, Quests, Locations, Hero Power replacement/upgrade, cost modifiers, extra uses (the engine has no state for them, so nothing can silently apply), the remaining six classes, determinization/search.
+3. Not implemented: Imbue, Quests, Locations, Hero Power replacement/upgrade, cost modifiers, extra uses (the engine has no state for them, so nothing can silently apply), the remaining seven classes (Death Knight, Demon Hunter, Druid, Paladin, Rogue, Shaman, Warlock), determinization/search.
 4. Hero Power damage uses the same targeting as the previous Fireblast (no stealth/untargetable filtering exists anywhere in `legal_targets`); `Elusive`/`Stealth` interactions stay as unmodelled as for spells.
 5. Linux/GCC compilation was not available locally; the hosted Ubuntu job is the check.
-6. Observation: the experimental CI Python list names files explicitly, so `test_healing_pipeline.py` and `test_quick*_existing_primitives.py` (which pass locally) are still not run in hosted CI; only the new file was added.
+6. Resolved in the review fix: the experimental CI now runs the whole `experiments/manaengine/tests` directory, so the healing and QUICK-1..5 tests also run in hosted CI.
 
 ## Measurements
 

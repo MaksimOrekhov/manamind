@@ -68,7 +68,7 @@ Native `manaengine_tests --hero-power` (independent expectations from printed te
 
 ## custom outliers
 
-None. Deferred: Imbue, Quest, Location, replacement/upgrade mechanics, the remaining six classes, cost modifiers, extra uses, real-state import, any hero-power-aware search.
+None. Deferred: Imbue, Quest, Location, replacement/upgrade mechanics, the remaining seven classes (Death Knight, Demon Hunter, Druid, Paladin, Rogue, Shaman, Warlock), cost modifiers, extra uses, real-state import, any hero-power-aware search.
 
 ## Completion record
 
