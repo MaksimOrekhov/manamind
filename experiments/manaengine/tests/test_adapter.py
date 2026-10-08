@@ -714,7 +714,9 @@ def test_prepare_card_round_trips_as_its_own_action_kind() -> None:
     hero_power.card_type = "HERO_POWER"
     hero_power.card_class = "MAGE"
     hero_power.cost = 2
-    hero_power.support_state = "VERIFIED_VANILLA"
+    hero_power.ability = "TARGET_DAMAGE"  # pre-gate Fireblast encoding; a supported Hero Power must carry its effect
+    hero_power.damage = 1
+    hero_power.support_state = "SUPPORTED"
     prepared = native.CardDefinition()
     prepared.card_id = "TEST_PREPARE_SPELL"
     prepared.card_type = "SPELL"

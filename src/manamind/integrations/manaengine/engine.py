@@ -107,6 +107,7 @@ _FAILURE_CODE_KINDS = {
     "UNSUPPORTED_GENERATED_CARD": FailureKind.UNSUPPORTED,
     "UNSUPPORTED_GENERATED_CARD_UNDEFINED": FailureKind.UNSUPPORTED,
     "UNSUPPORTED_HERO_CLASS": FailureKind.UNSUPPORTED,
+    "UNSUPPORTED_HERO_POWER": FailureKind.UNSUPPORTED,
     "UNSUPPORTED_MINION_HISTORY_TYPE": FailureKind.UNSUPPORTED,
     "UNSUPPORTED_RANDOM_SECRET_OUTCOME": FailureKind.UNSUPPORTED,
     "UNSUPPORTED_SECRET_DEPENDENCY": FailureKind.UNSUPPORTED,
@@ -206,7 +207,7 @@ def _load_native() -> ModuleType:
 
 
 _EFFECT_KINDS = {"DAMAGE", "DRAW", "GAIN_ARMOR", "MODIFY_HERO_ATTACK", "FREEZE", "SUMMON_FIXED", "DESTROY_MINION", "HEAL", "HEAL_MINION_TO_FULL", "BUFF_FRIENDLY_MINIONS", "DISCARD_RANDOM_SPELL", "BUFF_MINION", "MODIFY_WEAPON_ATTACK", "GRANT_HEALING_BONUS"}
-_TARGET_SELECTORS = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "EXPLICIT_DAMAGED_ENEMY_MINION", "EXPLICIT_FRIENDLY_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "ALL_MINIONS", "SELF_HERO", "SELF", "RANDOM_ENEMY_MINION", "EXPLICIT_DAMAGED_MINION", "FRIENDLY_WEAPON", "RANDOM_DISTINCT_ENEMY_CHARACTERS", "RANDOM_DISTINCT_ENEMY_MINIONS", "ALL_FRIENDLY_CHARACTERS", "EXPLICIT_FRIENDLY_CHARACTER"}
+_TARGET_SELECTORS = {"EXPLICIT_CHARACTER", "EXPLICIT_ENEMY_CHARACTER", "EXPLICIT_MINION", "EXPLICIT_DAMAGED_ENEMY_MINION", "EXPLICIT_FRIENDLY_MINION", "ENEMY_MINIONS", "ENEMY_CHARACTERS", "ALL_CHARACTERS", "ALL_MINIONS", "SELF_HERO", "SELF", "RANDOM_ENEMY_MINION", "EXPLICIT_DAMAGED_MINION", "FRIENDLY_WEAPON", "RANDOM_DISTINCT_ENEMY_CHARACTERS", "RANDOM_DISTINCT_ENEMY_MINIONS", "ALL_FRIENDLY_CHARACTERS", "EXPLICIT_FRIENDLY_CHARACTER", "ENEMY_HERO"}
 
 
 def _parse_effect_steps(native: ModuleType, card_id: str, raw_effects: Any) -> list[Any]:
@@ -284,6 +285,7 @@ def _load_definitions(catalog_path: str | Path | None = None) -> tuple[list[Any]
         _ROOT / "experiments/manaengine/data/colossal_appendage_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/quick1_dependency_metadata.json",
         _ROOT / "experiments/manaengine/data/quick2_dependency_metadata.json",
+        _ROOT / "experiments/manaengine/data/hero_power_dependency_metadata.json",
     ]
     extras = {card.card_id: card for path in dependency_files for card in CardCatalog.from_json(path)}
     records = {c.card_id: c for c in catalog}
@@ -469,9 +471,6 @@ class ManaEngineSession:
                  shuffle: bool = True, random_seed: int = 0, catalog_path: str | Path | None = None) -> None:
         native = _load_native()
         self._unsupported_exception = native.UnsupportedSimulationError
-        if player1_class.upper() != "MAGE" or player2_class.upper() != "MAGE":
-            raise UnsupportedSimulationError("ManaEngine session requires implemented hero powers; only Mage mirror is supported", failure=NativeFailure(
-                FailureKind.UNSUPPORTED, "UNSUPPORTED_HERO_CLASS", "ManaEngine session requires implemented hero powers; only Mage mirror is supported"))
         catalog_file = Path(catalog_path) if catalog_path else _ROOT / "data/cards/standard_current_enUS.json"
         catalog_key = str(catalog_file.resolve())
         runtime = _NATIVE_CATALOG_CACHE.get(catalog_key)
@@ -495,8 +494,12 @@ class ManaEngineSession:
             )
         # Enrichment always uses this session's own catalog metadata, never whichever catalog was loaded last.
         self._card_metadata = runtime.card_metadata
-        self._native = native.GameSession(list(player1_deck), list(player2_deck), runtime.native_catalog,
-                                          random_seed, shuffle, player1_class.upper(), player2_class.upper())
+        # The native constructor owns the reviewed class -> starting Hero Power table; unsupported classes raise a typed failure.
+        try:
+            self._native = native.GameSession(list(player1_deck), list(player2_deck), runtime.native_catalog,
+                                              random_seed, shuffle, player1_class.upper(), player2_class.upper())
+        except self._unsupported_exception as exc:
+            raise _wrap_native(exc) from exc
 
     def observation(self, perspective: str = "ACTIVE") -> GameState:
         if perspective not in {"ACTIVE", "PLAYER1", "PLAYER2"}:

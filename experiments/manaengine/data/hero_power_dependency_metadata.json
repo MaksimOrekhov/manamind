@@ -1,0 +1,43 @@
+{
+  "captured_at_utc": "2026-10-04",
+  "cards": [
+    {
+      "cardClass": "WARRIOR",
+      "cost": 2,
+      "dbfId": 725,
+      "id": "HERO_01bp",
+      "name": "Armor Up!",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>Hero Power</b>\nGain $d2 Armor.",
+      "type": "HERO_POWER"
+    },
+    {
+      "cardClass": "HUNTER",
+      "collectionText": "<b>Hero Power</b>\nDeal $2 damage.",
+      "cost": 2,
+      "dbfId": 229,
+      "id": "HERO_05bp",
+      "name": "Steady Shot",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>Hero Power</b>\nDeal $2 damage to the enemy hero.",
+      "type": "HERO_POWER"
+    },
+    {
+      "cardClass": "PRIEST",
+      "cost": 2,
+      "dbfId": 479,
+      "id": "HERO_09bp",
+      "name": "Lesser Heal",
+      "rarity": "FREE",
+      "set": "LEGACY",
+      "text": "<b>Hero Power</b>\nRestore #2 Health.",
+      "type": "HERO_POWER"
+    }
+  ],
+  "purpose": "ENGINE-GATE-0 base Hero Power identities (Warrior, Hunter, Priest); dependency metadata does not establish runtime rules evidence or training admission. Fireblast HERO_08bp stays in dependency_metadata_audit.json from the same capture.",
+  "schema_version": 1,
+  "source_sha256": "e8ea569a7ca1790c2258ed57c60798d808ffb057acb7bb73663c00ea174dae65",
+  "source_url": "https://api.hearthstonejson.com/v1/latest/enUS/cards.json"
+}

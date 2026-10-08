@@ -60,6 +60,7 @@ FailureKind failure_kind_of(FailureCode code) {
     case FailureCode::UNSUPPORTED_TRANSFORM_OUTCOME: return FailureKind::Unsupported;
     case FailureCode::UNSUPPORTED_VANILLA_SPELL: return FailureKind::Unsupported;
     case FailureCode::HEALING_BONUS_SCOPE_UNREVIEWED: return FailureKind::RuleUnresolved;
+    case FailureCode::UNSUPPORTED_HERO_POWER: return FailureKind::Unsupported;
     }
     return FailureKind::EngineDefect; // unknown numeric identity fails closed
 }
@@ -123,6 +124,7 @@ const char* failure_code_id(FailureCode code) {
     case FailureCode::UNSUPPORTED_TRANSFORM_OUTCOME: return "UNSUPPORTED_TRANSFORM_OUTCOME";
     case FailureCode::UNSUPPORTED_VANILLA_SPELL: return "UNSUPPORTED_VANILLA_SPELL";
     case FailureCode::HEALING_BONUS_SCOPE_UNREVIEWED: return "HEALING_BONUS_SCOPE_UNREVIEWED";
+    case FailureCode::UNSUPPORTED_HERO_POWER: return "UNSUPPORTED_HERO_POWER";
     }
     return "UNKNOWN_FAILURE_CODE";
 }

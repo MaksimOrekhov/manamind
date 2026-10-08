@@ -46,7 +46,7 @@ def test_t18_native_exception_payload_and_exact_echo():
     assert issubclass(native.EngineDefectError, native.UnsupportedSimulationError)
     assert issubclass(EngineDefectError, UnsupportedSimulationError)
     with pytest.raises(native.UnsupportedSimulationError) as caught:
-        native.GameSession([], [], native.CardCatalog([]), 0, False, "WARRIOR", "MAGE")
+        native.GameSession([], [], native.CardCatalog([]), 0, False, "SHAMAN", "MAGE")
     exc = caught.value
     assert exc.kind == "UNSUPPORTED" and exc.code == "UNSUPPORTED_HERO_CLASS"
     wrapped = _wrap_native(exc)

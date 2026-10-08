@@ -18,7 +18,8 @@ enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
 enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell, BuffMinion, ModifyWeaponAttack, GrantHealingBonus };
 // Append-only: numeric identities are stable. The RandomDistinct* selectors sample min(random_count,n) enemies without
 // replacement (see EffectStep::random_count); the selector alone decides whether the enemy hero is a candidate.
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon, RandomDistinctEnemyCharacters, RandomDistinctEnemyMinions, AllFriendlyCharacters, ExplicitFriendlyCharacter };
+// EnemyHero is the untargeted enemy hero (Hero Power damage only; rejected on every other card type).
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon, RandomDistinctEnemyCharacters, RandomDistinctEnemyMinions, AllFriendlyCharacters, ExplicitFriendlyCharacter, EnemyHero };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
@@ -242,7 +243,7 @@ private:
     using MinionState=CardInstance;
     using WeaponState=CardInstance;
     struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
-    struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,hero_max_health=30,healing_bonus=0,armor=0,hero_attack=0,hero_temp_attack=0;
+    struct PlayerState { std::string player_class="UNKNOWN_CLASS"; std::string hero_power_id; /* current Hero Power identity; the class never implies it, empty = unknown */ int hero_health=30,hero_max_health=30,healing_bonus=0,armor=0,hero_attack=0,hero_temp_attack=0;
       std::vector<std::string> current_turn_minion_types_played,previous_turn_minion_types_played;
       int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0,overloaded_mana=0,pending_overload=0;
       std::int64_t spell_damage_dealt_this_turn=0;
@@ -307,6 +308,13 @@ private:
     static SecretEffect secret_effect_of(const CardDefinition& card);
     const CardDefinition& card(const std::string& id) const;
     int effective_cost(int owner,const HandCard& item) const;
+    // Hero Power v1. The current power is state, not a function of the class; any identity that is not a reviewed,
+    // supported HERO_POWER definition fails closed with UNSUPPORTED_HERO_POWER (never replaced by the class's base power).
+    const CardDefinition& hero_power_definition(int owner) const;
+    int hero_power_cost(int owner) const;
+    bool hero_power_targeted(const CardDefinition& power) const;
+    bool hero_power_usable(int owner) const;
+    void use_hero_power(const Action& action);
     int spell_damage_for(int owner) const;
     std::vector<int> legal_targets(const CardDefinition& def,int owner) const;
     void draw(int owner,int count=1); void draw_from_deck(int owner,int count,DeckDrawFilter filter);

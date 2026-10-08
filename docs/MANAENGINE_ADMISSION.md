@@ -19,7 +19,7 @@ The current Fire pool is explicitly `REVIEWED_INFERRED`: it can be sampled for b
 
 An unsupported action can eventually remain rankable through a future higher-layer action-value evaluator, but that path is not implemented and cannot consume a fabricated or poisoned child state. A runtime transition's success does not itself close dependencies, verify rules, or permit canonical training.
 
-Only Mage hero-power sessions are admitted to ordinary development simulation. Cross-class decks in focused adapter tests are semantic fixtures, not legal decks or deck-readiness evidence. Tests use real declarations and do not install diagnostic cards in production catalog configuration. Diagnostic traces may contain hidden identities and are a separate debugging channel; GameState serialization, encoders and datasets must never consume them.
+Only sessions of Mage, Priest, Hunter and Warrior seats (reviewed base Hero Powers, ENGINE-GATE-0) are admitted to ordinary development simulation; this widens runtime simulation only and changes no canonical training admission. Cross-class decks in focused adapter tests are semantic fixtures, not legal decks or deck-readiness evidence. Tests use real declarations and do not install diagnostic cards in production catalog configuration. Diagnostic traces may contain hidden identities and are a separate debugging channel; GameState serialization, encoders and datasets must never consume them.
 
 ## Search hard gate
 

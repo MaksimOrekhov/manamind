@@ -12,7 +12,7 @@ template<class F> FailureRecord expect_failure(GameSession& s,FailureCode code,F
 }
 void test_typed_native_failure_v1(){
  // T01/T02/T04/T05/T18: every code reaches the same production funnel without text classification.
- for(int value=1;value<=57;++value){auto s=game();TestAccess::reset(s);const auto code=static_cast<FailureCode>(value);
+ for(int value=1;value<=59;++value){auto s=game();TestAccess::reset(s);const auto code=static_cast<FailureCode>(value);
   const auto record=expect_failure(s,code,[&]{TestAccess::guarded(s,[&]{TestAccess::reject(s,code,"identical misleading diagnostic");});});
   check(std::string(failure_code_id(code))!="UNKNOWN_FAILURE_CODE","code table total");
   check(record.detail=="identical misleading diagnostic","detail untouched");

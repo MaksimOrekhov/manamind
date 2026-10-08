@@ -722,6 +722,15 @@
    "sites": 0,
    "value": 58,
    "added": "ENGINE-PRIMITIVE-1 (after the 4K.1b baseline): a healing controller with a bonus healing a character it does not control; raised by the shared healing pipeline"
+  },
+  {
+   "code": "UNSUPPORTED_HERO_POWER",
+   "classification": "DESIGN_UNSUPPORTED",
+   "future_kind": "Unsupported",
+   "rows": [],
+   "sites": 0,
+   "value": 59,
+   "added": "ENGINE-GATE-0 (after the 4K.1b baseline): a seat's current Hero Power identity (or a class's reviewed starting power) is unknown, not a HERO_POWER card, or has no SUPPORTED reviewed definition; raised by session construction, legal_actions, semantic_legal_actions, observation and validate_invariants without ever substituting the class's base power"
   }
  ],
  "pybind_translation": [
@@ -10738,13 +10747,13 @@
    }
   ],
   "source_sha256": {
-   "include/manaengine/engine.hpp": "f74328b3eba1cb7cb439c89950805e7dbe5d6c8d9f70e0e9f102bc917d66735d",
-   "include/manaengine/failure.hpp": "f0d6e3f890fa49e98f01c3a20c05945244a5370858cf0ab968a3c880b40e548f",
+   "include/manaengine/engine.hpp": "8ad5ef4eb98c0c48a8652dd897c989af4253a1dbc3e7717d88f6acbd64645bfa",
+   "include/manaengine/failure.hpp": "4358a00f28747f8add7dba2813db813ca86f7d6fb37a80cd239b7ddee8fcdd07",
    "src/damage_group.cpp": "66697d8cec713c24fbc49b72f51344648411d6fcd56530ae9b6a0315b08842db",
-   "src/engine.cpp": "4037f979750b954a850bd349fab268fa523c2db0962d5a93cc9482f132e6c49a",
-   "src/failure.cpp": "c24c754da1cb4a068e527dac341abe32f7135591eb9fd06e94e856aacbaff600",
+   "src/engine.cpp": "12eea76dbebce469501d583c56365eada6b46af31ffdcdd68018640bf87a20fb",
+   "src/failure.cpp": "4fab2ef2afbb7886b57c6fec0d28fe265e45bcc7d732b39ecedbe989d33ac4b7",
    "src/pool_manifest.cpp": "aa54beda7784f8c4bcbf7ca3eaae8044a6085137aedcb4010da9d409ef83d5b9",
-   "src/python_bindings.cpp": "151a1c467b8491087785a514da262e7e4055f775eda6ee76be1ad828f06c6eb8"
+   "src/python_bindings.cpp": "1f0f45f52bd9c4d9257feb32d9e8f680e9fa82e0bafe79fc6665b061b791741b"
   },
   "unguarded_throw_allowlist": [
    {

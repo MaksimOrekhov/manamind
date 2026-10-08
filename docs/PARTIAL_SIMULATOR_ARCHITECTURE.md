@@ -59,8 +59,9 @@ must never learn from poisoned or fabricated afterstates.
   actions through a Python adapter. `GameState` remains the player-visible
   domain representation, not the engine's mutable state.
 - ManaEngine sessions are created from two decks and game setup. The current
-  adapter admits Mage mirror sessions because only that hero power is
-  implemented. There is no general importer from an arbitrary live
+  adapter admits sessions of Mage, Priest, Hunter and Warrior seats, each
+  starting with its reviewed base Hero Power (the class is not proof of the
+  current power; an unreviewed power fails closed). There is no general importer from an arbitrary live
   `GameState`, `PlayerObservation` or Power.log position into engine state.
 - The engine executes only its supported, reviewed subset. Candidate
   generation pools fail closed; an unsupported sampled outcome invalidates
@@ -342,7 +343,9 @@ behavior may require strict fail-closed handling.
 
 ManaEngine currently creates sessions from game setup and two decks, not from
 an arbitrary live `GameState` or Power.log snapshot. The adapter additionally
-requires Mage mirror sessions today. Exact ManaEngine search from a real game
+admits only Mage, Priest, Hunter and Warrior seats, each at its reviewed base
+Hero Power, so a real-game state with another class or a replaced power cannot
+be represented either. Exact ManaEngine search from a real game
 root is therefore not implemented.
 
 Current full-information cloning supports simulation branching and

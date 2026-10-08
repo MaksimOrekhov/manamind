@@ -581,9 +581,52 @@
       "reviewed_rules_text": "Deal $3 damage randomly split among all enemies."
     },
     "HERO_08bp": {
-      "ability": "TARGET_DAMAGE",
+      "ability": "EFFECT_COMPOSITION",
       "support_state": "SUPPORTED",
-      "reviewed_rules_text": "Hero Power Deal $1 damage."
+      "reviewed_rules_text": "Hero Power Deal $1 damage.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 1
+        }
+      ]
+    },
+    "HERO_01bp": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Hero Power Gain $d2 Armor.",
+      "effects": [
+        {
+          "kind": "GAIN_ARMOR",
+          "target": "SELF",
+          "amount": 2
+        }
+      ]
+    },
+    "HERO_05bp": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Hero Power Deal $2 damage to the enemy hero.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_HERO",
+          "amount": 2
+        }
+      ]
+    },
+    "HERO_09bp": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Hero Power Restore #2 Health.",
+      "effects": [
+        {
+          "kind": "HEAL",
+          "target": "EXPLICIT_CHARACTER",
+          "amount": 2
+        }
+      ]
     },
     "CS2_tk1": {
       "ability": "NONE",
