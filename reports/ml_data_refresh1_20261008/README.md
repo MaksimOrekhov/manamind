@@ -41,6 +41,7 @@ The refreshed corpus is technically loadable for plumbing checks, but it is not 
 - `git diff --check`: **passed**.
 - Full pytest: **490 passed, 1 skipped, 26 errors and 3 failed**. All 29 failures stem from the isolated worktree lacking the initialized `vendor/RosettaStone/Resources/cards.json` pinned submodule needed by those existing tests. The pinned submodule revision is present in the main checkout; the worktree was left unmodified rather than linking/copying that unrelated private checkout into it.
 - Rebuilt corpus and determinism directories were verified Git-ignored; no private data is staged or committed.
+- Hosted Source and generated artifact checks passed on Ubuntu and Windows for the implementation/report revision (GitHub Actions run [37822180693](https://github.com/MaksimOrekhov/manamind/actions/runs/37822180693)); both platform jobs reported success.
 
 ## Reproduction command
 
