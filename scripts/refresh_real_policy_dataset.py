@@ -48,7 +48,13 @@ IMPORTER_FILES = (
 DEFAULT_V1 = ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt"
 DEFAULT_V2 = ROOT / "data/processed_policy_ml2a/seed42_v2/policy.pt"
 DEFAULT_PREVIOUS = ROOT / "data/processed_policy_real/collected"
+DEFAULT_COMPARISON_BASELINE = ROOT / "data/processed_policy_real/refresh_20261008_reviewfix"
 DEFAULT_EVAL_REPORT = ROOT / "reports/ml_eval0_real_policy_20261008/metrics.json"
+EXPECTED_HERO_STATE_FIELDS = frozenset({
+    "self_player.hero_max_health", "opponent.hero_max_health",
+    "self_player.hero_frozen", "opponent.hero_frozen",
+    "self_player.hero_power_ready", "opponent.hero_power_ready",
+})
 
 
 def sha256_file(path: Path) -> str:
@@ -96,6 +102,10 @@ def canonical_content_identity(directory: Path) -> str:
 def quality_summary(rows: list[dict], audit: dict, rejected_games: dict[str, int]) -> dict:
     by_game: dict[str, list[dict]] = defaultdict(list)
     chosen_types, menus, turns, selected_targeted = Counter(), Counter(), Counter(), 0
+    hero_fields: dict[str, dict[str, Counter]] = {
+        field: {side: Counter() for side in ("self_player", "opponent")}
+        for field in ("hero_max_health", "hero_frozen", "hero_power_ready")
+    }
     for row in rows:
         by_game[row["game_id"]].append(row)
         chosen = row["legal_actions"][row["chosen_action_index"]]
@@ -112,6 +122,15 @@ def quality_summary(rows: list[dict], audit: dict, rejected_games: dict[str, int
     for row in rows:
         for side in ("self_player", "opponent"):
             player = row["state"][side]
+            for field in hero_fields:
+                value = player.get(field)
+                if value is None:
+                    label = "unknown"
+                elif isinstance(value, bool):
+                    label = str(value).lower()
+                else:
+                    label = str(value)
+                hero_fields[field][side][label] += 1
             for name in ("hero_health", "armor", "available_mana", "max_mana", "healing_bonus"):
                 if player.get(name) is None:
                     missing_player_fields[name] += 1
@@ -138,6 +157,17 @@ def quality_summary(rows: list[dict], audit: dict, rejected_games: dict[str, int
         "selected_targeted_rate": selected_targeted / len(rows) if rows else None,
         "legal_menu_sizes": dict(sorted(menus.items())),
         "unknown_public_card_identity_ratio": audit.get("unknown_card_id_ratio"),
+        "hero_state_fields": {
+            field: {
+                side: {
+                    "known": sum(count for value, count in values.items() if value != "unknown"),
+                    "unknown": values.get("unknown", 0),
+                    "values": dict(sorted(values.items())),
+                }
+                for side, values in by_side.items()
+            }
+            for field, by_side in hero_fields.items()
+        },
         "missing_player_visible_fields": dict(sorted(missing_player_fields.items())),
         "healing_bonus_values": {
             "unknown": unknown_bonus, "known_zero": known_zero_bonus, "known_nonzero": known_nonzero_bonus,
@@ -146,6 +176,49 @@ def quality_summary(rows: list[dict], audit: dict, rejected_games: dict[str, int
         "admitted_decision_skip_reasons": audit.get("skip_reasons", {}),
         "raw_match_rejections": dict(sorted(rejected_games.items())),
         "deck_diversity": "not reliably inferable from visible hand snapshots; no deck identity reconstructed",
+    }
+
+
+def compare_state_fields(previous_rows: list[dict], rebuilt_rows: list[dict]) -> dict:
+    """Count allowed extracted-hero differences and fail-visible unexpected state deltas."""
+    previous = {row["decision_id"]: row["state"] for row in previous_rows}
+    rebuilt = {row["decision_id"]: row["state"] for row in rebuilt_rows}
+    expected, unexpected = Counter(), Counter()
+    expected_decisions = unexpected_decisions = 0
+
+    def flatten(value, prefix=""):
+        if isinstance(value, dict):
+            if not value:
+                yield prefix, value
+            for key, item in value.items():
+                path = f"{prefix}.{key}" if prefix else key
+                yield from flatten(item, path)
+        else:
+            yield prefix, value
+
+    common = previous.keys() & rebuilt.keys()
+    for decision_id in common:
+        old_fields = dict(flatten(previous[decision_id]))
+        new_fields = dict(flatten(rebuilt[decision_id]))
+        changed = {
+            path for path in old_fields.keys() | new_fields.keys()
+            if (path not in old_fields or path not in new_fields
+                or canonical_json(old_fields[path]) != canonical_json(new_fields[path]))
+        }
+        expected_paths = changed & EXPECTED_HERO_STATE_FIELDS
+        unexpected_paths = changed - EXPECTED_HERO_STATE_FIELDS
+        expected_decisions += bool(expected_paths)
+        unexpected_decisions += bool(unexpected_paths)
+        expected.update(expected_paths)
+        unexpected.update(unexpected_paths)
+    return {
+        "common_decisions": len(common),
+        "previous_only_decisions": len(previous.keys() - rebuilt.keys()),
+        "rebuilt_only_decisions": len(rebuilt.keys() - previous.keys()),
+        "decisions_with_expected_hero_field_changes": expected_decisions,
+        "expected_changes_by_path": dict(sorted(expected.items())),
+        "decisions_with_unexpected_state_changes": unexpected_decisions,
+        "unexpected_changes_by_path": dict(sorted(unexpected.items())),
     }
 
 
@@ -184,6 +257,7 @@ def compare_datasets(previous_rows: list[dict], rebuilt_rows: list[dict]) -> dic
         "legal_menu_changed": changed_menu, "outcome_changed": changed_outcome,
         "non_schema_state_changed": non_schema_state,
         "state_only_healing_bonus_schema_changes": schema_only,
+        "state_field_comparison": compare_state_fields(previous_rows, rebuilt_rows),
     }
 
 
@@ -485,6 +559,8 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "data/processed_policy_real/refresh_20261008")
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
     parser.add_argument("--previous", type=Path, default=DEFAULT_PREVIOUS)
+    parser.add_argument("--comparison-baseline", type=Path, default=DEFAULT_COMPARISON_BASELINE,
+                        help="prior canonical extraction for semantic comparison; separate from --previous ML-EVAL usage corpus")
     parser.add_argument("--historical-dataset", type=Path,
                         default=ROOT / "data/processed_policy_ml2a/seed42_v2/dataset")
     parser.add_argument("--v1-checkpoint", type=Path, default=DEFAULT_V1)
@@ -504,7 +580,15 @@ def main() -> int:
             historical_dir=args.historical_dataset,
             previous_dir=args.previous, eval_report_path=args.eval_report, seed=args.seed,
         )
-        result["comparison"] = compare_datasets(read_dataset_unchecked(args.previous), rows)
+        comparison_rows = load_examples(args.comparison_baseline)
+        if not comparison_rows:
+            raise ValueError("Comparison baseline contains no strict canonical examples")
+        result["comparison_baseline"] = {
+            "matches": len({row["game_id"] for row in comparison_rows}),
+            "decisions": len(comparison_rows),
+            "dataset_identity_sha256": dataset_identity(comparison_rows),
+        }
+        result["comparison"] = compare_datasets(comparison_rows, rows)
         result["experiment_usage"] = usage
         result["determinism"] = proof or {"verified": False}
         (args.output_dir / "refresh_report.json").write_text(

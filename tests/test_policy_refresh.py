@@ -16,6 +16,8 @@ from manamind.domain.serialization import game_state_from_dict  # noqa: E402
 from manamind.live.snapshot import state_hash, state_to_dict  # noqa: E402
 from refresh_real_policy_dataset import (  # noqa: E402
     canonical_content_identity,
+    compare_datasets,
+    compare_state_fields,
     dataset_identity,
     frozen_experiment_usage,
     input_fingerprint,
@@ -24,6 +26,7 @@ from refresh_real_policy_dataset import (  # noqa: E402
     IMPORTER_FILES,
     propose_unused_split,
     rebuild_once,
+    verify_two_rebuilds,
 )
 from manamind.training.real_policy import audit_dataset, validate_example  # noqa: E402
 
@@ -153,6 +156,116 @@ def test_quality_summary_uses_game_state_turn_number():
     assert summary["turn_decisions"] == {"1": 1, "3": 1, "7": 1}
 
 
+def test_quality_summary_reports_new_hero_fields_without_collapsing_unknowns():
+    from manamind.integrations.powerlog.policy_import import extract_match
+
+    example, = extract_match(fixture(seed=461).lines, CATALOG)[0]
+    example["state"]["self_player"].update({
+        "hero_max_health": 30, "hero_frozen": False, "hero_power_ready": True,
+    })
+    example["state"]["opponent"].update({
+        "hero_max_health": 40, "hero_frozen": None, "hero_power_ready": False,
+    })
+
+    summary = quality_summary([example], {}, {})["hero_state_fields"]
+
+    assert summary["hero_max_health"]["self_player"] == {
+        "known": 1, "unknown": 0, "values": {"30": 1},
+    }
+    assert summary["hero_max_health"]["opponent"]["values"] == {"40": 1}
+    assert summary["hero_frozen"]["self_player"]["values"] == {"false": 1}
+    assert summary["hero_frozen"]["opponent"]["values"] == {"unknown": 1}
+    assert summary["hero_power_ready"]["self_player"]["values"] == {"true": 1}
+    assert summary["hero_power_ready"]["opponent"]["values"] == {"false": 1}
+
+
+def test_observation_revision_preserves_labels_and_only_changes_approved_hero_fields():
+    from manamind.integrations.powerlog.policy_import import extract_match
+
+    current, = extract_match(fixture(seed=462).lines, CATALOG)[0]
+    previous = copy.deepcopy(current)
+    rebuilt = copy.deepcopy(current)
+    for side in ("self_player", "opponent"):
+        previous["state"][side].pop("hero_max_health", None)
+        previous["state"][side]["hero_frozen"] = None
+        previous["state"][side]["hero_power_ready"] = None
+    for side, max_health, frozen, ready in (
+        ("self_player", 30, True, False), ("opponent", 40, False, True),
+    ):
+        player = rebuilt["state"][side]
+        player.pop("hero_max_health", None)
+        player["hero_max_health"] = max_health
+        player["hero_frozen"] = frozen
+        player["hero_power_ready"] = ready
+
+    field_diff = compare_state_fields([previous], [rebuilt])
+    dataset_diff = compare_datasets([previous], [rebuilt])
+
+    assert field_diff["expected_changes_by_path"] == {
+        "opponent.hero_frozen": 1,
+        "opponent.hero_max_health": 1,
+        "opponent.hero_power_ready": 1,
+        "self_player.hero_frozen": 1,
+        "self_player.hero_max_health": 1,
+        "self_player.hero_power_ready": 1,
+    }
+    assert field_diff["decisions_with_unexpected_state_changes"] == 0
+    assert field_diff["unexpected_changes_by_path"] == {}
+    assert dataset_diff["chosen_index_changed"] == 0
+    assert dataset_diff["chosen_action_semantics_changed"] == 0
+    assert dataset_diff["legal_menu_changed"] == 0
+    assert dataset_diff["outcome_changed"] == 0
+
+    unexpected = copy.deepcopy(rebuilt)
+    unexpected["state"]["self_player"]["available_mana"] += 1
+    rejected_diff = compare_state_fields([previous], [unexpected])
+    assert rejected_diff["decisions_with_unexpected_state_changes"] == 1
+    assert rejected_diff["unexpected_changes_by_path"] == {"self_player.available_mana": 1}
+
+
+def test_observation_fields_keep_state_encoder_shape_and_checkpoint_features_compatible():
+    from manamind.encoding.state_encoder import GLOBAL_FEATURE_NAMES, STATE_ENCODING_SCHEMA_VERSION, StateEncoder
+    from manamind.integrations.powerlog.policy_import import extract_match
+
+    row, = extract_match(fixture(seed=463).lines, CATALOG)[0]
+    state = game_state_from_dict(row["state"])
+    encoder = StateEncoder(CATALOG)
+    base = encoder.encode(state)
+    max_health_only = replace(
+        state,
+        self_player=replace(state.self_player, hero_max_health=40),
+    )
+    changed_max = encoder.encode(max_health_only)
+    feature_state = replace(
+        state,
+        self_player=replace(state.self_player, hero_frozen=True, hero_power_ready=False),
+    )
+    changed_features = encoder.encode(feature_state)
+
+    assert STATE_ENCODING_SCHEMA_VERSION == 16
+    assert "hero_max_health" not in GLOBAL_FEATURE_NAMES
+    assert base.global_features.shape == changed_max.global_features.shape == changed_features.global_features.shape
+    assert (base.global_features == changed_max.global_features).all()
+    for name in ("self_hero_frozen", "self_hero_power_ready"):
+        index = GLOBAL_FEATURE_NAMES.index(name)
+        assert base.global_features[index] != changed_features.global_features[index]
+
+
+def test_verify_two_rebuilds_checks_independent_canonical_output(tmp_path):
+    raw = tmp_path / "raw"
+    write_fixture(raw, seed=464)
+    output = tmp_path / "canonical"
+
+    proof = verify_two_rebuilds(raw, output, ROOT / "data/cards/standard_current_enUS.json",
+                                repo_root=ROOT, source_sha="b" * 40)
+
+    assert proof["runs"] == 2
+    assert proof["identical_content_identity"] is True
+    assert proof["canonical_content_identity_sha256"]
+    assert proof["dataset_identity_sha256"]
+    assert not output.exists()
+
+
 def test_importer_source_fingerprint_changes_when_relevant_source_changes(tmp_path):
     for index, relative in enumerate(IMPORTER_FILES):
         path = tmp_path / relative
@@ -213,8 +326,16 @@ def test_experiment_registry_marks_prior_eval_and_split_filters_contaminated_gam
             "v1": {"top1_accuracy": 0.5}, "v2": {"top1_accuracy": 0.6},
         },
     }
+    # The current extraction has a new dataset identity, while the old rows remain
+    # the authoritative corpus used to map ML-EVAL-0 game IDs.
+    current_rows = copy.deepcopy(rows)
+    for row in current_rows:
+        row["state"] = {"self_player": {"hero_max_health": 30, "hero_frozen": None}}
+    assert dataset_identity(current_rows) != dataset_identity(previous)
     current_records = [{"match_id": game_id} for game_id in eval_ids]
-    registry = frozen_experiment_usage(current_records, rows, previous, payload, copy.deepcopy(payload), eval_report)
+    registry = frozen_experiment_usage(
+        current_records, current_rows, previous, payload, copy.deepcopy(payload), eval_report
+    )
     assert registry["eval_mapping_reliable"] is True
     by_id = {item["match_id"]: item for item in registry["entries"]}
     assert all("ML_EVAL_0_INFERENCE" in by_id[game_id]["usage"] for game_id in eval_ids)
