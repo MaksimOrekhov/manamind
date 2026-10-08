@@ -2,7 +2,7 @@
 
 **Result: `COMPLETE`.** The Power.log → `GameState` pipeline now keeps the hero's directly observed maximum Health, the hero's explicit Frozen state and the Hero Power's exhausted status, and says "unknown" (`None`) wherever the log does not state them. Nothing is inferred from the hero class, a card's printed values, a missing tag, the Hero Power cost or the available Mana. Gameplay logic, the native engine, model features and checkpoints are unchanged.
 
-Base: `b5b3021786d11dd361058a33efc72663dee8dfce` (the task's baseline; the session's worktree started one commit earlier, so the branch was created at the baseline). Branch: `claude/observation-extraction-1-hero-state`. Not merged. Hosted CI and the final SHA are in section 9.
+Base: `b5b3021786d11dd361058a33efc72663dee8dfce`. Branch: `claude/observation-extraction-1-hero-state`. Reviewed implementation: `a1c6f5a569de19518b39ab8453624bbae827c7ec`.
 
 Everything in this directory is sanitized aggregate counts: no game IDs, handles, player names, opponent hand identities or trajectories. Per-position outputs of the verification run stay in the git-ignored `data/processed_obs1/`.
 
@@ -149,7 +149,12 @@ Local (Windows, `E:\ManaMind\.venv`, pinned RosettaStone submodule checked out):
 - New: `tests/test_hero_state_extraction.py` (80 tests: current 20/30 and 35/40, missing/invalid maximum, overkill, Frozen true/false/unknown for both seats, Hero Power tri-state, mana independence, Imbued/replaced/two-power cases, historical and exact round trip, canonical hash, encoder invariance, schema checks, offline-importer end-to-end for both perspectives, live session with every option error, conflict handling, privacy canaries, determinism, historical policy-row validation); updated `tests/test_state_import_readiness.py` (new blockers, four outcomes, freeze cases, provenance); `experiments/manaengine/tests/test_hero_max_health_contract.py`.
 - Existing real-Policy import, dataset, live session, tail, replay and recommendation tests pass unchanged.
 
-Hosted CI: *pending at the time of writing; recorded in the delivery message and the follow-up commit below.*
+Hosted CI on reviewed implementation SHA `a1c6f5a569de19518b39ab8453624bbae827c7ec`:
+
+- Source run [37825862179](https://github.com/MaksimOrekhov/manamind/actions/runs/37825862179): completed successfully; Windows and Ubuntu jobs passed.
+- ManaEngine run [37825862249](https://github.com/MaksimOrekhov/manamind/actions/runs/37825862249): completed successfully; Windows and Ubuntu jobs passed.
+
+All four hosted jobs passed.
 
 ## 10. Dataset identities and whether a canonical Policy rebuild is needed
 
@@ -167,7 +172,7 @@ Exactly what changes in a state built from the same raw match:
 
 Identities that change: each policy row's `state` and `provenance.state_hash`; any dataset or content fingerprint built from them (including the importer-source fingerprint of ML-DATA-REFRESH-1, which covers the files changed here); Value `match_fingerprint` and `_examples_fingerprint` (they hash `asdict(state)`, which now has the `hero_max_health` key); live `state_hash` values and recordings' replay hashes; the state hashes the EVIDENCE walker computes (it uses `to_visible_state`); `observation_source_sha256` in `data/cards/standard_registry_20261001_enUS.json` and `reports/standard_registry_20261001/summary.json` (regenerated; registry evidence was already stale, 0 current). Unchanged: `game_id`, `decision_id`, selection and options line numbers, legal actions, labels, the state encoding schema, vocabularies and checkpoints.
 
-**Integration order (not performed here):** do not merge this branch before the data-refresh order is reviewed. Merging this branch first and then running ML-DATA-REFRESH-1's canonical rebuild once on the final source revision avoids a second rebuild; if the refresh lands first, its dataset stays valid but should be rebuilt after this merge if the new fields matter. I did not run any rebuild, and touched no raw log, dataset, checkpoint, Codex branch or worktree, `work/ui-overlay-shell` or `codex/ml2a-policy-v2`.
+**Dataset refresh:** This change did not rebuild or alter raw logs, datasets, or checkpoints. Existing rows remain valid but do not contain the newly observed fields. If these fields are needed for future training, rebuild the canonical datasets once from the final merged source revision; do not mix rows produced by different extractors or split a match across revisions.
 
 ## 11. Reproduce
 
