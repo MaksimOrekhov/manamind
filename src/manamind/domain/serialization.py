@@ -129,6 +129,7 @@ def _player(data: dict[str, Any]) -> PlayerObservation:
         spell_discount=data.get("spell_discount"),
         demon_discount=data.get("demon_discount"),
         hero_freeze_turns_remaining=data.get("hero_freeze_turns_remaining"),
+        healing_bonus=data.get("healing_bonus"),
         active_effects=tuple(_card(item) for item in data.get("active_effects", ())),
         known_secrets=tuple(
             card for item in data.get("known_secrets", ())

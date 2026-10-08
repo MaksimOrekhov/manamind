@@ -20,9 +20,10 @@ def _without_catalog_mechanics(value: Any) -> Any:
             for key, item in value.items()
             # Rosetta's current bridge does not export hero-freeze state, and
             # ManaEngine intentionally reports unknown hero shield where it has
-            # no implementation. Compare the shared observation contract only.
+            # no implementation. Rosetta's bridge also has no healing-bonus export (unknown, None), whereas
+            # ManaEngine reports the exact value. Compare the shared observation contract only.
             if key not in {
-                "mechanics", "hero_frozen", "hero_divine_shield",
+                "mechanics", "hero_frozen", "hero_divine_shield", "healing_bonus",
                 "cant_be_targeted_by_spells", "cant_be_targeted_by_hero_powers",
             }
             and not (key == "current_durability" and value.get("card_type") != "WEAPON")

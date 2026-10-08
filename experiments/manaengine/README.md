@@ -112,8 +112,10 @@ left to right) and `EXPLICIT_FRIENDLY_CHARACTER` (legality and execution both en
 a separate field fixed at 30; no other start Health is admitted. An area or single heal that selects a character pending
 death fails closed atomically (`HEAL_MORTALLY_WOUNDED_UNREVIEWED`); a caster with a bonus healing a character it does not
 control fails closed (`HEALING_BONUS_SCOPE_UNREVIEWED`, evidence gap). There are no healing triggers. The bonus is deliberately
-not exported through `Observation.active_effects` (real-log imports never populate it and no enchantment identity may be
-fabricated); the proposal and completion report record this as an observation-parity limitation. Declared consumers: Moonwell
+exported as an enchantment identity (none is fabricated; `active_effects` stays empty). It is the public nullable integer
+`PlayerObservation.healing_bonus` (exact for both seats in ManaEngine, `None` = unknown in historical imports) and is not an
+encoder feature, so Policy/Value checkpoints stay compatible. `HEAL_MINION_TO_FULL` is a packet of exactly the missing Health
+through the same pipeline. Declared consumers: Moonwell
 (`EDR_476`), Holy Nova (`CORE_CS1_112`), Greater Healing Potion (`CORE_CFM_604`), Cleansing Cleric (`CATA_216`). Focused
 native run: `manaengine_tests --healing`; design record `docs/proposals/20261008_engine_primitive1_healing_v1.md`.
 

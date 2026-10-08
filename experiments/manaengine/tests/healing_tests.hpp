@@ -467,6 +467,67 @@ void test_healing_regressions() {
   source.validate_invariants();
 }
 
+void test_healing_observation_and_restore_to_full() {
+  // H28 the persistent bonus is public: both seats export their own exact value (0 is a known "no bonus").
+  auto s = healing_game();
+  TestAccess::player(s, 0).healing_bonus = 2;
+  TestAccess::player(s, 1).healing_bonus = 5;
+  const auto first = s.observation(0), second = s.observation(1);
+  check(first.self_player.healing_bonus == 2 && first.opponent.healing_bonus == 5, "H28 observation exports SELF and OPPONENT bonuses");
+  check(second.self_player.healing_bonus == 5 && second.opponent.healing_bonus == 2, "H28 the other perspective swaps them");
+  auto none = healing_game();
+  check(none.observation(0).self_player.healing_bonus == 0 && none.observation(0).opponent.healing_bonus == 0, "H28 a state without a bonus exports a known 0");
+  check(none.observation(0).self_player.healing_bonus != first.self_player.healing_bonus, "H28 states with different bonuses export different observations");
+  // Playing the Cleric changes the exported value of its controller only.
+  auto played = healing_game();
+  play_cleric(played, 0);
+  check(played.observation(0).self_player.healing_bonus == 2 && played.observation(0).opponent.healing_bonus == 0, "H28 the Cleric changes only its controller's exported bonus");
+
+  // H29 Mend (HEAL_MINION_TO_FULL) restores through the shared pipeline: own minion, with and without a bonus.
+  for (const int bonus : {0, 4}) {
+    auto m = healing_game();
+    TestAccess::player(m, 0).healing_bonus = bonus;
+    const int own = TestAccess::minion(m, 0, "TEST_FILLER", 1, 7);
+    TestAccess::set_health(m, 0, 0, 2);
+    TestAccess::hand(m, 0, "CATA_302");
+    TestAccess::deck(m, 0, {"TEST_FILLER"});
+    m.set_trace_enabled(true);
+    m.apply_action(play_card_on(m, "CATA_302", own));
+    check(TestAccess::player(m, 0).board[0].health == 7 && TestAccess::player(m, 0).hand.size() == 1, "H29 restore-to-full reaches the minion's own maximum and then draws");
+    const auto& trace = m.diagnostic_trace();
+    check(std::any_of(trace.begin(), trace.end(), [](const std::string& row) { return row.find("HEAL controller=0") != std::string::npos && row.find("restored=5") != std::string::npos; }),
+          "H29 the restoration is one healing packet of exactly the missing 5 Health");
+  }
+  // H30 an opposing minion: the result is full Health whatever the bonus (the packet already equals the missing Health).
+  for (const int bonus : {0, 3}) {
+    auto m = healing_game();
+    TestAccess::player(m, 0).healing_bonus = bonus;
+    const int foe = TestAccess::minion(m, 1, "TEST_FILLER", 1, 6);
+    TestAccess::set_health(m, 1, 0, 1);
+    TestAccess::hand(m, 0, "CATA_302");
+    TestAccess::deck(m, 0, {"TEST_FILLER"});
+    m.apply_action(play_card_on(m, "CATA_302", foe));
+    check(m.is_valid() && TestAccess::player(m, 1).board[0].health == 6, "H30 restoring an enemy minion to full is independent of the caster's bonus");
+  }
+  // H31 undamaged targets produce no healing packet; buffed maximum Health is respected; pending death still fails closed.
+  auto idle = healing_game();
+  const int whole = TestAccess::minion(idle, 0, "TEST_FILLER", 1, 4);
+  TestAccess::hand(idle, 0, "CATA_302");
+  TestAccess::deck(idle, 0, {"TEST_FILLER"});
+  idle.set_trace_enabled(true);
+  idle.apply_action(play_card_on(idle, "CATA_302", whole));
+  const auto& idle_trace = idle.diagnostic_trace();
+  check(TestAccess::player(idle, 0).board[0].health == 4 && std::none_of(idle_trace.begin(), idle_trace.end(), [](const std::string& row) { return row.find("HEAL controller=") != std::string::npos; }),
+        "H31 an undamaged minion receives no healing packet");
+  auto dying = healing_game();
+  const int doomed = TestAccess::minion(dying, 1, "TEST_FILLER", 1, 5);
+  TestAccess::hand(dying, 0, "CATA_302");
+  TestAccess::deck(dying, 0, {"TEST_FILLER"});
+  TestAccess::set_health(dying, 1, 0, 0);
+  const auto mortal = failure_of([&] { TestAccess::spell(dying, "CATA_302", doomed); });
+  check(mortal && *mortal == FailureCode::HEAL_MORTALLY_WOUNDED_UNREVIEWED, "H31 a minion pending death cannot be restored");
+}
+
 void run_healing_family() {
   current_native_group = "healing_pipeline_v1";
   test_healing_area_and_damage_order();
@@ -475,6 +536,7 @@ void run_healing_family() {
   test_healing_lifesteal_shares_the_pipeline();
   test_healing_fail_closed_and_declaration_validation();
   test_healing_regressions();
+  test_healing_observation_and_restore_to_full();
 }
 }  // namespace
 }  // namespace manaengine

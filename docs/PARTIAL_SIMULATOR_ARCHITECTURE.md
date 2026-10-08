@@ -74,8 +74,8 @@ must never learn from poisoned or fabricated afterstates.
   the damage follow-up): per-packet additive controller healing bonus, own
   maximum Health, friendly area/explicit selectors, atomic fail-closed on
   pending-death targets and on a bonus holder healing characters it does not
-  control. It has no healing triggers, and the bonus is not part of the public
-  observation (see `docs/proposals/20261008_engine_primitive1_healing_v1.md`).
+  control. It has no healing triggers. The bonus total is the public nullable
+  `PlayerObservation.healing_bonus` (not an encoder feature; None = unknown) (see `docs/proposals/20261008_engine_primitive1_healing_v1.md`).
 - `ManaEngineSession.training_eligible` is always false today and
   `require_training_admission()` blocks before collection. No ManaEngine
   canonical training data producer exists.

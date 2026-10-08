@@ -10738,13 +10738,13 @@
    }
   ],
   "source_sha256": {
-   "include/manaengine/engine.hpp": "ec17718863de3aa38eead168aea45e97f10c6f79e3f29951f7a3483b27be95cc",
+   "include/manaengine/engine.hpp": "f74328b3eba1cb7cb439c89950805e7dbe5d6c8d9f70e0e9f102bc917d66735d",
    "include/manaengine/failure.hpp": "f0d6e3f890fa49e98f01c3a20c05945244a5370858cf0ab968a3c880b40e548f",
    "src/damage_group.cpp": "66697d8cec713c24fbc49b72f51344648411d6fcd56530ae9b6a0315b08842db",
-   "src/engine.cpp": "7c658a62c82d21c4d0d0afd2799336d1517d92da133af7b7b8981e50efe8f435",
+   "src/engine.cpp": "4037f979750b954a850bd349fab268fa523c2db0962d5a93cc9482f132e6c49a",
    "src/failure.cpp": "c24c754da1cb4a068e527dac341abe32f7135591eb9fd06e94e856aacbaff600",
    "src/pool_manifest.cpp": "aa54beda7784f8c4bcbf7ca3eaae8044a6085137aedcb4010da9d409ef83d5b9",
-   "src/python_bindings.cpp": "a6f2fef470a3816e7655847ea84d3a29fb65c1bde4fb265bb1f53697738038a5"
+   "src/python_bindings.cpp": "151a1c467b8491087785a514da262e7e4055f775eda6ee76be1ad828f06c6eb8"
   },
   "unguarded_throw_allowlist": [
    {

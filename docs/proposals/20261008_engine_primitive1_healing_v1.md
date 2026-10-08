@@ -25,7 +25,7 @@ Contract `healing_pipeline` v1, classified **REUSABLE_CAPABILITY** (event owners
 
 **Fail closed.** (a) A source controller with a non-zero bonus healing a character it does not control raises the new RuleUnresolved code `HEALING_BONUS_SCOPE_UNREVIEWED` (evidence gap, see below). (b) Invalid selector/kind combinations, non-positive amounts, out-of-range bonus, and the new kinds/selectors inside Choose One fail catalog load. (c) A bonus total above 1000 fails `NUMERIC_RANGE_VIOLATION`.
 
-**Explicitly excluded.** Overheal/"after a character is healed" triggers, heal-to-damage conversion (Ruby Sanctum), healing multipliers (Velen), dynamic amounts (Amber Priestess), random-split healing, hero power heals, Excess-heal damage, hero starting Health other than 30, bonus export through the public observation.
+**Explicitly excluded.** Overheal/"after a character is healed" triggers, heal-to-damage conversion (Ruby Sanctum), healing multipliers (Velen), dynamic amounts (Amber Priestess), random-split healing, hero power heals, Excess-heal damage, hero starting Health other than 30, non-numeric bonus sources (the numeric total is public, see below).
 
 **Why another card is declaration-only.** `ALL_FRIENDLY_CHARACTERS`/`EXPLICIT_FRIENDLY_CHARACTER`/`HEAL` with any amount and `GRANT_HEALING_BONUS` with any amount are parameters; native tests use synthetic second consumers (a +1 minion, a +3 spell, a friendly-only area heal) without a code change.
 
@@ -59,7 +59,7 @@ None new. The Cleric enchantment `CATA_216e` is an observation-only identity (ty
 * Python: allowlists in `_EFFECT_KINDS`/`_TARGET_SELECTORS`, failure-kind table, no card-ID branches.
 * Declarations: four cards in `card_abilities.json` (no generator, no per-card native code).
 * New card-ID behaviour branch: **none**.
-* Observation: unchanged. The bonus is not exported (see test strategy / limitations); real-log importers never populate `active_effects`, so exporting an invented identity would break import parity.
+* Observation (review revision): new nullable public field `PlayerObservation.healing_bonus` (`None` = unknown for historical imports and the Rosetta bridge, never inferred as 0; ManaEngine exports the exact value for both seats, 0 included). It is deliberately not an encoder feature, so `STATE_ENCODING_SCHEMA_VERSION` (16), feature names and Policy v1/v2 checkpoints are unchanged; consuming it later needs an encoder schema bump and retraining. No `CATA_216e` identity is fabricated and `active_effects` stays empty. Restore-to-full (`HEAL_MINION_TO_FULL`) is routed through the same pipeline as a packet of exactly the missing Health, which no bonus can change, so it is exempt from the cross-side fail-closed rule.
 
 ## expected unlock count
 

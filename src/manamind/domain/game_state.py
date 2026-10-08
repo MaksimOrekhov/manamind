@@ -51,8 +51,15 @@ class PlayerObservation:
     active_effects: tuple[CardFeatures, ...] = field(default_factory=tuple)
     current_turn_minion_types_played: tuple[str, ...] | None = None
     previous_turn_minion_types_played: tuple[str, ...] | None = None
+    # Persistent additive bonus to this side's healing effects (public enchantment on the player).
+    # None means unknown (historical imports); 0 is a known "no bonus". Not an encoder feature, so
+    # existing Policy/Value checkpoints and STATE_ENCODING_SCHEMA_VERSION are unchanged.
+    healing_bonus: int | None = None
 
     def __post_init__(self) -> None:
+        if self.healing_bonus is not None and (
+                isinstance(self.healing_bonus, bool) or not isinstance(self.healing_bonus, int) or self.healing_bonus < 0):
+            raise ValueError("healing_bonus must be None or a non-negative integer")
         for name in ("current_turn_minion_types_played", "previous_turn_minion_types_played"):
             history = getattr(self, name)
             if history is not None:

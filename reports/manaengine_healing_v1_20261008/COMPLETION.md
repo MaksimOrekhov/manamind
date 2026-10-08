@@ -24,7 +24,7 @@ Date 2026-10-08. Branch `claude/engine-primitive-1-healing`, based on `origin/ma
 * `engine.hpp`: appended `EffectKind::GrantHealingBonus`, `TargetSelector::{AllFriendlyCharacters, ExplicitFriendlyCharacter}` (numeric identities of existing values preserved), `PlayerState::{hero_max_health, healing_bonus}`, `HealingSource`, `healing_bonus_limit`.
 * `engine.cpp`, `damage_group.cpp`: pipeline, catalog validation through the existing `reject` site (Choose One, Lifesteal/other step fields, explicit-target sharing, bounds, `HEAL_ENEMY_HERO` amount), friendly-only legality for the hero as well as minions, invariants.
 * `failure.hpp/.cpp`, `python_bindings.cpp`, `engine.py`: new code, enums, allowlists. `card_abilities.json`: four declarations. No generator, no card-ID branch, no per-card native code.
-* Observation / Policy / Value: unchanged. The bonus is not exported (see limitations).
+* Observation (review fix): `PlayerObservation.healing_bonus: int | None` (public; None = unknown, never inferred as 0), exported by ManaEngine for both seats, parsed/serialised by `game_state_from_dict`, accepted by the visible-schema validator; not an encoder feature (schema version 16, feature names and Policy v1/v2 checkpoints unchanged). `compare_reference.py` excludes the key because the Rosetta bridge cannot export it. `HEAL_MINION_TO_FULL` now applies a pipeline packet of exactly the missing Health (cross-side exempt because no bonus can change it).
 * Failure ledger: `PHASE_4K1B_NATIVE_FAILURE_INVENTORY.json` source hashes refreshed, one allowlist message updated, reason code 58 appended; `tests/test_native_failure_contract.py` count 57 -> 58.
 
 ## Rules evidence (Cleansing Cleric)
@@ -46,7 +46,7 @@ Hosted CI status is recorded in the final report after the push.
 
 ## Remaining limitations / evidence debt
 
-1. **Observation parity.** A held healing bonus changes outcomes but is not in the public observation: real-log imports never populate `active_effects`, and the only visible identity (`CATA_216e`) is evidence-derived, not in the pinned catalog. Exporting it needs a reviewed import + encoder contract. States that differ only by the bonus export identically.
+1. **Bonus is public in `GameState` but not a model feature, and real-log imports leave it unknown (`None`).** The importer does not derive it from the `CATA_216e` enchantment (no catalog identity, no reviewed derivation); policies cannot yet condition on it until an encoder schema bump and retraining.
 2. **Cross-side healing with a bonus** (e.g. Flash Heal on an enemy, `CATA_303` Purifying Breath to the enemy hero) is `RULE_UNRESOLVED`, fallback-eligible, never guessed. Invalidated/removable by a rules sample showing whether the bonus follows the healing controller regardless of target.
 3. Moonwell/Holy Nova/Greater Healing Potion rules come from pinned card text and general Health rules; the corpus contains only opponent plays with matching packets (damaged targets only receive a packet). No test compares to a recorded engine/log replay.
 4. Hero maximum Health is fixed at 30. Observed games with a 40-Health opponent hero (8 of 36) are outside the engine; they are not admitted.

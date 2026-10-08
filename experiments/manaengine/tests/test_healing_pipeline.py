@@ -187,3 +187,32 @@ def test_cross_side_healing_with_a_bonus_is_classified_rule_unresolved_not_guess
     with pytest.raises(UnsupportedSimulationError):
         session.apply_action(action)
     assert not session.is_valid and session.failure.code == "HEALING_BONUS_SCOPE_UNREVIEWED"
+
+
+def test_healing_bonus_is_public_and_distinguishes_states() -> None:
+    session = _session([CLERIC, FILLER, FILLER, FILLER], [FILLER] * 30)
+    _to_player_one_turn(session, 4, {})
+    before = session.observation("PLAYER1")
+    assert before.self_player.healing_bonus == 0 and before.opponent.healing_bonus == 0  # exact simulator knowledge, not None
+    _play(session, CLERIC)
+    mine, theirs = session.observation("PLAYER1"), session.observation("PLAYER2")
+    assert (mine.self_player.healing_bonus, mine.opponent.healing_bonus) == (2, 0)
+    assert (theirs.self_player.healing_bonus, theirs.opponent.healing_bonus) == (0, 2)
+    assert mine != before and mine.self_player.active_effects == ()  # no fabricated enchantment identity
+    assert session.clone().observation("PLAYER1") == mine
+
+
+def test_restore_to_full_uses_the_healing_pipeline_on_either_side_with_a_bonus() -> None:
+    mend = "CATA_302"
+    # Our Cleric at turn 4, then Mend on the opponent's undamaged Razorjaw at turn 5: valid (no healing packet needed).
+    session = _session([CLERIC, mend, FILLER, FILLER], [JAWS] + [FILLER] * 29)
+    _to_player_one_turn(session, 4, {}, enemy_minion_turn=2)
+    _play(session, CLERIC)
+    _end(session)
+    _end(session)
+    action = next(a for a in session.legal_actions() if a.get("card_id") == mend and a["target_card_id"] == JAWS)
+    attempt = attempt_action(session, action)
+    assert attempt.completed and attempt.child.is_valid
+    child = attempt.state
+    assert [entity.current_health for entity in child.opponent.board] == [1] and child.opponent.healing_bonus == 0
+    assert child.self_player.healing_bonus == 2
