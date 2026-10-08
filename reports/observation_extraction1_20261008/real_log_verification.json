@@ -1,0 +1,186 @@
+{
+ "inputs": {
+  "policy_games_imported": 32,
+  "raw_logs": 36,
+  "skips": {
+   "policy:GAME_RESET": 4
+  },
+  "value_matches_imported": 36
+ },
+ "live_replay_vs_recorded_snapshots": {
+  "changed_by_path": {
+   "opponent.hero_frozen": 1,
+   "opponent.hero_max_health": 635,
+   "self_player.hero_frozen": 38,
+   "self_player.hero_max_health": 635,
+   "self_player.hero_power_ready": 69
+  },
+  "changed_by_transition": {
+   "hero_frozen:None->False": 31,
+   "hero_frozen:None->True": 8,
+   "hero_power_ready:None->True": 69,
+   "max:absent->30": 943,
+   "max:absent->40": 327
+  },
+  "note": "recorded hashes differ from replayed hashes by construction: the extractor now adds the fields above",
+  "pairs": 635,
+  "recordings": 12,
+  "replays_deterministic": 12,
+  "unexpected_changes": {}
+ },
+ "new_policy_dataset": {
+  "chosen_hero_power_rows": {
+   "rows": 124,
+   "self_ready_state": {
+    "True": 124
+   }
+  },
+  "distinct_games": 32,
+  "fields": {
+   "opponent": {
+    "damage": {
+     "damaged": 644,
+     "undamaged": 583
+    },
+    "hero_frozen": {
+     "None": 1227
+    },
+    "hero_max_health": {
+     "30": 771,
+     "40": 456
+    },
+    "hero_power_ready": {
+     "False": 568,
+     "None": 273,
+     "True": 386
+    }
+   },
+   "self_player": {
+    "damage": {
+     "damaged": 567,
+     "undamaged": 660
+    },
+    "hero_frozen": {
+     "False": 15,
+     "None": 1208,
+     "True": 4
+    },
+    "hero_max_health": {
+     "30": 1227
+    },
+    "hero_power_ready": {
+     "False": 390,
+     "None": 144,
+     "True": 693
+    }
+   }
+  },
+  "games_with_a_maximum_other_than_30": 8,
+  "self_decision_rows": 1227
+ },
+ "new_value_dataset": {
+  "fields": {
+   "opponent": {
+    "damage": {
+     "damaged": 1722,
+     "undamaged": 1190
+    },
+    "hero_frozen": {
+     "False": 7,
+     "None": 2905
+    },
+    "hero_max_health": {
+     "30": 2051,
+     "40": 861
+    },
+    "hero_power_ready": {
+     "False": 939,
+     "None": 747,
+     "True": 1226
+    }
+   },
+   "self_player": {
+    "damage": {
+     "damaged": 1509,
+     "undamaged": 1403
+    },
+    "hero_frozen": {
+     "False": 58,
+     "None": 2833,
+     "True": 21
+    },
+    "hero_max_health": {
+     "30": 2880,
+     "40": 32
+    },
+    "hero_power_ready": {
+     "False": 1180,
+     "None": 653,
+     "True": 1079
+    }
+   }
+  },
+  "positions": 2912
+ },
+ "old_vs_new_policy_rows": {
+  "actions_choices_and_results_identical": 1227,
+  "changed_by_path": {
+   "opponent.hero_max_health": 1227,
+   "self_player.hero_frozen": 19,
+   "self_player.hero_max_health": 1227,
+   "self_player.hero_power_ready": 137
+  },
+  "changed_by_transition": {
+   "hero_frozen:None->False": 15,
+   "hero_frozen:None->True": 4,
+   "hero_power_ready:None->True": 137,
+   "max:absent->30": 1998,
+   "max:absent->40": 456
+  },
+  "common_decision_ids": 1227,
+  "new_rows": 1227,
+  "old_dataset_fields": {
+   "opponent": {
+    "damage": {},
+    "hero_frozen": {
+     "None": 1227
+    },
+    "hero_max_health": {
+     "unknown": 1227
+    },
+    "hero_power_ready": {
+     "False": 568,
+     "None": 273,
+     "True": 386
+    }
+   },
+   "self_player": {
+    "damage": {},
+    "hero_frozen": {
+     "None": 1227
+    },
+    "hero_max_health": {
+     "unknown": 1227
+    },
+    "hero_power_ready": {
+     "False": 390,
+     "None": 281,
+     "True": 556
+    }
+   }
+  },
+  "old_rows": 1227,
+  "only_in_new": 0,
+  "only_in_old": 0,
+  "pairs": 1227,
+  "unexpected_changes": {}
+ },
+ "raw_log_facts_independent_of_the_extractor": {
+  "games_with_a_hero_health_other_than_30": 9,
+  "games_with_an_explicit_hero_frozen_tag": 3
+ },
+ "rows_written_by_the_previous_code_still_validate": {
+  "carry_hero_max_health": 0,
+  "rows": 1227
+ }
+}

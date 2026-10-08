@@ -22,9 +22,40 @@ from .reducer import ReducerError
 from .trust import Reason
 
 
-def project_state(game, self_player_id: int, catalog: CardCatalog, *, parity_view: bool = False) -> GameState:
+def _option_hero_power_ready(game, options_packet, self_player_id: int) -> bool | None:
+    """Hero Power exhausted status stated by the server's own validation of SELF's options.
+
+    Only two statements are used: a validated option (error NONE) means the power is usable now, so it is
+    not exhausted; ``REQ_NOT_EXHAUSTED_HERO_POWER`` means it is exhausted. Both held without exception in
+    the real corpus. Any other error (not enough Mana, full hand, not your turn) says nothing about the
+    exhausted status and yields None.
+    """
+    powers = [
+        entity for entity in game.entities
+        if entity.zone == Zone.PLAY and entity.type == CardType.HERO_POWER
+        and entity.tags.get(GameTag.CONTROLLER) == self_player_id
+    ]
+    if len(powers) != 1:
+        return None
+    verdicts = set()
+    for option in options_packet.options:
+        if option.entity is None or int(coerce_to_entity_id(option.entity)) != powers[0].id:
+            continue
+        if option.error is None:
+            verdicts.add(True)
+        elif option.error == "REQ_NOT_EXHAUSTED_HERO_POWER":  # hslog keeps option errors as plain strings
+            verdicts.add(False)
+    return next(iter(verdicts)) if len(verdicts) == 1 else None
+
+
+def project_state(game, self_player_id: int, catalog: CardCatalog, *, parity_view: bool = False,
+                  options_packet=None) -> GameState:
     """The sanitized GameState. ``parity_view`` reproduces the offline importer's exposure
-    (revealed opponent hand cards, entity-order hand, no secret counts); tests only."""
+    (revealed opponent hand cards, entity-order hand, no secret counts); tests only.
+
+    ``options_packet`` is the settled options message of the decision. It can only fill an unknown
+    SELF ``hero_power_ready``; when it contradicts the entity's EXHAUSTED tag the flag becomes unknown.
+    """
     if parity_view:
         state = to_visible_state(game, self_player_id, catalog)
         if state is None:
@@ -48,9 +79,15 @@ def project_state(game, self_player_id: int, catalog: CardCatalog, *, parity_vie
          if p.tags.get(GameTag.PLAYER_ID) not in (None, self_player_id)),
         None,
     )
+    ready = state.self_player.hero_power_ready
+    if options_packet is not None:
+        stated = _option_hero_power_ready(game, options_packet, self_player_id)
+        if stated is not None:
+            ready = stated if ready is None or ready == stated else None
     return replace(
         state,
-        self_player=replace(state.self_player, secret_count=secret_counts.get(self_player_id, 0)),
+        self_player=replace(state.self_player, secret_count=secret_counts.get(self_player_id, 0),
+                            hero_power_ready=ready),
         opponent=replace(state.opponent, secret_count=secret_counts.get(opponent_id, 0)),
     )
 

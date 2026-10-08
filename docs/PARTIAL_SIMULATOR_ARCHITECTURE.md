@@ -77,6 +77,10 @@ must never learn from poisoned or fabricated afterstates.
   pending-death targets and on a bonus holder healing characters it does not
   control. It has no healing triggers. The bonus total is the public nullable
   `PlayerObservation.healing_bonus` (not an encoder feature; None = unknown) (see `docs/proposals/20261008_engine_primitive1_healing_v1.md`).
+- OBSERVATION-EXTRACTION-1 adds `PlayerObservation.hero_max_health` (directly observed maximum Health; None = not observed; not an
+  encoder feature) and populates `hero_frozen` and `hero_power_ready` only from explicit evidence (see
+  `reports/observation_extraction1_20261008/README.md`). The state-import analyzer (`state-import-0/2`) therefore reports
+  `HERO_MAX_HEALTH_UNKNOWN` / `HERO_MAX_HEALTH_UNSUPPORTED_NATIVE` instead of the former unconditional blocker.
 - ENGINE-STATE-IMPORT-0 adds a read-only readiness diagnostic
   (`manamind.integrations.manaengine.state_import_*`, `scripts/state_import_readiness.py`). It reports, per sanitized visible position,
   typed blockers (UNKNOWN, NOT_REPRESENTED, UNSUPPORTED_MECHANIC, UNSUPPORTED_CARD, RULE_UNRESOLVED, INCONSISTENT) on separate

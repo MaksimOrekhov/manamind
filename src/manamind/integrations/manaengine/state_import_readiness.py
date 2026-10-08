@@ -20,7 +20,7 @@ from typing import Any, Mapping
 from manamind.domain.serialization import game_state_from_dict
 from manamind.integrations.manaengine.state_import_capability import CapabilityIndex
 
-ANALYZER_VERSION = "state-import-0/1"
+ANALYZER_VERSION = "state-import-0/2"
 NATIVE_HERO_MAX_HEALTH = 30
 SEATS = ("SELF", "OPPONENT")
 
@@ -48,7 +48,8 @@ FIELD_PROVENANCE = {
     "available_mana": "EXTRACTED", "overloaded_mana": "EXTRACTED", "pending_overload": "EXTRACTED", "deck_size": "EXTRACTED",
     "hand_size": "EXTRACTED", "fatigue": "EXTRACTED", "secret_count": "EXTRACTED_BY_LIVE_PROJECTION", "player_class": "EXTRACTED",
     "weapon": "EXTRACTED", "hero_power": "EXTRACTED", "board": "EXTRACTED", "locations": "EXTRACTED",
-    "hero_power_ready": "NONE_WHEN_TAG_ABSENT", "hero_divine_shield": "NONE_WHEN_TAG_ABSENT", "hero_frozen": "NEVER_POPULATED",
+    "hero_power_ready": "EXPLICIT_TAG_OR_SERVER_OPTION_ELSE_NONE", "hero_divine_shield": "NONE_WHEN_TAG_ABSENT",
+    "hero_frozen": "EXPLICIT_TAG_ELSE_NONE", "hero_max_health": "EXTRACTED_WHEN_TAG_VALID_ELSE_NONE",
     "hero_freeze_turns_remaining": "NEVER_POPULATED", "spells_cast_this_turn": "NEVER_POPULATED", "spell_discount": "NEVER_POPULATED",
     "demon_discount": "NEVER_POPULATED", "current_turn_minion_types_played": "NEVER_POPULATED",
     "previous_turn_minion_types_played": "NEVER_POPULATED", "healing_bonus": "NEVER_POPULATED",
@@ -109,12 +110,13 @@ BLOCKER_SPECS: dict[str, BlockerSpec] = {
     "SOURCE_FIELD_ABSENT": _s("UNKNOWN", "GAME_TURN", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "LEGACY_SCHEMA", "A legacy numeric field is absent from the raw snapshot; absence is not zero."),
     "HERO_POWER_ID_UNKNOWN": _s("UNKNOWN", "HERO_POWER", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "IDENTITY", "The current Hero Power identity is missing; the class never proves it."),
     "HERO_POWER_COST_UNKNOWN": _s("UNKNOWN", "HERO_POWER", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("ENTITY",), "IDENTITY", "The current Hero Power cost is missing."),
-    "HERO_POWER_READINESS_UNKNOWN": _s("UNKNOWN", "HERO_POWER", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("ENTITY",), "ABSENT_TAG", "hero_power_ready is None because the EXHAUSTED tag is absent from the log entity."),
+    "HERO_POWER_READINESS_UNKNOWN": _s("UNKNOWN", "HERO_POWER", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("ENTITY",), "ABSENT_TAG", "hero_power_ready is None: no explicit EXHAUSTED tag and no server statement (validated option or REQ_NOT_EXHAUSTED_HERO_POWER) settles the exhausted status, or the sources conflict or a modifier tag applies."),
     "TURN_COUNTERS_UNKNOWN": _s("UNKNOWN", "GAME_TURN", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "NEVER_POPULATED", "Spells cast this turn / spell or Demon discounts are never populated by the extractor."),
     "MINION_TYPE_HISTORY_UNKNOWN": _s("UNKNOWN", "GAME_TURN", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "NEVER_POPULATED", "Current/previous own-turn minion-type history is never populated by the extractor."),
-    "HERO_FREEZE_UNKNOWN": _s("UNKNOWN", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "NEVER_POPULATED", "Hero frozen state and freeze duration are never populated by the extractor."),
+    "HERO_FREEZE_UNKNOWN": _s("UNKNOWN", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "ABSENT_TAG", "The hero Frozen state is unknown (no explicit FROZEN tag), or the hero is frozen and the remaining freeze duration, which the log does not carry, is unknown."),
     "HERO_DIVINE_SHIELD_UNKNOWN": _s("UNKNOWN", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "ABSENT_TAG", "hero_divine_shield is None because the DIVINE_SHIELD tag is absent."),
     "HEALING_BONUS_UNKNOWN": _s("UNKNOWN", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("EFFECT", "HEAL"), "NEVER_POPULATED", "The persistent healing bonus is unknown (never populated by the extractor); 0 would be a known value."),
+    "HERO_MAX_HEALTH_UNKNOWN": _s("UNKNOWN", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "ABSENT_TAG", "The hero maximum Health is not observed (hero_max_health is None or absent, e.g. a historical state); it is never taken from 30 or the hero class."),
     "SPELL_DAMAGE_UNOBSERVED": _s("UNKNOWN", "BOARD", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("EFFECT", "SPELL_DAMAGE"), "NEVER_POPULATED", "A Spell Damage minion is on board but its amount is not extracted (current_spell_damage is None)."),
     "MINION_TARGETING_FLAGS_UNOBSERVED": _s("UNKNOWN", "BOARD", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "ABSENT_TAG", "cant_be_targeted_* is None when the tag is absent; absence is not proven False."),
     "WEAPON_STATE_UNKNOWN": _s("UNKNOWN", "WEAPON", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ENTITY_OR_ROTATION, "IDENTITY", "Current weapon attack or durability is missing."),
@@ -131,7 +133,6 @@ BLOCKER_SPECS: dict[str, BlockerSpec] = {
     "SELF_DECK_ORDER_UNKNOWN": _s("UNKNOWN", "DECK", "SOURCE", "HIDDEN_INFORMATION_DESIGN", "INHERENTLY_HIDDEN", ("EFFECT", "DRAW"), "HIDDEN", "SELF deck order is hidden; a draw needs a determinization design."),
     "OPPONENT_DECK_ORDER_UNKNOWN": _s("UNKNOWN", "DECK", "SOURCE", "HIDDEN_INFORMATION_DESIGN", "INHERENTLY_HIDDEN", ROTATION, "HIDDEN", "Opponent deck order is hidden."),
     # --- NOT_REPRESENTED ------------------------------------------------------------------------------------------
-    "HERO_MAX_HEALTH_NOT_REPRESENTED": _s("NOT_REPRESENTED", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", WHOLE, "NEVER_POPULATED", "GameState has no hero maximum Health; the extractor reads the HEALTH tag only to compute current Health."),
     "HERO_ATTACK_READINESS_NOT_REPRESENTED": _s("NOT_REPRESENTED", "HERO", "SOURCE", "OBSERVATION_EXTRACTION", "OBSERVABLE", ("HERO_ATTACK",), "NEVER_POPULATED", "Hero attack > 0 but GameState has no hero attacked-this-turn/readiness flag."),
     "PENDING_CHOICE_CONTINUATION_NOT_REPRESENTED": _s("NOT_REPRESENTED", "PENDING_CHOICE", "BOTH", "IMPORT_CONTRACT", "NOT_APPLICABLE", WHOLE, "CONTRACT", "A pending choice is visible but its source card and continuation are not part of GameState."),
     "ACTIVE_EFFECT_NOT_REPRESENTED": _s("NOT_REPRESENTED", "EFFECTS", "BOTH", "IMPORT_CONTRACT", "NOT_APPLICABLE", WHOLE, "CONTRACT", "A visible player enchantment has no reviewed native mapping."),
@@ -144,6 +145,7 @@ BLOCKER_SPECS: dict[str, BlockerSpec] = {
     "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED": _s("NOT_REPRESENTED", "HAND", "BOTH", "OBSERVATION_EXTRACTION", "OBSERVABLE", ENTITY, "PROVENANCE", "A SELF hand card's current cost/stats differ from base without a modifier source."),
     # --- UNSUPPORTED_MECHANIC ------------------------------------------------------------------------------------------
     "HERO_POWER_IMBUE": _s("UNSUPPORTED_MECHANIC", "HERO_POWER", "NATIVE", "ENGINE_PRIMITIVE", "NOT_APPLICABLE", WHOLE, "UNSUPPORTED", "The current Hero Power is a documented Imbue power; Imbue is not implemented."),
+    "HERO_MAX_HEALTH_UNSUPPORTED_NATIVE": _s("UNSUPPORTED_MECHANIC", "HERO", "NATIVE", "ENGINE_PRIMITIVE", "NOT_APPLICABLE", WHOLE, "UNSUPPORTED", "The observed hero maximum Health differs from the native fixed 30 (for example 40); the native healing cap and hero state are only exercised at 30."),
     "HERO_HEALTH_EXCEEDS_NATIVE_MAX": _s("UNSUPPORTED_MECHANIC", "HERO", "NATIVE", "ENGINE_PRIMITIVE", "NOT_APPLICABLE", WHOLE, "UNSUPPORTED", "Hero Health is above the native fixed maximum of 30; the healing pipeline would use the wrong cap."),
     # --- UNSUPPORTED_CARD ------------------------------------------------------------------------------------------
     "HERO_POWER_UNSUPPORTED": _s("UNSUPPORTED_CARD", "HERO_POWER", "NATIVE", "CARD_DECLARATION", "NOT_APPLICABLE", WHOLE, "UNSUPPORTED", "The observed Hero Power is described by metadata but is not a reviewed, executable declaration."),
@@ -385,6 +387,27 @@ def _classify_hero_power(out: _Collector, capability: CapabilityIndex, seat: str
     return info
 
 
+def _check_hero_max_health(out: _Collector, seat: str, player: Mapping[str, Any], health: Any) -> str:
+    """Four separate outcomes: unknown, known and valid, known but unsupported natively, and inconsistent.
+
+    Returns UNKNOWN, INCONSISTENT, KNOWN_UNSUPPORTED_NATIVE or KNOWN_SUPPORTED_NATIVE for the report.
+    """
+    maximum = player.get("hero_max_health")
+    if maximum is None:
+        out.add("HERO_MAX_HEALTH_UNKNOWN", seat=seat)
+        return "UNKNOWN"
+    if isinstance(maximum, bool) or not isinstance(maximum, int) or maximum < 1:
+        out.add("INTEGRITY_ENTITY_RANGE", seat=seat, detail="hero_max_health is not a positive integer")
+        return "INCONSISTENT"
+    if isinstance(health, int) and not isinstance(health, bool) and health > maximum:
+        out.add("INTEGRITY_ENTITY_RANGE", seat=seat, detail=f"hero_health={health} exceeds hero_max_health={maximum}")
+        return "INCONSISTENT"
+    if maximum != NATIVE_HERO_MAX_HEALTH:
+        out.add("HERO_MAX_HEALTH_UNSUPPORTED_NATIVE", seat=seat, detail=f"hero_max_health={maximum}")
+        return "KNOWN_UNSUPPORTED_NATIVE"
+    return "KNOWN_SUPPORTED_NATIVE"
+
+
 def _check_board_geometry(out: _Collector, seat: str, player: Mapping[str, Any]) -> None:
     minions = list(player.get("board") or ())
     locations = list(player.get("locations") or ())
@@ -407,7 +430,7 @@ def _entity_value(entity: Mapping[str, Any], name: str, default: Any = None) -> 
 
 
 def _check_player(out: _Collector, capability: CapabilityIndex, state: Mapping[str, Any], seat: str, player: Mapping[str, Any],
-                  *, active: bool) -> dict:
+                  *, active: bool) -> tuple[dict, str]:
     known: dict[str, Any] = {}
     for name in _DEFAULTED_PLAYER_FIELDS:
         if name not in player:
@@ -419,7 +442,7 @@ def _check_player(out: _Collector, capability: CapabilityIndex, state: Mapping[s
         if health > NATIVE_HERO_MAX_HEALTH:
             out.add("HERO_HEALTH_EXCEEDS_NATIVE_MAX", seat=seat, detail=f"hero_health={health}")
         known["hero_health"] = True
-    out.add("HERO_MAX_HEALTH_NOT_REPRESENTED", seat=seat)
+    known["hero_max_health"] = _check_hero_max_health(out, seat, player, health)
     if int(player.get("max_mana", 0) or 0) > 10 or int(player.get("hand_size", 0) or 0) > 10:
         out.add("INTEGRITY_ENTITY_RANGE", seat=seat, detail="max_mana or hand_size above 10")
 
@@ -429,8 +452,12 @@ def _check_player(out: _Collector, capability: CapabilityIndex, state: Mapping[s
         out.add("HERO_DIVINE_SHIELD_NOT_NATIVE", seat=seat)
     elif shield in (None, "ABSENT"):
         out.add("HERO_DIVINE_SHIELD_UNKNOWN", seat=seat)
-    if player.get("hero_frozen") is None or player.get("hero_freeze_turns_remaining") is None:
-        out.add("HERO_FREEZE_UNKNOWN", seat=seat)
+    frozen = player.get("hero_frozen")
+    if frozen is None:
+        out.add("HERO_FREEZE_UNKNOWN", seat=seat, detail="frozen state unknown")
+    elif frozen is True and player.get("hero_freeze_turns_remaining") is None:
+        # An explicitly unfrozen hero has no duration to know; a frozen one needs it to expire correctly.
+        out.add("HERO_FREEZE_UNKNOWN", seat=seat, detail="frozen, duration unknown")
     if player.get("healing_bonus") is None:
         applicability = ("EFFECT", "HEAL") if seat == "SELF" else ROTATION
         out.add("HEALING_BONUS_UNKNOWN", seat=seat, applicability=applicability)
@@ -466,7 +493,7 @@ def _check_player(out: _Collector, capability: CapabilityIndex, state: Mapping[s
         out.add("SELF_DECK_ORDER_UNKNOWN" if seat == "SELF" else "OPPONENT_DECK_ORDER_UNKNOWN", seat=seat)
     known.update({"hero_power_identity_observed": hero_power["identity_observed"], "board_minions": len(player.get("board") or ()),
                   "locations": len(player.get("locations") or ()), "hand_size": player.get("hand_size"), "deck_size": player.get("deck_size")})
-    return hero_power
+    return hero_power, known["hero_max_health"]
 
 
 def _check_board(out: _Collector, capability: CapabilityIndex, seat: str, player: Mapping[str, Any], known: dict) -> None:
@@ -573,6 +600,7 @@ def analyze_position(state: Mapping[str, Any] | Any, capability: CapabilityIndex
 
     known: dict[str, Any] = {}
     hero_power = {"SELF": {"identity_observed": False, "status": "NOT_ANALYZED"}, "OPPONENT": {"identity_observed": False, "status": "NOT_ANALYZED"}}
+    max_health = {"SELF": "NOT_ANALYZED", "OPPONENT": "NOT_ANALYZED"}
     context = action_context_from_policy_action(action) if action is not None else None
     if not missing and isinstance(state["self_player"], Mapping) and isinstance(state["opponent"], Mapping):
         try:
@@ -580,7 +608,7 @@ def analyze_position(state: Mapping[str, Any] | Any, capability: CapabilityIndex
             if int(state["turn_number"]) < 1:
                 out.add("INTEGRITY_ENTITY_RANGE", detail="turn_number<1")
             for seat, key in (("SELF", "self_player"), ("OPPONENT", "opponent")):
-                hero_power[seat] = _check_player(out, capability, state, seat, state[key], active=(seat == active))
+                hero_power[seat], max_health[seat] = _check_player(out, capability, state, seat, state[key], active=(seat == active))
             _check_hands(out, capability, state, active, "ENTITY_ORDER" if source_profile == "OFFLINE_PARITY" else "ZONE_POSITION")
             for seat in SEATS:
                 if source_profile == "OFFLINE_PARITY":
@@ -591,7 +619,7 @@ def analyze_position(state: Mapping[str, Any] | Any, capability: CapabilityIndex
                 out.add("PENDING_CHOICE_CONTINUATION_NOT_REPRESENTED", seat=state.get("pending_choice_owner"))
             if state.get("evidence_constraints"):
                 out.add("INTEGRITY_EVIDENCE_DEBT_IN_VISIBLE_STATE", detail=",".join(sorted(map(str, state["evidence_constraints"]))))
-            known.update({"active_player": active, "turn_number": state["turn_number"],
+            known.update({"hero_max_health": max_health, "active_player": active, "turn_number": state["turn_number"],
                           "self_hand_known_count": len(state.get("self_hand") or ()),
                           "opponent_revealed_cards": len(state.get("opponent_known_cards") or ())})
         except (TypeError, ValueError, KeyError, AttributeError) as error:

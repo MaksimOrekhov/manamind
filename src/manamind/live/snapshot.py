@@ -16,8 +16,18 @@ def canonical_json(value) -> str:
 
 
 def state_to_dict(state: GameState) -> dict:
-    """JSON-normalized (tuples become lists) so the dict equals what is serialized."""
-    return json.loads(canonical_json(asdict(state)))
+    """JSON-normalized (tuples become lists) so the dict equals what is serialized.
+
+    ``hero_max_health`` was added after the first recordings and policy datasets. It is written only
+    when observed, so a state whose maximum Health is unknown keeps the exact dict and ``state_hash``
+    it had before the field existed (absent and None both mean "not observed"). Every other field
+    keeps its existing None-is-written form.
+    """
+    data = json.loads(canonical_json(asdict(state)))
+    for side in ("self_player", "opponent"):
+        if data[side].get("hero_max_health") is None:
+            data[side].pop("hero_max_health", None)
+    return data
 
 
 def state_hash(state_dict: dict) -> str:

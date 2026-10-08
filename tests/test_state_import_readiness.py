@@ -46,7 +46,7 @@ def minion(card_id=SUPPORTED_MINION, position=1, attack=2, health=3, **flags):
 
 def player(**over):
     base = {
-        "hero_health": 30, "armor": 0, "hero_attack": 0, "max_mana": 5, "available_mana": 5, "overloaded_mana": 0, "pending_overload": 0,
+        "hero_health": 30, "hero_max_health": 30, "armor": 0, "hero_attack": 0, "max_mana": 5, "available_mana": 5, "overloaded_mana": 0, "pending_overload": 0,
         "deck_size": 0, "hand_size": 0, "fatigue": 0, "secret_count": 0, "spell_damage": 0, "known_secrets": [],
         "hero_power_ready": True, "hero_frozen": False, "hero_freeze_turns_remaining": 0, "hero_divine_shield": False,
         "player_class": "PRIEST", "weapon": None,
@@ -84,13 +84,14 @@ def test_valid_ordinary_state_is_still_not_importable():
     diagnostic = analyze(state(self_over={"board": [minion()], "hand_size": 1}, self_hand=[card(SUPPORTED_SPELL, "SPELL")]))
     result = diagnostic.to_dict()
     assert diagnostic.structurally_valid
-    # Fully populated and fully supported: the only gap is the hero maximum Health GameState cannot carry.
-    assert codes(diagnostic) == {"HERO_MAX_HEALTH_NOT_REPRESENTED"}
+    # Fully populated and fully supported: nothing visible is missing (the hero maximum Health is observed).
+    assert codes(diagnostic) == set()
     assert result["hero_power"]["SELF"]["status"] == "PROVEN_SUPPORTED_BASE"
     assert result["faithful_native_import_possible_today"] is False
     assert result["axes"]["native_hydration"] == "BLOCKED_NO_FROM_STATE_CONSTRUCTOR"
     assert result["axes"]["canonical_training"] == "BLOCKED_GLOBAL_GATE"
-    assert result["axes"]["source_completeness"] == "INCOMPLETE"  # structurally valid does not mean complete
+    assert result["axes"]["source_completeness"] == "COMPLETE_VISIBLE_FIELDS"
+    assert result["known"]["hero_max_health"] == {"SELF": "KNOWN_SUPPORTED_NATIVE", "OPPONENT": "KNOWN_SUPPORTED_NATIVE"}
     assert result["axes"]["native_capability"] == "NO_KNOWN_GAP"
 
 
@@ -194,10 +195,50 @@ def test_unknown_deck_composition_and_order():
 
 
 def test_hero_with_forty_health_exceeds_the_native_fixed_maximum():
-    forty = analyze(state(self_over={"hero_health": 40}))
-    assert {"HERO_HEALTH_EXCEEDS_NATIVE_MAX", "HERO_MAX_HEALTH_NOT_REPRESENTED"} <= codes(forty)
+    forty = analyze(state(self_over={"hero_health": 40, "hero_max_health": 40}))
+    assert {"HERO_HEALTH_EXCEEDS_NATIVE_MAX", "HERO_MAX_HEALTH_UNSUPPORTED_NATIVE"} <= codes(forty)
+    assert "HERO_MAX_HEALTH_UNKNOWN" not in codes(forty)
     thirty = analyze(state(self_over={"hero_health": 30}))
-    assert "HERO_HEALTH_EXCEEDS_NATIVE_MAX" not in codes(thirty) and "HERO_MAX_HEALTH_NOT_REPRESENTED" in codes(thirty)
+    assert not {"HERO_HEALTH_EXCEEDS_NATIVE_MAX", "HERO_MAX_HEALTH_UNKNOWN", "HERO_MAX_HEALTH_UNSUPPORTED_NATIVE"} & codes(thirty)
+
+
+def test_hero_max_health_has_four_separate_outcomes():
+    def seat_codes(**over):
+        return {b.code for b in analyze(state(self_over=over)).blockers if b.seat == "SELF"}
+    unknown = analyze(state(self_over={"hero_max_health": None}))
+    assert "HERO_MAX_HEALTH_UNKNOWN" in codes(unknown) and unknown.to_dict()["known"]["hero_max_health"]["SELF"] == "UNKNOWN"
+    historical = state()
+    del historical["self_player"]["hero_max_health"]
+    assert "HERO_MAX_HEALTH_UNKNOWN" in codes(analyze(historical))  # a historical state: absent is not 30
+    # Known and valid, damaged or not: no hero-health blocker at all.
+    for health, maximum in ((20, 30), (30, 30), (1, 30)):
+        assert not {c for c in seat_codes(hero_health=health, hero_max_health=maximum) if c.startswith(("HERO_MAX", "HERO_HEALTH", "INTEGRITY"))}
+    # Known but not the native fixed 30: unsupported by the engine, even when the hero is damaged below 30.
+    damaged_forty = analyze(state(self_over={"hero_health": 25, "hero_max_health": 40}))
+    assert damaged_forty.to_dict()["known"]["hero_max_health"]["SELF"] == "KNOWN_UNSUPPORTED_NATIVE"
+    assert "HERO_MAX_HEALTH_UNSUPPORTED_NATIVE" in codes(damaged_forty) and "HERO_HEALTH_EXCEEDS_NATIVE_MAX" not in codes(damaged_forty)
+    spec = BLOCKER_SPECS["HERO_MAX_HEALTH_UNSUPPORTED_NATIVE"]
+    assert (spec.category.value, spec.axis, spec.resolution) == ("UNSUPPORTED_MECHANIC", "NATIVE", "ENGINE_PRIMITIVE")
+    assert BLOCKER_SPECS["HERO_MAX_HEALTH_UNKNOWN"].category.value == "UNKNOWN"
+    # Inconsistent: current above maximum, or a maximum that is not a positive integer.
+    for over in ({"hero_health": 31, "hero_max_health": 30}, {"hero_max_health": 0}, {"hero_max_health": -4}, {"hero_max_health": True},
+                 {"hero_max_health": "30"}, {"hero_max_health": 30.0}):
+        diagnostic = analyze(state(self_over=over))
+        assert "INTEGRITY_ENTITY_RANGE" in codes(diagnostic), over
+        assert "INCONSISTENT" in diagnostic.categories() and not diagnostic.structurally_valid
+        assert "HERO_MAX_HEALTH_UNSUPPORTED_NATIVE" not in codes(diagnostic)  # an invalid value is not reported as a valid one
+    assert "HERO_MAX_HEALTH_NOT_REPRESENTED" not in BLOCKER_SPECS  # the unconditional blocker is gone
+
+
+def test_hero_freeze_blocker_distinguishes_unknown_unfrozen_and_frozen_without_duration():
+    def freeze(**over):
+        return [b for b in analyze(state(self_over=over)).blockers if b.code == "HERO_FREEZE_UNKNOWN" and b.seat == "SELF"]
+    assert freeze(hero_frozen=None, hero_freeze_turns_remaining=None)[0].detail == "frozen state unknown"
+    assert freeze(hero_frozen=None, hero_freeze_turns_remaining=1)[0].detail == "frozen state unknown"
+    assert freeze(hero_frozen=True, hero_freeze_turns_remaining=None)[0].detail == "frozen, duration unknown"
+    assert not freeze(hero_frozen=True, hero_freeze_turns_remaining=1)
+    # An explicitly unfrozen hero has no duration left to know.
+    assert not freeze(hero_frozen=False, hero_freeze_turns_remaining=None)
 
 
 def test_location_on_board_is_not_represented_natively():

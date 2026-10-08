@@ -143,14 +143,13 @@ def _player_observation(player, entities, catalog, *, is_self: bool, hand_order:
          if entity.zone == Zone.PLAY and entity.type == CardType.WEAPON),
         None,
     )
-    hero_power_entity = next(
-        (entity for entity in controlled
-         if entity.zone == Zone.PLAY and entity.type == CardType.HERO_POWER),
-        None,
-    )
+    hero_power_entities = [
+        entity for entity in controlled
+        if entity.zone == Zone.PLAY and entity.type == CardType.HERO_POWER
+    ]
+    hero_power_entity = hero_power_entities[0] if hero_power_entities else None
     hero_power_ready = (
-        None if hero_power_entity is None or GameTag.EXHAUSTED not in hero_power_entity.tags
-        else not bool(hero_power_entity.tags[GameTag.EXHAUSTED])
+        _hero_power_ready_from_tags(hero_power_entity, player) if len(hero_power_entities) == 1 else None
     )
 
     max_mana, available_mana, locked = _mana_values(player.tags)
@@ -162,6 +161,8 @@ def _player_observation(player, entities, catalog, *, is_self: bool, hand_order:
 
     observation = PlayerObservation(
         hero_health=_current_health(hero),
+        hero_max_health=_observed_max_health(hero),
+        hero_frozen=_explicit_flag(hero, GameTag.FROZEN),
         armor=armor,
         hero_attack=_integer(hero.tags.get(GameTag.ATK), 0) if hero else 0,
         max_mana=max_mana,
@@ -293,6 +294,60 @@ def _current_health(entity) -> int:
     maximum = _integer(entity.tags.get(GameTag.HEALTH), 0)
     damage = _integer(entity.tags.get(GameTag.DAMAGE), 0)
     return max(0, maximum - damage)
+
+
+def _observed_max_health(entity) -> int | None:
+    """Maximum Health exactly as the log reports it, or None when it is not reliably observed.
+
+    Verified on real Power.log: the entity's HEALTH tag is the maximum (30, or 40 for some heroes, and it
+    changes during a game) and DAMAGE is tracked separately, so DAMAGE may exceed HEALTH only when the hero is
+    dead. A missing or non-positive tag is not clamped or replaced by 30; it stays unknown.
+    """
+    if entity is None:
+        return None
+    value = entity.tags.get(GameTag.HEALTH)
+    if isinstance(value, bool) or not isinstance(value, int) or value < 1:
+        return None
+    return value
+
+
+def _explicit_flag(entity, tag) -> bool | None:
+    """An explicitly logged 0/1 tag as a bool. A missing tag stays unknown (None), never False."""
+    if entity is None or tag not in entity.tags:
+        return None
+    value = entity.tags[tag]
+    if isinstance(value, bool) or value not in (0, 1):
+        return None
+    return bool(value)
+
+
+# Tags that change how many activations a Hero Power has per turn or whether it can be used at all. The
+# EXHAUSTED/activation semantics below were verified without them (none occurs in the real corpus), so a
+# non-zero value makes readiness unknown instead of applying a rule nobody has checked.
+_HERO_POWER_ACTIVATION_MODIFIERS = (
+    GameTag.HEROPOWER_ADDITIONAL_ACTIVATIONS,
+    GameTag.HEROPOWER_UNLIMITED_USES,
+    GameTag.HERO_POWER_DISABLED,
+)
+
+
+def _hero_power_ready_from_tags(power, player) -> bool | None:
+    """Exhausted/used status of one Hero Power from its own explicit tags, else None.
+
+    Not mana: a power can be ready and unaffordable. The EXHAUSTED tag alone decides; a missing tag is
+    unknown (a never-used power simply has no tag in the log, but that is not evidence this code relies on).
+    HEROPOWER_ACTIVATIONS_THIS_TURN mirrors EXHAUSTED exactly in the real corpus, so a disagreement or a
+    modifier tag (see above) means an unverified rule and the flag stays unknown.
+    """
+    exhausted = _explicit_flag(power, GameTag.EXHAUSTED)
+    if exhausted is None:
+        return None
+    activations = power.tags.get(GameTag.HEROPOWER_ACTIVATIONS_THIS_TURN)
+    if activations is not None and (activations not in (0, 1) or bool(activations) != exhausted):
+        return None
+    if any(entity.tags.get(tag) for entity in (power, player) for tag in _HERO_POWER_ACTIVATION_MODIFIERS):
+        return None
+    return not exhausted
 
 
 def _current_weapon_durability(entity) -> int | None:

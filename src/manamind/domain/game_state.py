@@ -36,7 +36,11 @@ class PlayerObservation:
     secret_count: int = 0
     spell_damage: int = 0
     known_secrets: tuple[CardFeatures, ...] = field(default_factory=tuple)
+    # True: the Hero Power is not exhausted (an activation is still available this turn). False: it is exhausted.
+    # None: not reliably observed. This is exhausted/used status only: it says nothing about Mana, targets or
+    # legality, and it is never inferred from the class, the cost or a missing tag.
     hero_power_ready: bool | None = None
+    # Explicit hero Frozen state. None: not reliably observed (a missing tag is not evidence of False).
     hero_frozen: bool | None = None
     player_class: str = "UNKNOWN_CLASS"
     weapon: CardFeatures | None = None
@@ -55,8 +59,18 @@ class PlayerObservation:
     # None means unknown (historical imports); 0 is a known "no bonus". Not an encoder feature, so
     # existing Policy/Value checkpoints and STATE_ENCODING_SCHEMA_VERSION are unchanged.
     healing_bonus: int | None = None
+    # Directly observed maximum Health of the hero (the HEALTH tag; ``hero_health`` stays the current Health).
+    # None means not reliably observed: it is never derived from the hero class, card metadata or a default of
+    # 30, and legitimate values above 30 (e.g. 40) are valid. Not an encoder feature (see healing_bonus).
+    hero_max_health: int | None = None
 
     def __post_init__(self) -> None:
+        if self.hero_max_health is not None:
+            if (isinstance(self.hero_max_health, bool) or not isinstance(self.hero_max_health, int)
+                    or self.hero_max_health < 1):
+                raise ValueError("hero_max_health must be None or a positive integer")
+            if self.hero_health > self.hero_max_health:
+                raise ValueError("hero_health cannot exceed hero_max_health")
         if self.healing_bonus is not None and (
                 isinstance(self.healing_bonus, bool) or not isinstance(self.healing_bonus, int) or self.healing_bonus < 0):
             raise ValueError("healing_bonus must be None or a non-negative integer")

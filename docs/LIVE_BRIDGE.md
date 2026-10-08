@@ -159,7 +159,11 @@ and invalidation gates; the runtime catalog must match the saved catalog. See
 - No opponent hand identities (a deliberate difference from the offline importer, which exposes
   `revealed` opponent hand cards). Own secret identities are not exposed, only the count.
 - `GameState` fields the importer never fills stay unset (`spell_damage`, discounts, histories,
-  `hero_frozen`, ...). Neither the live nor the importer path claims them.
+  `hero_freeze_turns_remaining`, ...). Neither the live nor the importer path claims them. Hero maximum Health
+  (`HEALTH` tag), hero Frozen (explicit `FROZEN` tag only) and Hero Power readiness (explicit `EXHAUSTED` tag; for SELF
+  decisions also the options message: a validated Hero Power option or `REQ_NOT_EXHAUSTED_HERO_POWER`) are extracted;
+  each stays None when the log does not state it. Recordings made before OBSERVATION-EXTRACTION-1 do not replay to their
+  recorded `state_hash` values, because the replayed states now carry these fields.
 - The offline importer samples the state before every top-level `PLAY`/`ATTACK` block, i.e. after the
   tag changes that follow `SendOption`; the live snapshot is the state at the options message. They
   agree exactly only where nothing sits in between (tests use `parity_view` for the identical-policy

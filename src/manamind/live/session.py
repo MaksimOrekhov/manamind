@@ -375,7 +375,8 @@ class LiveSession:
             if board is None or game.game_key is None:
                 raise ReducerError(Reason.INVARIANT)
             self_id = self._resolve_self(game, board, option_controllers(board, pending.packet))
-            state = project_state(board, self_id, self.catalog, parity_view=self.parity_view)
+            state = project_state(board, self_id, self.catalog, parity_view=self.parity_view,
+                                  options_packet=pending.packet)
             decision = build_decision(board, pending.packet, self_id)
             if state.active_player != "SELF":
                 if has_named_option(pending.packet):

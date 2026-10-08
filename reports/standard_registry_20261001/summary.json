@@ -21,7 +21,7 @@
       "profile_sha256": "29638b6ca194f50144b0862d1040059cf19747a9fe5cf926edeafcecdbbed812",
       "engine_source_sha256": "c54f86221467d0a682c6331e83eb023e8eef7136da48763e711d26029165797a",
       "bridge_source_sha256": "7e907fc30681fb29a341b070fd7f6aabeaa7602f135df45aaa37f9db181dd57b",
-      "observation_source_sha256": "49992cef0aff95fa29a0bb6e05539a7efb3e24e4213e3a4010165c34bcd38b00",
+      "observation_source_sha256": "fb4769fced234d69fd88427c4ece98e1957fdfda9547228ec7560ce0236d3863",
       "rules_source_sha256": "e1a0d8497ef9b23b2919346855df32f3c16d60d5f19cfbfbede2881a1f03db4e",
       "scenario_source_sha256": "18061972016af3624dcf6f3b2443317c8ad75dbc49868420e0e3eb4760c71625",
       "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
