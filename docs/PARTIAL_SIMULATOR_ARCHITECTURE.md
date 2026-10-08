@@ -77,6 +77,11 @@ must never learn from poisoned or fabricated afterstates.
   pending-death targets and on a bonus holder healing characters it does not
   control. It has no healing triggers. The bonus total is the public nullable
   `PlayerObservation.healing_bonus` (not an encoder feature; None = unknown) (see `docs/proposals/20261008_engine_primitive1_healing_v1.md`).
+- ENGINE-STATE-IMPORT-0 adds a read-only readiness diagnostic
+  (`manamind.integrations.manaengine.state_import_*`, `scripts/state_import_readiness.py`). It reports, per sanitized visible position,
+  typed blockers (UNKNOWN, NOT_REPRESENTED, UNSUPPORTED_MECHANIC, UNSUPPORTED_CARD, RULE_UNRESOLVED, INCONSISTENT) on separate
+  source/native/rules axes and never builds a session; hydration stays impossible and training stays blocked. Findings and the
+  ENGINE-STATE-IMPORT-1 proposal: `reports/manaengine_state_import0_20261008/README.md`.
 - `ManaEngineSession.training_eligible` is always false today and
   `require_training_admission()` blocks before collection. No ManaEngine
   canonical training data producer exists.

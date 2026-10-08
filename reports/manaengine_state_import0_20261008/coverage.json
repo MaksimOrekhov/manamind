@@ -1,0 +1,5086 @@
+{
+  "analyzer_version": "state-import-0/1",
+  "capability": {
+    "basis": "declaration-level view; native build not loaded; not rules verification",
+    "declarations": 125,
+    "effectively_supported_hero_powers": [
+      "HERO_01bp",
+      "HERO_05bp",
+      "HERO_08bp",
+      "HERO_09bp"
+    ],
+    "effectively_supported_non_hero_power": 113,
+    "engine_catalog_records": 1218,
+    "fingerprint": "4be6c11f8db511f1b33122daade39783a465a4980e39cd82c4479ee25523f664",
+    "unsupported_by_reason": {
+      "DECLARED_UNSUPPORTED": 8,
+      "UNDECLARED": 1093
+    }
+  },
+  "data_availability": {
+    "LIVE_SNAPSHOT": {
+      "available": true,
+      "distinct_games": 12,
+      "files": 12,
+      "non_decision_or_not_ready_records": 0,
+      "records_read": 635,
+      "self_decision_positions": 635,
+      "unreadable_records": 0
+    },
+    "POLICY_DECISION": {
+      "available": true,
+      "distinct_games": 32,
+      "files": 32,
+      "non_decision_or_not_ready_records": 0,
+      "records_read": 1227,
+      "self_decision_positions": 1227,
+      "unreadable_records": 0
+    },
+    "VALUE_EXAMPLE": {
+      "available": true,
+      "distinct_games": 36,
+      "files": 36,
+      "non_decision_or_not_ready_records": 1563,
+      "records_read": 2911,
+      "self_decision_positions": 1348,
+      "unreadable_records": 0
+    }
+  },
+  "extractor_field_provenance": {
+    "active_effects": "NEVER_POPULATED_DEFAULTS_EMPTY",
+    "armor": "EXTRACTED",
+    "available_mana": "EXTRACTED",
+    "board": "EXTRACTED",
+    "current_turn_minion_types_played": "NEVER_POPULATED",
+    "deck_size": "EXTRACTED",
+    "demon_discount": "NEVER_POPULATED",
+    "fatigue": "EXTRACTED",
+    "hand_size": "EXTRACTED",
+    "healing_bonus": "NEVER_POPULATED",
+    "hero_attack": "EXTRACTED",
+    "hero_divine_shield": "NONE_WHEN_TAG_ABSENT",
+    "hero_freeze_turns_remaining": "NEVER_POPULATED",
+    "hero_frozen": "NEVER_POPULATED",
+    "hero_health": "EXTRACTED",
+    "hero_power": "EXTRACTED",
+    "hero_power_ready": "NONE_WHEN_TAG_ABSENT",
+    "known_secrets": "NEVER_POPULATED_DEFAULTS_EMPTY",
+    "locations": "EXTRACTED",
+    "max_mana": "EXTRACTED",
+    "overloaded_mana": "EXTRACTED",
+    "pending_overload": "EXTRACTED",
+    "player_class": "EXTRACTED",
+    "previous_turn_minion_types_played": "NEVER_POPULATED",
+    "secret_count": "EXTRACTED_BY_LIVE_PROJECTION",
+    "spell_damage": "NEVER_POPULATED_DEFAULTS_ZERO",
+    "spell_discount": "NEVER_POPULATED",
+    "spells_cast_this_turn": "NEVER_POPULATED",
+    "weapon": "EXTRACTED"
+  },
+  "full_corpora": {
+    "LIVE_SNAPSHOT": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "missing_native_state": {
+          "percent": 94.17,
+          "positions": 598
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "rule_unresolved": {
+          "percent": 46.93,
+          "positions": 298
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "unsupported_mechanic": {
+          "percent": 87.87,
+          "positions": 558
+        }
+      },
+      "categories": {
+        "NOT_REPRESENTED": {
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0
+        },
+        "RULE_UNRESOLVED": {
+          "distinct_games": 12,
+          "distinct_positions": 298,
+          "percent_positions": 46.93
+        },
+        "UNKNOWN": {
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_CARD": {
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_MECHANIC": {
+          "distinct_games": 11,
+          "distinct_positions": 558,
+          "percent_positions": 87.87
+        }
+      },
+      "cumulative_resolution_effect": [
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+              "positions": 635
+            },
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 628
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 588
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 553
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 490
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 628
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 588
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 553
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 490
+            },
+            {
+              "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+              "positions": 464
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 628
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 588
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 490
+            },
+            {
+              "code": "UNSUPPORTED_CARD_LOCATION",
+              "positions": 448
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 298
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION"
+          ],
+          "percent": 53.07,
+          "positions_with_no_remaining_non_hidden_blocker": 337,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 298
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 635,
+          "top_remaining_codes_by_position_count": []
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE",
+            "DEFER"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 635,
+          "top_remaining_codes_by_position_count": []
+        }
+      ],
+      "decision_positions": 635,
+      "families": {
+        "ABSENT_TAG": 635,
+        "DECK": 635,
+        "HIDDEN": 635,
+        "IDENTITY": 298,
+        "NATIVE_LACKS": 469,
+        "NEVER_POPULATED": 635,
+        "PROVENANCE": 502,
+        "UNSUPPORTED": 635
+      },
+      "gate_funnel": [
+        {
+          "gate": "structurally_valid",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 635,
+          "positions_passing_this_gate_alone": 635
+        },
+        {
+          "gate": "no_inconsistent_blocker",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 635,
+          "positions_passing_this_gate_alone": 635
+        },
+        {
+          "gate": "visible_fields_sufficient_and_represented",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_missing_native_state",
+          "percent_alone": 5.83,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 37
+        },
+        {
+          "gate": "no_unsupported_mechanic",
+          "percent_alone": 12.13,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 77
+        },
+        {
+          "gate": "no_unsupported_card",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_unresolved_rule",
+          "percent_alone": 53.07,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 337
+        },
+        {
+          "gate": "no_hidden_information_gap",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        }
+      ],
+      "hero_power": {
+        "identities_by_seat": {
+          "OPPONENT": {
+            "<reviewed base power>": 62,
+            "CATA_190p": 1,
+            "CS1h_001_H1": 1,
+            "CS2_101_H3": 46,
+            "EDR_449p": 321,
+            "END_000p": 51,
+            "HERO_03bp": 26,
+            "HERO_03dbp": 4,
+            "HERO_07agbp": 37,
+            "HERO_07ebp": 82,
+            "HERO_09dbp": 4
+          },
+          "SELF": {
+            "EDR_449p": 539,
+            "HERO_09dbp": 96
+          }
+        },
+        "identity_missing_either_seat": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "not_proven_supported_either_seat": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "not_proven_supported_self": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "status_by_seat": {
+          "OPPONENT": {
+            "IMBUE_UNSUPPORTED": 321,
+            "PROVEN_SUPPORTED_BASE": 62,
+            "UNREVIEWED_IDENTITY": 252
+          },
+          "SELF": {
+            "IMBUE_UNSUPPORTED": 539,
+            "UNREVIEWED_IDENTITY": 96
+          }
+        }
+      },
+      "limitation_axis_positions": {
+        "BOTH": {
+          "percent": 79.06,
+          "positions": 502
+        },
+        "NATIVE": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "RULES": {
+          "percent": 46.93,
+          "positions": 298
+        },
+        "SOURCE": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "SOURCE_HIDDEN_BY_DESIGN": {
+          "percent": 100.0,
+          "positions": 635
+        }
+      },
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "ready_for_import_design": {
+        "native_hydration_possible_today": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "no_non_hidden_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "source_complete_visible_fields": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "valid_design_input_structurally_valid_and_consistent": {
+          "percent": 100.0,
+          "positions": 635
+        }
+      },
+      "resolution_demand": {
+        "CARD_DECLARATION": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 635
+        },
+        "ENGINE_PRIMITIVE": {
+          "distinct_blocker_codes": 5,
+          "percent": 91.65,
+          "positions": 582
+        },
+        "HIDDEN_INFORMATION_DESIGN": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 635
+        },
+        "IMPORT_CONTRACT": {
+          "distinct_blocker_codes": 1,
+          "percent": 100.0,
+          "positions": 635
+        },
+        "OBSERVATION_EXTRACTION": {
+          "distinct_blocker_codes": 15,
+          "percent": 100.0,
+          "positions": 635
+        },
+        "RULES_EVIDENCE": {
+          "distinct_blocker_codes": 1,
+          "percent": 46.93,
+          "positions": 298
+        }
+      },
+      "structurally_valid": {
+        "percent": 100.0,
+        "positions": 635
+      },
+      "top10_blockers_below_universal_by_distinct_positions": [
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_SELF_HAND",
+          "distinct_games": 12,
+          "distinct_positions": 628,
+          "percent_positions": 98.9,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 12,
+          "distinct_positions": 588,
+          "percent_positions": 92.6,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 554,
+          "percent_positions": 87.24,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_MECHANIC",
+          "code": "HERO_POWER_IMBUE",
+          "distinct_games": 11,
+          "distinct_positions": 553,
+          "percent_positions": 87.09,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 12,
+          "distinct_positions": 528,
+          "percent_positions": 83.15,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 12,
+          "distinct_positions": 490,
+          "percent_positions": 77.17,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 464,
+          "percent_positions": 73.07,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+          "distinct_games": 12,
+          "distinct_positions": 464,
+          "percent_positions": 73.07,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_LOCATION",
+          "distinct_games": 11,
+          "distinct_positions": 448,
+          "percent_positions": 70.55,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+          "distinct_games": 12,
+          "distinct_positions": 444,
+          "percent_positions": 69.92,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "top10_blockers_by_distinct_games": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        }
+      ],
+      "top10_blockers_by_distinct_positions": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 12,
+          "distinct_positions": 635,
+          "percent_positions": 100.0,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        }
+      ],
+      "unique_games": 12,
+      "universal_blocker_count": 12,
+      "unsupported_cards": {
+        "listed": [
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_301",
+            "distinct_games": 9,
+            "distinct_positions": 467,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_913",
+            "distinct_games": 11,
+            "distinct_positions": 377,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t",
+            "distinct_games": 7,
+            "distinct_positions": 366,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t2",
+            "distinct_games": 9,
+            "distinct_positions": 355,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_890",
+            "distinct_games": 9,
+            "distinct_positions": 326,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_197",
+            "distinct_games": 10,
+            "distinct_positions": 316,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_025",
+            "distinct_games": 10,
+            "distinct_positions": 266,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_308",
+            "distinct_games": 9,
+            "distinct_positions": 194,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_BAR_311",
+            "distinct_games": 12,
+            "distinct_positions": 136,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_970",
+            "distinct_games": 12,
+            "distinct_positions": 133,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_449",
+            "distinct_games": 10,
+            "distinct_positions": 121,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_432",
+            "distinct_games": 10,
+            "distinct_positions": 102,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_816",
+            "distinct_games": 7,
+            "distinct_positions": 101,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t3",
+            "distinct_games": 4,
+            "distinct_positions": 56,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t4",
+            "distinct_games": 4,
+            "distinct_positions": 55,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_EVENT_COIN",
+            "distinct_games": 3,
+            "distinct_positions": 43,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "DINO_COIN2",
+            "distinct_games": 4,
+            "distinct_positions": 39,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_800",
+            "distinct_games": 2,
+            "distinct_positions": 39,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_777",
+            "distinct_games": 4,
+            "distinct_positions": 34,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_511",
+            "distinct_games": 2,
+            "distinct_positions": 33,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD"
+            ],
+            "card_id": "CORE_CATA_002",
+            "distinct_games": 2,
+            "distinct_positions": 31,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_912",
+            "distinct_games": 4,
+            "distinct_positions": 31,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_941t",
+            "distinct_games": 3,
+            "distinct_positions": 27,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_193",
+            "distinct_games": 5,
+            "distinct_positions": 26,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_496",
+            "distinct_games": 2,
+            "distinct_positions": 25,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_029",
+            "distinct_games": 5,
+            "distinct_positions": 24,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_813",
+            "distinct_games": 4,
+            "distinct_positions": 24,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_511t",
+            "distinct_games": 2,
+            "distinct_positions": 23,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD"
+            ],
+            "card_id": "JAIL_513",
+            "distinct_games": 2,
+            "distinct_positions": 23,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_814",
+            "distinct_games": 3,
+            "distinct_positions": 23,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_429",
+            "distinct_games": 3,
+            "distinct_positions": 22,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_RLK_814",
+            "distinct_games": 3,
+            "distinct_positions": 21,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_942",
+            "distinct_games": 2,
+            "distinct_positions": 21,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION"
+            ],
+            "card_id": "CATA_584",
+            "distinct_games": 2,
+            "distinct_positions": 20,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_432",
+            "distinct_games": 3,
+            "distinct_positions": 20,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_819",
+            "distinct_games": 3,
+            "distinct_positions": 20,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_434",
+            "distinct_games": 2,
+            "distinct_positions": 19,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_ICC_210",
+            "distinct_games": 4,
+            "distinct_positions": 17,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t5",
+            "distinct_games": 3,
+            "distinct_positions": 15,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD"
+            ],
+            "card_id": "EDR_456",
+            "distinct_games": 2,
+            "distinct_positions": 14,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          }
+        ],
+        "listed_min_games": 2,
+        "unlisted_distinct_card_ids": 135
+      },
+      "visible_fields_sufficient_by_subsystem": {
+        "BOARD": {
+          "percent": 16.85,
+          "positions": 107
+        },
+        "DECK": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "EFFECTS": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "GAME_TURN": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HAND": {
+          "percent": 30.08,
+          "positions": 191
+        },
+        "HERO": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HERO_POWER": {
+          "percent": 80.63,
+          "positions": 512
+        },
+        "INTEGRITY": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "LOCATION": {
+          "percent": 26.93,
+          "positions": 171
+        },
+        "PENDING_CHOICE": {
+          "percent": 100.0,
+          "positions": 635
+        },
+        "SECRET": {
+          "percent": 12.76,
+          "positions": 81
+        },
+        "WEAPON": {
+          "percent": 100.0,
+          "positions": 635
+        }
+      }
+    },
+    "POLICY_DECISION": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "missing_native_state": {
+          "percent": 89.81,
+          "positions": 1102
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "rule_unresolved": {
+          "percent": 52.0,
+          "positions": 638
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "unsupported_mechanic": {
+          "percent": 81.5,
+          "positions": 1000
+        }
+      },
+      "categories": {
+        "NOT_REPRESENTED": {
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0
+        },
+        "RULE_UNRESOLVED": {
+          "distinct_games": 32,
+          "distinct_positions": 638,
+          "percent_positions": 52.0
+        },
+        "UNKNOWN": {
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_CARD": {
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_MECHANIC": {
+          "distinct_games": 27,
+          "distinct_positions": 1000,
+          "percent_positions": 81.5
+        }
+      },
+      "cumulative_resolution_effect": [
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+              "positions": 1224
+            },
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1217
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1074
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 987
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 979
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1217
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1074
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 987
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 979
+            },
+            {
+              "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+              "positions": 818
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1217
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1074
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 987
+            },
+            {
+              "code": "UNSUPPORTED_CARD_LOCATION",
+              "positions": 790
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 638
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION"
+          ],
+          "percent": 48.0,
+          "positions_with_no_remaining_non_hidden_blocker": 589,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 638
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 1227,
+          "top_remaining_codes_by_position_count": []
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE",
+            "DEFER"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 1227,
+          "top_remaining_codes_by_position_count": []
+        }
+      ],
+      "decision_positions": 1227,
+      "families": {
+        "ABSENT_TAG": 1227,
+        "DECK": 1224,
+        "HIDDEN": 1227,
+        "IDENTITY": 638,
+        "NATIVE_LACKS": 856,
+        "NEVER_POPULATED": 1227,
+        "PROVENANCE": 984,
+        "UNSUPPORTED": 1227
+      },
+      "gate_funnel": [
+        {
+          "gate": "structurally_valid",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 1227,
+          "positions_passing_this_gate_alone": 1227
+        },
+        {
+          "gate": "no_inconsistent_blocker",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 1227,
+          "positions_passing_this_gate_alone": 1227
+        },
+        {
+          "gate": "visible_fields_sufficient_and_represented",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_missing_native_state",
+          "percent_alone": 10.19,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 125
+        },
+        {
+          "gate": "no_unsupported_mechanic",
+          "percent_alone": 18.5,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 227
+        },
+        {
+          "gate": "no_unsupported_card",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_unresolved_rule",
+          "percent_alone": 48.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 589
+        },
+        {
+          "gate": "no_hidden_information_gap",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        }
+      ],
+      "hero_power": {
+        "identities_by_seat": {
+          "OPPONENT": {
+            "<reviewed base power>": 138,
+            "CS1h_001_H1": 43,
+            "CS2_056_H2": 41,
+            "CS2_101_H3": 39,
+            "CS2_102_H1": 22,
+            "EDR_449p": 525,
+            "END_000p": 30,
+            "HERO_02azhp": 33,
+            "HERO_03bp": 14,
+            "HERO_03dbp": 3,
+            "HERO_04bp": 17,
+            "HERO_04fbp": 19,
+            "HERO_05dbp": 17,
+            "HERO_06bp": 15,
+            "HERO_07agbp": 22,
+            "HERO_07ebp": 74,
+            "HERO_08fbp": 69,
+            "HERO_09dbp": 12,
+            "HERO_10bchp": 40,
+            "HERO_10cbp": 35,
+            "HERO_11bp": 19
+          },
+          "SELF": {
+            "<reviewed base power>": 13,
+            "EDR_449p": 968,
+            "HERO_01bp": 41,
+            "HERO_01dbp": 25,
+            "HERO_09dbp": 180
+          }
+        },
+        "identity_missing_either_seat": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "not_proven_supported_either_seat": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "not_proven_supported_self": {
+          "percent": 95.6,
+          "positions": 1173
+        },
+        "status_by_seat": {
+          "OPPONENT": {
+            "IMBUE_UNSUPPORTED": 525,
+            "PROVEN_SUPPORTED_BASE": 138,
+            "UNREVIEWED_IDENTITY": 564
+          },
+          "SELF": {
+            "IMBUE_UNSUPPORTED": 968,
+            "PROVEN_SUPPORTED_BASE": 54,
+            "UNREVIEWED_IDENTITY": 205
+          }
+        }
+      },
+      "limitation_axis_positions": {
+        "BOTH": {
+          "percent": 80.2,
+          "positions": 984
+        },
+        "NATIVE": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "RULES": {
+          "percent": 52.0,
+          "positions": 638
+        },
+        "SOURCE": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "SOURCE_HIDDEN_BY_DESIGN": {
+          "percent": 100.0,
+          "positions": 1227
+        }
+      },
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 71.88,
+          "positions": 882
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 28.12,
+          "positions": 345
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "ready_for_import_design": {
+        "native_hydration_possible_today": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "no_non_hidden_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "source_complete_visible_fields": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "valid_design_input_structurally_valid_and_consistent": {
+          "percent": 100.0,
+          "positions": 1227
+        }
+      },
+      "resolution_demand": {
+        "CARD_DECLARATION": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "ENGINE_PRIMITIVE": {
+          "distinct_blocker_codes": 6,
+          "percent": 90.55,
+          "positions": 1111
+        },
+        "HIDDEN_INFORMATION_DESIGN": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "IMPORT_CONTRACT": {
+          "distinct_blocker_codes": 1,
+          "percent": 99.76,
+          "positions": 1224
+        },
+        "OBSERVATION_EXTRACTION": {
+          "distinct_blocker_codes": 15,
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "RULES_EVIDENCE": {
+          "distinct_blocker_codes": 1,
+          "percent": 52.0,
+          "positions": 638
+        }
+      },
+      "structurally_valid": {
+        "percent": 100.0,
+        "positions": 1227
+      },
+      "top10_blockers_below_universal_by_distinct_positions": [
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_SELF_HAND",
+          "distinct_games": 32,
+          "distinct_positions": 1217,
+          "percent_positions": 99.19,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 32,
+          "distinct_positions": 1074,
+          "percent_positions": 87.53,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 32,
+          "distinct_positions": 1047,
+          "percent_positions": 85.33,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+          "distinct_games": 29,
+          "distinct_positions": 1006,
+          "percent_positions": 81.99,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 32,
+          "distinct_positions": 987,
+          "percent_positions": 80.44,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_MECHANIC",
+          "code": "HERO_POWER_IMBUE",
+          "distinct_games": 27,
+          "distinct_positions": 979,
+          "percent_positions": 79.79,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+          "distinct_games": 32,
+          "distinct_positions": 863,
+          "percent_positions": 70.33,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+          "distinct_games": 31,
+          "distinct_positions": 818,
+          "percent_positions": 66.67,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+          "distinct_games": 31,
+          "distinct_positions": 818,
+          "percent_positions": 66.67,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_LOCATION",
+          "distinct_games": 28,
+          "distinct_positions": 790,
+          "percent_positions": 64.38,
+          "recommended_resolution": "CARD_DECLARATION"
+        }
+      ],
+      "top10_blockers_by_distinct_games": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "TURN_COUNTERS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1224,
+          "percent_positions": 99.76,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_ORDER_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1224,
+          "percent_positions": 99.76,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        }
+      ],
+      "top10_blockers_by_distinct_positions": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "TURN_COUNTERS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1227,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1224,
+          "percent_positions": 99.76,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_ORDER_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 1224,
+          "percent_positions": 99.76,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        }
+      ],
+      "unique_games": 32,
+      "universal_blocker_count": 12,
+      "unsupported_cards": {
+        "listed": [
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_301",
+            "distinct_games": 24,
+            "distinct_positions": 833,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t",
+            "distinct_games": 17,
+            "distinct_positions": 681,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_890",
+            "distinct_games": 21,
+            "distinct_positions": 554,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_197",
+            "distinct_games": 22,
+            "distinct_positions": 533,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t2",
+            "distinct_games": 20,
+            "distinct_positions": 498,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_025",
+            "distinct_games": 21,
+            "distinct_positions": 493,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_913",
+            "distinct_games": 24,
+            "distinct_positions": 470,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_308",
+            "distinct_games": 21,
+            "distinct_positions": 433,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_816",
+            "distinct_games": 19,
+            "distinct_positions": 318,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_BAR_311",
+            "distinct_games": 23,
+            "distinct_positions": 282,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_449",
+            "distinct_games": 23,
+            "distinct_positions": 261,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_970",
+            "distinct_games": 25,
+            "distinct_positions": 257,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_432",
+            "distinct_games": 22,
+            "distinct_positions": 238,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_EVENT_COIN",
+            "distinct_games": 7,
+            "distinct_positions": 110,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t3",
+            "distinct_games": 9,
+            "distinct_positions": 108,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "DINO_COIN2",
+            "distinct_games": 9,
+            "distinct_positions": 87,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t4",
+            "distinct_games": 6,
+            "distinct_positions": 81,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_193",
+            "distinct_games": 14,
+            "distinct_positions": 67,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t5",
+            "distinct_games": 9,
+            "distinct_positions": 61,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_REV_990",
+            "distinct_games": 4,
+            "distinct_positions": 60,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_584",
+            "distinct_games": 4,
+            "distinct_positions": 54,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_585",
+            "distinct_games": 2,
+            "distinct_positions": 44,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_777",
+            "distinct_games": 7,
+            "distinct_positions": 44,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "CAP_107t",
+            "distinct_games": 5,
+            "distinct_positions": 42,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_939",
+            "distinct_games": 3,
+            "distinct_positions": 41,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_814",
+            "distinct_games": 10,
+            "distinct_positions": 40,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_941t",
+            "distinct_games": 7,
+            "distinct_positions": 39,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_RLK_814",
+            "distinct_games": 7,
+            "distinct_positions": 38,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_515",
+            "distinct_games": 2,
+            "distinct_positions": 38,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_026",
+            "distinct_games": 3,
+            "distinct_positions": 37,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND",
+              "UNSUPPORTED_CARD_WEAPON"
+            ],
+            "card_id": "JAIL_730",
+            "distinct_games": 2,
+            "distinct_positions": 37,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_511",
+            "distinct_games": 3,
+            "distinct_positions": 36,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_912",
+            "distinct_games": 7,
+            "distinct_positions": 35,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_434",
+            "distinct_games": 6,
+            "distinct_positions": 33,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_421",
+            "distinct_games": 2,
+            "distinct_positions": 32,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_432",
+            "distinct_games": 7,
+            "distinct_positions": 32,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND",
+              "UNSUPPORTED_CARD_WEAPON"
+            ],
+            "card_id": "CAP_103",
+            "distinct_games": 3,
+            "distinct_positions": 31,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_800",
+            "distinct_games": 2,
+            "distinct_positions": 31,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD"
+            ],
+            "card_id": "END_033",
+            "distinct_games": 4,
+            "distinct_positions": 30,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_429",
+            "distinct_games": 5,
+            "distinct_positions": 30,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          }
+        ],
+        "listed_min_games": 2,
+        "unlisted_distinct_card_ids": 225
+      },
+      "visible_fields_sufficient_by_subsystem": {
+        "BOARD": {
+          "percent": 14.51,
+          "positions": 178
+        },
+        "DECK": {
+          "percent": 0.24,
+          "positions": 3
+        },
+        "EFFECTS": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "GAME_TURN": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HAND": {
+          "percent": 29.67,
+          "positions": 364
+        },
+        "HERO": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HERO_POWER": {
+          "percent": 77.1,
+          "positions": 946
+        },
+        "INTEGRITY": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "LOCATION": {
+          "percent": 33.33,
+          "positions": 409
+        },
+        "PENDING_CHOICE": {
+          "percent": 100.0,
+          "positions": 1227
+        },
+        "SECRET": {
+          "percent": 18.01,
+          "positions": 221
+        },
+        "WEAPON": {
+          "percent": 100.0,
+          "positions": 1227
+        }
+      }
+    },
+    "VALUE_EXAMPLE": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "missing_native_state": {
+          "percent": 91.17,
+          "positions": 1229
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "rule_unresolved": {
+          "percent": 58.16,
+          "positions": 784
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "unsupported_mechanic": {
+          "percent": 82.86,
+          "positions": 1117
+        }
+      },
+      "categories": {
+        "NOT_REPRESENTED": {
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0
+        },
+        "RULE_UNRESOLVED": {
+          "distinct_games": 36,
+          "distinct_positions": 784,
+          "percent_positions": 58.16
+        },
+        "UNKNOWN": {
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_CARD": {
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_MECHANIC": {
+          "distinct_games": 31,
+          "distinct_positions": 1117,
+          "percent_positions": 82.86
+        }
+      },
+      "cumulative_resolution_effect": [
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+              "positions": 1344
+            },
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1344
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1191
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 1097
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 1093
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1344
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1191
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 1097
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 1093
+            },
+            {
+              "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+              "positions": 929
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 1344
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 1191
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 1093
+            },
+            {
+              "code": "UNSUPPORTED_CARD_LOCATION",
+              "positions": 900
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 784
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION"
+          ],
+          "percent": 41.84,
+          "positions_with_no_remaining_non_hidden_blocker": 564,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 784
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 1348,
+          "top_remaining_codes_by_position_count": []
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE",
+            "DEFER"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 1348,
+          "top_remaining_codes_by_position_count": []
+        }
+      ],
+      "decision_positions": 1348,
+      "families": {
+        "ABSENT_TAG": 1348,
+        "DECK": 1344,
+        "HIDDEN": 1348,
+        "IDENTITY": 784,
+        "NATIVE_LACKS": 969,
+        "NEVER_POPULATED": 1348,
+        "PROVENANCE": 1348,
+        "UNSUPPORTED": 1348
+      },
+      "gate_funnel": [
+        {
+          "gate": "structurally_valid",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 1348,
+          "positions_passing_this_gate_alone": 1348
+        },
+        {
+          "gate": "no_inconsistent_blocker",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 1348,
+          "positions_passing_this_gate_alone": 1348
+        },
+        {
+          "gate": "visible_fields_sufficient_and_represented",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_missing_native_state",
+          "percent_alone": 8.83,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 119
+        },
+        {
+          "gate": "no_unsupported_mechanic",
+          "percent_alone": 17.14,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 231
+        },
+        {
+          "gate": "no_unsupported_card",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_unresolved_rule",
+          "percent_alone": 41.84,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 564
+        },
+        {
+          "gate": "no_hidden_information_gap",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        }
+      ],
+      "hero_power": {
+        "identities_by_seat": {
+          "OPPONENT": {
+            "<reviewed base power>": 145,
+            "CS1h_001_H1": 60,
+            "CS2_056_H1": 33,
+            "CS2_056_H2": 30,
+            "CS2_101_H3": 38,
+            "CS2_102_H1": 16,
+            "EDR_449p": 489,
+            "END_000p": 70,
+            "HERO_01dbp": 45,
+            "HERO_02azhp": 26,
+            "HERO_03bp": 18,
+            "HERO_03dbp": 4,
+            "HERO_04bp": 19,
+            "HERO_04fbp": 76,
+            "HERO_04fbp2": 4,
+            "HERO_05dbp": 13,
+            "HERO_06bp": 25,
+            "HERO_07agbp": 28,
+            "HERO_07ebp": 60,
+            "HERO_08fbp": 60,
+            "HERO_09dbp": 8,
+            "HERO_10bchp": 34,
+            "HERO_10cbp": 31,
+            "HERO_11bp": 16
+          },
+          "SELF": {
+            "<reviewed base power>": 13,
+            "EDR_449p": 1088,
+            "HERO_01bp": 38,
+            "HERO_01dbp": 20,
+            "HERO_09dbp": 189
+          }
+        },
+        "identity_missing_either_seat": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "not_proven_supported_either_seat": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "not_proven_supported_self": {
+          "percent": 96.22,
+          "positions": 1297
+        },
+        "status_by_seat": {
+          "OPPONENT": {
+            "IMBUE_UNSUPPORTED": 489,
+            "PROVEN_SUPPORTED_BASE": 145,
+            "UNREVIEWED_IDENTITY": 714
+          },
+          "SELF": {
+            "IMBUE_UNSUPPORTED": 1088,
+            "PROVEN_SUPPORTED_BASE": 51,
+            "UNREVIEWED_IDENTITY": 209
+          }
+        }
+      },
+      "limitation_axis_positions": {
+        "BOTH": {
+          "percent": 78.04,
+          "positions": 1052
+        },
+        "NATIVE": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "RULES": {
+          "percent": 58.16,
+          "positions": 784
+        },
+        "SOURCE": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "SOURCE_HIDDEN_BY_DESIGN": {
+          "percent": 100.0,
+          "positions": 1348
+        }
+      },
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "ready_for_import_design": {
+        "native_hydration_possible_today": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "no_non_hidden_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "source_complete_visible_fields": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "valid_design_input_structurally_valid_and_consistent": {
+          "percent": 100.0,
+          "positions": 1348
+        }
+      },
+      "resolution_demand": {
+        "CARD_DECLARATION": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "ENGINE_PRIMITIVE": {
+          "distinct_blocker_codes": 6,
+          "percent": 91.02,
+          "positions": 1227
+        },
+        "HIDDEN_INFORMATION_DESIGN": {
+          "distinct_blocker_codes": 4,
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "IMPORT_CONTRACT": {
+          "distinct_blocker_codes": 1,
+          "percent": 99.7,
+          "positions": 1344
+        },
+        "OBSERVATION_EXTRACTION": {
+          "distinct_blocker_codes": 16,
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "RULES_EVIDENCE": {
+          "distinct_blocker_codes": 1,
+          "percent": 58.16,
+          "positions": 784
+        }
+      },
+      "structurally_valid": {
+        "percent": 100.0,
+        "positions": 1348
+      },
+      "top10_blockers_below_universal_by_distinct_positions": [
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 36,
+          "distinct_positions": 1191,
+          "percent_positions": 88.35,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 36,
+          "distinct_positions": 1161,
+          "percent_positions": 86.13,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_MECHANIC",
+          "code": "HERO_POWER_IMBUE",
+          "distinct_games": 31,
+          "distinct_positions": 1097,
+          "percent_positions": 81.38,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 36,
+          "distinct_positions": 1093,
+          "percent_positions": 81.08,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+          "distinct_games": 35,
+          "distinct_positions": 929,
+          "percent_positions": 68.92,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+          "distinct_games": 35,
+          "distinct_positions": 929,
+          "percent_positions": 68.92,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_LOCATION",
+          "distinct_games": 32,
+          "distinct_positions": 900,
+          "percent_positions": 66.77,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+          "distinct_games": 36,
+          "distinct_positions": 894,
+          "percent_positions": 66.32,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "RULE_UNRESOLVED",
+          "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+          "distinct_games": 36,
+          "distinct_positions": 784,
+          "percent_positions": 58.16,
+          "recommended_resolution": "RULES_EVIDENCE"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+          "distinct_games": 36,
+          "distinct_positions": 465,
+          "percent_positions": 34.5,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "top10_blockers_by_distinct_games": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SECRET_COUNT_NOT_EXTRACTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_HAND_ORDER_UNPROVEN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "TURN_COUNTERS_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "top10_blockers_by_distinct_positions": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SECRET_COUNT_NOT_EXTRACTED",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_HAND_ORDER_UNPROVEN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "TURN_COUNTERS_UNKNOWN",
+          "distinct_games": 36,
+          "distinct_positions": 1348,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "unique_games": 36,
+      "universal_blocker_count": 15,
+      "unsupported_cards": {
+        "listed": [
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_301",
+            "distinct_games": 28,
+            "distinct_positions": 959,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t",
+            "distinct_games": 18,
+            "distinct_positions": 674,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_913",
+            "distinct_games": 29,
+            "distinct_positions": 618,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_197",
+            "distinct_games": 27,
+            "distinct_positions": 601,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_890",
+            "distinct_games": 24,
+            "distinct_positions": 578,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_025",
+            "distinct_games": 25,
+            "distinct_positions": 529,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t2",
+            "distinct_games": 22,
+            "distinct_positions": 514,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_308",
+            "distinct_games": 27,
+            "distinct_positions": 452,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_816",
+            "distinct_games": 22,
+            "distinct_positions": 358,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_432",
+            "distinct_games": 27,
+            "distinct_positions": 298,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_970",
+            "distinct_games": 29,
+            "distinct_positions": 278,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_449",
+            "distinct_games": 28,
+            "distinct_positions": 272,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_BAR_311",
+            "distinct_games": 28,
+            "distinct_positions": 270,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t3",
+            "distinct_games": 13,
+            "distinct_positions": 179,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_EVENT_COIN",
+            "distinct_games": 9,
+            "distinct_positions": 100,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "DINO_COIN2",
+            "distinct_games": 10,
+            "distinct_positions": 87,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_584",
+            "distinct_games": 5,
+            "distinct_positions": 76,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t4",
+            "distinct_games": 6,
+            "distinct_positions": 73,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t5",
+            "distinct_games": 10,
+            "distinct_positions": 69,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_193",
+            "distinct_games": 14,
+            "distinct_positions": 61,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_939",
+            "distinct_games": 4,
+            "distinct_positions": 54,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "CAP_107t",
+            "distinct_games": 6,
+            "distinct_positions": 53,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_REV_990",
+            "distinct_games": 4,
+            "distinct_positions": 51,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CAP_800",
+            "distinct_games": 6,
+            "distinct_positions": 50,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_026",
+            "distinct_games": 4,
+            "distinct_positions": 49,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_432",
+            "distinct_games": 8,
+            "distinct_positions": 48,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_912",
+            "distinct_games": 8,
+            "distinct_positions": 44,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_941t",
+            "distinct_games": 8,
+            "distinct_positions": 44,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_814",
+            "distinct_games": 10,
+            "distinct_positions": 43,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_800",
+            "distinct_games": 3,
+            "distinct_positions": 41,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_777",
+            "distinct_games": 7,
+            "distinct_positions": 41,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_RLK_814",
+            "distinct_games": 7,
+            "distinct_positions": 40,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_856",
+            "distinct_games": 5,
+            "distinct_positions": 39,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_585",
+            "distinct_games": 2,
+            "distinct_positions": 38,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CAP_107",
+            "distinct_games": 6,
+            "distinct_positions": 37,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_511",
+            "distinct_games": 3,
+            "distinct_positions": 34,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "CATA_725t",
+            "distinct_games": 3,
+            "distinct_positions": 33,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_817",
+            "distinct_games": 33,
+            "distinct_positions": 33,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND",
+              "UNSUPPORTED_CARD_WEAPON"
+            ],
+            "card_id": "JAIL_730",
+            "distinct_games": 2,
+            "distinct_positions": 32,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND",
+              "UNSUPPORTED_CARD_WEAPON"
+            ],
+            "card_id": "CAP_103",
+            "distinct_games": 3,
+            "distinct_positions": 31,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          }
+        ],
+        "listed_min_games": 2,
+        "unlisted_distinct_card_ids": 276
+      },
+      "visible_fields_sufficient_by_subsystem": {
+        "BOARD": {
+          "percent": 13.72,
+          "positions": 185
+        },
+        "DECK": {
+          "percent": 0.3,
+          "positions": 4
+        },
+        "EFFECTS": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "GAME_TURN": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HAND": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HERO": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HERO_POWER": {
+          "percent": 78.71,
+          "positions": 1061
+        },
+        "INTEGRITY": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "LOCATION": {
+          "percent": 31.08,
+          "positions": 419
+        },
+        "PENDING_CHOICE": {
+          "percent": 100.0,
+          "positions": 1348
+        },
+        "SECRET": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "WEAPON": {
+          "percent": 100.0,
+          "positions": 1348
+        }
+      }
+    }
+  },
+  "interpretation": "Positions from one game are correlated; the game is the independent unit. Percentages over positions are not additive across overlapping blocker categories. Nothing here is a rules, training or hydration admission.",
+  "native_state_contract": {
+    "minion_keywords": [
+      "rush",
+      "charge",
+      "taunt",
+      "divine_shield",
+      "lifesteal",
+      "stealth",
+      "silenced",
+      "immune",
+      "frozen",
+      "reborn"
+    ],
+    "missing": [
+      "location_zone",
+      "windfury",
+      "poisonous",
+      "dormant",
+      "targeting_restrictions",
+      "hero_divine_shield",
+      "hero_power_cost_modifier",
+      "hero_power_extra_use",
+      "imbue",
+      "quests",
+      "from_state_constructor"
+    ],
+    "player_fields": [
+      "player_class",
+      "hero_power_id",
+      "hero_health",
+      "hero_max_health",
+      "healing_bonus",
+      "armor",
+      "hero_attack",
+      "hero_temp_attack",
+      "spells_cast_this_turn",
+      "spell_discount",
+      "demon_discount",
+      "overloaded_mana",
+      "pending_overload",
+      "hero_attacked",
+      "hero_power_used_this_turn",
+      "hero_frozen"
+    ]
+  },
+  "primary_corpus_by_self_hero_power_status": {
+    "IMBUE_UNSUPPORTED": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 968
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 968
+        },
+        "missing_native_state": {
+          "percent": 95.45,
+          "positions": 924
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 968
+        },
+        "rule_unresolved": {
+          "percent": 39.15,
+          "positions": 379
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 968
+        },
+        "unsupported_mechanic": {
+          "percent": 100.0,
+          "positions": 968
+        }
+      },
+      "decision_positions": 968,
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 74.79,
+          "positions": 724
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 25.21,
+          "positions": 244
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 100.0,
+          "positions": 968
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "top6_blockers_below_universal": [
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 27,
+          "distinct_positions": 962,
+          "percent_positions": 99.38,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+          "distinct_games": 27,
+          "distinct_positions": 962,
+          "percent_positions": 99.38,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_SELF_HAND",
+          "distinct_games": 27,
+          "distinct_positions": 962,
+          "percent_positions": 99.38,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 27,
+          "distinct_positions": 869,
+          "percent_positions": 89.77,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 27,
+          "distinct_positions": 866,
+          "percent_positions": 89.46,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+          "distinct_games": 27,
+          "distinct_positions": 852,
+          "percent_positions": 88.02,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "unique_games": 27
+    },
+    "PROVEN_SUPPORTED_BASE": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "missing_native_state": {
+          "percent": 59.26,
+          "positions": 32
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "rule_unresolved": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "unsupported_mechanic": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "decision_positions": 54,
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 75.93,
+          "positions": 41
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 24.07,
+          "positions": 13
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 100.0,
+          "positions": 54
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "top6_blockers_below_universal": [
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 2,
+          "distinct_positions": 51,
+          "percent_positions": 94.44,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 2,
+          "distinct_positions": 49,
+          "percent_positions": 90.74,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 2,
+          "distinct_positions": 42,
+          "percent_positions": 77.78,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_POWER_READINESS_UNKNOWN",
+          "distinct_games": 2,
+          "distinct_positions": 41,
+          "percent_positions": 75.93,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+          "distinct_games": 2,
+          "distinct_positions": 20,
+          "percent_positions": 37.04,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+          "distinct_games": 1,
+          "distinct_positions": 20,
+          "percent_positions": 37.04,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        }
+      ],
+      "unique_games": 2
+    },
+    "UNREVIEWED_IDENTITY": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "missing_native_state": {
+          "percent": 71.22,
+          "positions": 146
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "rule_unresolved": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "unsupported_mechanic": {
+          "percent": 15.61,
+          "positions": 32
+        }
+      },
+      "decision_positions": 205,
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 57.07,
+          "positions": 117
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 42.93,
+          "positions": 88
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 100.0,
+          "positions": 205
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "top6_blockers_below_universal": [
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_SELF_HAND",
+          "distinct_games": 30,
+          "distinct_positions": 201,
+          "percent_positions": 98.05,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 24,
+          "distinct_positions": 163,
+          "percent_positions": 79.51,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_POWER_READINESS_UNKNOWN",
+          "distinct_games": 30,
+          "distinct_positions": 155,
+          "percent_positions": 75.61,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+          "distinct_games": 29,
+          "distinct_positions": 154,
+          "percent_positions": 75.12,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 23,
+          "distinct_positions": 130,
+          "percent_positions": 63.41,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 24,
+          "distinct_positions": 104,
+          "percent_positions": 50.73,
+          "recommended_resolution": "CARD_DECLARATION"
+        }
+      ],
+      "unique_games": 30
+    }
+  },
+  "primary_sample": {
+    "composition": {
+      "board_bucket": {
+        "B0": 13,
+        "B1-2": 15,
+        "B3-4": 11,
+        "B5+": 9
+      },
+      "chosen_action": {
+        "ACTIVATE_LOCATION": 7,
+        "ATTACK": 11,
+        "END_TURN": 11,
+        "HERO_POWER": 9,
+        "PLAY_CARD": 10
+      },
+      "distinct_games": 32,
+      "max_positions_from_one_game": 2,
+      "opponent_class": {
+        "DEATHKNIGHT": 2,
+        "DEMONHUNTER": 4,
+        "DRUID": 2,
+        "HUNTER": 4,
+        "MAGE": 2,
+        "PALADIN": 6,
+        "PRIEST": 11,
+        "ROGUE": 4,
+        "SHAMAN": 2,
+        "WARLOCK": 5,
+        "WARRIOR": 6
+      },
+      "positions": 48,
+      "self_hero_power": {
+        "EDR_449p": 22,
+        "HERO_01bp": 4,
+        "HERO_01dbp": 2,
+        "HERO_09dbp": 20
+      },
+      "turn_bucket": {
+        "T1-3": 10,
+        "T10+": 16,
+        "T4-6": 10,
+        "T7-9": 12
+      },
+      "turn_range": [
+        1,
+        41
+      ]
+    },
+    "metrics": {
+      "blocked_by": {
+        "hidden_information": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "inconsistent_source": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "missing_in_game_state_contract": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "missing_native_state": {
+          "percent": 62.5,
+          "positions": 30
+        },
+        "observable_but_unknown_field": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "rule_unresolved": {
+          "percent": 81.25,
+          "positions": 39
+        },
+        "unsupported_card": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "unsupported_mechanic": {
+          "percent": 54.17,
+          "positions": 26
+        }
+      },
+      "categories": {
+        "NOT_REPRESENTED": {
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0
+        },
+        "RULE_UNRESOLVED": {
+          "distinct_games": 25,
+          "distinct_positions": 39,
+          "percent_positions": 81.25
+        },
+        "UNKNOWN": {
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_CARD": {
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0
+        },
+        "UNSUPPORTED_MECHANIC": {
+          "distinct_games": 23,
+          "distinct_positions": 26,
+          "percent_positions": 54.17
+        }
+      },
+      "cumulative_resolution_effect": [
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+              "positions": 48
+            },
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 47
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 39
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 35
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 32
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 47
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 39
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 35
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 32
+            },
+            {
+              "code": "HERO_POWER_IMBUE",
+              "positions": 22
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE"
+          ],
+          "percent": 0.0,
+          "positions_with_no_remaining_non_hidden_blocker": 0,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "UNSUPPORTED_CARD_SELF_HAND",
+              "positions": 47
+            },
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 39
+            },
+            {
+              "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+              "positions": 35
+            },
+            {
+              "code": "UNSUPPORTED_CARD_BOARD",
+              "positions": 32
+            },
+            {
+              "code": "UNSUPPORTED_CARD_LOCATION",
+              "positions": 21
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION"
+          ],
+          "percent": 18.75,
+          "positions_with_no_remaining_non_hidden_blocker": 9,
+          "top_remaining_codes_by_position_count": [
+            {
+              "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+              "positions": 39
+            }
+          ]
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 48,
+          "top_remaining_codes_by_position_count": []
+        },
+        {
+          "after_resolving": [
+            "OBSERVATION_EXTRACTION",
+            "IMPORT_CONTRACT",
+            "ENGINE_PRIMITIVE",
+            "CARD_DECLARATION",
+            "RULES_EVIDENCE",
+            "DEFER"
+          ],
+          "percent": 100.0,
+          "positions_with_no_remaining_non_hidden_blocker": 48,
+          "top_remaining_codes_by_position_count": []
+        }
+      ],
+      "decision_positions": 48,
+      "families": {
+        "ABSENT_TAG": 48,
+        "DECK": 48,
+        "HIDDEN": 48,
+        "IDENTITY": 39,
+        "NATIVE_LACKS": 24,
+        "NEVER_POPULATED": 48,
+        "PROVENANCE": 25,
+        "UNSUPPORTED": 48
+      },
+      "gate_funnel": [
+        {
+          "gate": "structurally_valid",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 48,
+          "positions_passing_this_gate_alone": 48
+        },
+        {
+          "gate": "no_inconsistent_blocker",
+          "percent_alone": 100.0,
+          "percent_so_far": 100.0,
+          "positions_passing_all_gates_so_far": 48,
+          "positions_passing_this_gate_alone": 48
+        },
+        {
+          "gate": "visible_fields_sufficient_and_represented",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_missing_native_state",
+          "percent_alone": 37.5,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 18
+        },
+        {
+          "gate": "no_unsupported_mechanic",
+          "percent_alone": 45.83,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 22
+        },
+        {
+          "gate": "no_unsupported_card",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        },
+        {
+          "gate": "no_unresolved_rule",
+          "percent_alone": 18.75,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 9
+        },
+        {
+          "gate": "no_hidden_information_gap",
+          "percent_alone": 0.0,
+          "percent_so_far": 0.0,
+          "positions_passing_all_gates_so_far": 0,
+          "positions_passing_this_gate_alone": 0
+        }
+      ],
+      "hero_power": {
+        "identities_by_seat": {
+          "OPPONENT": {
+            "<reviewed base power>": 9,
+            "CS1h_001_H1": 2,
+            "CS2_056_H2": 1,
+            "CS2_101_H3": 2,
+            "CS2_102_H1": 1,
+            "EDR_449p": 5,
+            "END_000p": 1,
+            "HERO_02azhp": 2,
+            "HERO_03bp": 2,
+            "HERO_03dbp": 1,
+            "HERO_04bp": 2,
+            "HERO_04fbp": 2,
+            "HERO_05dbp": 2,
+            "HERO_06bp": 2,
+            "HERO_07agbp": 1,
+            "HERO_07ebp": 3,
+            "HERO_08fbp": 2,
+            "HERO_09dbp": 2,
+            "HERO_10bchp": 2,
+            "HERO_10cbp": 2,
+            "HERO_11bp": 2
+          },
+          "SELF": {
+            "<reviewed base power>": 1,
+            "EDR_449p": 22,
+            "HERO_01bp": 3,
+            "HERO_01dbp": 2,
+            "HERO_09dbp": 20
+          }
+        },
+        "identity_missing_either_seat": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "not_proven_supported_either_seat": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "not_proven_supported_self": {
+          "percent": 91.67,
+          "positions": 44
+        },
+        "status_by_seat": {
+          "OPPONENT": {
+            "IMBUE_UNSUPPORTED": 5,
+            "PROVEN_SUPPORTED_BASE": 9,
+            "UNREVIEWED_IDENTITY": 34
+          },
+          "SELF": {
+            "IMBUE_UNSUPPORTED": 22,
+            "PROVEN_SUPPORTED_BASE": 4,
+            "UNREVIEWED_IDENTITY": 22
+          }
+        }
+      },
+      "limitation_axis_positions": {
+        "BOTH": {
+          "percent": 52.08,
+          "positions": 25
+        },
+        "NATIVE": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "RULES": {
+          "percent": 81.25,
+          "positions": 39
+        },
+        "SOURCE": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "SOURCE_HIDDEN_BY_DESIGN": {
+          "percent": 100.0,
+          "positions": 48
+        }
+      },
+      "next_action_assessment": {
+        "chosen_action_blocked_by_action_specific_blocker": {
+          "percent": 75.0,
+          "positions": 36
+        },
+        "chosen_action_blocked_only_by_whole_position_blockers": {
+          "percent": 25.0,
+          "positions": 12
+        },
+        "chosen_action_directly_blocked": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "chosen_action_no_direct_blocker_but_hydration_still_blocked": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "chosen_action_undetermined_only": {
+          "percent": 0.0,
+          "positions": 0
+        }
+      },
+      "ready_for_import_design": {
+        "native_hydration_possible_today": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "no_non_hidden_blocker": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "source_complete_visible_fields": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "valid_design_input_structurally_valid_and_consistent": {
+          "percent": 100.0,
+          "positions": 48
+        }
+      },
+      "resolution_demand": {
+        "CARD_DECLARATION": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 48
+        },
+        "ENGINE_PRIMITIVE": {
+          "distinct_blocker_codes": 5,
+          "percent": 70.83,
+          "positions": 34
+        },
+        "HIDDEN_INFORMATION_DESIGN": {
+          "distinct_blocker_codes": 5,
+          "percent": 100.0,
+          "positions": 48
+        },
+        "IMPORT_CONTRACT": {
+          "distinct_blocker_codes": 1,
+          "percent": 100.0,
+          "positions": 48
+        },
+        "OBSERVATION_EXTRACTION": {
+          "distinct_blocker_codes": 14,
+          "percent": 100.0,
+          "positions": 48
+        },
+        "RULES_EVIDENCE": {
+          "distinct_blocker_codes": 1,
+          "percent": 81.25,
+          "positions": 39
+        }
+      },
+      "structurally_valid": {
+        "percent": 100.0,
+        "positions": 48
+      },
+      "top10_blockers_below_universal_by_distinct_positions": [
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_SELF_HAND",
+          "distinct_games": 31,
+          "distinct_positions": 47,
+          "percent_positions": 97.92,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "RULE_UNRESOLVED",
+          "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+          "distinct_games": 25,
+          "distinct_positions": 39,
+          "percent_positions": 81.25,
+          "recommended_resolution": "RULES_EVIDENCE"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+          "distinct_games": 28,
+          "distinct_positions": 35,
+          "percent_positions": 72.92,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+          "distinct_games": 27,
+          "distinct_positions": 35,
+          "percent_positions": 72.92,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNSUPPORTED_CARD",
+          "code": "UNSUPPORTED_CARD_BOARD",
+          "distinct_games": 26,
+          "distinct_positions": 32,
+          "percent_positions": 66.67,
+          "recommended_resolution": "CARD_DECLARATION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+          "distinct_games": 24,
+          "distinct_positions": 32,
+          "percent_positions": 66.67,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_POWER_READINESS_UNKNOWN",
+          "distinct_games": 22,
+          "distinct_positions": 28,
+          "percent_positions": 58.33,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNSUPPORTED_MECHANIC",
+          "code": "HERO_POWER_IMBUE",
+          "distinct_games": 19,
+          "distinct_positions": 22,
+          "percent_positions": 45.83,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+          "distinct_games": 19,
+          "distinct_positions": 22,
+          "percent_positions": 45.83,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+          "distinct_games": 19,
+          "distinct_positions": 22,
+          "percent_positions": 45.83,
+          "recommended_resolution": "ENGINE_PRIMITIVE"
+        }
+      ],
+      "top10_blockers_by_distinct_games": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        }
+      ],
+      "top10_blockers_by_distinct_positions": [
+        {
+          "category": "UNKNOWN",
+          "code": "HEALING_BONUS_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "HERO_FREEZE_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "NOT_REPRESENTED",
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "MINION_TYPE_HISTORY_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "HIDDEN_INFORMATION_DESIGN"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "OBSERVATION_EXTRACTION"
+        },
+        {
+          "category": "UNKNOWN",
+          "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+          "distinct_games": 32,
+          "distinct_positions": 48,
+          "percent_positions": 100.0,
+          "recommended_resolution": "IMPORT_CONTRACT"
+        }
+      ],
+      "unique_games": 32,
+      "universal_blocker_count": 12,
+      "unsupported_cards": {
+        "listed": [
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_301",
+            "distinct_games": 17,
+            "distinct_positions": 22,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_EX1_197",
+            "distinct_games": 13,
+            "distinct_positions": 16,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_890",
+            "distinct_games": 13,
+            "distinct_positions": 15,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t2",
+            "distinct_games": 10,
+            "distinct_positions": 15,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "END_025",
+            "distinct_games": 11,
+            "distinct_positions": 14,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TIME_890t",
+            "distinct_games": 12,
+            "distinct_positions": 14,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_308",
+            "distinct_games": 10,
+            "distinct_positions": 13,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_970",
+            "distinct_games": 11,
+            "distinct_positions": 13,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "JAIL_913",
+            "distinct_games": 11,
+            "distinct_positions": 13,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_BAR_311",
+            "distinct_games": 9,
+            "distinct_positions": 11,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "EDR_449",
+            "distinct_games": 8,
+            "distinct_positions": 9,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_816",
+            "distinct_games": 6,
+            "distinct_positions": 8,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "DINO_COIN2",
+            "distinct_games": 5,
+            "distinct_positions": 7,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TLC_817",
+            "distinct_games": 7,
+            "distinct_positions": 7,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "TIME_432",
+            "distinct_games": 6,
+            "distinct_positions": 6,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_584",
+            "distinct_games": 3,
+            "distinct_positions": 5,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "FIR_939",
+            "distinct_games": 3,
+            "distinct_positions": 4,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "JAIL_EVENT_COIN",
+            "distinct_games": 4,
+            "distinct_positions": 4,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "CAP_107t",
+            "distinct_games": 2,
+            "distinct_positions": 3,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CATA_585",
+            "distinct_games": 2,
+            "distinct_positions": 3,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD"
+            ],
+            "card_id": "CORE_EX1_193",
+            "distinct_games": 2,
+            "distinct_positions": 3,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_LOCATION",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CORE_REV_990",
+            "distinct_games": 3,
+            "distinct_positions": 3,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_SELF_HAND",
+              "UNSUPPORTED_CARD_WEAPON"
+            ],
+            "card_id": "CAP_103",
+            "distinct_games": 2,
+            "distinct_positions": 2,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CAP_104",
+            "distinct_games": 2,
+            "distinct_positions": 2,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_BOARD",
+              "UNSUPPORTED_CARD_SELF_HAND"
+            ],
+            "card_id": "CAP_107",
+            "distinct_games": 2,
+            "distinct_positions": 2,
+            "reasons": [
+              "UNDECLARED"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_817t5",
+            "distinct_games": 2,
+            "distinct_positions": 2,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          },
+          {
+            "blocker_codes": [
+              "UNSUPPORTED_CARD_NOT_IN_CATALOG"
+            ],
+            "card_id": "TLC_903t",
+            "distinct_games": 2,
+            "distinct_positions": 2,
+            "reasons": [
+              "NOT_IN_CATALOG"
+            ]
+          }
+        ],
+        "listed_min_games": 2,
+        "unlisted_distinct_card_ids": 75
+      },
+      "visible_fields_sufficient_by_subsystem": {
+        "BOARD": {
+          "percent": 27.08,
+          "positions": 13
+        },
+        "DECK": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "EFFECTS": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "GAME_TURN": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HAND": {
+          "percent": 66.67,
+          "positions": 32
+        },
+        "HERO": {
+          "percent": 0.0,
+          "positions": 0
+        },
+        "HERO_POWER": {
+          "percent": 41.67,
+          "positions": 20
+        },
+        "INTEGRITY": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "LOCATION": {
+          "percent": 54.17,
+          "positions": 26
+        },
+        "PENDING_CHOICE": {
+          "percent": 100.0,
+          "positions": 48
+        },
+        "SECRET": {
+          "percent": 33.33,
+          "positions": 16
+        },
+        "WEAPON": {
+          "percent": 100.0,
+          "positions": 48
+        }
+      }
+    },
+    "source_kind": "POLICY_DECISION"
+  },
+  "sample_size_requested": 48,
+  "schema": "manamind.state_import0.coverage/1",
+  "seed": 20261008
+}

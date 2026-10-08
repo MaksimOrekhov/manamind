@@ -1,0 +1,4400 @@
+{
+  "analyzer_version": "state-import-0/1",
+  "catalog": {
+    "ACTIVE_EFFECT_NOT_REPRESENTED": {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "description": "A visible player enchantment has no reviewed native mapping.",
+      "family": "CONTRACT",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "IMPORT_CONTRACT",
+      "subsystem": "EFFECTS"
+    },
+    "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED": {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "description": "A SELF hand card's current cost/stats differ from base without a modifier source.",
+      "family": "PROVENANCE",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HAND"
+    },
+    "HEALING_BONUS_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "The persistent healing bonus is unknown (never populated by the extractor); 0 would be a known value.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    "HERO_ATTACK_READINESS_NOT_REPRESENTED": {
+      "axis": "SOURCE",
+      "category": "NOT_REPRESENTED",
+      "description": "Hero attack > 0 but GameState has no hero attacked-this-turn/readiness flag.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    "HERO_DIVINE_SHIELD_NOT_NATIVE": {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "description": "The hero has Divine Shield; the native player state has no such field.",
+      "family": "NATIVE_LACKS",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO"
+    },
+    "HERO_DIVINE_SHIELD_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "hero_divine_shield is None because the DIVINE_SHIELD tag is absent.",
+      "family": "ABSENT_TAG",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    "HERO_FREEZE_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Hero frozen state and freeze duration are never populated by the extractor.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    "HERO_HEALTH_EXCEEDS_NATIVE_MAX": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_MECHANIC",
+      "description": "Hero Health is above the native fixed maximum of 30; the healing pipeline would use the wrong cap.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO"
+    },
+    "HERO_MAX_HEALTH_NOT_REPRESENTED": {
+      "axis": "SOURCE",
+      "category": "NOT_REPRESENTED",
+      "description": "GameState has no hero maximum Health; the extractor reads the HEALTH tag only to compute current Health.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    "HERO_POWER_COST_MODIFIED": {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "description": "Current Hero Power cost differs from the printed cost; the engine has no cost-modifier state.",
+      "family": "NATIVE_LACKS",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_COST_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "The current Hero Power cost is missing.",
+      "family": "IDENTITY",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_IDENTITY_UNREVIEWED": {
+      "axis": "RULES",
+      "category": "RULE_UNRESOLVED",
+      "description": "The Hero Power identity is observed but appears in no local metadata; its semantics are not established and it is never aliased to the base power.",
+      "family": "IDENTITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "RULES_EVIDENCE",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_ID_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "The current Hero Power identity is missing; the class never proves it.",
+      "family": "IDENTITY",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_IMBUE": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_MECHANIC",
+      "description": "The current Hero Power is a documented Imbue power; Imbue is not implemented.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_READINESS_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "hero_power_ready is None because the EXHAUSTED tag is absent from the log entity.",
+      "family": "ABSENT_TAG",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO_POWER"
+    },
+    "HERO_POWER_UNSUPPORTED": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "The observed Hero Power is described by metadata but is not a reviewed, executable declaration.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "HERO_POWER"
+    },
+    "INTEGRITY_BOARD_ORDER": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "Shared board slots are duplicated, gapped, out of range or listed out of order.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    "INTEGRITY_ENTITY_RANGE": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "A numeric value is outside its legal range (health, mana, hand size, turn).",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "INTEGRITY"
+    },
+    "INTEGRITY_EVIDENCE_DEBT_IN_VISIBLE_STATE": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "A real visible state carries simulator evidence constraints, which only the simulator produces.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "DEFER",
+      "subsystem": "INTEGRITY"
+    },
+    "INTEGRITY_FIELD_MISSING": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "A required top-level field is absent.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "INTEGRITY"
+    },
+    "INTEGRITY_OPPONENT_IDENTITY_EXPOSED": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "Opponent hand identities appear under an opponent_identity_policy of none.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "DEFER",
+      "subsystem": "INTEGRITY"
+    },
+    "INTEGRITY_STATE_REJECTED": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "GameState invariants reject this snapshot.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "INTEGRITY"
+    },
+    "INTEGRITY_TRUST": {
+      "axis": "SOURCE",
+      "category": "INCONSISTENT",
+      "description": "The snapshot's trust metadata violates the live-capture contract.",
+      "family": "INTEGRITY",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "DEFER",
+      "subsystem": "INTEGRITY"
+    },
+    "LOCATION_ACTIVATION_STATE_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "can_activate is never populated for a Location; only the cooldown flag is extracted.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "LOCATION"
+    },
+    "LOCATION_NOT_REPRESENTED_NATIVE": {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "description": "A Location occupies a shared board slot; the native state has no Location zone or activation.",
+      "family": "NATIVE_LACKS",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "LOCATION"
+    },
+    "MINION_KEYWORD_NOT_NATIVE": {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "description": "A board minion has Windfury, Poisonous or Dormant; the native minion state has no such field.",
+      "family": "NATIVE_LACKS",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "BOARD"
+    },
+    "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED": {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "description": "Current stats differ from base; GameState carries no enchantment list, durations or aura/permanent split.",
+      "family": "PROVENANCE",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    "MINION_TARGETING_FLAGS_UNOBSERVED": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "cant_be_targeted_* is None when the tag is absent; absence is not proven False.",
+      "family": "ABSENT_TAG",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    "MINION_TARGETING_RESTRICTION_NOT_NATIVE": {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "description": "A minion cannot be targeted by spells/Hero Powers; native targeting has no such restriction.",
+      "family": "NATIVE_LACKS",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "BOARD"
+    },
+    "MINION_TYPE_HISTORY_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Current/previous own-turn minion-type history is never populated by the extractor.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "GAME_TURN"
+    },
+    "OPPONENT_DECK_COMPOSITION_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Opponent deck contents are hidden.",
+      "family": "HIDDEN",
+      "nature": "INHERENTLY_HIDDEN",
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    "OPPONENT_DECK_ORDER_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Opponent deck order is hidden.",
+      "family": "HIDDEN",
+      "nature": "INHERENTLY_HIDDEN",
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    "OPPONENT_HAND_IDENTITIES_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Opponent hand cards have no visible identity (hand_size minus revealed cards).",
+      "family": "HIDDEN",
+      "nature": "INHERENTLY_HIDDEN",
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "HAND"
+    },
+    "OPPONENT_SECRET_IDENTITIES_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Opponent Secrets are hidden; any action may trigger one.",
+      "family": "HIDDEN",
+      "nature": "INHERENTLY_HIDDEN",
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "SECRET"
+    },
+    "PENDING_CHOICE_CONTINUATION_NOT_REPRESENTED": {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "description": "A pending choice is visible but its source card and continuation are not part of GameState.",
+      "family": "CONTRACT",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "IMPORT_CONTRACT",
+      "subsystem": "PENDING_CHOICE"
+    },
+    "PLAYER_EFFECTS_NOT_EXTRACTED": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Player-level enchantments (active_effects, spell_damage) are never extracted, so an empty list/0 is a default, not knowledge.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "EFFECTS"
+    },
+    "SECRET_COUNT_NOT_EXTRACTED": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "The source profile never extracts secret_count, so the stored 0 is a default, not knowledge.",
+      "family": "PROVENANCE",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "SECRET"
+    },
+    "SELF_DECK_COMPOSITION_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "SELF deck contents are not in the visible state; a decklist input would have to be part of the import contract.",
+      "family": "DECK",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "IMPORT_CONTRACT",
+      "subsystem": "DECK"
+    },
+    "SELF_DECK_ORDER_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "SELF deck order is hidden; a draw needs a determinization design.",
+      "family": "HIDDEN",
+      "nature": "INHERENTLY_HIDDEN",
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    "SELF_HAND_IDENTITIES_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Some SELF hand cards have no known identity.",
+      "family": "IDENTITY",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HAND"
+    },
+    "SELF_HAND_ORDER_UNPROVEN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "The source orders the SELF hand by entity table, not by on-screen zone position.",
+      "family": "PROVENANCE",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HAND"
+    },
+    "SELF_SECRET_IDENTITIES_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "SELF has entities in the SECRET zone whose identities are not extracted (known_secrets is never populated); the zone is not limited to Secrets.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "SECRET"
+    },
+    "SOURCE_FIELD_ABSENT": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "A legacy numeric field is absent from the raw snapshot; absence is not zero.",
+      "family": "LEGACY_SCHEMA",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "GAME_TURN"
+    },
+    "SPELL_DAMAGE_UNOBSERVED": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "A Spell Damage minion is on board but its amount is not extracted (current_spell_damage is None).",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    "TURN_COUNTERS_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Spells cast this turn / spell or Demon discounts are never populated by the extractor.",
+      "family": "NEVER_POPULATED",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "GAME_TURN"
+    },
+    "UNSUPPORTED_CARD_BOARD": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "An unsupported minion is on the board; its triggers/auras cannot be executed.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "BOARD"
+    },
+    "UNSUPPORTED_CARD_LOCATION": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "A Location card has no executable declaration.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "LOCATION"
+    },
+    "UNSUPPORTED_CARD_NOT_IN_CATALOG": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "A visible card ID is absent from the engine catalog and every local metadata source.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "CARD_CAPABILITY"
+    },
+    "UNSUPPORTED_CARD_OPPONENT_REVEALED": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "A revealed opponent card has no executable declaration.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "HAND"
+    },
+    "UNSUPPORTED_CARD_SECRET": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "A known SELF Secret has no executable declaration.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "SECRET"
+    },
+    "UNSUPPORTED_CARD_SELF_HAND": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "An unsupported card is in the active SELF hand; native legal-action enumeration throws.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "HAND"
+    },
+    "UNSUPPORTED_CARD_WEAPON": {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "description": "An equipped weapon has no executable declaration.",
+      "family": "UNSUPPORTED",
+      "nature": "NOT_APPLICABLE",
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "WEAPON"
+    },
+    "WEAPON_STATE_UNKNOWN": {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "description": "Current weapon attack or durability is missing.",
+      "family": "IDENTITY",
+      "nature": "OBSERVABLE",
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "WEAPON"
+    }
+  },
+  "full_corpus_rankings": {
+    "LIVE_SNAPSHOT": [
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HEALING_BONUS_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_FREEZE_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TYPE_HISTORY_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "EFFECTS"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "DECK",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "IMPORT_CONTRACT",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_ORDER_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "TURN_COUNTERS_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 635,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 635
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 635
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 635
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_SELF_HAND",
+        "distinct_games": 12,
+        "distinct_positions": 628,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 628
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 628
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 628
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 628
+        },
+        "percent_positions": 98.9,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+        "distinct_games": 12,
+        "distinct_positions": 588,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 588
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 588
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 588
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 588
+        },
+        "percent_positions": 92.6,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "CARD_CAPABILITY"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 554,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 554
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 554
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 554
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 554
+        },
+        "percent_positions": 87.24,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "SECRET"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_POWER_IMBUE",
+        "distinct_games": 11,
+        "distinct_positions": 553,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 553
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 553
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 553
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 553
+        },
+        "percent_positions": 87.09,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+        "distinct_games": 12,
+        "distinct_positions": 528,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 528
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 528
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 528
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 528
+        },
+        "percent_positions": 83.15,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_BOARD",
+        "distinct_games": 12,
+        "distinct_positions": 490,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 490
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 490
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 490
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 490
+        },
+        "percent_positions": 77.17,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 464,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 464
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 464
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 464
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 464
+        },
+        "percent_positions": 73.07,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+        "distinct_games": 12,
+        "distinct_positions": 464,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 464
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 464
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 464
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 464
+        },
+        "percent_positions": 73.07,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_LOCATION",
+        "distinct_games": 11,
+        "distinct_positions": 448,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 448
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 448
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 448
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 448
+        },
+        "percent_positions": 70.55,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 12,
+        "distinct_positions": 444,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 444
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 444
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 444
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 444
+        },
+        "percent_positions": 69.92,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "RULES",
+        "category": "RULE_UNRESOLVED",
+        "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+        "distinct_games": 12,
+        "distinct_positions": 298,
+        "family": "IDENTITY",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 298
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 298
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 298
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 298
+        },
+        "percent_positions": 46.93,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "RULES_EVIDENCE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_HEALTH_EXCEEDS_NATIVE_MAX",
+        "distinct_games": 4,
+        "distinct_positions": 280,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 280
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 280
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 280
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 280
+        },
+        "percent_positions": 44.09,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 12,
+        "distinct_positions": 198,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 198
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 198
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 198
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 198
+        },
+        "percent_positions": 31.18,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_SECRET_IDENTITIES_UNKNOWN",
+        "distinct_games": 3,
+        "distinct_positions": 141,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 141
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 141
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 141
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 141
+        },
+        "percent_positions": 22.2,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "SECRET"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_POWER_READINESS_UNKNOWN",
+        "distinct_games": 12,
+        "distinct_positions": 123,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 123
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 123
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 123
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 123
+        },
+        "percent_positions": 19.37,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_ATTACK_READINESS_NOT_REPRESENTED",
+        "distinct_games": 7,
+        "distinct_positions": 99,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 99
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 99
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 99
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 99
+        },
+        "percent_positions": 15.59,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_TARGETING_RESTRICTION_NOT_NATIVE",
+        "distinct_games": 7,
+        "distinct_positions": 28,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 28
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 28
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 28
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 28
+        },
+        "percent_positions": 4.41,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_WEAPON",
+        "distinct_games": 3,
+        "distinct_positions": 28,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 28
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 28
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 28
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 28
+        },
+        "percent_positions": 4.41,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "WEAPON"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_KEYWORD_NOT_NATIVE",
+        "distinct_games": 4,
+        "distinct_positions": 21,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+            "positions": 21
+          },
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 21
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 21
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 21
+        },
+        "percent_positions": 3.31,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SPELL_DAMAGE_UNOBSERVED",
+        "distinct_games": 1,
+        "distinct_positions": 5,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+            "positions": 5
+          },
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 5
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 5
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 5
+        },
+        "percent_positions": 0.79,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      }
+    ],
+    "POLICY_DECISION": [
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HEALING_BONUS_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 385,
+          "NOT_INVOLVED": 70,
+          "UNDETERMINED": 772
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_FREEZE_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TYPE_HISTORY_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "BLOCKS": 315,
+          "NOT_INVOLVED": 912
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "EFFECTS"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "TURN_COUNTERS_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1227,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1227
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1227
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1227
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1224,
+        "family": "DECK",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1224
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1224
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1224
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 321,
+          "NOT_INVOLVED": 132,
+          "UNDETERMINED": 771
+        },
+        "percent_positions": 99.76,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "IMPORT_CONTRACT",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_ORDER_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1224,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1224
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1224
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1224
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "BLOCKS": 321,
+          "NOT_INVOLVED": 132,
+          "UNDETERMINED": 771
+        },
+        "percent_positions": 99.76,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1221,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1221
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1221
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1221
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "BLOCKS": 315,
+          "NOT_INVOLVED": 906
+        },
+        "percent_positions": 99.51,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 1221,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1221
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1221
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1221
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "BLOCKS": 315,
+          "NOT_INVOLVED": 906
+        },
+        "percent_positions": 99.51,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_SELF_HAND",
+        "distinct_games": 32,
+        "distinct_positions": 1217,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1217
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1217
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1217
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1217
+        },
+        "percent_positions": 99.19,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+        "distinct_games": 32,
+        "distinct_positions": 1074,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1074
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1074
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1074
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 349,
+          "UNDETERMINED": 725
+        },
+        "percent_positions": 87.53,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "CARD_CAPABILITY"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+        "distinct_games": 32,
+        "distinct_positions": 1047,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1047
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1047
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1047
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1047
+        },
+        "percent_positions": 85.33,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+        "distinct_games": 29,
+        "distinct_positions": 1006,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1006
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1006
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1006
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 1006
+        },
+        "percent_positions": 81.99,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "SECRET"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_BOARD",
+        "distinct_games": 32,
+        "distinct_positions": 987,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 987
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 987
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 987
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 453,
+          "UNDETERMINED": 534
+        },
+        "percent_positions": 80.44,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_POWER_IMBUE",
+        "distinct_games": 27,
+        "distinct_positions": 979,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 979
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 979
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 979
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 979
+        },
+        "percent_positions": 79.79,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 32,
+        "distinct_positions": 863,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 863
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 863
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 863
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 194,
+          "NOT_INVOLVED": 669
+        },
+        "percent_positions": 70.33,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+        "distinct_games": 31,
+        "distinct_positions": 818,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 818
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 818
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 818
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 251,
+          "NOT_INVOLVED": 567
+        },
+        "percent_positions": 66.67,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+        "distinct_games": 31,
+        "distinct_positions": 818,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 818
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 818
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 818
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 818
+        },
+        "percent_positions": 66.67,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_LOCATION",
+        "distinct_games": 28,
+        "distinct_positions": 790,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 790
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 790
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 790
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 232,
+          "UNDETERMINED": 558
+        },
+        "percent_positions": 64.38,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "RULES",
+        "category": "RULE_UNRESOLVED",
+        "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+        "distinct_games": 32,
+        "distinct_positions": 638,
+        "family": "IDENTITY",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 638
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 638
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 638
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 638
+        },
+        "percent_positions": 52.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "RULES_EVIDENCE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 32,
+        "distinct_positions": 419,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 419
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 419
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 419
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 185,
+          "NOT_INVOLVED": 234
+        },
+        "percent_positions": 34.15,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_HEALTH_EXCEEDS_NATIVE_MAX",
+        "distinct_games": 8,
+        "distinct_positions": 342,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 342
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 342
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 342
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 342
+        },
+        "percent_positions": 27.87,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_SECRET_IDENTITIES_UNKNOWN",
+        "distinct_games": 11,
+        "distinct_positions": 334,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 334
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 334
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 334
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "BLOCKS": 334
+        },
+        "percent_positions": 27.22,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "SECRET"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_ATTACK_READINESS_NOT_REPRESENTED",
+        "distinct_games": 18,
+        "distinct_positions": 283,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 283
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 283
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 283
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 13,
+          "NOT_INVOLVED": 270
+        },
+        "percent_positions": 23.06,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_POWER_READINESS_UNKNOWN",
+        "distinct_games": 32,
+        "distinct_positions": 281,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 281
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 281
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 281
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 25,
+          "NOT_INVOLVED": 256
+        },
+        "percent_positions": 22.9,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_WEAPON",
+        "distinct_games": 9,
+        "distinct_positions": 77,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 77
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 77
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 77
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 25,
+          "UNDETERMINED": 52
+        },
+        "percent_positions": 6.28,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "WEAPON"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_TARGETING_RESTRICTION_NOT_NATIVE",
+        "distinct_games": 13,
+        "distinct_positions": 73,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 73
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 73
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 73
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 21,
+          "NOT_INVOLVED": 52
+        },
+        "percent_positions": 5.95,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_KEYWORD_NOT_NATIVE",
+        "distinct_games": 9,
+        "distinct_positions": 59,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 59
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 59
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 59
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 17,
+          "NOT_INVOLVED": 42
+        },
+        "percent_positions": 4.81,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_DIVINE_SHIELD_NOT_NATIVE",
+        "distinct_games": 1,
+        "distinct_positions": 3,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+            "positions": 3
+          },
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 3
+          },
+          {
+            "code": "HERO_ATTACK_READINESS_NOT_REPRESENTED",
+            "positions": 3
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "BLOCKS": 3
+        },
+        "percent_positions": 0.24,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SPELL_DAMAGE_UNOBSERVED",
+        "distinct_games": 1,
+        "distinct_positions": 1,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+            "positions": 1
+          },
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "UNDETERMINED": 1
+        },
+        "percent_positions": 0.08,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      }
+    ],
+    "VALUE_EXAMPLE": [
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HEALING_BONUS_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_FREEZE_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TYPE_HISTORY_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "EFFECTS"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SECRET_COUNT_NOT_EXTRACTED",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "SECRET"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_HAND_ORDER_UNPROVEN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "TURN_COUNTERS_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1348,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1348
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1348
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1348
+        },
+        "percent_positions": 100.0,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "GAME_TURN"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1344,
+        "family": "DECK",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1344
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1344
+        },
+        "percent_positions": 99.7,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "IMPORT_CONTRACT",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SELF_DECK_ORDER_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1344,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1344
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1344
+        },
+        "percent_positions": 99.7,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_SELF_HAND",
+        "distinct_games": 36,
+        "distinct_positions": 1344,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1344
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1344
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1344
+        },
+        "percent_positions": 99.7,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1342,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1342
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1342
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1342
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1342
+        },
+        "percent_positions": 99.55,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 1342,
+        "family": "HIDDEN",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1342
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1342
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1342
+          }
+        ],
+        "nature": "INHERENTLY_HIDDEN",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1342
+        },
+        "percent_positions": 99.55,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+        "subsystem": "DECK"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+        "distinct_games": 36,
+        "distinct_positions": 1191,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1191
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1191
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1191
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1191
+        },
+        "percent_positions": 88.35,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "CARD_CAPABILITY"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+        "distinct_games": 36,
+        "distinct_positions": 1161,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1161
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1161
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1161
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1161
+        },
+        "percent_positions": 86.13,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_POWER_IMBUE",
+        "distinct_games": 31,
+        "distinct_positions": 1097,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1097
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1097
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1097
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1097
+        },
+        "percent_positions": 81.38,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_BOARD",
+        "distinct_games": 36,
+        "distinct_positions": 1093,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 1093
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 1093
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 1093
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 1093
+        },
+        "percent_positions": 81.08,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+        "distinct_games": 35,
+        "distinct_positions": 929,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 929
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 929
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 929
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 929
+        },
+        "percent_positions": 68.92,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+        "distinct_games": 35,
+        "distinct_positions": 929,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 929
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 929
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 929
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 929
+        },
+        "percent_positions": 68.92,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_LOCATION",
+        "distinct_games": 32,
+        "distinct_positions": 900,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 900
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 900
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 900
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 900
+        },
+        "percent_positions": 66.77,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "LOCATION"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 36,
+        "distinct_positions": 894,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 894
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 894
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 894
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 894
+        },
+        "percent_positions": 66.32,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HAND"
+      },
+      {
+        "axis": "RULES",
+        "category": "RULE_UNRESOLVED",
+        "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+        "distinct_games": 36,
+        "distinct_positions": 784,
+        "family": "IDENTITY",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 784
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 784
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 784
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 784
+        },
+        "percent_positions": 58.16,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "RULES_EVIDENCE",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "BOTH",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+        "distinct_games": 36,
+        "distinct_positions": 465,
+        "family": "PROVENANCE",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 465
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 465
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 465
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 465
+        },
+        "percent_positions": 34.5,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_MECHANIC",
+        "code": "HERO_HEALTH_EXCEEDS_NATIVE_MAX",
+        "distinct_games": 8,
+        "distinct_positions": 336,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 336
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 336
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 336
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 336
+        },
+        "percent_positions": 24.93,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "HERO_POWER_READINESS_UNKNOWN",
+        "distinct_games": 36,
+        "distinct_positions": 287,
+        "family": "ABSENT_TAG",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 287
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 287
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 287
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 287
+        },
+        "percent_positions": 21.29,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO_POWER"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_ATTACK_READINESS_NOT_REPRESENTED",
+        "distinct_games": 18,
+        "distinct_positions": 284,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 284
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 284
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 284
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 284
+        },
+        "percent_positions": 21.07,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "UNSUPPORTED_CARD",
+        "code": "UNSUPPORTED_CARD_WEAPON",
+        "distinct_games": 12,
+        "distinct_positions": 155,
+        "family": "UNSUPPORTED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 155
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 155
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 155
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 155
+        },
+        "percent_positions": 11.5,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "CARD_DECLARATION",
+        "subsystem": "WEAPON"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_TARGETING_RESTRICTION_NOT_NATIVE",
+        "distinct_games": 15,
+        "distinct_positions": 76,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 76
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 76
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 76
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 76
+        },
+        "percent_positions": 5.64,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "MINION_KEYWORD_NOT_NATIVE",
+        "distinct_games": 9,
+        "distinct_positions": 53,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 53
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 53
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 53
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 53
+        },
+        "percent_positions": 3.93,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "BOARD"
+      },
+      {
+        "axis": "NATIVE",
+        "category": "NOT_REPRESENTED",
+        "code": "HERO_DIVINE_SHIELD_NOT_NATIVE",
+        "distinct_games": 2,
+        "distinct_positions": 16,
+        "family": "NATIVE_LACKS",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 16
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 16
+          },
+          {
+            "code": "HERO_FREEZE_UNKNOWN",
+            "positions": 16
+          }
+        ],
+        "nature": "NOT_APPLICABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 16
+        },
+        "percent_positions": 1.19,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "ENGINE_PRIMITIVE",
+        "subsystem": "HERO"
+      },
+      {
+        "axis": "SOURCE",
+        "category": "UNKNOWN",
+        "code": "SPELL_DAMAGE_UNOBSERVED",
+        "distinct_games": 1,
+        "distinct_positions": 4,
+        "family": "NEVER_POPULATED",
+        "most_frequent_co_blockers": [
+          {
+            "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+            "positions": 4
+          },
+          {
+            "code": "HEALING_BONUS_UNKNOWN",
+            "positions": 4
+          },
+          {
+            "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+            "positions": 4
+          }
+        ],
+        "nature": "OBSERVABLE",
+        "next_action_effect_positions": {
+          "NOT_ASSESSED": 4
+        },
+        "percent_positions": 0.3,
+        "positions_where_it_is_the_only_non_hidden_blocker": 0,
+        "recommended_resolution": "OBSERVATION_EXTRACTION",
+        "subsystem": "BOARD"
+      }
+    ]
+  },
+  "primary_sample_ranking": [
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "HEALING_BONUS_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 3,
+        "UNDETERMINED": 34
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "ABSENT_TAG",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "HERO_FREEZE_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "NOT_REPRESENTED",
+      "code": "HERO_MAX_HEALTH_NOT_REPRESENTED",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "MINION_TYPE_HISTORY_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "GAME_TURN"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "OPPONENT_DECK_COMPOSITION_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "HIDDEN",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "INHERENTLY_HIDDEN",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 37
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "OPPONENT_DECK_ORDER_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "HIDDEN",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "INHERENTLY_HIDDEN",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 37
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "OPPONENT_HAND_IDENTITIES_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "HIDDEN",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "INHERENTLY_HIDDEN",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 37
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "HAND"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "PLAYER_EFFECTS_NOT_EXTRACTED",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "EFFECTS"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "SELF_DECK_COMPOSITION_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "DECK",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 3,
+        "UNDETERMINED": 34
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "IMPORT_CONTRACT",
+      "subsystem": "DECK"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "SELF_DECK_ORDER_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "HIDDEN",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "INHERENTLY_HIDDEN",
+      "next_action_effect_positions": {
+        "BLOCKS": 11,
+        "NOT_INVOLVED": 3,
+        "UNDETERMINED": 34
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "DECK"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "TURN_COUNTERS_UNKNOWN",
+      "distinct_games": 32,
+      "distinct_positions": 48,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 48
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 48
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 48
+      },
+      "percent_positions": 100.0,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "GAME_TURN"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "code": "UNSUPPORTED_CARD_SELF_HAND",
+      "distinct_games": 31,
+      "distinct_positions": 47,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 47
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 47
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 47
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 47
+      },
+      "percent_positions": 97.92,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "HAND"
+    },
+    {
+      "axis": "RULES",
+      "category": "RULE_UNRESOLVED",
+      "code": "HERO_POWER_IDENTITY_UNREVIEWED",
+      "distinct_games": 25,
+      "distinct_positions": 39,
+      "family": "IDENTITY",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 39
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 39
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 39
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 39
+      },
+      "percent_positions": 81.25,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "RULES_EVIDENCE",
+      "subsystem": "HERO_POWER"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "MINION_TARGETING_FLAGS_UNOBSERVED",
+      "distinct_games": 28,
+      "distinct_positions": 35,
+      "family": "ABSENT_TAG",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 35
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 35
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 35
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 35
+      },
+      "percent_positions": 72.92,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "code": "UNSUPPORTED_CARD_NOT_IN_CATALOG",
+      "distinct_games": 27,
+      "distinct_positions": 35,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 35
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 35
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 35
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 8,
+        "UNDETERMINED": 27
+      },
+      "percent_positions": 72.92,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "CARD_CAPABILITY"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "code": "UNSUPPORTED_CARD_BOARD",
+      "distinct_games": 26,
+      "distinct_positions": 32,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 32
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 32
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 32
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 16,
+        "UNDETERMINED": 16
+      },
+      "percent_positions": 66.67,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "BOARD"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "SELF_SECRET_IDENTITIES_UNKNOWN",
+      "distinct_games": 24,
+      "distinct_positions": 32,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 32
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 32
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 32
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 32
+      },
+      "percent_positions": 66.67,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "SECRET"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "HERO_POWER_READINESS_UNKNOWN",
+      "distinct_games": 22,
+      "distinct_positions": 28,
+      "family": "ABSENT_TAG",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 28
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 28
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 28
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 6,
+        "NOT_INVOLVED": 22
+      },
+      "percent_positions": 58.33,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO_POWER"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_MECHANIC",
+      "code": "HERO_POWER_IMBUE",
+      "distinct_games": 19,
+      "distinct_positions": 22,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 22
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 22
+      },
+      "percent_positions": 45.83,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO_POWER"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "LOCATION_ACTIVATION_STATE_UNKNOWN",
+      "distinct_games": 19,
+      "distinct_positions": 22,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 22
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 10,
+        "NOT_INVOLVED": 12
+      },
+      "percent_positions": 45.83,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "LOCATION"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "code": "LOCATION_NOT_REPRESENTED_NATIVE",
+      "distinct_games": 19,
+      "distinct_positions": 22,
+      "family": "NATIVE_LACKS",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 22
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 22
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 22
+      },
+      "percent_positions": 45.83,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "LOCATION"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "code": "UNSUPPORTED_CARD_LOCATION",
+      "distinct_games": 18,
+      "distinct_positions": 21,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 21
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 21
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 21
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 9,
+        "UNDETERMINED": 12
+      },
+      "percent_positions": 43.75,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "LOCATION"
+    },
+    {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "code": "HAND_CARD_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+      "distinct_games": 14,
+      "distinct_positions": 16,
+      "family": "PROVENANCE",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 16
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 16
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 16
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "NOT_INVOLVED": 16
+      },
+      "percent_positions": 33.33,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HAND"
+    },
+    {
+      "axis": "BOTH",
+      "category": "NOT_REPRESENTED",
+      "code": "MINION_MODIFIER_PROVENANCE_NOT_REPRESENTED",
+      "distinct_games": 10,
+      "distinct_positions": 11,
+      "family": "PROVENANCE",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 11
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 11
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 11
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 4,
+        "NOT_INVOLVED": 7
+      },
+      "percent_positions": 22.92,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "BOARD"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "UNKNOWN",
+      "code": "OPPONENT_SECRET_IDENTITIES_UNKNOWN",
+      "distinct_games": 9,
+      "distinct_positions": 9,
+      "family": "HIDDEN",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 9
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 9
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 9
+        }
+      ],
+      "nature": "INHERENTLY_HIDDEN",
+      "next_action_effect_positions": {
+        "BLOCKS": 9
+      },
+      "percent_positions": 18.75,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "HIDDEN_INFORMATION_DESIGN",
+      "subsystem": "SECRET"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_MECHANIC",
+      "code": "HERO_HEALTH_EXCEEDS_NATIVE_MAX",
+      "distinct_games": 7,
+      "distinct_positions": 7,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 7
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 7
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 7
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 7
+      },
+      "percent_positions": 14.58,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "SOURCE",
+      "category": "NOT_REPRESENTED",
+      "code": "HERO_ATTACK_READINESS_NOT_REPRESENTED",
+      "distinct_games": 6,
+      "distinct_positions": 7,
+      "family": "NEVER_POPULATED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 7
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 7
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 7
+        }
+      ],
+      "nature": "OBSERVABLE",
+      "next_action_effect_positions": {
+        "NOT_INVOLVED": 7
+      },
+      "percent_positions": 14.58,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "OBSERVATION_EXTRACTION",
+      "subsystem": "HERO"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "code": "MINION_TARGETING_RESTRICTION_NOT_NATIVE",
+      "distinct_games": 4,
+      "distinct_positions": 4,
+      "family": "NATIVE_LACKS",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 4
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 4
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 4
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 1,
+        "NOT_INVOLVED": 3
+      },
+      "percent_positions": 8.33,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "BOARD"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "UNSUPPORTED_CARD",
+      "code": "UNSUPPORTED_CARD_WEAPON",
+      "distinct_games": 3,
+      "distinct_positions": 4,
+      "family": "UNSUPPORTED",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 4
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 4
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 4
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "UNDETERMINED": 4
+      },
+      "percent_positions": 8.33,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "CARD_DECLARATION",
+      "subsystem": "WEAPON"
+    },
+    {
+      "axis": "NATIVE",
+      "category": "NOT_REPRESENTED",
+      "code": "MINION_KEYWORD_NOT_NATIVE",
+      "distinct_games": 2,
+      "distinct_positions": 2,
+      "family": "NATIVE_LACKS",
+      "most_frequent_co_blockers": [
+        {
+          "code": "HEALING_BONUS_UNKNOWN",
+          "positions": 2
+        },
+        {
+          "code": "HERO_DIVINE_SHIELD_UNKNOWN",
+          "positions": 2
+        },
+        {
+          "code": "HERO_FREEZE_UNKNOWN",
+          "positions": 2
+        }
+      ],
+      "nature": "NOT_APPLICABLE",
+      "next_action_effect_positions": {
+        "BLOCKS": 1,
+        "NOT_INVOLVED": 1
+      },
+      "percent_positions": 4.17,
+      "positions_where_it_is_the_only_non_hidden_blocker": 0,
+      "recommended_resolution": "ENGINE_PRIMITIVE",
+      "subsystem": "BOARD"
+    }
+  ],
+  "schema": "manamind.state_import0.blockers/1"
+}
