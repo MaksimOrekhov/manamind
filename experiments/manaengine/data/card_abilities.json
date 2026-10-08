@@ -1245,6 +1245,69 @@
           "amount": 1
         }
       ]
+    },
+    "EDR_476": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $4 damage to all enemy characters. Restore #4 Health to all friendly characters.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_CHARACTERS",
+          "amount": 4
+        },
+        {
+          "kind": "HEAL",
+          "target": "ALL_FRIENDLY_CHARACTERS",
+          "amount": 4
+        }
+      ]
+    },
+    "CORE_CS1_112": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Deal $2 damage to all enemy minions. Restore #2 Health to all friendly characters.",
+      "effects": [
+        {
+          "kind": "DAMAGE",
+          "target": "ENEMY_MINIONS",
+          "amount": 2
+        },
+        {
+          "kind": "HEAL",
+          "target": "ALL_FRIENDLY_CHARACTERS",
+          "amount": 2
+        }
+      ]
+    },
+    "CORE_CFM_604": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Restore #12 Health to a friendly character. Draw a card.",
+      "effects": [
+        {
+          "kind": "HEAL",
+          "target": "EXPLICIT_FRIENDLY_CHARACTER",
+          "amount": 12
+        },
+        {
+          "kind": "DRAW",
+          "target": "SELF",
+          "amount": 1
+        }
+      ]
+    },
+    "CATA_216": {
+      "ability": "EFFECT_COMPOSITION",
+      "support_state": "SUPPORTED",
+      "reviewed_rules_text": "Battlecry: Your healing effects restore 2 more Health this game.",
+      "effects": [
+        {
+          "kind": "GRANT_HEALING_BONUS",
+          "target": "SELF",
+          "amount": 2
+        }
+      ]
     }
   }
 }

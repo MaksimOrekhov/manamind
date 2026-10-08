@@ -713,6 +713,15 @@
    ],
    "sites": 1,
    "value": 57
+  },
+  {
+   "code": "HEALING_BONUS_SCOPE_UNREVIEWED",
+   "classification": "RULE_UNRESOLVED",
+   "future_kind": "RuleUnresolved",
+   "rows": [],
+   "sites": 0,
+   "value": 58,
+   "added": "ENGINE-PRIMITIVE-1 (after the 4K.1b baseline): a healing controller with a bonus healing a character it does not control; raised by the shared healing pipeline"
   }
  ],
  "pybind_translation": [
@@ -10729,13 +10738,13 @@
    }
   ],
   "source_sha256": {
-   "include/manaengine/engine.hpp": "8b9c8a52146ec4d3d5aa6b81ff901d721ca0da97464bce03959a9727f8337c42",
-   "include/manaengine/failure.hpp": "4629af8d72a9fd7089db9125c244d8226dd8b295ff676b57f6d6f177c2ae48b9",
-   "src/damage_group.cpp": "42a8e03ced36e525bbe33cecd37de46c04d5da827fd15ec22f273508e33a0b3f",
-   "src/engine.cpp": "d6f1d789d40ffe3289bca14c1ab74c0c3740b5f033e718ba6a3e62c88a09ebdc",
-   "src/failure.cpp": "f8559a77747fb0b9ff0008f10c130d5fa981e76b929d7cc6db0d238db08b1a9d",
+   "include/manaengine/engine.hpp": "ec17718863de3aa38eead168aea45e97f10c6f79e3f29951f7a3483b27be95cc",
+   "include/manaengine/failure.hpp": "f0d6e3f890fa49e98f01c3a20c05945244a5370858cf0ab968a3c880b40e548f",
+   "src/damage_group.cpp": "66697d8cec713c24fbc49b72f51344648411d6fcd56530ae9b6a0315b08842db",
+   "src/engine.cpp": "7c658a62c82d21c4d0d0afd2799336d1517d92da133af7b7b8981e50efe8f435",
+   "src/failure.cpp": "c24c754da1cb4a068e527dac341abe32f7135591eb9fd06e94e856aacbaff600",
    "src/pool_manifest.cpp": "aa54beda7784f8c4bcbf7ca3eaae8044a6085137aedcb4010da9d409ef83d5b9",
-   "src/python_bindings.cpp": "c5409bcbc8a01023039b9df55ef020b97ae4184d85240ea59b500762d44c7f42"
+   "src/python_bindings.cpp": "a6f2fef470a3816e7655847ea84d3a29fb65c1bde4fb265bb1f53697738038a5"
   },
   "unguarded_throw_allowlist": [
    {
@@ -11030,7 +11039,7 @@
    },
    {
     "file": "src/engine.cpp",
-    "expression": "throwstd::invalid_argument(\"Heal requires EXPLICIT_CHARACTER and a positive amount: \"+id)",
+    "expression": "throwstd::invalid_argument(\"Heal requires EXPLICIT_CHARACTER, EXPLICIT_FRIENDLY_CHARACTER or ALL_FRIENDLY_CHARACTERS and a positive amount: \"+id)",
     "disposition": "B6_UNCHANGED_OR_REVIEWED_PERSPECTIVE"
    },
    {

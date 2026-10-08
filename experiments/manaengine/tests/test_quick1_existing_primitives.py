@@ -56,9 +56,11 @@ def test_declarations_reach_native_catalog_and_neighbours_stay_unsupported() -> 
     assert token.support_state == "VERIFIED_VANILLA" and token.rules_contract_reviewed
     assert (token.card_type, token.cost, token.attack, token.health, token.race, token.taunt) == ("MINION", 1, 1, 3, "DEMON", True)
     # Similar-looking cards whose behavior is not expressible stay explicitly unsupported (never vanilla/no-op).
-    # Land Ho! summons Cannoneers whose end-of-turn random-enemy damage has no reviewed primitive; Moonwell heals all friendlies.
-    for card_id in ("CAP_102", "EDR_476", "CORE_CS1_112"):
-        assert definitions[card_id].support_state == "UNSUPPORTED"
+    # Land Ho! summons Cannoneers whose end-of-turn random-enemy damage has no reviewed primitive.
+    # Moonwell and Holy Nova became declarations when the healing pipeline (ENGINE-PRIMITIVE-1) added friendly area healing.
+    assert definitions["CAP_102"].support_state == "UNSUPPORTED"
+    for card_id in ("EDR_476", "CORE_CS1_112"):
+        assert definitions[card_id].support_state == "SUPPORTED"
 
 
 def test_hammer_of_wrath_hits_either_hero_and_draws() -> None:

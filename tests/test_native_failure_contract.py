@@ -136,7 +136,7 @@ def test_t19_append_only_code_ids_and_kinds():
     golden = {row["code"]: row["value"] for row in inventory["reason_codes"]}
     source = (root / "experiments/manaengine/include/manaengine/failure.hpp").read_text()
     actual = {name: int(value) for name, value in re.findall(r"^\s+([A-Z_]+) = (\d+),", source, re.MULTILINE)}
-    assert actual == golden and len(actual) == len(set(actual.values())) == 57
+    assert actual == golden and len(actual) == len(set(actual.values())) == 58
     assert set(_FAILURE_CODE_KINDS) == set(golden)
     kind_names = {"Unsupported": FailureKind.UNSUPPORTED, "RuleUnresolved": FailureKind.RULE_UNRESOLVED,
                   "BudgetLimit": FailureKind.BUDGET_LIMIT, "EngineDefect": FailureKind.ENGINE_DEFECT}

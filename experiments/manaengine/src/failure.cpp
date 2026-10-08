@@ -59,6 +59,7 @@ FailureKind failure_kind_of(FailureCode code) {
     case FailureCode::UNSUPPORTED_SUMMONED_CARD: return FailureKind::Unsupported;
     case FailureCode::UNSUPPORTED_TRANSFORM_OUTCOME: return FailureKind::Unsupported;
     case FailureCode::UNSUPPORTED_VANILLA_SPELL: return FailureKind::Unsupported;
+    case FailureCode::HEALING_BONUS_SCOPE_UNREVIEWED: return FailureKind::RuleUnresolved;
     }
     return FailureKind::EngineDefect; // unknown numeric identity fails closed
 }
@@ -121,6 +122,7 @@ const char* failure_code_id(FailureCode code) {
     case FailureCode::UNSUPPORTED_SUMMONED_CARD: return "UNSUPPORTED_SUMMONED_CARD";
     case FailureCode::UNSUPPORTED_TRANSFORM_OUTCOME: return "UNSUPPORTED_TRANSFORM_OUTCOME";
     case FailureCode::UNSUPPORTED_VANILLA_SPELL: return "UNSUPPORTED_VANILLA_SPELL";
+    case FailureCode::HEALING_BONUS_SCOPE_UNREVIEWED: return "HEALING_BONUS_SCOPE_UNREVIEWED";
     }
     return "UNKNOWN_FAILURE_CODE";
 }

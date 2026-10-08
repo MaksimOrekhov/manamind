@@ -15,10 +15,10 @@
 namespace manaengine {
 enum class DamageKind { Combat, Spell, Effect, HeroPower, Fatigue };
 enum class DamageAttribution { None, DirectSpell, ExternalSpellEffect };
-enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell, BuffMinion, ModifyWeaponAttack };
+enum class EffectKind { Damage, Draw, GainArmor, ModifyHeroAttack, Freeze, SummonFixed, DestroyMinion, Heal, HealMinionToFull, BuffFriendlyMinions, DiscardRandomSpell, BuffMinion, ModifyWeaponAttack, GrantHealingBonus };
 // Append-only: numeric identities are stable. The RandomDistinct* selectors sample min(random_count,n) enemies without
 // replacement (see EffectStep::random_count); the selector alone decides whether the enemy hero is a candidate.
-enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon, RandomDistinctEnemyCharacters, RandomDistinctEnemyMinions };
+enum class TargetSelector { ExplicitCharacter, ExplicitEnemyCharacter, ExplicitMinion, ExplicitDamagedEnemyMinion, ExplicitFriendlyMinion, EnemyMinions, EnemyCharacters, AllCharacters, AllMinions, SelfHero, Self, RandomEnemyMinion, ExplicitDamagedMinion, FriendlyWeapon, RandomDistinctEnemyCharacters, RandomDistinctEnemyMinions, AllFriendlyCharacters, ExplicitFriendlyCharacter };
 enum class DeckDrawFilter { Any, Spell, FireSpell };
 enum class DamageOutcomeCondition { None, MortallyWounded, Survives, Always };
 enum class DamageOutcomeFollowup { None, DrawSelf, HealEnemyHero, DrawTargetOwner };
@@ -241,7 +241,7 @@ private:
     using MinionState=CardInstance;
     using WeaponState=CardInstance;
     struct TimedEffect { std::string card_id; int turns_remaining=0,max_cost=0,count=0; std::uint64_t activation_sequence=0; };
-    struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,armor=0,hero_attack=0,hero_temp_attack=0;
+    struct PlayerState { std::string player_class="UNKNOWN_CLASS"; int hero_health=30,hero_max_health=30,healing_bonus=0,armor=0,hero_attack=0,hero_temp_attack=0;
       std::vector<std::string> current_turn_minion_types_played,previous_turn_minion_types_played;
       int max_mana=0,mana=0,fatigue=0,spell_discount=0,demon_discount=0,turns_started=0,spells_cast_this_turn=0,overloaded_mana=0,pending_overload=0;
       std::int64_t spell_damage_dealt_this_turn=0;
@@ -342,6 +342,10 @@ private:
     void assign_activation_sequence(CardInstance& source);
     void resolve_end_turn_reactions(int owner);
     int resolve_effects(const CardDefinition& def,const SpellEffectContext& context,int target_id);
+    // Healing pipeline v1: the only code that restores Health. Each target receives its own packet.
+    enum class HealingSource { Effect, Lifesteal, DamageFollowup };
+    static constexpr int healing_bonus_limit=1000;
+    int apply_healing(int source_controller,const std::vector<int>& targets,int base_amount,HealingSource source);
     int resolve_random_distinct_damage(const CardDefinition& def,const SpellEffectContext& context,const EffectStep& step,int previous_target);
     void begin_discover(int owner,const CardDefinition& source);
     void record_failure(FailureRecord record,bool allocation_free=false);

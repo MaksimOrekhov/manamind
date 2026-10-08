@@ -78,7 +78,7 @@ def test_declarations_and_duckling_dependency_are_reviewed_without_expanding_nei
     assert (token.card_type, token.cost, token.attack, token.health, token.race, token.rush) == (
         "MINION", 1, 1, 1, "BEAST", True
     )
-    for card_id in ("EDR_463", "EDR_476", "CORE_CS1_112", "CORE_EX1_197"):
+    for card_id in ("EDR_463", "CORE_EX1_197"):
         assert definitions[card_id].support_state == "UNSUPPORTED"
 
 

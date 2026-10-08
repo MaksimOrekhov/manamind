@@ -86,8 +86,8 @@ GameSession::PacketOutcome GameSession::apply_damage_packet(const DamagePacketIn
   total+=std::min<std::int64_t>(out.reported_damage,std::numeric_limits<std::int64_t>::max()-total);
   trace_event("DIRECT_SPELL_DAMAGE_TURN controller="+std::to_string(packet.source_controller)+" total="+std::to_string(total));
  }
- // Reviewed scalar-only Lifesteal: fixed 30-health hero, no healing reactions.
- if(packet.lifesteal){auto& h=state_.players[packet.source_controller].hero_health;h=static_cast<int>(std::min<std::int64_t>(30,static_cast<std::int64_t>(h)+out.reported_damage));}
+ // Reviewed scalar-only Lifesteal: one healing packet per damage packet through the shared pipeline, no healing reactions.
+ if(packet.lifesteal)apply_healing(packet.source_controller,{hero_entity_id(packet.source_controller)},out.reported_damage,HealingSource::Lifesteal);
  return out;
 }
 std::size_t GameSession::open_damage_group(std::vector<DamagePacketIntent> packets,DamageDispatch dispatch,DamageEventOrder order){

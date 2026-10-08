@@ -64,6 +64,7 @@ enum class FailureCode : std::uint16_t {
     UNSUPPORTED_SUMMONED_CARD = 55,
     UNSUPPORTED_TRANSFORM_OUTCOME = 56,
     UNSUPPORTED_VANILLA_SPELL = 57,
+    HEALING_BONUS_SCOPE_UNREVIEWED = 58,
 };
 const char* failure_code_id(FailureCode code);
 const char* failure_kind_id(FailureKind kind);

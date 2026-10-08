@@ -103,6 +103,20 @@ blocks canonical training admission. A generation consumer beside a hero extra s
 and its evidence debt are in `reports/manaengine_arcane_barrage_20261005/ARCANE_BARRAGE_RULES_EVIDENCE.md` and
 `IMPLEMENTATION_COMPLETION.md`. Focused native run: `manaengine_tests --arcane-barrage`.
 
+Healing pipeline v1 (ENGINE-PRIMITIVE-1): all Health restoration (the `HEAL` step, Lifesteal damage packets and the
+`HEAL_ENEMY_HERO` damage follow-up) goes through one native `apply_healing`. Each target receives its own packet:
+`restored = min(base + controller healing bonus, own maximum Health - current Health)`; the bonus is an additive
+player-owned integer (`GRANT_HEALING_BONUS`, persists for the game, stacks, independent of the creating minion) and applies
+per packet, including each Lifesteal damage packet. New selectors are `ALL_FRIENDLY_CHARACTERS` (own hero, then own minions
+left to right) and `EXPLICIT_FRIENDLY_CHARACTER` (legality and execution both enforce friendly-only). Hero maximum Health is
+a separate field fixed at 30; no other start Health is admitted. An area or single heal that selects a character pending
+death fails closed atomically (`HEAL_MORTALLY_WOUNDED_UNREVIEWED`); a caster with a bonus healing a character it does not
+control fails closed (`HEALING_BONUS_SCOPE_UNREVIEWED`, evidence gap). There are no healing triggers. The bonus is deliberately
+not exported through `Observation.active_effects` (real-log imports never populate it and no enchantment identity may be
+fabricated); the proposal and completion report record this as an observation-parity limitation. Declared consumers: Moonwell
+(`EDR_476`), Holy Nova (`CORE_CS1_112`), Greater Healing Potion (`CORE_CFM_604`), Cleansing Cleric (`CATA_216`). Focused
+native run: `manaengine_tests --healing`; design record `docs/proposals/20261008_engine_primitive1_healing_v1.md`.
+
 Failure funnel: `apply_action()` rejects illegal input before any mutation and leaves the
 session valid. Any failure after execution starts poisons the session (first reason kept),
 clears hidden frames and rethrows. A poisoned session refuses `legal_actions`, `clone`,
