@@ -1,0 +1,101 @@
+{
+  "assessment": "checkpoint_inference_only",
+  "base_sha": "9708e70b557d111591f0db486486ba450d47408f",
+  "training_performed": false,
+  "current_dataset": {
+    "identity_sha256": "bc5d9c8667bcd5dbf2a6f26297a843c22d8cfdfe73b3a6dafafc825821f54b18",
+    "matches": 32,
+    "decisions": 1227,
+    "manifests_consistent": true,
+    "direct_strict_loader": "fails_canonical_state_roundtrip",
+    "missing_default_null_fields": ["self_player.healing_bonus", "opponent.healing_bonus"],
+    "ephemeral_validated_rows": 1227,
+    "game_id_disjoint_from_all_checkpoint_splits": {
+      "matches": 12,
+      "decisions": 515,
+      "self_class": "PRIEST"
+    }
+  },
+  "historical_frozen_dataset": {
+    "identity_sha256": "2b20c3b0fd48c34031dfbb8cf516cda9679ce53fee21843e0fc8613609f0b598",
+    "split_sha256": "4e96ec57ecdf26ac95d754c23b2ea88d354a27cb9f363ee91cecd8e44d85229b",
+    "matches": 21,
+    "decisions": 736,
+    "parts": {
+      "train": {"matches": 17, "decisions": 591},
+      "validation": {"matches": 2, "decisions": 85},
+      "test": {"matches": 2, "decisions": 60}
+    }
+  },
+  "checkpoints": {
+    "v1": {
+      "sha256": "5a5e3435c0dcda5ce69bcd0a48dc8521fb3696e2a7794e268b894efbf7e3e95e",
+      "format": "manamind.real_policy_baseline/1",
+      "architecture": "PolicyNetwork",
+      "hidden_size": 128,
+      "loaded": true
+    },
+    "v2": {
+      "sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "format": "manamind.real_policy/2",
+      "architecture": "PolicyNetworkV2",
+      "hidden_size": 64,
+      "dropout": 0.1,
+      "loaded": true
+    }
+  },
+  "fresh_game_id_disjoint_evaluation": {
+    "uniform_expected": {
+      "cross_entropy": 2.0284628445,
+      "top1_accuracy": 0.2348535914,
+      "top3_accuracy": 0.3488094980,
+      "top3_decisions": 421,
+      "mean_reciprocal_rank": 0.4048356625
+    },
+    "v1": {
+      "cross_entropy": 1.7518764792,
+      "top1_accuracy": 0.5145631068,
+      "top3_accuracy": 0.6199524941,
+      "top3_decisions": 421,
+      "mean_reciprocal_rank": 0.6378460441
+    },
+    "v2": {
+      "cross_entropy": 1.5339999444,
+      "top1_accuracy": 0.5475728155,
+      "top3_accuracy": 0.6698337292,
+      "top3_decisions": 421,
+      "mean_reciprocal_rank": 0.6696184650
+    }
+  },
+  "fresh_diagnostics": {
+    "unknown_hand_decisions": 403,
+    "chosen_unknown_decisions": 90,
+    "targeted_decisions": 113,
+    "targeted_top1_v1": 0.1946902655,
+    "targeted_top1_v2": 0.2123893805,
+    "play_card_decisions": 255,
+    "play_card_top1_v1": 0.3686274510,
+    "play_card_top1_v2": 0.4039215686,
+    "activate_location_decisions": 20,
+    "activate_location_top1_v1": 0.0,
+    "activate_location_top1_v2": 0.15,
+    "chosen_action_input_collisions": 0,
+    "all_self_classes": ["PRIEST"]
+  },
+  "historical_consumed_test": {
+    "v1": {
+      "cross_entropy": 1.7899598648,
+      "top1_accuracy": 0.4666666667,
+      "top3_accuracy": 0.5714285714,
+      "mean_reciprocal_rank": 0.5937765775
+    },
+    "v2": {
+      "cross_entropy": 1.8224851525,
+      "top1_accuracy": 0.45,
+      "top3_accuracy": 0.7142857143,
+      "mean_reciprocal_rank": 0.6158409945
+    },
+    "future_use": "already_consumed_for_model_comparison"
+  },
+  "claim": "behavior_cloning ranking metrics only; not playing strength or human-action optimality"
+}
