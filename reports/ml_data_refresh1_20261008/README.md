@@ -7,15 +7,15 @@ The Policy corpus was rebuilt from the current local Power.log collection using 
 ## Provenance and reproducibility
 
 - Exact base: `3c0cb5db76a306fc3c7bb86ed32d3e99af17e377` (`origin/main` at task start).
-- Branch: `codex/ml-data-refresh-1`; workflow source revision: `f90e8a39ab7bb590fe8270e6cf8f46a948dc4fc9`.
+- Branch: `codex/ml-data-refresh-1`; workflow source revision: `e1472a3c76c9a402950ec4e797fcf31fab23456e`.
 - Raw inputs: 36 `.log` files, 148,951,694 bytes. Four reset/incomplete matches were rejected as `GAME_RESET`; 32 matches were admitted.
 - Two independent imports produced the same canonical content identity: `730303e1f9d89af7609e48ceab57ac3b2265ca8672e282cf957541f9c3f367dd`.
 - Admitted dataset: 32 matches / 1,227 decisions; dataset identity `60351703209b5cda69caa84364994e7763c43b6baba3d8a6d65181e3c7e96cb9`.
-- Input corpus fingerprint: `e18c173827ed54ea073b6462411ccf671be6e19a592c5d58c57b93f159de28d3`. Catalog identity: `3dfae0cb5fe312af22c2a16e01eba1286c073f89ea020808fbbf1778067870d9`. Catalog file SHA-256: `c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34`. Importer/dependency source fingerprint: `d5776d49fd8d227d5267648d8b3bb8cde7053020e9021f3b283b2c958c918d51` (individual tracked source hashes are in local metadata).
+- Input corpus fingerprint: `e18c173827ed54ea073b6462411ccf671be6e19a592c5d58c57b93f159de28d3`. Catalog identity: `3dfae0cb5fe312af22c2a16e01eba1286c073f89ea020808fbbf1778067870d9`. Catalog file SHA-256: `c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34`. Importer/dependency source fingerprint: `0b4302fd11ae82e5240da7edcd7f3b03dea81d13dc16d72ee873e1b26a2421c6` across 18 tracked files (individual hashes are in local metadata).
 - Existing contracts retained: real-policy dataset schema 1, state encoding 16, policy action 4, semantic action 1. The checkpoint loader successfully validated the existing v1 and v2 checkpoint provenance; their exact SHA-256 values are stored in the ignored local usage registry.
 - Comparison with the previous 32-match / 1,227-decision corpus found no decision, action label, legal-menu, outcome, or non-schema state differences. All 1,227 serialized states now explicitly include the current `healing_bonus: null` field; this is a serialization compatibility repair through the canonical importer, not a change in observation meaning.
 
-The corpus and per-match registries remain under `data/processed_policy_real/refresh_20261008` and are Git-ignored. The two determinism outputs are also ignored. No raw log excerpt, player identity, or per-match identifier is included in this report.
+The corrected corpus and per-match registries are under `data/processed_policy_real/refresh_20261008_reviewfix`; the earlier `refresh_20261008` output was preserved. Both refresh outputs and all determinism outputs are Git-ignored. No raw log excerpt, player identity, or per-match identifier is included in this report.
 
 ## Experiment-use registry and split safety
 
@@ -30,7 +30,7 @@ All 32 currently admitted matches are already assigned to prior training, valida
 - 335 decisions were skipped by existing admission rules: 254 `AMBIGUOUS_SELECTION`, 79 `OPTIONS_SUPERSEDED`, and 2 `CHOICE_UNRESOLVED`.
 - 299/1,227 admitted decisions are targeted; legal-menu sizes range from 1 to 69 actions.
 - The unknown public-card identity ratio is 26.31% under the existing audit definition.
-- `healing_bonus` is unknown in 2,454 serialized player observations; turn number is unknown for all 1,227 decisions. No deck identity is inferred from partial visible-hand snapshots.
+- `healing_bonus` is unknown in 2,454 serialized player observations. `turn_number` is present on all 1,227 decisions and spans turns 1–46: turns 1–10 have 317 decisions, 11–20 have 481, 21–30 have 299, 31–40 have 98, and 41–46 have 32. The exact per-turn histogram is in the ignored refresh metadata. No deck identity is inferred from partial visible-hand snapshots.
 
 The refreshed corpus is technically loadable for plumbing checks, but it is not ready for a defensible new training/evaluation cycle: its admitted matches are all previously used and there is no clean holdout. These are observable data limitations, not evidence of model quality or playing strength. No model was trained and no new predictive metrics are claimed.
 
@@ -39,7 +39,7 @@ The refreshed corpus is technically loadable for plumbing checks, but it is not 
 - New refresh tests plus existing real-policy dataset tests: **36 passed**.
 - Ruff across the repository: **passed**.
 - `git diff --check`: **passed**.
-- Full pytest: **490 passed, 1 skipped, 26 errors and 3 failed**. All 29 failures stem from the isolated worktree lacking the initialized `vendor/RosettaStone/Resources/cards.json` pinned submodule needed by those existing tests. The pinned submodule revision is present in the main checkout; the worktree was left unmodified rather than linking/copying that unrelated private checkout into it.
+- Full pytest with the pinned RosettaStone submodule initialized at `f34da0d3fcb5ad312f7e2acf634d0536b044d29a`: **521 passed, 1 skipped**. The submodule revision was not changed.
 - Rebuilt corpus and determinism directories were verified Git-ignored; no private data is staged or committed.
 - Hosted Source and generated artifact checks passed on Ubuntu and Windows for the implementation/report revision (GitHub Actions run [37822180693](https://github.com/MaksimOrekhov/manamind/actions/runs/37822180693)); both platform jobs reported success.
 
