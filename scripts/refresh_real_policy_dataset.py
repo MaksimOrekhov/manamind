@@ -29,8 +29,19 @@ IMPORTER_FILES = (
     "scripts/import_policy_power_log.py",
     "src/manamind/integrations/powerlog/policy_import.py",
     "src/manamind/integrations/powerlog/lines.py",
-    "src/manamind/domain/serialization.py",
+    "src/manamind/integrations/powerlog/exporter.py",
+    "src/manamind/integrations/powerlog/visible_state.py",
+    "src/manamind/integrations/powerlog/policy_actions.py",
+    "src/manamind/live/reducer.py",
+    "src/manamind/live/gate.py",
+    "src/manamind/live/session.py",
+    "src/manamind/live/visibility.py",
     "src/manamind/live/snapshot.py",
+    "src/manamind/domain/game_state.py",
+    "src/manamind/domain/card.py",
+    "src/manamind/domain/entity.py",
+    "src/manamind/domain/serialization.py",
+    "src/manamind/cards/catalog.py",
     "src/manamind/training/real_policy.py",
     "scripts/refresh_real_policy_dataset.py",
 )
@@ -90,7 +101,7 @@ def quality_summary(rows: list[dict], audit: dict, rejected_games: dict[str, int
         chosen = row["legal_actions"][row["chosen_action_index"]]
         chosen_types[chosen["type"]] += 1
         menus[len(row["legal_actions"])] += 1
-        turns[str(row["state"].get("turn", "UNKNOWN"))] += 1
+        turns[str(row["state"].get("turn_number", "UNKNOWN"))] += 1
         selected_targeted += "target_kind" in chosen
     outcome_names = {1.0: "WINS", 0.0: "LOSSES", 0.5: "DRAWS"}
     outcomes = Counter(outcome_names[decisions[0]["final_result"]] for decisions in by_game.values())
@@ -178,6 +189,11 @@ def compare_datasets(previous_rows: list[dict], rebuilt_rows: list[dict]) -> dic
 
 def _source_hashes(repo_root: Path) -> dict[str, str]:
     return {name: sha256_file(repo_root / name) for name in IMPORTER_FILES}
+
+
+def importer_source_fingerprint(repo_root: Path) -> str:
+    """Fingerprint every tracked source component that can shape imported examples."""
+    return identity(_source_hashes(repo_root))
 
 
 def _git_sha(repo_root: Path) -> str:
@@ -273,6 +289,7 @@ def rebuild_once(
             "semantic_action": 1,
         },
         "importer_source_hashes": _source_hashes(repo_root),
+        "importer_source_fingerprint_sha256": importer_source_fingerprint(repo_root),
         "dataset_identity_sha256": dataset_sha,
         "canonical_content_identity_sha256": content_sha,
         "audit": audit,
@@ -290,6 +307,7 @@ def rebuild_once(
         "matches": len({row["game_id"] for row in rows}), "decisions": len(rows),
         "dataset_identity_sha256": dataset_sha, "canonical_content_identity_sha256": content_sha,
         "input_corpus_fingerprint": metadata["input_corpus_fingerprint"],
+        "importer_source_fingerprint_sha256": metadata["importer_source_fingerprint_sha256"],
         "raw_log_files": len(paths), "raw_log_bytes": metadata["raw_log_bytes"],
         "imported_raw_matches": len(imported_matches), "raw_rejections": dict(sorted(rejected.items())),
         "validation": "PASS" if rows and len(rows) == audit.get("decisions_labeled") else "NO_ADMITTED_MATCHES",

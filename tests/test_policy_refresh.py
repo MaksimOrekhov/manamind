@@ -19,6 +19,9 @@ from refresh_real_policy_dataset import (  # noqa: E402
     dataset_identity,
     frozen_experiment_usage,
     input_fingerprint,
+    importer_source_fingerprint,
+    quality_summary,
+    IMPORTER_FILES,
     propose_unused_split,
     rebuild_once,
 )
@@ -133,6 +136,41 @@ def test_input_and_output_fingerprints_ignore_names_order_and_timestamps(tmp_pat
         for line in path.read_text(encoding="utf-8").splitlines() if line
     ])
 
+
+def test_quality_summary_uses_game_state_turn_number():
+    from manamind.integrations.powerlog.policy_import import extract_match
+
+    example, = extract_match(fixture(seed=46).lines, CATALOG)[0]
+    rows = []
+    for index, turn in enumerate((1, 3, 7), 1):
+        row = copy.deepcopy(example)
+        row["decision_id"] = f"{row['game_id']}:{index}"
+        row["state"]["turn_number"] = turn
+        rows.append(row)
+
+    summary = quality_summary(rows, {}, {})
+
+    assert summary["turn_decisions"] == {"1": 1, "3": 1, "7": 1}
+
+
+def test_importer_source_fingerprint_changes_when_relevant_source_changes(tmp_path):
+    for index, relative in enumerate(IMPORTER_FILES):
+        path = tmp_path / relative
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(f"source-{index}", encoding="utf-8")
+
+    expected_sources = {
+        "src/manamind/integrations/powerlog/visible_state.py",
+        "src/manamind/live/session.py",
+        "src/manamind/domain/game_state.py",
+        "src/manamind/integrations/powerlog/policy_actions.py",
+    }
+    assert expected_sources <= set(IMPORTER_FILES)
+    before = importer_source_fingerprint(tmp_path)
+    changed = tmp_path / "src/manamind/integrations/powerlog/visible_state.py"
+    changed.write_text(changed.read_text(encoding="utf-8") + "changed", encoding="utf-8")
+
+    assert importer_source_fingerprint(tmp_path) != before
 
 def test_incomplete_game_is_rejected_not_admitted(tmp_path):
     raw = tmp_path / "raw"
