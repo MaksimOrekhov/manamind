@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+# HISTORICAL / DEACTIVATED (MODEL-FIRST-MIGRATION-1): this script reads archived RosettaStone evidence and the frozen
+# Standard registry snapshot. Its output is NOT current verified coverage, is not ManaEngine evidence and must not
+# guide new work. It refuses to run unless --historical-rerun is given, so committed results are never overwritten.
+import sys as _sys
+
+
 import hashlib
 import json
 from pathlib import Path
@@ -37,6 +43,11 @@ def current_scoped_evidence() -> dict[str, list[str]]:
 
 
 def main() -> None:
+    if "--historical-rerun" not in _sys.argv:
+        raise SystemExit("Deactivated historical tool: archived RosettaStone evidence / frozen registry, not current coverage. "
+                         "Pass --historical-rerun only to reproduce the old output; see docs/history/rosettastone_legacy/README.md.")
+    if "--historical-rerun" in _sys.argv:
+        _sys.argv.remove("--historical-rerun")
     profile = json.loads(PROFILE.read_text(encoding="utf-8"))
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     matrix = json.loads(MATRIX.read_text(encoding="utf-8"))

@@ -42,12 +42,14 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 - **Gate to next stage:** the baseline reproduces on a clean checkout and its numbers are accepted in review.
 - **Data limits:** real logs are few matches; confidence intervals must be reported; no leakage between positions of one match.
 
-### 2. Synthetic training on tactical decisions
+### 2. Synthetic training on tactical decisions (MODEL-FIRST-2)
 
 - **Goal:** test whether the Policy can learn controlled tactical skills (lethal, trading, card-vs-mana choice, using hero power) from generated cases.
-- **Outcome:** per-skill accuracy against the baseline on held-out synthetic cases and on real control positions that exercise the same skill.
-- **Gate:** improvement over the baseline on real control positions, not only on synthetic ones. Synthetic-only gains do not count as playing strength.
-- **Data limits:** generators encode only rules written by hand and reviewed; cases must expose player-visible information only.
+- **Outcome:** per-skill accuracy of the trained model versus the original Policy **and** versus a heuristic baseline, on held-out synthetic scenario families that did not take part in training.
+- **Stage-2 success criterion (intermediate):** a measurable improvement over the original Policy on new, unseen synthetic families, with the comparison against the heuristic reported. This is controlled-skill evidence only and is **not** proof of playing strength.
+- **Does not block the next step:** real independent validation is not required to close stage 2 or to start the next limited ML experiment (stage 3). Its absence only means no claim about real game quality is made.
+- **Required before live acceptance (stage 5/6, not here):** confirmation on independent real data is mandatory before a model is accepted for live use. A synthetic-only gain never qualifies a model for live.
+- **Data limits:** generators encode only rules written by hand and reviewed; cases must expose player-visible information only; held-out families must be defined before training.
 
 ### 3. ID / Structural / Text / Hybrid Policy comparison
 
@@ -67,7 +69,7 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 
 - **Goal:** confirm the gain on situations that no earlier stage used for training or tuning.
 - **Outcome:** report on a fresh set of real matches or expert-reviewed positions from the user's decks.
-- **Gate:** the gain holds; otherwise return to stage 2–4 with a new hypothesis.
+- **Gate:** the gain holds on independent real data; this is the confirmation of real game quality and is required for live acceptance. Otherwise return to stage 2–4 with a new hypothesis.
 
 ### 6. Live Shadow Mode
 

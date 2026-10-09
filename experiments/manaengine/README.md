@@ -136,7 +136,7 @@ Native sessions also expose an optional diagnostic event trace through `ManaEngi
 
 ## Scope
 
-Tier A/B roots are selected at run time by `scripts/select_roots.py` from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The baseline selection is 18 (3 Tier A, 15 Tier B); the additional Phase 3 Discover root is documented separately and does not change the canonical registry. Tier C is not included in parity. The board-choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
+Tier A/B roots were selected by `scripts/select_roots.py`, a **deactivated historical tool** (as is `build_frontier_ledger.py`: both read archived RosettaStone evidence and the frozen registry, need `--historical-rerun`, and their output is not current verified coverage; `data/root_selection.json` is a frozen record). The selection was made from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The baseline selection is 18 (3 Tier A, 15 Tier B); the additional Phase 3 Discover root is documented separately and does not change the canonical registry. Tier C is not included in parity. The board-choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
 
 Deck summons filter the complete live deck by the card's declared current cost/type predicate, then use seeded RNG. The pool is never reduced to only roots with implemented ManaEngine effects. Unsupported card definitions encountered in a generated pool remain an explicit limitation.
 
