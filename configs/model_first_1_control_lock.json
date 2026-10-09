@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "baseline_path": "data/evaluation/model_first_1/control_test.jsonl",
+  "sha256": "367e024f664bf486117d6e111ee140606646a683bc4771d3b1c2f65967211806",
+  "scenario_ids": [
+    "t01_two_attacker_lethal",
+    "t02_single_attacker_lethal",
+    "t03_face_or_creature",
+    "t04_obvious_target",
+    "t05_survive_favorable_trade",
+    "t06_no_clear_best_move",
+    "t07_multiple_equivalent_attackers",
+    "t08_taunt_gate",
+    "t09_target_health_low",
+    "t10_target_health_high",
+    "t11_unknown_attacker_identity",
+    "t12_menu_order_a",
+    "t13_menu_order_b"
+  ],
+  "family_ids": [
+    "ambiguous_trade",
+    "face_vs_trade",
+    "lethal_single_attacker",
+    "lethal_two_attackers",
+    "menu_order_permutation_pair",
+    "multiple_attackers_same_trade",
+    "target_by_favorable_trade",
+    "target_health_contrast_pair",
+    "taunt_constraints",
+    "trade_survival",
+    "unknown_card_identity"
+  ],
+  "template_ids": [
+    "face_vs_favorable_trade",
+    "multiple_attackers_one_target",
+    "one_attacker_multiple_targets",
+    "one_attacker_surviving_trade",
+    "paired_menu_order_permutation",
+    "paired_target_health_priority",
+    "single_attacker_face_lethal",
+    "two_attacker_face_lethal",
+    "two_taunt_target_choice",
+    "unfavorable_trade_ambiguous",
+    "unknown_source_trade"
+  ]
+}
