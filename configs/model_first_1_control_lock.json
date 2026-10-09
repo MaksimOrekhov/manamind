@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "baseline_path": "data/evaluation/model_first_1/control_test.jsonl",
+  "sha256": "3f31fd114c7559a78e278c5ac5441e4bd94fefad36e71910ef730f5b7bde215a",
+  "scenario_ids": [
+    "t01_two_attacker_lethal",
+    "t02_single_attacker_lethal",
+    "t03_face_or_creature",
+    "t04_obvious_target",
+    "t05_survive_favorable_trade",
+    "t06_no_clear_best_move",
+    "t07_multiple_equivalent_attackers",
+    "t08_taunt_gate",
+    "t09_target_health_low",
+    "t10_target_health_high",
+    "t11_unknown_attacker_identity",
+    "t12_menu_order_a",
+    "t13_menu_order_b"
+  ],
+  "family_ids": [
+    "ambiguous_trade",
+    "face_vs_trade",
+    "lethal_single_attacker",
+    "lethal_two_attackers",
+    "menu_order_permutation_pair",
+    "multiple_attackers_same_trade",
+    "target_by_favorable_trade",
+    "target_health_contrast_pair",
+    "taunt_constraints",
+    "trade_survival",
+    "unknown_card_identity"
+  ],
+  "template_ids": [
+    "face_vs_favorable_trade",
+    "multiple_attackers_one_target",
+    "one_attacker_multiple_targets",
+    "one_attacker_surviving_trade",
+    "paired_menu_order_permutation",
+    "paired_target_health_priority",
+    "single_attacker_face_lethal",
+    "two_attacker_face_lethal",
+    "two_taunt_target_choice",
+    "unfavorable_trade_ambiguous",
+    "unknown_source_trade"
+  ],
+  "content_fingerprints": [
+    "181677605b031ca494f2cb63798ed5443f5b81f273d773eed3de1058df68ead5",
+    "3898f4250d921c09035ee4f5f61361fc1ee8022499f62040b4bf956a1e8e72b3",
+    "46b41c090c3921ff62ceb7fc010a2e310ae06b56da45e4a7ed9fbdaf8a21cc5b",
+    "65207e717b34dc5b6ac789f8085ec6939b376bb731724aa1096e8b98fe126924",
+    "79f9247db66b2a6d46572c00ee44d9f7a4d3c7c5132db36023f21d9119f2ab3a",
+    "79f9247db66b2a6d46572c00ee44d9f7a4d3c7c5132db36023f21d9119f2ab3a",
+    "938d4dfc4a76f7e48c1ad8cb8491ecc8e5449398f5acb7f1f1d062f3e7c13904",
+    "9bdb988e6c7454ac95ed606bcf7474e54d257bb1218a145136e3a37db6bba7c1",
+    "b40c8a29832a7816f9d894e6dbf2d262aae6a81187e4051368760a47f4f46cf2",
+    "cfeeb5a65389e7d89ee2702edfba291a318fbbaf0e7d5201d84447b149a3590a",
+    "e6e262766a1575d46280f0ba17876de5837f87109443a6ee4f231b3a1c031c3c",
+    "eaee5fbf44b2eb41ebbd2dd497f5ee22f81edfbdca198649aa7b5cba872db376",
+    "f3fd585835015979a86578b26472bcb8dd4a8f05782259bcc7f732c39464723a"
+  ]
+}
