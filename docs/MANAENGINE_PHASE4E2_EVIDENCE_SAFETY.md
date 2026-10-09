@@ -35,6 +35,8 @@ migrate explicitly into `choice_dark_gift_N`; new PLAY columns start at zero.
 This preserves the reviewed v2 meaning and does not reinterpret old weights as
 having learned PLAY-gift effects.
 
+> **Note (MODEL-FIRST-MIGRATION-1):** the RosettaStone bridge named below was removed. The numeric `dark_gift_id` form is still accepted by `encode_legal_actions` and `game_state_from_dict` so that archived data and old checkpoints keep their meaning; it is covered by `test_legacy_singular_gift_observation_normalizes_to_canonical_domain_shape`.
+
 ManaEngine PLAY actions encode the gift attached to the played hand instance.
 Both ManaEngine's `choice_dark_gift` and Rosetta's numeric `dark_gift_id` encode
 the selected CHOICE gift. Numeric IDs use Rosetta's stable 1–10 DarkGift enum

@@ -1,5 +1,7 @@
 # Capability-package card-support process
 
+> **Status: frozen (Model-first migration).** Card-by-card or package-based card support is no longer a development priority; see [MODEL_FIRST_ROADMAP.md](MODEL_FIRST_ROADMAP.md). This document is kept as the contract for any future, separately authorized ManaEngine card-support task. RosettaStone and its generators, bridge and registry builder were removed; references below to them are historical.
+
 Effective 2026-10-01. These rules replace card-by-card implementation queues. The implementation unit is a capability package; audit work records gaps without implementing discovered cards.
 
 ## Workflow
@@ -77,34 +79,9 @@ A generic contract can have one currently reviewed card. Consumer count alone do
 
 Likewise, multiple cards sharing a Python branch do not establish REUSABLE_CAPABILITY if the handler dispatches different behavior by card ID. Validate semantic equivalence, not just the number of consumers.
 
-## Automated source guardrail
+## Automated source guardrail (removed)
 
-`scripts/check_generic_card_branches.py` runs before generation in the Linux/Windows source CI workflow. It parses source ASTs without importing generators or executing declarations. Run it locally with:
-
-```powershell
-.\.venv\Scripts\python.exe scripts/check_generic_card_branches.py
-```
-
-### Initial scope
-
-- Inspect Python ASTs under `scripts/generate_*.py` and `scripts/card_rules/`. New detected identity logic fails by default, including in custom files; no whole-file exemption exists.
-- Inspect `if`, conditional expressions, `match`, comparisons (also in assertions/comprehensions), ID-indexed lookups and `.get(ID)`. Recognize conventional ID variables, simple assignment aliases, ID fields and literal ID allowlists.
-- Report filename, line, enclosing function and detected IDs. Existing exceptions in `configs/generator_branch_policy.json` pin the function, AST hash, IDs and occurrence count, with a reviewed role and reason. Adding an identical branch also changes its count and fails.
-- Exception roles are `METADATA_VALIDATION`, `CUSTOM_ROUTING` and `CUSTOM`. They describe a narrow source exception, not rules-verification status or a new registry API. No GENERIC/REUSABLE_CAPABILITY behavior exemption is provided.
-
-### Allowed outcomes
-
-1. Replace the identity branch with semantic parameters under a reviewed contract.
-2. Move behavior into an explicitly owned CUSTOM handler/emitter and classify all affected declarations/manifests CUSTOM. Check that those IDs cannot be emitted as generic/family behavior; the current `implementation_route` custom boundary can be an initial integration point.
-3. For metadata validation/allowlists, require a narrow documented validation role. Checking source fingerprints or permitted declaration IDs can be valid; choosing different effects by ID cannot be exempted as validation.
-
-The baseline preserves existing metadata restrictions and exceptional emitters. Changing it requires source/semantic review; do not regenerate it automatically to make CI green. CUSTOM exceptions list owning generated cards. The checker requires unique generated owners and current `implementation_route: CUSTOM` (and CUSTOM implementation kind when present) for those owners and the existing `CUSTOM_EMITTER_CARD_IDS` list. Dependency IDs such as enchantments can differ from their owning root IDs. This ownership check does not establish correctness or inspect every native definition.
-
-### Limits and future verification
-
-The checker has been run on current repository sources; dedicated regression fixtures remain follow-up work. Cover reversed equality, membership, conditional expressions, match cases, dictionary dispatch, simple aliases, duplicate occurrences, permitted metadata checks and CUSTOM ownership rejection when verification work is requested.
-
-AST scanning is a practical regression detector, not proof of reusable semantics. Computed IDs, interprocedural dataflow, aliases hidden in annotated/walrus assignments, function defaults/decorators and embedded C++ are not comprehensively tracked. Extend recognized cases when encountered and retain source review. Native shared handlers still require contract review; a Python check does not certify their C++ semantics.
+`scripts/check_generic_card_branches.py` and `configs/generator_branch_policy.json` guarded the RosettaStone card generators. The generators were removed with RosettaStone, so the guard was removed too (recoverable from Git history). Any future declaration generator needs its own reviewed guard.
 
 ## Unlock accounting
 

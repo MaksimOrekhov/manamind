@@ -1,4 +1,4 @@
-"""Rebuild roots, generator catalog and engine overlay from one pinned profile."""
+"""Rebuild the roots snapshot and the shared Standard catalog from one pinned profile."""
 from __future__ import annotations
 
 import argparse
@@ -27,8 +27,7 @@ def main() -> None:
     cards = [item["metadata"] for item in roots["roots"]]
     catalog = {"schema_version": 1, "game": "Hearthstone", "format": "STANDARD", "valid_as_of": profile["as_of_date"], "profile_id": profile["profile_id"], "source": roots["source_name"], "source_sha256": roots["source_sha256"], "root_membership_sha256": roots["root_membership_sha256"], "cards": cards}
     write_json(profile_path(profile, "catalog"), catalog)
-    write_json(profile_path(profile, "engine_overlay"), cards)
-    print(f"Profile {profile['profile_id']}: {len(cards)} shared catalog/overlay roots")
+    print(f"Profile {profile['profile_id']}: {len(cards)} catalog roots")
 
 
 if __name__ == "__main__":

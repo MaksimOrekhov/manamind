@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[3]
 PROFILE = ROOT / "configs/standard_profile.json"
 REGISTRY = ROOT / "data/cards/standard_registry_20261001_enUS.json"
 MATRIX = ROOT / "reports/meta_training_20261002_v1/card_matrix.json"
-EVIDENCE_DIR = ROOT / "integrations/rosettastone/card_rules"
+EVIDENCE_DIR = ROOT / "docs/history/rosettastone_legacy/card_rules"  # archived pre-migration evidence
 OUTPUT = ROOT / "experiments/manaengine/data/root_selection.json"
 
 

@@ -12,8 +12,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -21,10 +19,9 @@ jobs:
       - run: python -m pip install -e ".[dev,replays]"
       - name: Python correctness diagnostics
         run: python -m ruff check src tests scripts
-      - name: Generator card-identity guard
-        run: python scripts/check_generic_card_branches.py
       - name: Native typed failure inventory and source guard
         run: python reports/manaengine_unknown_state_architecture/phase_4k1b_failure_site_audit.py check
-      - run: python scripts/check_generated_artifacts.py
+      - name: Pinned Standard catalog reproduces offline
+        run: python scripts/check_generated_artifacts.py
       - run: git diff --exit-code
       - run: python -m pytest -q

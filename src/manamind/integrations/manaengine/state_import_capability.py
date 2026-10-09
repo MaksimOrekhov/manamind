@@ -22,7 +22,6 @@ ROOT = Path(__file__).resolve().parents[4]
 ABILITIES_FILE = "experiments/manaengine/data/card_abilities.json"
 CATALOG_FILE = "data/cards/standard_current_enUS.json"
 PINNED_SNAPSHOT_FILE = "data/cards/source_snapshots/cards_collectible_20261001_enUS.json"
-LEGACY_CARDS_FILE = "vendor/RosettaStone/Resources/cards.json"
 # Same files, same order, as `engine._load_definitions`; a test keeps the two lists identical.
 DEPENDENCY_FILES = (
     "experiments/manaengine/data/dependency_metadata_audit.json",
@@ -91,19 +90,6 @@ class CapabilityIndex:
                 record_ids.add(str(row["id"]))
         return pinned, record_ids
 
-    def _guard_metadata(self) -> dict[str, dict[str, Any]]:
-        """Metadata for the rules-text guard, as the engine builds it: the optional legacy RosettaStone dump fills gaps only.
-
-        Kept apart from ``_metadata`` so that which identities count as "described by pinned metadata" does not depend on
-        whether the vendored submodule happens to be checked out (a diagnostic must give the same answer on every machine).
-        """
-        merged = dict(self._metadata)
-        legacy = self.root / LEGACY_CARDS_FILE
-        if legacy.exists():
-            for row in _read_json(legacy):
-                merged.setdefault(str(row["id"]), row)
-        return merged
-
     def _dependencies(self, spec: dict[str, Any]) -> list[str]:
         steps = [*spec.get("effects", ()), *spec.get("choose_one_a", ()), *spec.get("choose_one_b", ())]
         deps = [spec.get("shatter_left_card", ""), spec.get("shatter_right_card", ""), spec.get("transform_card", ""),
@@ -113,10 +99,9 @@ class CapabilityIndex:
     def _resolve_support(self) -> dict[str, tuple[str, str]]:
         """card_id -> (state, reason) with the engine's two guards, in the engine's sorted single pass."""
         state: dict[str, tuple[str, str]] = {}
-        guard_metadata = self._guard_metadata()
         for card_id in sorted(self._record_ids):
             spec = self._overrides.get(card_id)
-            raw = guard_metadata.get(card_id)
+            raw = self._metadata.get(card_id)
             if spec is None:
                 state[card_id] = ("UNSUPPORTED", "UNDECLARED")
             elif spec.get("support_state", "UNSUPPORTED") not in _SUPPORTED:

@@ -1,5 +1,8 @@
 # Partial Simulator Architecture
 
+> **Status: frozen optional component (Model-first migration).** Current priorities are in [MODEL_FIRST_ROADMAP.md](MODEL_FIRST_ROADMAP.md). ManaEngine is an optional bounded tactical verifier and its development is frozen; extending it needs a separate task with a Model-first justification. RosettaStone is retired: it was removed from the repository and is not a reference, regression or tooling dependency. Sections below that still describe broader simulator roadmaps, `Q_fallback`, search or full-Standard targets are historical design context, not tasks.
+
+
 This document is the durable architecture contract for simulator gaps,
 unknown cards and states, bounded inferred rules, and the future connection
 between real matches and rule discovery. It distinguishes what works in the
@@ -25,14 +28,14 @@ must never learn from poisoned or fabricated afterstates.
 
 ## 2. Architectural principles
 
-1. **ManaEngine is the primary forward simulator development backend.** Its
-   internal state is authoritative during simulation; its adapter exports a
-   player-visible `GameState`. The engine is actively developed with bounded
-   correctness and admission. It is not production-complete.
-2. **RosettaStone is retained** as a reference and regression/parity backend,
-   historical implementation source, and evidence/tooling dependency where
-   still explicitly consumed. New simulator rules normally belong in
-   ManaEngine unless a task requests RosettaStone.
+1. **ManaEngine is the only simulator, optional and frozen.** Its internal
+   state is authoritative during simulation; its adapter exports a
+   player-visible `GameState`. It has bounded correctness and admission and is
+   not production-complete. It is not required by training or live inference.
+2. **RosettaStone is retired.** It was removed in MODEL-FIRST-MIGRATION-1 and
+   is no longer a reference backend, parity source or tooling dependency.
+   Earlier evidence that mentions it is historical (see
+   `docs/history/rosettastone_legacy/`).
 3. **The engine is strict.** It must not guess a transition merely to continue
    search. Approximation and resilience to unsupported actions belong above
    the simulator.
@@ -100,7 +103,7 @@ must never learn from poisoned or fabricated afterstates.
   action-value estimates. There is no `Q_fallback` today.
 - Current state-encoding version is
   `STATE_ENCODING_SCHEMA_VERSION = 16`; the Python source constant is
-  authoritative. Current Rosetta policy-action schema is
+  authoritative. Current policy-action schema is
   `POLICY_ACTION_SCHEMA_VERSION = 4`. They version different contracts.
 - Phase 4K.1 implements `attempt_action` and the typed `SimulationAttempt`
   adapter boundary: canonical legality check, isolated clone execution, fixed
@@ -148,9 +151,8 @@ weakening this rule. Such a path consumes a valid pre-action visible state and
 an action descriptor; it does not read poisoned simulator internals as if they
 were an ordinary state.
 
-RosettaStone remains useful as an implementation/reference and parity source.
-Its presence or a Rosetta-scoped PASS does not establish ManaEngine behavior,
-nor does it make RosettaStone the primary forward development target.
+Historical RosettaStone-scoped results do not establish ManaEngine behavior
+and are not a current development target.
 
 ## 5. Unknown taxonomy
 
@@ -264,7 +266,7 @@ transition evidence or usable child. Diagnostics retain scalar exception and
 unsupported text, evidence strings and at most 32 trace rows; no session or
 native object references.
 
-**IMPLEMENTED — Phase 4K.1b.** Native failures have four kinds and 57
+**IMPLEMENTED â€” Phase 4K.1b.** Native failures have four kinds and 57
 explicit code identities. `UNSUPPORTED` and `RULE_UNRESOLVED` map to
 `UNSIMULATABLE` and are fallback eligible; `BUDGET_LIMIT` maps to
 `UNSIMULATABLE / NATIVE_BUDGET_LIMIT` but is **not** fallback eligible.

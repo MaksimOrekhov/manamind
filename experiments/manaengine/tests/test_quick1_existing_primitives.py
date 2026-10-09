@@ -8,7 +8,7 @@ from __future__ import annotations
 import pytest
 
 from manamind.integrations.manaengine import ManaEngineSession
-from manamind.integrations.rosettastone.policy import encode_legal_actions
+from manamind.models.policy import encode_legal_actions
 
 FILLER = "CORE_EX1_145"
 HAMMER = "CORE_CS2_094"

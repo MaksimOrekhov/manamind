@@ -1,10 +1,12 @@
 # Standard registry: scope, dependencies and admission
 
-This is the current technical contract. Card-support execution follows the [capability-package process](CAPABILITY_PACKAGE_PROCESS.md). Historical plans and dated reports are not implementation queues.
+> **Status: frozen (Model-first migration).** Card-by-card or package-based card support is no longer a development priority; see [MODEL_FIRST_ROADMAP.md](MODEL_FIRST_ROADMAP.md). This document is kept as the contract for any future, separately authorized ManaEngine card-support task. RosettaStone and its generators, bridge and registry builder were removed; references below to them are historical.
+
+This is the technical contract for pool, dependency and admission semantics. Card-support execution follows the [capability-package process](CAPABILITY_PACKAGE_PROCESS.md). Historical plans and dated reports are not implementation queues.
 
 ## Source of current facts
 
-`configs/standard_profile.json` selects the dated scope, metadata archive, collectible roots, bans, catalog, engine overlay, canonical registry, reports and evidence inputs. Read the selected generated summary for current counts and admission; this document does not copy them.
+`configs/standard_profile.json` selects the dated scope, metadata archive, collectible roots, bans and catalog. `scripts/check_generated_artifacts.py` rebuilds the roots snapshot and `data/cards/standard_current_enUS.json` offline from the pinned HearthstoneJSON snapshot and fails on drift. The profile's `historical_registry` entry points to `data/cards/standard_registry_20261001_enUS.json` and `reports/standard_registry_20261001`: a **frozen historical snapshot** produced while RosettaStone was the reference backend. It is not regenerated (the builder and the RosettaStone evidence it consumed were removed), is not an admission gate and must not be read as ManaEngine coverage. The archived declarations and evidence it was built from are in `docs/history/rosettastone_legacy/`. A future independent registry would be a new, separately authorized, minimal inventory.
 
 The initial full-Standard registry milestones (snapshot, registry, classifier proposals, graph, computed blockers/admission and reports) have been implemented. Their existence does not prove complete rules or dependency coverage. Next card work begins with grouping/ranking and a package proposal, not a missing-card list.
 

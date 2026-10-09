@@ -1,4 +1,4 @@
-"""Experimental ManaEngine backend; separate from the Rosetta adapter."""
+"""Optional ManaEngine backend (development frozen)."""
 
 from .engine import EngineDefectError, FailureKind, ManaEngineSession, NativeFailure, UnsupportedSimulationError
 from .simulation import (

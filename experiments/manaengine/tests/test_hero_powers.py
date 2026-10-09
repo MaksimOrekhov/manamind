@@ -19,7 +19,7 @@ from manamind.encoding import StateEncoder
 from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
 from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimulationError
 from manamind.integrations.manaengine.engine import FailureKind, _definition_rows, _load_native
-from manamind.integrations.rosettastone.policy import encode_legal_actions
+from manamind.models.policy import encode_legal_actions
 from manamind.models.policy import ACTION_FEATURE_NAMES
 
 ROOT = Path(__file__).resolve().parents[3]

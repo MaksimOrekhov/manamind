@@ -6,7 +6,7 @@ Sessions use the Mage mirror required by the engine; the other classes' cards ar
 from __future__ import annotations
 
 from manamind.integrations.manaengine import ManaEngineSession
-from manamind.integrations.rosettastone.policy import encode_legal_actions
+from manamind.models.policy import encode_legal_actions
 
 FILLER = "CORE_EX1_145"
 FIRE_ELEMENTAL = "CORE_CS2_042"

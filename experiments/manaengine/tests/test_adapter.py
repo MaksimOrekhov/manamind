@@ -3,7 +3,7 @@ from __future__ import annotations
 import pytest
 
 from manamind.integrations.manaengine import ManaEngineSession, UnsupportedSimulationError
-from manamind.integrations.rosettastone.policy import encode_legal_actions
+from manamind.models.policy import encode_legal_actions
 
 
 def _native_dark_gift_manifests(native):
@@ -337,7 +337,7 @@ def test_effect_target_boundaries_declarations_and_adapter() -> None:
 
 def test_spellweaver_dynamic_cost_policy_and_exact_fixed_dependency() -> None:
     from manamind.integrations.manaengine.engine import _definition_rows
-    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES
+    from manamind.models.policy import ACTION_FEATURE_NAMES
 
     definitions = {row.card_id: row for row in _definition_rows()}
     token = definitions["CATA_452t"]
@@ -702,7 +702,7 @@ def test_arcane_flow_shatter_survives_native_adapter_and_exports_semantic_links(
 
 def test_prepare_card_round_trips_as_its_own_action_kind() -> None:
     from manamind.integrations.manaengine.engine import _load_native
-    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES
+    from manamind.models.policy import ACTION_FEATURE_NAMES
 
     native = _load_native()
     filler = native.CardDefinition()
@@ -1092,7 +1092,7 @@ def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -
     from manamind.domain.serialization import game_state_from_dict
     from manamind.encoding.entity_encoder import NUMERIC_FEATURES, STATE_FLAG_NAMES, _normalise
     from manamind.encoding.state_encoder import StateEncoder
-    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES, encode_legal_actions
+    from manamind.models.policy import ACTION_FEATURE_NAMES, encode_legal_actions
     from manamind.domain.dark_gift import DARK_GIFT_OPTION_IDS, DARK_GIFT_POLICY_INDEX
 
     state = game_state_from_dict({
@@ -1122,15 +1122,15 @@ def test_dark_gift_observation_is_public_only_and_policy_uses_stable_columns() -
     rows = encode_legal_actions(actions)
     for index, gift in enumerate(DARK_GIFT_OPTION_IDS):
         assert rows[index, ACTION_FEATURE_NAMES.index(f"play_dark_gift_{DARK_GIFT_POLICY_INDEX[gift]}")] == 1
-    rosetta_choice = encode_legal_actions([{"type": "CHOOSE_CARD", "dark_gift_id": 8}])
+    legacy_choice = encode_legal_actions([{"type": "CHOOSE_CARD", "dark_gift_id": 8}])
     manaengine_choice = encode_legal_actions([{"type": "CHOOSE_CARD", "choice_dark_gift": "EDR_100t9"}])
-    assert (rosetta_choice == manaengine_choice).all()
+    assert (legacy_choice == manaengine_choice).all()
     assert len({tuple(row) for row in rows}) == len(DARK_GIFT_OPTION_IDS)
     with pytest.raises(ValueError, match="Unreviewed Dark Gift identity"):
         encode_legal_actions([{"type": "PLAY_CARD", "card_dark_gifts": ["UNKNOWN_GIFT"]}])
 
 
-def test_rosettastone_singular_gift_observation_normalizes_to_canonical_domain_shape() -> None:
+def test_legacy_singular_gift_observation_normalizes_to_canonical_domain_shape() -> None:
     from dataclasses import asdict
 
     from manamind.domain.serialization import game_state_from_dict
@@ -1145,12 +1145,12 @@ def test_rosettastone_singular_gift_observation_normalizes_to_canonical_domain_s
             "opponent": {"hero_health": 30}, "self_hand": [card],
         })
 
-    rosetta = observed({"card_id": "EX1_116", "dark_gift_id": 8})
+    legacy = observed({"card_id": "EX1_116", "dark_gift_id": 8})
     manaengine = observed({"card_id": "EX1_116", "dark_gifts": ["EDR_100t9"]})
-    assert rosetta.self_hand[0].dark_gifts == manaengine.self_hand[0].dark_gifts == ("EDR_100t9",)
-    assert game_state_from_dict(asdict(rosetta)) == rosetta
+    assert legacy.self_hand[0].dark_gifts == manaengine.self_hand[0].dark_gifts == ("EDR_100t9",)
+    assert game_state_from_dict(asdict(legacy)) == legacy
     encoder = StateEncoder(CardCatalog([]))
-    left = encoder.encode(rosetta).self_hand
+    left = encoder.encode(legacy).self_hand
     right = encoder.encode(manaengine).self_hand
     index = NUMERIC_FEATURES.index("dark_gift_EDR_100t9")
     assert left.numeric[0, index] == right.numeric[0, index] > 0
@@ -1609,7 +1609,7 @@ def test_arcane_barrage_adapter_session_exports_constraint_and_blocks_admission(
     from manamind.encoding import StateEncoder
     from manamind.encoding.state_encoder import STATE_ENCODING_SCHEMA_VERSION
     from manamind.integrations.manaengine.engine import require_canonical_training_admission
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES,
         POLICY_ACTION_SCHEMA_VERSION,
         POLICY_STATE_FEATURE_NAMES,

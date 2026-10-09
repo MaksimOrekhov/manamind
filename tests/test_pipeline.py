@@ -83,7 +83,7 @@ def test_shatter_fragment_semantics_are_encoded_without_engine_handles():
     assert encoded.hand_semantic_features[1, :3].tolist() == [0.0, 1.0, 0.0]
     assert encoded.hand_semantic_features[0, 3] > 0 > encoded.hand_semantic_features[1, 3]
     assert not hasattr(state.self_hand[0], "entity_id")
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES, POLICY_STATE_FEATURE_NAMES, encode_action_card_ids,
         encode_hand_card_ids, encode_legal_actions, encode_policy_state,
     )
@@ -105,7 +105,7 @@ def test_shatter_fragment_semantics_are_encoded_without_engine_handles():
 
 
 def test_prepare_legal_action_has_distinct_policy_feature():
-    from manamind.integrations.rosettastone.policy import ACTION_FEATURE_NAMES, encode_legal_actions
+    from manamind.models.policy import ACTION_FEATURE_NAMES, encode_legal_actions
 
     features = encode_legal_actions([{
         "type": "PREPARE_CARD", "card_id": "JAIL_321", "card_type": "MINION",
@@ -145,7 +145,7 @@ def test_encoder_preserves_visible_self_hand_order():
 
 
 def test_policy_encodes_card_identity_and_hand_position():
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES,
         PolicyNetwork,
         encode_action_card_ids,
@@ -194,7 +194,7 @@ def test_policy_encodes_card_identity_and_hand_position():
 
 
 def test_policy_distinguishes_semantic_action_sources_targets_and_choice_options():
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES,
         encode_action_card_ids,
         encode_legal_actions,
@@ -248,7 +248,7 @@ def test_policy_distinguishes_semantic_action_sources_targets_and_choice_options
 
 
 def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES,
         POLICY_STATE_FEATURE_NAMES,
         PolicyNetwork,
@@ -314,7 +314,7 @@ def test_current_policy_weights_migrate_when_dark_gift_actions_are_added():
 
 
 def test_legacy_policy_weights_migrate_to_card_embeddings():
-    from manamind.integrations.rosettastone.policy import (
+    from manamind.models.policy import (
         ACTION_FEATURE_NAMES,
         POLICY_STATE_FEATURE_NAMES,
         PolicyNetwork,
