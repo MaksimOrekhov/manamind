@@ -55,7 +55,7 @@ $logs = "<Hearthstone>\Logs"
   --cards .\data\cards\standard_current_enUS.json
 ```
 
-Сравните `game_id` из `*.audit.json` holdout-папки со всеми ID текущего `experiment_usage_registry.json`; пересечение должно быть пустым. Реестр usage — производный аудит экспериментов, а не долговременный holdout ledger. Защита от повторного использования здесь обеспечивается отдельными raw/Policy путями и общим collector state. При следующих обычных сборах используйте тот же state-файл и обычные выходы.
+Сравните `game_id` из `*.audit.json` holdout-папки со всеми ID текущего `experiment_usage_registry.json`; пересечение должно быть пустым. Реестр usage — производный аудит экспериментов, а не долговременный holdout ledger. Защита от повторного использования здесь обеспечивается отдельными raw/Policy путями и общим collector state. При следующих обычных сборах используйте тот же state-файл и обычные выходы. Переключайте collectors последовательно: никогда не запускайте два процесса одновременно с одним `--state-file`, поскольку конкурирующая запись полного snapshot может потерять новые ключи.
 
 Обычный refresh создавайте в новой папке и направляйте только на обычные raw logs:
 
@@ -70,8 +70,10 @@ $logs = "<Hearthstone>\Logs"
 ## Проверки этой ветки
 
 - `tests/test_collect_power_logs.py`, `tests/test_policy_refresh.py`, `tests/test_real_policy_dataset.py`: 69 passed.
-- Полный pytest: 623 passed, 1 skipped.
+- Follow-up интеграционные проверки collector: 28 passed, включая последовательный переход `regular → holdout → regular` и запуск CLI без `--state-file`.
+- Полный pytest после интеграции: 624 passed, 1 skipped.
 - Существующий Policy corpus audit: PASS, 32 матча / 1 227 размеченных решений.
-- Ruff: PASS; `scripts/check_generated_artifacts.py`: PASS, два pinned outputs воспроизведены.
-- GitHub Actions Ubuntu/Windows будут проверены после push этой ветки.
+- Ruff: PASS; `scripts/check_generated_artifacts.py`: PASS, два pinned outputs воспроизведены; native source guard: PASS.
+- Запрещено одновременно запускать два collector процесса с одним `--state-file`; переключайте их последовательно.
+- GitHub Actions Ubuntu/Windows будут проверены после push integration-ветки.
 - Обучение и изменения старых datasets/checkpoints не выполнялись.

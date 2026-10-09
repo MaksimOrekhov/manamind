@@ -247,16 +247,9 @@ def test_restart_is_idempotent_with_and_without_state_file(env: Env):
     assert again.stats.duplicates == 1
 
 
-def test_shared_state_prevents_reimport_when_output_roots_change(env: Env, tmp_path: Path):
+def test_shared_state_prevents_reimport_when_switching_regular_and_holdout(env: Env, tmp_path: Path):
     env.write("Power.log", to_text(build_game(seed=52)))
     shared_state = tmp_path / "shared" / "collector_state.json"
-    holdout = cpl.Collector(
-        env.root, tmp_path / "holdout_raw", tmp_path / "holdout_value", CATALOG,
-        state_path=shared_state, policy_output=tmp_path / "holdout_policy",
-        emit=env.messages.append,
-    )
-    holdout.scan_once()
-
     regular = cpl.Collector(
         env.root, tmp_path / "regular_raw", tmp_path / "regular_value", CATALOG,
         state_path=shared_state, policy_output=tmp_path / "regular_policy",
@@ -264,10 +257,29 @@ def test_shared_state_prevents_reimport_when_output_roots_change(env: Env, tmp_p
     )
     regular.scan_once()
 
+    env.write("Power_old.log", to_text(build_game(seed=53)))
+    holdout = cpl.Collector(
+        env.root, tmp_path / "holdout_raw", tmp_path / "holdout_value", CATALOG,
+        state_path=shared_state, policy_output=tmp_path / "holdout_policy",
+        emit=env.messages.append,
+    )
+    holdout.scan_once()
+
+    resumed_regular = cpl.Collector(
+        env.root, tmp_path / "regular_raw", tmp_path / "regular_value", CATALOG,
+        state_path=shared_state, policy_output=tmp_path / "regular_policy",
+        emit=env.messages.append,
+    )
+    resumed_regular.scan_once()
+
+    assert regular.stats.matches_imported == 1
     assert holdout.stats.matches_imported == 1
-    assert regular.stats.matches_imported == 0
-    assert not list((tmp_path / "regular_policy").glob("*.jsonl"))
-    assert json.loads(shared_state.read_text(encoding="utf-8"))["games"]
+    assert resumed_regular.stats.matches_imported == 0
+    assert len(list((tmp_path / "regular_raw").glob("*.log"))) == 1
+    assert len(list((tmp_path / "holdout_raw").glob("*.log"))) == 1
+    assert len(list((tmp_path / "regular_value").glob("*.jsonl"))) == 1
+    assert len(list((tmp_path / "holdout_value").glob("*.jsonl"))) == 1
+    assert len(json.loads(shared_state.read_text(encoding="utf-8"))["games"]) == 2
 
 
 def test_corrupt_state_file_does_not_crash(env: Env):
@@ -345,6 +357,19 @@ def test_cli_once_prints_compact_privacy_safe_output(env: Env, capsys, monkeypat
     assert SECRET_NAME not in captured.out + captured.err
     assert len(env.outputs()) == 1
     assert state_file.is_file()
+
+
+def test_cli_without_state_file_keeps_default_state_path(env: Env, monkeypatch):
+    env.write("Power.log", to_text(build_game(seed=81)))
+    monkeypatch.setattr(sys, "argv", [
+        "collect_power_logs.py", "--logs-root", str(env.root), "--once",
+        "--raw-output", str(env.raw), "--processed-output", str(env.processed),
+        "--cards", str(CATALOG),
+    ])
+
+    assert cpl.main() == 0
+    assert (env.raw / "collector_state.json").is_file()
+    assert len(env.outputs()) == 1
 
 
 def test_cli_requires_an_existing_logs_root(tmp_path: Path, monkeypatch):
