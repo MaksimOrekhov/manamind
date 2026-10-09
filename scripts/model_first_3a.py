@@ -15,7 +15,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from manamind.domain.serialization import game_state_from_dict  # noqa: E402
 from manamind.models.policy_v2 import encode_policy_v2  # noqa: E402
-from manamind.research.card_text_features import CardTextAdapter, sha256_file  # noqa: E402
+from manamind.research.card_text_features import (  # noqa: E402
+    FEATURE_SCHEMA_VERSION, CardTextAdapter, sha256_file,
+)
 from manamind.training.policy_checkpoint import load_policy_checkpoint  # noqa: E402
 from manamind.training.real_policy import load_examples  # noqa: E402
 
@@ -191,9 +193,11 @@ def run(dataset: Path, registry_path: Path, checkpoint: Path, catalog_path: Path
         "id_ablation": {"control": "Only encoded entity IDs and action card IDs changed; all other tensors exactly equal.",
             "max_abs_logit_delta_one_evaluated_decision": tensor_delta, "top_choice_changed_one_evaluated_decision": argmax_changed,
             "prepared_2c_id_pairs": _counterfactual(counterfactual, policy, encoder)},
-        "text_adapter": {"kind": "catalog-scoped TF-IDF unigrams+bigrams", "trained_policy": False,
+        "text_adapter": {"kind": "catalog-scoped TF-IDF unigrams+bigrams",
+            "feature_schema_version": FEATURE_SCHEMA_VERSION, "trained_policy": False,
             "features_evaluated_in_policy": False, "catalog_cards": len(text.cards),
             "unique_evaluated_ids": len(eval_ids), "evaluated_ids_with_rules_text": len(ids_with_text),
+            "evaluated_ids_with_usable_text": sum(bool(text.text_usable.get(card_id, False)) for card_id in eval_ids),
             "evaluated_ids_in_catalog": len(ids_known_to_catalog), "terms": len(text.terms),
             "sparse_cache_name": cache_path.name, "cache_key_sha256": text.cache_key(),
             "flavor_text_used": False, "policy_quality_claim": False},
@@ -204,7 +208,9 @@ def run(dataset: Path, registry_path: Path, checkpoint: Path, catalog_path: Path
         "text_adapter_contract": "Card IDs/type/base stats/mechanics are returned in separate fields; current instance data is passed through separately; adapter does not modify production schema or checkpoint.",
     }
     output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, ensure_ascii=True, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+    with output.open("x", encoding="utf-8", newline="\n") as stream:
+        json.dump(result, stream, ensure_ascii=True, indent=2, sort_keys=True, allow_nan=False)
+        stream.write("\n")
     return result
 
 

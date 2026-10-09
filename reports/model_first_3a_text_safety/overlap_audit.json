@@ -1,0 +1,133 @@
+{
+  "exact_text_duplicates_different_ids": [
+    {
+      "ids": [
+        "EDR_253",
+        "JAIL_872"
+      ],
+      "normalized_text": "After your hero attacks, draw a card."
+    },
+    {
+      "ids": [
+        "EDR_852",
+        "END_001"
+      ],
+      "normalized_text": "format_bold_start Battlecry: format_bold_end format_bold_start Imbue format_bold_end your Hero Power."
+    },
+    {
+      "ids": [
+        "CATA_558",
+        "CORE_NEW1_023",
+        "EDR_598"
+      ],
+      "normalized_text": "format_bold_start Elusive format_bold_end"
+    },
+    {
+      "ids": [
+        "CORE_BT_921",
+        "CORE_GIL_558",
+        "RLK_067"
+      ],
+      "normalized_text": "format_bold_start Lifesteal format_bold_end"
+    },
+    {
+      "ids": [
+        "CORE_BT_701",
+        "CORE_EX1_010",
+        "CORE_EX1_028"
+      ],
+      "normalized_text": "format_bold_start Stealth format_bold_end"
+    },
+    {
+      "ids": [
+        "CORE_CS2_179",
+        "CORE_LOOT_137"
+      ],
+      "normalized_text": "format_bold_start Taunt format_bold_end"
+    },
+    {
+      "ids": [
+        "CORE_GVG_085",
+        "CORE_ICC_038"
+      ],
+      "normalized_text": "format_bold_start Taunt format_bold_end format_bold_start Divine Shield format_bold_end"
+    }
+  ],
+  "functional_twins_catalog": [],
+  "limitations": [
+    "Bold/italic markers preserve formatting only; no mechanics are inferred from emphasis.",
+    "Ambiguous variants, placeholders, unsupported markup and special separators mask the entire text.",
+    "Text similarity thresholds find candidates only and cannot prove all semantic duplicates."
+  ],
+  "real_state_coverage": {
+    "distinct_state_ids": 406,
+    "known_catalog": {
+      "distinct_ids": 318,
+      "ids_missing_text": [
+        "TLC_248"
+      ],
+      "state_occurrences": 10805,
+      "text_missing_ids": 1,
+      "text_present_ids": 317,
+      "text_usable_ids": 306,
+      "warning_or_missing_mask_ids": 12
+    },
+    "known_unknown_coverage_differs": true,
+    "metadata_presence_by_knownness": {
+      "known_base_metadata_records": 10805,
+      "known_instance_value_records": 3589,
+      "unknown_base_metadata_records": 2077,
+      "unknown_instance_value_records": 688
+    },
+    "metadata_presence_rates_by_knownness": {
+      "known_base_metadata_records": 1.0,
+      "known_instance_value_records": 0.33216103655714946,
+      "unknown_base_metadata_records": 0.4327984996874349,
+      "unknown_instance_value_records": 0.14336320066680558
+    },
+    "state_occurrences": 15604,
+    "unknown_to_catalog": {
+      "base_metadata_records": 2077,
+      "distinct_ids": 88,
+      "instance_value_records": 688,
+      "state_occurrences": 4799,
+      "text_present_ids": 0,
+      "text_usable_ids": 0,
+      "warning_or_missing_mask_ids": 88
+    }
+  },
+  "schema_version": 1,
+  "source": {
+    "catalog_profile": "standard_full_20261001_v1",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "normalization_config_sha256": "d1aba7bbd07ae09dce54cbb9b5315f891ecf66b7be516d308cde621df205196a"
+  },
+  "split_overlap": {
+    "functional_twins_between_train_and_test": [],
+    "identical_normalized_text_ids_between_train_and_test": [],
+    "near_pair_count_at_threshold": 0,
+    "near_text_template_overlaps_between_train_and_test": [],
+    "note": "Inspects the supplied frozen split only; similarity is a candidate report, not a universal semantic detector.",
+    "number_masked_template_overlaps_between_train_and_test": [],
+    "provided": true,
+    "split_created": false,
+    "test_ids": 47,
+    "threshold": 0.7,
+    "train_ids": 271
+  },
+  "text_coverage": {
+    "catalog_cards": 1185,
+    "missing_text": 3,
+    "text_present": 1182,
+    "text_usable_full_features": 1143,
+    "warning_counts": {
+      "TEXT_MISSING": 3,
+      "UNRESOLVED_LAYOUT_MARKER": 4,
+      "UNRESOLVED_PLACEHOLDER": 32,
+      "UNRESOLVED_VARIANT_SEPARATOR": 17
+    },
+    "warning_or_missing_mask": 42,
+    "with_normalization_warnings": 39
+  },
+  "text_feature_schema_version": 2
+}

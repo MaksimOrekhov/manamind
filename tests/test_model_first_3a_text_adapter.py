@@ -9,7 +9,9 @@ def test_text_adapter_uses_rules_not_flavor_and_keeps_instance_values_separate(t
     catalog = tmp_path / "cards.json"
     catalog.write_text(json.dumps({"format": "STANDARD", "cards": [
         {"id": "RULE", "type": "MINION", "cost": 2, "attack": 3, "health": 4,
-         "mechanics": ["TAUNT"], "text": "<b>Taunt</b>", "flavor": "dragon-moon-secret"},
+         "mechanics": ["TAUNT"], "text": "<b>Taunt</b>", "flavor": "dragon-moon-secret",
+         "collectionText": "collection-only-word"},
+        {"id": "BOLD_ONLY", "type": "MINION", "text": "<b>Charge</b>"},
         {"id": "EMPTY", "type": "MINION", "flavor": "flavor-only-word"},
     ]}), encoding="utf-8")
     adapter = CardTextAdapter(catalog)
@@ -17,14 +19,17 @@ def test_text_adapter_uses_rules_not_flavor_and_keeps_instance_values_separate(t
     vector, present = adapter.features("RULE")
     assert present and np.linalg.norm(vector) > 0
     assert "dragon" not in adapter.terms and "moon" not in adapter.terms
+    assert "collection" not in adapter.terms
     assert record["base"] == {"cost": 2, "attack": 3, "health": 4}
     assert record["current_instance"] == {"current_attack": 8}
-    assert record["mechanics"] == ["TAUNT"] and record["rules_text_present"]
+    assert record["mechanics"] == ["TAUNT"] and record["text_present"] and record["text_usable"]
+    assert adapter.record("BOLD_ONLY")["mechanics"] == []
     missing, missing_present = adapter.features("EMPTY")
     assert not missing_present and not missing.any()
     assert not adapter.features("UNKNOWN")[1]
     cache_path = adapter.cache(tmp_path / "cache")
     cache = json.loads(cache_path.read_text(encoding="utf-8"))
+    assert cache["schema_version"] == 2
     assert cache["catalog_sha256"] == adapter.catalog_sha256
     assert cache["config_sha256"] == adapter.config_sha256
 
