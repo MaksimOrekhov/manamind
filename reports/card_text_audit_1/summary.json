@@ -1,0 +1,936 @@
+{
+  "control_chars_other_than_newline": 0,
+  "coverage": {
+    "by_type": {
+      "HERO": {
+        "cards": 2,
+        "with_text": 2
+      },
+      "LOCATION": {
+        "cards": 19,
+        "with_text": 19
+      },
+      "MINION": {
+        "cards": 729,
+        "with_text": 726
+      },
+      "SPELL": {
+        "cards": 399,
+        "with_text": 399
+      },
+      "WEAPON": {
+        "cards": 36,
+        "with_text": 36
+      }
+    },
+    "cards_with_collectionText": [
+      "CATA_131",
+      "CATA_132",
+      "CATA_134",
+      "CATA_140",
+      "CATA_190h",
+      "CATA_306",
+      "CATA_479",
+      "CATA_489",
+      "CATA_550",
+      "CATA_614",
+      "CATA_820",
+      "EDR_430",
+      "EDR_950",
+      "END_009",
+      "JAIL_474",
+      "JAIL_735",
+      "JAIL_909",
+      "JAIL_974",
+      "MEND_500",
+      "MEND_502",
+      "MEND_504",
+      "TIME_005",
+      "TIME_048",
+      "TIME_103"
+    ],
+    "cards_with_howToEarn": 323,
+    "cards_with_targetingArrowText": 66,
+    "no_mechanics_but_text": 311,
+    "text_equals_flavor": 0,
+    "with_text": 1182,
+    "without_text": 3,
+    "without_text_cards": [
+      {
+        "attack": 6,
+        "cost": 6,
+        "has_mechanics": false,
+        "health": 7,
+        "id": "Core_CS2_200",
+        "name": "Boulderfist Ogre",
+        "race": null,
+        "set": "CORE",
+        "type": "MINION"
+      },
+      {
+        "attack": 7,
+        "cost": 3,
+        "has_mechanics": false,
+        "health": 2,
+        "id": "TIME_053",
+        "name": "Sandmaw",
+        "race": "BEAST",
+        "set": "TIME_TRAVEL",
+        "type": "MINION"
+      },
+      {
+        "attack": 14,
+        "cost": 11,
+        "has_mechanics": false,
+        "health": 28,
+        "id": "TLC_248",
+        "name": "Ultragigasaur",
+        "race": "BEAST",
+        "set": "THE_LOST_CITY",
+        "type": "MINION"
+      }
+    ]
+  },
+  "duplicates": {
+    "cards_in_digit_masked_groups": 30,
+    "cards_in_exact_duplicate_groups": 19,
+    "cards_with_text": 1182,
+    "digit_masked_duplicate_groups": 13,
+    "distinct_flat_texts": 1171,
+    "exact_duplicate_groups": 8,
+    "exact_duplicate_groups_detail": [
+      {
+        "ids": [
+          "CATA_558",
+          "CORE_NEW1_023",
+          "EDR_598"
+        ],
+        "text": "Elusive"
+      },
+      {
+        "ids": [
+          "CATA_565",
+          "CATA_722"
+        ],
+        "text": "Taunt Battlecry: Herald {0}."
+      },
+      {
+        "ids": [
+          "CORE_BT_701",
+          "CORE_EX1_010",
+          "CORE_EX1_028"
+        ],
+        "text": "Stealth"
+      },
+      {
+        "ids": [
+          "CORE_BT_921",
+          "CORE_GIL_558",
+          "RLK_067"
+        ],
+        "text": "Lifesteal"
+      },
+      {
+        "ids": [
+          "CORE_CS2_179",
+          "CORE_LOOT_137"
+        ],
+        "text": "Taunt"
+      },
+      {
+        "ids": [
+          "CORE_GVG_085",
+          "CORE_ICC_038"
+        ],
+        "text": "Taunt Divine Shield"
+      },
+      {
+        "ids": [
+          "EDR_253",
+          "JAIL_872"
+        ],
+        "text": "After your hero attacks, draw a card."
+      },
+      {
+        "ids": [
+          "EDR_852",
+          "END_001"
+        ],
+        "text": "Battlecry: Imbue your Hero Power."
+      }
+    ],
+    "functional_duplicate_detail": [],
+    "functional_duplicate_groups_same_text_type_cost_stats": 0,
+    "near_duplicate_pairs_ge_0.7": [
+      {
+        "a": "CORE_EX1_043",
+        "b": "JAIL_513",
+        "sim": 0.889
+      },
+      {
+        "a": "EDR_816",
+        "b": "TIME_428",
+        "sim": 0.818
+      },
+      {
+        "a": "CORE_CS1_130",
+        "b": "CORE_ICC_055",
+        "sim": 0.8
+      },
+      {
+        "a": "CATA_133",
+        "b": "EDR_816",
+        "sim": 0.75
+      },
+      {
+        "a": "EDR_449",
+        "b": "EDR_852",
+        "sim": 0.75
+      }
+    ],
+    "nearest_other_card_trigram_jaccard": {
+      "0.5_to_0.7": 66,
+      "0.7_to_0.9": 8,
+      "ge_0.9_not_exact": 0,
+      "median": 0.21052631578947367
+    }
+  },
+  "effect_phrases_cards_matching": {
+    "choose_option": 61,
+    "conditional_if": 137,
+    "copy": 53,
+    "cost_change": 135,
+    "deal_damage": 202,
+    "destroy": 58,
+    "discover": 90,
+    "draw": 130,
+    "for_each": 37,
+    "get_or_add_card": 95,
+    "give_stats": 169,
+    "mana_crystals": 16,
+    "opponent_deck_or_hand": 26,
+    "quoted_granted_text": 28,
+    "random": 230,
+    "restore_health": 29,
+    "shuffle": 25,
+    "start_end_of_turn": 63,
+    "summon": 212,
+    "this_game_history": 129,
+    "transform": 16,
+    "trigger_whenever_after": 105,
+    "while_or_has_aura": 87
+  },
+  "identity": {
+    "cards": 1185,
+    "field_presence": {
+      "armor": 2,
+      "artist": 1185,
+      "attack": 765,
+      "cardClass": 1160,
+      "classes": 25,
+      "collectible": 1185,
+      "collectionText": 24,
+      "cost": 1185,
+      "countAsCopyOfDbfId": 105,
+      "dbfId": 1185,
+      "durability": 36,
+      "elite": 201,
+      "faction": 18,
+      "flavor": 1185,
+      "hasDiamondSkin": 37,
+      "health": 786,
+      "heroPowerDbfId": 2,
+      "hideStats": 1,
+      "howToEarn": 323,
+      "howToEarnGolden": 363,
+      "id": 1185,
+      "isMiniSet": 179,
+      "mechanics": 871,
+      "name": 1185,
+      "overload": 12,
+      "race": 407,
+      "races": 407,
+      "rarity": 1185,
+      "referencedTags": 201,
+      "runeCost": 62,
+      "set": 1185,
+      "spellDamage": 6,
+      "spellSchool": 220,
+      "targetingArrowText": 66,
+      "techLevel": 5,
+      "text": 1182,
+      "type": 1185
+    },
+    "id_prefix_counts": {
+      "BE": 1,
+      "CAP": 29,
+      "CATA": 142,
+      "CORE": 264,
+      "CS3": 7,
+      "Core": 3,
+      "DINO": 38,
+      "EDR": 146,
+      "END": 38,
+      "FIR": 38,
+      "JAIL": 138,
+      "MEND": 29,
+      "RLK": 14,
+      "TIME": 150,
+      "TLC": 147,
+      "TTN": 1
+    },
+    "ids_not_matching_ascii_pattern": [],
+    "missing_card_class_but_has_classes": [
+      "CATA_190h",
+      "CATA_497",
+      "CATA_722",
+      "END_001",
+      "END_002",
+      "END_004",
+      "END_005",
+      "END_007",
+      "END_008",
+      "END_010",
+      "END_011",
+      "END_013",
+      "END_014",
+      "END_016",
+      "END_017",
+      "END_019",
+      "END_020",
+      "END_022",
+      "END_023",
+      "END_025",
+      "END_026",
+      "END_028",
+      "END_029",
+      "END_031",
+      "END_032"
+    ],
+    "mixed_case_core_prefixes": [
+      "CORE",
+      "Core"
+    ],
+    "records_identical_to_snapshot": 1185,
+    "unique_dbf_ids": 1185,
+    "unique_ids": 1185,
+    "unique_names": 1185
+  },
+  "identity_leakage": {
+    "cards_with_a_token_in_le_2_cards": 333,
+    "cards_with_a_token_unique_to_them": 252,
+    "texts_naming_another_catalog_card": 19,
+    "texts_that_contain_own_name": [
+      "CATA_139",
+      "CATA_185",
+      "CATA_586",
+      "EDR_465",
+      "EDR_978",
+      "JAIL_906",
+      "TIME_861"
+    ],
+    "tokens_in_exactly_one_card": 362,
+    "unique_token_examples": [
+      "'arcane",
+      "'collapsing",
+      "'dark",
+      "'fan",
+      "000",
+      "100",
+      "1deal",
+      "1draw",
+      "1give",
+      "30",
+      "50",
+      "9",
+      "99",
+      "ability",
+      "absorb",
+      "acorns",
+      "activates",
+      "adjoining",
+      "alive",
+      "alleria",
+      "always",
+      "ammunition",
+      "amount",
+      "ancient",
+      "ants"
+    ],
+    "vocabulary_size": 789
+  },
+  "keywords": {
+    "bold_keyword_in_text_without_tag": {
+      "BATTLECRY": 5,
+      "CHARGE": 2,
+      "CHOOSE_ONE": 4,
+      "COLOSSAL": 1,
+      "COMBO": 2,
+      "DEATHRATTLE": 27,
+      "DISCOVER": 9,
+      "DIVINE_SHIELD": 17,
+      "ELUSIVE": 3,
+      "LIFESTEAL": 10,
+      "OUTCAST": 1,
+      "OVERLOAD": 1,
+      "POISONOUS": 5,
+      "QUEST": 2,
+      "REBORN": 8,
+      "RUSH": 26,
+      "SECRET": 2,
+      "SPELLPOWER": 5,
+      "START_OF_GAME_KEYWORD": 1,
+      "STEALTH": 10,
+      "TAUNT": 41,
+      "WINDFURY": 6
+    },
+    "cards_with_any_text_only_keyword": 194,
+    "cards_with_text_and_no_mechanics_but_keyword_phrase": 16,
+    "distinct_bold_phrases": 92,
+    "leading_keyword_minions": 511,
+    "leading_keyword_minions_missing_tag": [],
+    "mechanics_tag_counts": {
+      "ADJACENT_BUFF": 1,
+      "AFFECTED_BY_SPELL_POWER": 2,
+      "AURA": 29,
+      "BATTLECRY": 376,
+      "CANT_ATTACK": 1,
+      "CHARGE": 6,
+      "CHOOSE_ONE": 21,
+      "COLOSSAL": 11,
+      "COMBO": 14,
+      "DEATHRATTLE": 140,
+      "DISCOVER": 81,
+      "DIVINE_SHIELD": 15,
+      "ELUSIVE": 18,
+      "ENRAGED": 4,
+      "FREEZE": 3,
+      "GEARS": 1,
+      "ImmuneToSpellpower": 12,
+      "InvisibleDeathrattle": 2,
+      "LIFESTEAL": 31,
+      "OUTCAST": 8,
+      "OVERLOAD": 12,
+      "POISONOUS": 3,
+      "QUEST": 12,
+      "REBORN": 9,
+      "RUSH": 42,
+      "SECRET": 11,
+      "SIDE_QUEST": 1,
+      "SPELLPOWER": 6,
+      "START_OF_GAME_KEYWORD": 10,
+      "STEALTH": 15,
+      "TAUNT": 97,
+      "TRADEABLE": 8,
+      "TRIGGER_VISUAL": 155,
+      "WINDFURY": 3
+    },
+    "referenced_tag_counts": {
+      "BATTLECRY": 6,
+      "CHARGE": 2,
+      "CHOOSE_ONE": 3,
+      "COLOSSAL": 1,
+      "COMBO": 2,
+      "COUNTER": 1,
+      "DEATHRATTLE": 28,
+      "DISCOVER": 9,
+      "DIVINE_SHIELD": 17,
+      "ELUSIVE": 3,
+      "FREEZE": 10,
+      "IMBUE": 19,
+      "IMMUNE": 7,
+      "LIFESTEAL": 10,
+      "OUTCAST": 1,
+      "OVERLOAD": 2,
+      "POISONOUS": 5,
+      "QUEST": 1,
+      "REBORN": 8,
+      "RUSH": 26,
+      "SECRET": 2,
+      "SILENCE": 3,
+      "SPELLPOWER": 5,
+      "START_OF_GAME_KEYWORD": 1,
+      "STEALTH": 10,
+      "TAUNT": 40,
+      "TITAN": 1,
+      "WINDFURY": 5
+    },
+    "tag_present_keyword_absent_in_text": {
+      "ELUSIVE": [
+        "CATA_206"
+      ],
+      "START_OF_GAME_KEYWORD": [
+        "JAIL_397",
+        "JAIL_430"
+      ],
+      "TAUNT": [
+        "CATA_206"
+      ]
+    },
+    "text_only_keywords": {
+      "corpse": 25,
+      "counter": 2,
+      "dark gift": 20,
+      "dormant": 17,
+      "fabled": 11,
+      "herald": 15,
+      "imbue": 19,
+      "kindred": 29,
+      "prepare": 20,
+      "reward": 13,
+      "rewind": 19,
+      "shatter": 7,
+      "titan": 1
+    },
+    "top_bold_phrases": {
+      "Battlecry": 8,
+      "Battlecry and Deathrattle:": 7,
+      "Battlecry:": 370,
+      "Charge": 7,
+      "Choose One -": 20,
+      "Colossal +2": 6,
+      "Combo:": 13,
+      "Corpses": 23,
+      "Dark Gift": 18,
+      "Deathrattle": 14,
+      "Deathrattle:": 144,
+      "Discover": 89,
+      "Divine Shield": 35,
+      "Dormant": 18,
+      "Elusive": 19,
+      "Fabled": 8,
+      "Freeze": 13,
+      "Herald": 16,
+      "Imbue": 16,
+      "Immune": 7,
+      "Kindred:": 25,
+      "Legendary": 14,
+      "Lifesteal": 39,
+      "Outcast:": 8,
+      "Overload:": 10,
+      "Poisonous": 9,
+      "Prepare": 18,
+      "Quest:": 12,
+      "Reborn": 19,
+      "Reward:": 14,
+      "Rewind": 22,
+      "Rush": 67,
+      "Secret:": 11,
+      "Shatter": 7,
+      "Spell Damage +1": 7,
+      "Start of Game:": 8,
+      "Stealth": 27,
+      "Taunt": 145,
+      "Tradeable": 8,
+      "Windfury": 7
+    },
+    "trigger_visual_cards": 155
+  },
+  "layout": {
+    "cards_with_nbsp_runs": 145,
+    "max_nbsp_run": 6,
+    "newline_context": {
+      "after_sentence_or_tag_end": 508,
+      "mid_phrase": 1279
+    },
+    "plain_cards": 655,
+    "plain_with_newline": 290,
+    "x_marked_cards": 527
+  },
+  "length": {
+    "chars_per_card_flat": {
+      "max": 329,
+      "min": 4,
+      "p50": 65,
+      "p90": 94,
+      "p99": 117
+    },
+    "chars_per_card_raw": {
+      "max": 373,
+      "min": 11,
+      "p50": 76,
+      "p90": 109,
+      "p99": 135
+    },
+    "words_by_type_median": {
+      "HERO": 30,
+      "LOCATION": 13,
+      "MINION": 12,
+      "SPELL": 12,
+      "WEAPON": 10
+    },
+    "words_per_card": {
+      "max": 57,
+      "min": 1,
+      "p50": 12,
+      "p90": 17,
+      "p99": 23
+    }
+  },
+  "markup_cards_with": {
+    "any_tag": 896,
+    "ascii_apostrophe": 172,
+    "at_variant_separator": 13,
+    "bold_tag": 874,
+    "brace_placeholder": 32,
+    "curly_quote": 3,
+    "double_quote": 19,
+    "healing_marker_#N": 22,
+    "italic_tag": 66,
+    "nbsp": 145,
+    "nested_bold": 19,
+    "newline": 817,
+    "paren_number": 162,
+    "pipe_plural_syntax": 2,
+    "spell_damage_marker_$N": 114,
+    "uppercase_tag": 1,
+    "x_marker": 527
+  },
+  "markup_examples": {
+    "brace_placeholder": [
+      "CATA_131",
+      "CATA_132",
+      "CATA_140",
+      "CATA_156",
+      "CATA_158",
+      "CATA_160",
+      "CATA_190h",
+      "CATA_206"
+    ],
+    "curly_quote": [
+      "CORE_EX1_100",
+      "CORE_EX1_193",
+      "JAIL_997"
+    ],
+    "nested_bold": [
+      "CAP_000",
+      "CAP_001",
+      "CAP_005",
+      "CAP_006",
+      "CATA_153",
+      "CATA_304",
+      "CATA_725",
+      "CS3_024"
+    ],
+    "pipe_plural_syntax": [
+      "CATA_190h",
+      "FIR_907"
+    ],
+    "uppercase_tag": [
+      "EDR_493"
+    ]
+  },
+  "nonascii_chars": {
+    "flavor": {
+      "U+00BF": 1,
+      "U+00E9": 1,
+      "U+2011": 1,
+      "U+2013": 4,
+      "U+2014": 2,
+      "U+2018": 1,
+      "U+2019": 66,
+      "U+201C": 3,
+      "U+201D": 3,
+      "U+2026": 25
+    },
+    "name": {},
+    "text": {
+      "U+00A0": 260,
+      "U+2019": 3
+    }
+  },
+  "placeholder_inventory": {
+    "#12": 3,
+    "#2": 2,
+    "#3": 6,
+    "#4": 4,
+    "#5": 2,
+    "#6": 2,
+    "#8": 3,
+    "$1": 18,
+    "$2": 31,
+    "$3": 39,
+    "$4": 17,
+    "$5": 8,
+    "$6": 6,
+    "$8": 3,
+    "${0}": 3,
+    "(0)": 6,
+    "(1)": 70,
+    "(10)": 1,
+    "(2)": 44,
+    "(3)": 19,
+    "(4)": 4,
+    "(5)": 19,
+    "(7)": 2,
+    "(8)": 4,
+    "{0}": 36,
+    "{1}": 6,
+    "|4(Cataclysm,Cataclysms)": 2,
+    "|4(Crystal, Crystals)": 1
+  },
+  "real_data_card_id_coverage": {
+    "absent_ids_sample": [
+      "BAR_035t",
+      "CAP_107t",
+      "CAP_802t",
+      "CAP_805t",
+      "CATA_139t",
+      "CATA_139t2",
+      "CATA_139t3",
+      "CATA_139t4",
+      "CATA_150t",
+      "CATA_150t1",
+      "CATA_158t",
+      "CATA_190p",
+      "CATA_190t14",
+      "CATA_210t",
+      "CATA_300t1",
+      "CATA_300t2",
+      "CATA_300t3",
+      "CATA_432t1",
+      "CATA_432t2",
+      "CATA_432t3",
+      "CATA_432t4",
+      "CATA_452t",
+      "CATA_476t",
+      "CATA_479t3",
+      "CATA_528t",
+      "CATA_553t",
+      "CATA_561t",
+      "CATA_565t",
+      "CATA_580t",
+      "CATA_615t"
+    ],
+    "distinct_ids_by_bucket": {
+      "absent_from_pinned_data": 122,
+      "collectible_snapshot_only": 11,
+      "standard_catalog": 375
+    },
+    "files": 36,
+    "note": "card_id occurrences in state rows (repeated across positions of a game), not unique decisions.",
+    "occurrences_by_zone_and_bucket": {
+      "state/opponent/board[]/card": {
+        "absent_from_pinned_data": 1581,
+        "collectible_snapshot_only": 65,
+        "standard_catalog": 3652
+      },
+      "state/opponent/hero_power": {
+        "absent_from_pinned_data": 2911
+      },
+      "state/opponent/locations[]/card": {
+        "absent_from_pinned_data": 214,
+        "standard_catalog": 812
+      },
+      "state/opponent/weapon": {
+        "absent_from_pinned_data": 299,
+        "collectible_snapshot_only": 41,
+        "standard_catalog": 264
+      },
+      "state/opponent_known_cards[]": {
+        "absent_from_pinned_data": 10
+      },
+      "state/self_hand[]": {
+        "absent_from_pinned_data": 2913,
+        "collectible_snapshot_only": 45,
+        "standard_catalog": 16365
+      },
+      "state/self_player/board[]/card": {
+        "absent_from_pinned_data": 380,
+        "collectible_snapshot_only": 37,
+        "standard_catalog": 2487
+      },
+      "state/self_player/hero_power": {
+        "absent_from_pinned_data": 2911
+      },
+      "state/self_player/locations[]/card": {
+        "absent_from_pinned_data": 226,
+        "standard_catalog": 1879
+      },
+      "state/self_player/weapon": {
+        "absent_from_pinned_data": 424,
+        "standard_catalog": 126
+      }
+    },
+    "snapshot_only_ids_with_text": [
+      "CFM_806",
+      "CS2_033",
+      "CS2_065",
+      "DRG_213",
+      "GIL_681",
+      "GVG_079",
+      "TRL_526",
+      "TSC_059",
+      "VAC_958",
+      "WON_065"
+    ]
+  },
+  "snapshot_outside_standard": {
+    "cards": 6985,
+    "functional_twin_of_a_standard_card_same_text_type_cost_stats_class": 313,
+    "standard_core_cards_whose_name_is_shared_by_another_snapshot_id": 259,
+    "with_text": 6157,
+    "with_text_identical_to_a_standard_card": 460
+  },
+  "source": {
+    "catalog": "data/cards/standard_current_enUS.json",
+    "declared_hash_matches_snapshot_file": true,
+    "declared_source_sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "profile_id": "standard_full_20261001_v1",
+    "snapshot_cards": 8170,
+    "snapshot_sha256_crlf_normalised": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "snapshot_sha256_raw_bytes": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "valid_as_of": "2026-10-01"
+  },
+  "tag_inventory": {
+    "</I>": 1,
+    "</b>": 1434,
+    "</i>": 75,
+    "<b>": 1434,
+    "<i>": 76
+  },
+  "unbalanced_tags": [],
+  "variants": {
+    "cards": 16,
+    "collection_text_cards": 24,
+    "collection_text_differs_from_text": [
+      "CATA_134",
+      "CATA_190h",
+      "CATA_479",
+      "CATA_489",
+      "CATA_550",
+      "CATA_614",
+      "EDR_950",
+      "MEND_500",
+      "MEND_502",
+      "MEND_504"
+    ],
+    "collection_text_equals_first_segment": [
+      "CATA_131",
+      "CATA_132",
+      "CATA_140",
+      "EDR_430",
+      "END_009",
+      "JAIL_474",
+      "JAIL_735",
+      "JAIL_909",
+      "JAIL_974",
+      "TIME_005",
+      "TIME_048",
+      "TIME_103"
+    ],
+    "display_text_not_equal_collectionText": [
+      "CATA_190h"
+    ],
+    "fragment_style_cards": [
+      "EDR_430",
+      "END_009",
+      "JAIL_474",
+      "JAIL_735",
+      "JAIL_909",
+      "JAIL_974",
+      "TIME_005",
+      "TIME_048",
+      "TIME_103"
+    ],
+    "segment_shapes": {
+      "CATA_131": [
+        109,
+        106,
+        97
+      ],
+      "CATA_132": [
+        106,
+        103,
+        94
+      ],
+      "CATA_140": [
+        114,
+        111,
+        102
+      ],
+      "CATA_190h": [
+        68,
+        82,
+        58
+      ],
+      "EDR_430": [
+        94,
+        11,
+        8
+      ],
+      "END_009": [
+        85,
+        1,
+        1
+      ],
+      "FIR_911": [
+        60,
+        37
+      ],
+      "FIR_914": [
+        79,
+        55
+      ],
+      "FIR_916": [
+        84,
+        60
+      ],
+      "JAIL_474": [
+        96,
+        1,
+        1
+      ],
+      "JAIL_735": [
+        87,
+        11,
+        8
+      ],
+      "JAIL_909": [
+        63,
+        1,
+        1
+      ],
+      "JAIL_974": [
+        100,
+        1,
+        3
+      ],
+      "TIME_005": [
+        109,
+        11,
+        8
+      ],
+      "TIME_048": [
+        63,
+        1,
+        6
+      ],
+      "TIME_103": [
+        64,
+        1,
+        6
+      ]
+    },
+    "separator_at": [
+      "CATA_131",
+      "CATA_132",
+      "CATA_140",
+      "CATA_190h",
+      "EDR_430",
+      "END_009",
+      "JAIL_474",
+      "JAIL_735",
+      "JAIL_909",
+      "JAIL_974",
+      "TIME_005",
+      "TIME_048",
+      "TIME_103"
+    ],
+    "separator_literal_1": [
+      "FIR_911",
+      "FIR_914",
+      "FIR_916"
+    ]
+  }
+}
