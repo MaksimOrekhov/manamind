@@ -1,0 +1,331 @@
+{
+  "corpus_inventory": {
+    "chosen_action_types": {
+      "ACTIVATE_LOCATION": 52,
+      "ATTACK": 137,
+      "END_TURN": 315,
+      "HERO_POWER": 124,
+      "PLAY_CARD": 599
+    },
+    "decisions": 1227,
+    "fresh_split_proposal": {
+      "eligible_decisions": 0,
+      "eligible_matches": 0,
+      "seed": 20261008,
+      "status": "NO_CLEAN_THREE_WAY_SPLIT"
+    },
+    "matches": 32,
+    "usage_status_counts": {
+      "KNOWN_USED": 33,
+      "NOT_KNOWN_USED": 4
+    }
+  },
+  "id_ablation": {
+    "control": "Only encoded entity IDs and action card IDs changed; all other tensors exactly equal.",
+    "max_abs_logit_delta_one_evaluated_decision": 1.5616341829299927,
+    "prepared_2c_id_pairs": {
+      "families": 20,
+      "max_abs_logit_delta": 1.4959677457809448,
+      "models": {
+        "id": {
+          "n": 40,
+          "top1": 0.0,
+          "top1_count": 0
+        },
+        "structural_id_masked": {
+          "n": 40,
+          "top1": 0.0,
+          "top1_count": 0
+        }
+      },
+      "rows": 40,
+      "tensor_control": "PASS",
+      "top_choice_changed": 20
+    },
+    "top_choice_changed_one_evaluated_decision": 1
+  },
+  "real_observations": {
+    "absent_from_training_ids": 27,
+    "by_training_id_presence": {
+      "all_ids_seen_in_train": {
+        "ID": {
+          "by_chosen_action_type_top1": {},
+          "chosen_action_types": {},
+          "match_cluster_range_top1": {
+            "matches": 0,
+            "max": null,
+            "min": null
+          },
+          "mrr": null,
+          "n": 0,
+          "seconds_per_decision": null,
+          "top1": null,
+          "top1_count": 0,
+          "top3": null
+        },
+        "Structural_ID_masked": {
+          "by_chosen_action_type_top1": {},
+          "chosen_action_types": {},
+          "match_cluster_range_top1": {
+            "matches": 0,
+            "max": null,
+            "min": null
+          },
+          "mrr": null,
+          "n": 0,
+          "seconds_per_decision": null,
+          "top1": null,
+          "top1_count": 0,
+          "top3": null
+        },
+        "n": 0
+      },
+      "at_least_one_id_absent_from_train": {
+        "ID": {
+          "by_chosen_action_type_top1": {
+            "ACTIVATE_LOCATION": {
+              "correct": 0,
+              "n": 1,
+              "top1": 0.0
+            },
+            "ATTACK": {
+              "correct": 1,
+              "n": 4,
+              "top1": 0.25
+            },
+            "END_TURN": {
+              "correct": 7,
+              "n": 17,
+              "top1": 0.4117647058823529
+            },
+            "HERO_POWER": {
+              "correct": 5,
+              "n": 7,
+              "top1": 0.7142857142857143
+            },
+            "PLAY_CARD": {
+              "correct": 14,
+              "n": 31,
+              "top1": 0.45161290322580644
+            }
+          },
+          "chosen_action_types": {
+            "ACTIVATE_LOCATION": 1,
+            "ATTACK": 4,
+            "END_TURN": 17,
+            "HERO_POWER": 7,
+            "PLAY_CARD": 31
+          },
+          "match_cluster_range_top1": {
+            "matches": 2,
+            "max": 0.47368421052631576,
+            "min": 0.43902439024390244
+          },
+          "mrr": 0.615840994517465,
+          "n": 60,
+          "seconds_per_decision": 0.0003333833334181691,
+          "top1": 0.45,
+          "top1_count": 27,
+          "top3": 0.7333333333333333
+        },
+        "Structural_ID_masked": {
+          "by_chosen_action_type_top1": {
+            "ACTIVATE_LOCATION": {
+              "correct": 0,
+              "n": 1,
+              "top1": 0.0
+            },
+            "ATTACK": {
+              "correct": 1,
+              "n": 4,
+              "top1": 0.25
+            },
+            "END_TURN": {
+              "correct": 4,
+              "n": 17,
+              "top1": 0.23529411764705882
+            },
+            "HERO_POWER": {
+              "correct": 6,
+              "n": 7,
+              "top1": 0.8571428571428571
+            },
+            "PLAY_CARD": {
+              "correct": 10,
+              "n": 31,
+              "top1": 0.3225806451612903
+            }
+          },
+          "chosen_action_types": {
+            "ACTIVATE_LOCATION": 1,
+            "ATTACK": 4,
+            "END_TURN": 17,
+            "HERO_POWER": 7,
+            "PLAY_CARD": 31
+          },
+          "match_cluster_range_top1": {
+            "matches": 2,
+            "max": 0.47368421052631576,
+            "min": 0.2926829268292683
+          },
+          "mrr": 0.517216748393219,
+          "n": 60,
+          "seconds_per_decision": 0.0003402083334246223,
+          "top1": 0.35,
+          "top1_count": 21,
+          "top3": 0.6333333333333333
+        },
+        "n": 60
+      }
+    },
+    "catalog_known_ids": 28,
+    "catalog_rules_text_ids": 27,
+    "chosen_action_types": {
+      "ACTIVATE_LOCATION": 1,
+      "ATTACK": 4,
+      "END_TURN": 17,
+      "HERO_POWER": 7,
+      "PLAY_CARD": 31
+    },
+    "decisions": 60,
+    "decisions_with_any_absent_training_id": 60,
+    "evaluation_slice": "PREVIOUSLY_USED_POLICY_V2_TEST",
+    "known_in_training_ids": 23,
+    "limitations": "This is the checkpoint's previously used test split, not an independent new holdout. Registry unused matches are absent from the supplied corpus; card-ID novelty is descriptive only.",
+    "models": {
+      "ID": {
+        "by_chosen_action_type_top1": {
+          "ACTIVATE_LOCATION": {
+            "correct": 0,
+            "n": 1,
+            "top1": 0.0
+          },
+          "ATTACK": {
+            "correct": 1,
+            "n": 4,
+            "top1": 0.25
+          },
+          "END_TURN": {
+            "correct": 7,
+            "n": 17,
+            "top1": 0.4117647058823529
+          },
+          "HERO_POWER": {
+            "correct": 5,
+            "n": 7,
+            "top1": 0.7142857142857143
+          },
+          "PLAY_CARD": {
+            "correct": 14,
+            "n": 31,
+            "top1": 0.45161290322580644
+          }
+        },
+        "chosen_action_types": {
+          "ACTIVATE_LOCATION": 1,
+          "ATTACK": 4,
+          "END_TURN": 17,
+          "HERO_POWER": 7,
+          "PLAY_CARD": 31
+        },
+        "match_cluster_range_top1": {
+          "matches": 2,
+          "max": 0.47368421052631576,
+          "min": 0.43902439024390244
+        },
+        "mrr": 0.615840994517465,
+        "n": 60,
+        "seconds_per_decision": 0.0003857633331790566,
+        "top1": 0.45,
+        "top1_count": 27,
+        "top3": 0.7333333333333333
+      },
+      "Structural_ID_masked": {
+        "by_chosen_action_type_top1": {
+          "ACTIVATE_LOCATION": {
+            "correct": 0,
+            "n": 1,
+            "top1": 0.0
+          },
+          "ATTACK": {
+            "correct": 1,
+            "n": 4,
+            "top1": 0.25
+          },
+          "END_TURN": {
+            "correct": 4,
+            "n": 17,
+            "top1": 0.23529411764705882
+          },
+          "HERO_POWER": {
+            "correct": 6,
+            "n": 7,
+            "top1": 0.8571428571428571
+          },
+          "PLAY_CARD": {
+            "correct": 10,
+            "n": 31,
+            "top1": 0.3225806451612903
+          }
+        },
+        "chosen_action_types": {
+          "ACTIVATE_LOCATION": 1,
+          "ATTACK": 4,
+          "END_TURN": 17,
+          "HERO_POWER": 7,
+          "PLAY_CARD": 31
+        },
+        "match_cluster_range_top1": {
+          "matches": 2,
+          "max": 0.47368421052631576,
+          "min": 0.2926829268292683
+        },
+        "mrr": 0.517216748393219,
+        "n": 60,
+        "seconds_per_decision": 0.00034391166645946213,
+        "top1": 0.35,
+        "top1_count": 21,
+        "top3": 0.6333333333333333
+      }
+    },
+    "unique_visible_card_ids": 50
+  },
+  "representations": {
+    "Hybrid": "NOT_EVALUATED: no adequate independent match-disjoint train/validation/test data",
+    "ID": "existing frozen v2 checkpoint",
+    "Structural": "same frozen v2 checkpoint with only learned card IDs mapped to UNK; not independently trained",
+    "Text": "NOT_EVALUATED: no adequate independent match-disjoint train/validation/test data"
+  },
+  "source": {
+    "base_commit": "cfcc8197433a3c7fdb4bb92ff1077e09d2986fe6",
+    "catalog_profile": "standard_full_20261001_v1",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "checkpoint_format": "manamind.real_policy/2",
+    "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "checkpoint_train_matches": 17,
+    "dataset_identity_sha256": "f89984cac9278dca68e02f519098467d2821a0b7d5323331f275b7ce6dfe7e37",
+    "evaluated_match_ids_sha256": "0c56bc1d62c578f606d292424fad24a1475b64aba6d989139cf904ce422bfe76",
+    "registry_unused_match_count": 4,
+    "unused_match_count_in_supplied_corpus": 0
+  },
+  "status": "INCONCLUSIVE",
+  "text_adapter": {
+    "cache_key_sha256": "e80cbf6b0ed4a29cdda05972cf89090bb2a21af4fba6e441660e46bbea49ee44",
+    "catalog_cards": 1185,
+    "evaluated_ids_in_catalog": 28,
+    "evaluated_ids_with_rules_text": 27,
+    "features_evaluated_in_policy": false,
+    "flavor_text_used": false,
+    "kind": "catalog-scoped TF-IDF unigrams+bigrams",
+    "policy_quality_claim": false,
+    "sparse_cache_name": "card_text_tfidf_e80cbf6b0ed4a29cdda05972cf89090bb2a21af4fba6e441660e46bbea49ee44.json",
+    "terms": 4476,
+    "trained_policy": false,
+    "unique_evaluated_ids": 50
+  },
+  "text_adapter_contract": "Card IDs/type/base stats/mechanics are returned in separate fields; current instance data is passed through separately; adapter does not modify production schema or checkpoint.",
+  "training": {
+    "reason": "usage registry fresh split proposal has zero eligible matches/decisions; registry unused matches are absent from the supplied corpus; reused history is not a new holdout",
+    "started": false
+  }
+}
