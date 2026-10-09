@@ -40,7 +40,7 @@ def action_key(action: dict) -> str:
 def load_scenarios(path: Path) -> list[dict]:
     rows = [json.loads(line) for line in Path(path).read_text(encoding="utf-8").splitlines() if line.strip()]
     if Path(path).resolve() == DEFAULT_SCENARIOS.resolve():
-        frozen_ids, frozen_families, frozen_templates = verify_frozen_control()
+        frozen_ids, frozen_families, frozen_templates, _ = verify_frozen_control()
         if ({row.get("scenario_id") for row in rows} != frozen_ids
                 or {row.get("family_id") for row in rows} != frozen_families
                 or {row.get("template_id") for row in rows} != frozen_templates):

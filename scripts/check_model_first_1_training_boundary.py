@@ -1,4 +1,4 @@
-"""Reject candidate synthetic train/validation JSONL that leaks frozen test families."""
+"""Reject candidates overlapping frozen test identities, provenance, or exact contents."""
 from __future__ import annotations
 
 import argparse
@@ -15,7 +15,7 @@ def main(argv=None) -> int:
     rows = [json.loads(line) for line in args.candidate.read_text(encoding="utf-8").splitlines()
             if line.strip()]
     validate_no_control_overlap(rows)
-    print(f"PASS: {len(rows)} candidate scenarios have no frozen test ID/family overlap.")
+    print(f"PASS: {len(rows)} candidate scenarios have no frozen test identity/provenance/content overlap.")
     return 0
 
 

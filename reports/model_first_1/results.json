@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "scenario_file_sha256": "367e024f664bf486117d6e111ee140606646a683bc4771d3b1c2f65967211806",
+  "scenario_file_sha256": "3f31fd114c7559a78e278c5ac5441e4bd94fefad36e71910ef730f5b7bde215a",
   "split": "test",
   "scenario_count": 13,
   "categories": {
@@ -11,8 +11,8 @@
     "trades": 3,
     "unknown_cards": 1
   },
-  "labelled": 12,
-  "ambiguous": 1,
+  "labelled": 11,
+  "ambiguous": 2,
   "models": {
     "policy_v1": {
       "checkpoint": "E:\\ManaMind\\data\\processed_policy_ml1c\\baseline_seed42_v1\\policy.pt",
@@ -218,14 +218,14 @@
       "catalog_sha256": "3dfae0cb5fe312af22c2a16e01eba1286c073f89ea020808fbbf1778067870d9",
       "vocabulary_sha256": "5d54256a24edce79df217ee13852eb6f0f4132213ad3abc09fd75c2fa36301a1",
       "overall": {
-        "scenarios": 12,
+        "scenarios": 11,
         "top1_count": 8,
-        "top1": 0.6666666666666666,
-        "top3_count": 11,
-        "top3_denominator": 11,
+        "top1": 0.7272727272727273,
+        "top3_count": 10,
+        "top3_denominator": 10,
         "top3": 1.0,
-        "mrr": 0.8194444444444445,
-        "wrong_top1": 4
+        "mrr": 0.8636363636363636,
+        "wrong_top1": 3
       },
       "by_category": {
         "lethal": {
@@ -249,14 +249,14 @@
           "wrong_top1": 0
         },
         "target_selection": {
-          "scenarios": 4,
+          "scenarios": 3,
           "top1_count": 1,
-          "top1": 0.25,
-          "top3_count": 4,
-          "top3_denominator": 4,
+          "top1": 0.3333333333333333,
+          "top3_count": 3,
+          "top3_denominator": 3,
           "top3": 1.0,
-          "mrr": 0.5833333333333334,
-          "wrong_top1": 3
+          "mrr": 0.6666666666666666,
+          "wrong_top1": 2
         },
         "taunt": {
           "scenarios": 1,
@@ -289,12 +289,12 @@
           "wrong_top1": 1
         }
       },
-      "ambiguous": 1,
+      "ambiguous": 2,
       "not_applicable": 0,
-      "inference_ms_mean": 0.4038043076923077,
-      "inference_ms_median": 0.3999,
-      "policy_forward_ms_mean": 0.10765261538461539,
-      "policy_forward_ms_median": 0.104,
+      "inference_ms_mean": 0.3884883076923077,
+      "inference_ms_median": 0.3937,
+      "policy_forward_ms_mean": 0.10413876923076923,
+      "policy_forward_ms_median": 0.1017,
       "inference_timing_scope": "state decode + feature encoding + model forward; excludes checkpoint load",
       "inference_repeats": 25,
       "warmup_scenarios": 3,
@@ -411,16 +411,7 @@
         },
         {
           "scenario_id": "t10_target_health_high",
-          "category": "target_selection",
-          "status": "APPLICABLE",
-          "rank": 3,
-          "correct_ranks": [
-            3
-          ],
-          "top_action": "{\"play_position\":0,\"source_attack\":3,\"source_board_position\":1,\"source_card_id\":\"BE_036\",\"source_health\":4,\"source_is_hero\":false,\"source_kind\":\"MINION\",\"target_attack\":2,\"target_board_position\":1,\"target_card_id\":\"BE_036\",\"target_health\":5,\"target_is_hero\":false,\"target_kind\":\"MINION\",\"target_side\":\"OPPONENT\",\"target_taunt\":false,\"type\":\"ATTACK\"}",
-          "wrong_top1": true,
-          "top_gap_raw": 0.008411765098571777,
-          "menu_size": 4
+          "status": "AMBIGUOUS"
         },
         {
           "scenario_id": "t11_unknown_attacker_identity",
@@ -913,14 +904,14 @@
       "catalog_sha256": "3dfae0cb5fe312af22c2a16e01eba1286c073f89ea020808fbbf1778067870d9",
       "vocabulary_sha256": "5d54256a24edce79df217ee13852eb6f0f4132213ad3abc09fd75c2fa36301a1",
       "overall": {
-        "scenarios": 12,
+        "scenarios": 11,
         "top1_count": 10,
-        "top1": 0.8333333333333334,
-        "top3_count": 11,
-        "top3_denominator": 11,
+        "top1": 0.9090909090909091,
+        "top3_count": 10,
+        "top3_denominator": 10,
         "top3": 1.0,
-        "mrr": 0.9027777777777778,
-        "wrong_top1": 2
+        "mrr": 0.9393939393939394,
+        "wrong_top1": 1
       },
       "by_category": {
         "lethal": {
@@ -944,14 +935,14 @@
           "wrong_top1": 0
         },
         "target_selection": {
-          "scenarios": 4,
+          "scenarios": 3,
           "top1_count": 3,
-          "top1": 0.75,
-          "top3_count": 4,
-          "top3_denominator": 4,
+          "top1": 1.0,
+          "top3_count": 3,
+          "top3_denominator": 3,
           "top3": 1.0,
-          "mrr": 0.875,
-          "wrong_top1": 1
+          "mrr": 1.0,
+          "wrong_top1": 0
         },
         "taunt": {
           "scenarios": 1,
@@ -984,12 +975,12 @@
           "wrong_top1": 1
         }
       },
-      "ambiguous": 1,
+      "ambiguous": 2,
       "not_applicable": 0,
-      "inference_ms_mean": 1.04642,
-      "inference_ms_median": 1.0258,
-      "policy_forward_ms_mean": 0.2000750769230769,
-      "policy_forward_ms_median": 0.1871,
+      "inference_ms_mean": 0.9937258461538462,
+      "inference_ms_median": 1.008,
+      "policy_forward_ms_mean": 0.18660676923076924,
+      "policy_forward_ms_median": 0.1819,
       "inference_timing_scope": "state decode + feature encoding + model forward; excludes checkpoint load",
       "inference_repeats": 25,
       "warmup_scenarios": 3,
@@ -1106,16 +1097,7 @@
         },
         {
           "scenario_id": "t10_target_health_high",
-          "category": "target_selection",
-          "status": "APPLICABLE",
-          "rank": 2,
-          "correct_ranks": [
-            2
-          ],
-          "top_action": "{\"play_position\":0,\"source_attack\":3,\"source_board_position\":1,\"source_card_id\":\"BE_036\",\"source_health\":4,\"source_is_hero\":false,\"source_kind\":\"MINION\",\"target_attack\":2,\"target_board_position\":1,\"target_card_id\":\"BE_036\",\"target_health\":5,\"target_is_hero\":false,\"target_kind\":\"MINION\",\"target_side\":\"OPPONENT\",\"target_taunt\":false,\"type\":\"ATTACK\"}",
-          "wrong_top1": true,
-          "top_gap_raw": 0.006296753883361816,
-          "menu_size": 4
+          "status": "AMBIGUOUS"
         },
         {
           "scenario_id": "t11_unknown_attacker_identity",
@@ -1204,8 +1186,8 @@
         "wrong_top1": 0
       }
     },
-    "ambiguous": 1,
-    "not_applicable": 1,
+    "ambiguous": 2,
+    "not_applicable": 0,
     "decisions": [
       {
         "scenario_id": "t01_two_attacker_lethal",
@@ -1269,10 +1251,7 @@
       },
       {
         "scenario_id": "t10_target_health_high",
-        "category": "target_selection",
-        "status": "NOT_APPLICABLE",
-        "wrong_top1": false,
-        "top1": false
+        "status": "AMBIGUOUS"
       },
       {
         "scenario_id": "t11_unknown_attacker_identity",
@@ -1299,10 +1278,10 @@
   },
   "random": {
     "overall": {
-      "top1": 0.3458333333333334,
-      "top3": 0.8772727272727273,
-      "top3_count": 11,
-      "mrr": 0.6061342592592592
+      "top1": 0.35454545454545455,
+      "top3": 0.89,
+      "top3_count": 10,
+      "mrr": 0.6138888888888888
     },
     "by_category": {
       "lethal": {
@@ -1318,10 +1297,10 @@
         "mrr": 0.5208333333333334
       },
       "target_selection": {
-        "top1": 0.2708333333333333,
-        "top3": 0.8125,
-        "top3_count": 4,
-        "mrr": 0.5434027777777778
+        "top1": 0.27777777777777773,
+        "top3": 0.8333333333333334,
+        "top3_count": 3,
+        "mrr": 0.5509259259259259
       },
       "taunt": {
         "top1": 0.3333333333333333,

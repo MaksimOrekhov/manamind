@@ -11,6 +11,7 @@ from manamind.models.policy import PolicyNetwork
 from manamind.models.policy_v2 import PolicyNetworkV2, feature_contract
 from manamind.training.policy_checkpoint import load_policy_checkpoint
 from manamind.training.model_first_1_control import (
+    normalized_sha256,
     validate_no_control_overlap,
     verify_frozen_control,
 )
@@ -29,7 +30,10 @@ CATALOG = CardCatalog.from_json(ROOT / "data/cards/standard_current_enUS.json")
 def test_scenarios_round_trip_labels_menus_and_family_splits(tmp_path):
     rows = load_scenarios(SCENARIOS)
     assert len(rows) == 13
-    locked_ids, locked_families, locked_templates = verify_frozen_control()
+    corrected = next(row for row in rows if row["scenario_id"] == "t10_target_health_high")
+    assert corrected["label_status"] == "AMBIGUOUS"
+    assert corrected["correct_actions"] == []
+    locked_ids, locked_families, locked_templates, _ = verify_frozen_control()
     assert locked_ids == {row["scenario_id"] for row in rows}
     assert locked_families == {row["family_id"] for row in rows}
     assert locked_templates == {row["template_id"] for row in rows}
@@ -38,6 +42,8 @@ def test_scenarios_round_trip_labels_menus_and_family_splits(tmp_path):
         candidate = dict(rows[index])
         candidate.update(scenario_id=f"example_{split}", family_id=f"example_family_{split}",
                          template_id=f"example_template_{split}", split=split)
+        candidate["state"] = dict(candidate["state"])
+        candidate["state"]["turn_number"] += 100
         candidates.append(candidate)
     validate_no_control_overlap(candidates)
     candidate_path = tmp_path / "split_schema_smoke.jsonl"
@@ -48,6 +54,23 @@ def test_scenarios_round_trip_labels_menus_and_family_splits(tmp_path):
         validate_no_control_overlap([template_leak])
 
 
+def test_exact_control_copy_is_blocked_after_identity_and_menu_order_changes():
+    original = load_scenarios(SCENARIOS)[0]
+    clone = dict(original)
+    clone.update(scenario_id="renamed", family_id="renamed_family", template_id="renamed_template")
+    clone["legal_actions"] = list(reversed(original["legal_actions"]))
+    with pytest.raises(ValueError, match="content_fingerprints"):
+        validate_no_control_overlap([clone])
+
+
+def test_frozen_hash_normalizes_checkout_line_endings(tmp_path):
+    lf = tmp_path / "lf.jsonl"
+    crlf = tmp_path / "crlf.jsonl"
+    lf.write_bytes(b'{"x":1}\n{"y":2}\n')
+    crlf.write_bytes(b'{"x":1}\r\n{"y":2}\r\n')
+    assert normalized_sha256(lf) == normalized_sha256(crlf)
+
+
 def test_random_multi_answer_metrics_are_exact():
     metrics = random_metrics(menu_size=2, correct_count=1)
     assert metrics == {"top1": 0.5, "top3": None, "mrr": 0.75}
@@ -56,8 +79,8 @@ def test_random_multi_answer_metrics_are_exact():
 def test_heuristic_is_conservative_and_handles_control_scenarios():
     rows = [r for r in load_scenarios(SCENARIOS) if r["split"] == "test"]
     result = evaluate_heuristic(rows)
-    assert result["ambiguous"] == 1
-    assert result["not_applicable"] == 1
+    assert result["ambiguous"] == 2
+    assert result["not_applicable"] == 0
     assert result["overall"] == {"applicable": 11, "top1_count": 11, "top1": 1.0, "wrong_top1": 0}
 
 
@@ -90,6 +113,6 @@ def test_model_inference_is_deterministic_and_semantic_menu_order_invariant():
                 dropout=0.1,
             ).eval()
         result = evaluate_model(model, encoder, rows, repeats=2)
-        assert result["ambiguous"] == 1
-        assert result["overall"]["scenarios"] == 12
+        assert result["ambiguous"] == 2
+        assert result["overall"]["scenarios"] == 11
         assert result["inference_ms_mean"] >= 0
