@@ -247,6 +247,29 @@ def test_restart_is_idempotent_with_and_without_state_file(env: Env):
     assert again.stats.duplicates == 1
 
 
+def test_shared_state_prevents_reimport_when_output_roots_change(env: Env, tmp_path: Path):
+    env.write("Power.log", to_text(build_game(seed=52)))
+    shared_state = tmp_path / "shared" / "collector_state.json"
+    holdout = cpl.Collector(
+        env.root, tmp_path / "holdout_raw", tmp_path / "holdout_value", CATALOG,
+        state_path=shared_state, policy_output=tmp_path / "holdout_policy",
+        emit=env.messages.append,
+    )
+    holdout.scan_once()
+
+    regular = cpl.Collector(
+        env.root, tmp_path / "regular_raw", tmp_path / "regular_value", CATALOG,
+        state_path=shared_state, policy_output=tmp_path / "regular_policy",
+        emit=env.messages.append,
+    )
+    regular.scan_once()
+
+    assert holdout.stats.matches_imported == 1
+    assert regular.stats.matches_imported == 0
+    assert not list((tmp_path / "regular_policy").glob("*.jsonl"))
+    assert json.loads(shared_state.read_text(encoding="utf-8"))["games"]
+
+
 def test_corrupt_state_file_does_not_crash(env: Env):
     env.raw.mkdir(parents=True)
     (env.raw / "collector_state.json").write_text("{not json", encoding="utf-8")
@@ -309,9 +332,11 @@ def test_normal_output_and_summary_never_contain_player_names(env: Env):
 
 def test_cli_once_prints_compact_privacy_safe_output(env: Env, capsys, monkeypatch):
     env.write("Power.log", to_text(build_game(seed=80)))
+    state_file = env.root.parent / "shared_collector_state.json"
     monkeypatch.setattr(sys, "argv", [
         "collect_power_logs.py", "--logs-root", str(env.root), "--once",
         "--raw-output", str(env.raw), "--processed-output", str(env.processed),
+        "--state-file", str(state_file),
         "--cards", str(CATALOG),
     ])
     assert cpl.main() == 0
@@ -319,6 +344,7 @@ def test_cli_once_prints_compact_privacy_safe_output(env: Env, capsys, monkeypat
     assert "ManaMind collector" in captured.out and "1 imported" in captured.out
     assert SECRET_NAME not in captured.out + captured.err
     assert len(env.outputs()) == 1
+    assert state_file.is_file()
 
 
 def test_cli_requires_an_existing_logs_root(tmp_path: Path, monkeypatch):

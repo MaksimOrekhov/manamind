@@ -391,6 +391,10 @@ def main() -> int:
     parser.add_argument("--once", action="store_true", help="scan once and exit")
     parser.add_argument("--poll-seconds", type=float, default=5.0)
     parser.add_argument("--raw-output", type=Path, default=Path("data/raw/collected"))
+    parser.add_argument(
+        "--state-file", type=Path, default=None,
+        help="optional shared collector state file when output directories differ",
+    )
     parser.add_argument("--processed-output", type=Path, default=Path("data/processed_real"))
     parser.add_argument("--policy-output", type=Path, default=None,
                         help="default: data/processed_policy_real/collected next to --processed-output")
@@ -413,6 +417,7 @@ def main() -> int:
     logging.disable(logging.CRITICAL)
     collector = Collector(
         args.logs_root, args.raw_output, args.processed_output, args.cards,
+        state_path=args.state_file,
         policy_output=args.policy_output, evidence_output=args.evidence_output,
         max_sessions=args.max_sessions,
     )
