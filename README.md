@@ -39,7 +39,8 @@ flowchart LR
 |---|---|
 | **IMPLEMENTED** | Player-visible `GameState`; card catalog/vocabulary; state encoder (schema 16); Policy v1 (ID-based) and Policy v2 (structural entity representation) with checkpoints; real-action dataset import, audit and match-level splits; Power.log capture, parsing and observation extraction; LIVE runner that read-only ranks complete trusted SELF menus with a fixed checkpoint and collects completed matches; Value Network and its data pipeline (separate from Policy); pinned Standard catalog |
 | **EXPERIMENTAL** | ManaEngine: independent, bounded deterministic simulator that fails closed on unsupported transitions (development frozen); consequence-evidence extraction (`src/manamind/evidence`); synthetic data generators for pipeline checks |
-| **PLANNED** | Evaluation Baseline, synthetic tactical training, Text/Hybrid Policy, observable-consequence prediction (mechanics model), independent practical-quality check, Live Shadow Mode — see the roadmap. None of these is implemented yet |
+| **IMPLEMENTED** | Evaluation Baseline for existing Policy v1/v2 (MODEL-FIRST-1); see the frozen control and report |
+| **PLANNED** | Synthetic tactical training (MODEL-FIRST-2), Text/Hybrid Policy, observable-consequence prediction (mechanics model), independent practical-quality check, Live Shadow Mode — see the roadmap. |
 
 Full Standard simulator coverage is **not** required for training or for live inference on real legal actions. ManaEngine's strict rules (determinism, fail-closed behaviour, hidden-information boundary) are unchanged; see its README.
 

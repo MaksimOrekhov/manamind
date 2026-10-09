@@ -27,8 +27,8 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 
 | # | Stage | Status |
 |---|---|---|
-| 1 | Evaluation Baseline | In progress elsewhere (separate branch); not part of the migration |
-| 2 | Synthetic training on tactical decisions | PLANNED |
+| 1 | Evaluation Baseline (MODEL-FIRST-1) | Complete and accepted |
+| 2 | Synthetic training on tactical decisions (MODEL-FIRST-2) | Next stage; separate task |
 | 3 | Compare ID / Structural / Text / Hybrid Policy | PLANNED |
 | 4 | Predicting observable consequences | PLANNED (experimental) |
 | 5 | Independent check of practical quality | PLANNED |
@@ -49,7 +49,7 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 - **Stage-2 success criterion (intermediate):** a measurable improvement over the original Policy on new, unseen synthetic families, with the comparison against the heuristic reported. This is controlled-skill evidence only and is **not** proof of playing strength.
 - **Does not block the next step:** real independent validation is not required to close stage 2 or to start the next limited ML experiment (stage 3). Its absence only means no claim about real game quality is made.
 - **Required before live acceptance (stage 5/6, not here):** confirmation on independent real data is mandatory before a model is accepted for live use. A synthetic-only gain never qualifies a model for live.
-- **Data limits:** generators encode only rules written by hand and reviewed; cases must expose player-visible information only; held-out families must be defined before training.
+- **Data limits:** generators encode only rules written by hand and reviewed; cases must expose player-visible information only; held-out families must be defined before training. The frozen MODEL-FIRST-1 control scenarios and all of their families/templates are excluded from training and validation.
 
 ### 3. ID / Structural / Text / Hybrid Policy comparison
 
