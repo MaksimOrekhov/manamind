@@ -28,8 +28,9 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 | # | Stage | Status |
 |---|---|---|
 | 1 | Evaluation Baseline (MODEL-FIRST-1) | Complete and accepted |
-| 2 | Synthetic training on tactical decisions (MODEL-FIRST-2) | Next stage; separate task |
-| 3 | Compare ID / Structural / Text / Hybrid Policy | PLANNED |
+| 2 | Synthetic training on tactical decisions (MODEL-FIRST-2, 2B, 2C) | Complete; ambiguous results, shortcut learning and regressions found |
+| 3A | Card representation and text safety pilots | Complete; INCONCLUSIVE |
+| 3 | Compare ID / Structural / Text / Hybrid Policy | Planned; Text/Hybrid Policy not trained |
 | 4 | Predicting observable consequences | PLANNED (experimental) |
 | 5 | Independent check of practical quality | PLANNED |
 | 6 | Live Shadow Mode | PLANNED |
@@ -44,6 +45,8 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 
 ### 2. Synthetic training on tactical decisions (MODEL-FIRST-2)
 
+**Status (MODEL-FIRST-2 / 2B / 2C): complete.** The controlled results are ambiguous. The shortcut challenge exposed positional shortcuts, and the robustness follow-up found regressions. These synthetic results do not establish practical playing strength. The original reports preserve the stage-specific measurements and limitations.
+
 - **Goal:** test whether the Policy can learn controlled tactical skills (lethal, trading, card-vs-mana choice, using hero power) from generated cases.
 - **Outcome:** per-skill accuracy of the trained model versus the original Policy **and** versus a heuristic baseline, on held-out synthetic scenario families that did not take part in training.
 - **Stage-2 success criterion (intermediate):** a measurable improvement over the original Policy on new, unseen synthetic families, with the comparison against the heuristic reported. This is controlled-skill evidence only and is **not** proof of playing strength.
@@ -52,6 +55,10 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 - **Data limits:** generators encode only rules written by hand and reviewed; cases must expose player-visible information only; held-out families must be defined before training. The frozen MODEL-FIRST-1 control scenarios and all of their families/templates are excluded from training and validation.
 
 ### 3. ID / Structural / Text / Hybrid Policy comparison
+
+**MODEL-FIRST-3A status: complete, INCONCLUSIVE. CARD-TEXT-AUDIT-1 and MODEL-FIRST-3A-TEXT-SAFETY are complete.** The text adapter and overlap audit are experimental safeguards; no Text or Hybrid Policy has been trained, and no gameplay benefit from text has been established.
+
+The next priority is a new independent corpus of real observations. Do not start a Text/Hybrid comparison until that corpus and its match-level evaluation split are available and reviewed.
 
 - **Goal:** find out which card representation generalizes to unseen cards: identity embedding, structural features, card-text embedding, or a combination.
 - **Outcome:** one table on identical data and splits, including a split with cards unseen in training.
