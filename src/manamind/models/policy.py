@@ -112,7 +112,7 @@ def encode_policy_state(state: GameState, encoder: StateEncoder) -> np.ndarray:
 
 
 def encode_legal_actions(actions: Sequence[dict[str, Any]]) -> np.ndarray:
-    """Encode semantic action data; transient RosettaStone entity IDs are ignored."""
+    """Encode semantic action data; transient entity IDs are ignored."""
     if not actions:
         raise ValueError("Cannot encode an empty legal-action list")
 
@@ -232,7 +232,7 @@ def load_policy_weights(policy: PolicyNetwork, payload: dict[str, Any]) -> bool:
         return False
 
     state_names = payload.get("state_feature_names")
-    # Version 2 had one `dark_gift_N` family. Rosetta used it for CHOOSE;
+    # Version 2 had one `dark_gift_N` family. The retired reference simulator used it for CHOOSE;
     # map that reviewed meaning to CHOICE and leave new PLAY columns zero.
     if version == 2 and isinstance(feature_names, list):
         feature_names = [

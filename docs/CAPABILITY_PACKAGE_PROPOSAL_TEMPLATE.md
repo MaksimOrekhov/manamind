@@ -10,9 +10,9 @@ Stable package identity, proposal revision/date, pinned Standard profile and reg
 
 Contract name/version and proposed GENERIC / REUSABLE_CAPABILITY / CUSTOM classification. Describe timing, actor/controller, targeting, zones, sequencing, state/history, randomness and supported combinations. State why another matching card can be added by declaration alone.
 
-## existing RosettaStone primitives
+## existing ManaEngine primitives
 
-Reviewed Tasks, Triggers, Auras, Conditions and engine contracts, with source references and limitations. File presence alone is not capability evidence.
+Reviewed ManaEngine effects, triggers, conditions and engine contracts, with source references and limitations. File presence alone is not capability evidence.
 
 ## candidate cards using the same semantics
 

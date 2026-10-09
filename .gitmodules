@@ -1,4 +1,0 @@
-[submodule "vendor/RosettaStone"]
-	path = vendor/RosettaStone
-	url = https://github.com/MaksimOrekhov/RosettaStone.git
-	branch = codex/manamind-engine

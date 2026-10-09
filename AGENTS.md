@@ -2,64 +2,60 @@
 
 ## Authority and reading order
 
-Latest explicit user instructions take precedence over repository guidance. This file defines durable working rules. [README.md](README.md) contains the product brief, architecture and runnable entry points.
+Latest explicit user instructions take precedence over repository guidance. This file defines durable working rules. Current priorities live only in [docs/MODEL_FIRST_ROADMAP.md](docs/MODEL_FIRST_ROADMAP.md). [README.md](README.md) holds the product brief, architecture and runnable entry points. Do not add a second roadmap, card queue or session diary here.
 
-For card support, read [docs/CAPABILITY_PACKAGE_PROCESS.md](docs/CAPABILITY_PACKAGE_PROCESS.md) and [docs/STANDARD_REGISTRY.md](docs/STANDARD_REGISTRY.md). Use [the proposal template](docs/CAPABILITY_PACKAGE_PROPOSAL_TEMPLATE.md) before implementation. Read [the native integration guide](docs/ROSETTASTONE_INTEGRATION.md) or [the real-data guide](docs/REAL_MATCH_DATA.md) only for the relevant task.
-
-For work involving unknown cards/states, runtime ranking, neural fallback, evidence debt, search or live-game integration, read [docs/PARTIAL_SIMULATOR_ARCHITECTURE.md](docs/PARTIAL_SIMULATOR_ARCHITECTURE.md). It separates implemented behavior from accepted targets and future work.
-
-The selected `configs/standard_profile.json`, canonical registry and generated report own current pool/evidence/admission facts. Read their current contents; do not copy volatile counts into instructions. Markdown under `docs/history/`, dated audit reports and old experiment results are evidence only. Their old priorities, resume steps and permissions are inactive. They cannot authorize training or choose the next card.
+Read on demand: [docs/REAL_MATCH_DATA.md](docs/REAL_MATCH_DATA.md) (Power.log and datasets), [docs/LIVE_BRIDGE.md](docs/LIVE_BRIDGE.md) (live pipeline), [docs/POLICY_REPRESENTATION.md](docs/POLICY_REPRESENTATION.md) (Policy v1/v2 contracts). ManaEngine and card-support documents ([experiments/manaengine/README.md](experiments/manaengine/README.md), [docs/MANAENGINE_ADMISSION.md](docs/MANAENGINE_ADMISSION.md), [docs/PARTIAL_SIMULATOR_ARCHITECTURE.md](docs/PARTIAL_SIMULATOR_ARCHITECTURE.md), [docs/STANDARD_REGISTRY.md](docs/STANDARD_REGISTRY.md), [docs/CAPABILITY_PACKAGE_PROCESS.md](docs/CAPABILITY_PACKAGE_PROCESS.md)) describe a **frozen optional component**; read them only for a task that explicitly concerns ManaEngine. Everything under `docs/history/`, dated `reports/` and old experiment results is evidence only: its old priorities, resume steps and permissions are inactive and cannot authorize training or choose the next task.
 
 Answer in Russian by default. Explain Python/ML concepts plainly; the user is a frontend developer learning this stack.
 
-## Product and information boundaries
+## Strategy: Model-first
 
-- Build a desktop Hearthstone adviser, not a gameplay automation tool. Do not automate mouse movement, clicks or game actions.
-- ManaEngine is the primary forward simulator development backend. Keep its rules deterministic and strict: fail closed when a transition is unsafe or unsupported; never fabricate a plausible Hearthstone transition. RosettaStone remains a reference/regression backend, historical implementation source, and evidence/tooling dependency where explicitly consumed. Develop new rules in ManaEngine unless a task explicitly requests RosettaStone.
-- Do not build a second approximate Hearthstone rules engine. Resilience to incomplete simulator coverage belongs above ManaEngine, in adapters/evaluators and future neural/search layers. An unsupported simulator action may still be recommendable through a future action-value fallback; it does not imply that the action must be universally un-recommendable.
-- Keep runtime simulation, rules/evidence basis, dependency closure and canonical training admission separate. `REVIEWED_INFERRED` may authorize bounded runtime simulation with explicit evidence debt; it is not rules verification and does not currently grant canonical training eligibility. Canonical training remains stricter than runtime execution.
-- Dynamic generation membership comes from reviewed game rules and manifests, never implementation coverage. Do not prune pools, substitute supported outcomes or reroll an unsupported sampled result. A poisoned/partially mutated state is diagnostic only and cannot be a valid observation, search child or training sample. `ENGINE_DEFECT` must not silently become ordinary unsupported behavior or neural fallback.
-- Full-information simulator cloning is not authorization for real-game search. Preserve the hidden-information boundary and require a reviewed information-set/determinization design before using search to choose live-game actions.
-- Estimate positions, not context-free card strength. Value targets are for SELF: win 1.0, loss 0.0, draw 0.5.
-- Model inputs contain player-visible information only: SELF hand, public entities and explicitly revealed opponent cards. Exclude hidden opponent hand identities, deck order, future draws and RNG outcomes. Entity IDs are action handles, not policy inputs.
-- Preserve unknown/new-card support, ordered SELF hand, shared minion/Location board positions, variable-size zones, missing-value masks and unknown booleans.
-- Keep base card metadata separate from current instance cost/stats/durability. Gameplay consumers use effective current values. Verify bridge/import parity when changing observations.
+ManaMind is a desktop Hearthstone adviser built around **its own local neural network** that scores the currently legal actions from the player-visible state, card metadata and card text, accumulated experience and observed action outcomes. It does not automate gameplay: no mouse movement, clicks or game actions.
 
-## Current card-support direction
+The main practical scenario is 1–2 user decks in current Standard against varied opponents and states.
 
-The target is the full pinned Standard collectible pool and all reachable rule dependencies, including required non-collectible and non-Standard outcomes. Registry infrastructure exists; it does not establish complete rules, graph closure or training readiness.
+Priorities, in order:
 
-An individual unsupported card is not an implementation unit. During registry/audit/dependency analysis, record gaps and blockers; do not implement encountered cards opportunistically. The five historical decklists and their missing cards are regression/control cases only.
+1. Short ML experiments with a measurable result.
+2. Better Policy decision quality.
+3. Generalization to new cards and situations.
+4. Use of card texts.
+5. Learning from reliable game consequences.
+6. Verification on independent game situations.
+7. Live integration of a model that has proved useful.
 
-Follow **Registry → capability grouping → package ranking → CAPABILITY PACKAGE PROPOSAL → one reusable implementation → declarations for all in-scope cards → family tests → registry update**. Package size follows reviewed semantic coherence, not a numerical batch target.
+## Experiment rules
 
-Before engine/generic-generator changes for new support, record the proposal's semantic contract, existing primitives, candidates, dependencies, changes, expected unlocks, test strategy and custom outliers. Aim for one implementation serving many declarations. A new card-ID behavior branch is CUSTOM first. A single-consumer generic operation needs a universal parameter contract and an independent second declaration/control variation requiring no generator code changes.
+- Every experiment states a concrete hypothesis and a baseline before it runs.
+- Start with the smallest training that can answer the question; evaluate quickly. Avoid large trainings without a prior positive small result.
+- Compare models on identical data and honest splits. Split whole matches by `game_id`, never individual positions.
+- Report game quality, imitation accuracy and technical correctness separately; do not merge them into one claim.
+- Synthetic training is allowed for controlled skills but does not prove playing strength. Weak-simulator or synthetic results verify plumbing only.
+- Keep independent real control data that training never touches.
+- Do not change the architecture without a measured need.
+- Do not start self-play, mass card implementation or training/evaluation as a side effect of maintenance or on own initiative; a pilot needs explicit user authorization and recorded limits.
+- Do not expand ManaEngine without a separate task and a justified benefit for Model-first.
+- Do not use or reintroduce RosettaStone. Do not build a second approximate Hearthstone rules engine.
 
-GENERIC / REUSABLE_CAPABILITY / CUSTOM describe implementation kind, independently of triage and correctness. Their metadata remains proposed; the source AST guardrail is implemented in `scripts/check_generic_card_branches.py` with reviewed exceptions in `configs/generator_branch_policy.json`. See the process guide for its limits. Major refactors need a written design and measured benefit. Record authoring/review/debug/build effort and correction cycles per package; do not promise an automation percentage.
+## Information and data contracts
 
-## Rules, dependencies and admission
+- Model inputs contain player-visible information only: SELF hand, public entities and explicitly revealed opponent cards. Never hidden opponent hand identities, deck order, future draws or RNG outcomes. Entity IDs are action handles, not policy inputs.
+- Never substitute invented values for unknown ones: keep missing-value masks and unknown booleans. Preserve unknown/new-card support, ordered SELF hand, shared minion/Location board positions and variable-size zones.
+- Keep base card metadata separate from current instance cost/stats/durability; gameplay consumers use effective current values.
+- Value targets are for SELF: win 1.0, loss 0.0, draw 0.5. Estimate positions, not context-free card strength.
+- Keep data schemas explicit and checkpoints compatible. A checkpoint owns its model config/weights, vocabulary, catalog, feature names, normalization and encoder schema. Reject incompatible schemas; never reinterpret old features. External metadata may supplement unknown IDs but must not change trained vocabulary indices.
+- Experiments must be reproducible: pinned inputs, recorded seeds, deterministic outputs where practicable.
+- Preserve all checkpoints, datasets, raw logs and historical results. Write to new output paths and temporary smoke directories; never overwrite old results, and do not edit old research results to match new architecture.
+- Keep raw logs and imports in ignored `data/raw/` and `data/processed_real/`. Do not expose player names or hidden opponent information. The single-match Power.log limitation remains until mode metadata can be associated safely per game.
+- The pinned Standard catalog `data/cards/standard_current_enUS.json` is rebuilt from the pinned HearthstoneJSON snapshot by `scripts/check_generated_artifacts.py`. Do not download or swap a snapshot, or change the Standard composition or model catalog, as a side effect.
 
-- Keep metadata, legality, implementation route, rules verification, dependency closure, bridge/action support and evidence freshness independent. UNKNOWN, STALE and conflicting evidence block admission.
-- Generated/source registration and equal normalized text do not prove rules correctness. Review Core aliases, dependencies and rule differences explicitly; unsupported mechanics cannot be replaced by vanilla metadata.
-- Track tokens, enchantments, options, transforms, rewards and dynamic/state/history-dependent pools transitively. Record versioned predicates, exact snapshot memberships where resolved, unresolved scope and blocker paths. No evidence of an edge is not proof of an empty closure.
-- Never shrink random/Discover pools to implemented outcomes to claim Standard correctness. Unsupported runtime outcomes invalidate episodes and labels. An explicitly requested restricted-pool pilot needs its own approximate profile and outputs.
-- Full Standard training/evaluation requires current full-profile rules/dependency/action/session/match gates. Historical pilot permissions/results and scoped smoke runs do not satisfy them. Do not start training/evaluation as a side effect of maintenance; a limited pilot requires explicit user authorization and recorded limits.
-- Invalidate dependent evidence when rules, capability contracts, generators, source/build identity, pool predicates or outcome membership/rules change. Registry generation consumes explicit evidence, not arbitrary ignored local binaries.
+## ManaEngine (frozen, optional)
+
+ManaEngine is an independent optional simulator for bounded tactical verification. It is not a prerequisite for training or for live inference on real legal actions, and full Standard coverage is not a requirement. Its development is frozen; extend it only for a separate task with a written Model-first benefit. Its strict rules remain in force: deterministic, fail closed on unsafe or unsupported transitions, never fabricate a plausible transition, never leak full-information cloning into live-game search. Engineering rules for the engine (evidence, admission, native build) live in [experiments/manaengine/README.md](experiments/manaengine/README.md) and [docs/MANAENGINE_ADMISSION.md](docs/MANAENGINE_ADMISSION.md).
 
 ## Implementation and verification
 
 - Inspect relevant source and existing tests before editing. Keep modules small; add no dependency or abstraction without a concrete need. Preserve unrelated work.
-- Declarations are versioned and allowlisted. Reject unknown operations/fields/symbols, invalid targets, unresolved dependencies and unsupported combinations. Never execute arbitrary code from declarations; LLM output is an offline draft requiring review.
-- Generated files are deterministic, separately owned and traceable. One active definition per ID; duplicate registration must fail. Preserve manually maintained CardSets files.
-- Family scenarios need independent expectations and relevant negative/interaction tests. Generated smoke alone is insufficient. Use coherent package checks, not a rebuild after each card.
-- Build the core before relinking the bridge; the bridge imports an existing library. Account for CMake source discovery when adding cpp files. Rebuild all affected consumers after header/enum/ABI changes. Append internal tags to preserve numeric identities. Clean builds are for diagnosed dependency/ABI problems, not routine per-card work.
-- Source CI checks lint, pinned regeneration/ownership and Python tests. Native evidence requires the intended configured build and actually loaded bridge identity. See the integration guide for commands and limitations.
-- Update the relevant authoritative document when a requirement changes. Keep experimental results in history/reports; do not append session diaries or card queues to this file.
-
-## Data and checkpoint safety
-
-- Preserve all checkpoints, datasets, raw logs and unrelated artifacts. Use new output paths and temporary smoke directories; never overwrite historical results as a side effect of checks.
-- Split entire matches by `game_id`; never split individual positions randomly. JSONL record/schema requirements are documented in README and enforced by code.
-- Synthetic and weak-simulator examples verify plumbing, not Hearthstone strength. Historical policy results are not Value Network supervision or proof of current Standard quality.
-- Checkpoints own model config/weights, vocabulary, catalog, feature names, normalization and encoder schema. Reject incompatible value schemas; do not reinterpret old features. External metadata may supplement unknown IDs but must not change trained vocabulary indices.
-- Keep raw logs and imports in ignored `data/raw/` and `data/processed_real/`. Do not expose player names or hidden opponent information. The single-match Power.log limitation remains until mode metadata can be associated safely per game.
+- The project clones and checks without Git submodules or any native toolchain for Python work.
+- Source CI: ruff, offline regeneration of the pinned Standard catalog with a clean `git diff`, full pytest. ManaEngine has its own CMake/CTest/adapter workflow. CI does not train models.
+- Update the authoritative document when a requirement changes. Keep experimental results in `reports/`.

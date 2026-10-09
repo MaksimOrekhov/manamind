@@ -297,10 +297,6 @@ def _load_definitions(catalog_path: str | Path | None = None) -> tuple[list[Any]
         for row in json.loads(path.read_text(encoding="utf-8"))["cards"]:
             pinned_raw[str(row["id"])] = row
             spell_schools[str(row["id"])] = str(row.get("spellSchool", "")).upper()
-    legacy_file = _ROOT / "vendor/RosettaStone/Resources/cards.json"
-    if legacy_file.exists():
-        for row in json.loads(legacy_file.read_text(encoding="utf-8")):
-            pinned_raw.setdefault(str(row["id"]), row)
     records.update({key: records.get(key, value) for key, value in extras.items()})
     config = json.loads((_ROOT / "experiments/manaengine/data/card_abilities.json").read_text(encoding="utf-8"))
     overrides = config["cards"]

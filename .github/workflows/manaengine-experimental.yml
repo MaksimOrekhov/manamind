@@ -13,11 +13,10 @@ on:
       - "src/manamind/domain/**"
       - "src/manamind/encoding/**"
       - "src/manamind/integrations/manaengine/**"
-      - "src/manamind/integrations/rosettastone/policy.py"
+      - "src/manamind/models/policy.py"
       - "experiments/manaengine/tests/test_adapter.py"
       - "tests/test_pipeline.py"
       - "tests/test_policy_action_semantics.py"
-      - "train_selfplay.py"
       - ".github/workflows/manaengine-experimental.yml"
   pull_request:
     paths:
@@ -30,11 +29,10 @@ on:
       - "src/manamind/domain/**"
       - "src/manamind/encoding/**"
       - "src/manamind/integrations/manaengine/**"
-      - "src/manamind/integrations/rosettastone/policy.py"
+      - "src/manamind/models/policy.py"
       - "experiments/manaengine/tests/test_adapter.py"
       - "tests/test_pipeline.py"
       - "tests/test_policy_action_semantics.py"
-      - "train_selfplay.py"
       - ".github/workflows/manaengine-experimental.yml"
   workflow_dispatch:
 
@@ -49,8 +47,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}

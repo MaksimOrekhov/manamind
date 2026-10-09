@@ -2,7 +2,7 @@
 
 This directory preserves dated card/scenario audits, native build findings, observation reviews and pilot results. Their coverage counts, schema versions, permissions, priorities and resume steps describe the original experiment only. Do not use them to choose cards or authorize training.
 
-Current authority is [AGENTS.md](../../AGENTS.md), the [capability-package process](../CAPABILITY_PACKAGE_PROCESS.md) and [Standard registry](../STANDARD_REGISTRY.md). Read history only to investigate a specific rule/source contract or earlier result. A historical PASS must still match the current profile/evidence scope before being usable.
+Current authority is [AGENTS.md](../../AGENTS.md) and the [Model-first roadmap](../MODEL_FIRST_ROADMAP.md). [`rosettastone_legacy/`](rosettastone_legacy/README.md) archives the declarations and evidence of the retired RosettaStone phase. Read history only to investigate a specific rule/source contract or earlier result. A historical PASS must still match the current profile/evidence scope before being usable.
 
 ## Retained records
 

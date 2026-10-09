@@ -12,7 +12,7 @@ from manamind.integrations.manaengine import (
     AttemptReason, ManaEngineSession, SimulationOutcome, UnsupportedSimulationError, attempt_action,
 )
 from manamind.integrations.manaengine.engine import _definition_rows, _load_native, _parse_effect_steps
-from manamind.integrations.rosettastone.policy import encode_legal_actions
+from manamind.models.policy import encode_legal_actions
 
 FILLER = "CORE_EX1_145"
 SHOT = "CORE_DS1_185"  # Arcane Shot: deal 2 damage

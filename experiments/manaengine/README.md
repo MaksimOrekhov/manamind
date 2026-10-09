@@ -1,10 +1,13 @@
 # ManaEngine simulator backend
 
-ManaEngine is the primary forward simulator development backend, with strict
-bounded behavior and explicit evidence debt. It is not a complete Hearthstone
-rules implementation and is not currently admitted for canonical training.
-RosettaStone remains a reference/regression backend and historical source of
-implementation evidence. See the [partial-simulator architecture](../../docs/PARTIAL_SIMULATOR_ARCHITECTURE.md)
+ManaEngine is an **optional, independent simulator for bounded tactical
+verification**, with strict bounded behavior and explicit evidence debt. Its
+development is frozen under the Model-first strategy
+([roadmap](../../docs/MODEL_FIRST_ROADMAP.md)): extend it only for a separate
+task with a written Model-first benefit. It is not a complete Hearthstone rules
+implementation, is not currently admitted for canonical training, and nothing in
+Model-first training or live inference requires it. RosettaStone was removed
+from the repository and is not a dependency or reference backend. See the [partial-simulator architecture](../../docs/PARTIAL_SIMULATOR_ARCHITECTURE.md)
 for the implemented behavior, accepted target and future work boundaries.
 
 Runtime execution, evidence status, dependency closure and training admission
@@ -133,7 +136,7 @@ Native sessions also expose an optional diagnostic event trace through `ManaEngi
 
 ## Scope
 
-Tier A/B roots are selected at run time by `scripts/select_roots.py` from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The baseline selection is 18 (3 Tier A, 15 Tier B); the additional Phase 3 Discover root is documented separately and does not change the canonical registry. Tier C is not included in parity. The board-choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
+Tier A/B roots were selected by `scripts/select_roots.py`, a **deactivated historical tool** (as is `build_frontier_ledger.py`: both read archived RosettaStone evidence and the frozen registry, need `--historical-rerun`, and their output is not current verified coverage; `data/root_selection.json` is a frozen record). The selection was made from the pinned Meta Profile card matrix, package evidence, and canonical Standard registry. The baseline selection is 18 (3 Tier A, 15 Tier B); the additional Phase 3 Discover root is documented separately and does not change the canonical registry. Tier C is not included in parity. The board-choice fixture is a test scenario only; it is not a collectible Standard card and contributes no root/parity count.
 
 Deck summons filter the complete live deck by the card's declared current cost/type predicate, then use seeded RNG. The pool is never reduced to only roots with implemented ManaEngine effects. Unsupported card definitions encountered in a generated pool remain an explicit limitation.
 
@@ -148,12 +151,31 @@ cmake --build experiments/manaengine/build-release
 ctest --test-dir experiments/manaengine/build-release --output-on-failure
 ```
 
-On Ubuntu/Linux, use an ordinary CMake C++20 toolchain plus an installed `pybind11` CMake package and Python development headers. The core library and native tests have no Rosetta/vcpkg dependency.
+On Ubuntu/Linux, use an ordinary CMake C++20 toolchain plus an installed `pybind11` CMake package and Python development headers. The core library and native tests have no external engine or vcpkg dependency; no Git submodule is needed.
 
 Python import uses `src/manamind/integrations/manaengine/engine.py`; set `PYTHONPATH=src` when running outside an editable install.
 
 ## Adapter smoke
 
-After building the extension, use `ManaEngineSession` with the same deck IDs and player-class arguments as the Rosetta `SimulatorSession`. The returned `observation()` is the existing immutable visible `GameState`; `legal_actions()` returns ManaMind action dictionaries, and `clone()` creates an independent branch. Set `MANAMIND_ROSETTA_BRIDGE` only when running side-by-side parity from a worktree that does not have the Rosetta submodule initialized.
+After building the extension, use `ManaEngineSession` with deck IDs and player-class arguments. The returned `observation()` is the existing immutable visible `GameState`; `legal_actions()` returns ManaMind action dictionaries, and `clone()` creates an independent branch.
 
 The current session adapter admits games whose two seats are Mage, Priest, Hunter or Warrior, each starting with its reviewed base Hero Power (Fireblast, Lesser Heal, Steady Shot, Armor Up!); every other class is rejected with `UNSUPPORTED_HERO_CLASS`, and a current power without a reviewed supported definition with `UNSUPPORTED_HERO_POWER`. This is a prototype-setup gate only: it does not import real-game state. Its bounded behavior catalog covers the selected Tier A/B roots plus the Phase 3 `CORE_GIL_836` Discover root and generated cards declared in `data/card_abilities.json`. It does not verify every possible generated or randomly selected card outcome, enforce deck construction rules in the C++ core, implement mulligan, or provide full Hearthstone event semantics. Dynamic pools keep their complete declared predicates; selecting an unsupported result fails closed.
+
+## Engineering rules for the frozen engine
+
+These rules moved here from the repository-wide working rules; they apply only when a separate task touches ManaEngine.
+
+- Keep rules deterministic and strict. Fail closed when a transition is unsafe or unsupported; never fabricate a plausible Hearthstone transition. Resilience to incomplete coverage belongs above the engine, never in a second approximate rules engine.
+- Keep runtime simulation, rules/evidence basis, dependency closure and canonical training admission separate. `REVIEWED_INFERRED` may authorize bounded runtime simulation with explicit evidence debt; it is not rules verification and does not grant canonical training eligibility.
+- Dynamic generation membership comes from reviewed game rules and manifests, never implementation coverage. Do not prune pools, substitute supported outcomes or reroll an unsupported sampled result. A poisoned or partially mutated state is diagnostic only and cannot be a valid observation, search child or training sample. `ENGINE_DEFECT` must not silently become ordinary unsupported behaviour.
+- Full-information simulator cloning is not authorization for real-game search; a reviewed information-set/determinization design is required first.
+- Declarations are versioned and allowlisted: reject unknown operations, fields and symbols, invalid targets and unresolved dependencies. Never execute arbitrary code from declarations.
+- Build the core before relinking the bridge; account for CMake source discovery when adding `.cpp` files; rebuild all affected consumers after header/enum/ABI changes; append internal tags to preserve numeric identities. Use clean builds only for diagnosed dependency/ABI problems.
+- Native evidence requires the intended configured build and the actually loaded module identity. Invalidate dependent evidence when rules, capability contracts, source/build identity or pool predicates change.
+- Family scenarios need independent expectations and negative/interaction tests; a smoke test derived from the same declaration is not rules evidence.
+
+## Metadata provenance
+
+Card metadata used by the engine comes from the pinned HearthstoneJSON snapshot `data/cards/source_snapshots/cards_collectible_20261001_enUS.json`, the Standard catalog, and the dependency files in `experiments/manaengine/data/`. The engine no longer reads any RosettaStone dump at runtime (the optional `vendor/RosettaStone/Resources/cards.json` gap filler was removed; for the current inputs it never contributed, because every engine record is already covered by the pinned files).
+
+Three committed dependency identities were captured from RosettaStone's bundled `cards.json` rather than from HearthstoneJSON: `quick1_dependency_metadata.json` (`CS2_065`), `quick2_dependency_metadata.json` (`EDR_492t`) and `choice_mode_dependency_metadata.json` (one Living Roots token). **Their independent confirmation against HearthstoneJSON has not been performed** (it would need a new download, which the migration did not do). They are left byte-identical so that the capability fingerprint does not change; treat the three identities as unconfirmed-by-independent-source until someone re-captures them from a pinned HearthstoneJSON build.

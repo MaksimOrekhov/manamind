@@ -1,6 +1,6 @@
 # ManaEngine admission and information boundary
 
-ManaEngine is ManaMind's primary forward simulator development backend, with bounded correctness and admission; it is not production-complete. Its internal state is authoritative during simulation; ManaMind `GameState` is a separate player-visible projection. Existing RosettaStone canonical evidence does not certify ManaEngine rules. See the [partial-simulator architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md) for unknown-state handling, inferred behavior and future fallback boundaries.
+ManaEngine is ManaMind's optional, frozen simulator for bounded tactical verification, with bounded correctness and admission; it is not production-complete and Model-first work does not depend on it ([roadmap](MODEL_FIRST_ROADMAP.md)). Its internal state is authoritative during simulation; ManaMind `GameState` is a separate player-visible projection. Archived RosettaStone evidence (`docs/history/rosettastone_legacy/`) never certified ManaEngine rules. See the [partial-simulator architecture](PARTIAL_SIMULATOR_ARCHITECTURE.md) for unknown-state handling, inferred behavior and future fallback boundaries.
 
 ## Development and training
 

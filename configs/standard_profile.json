@@ -1,7 +1,6 @@
 {
   "schema_version": 1,
   "profile_id": "standard_full_20261001_v1",
-  "registry_id": "standard_registry_20261001_v1",
   "as_of_date": "2026-10-01",
   "captured_at_utc": "2026-10-01T06:11:31.394642Z",
   "scope": "data/cards/standard_scope_20261001.json",
@@ -9,16 +8,11 @@
   "roots": "data/cards/standard_roots_20261001_enUS.json",
   "bans": "data/cards/standard_bans_20261001.json",
   "catalog": "data/cards/standard_current_enUS.json",
-  "engine_overlay": "vendor/RosettaStone/Resources/cards.standard_current.json",
-  "registry": "data/cards/standard_registry_20261001_enUS.json",
-  "reports": "reports/standard_registry_20261001",
-  "verification_evidence": [
-    "integrations/rosettastone/card_rules/after_attack_draw.evidence.json",
-    "integrations/rosettastone/card_rules/repeated_trigger_draw.evidence.json",
-    "integrations/rosettastone/card_rules/filtered_school_draw.evidence.json",
-    "integrations/rosettastone/card_rules/core_aliases.evidence.json",
-    "integrations/rosettastone/card_rules/minion_set_enchant.evidence.json",
-    "integrations/rosettastone/card_rules/held_card_gate_fixed_battlecry.evidence.json"
-  ],
-  "session_match_evidence": null
+  "historical_registry": {
+    "registry_id": "standard_registry_20261001_v1",
+    "path": "data/cards/standard_registry_20261001_enUS.json",
+    "reports": "reports/standard_registry_20261001",
+    "status": "FROZEN_HISTORICAL_SNAPSHOT",
+    "note": "Built when RosettaStone was the reference backend. Not regenerated, not an admission gate, not ManaEngine coverage. See docs/history/rosettastone_legacy/README.md."
+  }
 }

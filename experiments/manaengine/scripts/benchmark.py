@@ -10,9 +10,7 @@ import time
 from pathlib import Path
 from typing import Any, Callable
 
-from compare_reference import _make_deck
 from manamind.integrations.manaengine import ManaEngineSession
-from manamind.integrations.rosettastone.rosettastone import SimulatorSession
 
 ROOT = Path(__file__).resolve().parents[3]
 SEED = 7
@@ -63,8 +61,6 @@ def _measure(fn: Callable[[], Any], count: int) -> dict[str, float]:
 
 def _session(backend: str, deck: list[str]) -> Any:
     classes = {"player1_class": "MAGE", "player2_class": "MAGE", "shuffle": False, "random_seed": SEED}
-    if backend == "RosettaStone":
-        return SimulatorSession(deck, deck, **classes, random_start=False)
     return ManaEngineSession(deck, deck, **classes)
 
 
@@ -148,13 +144,10 @@ def main() -> None:
     if args.iterations < 3:
         parser.error("--iterations must be at least 3")
     # ManaEngine needs a fully supported draw path for pass-only complete games.
-    # Rosetta uses its validated Mage deck; fixture differences are explicit below.
     mana_deck = ["CORE_DRG_107"] * 30
-    rosetta_deck = _make_deck()
     results = {
         "scenarios": {
             "ManaEngine": "30-card supported Mage stress fixture (CORE_DRG_107 x30); seeded, no shuffle; pass-only matches reach fatigue terminal; not a deck-validity claim",
-            "RosettaStone": "30-card Rosetta-validated Mage reference fixture; seeded, no shuffle; pass-only matches reach fatigue terminal",
         },
         "seed": SEED,
         "iterations": args.iterations,
@@ -162,7 +155,6 @@ def main() -> None:
         "cpu": platform.processor() or platform.machine(),
         "os": platform.platform(),
         "backends": {
-            "RosettaStone": _bench_backend("RosettaStone", rosetta_deck, args.iterations),
             "ManaEngine": _bench_backend("ManaEngine", mana_deck, args.iterations),
         },
     }

@@ -4,7 +4,7 @@ import numpy as np
 import pytest
 import torch
 
-from manamind.integrations.rosettastone.policy import (
+from manamind.models.policy import (
     ACTION_FEATURE_NAMES,
     POLICY_ACTION_SCHEMA_VERSION,
     POLICY_STATE_FEATURE_NAMES,

@@ -191,8 +191,8 @@ entropy, top-1, top-3 (menus >=3), and mean reciprocal rank. It refuses evaluati
 on training game IDs. At least three labeled games are required for three splits;
 rare outcomes may remain unrepresented in a small held-out partition.
 
-The existing scorer was extracted to `manamind.models.policy`; RosettaStone
-imports are preserved. Policy action checkpoint schema 4 appends `play_position`
+The scorer lives in `manamind.models.policy` (the former RosettaStone
+compatibility imports were removed). Policy action checkpoint schema 4 appends `play_position`
 without changing the architecture or Value StateEncoder schema. Version 3
 weights migrate with a zero-initialized new column. The inherited scorer remains
 coarse: it embeds the action-bearing card, not each target's identity, and does
@@ -207,7 +207,7 @@ python scripts/smoke_real_policy.py data/processed_policy_real/run1 --checkpoint
 
 It performs one CPU update on at most 32 train decisions, evaluates separate
 whole test matches, saves/reloads a new checkpoint, and makes no strength claim.
-Checkpoint schema is separate from RosettaStone self-play checkpoints. Use a
+Checkpoint schema is separate from the retired self-play checkpoints. Use a
 new checkpoint path; overwrite is refused. Local validation and coverage limits
 are recorded in `reports/ml/ML1B_REAL_POLICY_DATASET.md`.
 
