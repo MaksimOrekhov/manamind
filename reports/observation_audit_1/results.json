@@ -1,0 +1,203 @@
+{
+  "inputs": {
+    "canonical_matches": 53,
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "decision_points": 2991,
+    "game_segments": 93,
+    "labeled_decisions_matched": 2010,
+    "labeled_decisions_total": 2010,
+    "raw_log_files": 93,
+    "rejected": {
+      "DUPLICATE_MATCH": 31
+    },
+    "replayed_canonical_matches": 53,
+    "replayed_matches": 62,
+    "self_actions": 2248
+  },
+  "quests": {
+    "completions_during_own_actions": {
+      "TLC_817t": 27,
+      "TLC_817t2": 17
+    },
+    "decisions": {
+      "decisions_with_self_deck_contributor_tags": 0,
+      "distinct_self_quest_cards": 2,
+      "labeled_with_self_quest": 1353,
+      "matches_with_self_quest": 43,
+      "opponent_hidden_cards_with_contributor_tag": 14,
+      "opponent_hidden_secret_identities_exposed": 0,
+      "opponent_public_secret_zone_card_observations": 164,
+      "opponent_quest_identity_known": 670,
+      "self_quest_changed_outside_own_actions": 0,
+      "self_quest_identity_known": 2068,
+      "self_quest_progress_tag_absent": 1482,
+      "self_quest_total_known": 2068,
+      "self_secret_identity_known": 21,
+      "with_opponent_quest": 670,
+      "with_opponent_secret": 69,
+      "with_self_non_quest_secret": 21,
+      "with_self_quest": 2068
+    },
+    "dual_quest_school_mapping": {
+      "TLC_817t": "HOLY",
+      "TLC_817t2": "SHADOW"
+    },
+    "first_progress_value_after_absent_tag": {
+      "1": 83
+    },
+    "progress_from_own_non_spell_actions": 0,
+    "quest_contributor_tag_vs_progress": [
+      {
+        "count": 13,
+        "outcome": "no_progress",
+        "tag": "tag_0"
+      },
+      {
+        "count": 1,
+        "outcome": "no_progress",
+        "tag": "tag_1"
+      },
+      {
+        "count": 260,
+        "outcome": "progressed",
+        "tag": "tag_1"
+      },
+      {
+        "count": 722,
+        "outcome": "no_progress",
+        "tag": "tag_absent"
+      }
+    ],
+    "school_rule_contradiction_examples": [
+      {
+        "delta": 0,
+        "quest": "TLC_817t",
+        "source_card_id": "CATA_308",
+        "spell_school": "HOLY"
+      }
+    ],
+    "school_rule_on_own_spells": [
+      {
+        "count": 453,
+        "predicted": "no_progress",
+        "verdict": "confirmed"
+      },
+      {
+        "count": 246,
+        "predicted": "progress",
+        "verdict": "confirmed"
+      },
+      {
+        "count": 1,
+        "predicted": "progress",
+        "verdict": "contradicted"
+      },
+      {
+        "count": 257,
+        "predicted": "no_progress",
+        "verdict": "no_claim_school_not_in_pinned_catalog"
+      },
+      {
+        "count": 14,
+        "predicted": "progress",
+        "verdict": "no_claim_school_not_in_pinned_catalog"
+      }
+    ]
+  },
+  "ruby_sanctum": {
+    "active_without_visible_location": {
+      "all": 4,
+      "labeled": 2
+    },
+    "decision_states": {
+      "ACTIVE": 65,
+      "INACTIVE": 2926
+    },
+    "decisions_with_state_change_outside_own_actions": 0,
+    "effect_lifecycles": {
+      "consumed_by_targeted_pure_heal": 46,
+      "instances": 75,
+      "matches_with_instances": 33,
+      "matches_with_self_instances": 33,
+      "never_removed": 0,
+      "outlived_its_location": 5,
+      "removed_during_action_by_source": {
+        "CATA_302": 2,
+        "CATA_303": 18,
+        "CORE_AT_055": 45,
+        "CS1h_001_H1": 1,
+        "HERO_09dbp": 1,
+        "JAIL_941": 7
+      },
+      "removed_outside_any_action_after_turn_change": 1,
+      "removed_outside_any_action_same_turn": 0,
+      "self": 64
+    },
+    "heal_actions": [
+      {
+        "count": 46,
+        "predicted": "ACTIVE",
+        "verdict": "confirmed"
+      },
+      {
+        "count": 45,
+        "predicted": "INACTIVE",
+        "verdict": "confirmed"
+      }
+    ],
+    "heal_actions_by_target_full": [
+      {
+        "count": 29,
+        "predicted": "ACTIVE",
+        "target_full_before": false,
+        "verdict": "confirmed"
+      },
+      {
+        "count": 17,
+        "predicted": "ACTIVE",
+        "target_full_before": true,
+        "verdict": "confirmed"
+      },
+      {
+        "count": 37,
+        "predicted": "INACTIVE",
+        "target_full_before": false,
+        "verdict": "confirmed"
+      },
+      {
+        "count": 8,
+        "predicted": "INACTIVE",
+        "target_full_before": true,
+        "verdict": "confirmed"
+      }
+    ],
+    "heal_contradictions": [],
+    "labeled_decision_states": {
+      "ACTIVE": 46,
+      "INACTIVE": 1964
+    },
+    "state_changed_between_decision_and_heal_action": 0,
+    "visible_cooldown_proxy_vs_log_state": [
+      {
+        "cooldown_proxy": "ACTIVE",
+        "count": 43,
+        "log_state": "ACTIVE"
+      },
+      {
+        "cooldown_proxy": "INACTIVE",
+        "count": 3,
+        "log_state": "ACTIVE"
+      },
+      {
+        "cooldown_proxy": "ACTIVE",
+        "count": 87,
+        "log_state": "INACTIVE"
+      },
+      {
+        "cooldown_proxy": "INACTIVE",
+        "count": 1877,
+        "log_state": "INACTIVE"
+      }
+    ]
+  }
+}
