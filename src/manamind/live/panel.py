@@ -102,8 +102,13 @@ class OverlayPanel:
 
     def on_message(self, message: str) -> None:
         if message.startswith("status: "):
-            status = message[8:].split(" ", 1)[0].split("(", 1)[0]
-            self.status.configure(text=_STATUS_TEXT.get(status, message[8:]))
+            detail = message[8:]
+            status = detail.split(" ", 1)[0].split("(", 1)[0]
+            if status == "SYNCING" and "(AWAITING_DECISION)" in detail:
+                status_text = "Ожидание следующего решения"
+            else:
+                status_text = _STATUS_TEXT.get(status, detail)
+            self.status.configure(text=status_text)
             if status != "READY":
                 self.turn.configure(text="")
                 self.advice.configure(text="Рекомендации скрыты до следующего доверенного решения SELF.")

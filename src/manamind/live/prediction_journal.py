@@ -54,3 +54,27 @@ class PredictionJournal:
             "reason": reason,
             "observed_action": {"status": "UNKNOWN"},
         })
+
+    def unavailable(self, snapshot: Snapshot, reason: str) -> None:
+        """Record a stable scorer refusal without persisting exception or log text."""
+        self._append({
+            "event": "UNAVAILABLE",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
+            "observed_action": {"status": "UNKNOWN"},
+        })
+
+    def discarded(self, snapshot: Snapshot, reason: str) -> None:
+        """Record a scored result dropped after the decision changed during inference."""
+        self._append({
+            "event": "DISCARDED",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
+            "observed_action": {"status": "UNKNOWN"},
+        })

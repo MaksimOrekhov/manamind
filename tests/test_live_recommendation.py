@@ -313,6 +313,40 @@ def test_panel_hides_stale_rankings_when_status_or_decision_changes():
     assert "устарел и скрыт" in panel.advice.text
 
 
+def test_panel_distinguishes_waiting_for_decision_from_state_syncing():
+    class Label:
+        def __init__(self):
+            self.text = ""
+        def configure(self, *, text):
+            self.text = text
+
+    panel = object.__new__(OverlayPanel)
+    panel.status, panel.turn, panel.advice = Label(), Label(), Label()
+    panel.on_message("status: SYNCING (AWAITING_DECISION)")
+    assert panel.status.text == "Ожидание следующего решения"
+    panel.on_message("status: SYNCING (SETTLE_TIMEOUT)")
+    assert panel.status.text == "Синхронизация состояния"
+
+
+def test_prediction_journal_records_safe_unavailable_and_discarded_reasons(tmp_path):
+    import json
+    from types import SimpleNamespace
+
+    snapshot = SimpleNamespace(game_key="public-game-key", seq=7,
+                               decision={"options_id": 9}, state_hash="a" * 64)
+    journal = PredictionJournal(tmp_path / "prediction_journal.jsonl")
+    journal.unavailable(snapshot, "AMBIGUOUS_SELECTION")
+    journal.discarded(snapshot, "DECISION_CHANGED_DURING_INFERENCE")
+    rows = [json.loads(line) for line in
+            (tmp_path / "prediction_journal.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [row["event"] for row in rows] == ["UNAVAILABLE", "DISCARDED"]
+    assert [row["reason"] for row in rows] == [
+        "AMBIGUOUS_SELECTION", "DECISION_CHANGED_DURING_INFERENCE",
+    ]
+    assert all(row["observed_action"] == {"status": "UNKNOWN"} for row in rows)
+    assert all("player" not in row and "raw" not in row for row in rows)
+
+
 def test_real_collector_retains_once_and_restart_with_recommendations_unavailable(tmp_path):
     logs = tmp_path / "Logs"
     write(logs / "Power.log", build_game(seed=17))

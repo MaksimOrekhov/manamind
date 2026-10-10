@@ -118,8 +118,18 @@ class UnifiedRuntime:
                                 self.on_recommendation(result)
                             self.latencies_ms.append(result.latency_ms)
                             self.decisions_scored += 1
+                        elif self.journal is not None:
+                            try:
+                                self.journal.discarded(snap, "DECISION_CHANGED_DURING_INFERENCE")
+                            except OSError as error:
+                                self.emit(f"prediction journal warning: {type(error).__name__}")
                     except RecommendationUnavailable as error:
                         self.emit(f"no recommendation: {error}")
+                        if self.journal is not None:
+                            try:
+                                self.journal.unavailable(snap, str(error))
+                            except OSError as journal_error:
+                                self.emit(f"prediction journal warning: {type(journal_error).__name__}")
             except Exception as error:  # no raw exception text from private logs
                 self._invalidate()
                 self.live_failed = True
