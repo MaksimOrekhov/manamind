@@ -55,7 +55,7 @@ python scripts/replay_live_recommendations.py `
 - `phase_4k1b_failure_site_audit.py check`: passed, 310 baseline sites, 128 native rows, 0 problems.
 - Точный replay текущей сессии: 39/39 snapshot hashes совпали, 12 решений оценены, 3 `AMBIGUOUS_SELECTION`, 24 промежуточных снимка superseded в batch.
 
-Результаты Ubuntu/Windows CI будут записаны после завершения workflow.
+GitHub Actions Source CI прошёл на Ubuntu и Windows для изменения кода: [run 38056692062](https://github.com/MaksimOrekhov/manamind/actions/runs/38056692062). В workflow прошли Ruff, source guard, generated artifacts и полный pytest на обеих ОС.
 
 ## Следующий шаг
 
