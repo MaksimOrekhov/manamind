@@ -30,7 +30,7 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 | 1 | Evaluation Baseline (MODEL-FIRST-1) | Complete and accepted |
 | 2 | Synthetic training on tactical decisions (MODEL-FIRST-2, 2B, 2C) | Complete; ambiguous results, shortcut learning and regressions found |
 | 3A | Card representation and text safety pilots | Complete; INCONCLUSIVE |
-| 3 | Compare ID / Structural / Text / Hybrid Policy | Planned; Text/Hybrid Policy not trained |
+| 3 | Compare ID / Structural / Text / Hybrid Policy | ML-PILOT-1 complete, INCONCLUSIVE on development test; independent check pending |
 | 4 | Predicting observable consequences | PLANNED (experimental) |
 | 5 | Independent check of practical quality | PLANNED |
 | 6 | Live Shadow Mode | MVP implemented; technically PLAYTEST VERIFIED; Policy v2 quality not validated |
@@ -56,9 +56,9 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 
 ### 3. ID / Structural / Text / Hybrid Policy comparison
 
-**MODEL-FIRST-3A status: complete, INCONCLUSIVE. CARD-TEXT-AUDIT-1 and MODEL-FIRST-3A-TEXT-SAFETY are complete.** The text adapter and overlap audit are experimental safeguards; no Text or Hybrid Policy has been trained, and no gameplay benefit from text has been established.
+**MODEL-FIRST-3A status: complete, INCONCLUSIVE. CARD-TEXT-AUDIT-1 and MODEL-FIRST-3A-TEXT-SAFETY are complete. ML-PILOT-1 is complete, INCONCLUSIVE.** A limited Hybrid Policy was trained on real data under the explicit ML-PILOT-1 task. It did not establish a reliable imitation gain or gameplay benefit from text; the experimental checkpoint remains separate from LIVE. See [the pilot report](../reports/ml_pilot_1/README.md).
 
-The LIVE-MVP has been checked in real Ranked Standard games and is **PLAYTEST VERIFIED** for technical operation. Policy v2 remains a frozen baseline; its recommendation quality is not validated. The immediate priority is collecting real games and evaluating recommendation quality. Do not begin another ML version until an independent evaluation set and match-level split are prepared and reviewed.
+The LIVE-MVP has been checked in real Ranked Standard games and is **PLAYTEST VERIFIED** for technical operation. Policy v2 remains a frozen baseline; its recommendation quality is not validated. The immediate priority is independent real-game verification and evaluation of recommendation quality. The 16 matches in ML-PILOT-1 are a development test already examined in DATA-CHECKPOINT-1; they cannot serve as an independent control for another model cycle. Do not begin another ML version until an independent evaluation set and match-level split are prepared and reviewed.
 
 - **Goal:** find out which card representation generalizes to unseen cards: identity embedding, structural features, card-text embedding, or a combination.
 - **Outcome:** one table on identical data and splits, including a split with cards unseen in training.
