@@ -300,7 +300,7 @@ def test_panel_hides_stale_rankings_when_status_or_decision_changes():
     panel = object.__new__(OverlayPanel)
     panel.status, panel.turn, panel.advice = Label(), Label(), Label()
     panel.on_message("status: WAITING_FOR_GAME")
-    assert panel.advice.text == "Рекомендации скрыты до следующего доверенного решения SELF."
+    assert "Ожидание начала игры" in panel.advice.text
     panel.turn.configure(text="Ход 4")
     panel.advice.configure(text="#1 stale")
     panel.on_message("status: UNTRUSTED (PARSE_ERROR)")
@@ -326,6 +326,54 @@ def test_panel_distinguishes_waiting_for_decision_from_state_syncing():
     assert panel.status.text == "Ожидание следующего решения"
     panel.on_message("status: SYNCING (SETTLE_TIMEOUT)")
     assert panel.status.text == "Синхронизация состояния"
+    assert "Код: SETTLE_TIMEOUT" in panel.advice.text
+
+
+def test_panel_explains_unavailable_reasons_and_preserves_them_until_state_changes():
+    class Label:
+        def __init__(self):
+            self.text = ""
+        def configure(self, *, text):
+            self.text = text
+
+    panel = object.__new__(OverlayPanel)
+    panel.status, panel.turn, panel.advice = Label(), Label(), Label()
+    panel.last_status_signature = ("READY", None)
+
+    panel.on_message("no recommendation: AMBIGUOUS_SELECTION")
+    assert "не удалось однозначно распознать доступные действия" in panel.advice.text.lower()
+    assert "Код: AMBIGUOUS_SELECTION" in panel.advice.text
+    assert "нейросеть" not in panel.advice.text.lower()
+
+    panel.on_message("prediction journal warning: PermissionError")
+    assert "AMBIGUOUS_SELECTION" in panel.advice.text
+    panel.on_message("status: READY")
+    assert "AMBIGUOUS_SELECTION" in panel.advice.text
+
+    panel.on_message("status: SYNCING (SETTLE_TIMEOUT)")
+    assert "Код: SETTLE_TIMEOUT" in panel.advice.text
+    panel.on_message("no recommendation: DECISION_CHANGED_DURING_INFERENCE")
+    assert "изменилось во время расчёта" in panel.advice.text
+    assert "Код: DECISION_CHANGED_DURING_INFERENCE" in panel.advice.text
+
+
+def test_panel_distinguishes_menu_policy_and_trust_failures():
+    class Label:
+        def __init__(self):
+            self.text = ""
+        def configure(self, *, text):
+            self.text = text
+
+    panel = object.__new__(OverlayPanel)
+    panel.status, panel.turn, panel.advice = Label(), Label(), Label()
+    panel.on_message("no recommendation: INCOMPLETE_MENU")
+    assert "список доступных действий" in panel.advice.text
+    panel.on_message("recommendation warning: CHECKPOINT_INCOMPATIBLE")
+    assert "Policy v2 не удалось запустить" in panel.advice.text
+    assert "CHECKPOINT_INCOMPATIBLE" in panel.advice.text
+    panel.on_message("status: UNTRUSTED (PARSE_ERROR)")
+    assert "не удалось разобрать" in panel.advice.text.lower()
+    assert "Код: PARSE_ERROR" in panel.advice.text
 
 
 def test_prediction_journal_records_safe_unavailable_and_discarded_reasons(tmp_path):
@@ -345,6 +393,42 @@ def test_prediction_journal_records_safe_unavailable_and_discarded_reasons(tmp_p
     ]
     assert all(row["observed_action"] == {"status": "UNKNOWN"} for row in rows)
     assert all("player" not in row and "raw" not in row for row in rows)
+
+
+def test_stale_inference_emits_a_reason_for_the_panel():
+    from types import SimpleNamespace
+
+    snapshot = SimpleNamespace(game_key="game", seq=1, decision={"options_id": 2}, state_hash="a" * 64)
+    replacement = SimpleNamespace(game_key="game", seq=2, decision={"options_id": 3}, state_hash="b" * 64)
+
+    class Live:
+        def __init__(self):
+            self.session = SimpleNamespace(current_snapshot=snapshot, status=LiveStatus.READY)
+            self.calls = 0
+
+        def step(self):
+            self.calls += 1
+            if self.calls == 2:
+                self.session.current_snapshot = replacement
+            return []
+
+    class Journal:
+        def __init__(self):
+            self.discarded_reason = None
+
+        def discarded(self, unused_snapshot, reason):
+            self.discarded_reason = reason
+
+    emitted = []
+    journal = Journal()
+    runtime = run_manamind.UnifiedRuntime(
+        Live(), SimpleNamespace(stats=SimpleNamespace(parse_failures=0), scan_once=lambda: None),
+        SimpleNamespace(score=lambda *_: object()), emit=emitted.append, journal=journal,
+    )
+    runtime.step(0)
+
+    assert "no recommendation: DECISION_CHANGED_DURING_INFERENCE" in emitted
+    assert journal.discarded_reason == "DECISION_CHANGED_DURING_INFERENCE"
 
 
 def test_real_collector_retains_once_and_restart_with_recommendations_unavailable(tmp_path):

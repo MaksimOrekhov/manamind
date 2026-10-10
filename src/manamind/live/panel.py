@@ -22,6 +22,70 @@ _ACTION_TEXT = {
     "END_TURN": "Завершить ход",
 }
 
+_REASON_TEXT = {
+    "AMBIGUOUS_SELECTION": "Не удалось однозначно распознать доступные действия.",
+    "INCOMPLETE_MENU": "Не удалось надёжно построить полный список доступных действий.",
+    "MENU_KIND_MISMATCH": "Состав доступных действий не удалось сопоставить с текущим состоянием.",
+    "UNSUPPORTED_ACTION": "В списке есть действие, которое текущая версия не может обработать.",
+    "INVALID_PUBLIC_CARD_ID": "Не удалось проверить карту в списке доступных действий.",
+    "MENU_TARGET_MISMATCH": "Не удалось проверить цель одного из доступных действий.",
+    "CHECKPOINT_IDENTITY_MISMATCH": "Контрольная сумма Policy не совпадает с ожидаемой.",
+    "CHECKPOINT_INCOMPATIBLE": "Checkpoint Policy несовместим с текущей версией приложения.",
+    "RUNTIME_CATALOG_MISMATCH": "Каталог карт несовместим с checkpoint Policy.",
+    "INVALID_MODEL_OUTPUT": "Policy вернула результат, который нельзя безопасно показать.",
+    "INFERENCE_FAILED": "Не удалось рассчитать рейтинг Policy.",
+    "OPTIONS_CHANGED": "Список доступных действий изменился во время расчёта; результат отброшен.",
+    "DECISION_CHANGED_DURING_INFERENCE": "Игровое решение изменилось во время расчёта; результат отброшен.",
+    "NOT_CURRENT_READY_SELF": "Сейчас нет подтверждённого решения вашего хода.",
+    "UNTRUSTED_OR_UNSETTLED": "Состояние игры пока не подтверждено; рекомендации скрыты.",
+    "PRIVACY_OR_STATE_MISMATCH": "Состояние не прошло проверку безопасности; рекомендация скрыта.",
+}
+
+_TRUST_REASONS = {
+    "PARSE_ERROR": "Состояние игры не удалось разобрать; рекомендации скрыты.",
+    "INVARIANT": "Данные состояния игры противоречат друг другу; рекомендации скрыты.",
+    "SELF_AMBIGUOUS": "Не удалось определить сторону игрока; рекомендации скрыты.",
+    "ENTITY_UNKNOWN": "Не удалось сопоставить игровые сущности; рекомендации скрыты.",
+    "UNSUPPORTED_MODE": "Режим игры не поддерживается; рекомендации скрыты.",
+    "MODE_AMBIGUOUS": "Не удалось определить режим игры; рекомендации скрыты.",
+    "SPECTATOR": "Режим наблюдателя не поддерживает рекомендации.",
+    "FILE_DISCONTINUITY": "Поток Power.log прервался; состояние синхронизируется.",
+    "RECONNECT": "Игра переподключилась; состояние синхронизируется.",
+    "SETTLE_TIMEOUT": "Игра обновляет состояние; ожидается стабильное решение.",
+    "AWAITING_SELF": "Ожидание вашего хода.",
+    "AWAITING_DECISION": "Ожидание следующего решения.",
+    "GAME_RESET": "Состояние матча сброшено; ожидается новая синхронизация.",
+    "NO_POWER_LOG": "Power.log пока не найден.",
+    "NO_LOGS_ROOT": "Папка журналов Hearthstone не найдена.",
+    "UNREADABLE": "Power.log пока нельзя прочитать.",
+}
+
+
+def _reason_lines(reason: str) -> str:
+    explanation = _REASON_TEXT.get(reason)
+    if explanation is None:
+        explanation = _TRUST_REASONS.get(reason)
+    if explanation is None:
+        explanation = "Рекомендация временно недоступна."
+    return f"{explanation}\nКод: {reason}"
+
+
+def _status_lines(status: str, reason: str | None) -> str:
+    if status == "SYNCING" and reason == "AWAITING_DECISION":
+        return _reason_lines(reason)
+    if status == "SYNCING":
+        return _reason_lines(reason) if reason else "Обновление игрового состояния."
+    if status == "UNTRUSTED":
+        return _reason_lines(reason) if reason else "Доверие к игровому состоянию потеряно; рекомендации скрыты."
+    messages = {
+        "DISCONNECTED": "Нет подключения к Power.log; ожидание журнала игры.",
+        "WAITING_FOR_GAME": "Ожидание начала игры.",
+        "GAME_OVER": "Матч завершён; рекомендации скрыты.",
+        "READY": "Получено доверенное решение; подготовка рейтинга Policy.",
+    }
+    message = messages.get(status, "Состояние игры обновлено.")
+    return f"{message}\nКод: {reason}" if reason else message
+
 
 def load_card_names(path: Path) -> dict[str, str]:
     payload = json.loads(Path(path).read_text(encoding="utf-8-sig"))
@@ -81,6 +145,7 @@ class OverlayPanel:
         self.root = root
         self.tk = tkinter
         self.names = names
+        self.last_status_signature: tuple[str, str | None] | None = None
         root.title("ManaMind · экспериментальная Policy")
         root.geometry("560x370+40+180")
         root.minsize(460, 300)
@@ -104,26 +169,34 @@ class OverlayPanel:
         if message.startswith("status: "):
             detail = message[8:]
             status = detail.split(" ", 1)[0].split("(", 1)[0]
-            if status == "SYNCING" and "(AWAITING_DECISION)" in detail:
-                status_text = "Ожидание следующего решения"
-            else:
-                status_text = _STATUS_TEXT.get(status, detail)
+            reason = detail.partition("(")[2].partition(")")[0] or None
+            signature = (status, reason)
+            status_text = ("Ожидание следующего решения" if status == "SYNCING" and reason == "AWAITING_DECISION"
+                           else _STATUS_TEXT.get(status, status))
             self.status.configure(text=status_text)
             if status != "READY":
                 self.turn.configure(text="")
-                self.advice.configure(text="Рекомендации скрыты до следующего доверенного решения SELF.")
+                if getattr(self, "last_status_signature", None) != signature:
+                    self.advice.configure(text=_status_lines(status, reason))
+            elif getattr(self, "last_status_signature", None) != signature:
+                self.turn.configure(text="")
+                self.advice.configure(text=_status_lines(status, reason))
+            self.last_status_signature = signature
         elif " invalidated" in message:
             self.turn.configure(text="")
             self.advice.configure(text="Рейтинг устарел и скрыт. Ожидание нового решения.")
         elif message.startswith("no recommendation:"):
             self.turn.configure(text="")
-            self.advice.configure(text=f"Подсказка недоступна: {message.partition(':')[2].strip()}")
+            reason = message.partition(":")[2].strip()
+            self.advice.configure(text=_reason_lines(reason))
         elif "recommendation warning:" in message:
             self.turn.configure(text="")
-            self.advice.configure(text="Policy v2 недоступна. Проверьте checkpoint и локальный каталог карт.")
+            detail = message.partition(":")[2].split(";", 1)[0].strip() or "UNAVAILABLE"
+            self.advice.configure(text=f"Policy v2 не удалось запустить. Проверьте checkpoint и каталог карт.\nКод: {detail}")
         elif message.startswith("LIVE warning:"):
             self.turn.configure(text="")
-            self.advice.configure(text="LIVE чтение остановлено; сбор завершённых матчей продолжает retry.")
+            detail = message.partition(":")[2].split(";", 1)[0].strip() or "LIVE_UNAVAILABLE"
+            self.advice.configure(text=f"Не удалось читать игровой журнал; рекомендации отключены.\nКод: {detail}")
 
     def on_recommendation(self, recommendation: Recommendation) -> None:
         self.turn.configure(text=f"Ход {recommendation.turn} · {recommendation.menu_size} допустимых вариантов")
