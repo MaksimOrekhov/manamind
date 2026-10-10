@@ -1,0 +1,6194 @@
+{
+  "cases": {
+    "atiesh_with_medivh_in_hand_known_episode": [
+      {
+        "case_id": "abacd59f61e3cd64",
+        "constrained_top1": {
+          "source_card_id": "TIME_890t",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "EDR_449p",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "atiesh_with_medivh_in_hand",
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "CORE_BAR_313",
+          "target_board_position": -1,
+          "target_card_id": "HERO_04a",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "ATTACK"
+        },
+        "player_action_rank": 9
+      }
+    ],
+    "full_health_heal_known_episode": [
+      {
+        "case_id": "83e9144a6f6061b1",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": 1,
+          "target_card_id": "TLC_438",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 1,
+              "target_card_id": "TLC_438",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_04",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 5,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 2,
+              "target_card_id": "CS2_101t",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "full_health_heal",
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09aa",
+          "target_kind": "HERO",
+          "target_side": "SELF",
+          "type": "HERO_POWER"
+        },
+        "player_action_rank": 4
+      }
+    ],
+    "heal_damaged_target": [
+      {
+        "case_id": "57d93394d3cc2668",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_07f",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_HAS_DIRECT_EFFECT",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_07f",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 2,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_DAMAGED",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_216",
+                "CORE_AT_055"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "DIRECT_EFFECT_PRESENT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_216",
+                "CORE_AT_055"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "type": "END_TURN"
+        },
+        "player_action_rank": 3
+      },
+      {
+        "case_id": "516d10c0e664c8cb",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_07ag",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_HAS_DIRECT_EFFECT",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_07ag",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 2,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_DAMAGED",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "EDR_476",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "JAIL_EVENT_COIN"
+              ],
+              "status": "DIRECT_EFFECT_PRESENT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "EDR_476",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "JAIL_EVENT_COIN"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "JAIL_EVENT_COIN",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 4
+      },
+      {
+        "case_id": "cccaa8f7730293fd",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_07f",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_HAS_DIRECT_EFFECT",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_07f",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 4,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_DAMAGED",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_216",
+                "CORE_AT_055"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "DIRECT_EFFECT_PRESENT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_216",
+                "CORE_AT_055"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "DINO_COIN2",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 4
+      },
+      {
+        "case_id": "968533b0044867f7",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": 1,
+          "target_card_id": "TIME_037",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_HEALING_MODIFIER",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 1,
+              "target_card_id": "TIME_037",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 1,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 1,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_037"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "EDR_476",
+                "TIME_037"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09a",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_037"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "EDR_476",
+                "TIME_037"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "CATA_301",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "type": "END_TURN"
+        },
+        "player_action_rank": 5
+      }
+    ],
+    "heal_full_target": [
+      {
+        "case_id": "83e9144a6f6061b1",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": 1,
+          "target_card_id": "TLC_438",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 1,
+              "target_card_id": "TLC_438",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_04",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 5,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 2,
+              "target_card_id": "CS2_101t",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [
+                "CS2_101t"
+              ],
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "CS2_101t",
+                "JAIL_EVENT_COIN",
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "full_health_heal",
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09aa",
+          "target_kind": "HERO",
+          "target_side": "SELF",
+          "type": "HERO_POWER"
+        },
+        "player_action_rank": 4
+      },
+      {
+        "case_id": "f95d574a45bac043",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": 1,
+          "target_card_id": "JAIL_802",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_SIDE_EFFECTS_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 1,
+              "target_card_id": "JAIL_802",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_02at_Nerzhul_hl",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "DINO_COIN2",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 5
+      },
+      {
+        "case_id": "429455a58b2658ed",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09a",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_HEALING_MODIFIER",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09a",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "EDR_476"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [
+                "CATA_301"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "EDR_476"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "DINO_COIN2",
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "DINO_COIN2",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 5
+      },
+      {
+        "case_id": "b3d59603a5cbee8e",
+        "constrained_top1": {
+          "source_card_id": "HERO_09dbp",
+          "target_board_position": 1,
+          "target_card_id": "CORE_EX1_193",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "HERO_POWER"
+        },
+        "could_help": "NO_SIDE_EFFECTS_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": 1,
+              "target_card_id": "CORE_EX1_193",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_476",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09f",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_476",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 0,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 0,
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "reason": "TARGET_AT_FULL_HEALTH",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CORE_AT_055",
+                "EDR_476",
+                "EDR_970"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "type": "END_TURN"
+        },
+        "player_action_rank": 4
+      }
+    ],
+    "medivh_against_board_known_episode": [
+      {
+        "case_id": "be831feae52a9120",
+        "constrained_top1": {
+          "source_card_id": "TIME_890",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890t2",
+              "type": "ACTIVATE_LOCATION"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "medivh_against_board",
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "TIME_890",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 1
+      }
+    ],
+    "medivh_atiesh": [
+      {
+        "case_id": "abacd59f61e3cd64",
+        "constrained_top1": {
+          "source_card_id": "TIME_890t",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "EDR_449p",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "atiesh_with_medivh_in_hand",
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "CORE_BAR_313",
+          "target_board_position": -1,
+          "target_card_id": "HERO_04a",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "ATTACK"
+        },
+        "player_action_rank": 9
+      },
+      {
+        "case_id": "c46f56f52e813ff9",
+        "constrained_top1": {
+          "source_card_id": "END_026",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "ATTACK"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "END_026",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "ATTACK"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "FIR_777",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "ATTACK"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": {
+          "agrees": null,
+          "deathrattle_or_reborn_on_board": true,
+          "non_qualifying_kept": true,
+          "observable": true,
+          "qualifying_remaining": 0
+        },
+        "player_action": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 11
+      },
+      {
+        "case_id": "a7d42c32c319dfe4",
+        "constrained_top1": {
+          "source_card_id": "TIME_102",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_102",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "END_026",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "CATA_216",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "JAIL_850",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 4
+      },
+      {
+        "case_id": "48017cc7160bf201",
+        "constrained_top1": {
+          "source_card_id": "TIME_890t",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "TIME_890",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 20
+      }
+    ],
+    "ruin_no_attack_5_known_episode": [
+      {
+        "case_id": "4ace66afa0531174",
+        "constrained_top1": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NO_SIDE_EFFECTS_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [
+                  1,
+                  1,
+                  2,
+                  2,
+                  4
+                ],
+                "SELF": []
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09c",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 4,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_427"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "TIME_427"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 11,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_427"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "TIME_427"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "ruin_no_attack_5",
+        "observed_after_player_action": {
+          "agrees": null,
+          "health_delta": 5,
+          "observable": true
+        },
+        "player_action": {
+          "source_card_id": "CORE_AT_055",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09aa",
+          "target_kind": "HERO",
+          "target_side": "SELF",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 17
+      }
+    ],
+    "ruin_no_qualifying_minion": [
+      {
+        "case_id": "4ace66afa0531174",
+        "constrained_top1": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NO_SIDE_EFFECTS_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [
+                  1,
+                  1,
+                  2,
+                  2,
+                  4
+                ],
+                "SELF": []
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09c",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 4,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_427"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "TIME_427"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "HERO_09dbp",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09aa",
+              "target_kind": "HERO",
+              "target_side": "SELF",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "base_restore": 2,
+              "direct_restore_min": 2,
+              "effect_provenance": "observed_outcomes",
+              "mechanic": "RESTORE_TARGET",
+              "missing_health": 11,
+              "modifier_matching_cards": [
+                "CATA_301",
+                "TIME_427"
+              ],
+              "modifier_unknown_cards": [],
+              "reason": "VISIBLE_HEALING_MODIFIER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_301",
+                "CORE_AT_055",
+                "TIME_427"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": "ruin_no_attack_5",
+        "observed_after_player_action": {
+          "agrees": null,
+          "health_delta": 5,
+          "observable": true
+        },
+        "player_action": {
+          "source_card_id": "CORE_AT_055",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09aa",
+          "target_kind": "HERO",
+          "target_side": "SELF",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 17
+      },
+      {
+        "case_id": "93a55b15d9a5d89e",
+        "constrained_top1": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [],
+                "SELF": []
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [
+                "TIME_890t",
+                "TIME_890t2"
+              ],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t",
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "CATA_301",
+              "type": "ACTIVATE_LOCATION"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "CATA_301",
+          "type": "ACTIVATE_LOCATION"
+        },
+        "player_action_rank": 3
+      },
+      {
+        "case_id": "fbf54b3a94e9394c",
+        "constrained_top1": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NO_SIDE_EFFECTS_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [
+                  3
+                ],
+                "SELF": [
+                  2,
+                  2
+                ]
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [
+                  3
+                ],
+                "SELF": [
+                  2,
+                  2
+                ]
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "NO_DIRECT_EFFECT"
+            }
+          },
+          {
+            "action": {
+              "type": "END_TURN"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": {
+          "agrees": null,
+          "health_delta": 4,
+          "observable": true
+        },
+        "player_action": {
+          "source_card_id": "CORE_AT_055",
+          "target_board_position": 2,
+          "target_card_id": "CAP_800",
+          "target_kind": "MINION",
+          "target_side": "SELF",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 5
+      },
+      {
+        "case_id": "7b9e114420342c22",
+        "constrained_top1": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NO_TOP1_UNKNOWN_VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [],
+                "SELF": []
+              },
+              "modifier_matching_cards": [],
+              "modifier_unknown_cards": [
+                "TIME_890t",
+                "TIME_890t2"
+              ],
+              "qualifying": {
+                "OPPONENT": 0,
+                "SELF": 0
+              },
+              "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t",
+                "TIME_890t2"
+              ],
+              "status": "UNKNOWN"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890t2",
+              "type": "ACTIVATE_LOCATION"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "TIME_890t2",
+          "type": "ACTIVATE_LOCATION"
+        },
+        "player_action_rank": 3
+      }
+    ],
+    "ruin_with_qualifying_minion": [
+      {
+        "case_id": "78fa38de9eade75e",
+        "constrained_top1": {
+          "source_card_id": "END_025",
+          "target_board_position": 2,
+          "target_card_id": "CORE_EX1_103",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "END_025",
+              "target_board_position": 2,
+              "target_card_id": "CORE_EX1_103",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TLC_816",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "JAIL_913",
+              "target_board_position": 2,
+              "target_card_id": "CORE_EX1_103",
+              "target_kind": "MINION",
+              "target_side": "OPPONENT",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "END_025",
+          "target_board_position": 2,
+          "target_card_id": "CORE_EX1_103",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 1
+      },
+      {
+        "case_id": "c46f56f52e813ff9",
+        "constrained_top1": {
+          "source_card_id": "END_026",
+          "target_board_position": -1,
+          "target_card_id": "HERO_09",
+          "target_kind": "HERO",
+          "target_side": "OPPONENT",
+          "type": "ATTACK"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "END_026",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "ATTACK"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "FIR_777",
+              "target_board_position": -1,
+              "target_card_id": "HERO_09",
+              "target_kind": "HERO",
+              "target_side": "OPPONENT",
+              "type": "ATTACK"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": {
+          "agrees": null,
+          "deathrattle_or_reborn_on_board": true,
+          "non_qualifying_kept": true,
+          "observable": true,
+          "qualifying_remaining": 0
+        },
+        "player_action": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 11
+      },
+      {
+        "case_id": "ae88650c95409b3d",
+        "constrained_top1": {
+          "source_card_id": "EDR_476",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "EDR_476",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "EDR_449",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "CORE_EX1_197",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "attack_threshold": 5,
+              "effect_provenance": "pinned_catalog_text",
+              "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+              "minion_attacks": {
+                "OPPONENT": [
+                  1,
+                  4,
+                  5
+                ],
+                "SELF": [
+                  4
+                ]
+              },
+              "modifier_matching_cards": [
+                "CATA_484",
+                "JAIL_122"
+              ],
+              "modifier_unknown_cards": [],
+              "qualifying": {
+                "OPPONENT": 1,
+                "SELF": 0
+              },
+              "reason": "VISIBLE_SPELL_TRIGGER",
+              "side_effects": "UNKNOWN",
+              "side_matching_cards": [
+                "CATA_484",
+                "JAIL_122"
+              ],
+              "side_reasons": [
+                "SECRET_OR_QUEST_UNIDENTIFIED",
+                "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+                "VISIBLE_TEXT_MAY_REACT"
+              ],
+              "side_unknown_cards": [
+                "TIME_890t"
+              ],
+              "status": "UNKNOWN"
+            }
+          }
+        ],
+        "group": "older",
+        "known_episode": null,
+        "observed_after_player_action": null,
+        "player_action": {
+          "source_card_id": "END_025",
+          "target_board_position": 1,
+          "target_card_id": "EDR_800",
+          "target_kind": "MINION",
+          "target_side": "OPPONENT",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 11
+      },
+      {
+        "case_id": "120ddcc1189e0f3a",
+        "constrained_top1": {
+          "source_card_id": "TIME_890t",
+          "type": "PLAY_CARD"
+        },
+        "could_help": "NOT_APPLICABLE_TOP1_UNSUPPORTED",
+        "frozen_top3": [
+          {
+            "action": {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "EDR_449p",
+              "type": "HERO_POWER"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          },
+          {
+            "action": {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            },
+            "analyzer": {
+              "reason": "MECHANIC_NOT_SUPPORTED",
+              "side_effects": null,
+              "side_reasons": [],
+              "status": "UNSUPPORTED"
+            }
+          }
+        ],
+        "group": "development_test",
+        "known_episode": null,
+        "observed_after_player_action": {
+          "agrees": null,
+          "deathrattle_or_reborn_on_board": true,
+          "non_qualifying_kept": true,
+          "observable": true,
+          "qualifying_remaining": 0
+        },
+        "player_action": {
+          "source_card_id": "CORE_EX1_197",
+          "type": "PLAY_CARD"
+        },
+        "player_action_rank": 8
+      }
+    ]
+  },
+  "chosen_action_outcomes": {
+    "DESTROY_MINIONS_MIN_ATTACK": [
+      {
+        "count": 4,
+        "status": "DIRECT_EFFECT_PRESENT",
+        "verdict": "agrees"
+      },
+      {
+        "count": 1,
+        "status": "DIRECT_EFFECT_PRESENT",
+        "verdict": "no_claim"
+      },
+      {
+        "count": 20,
+        "status": "UNKNOWN",
+        "verdict": "no_claim"
+      }
+    ],
+    "RESTORE_TARGET": [
+      {
+        "count": 4,
+        "status": "DIRECT_EFFECT_PRESENT",
+        "verdict": "agrees"
+      },
+      {
+        "count": 1,
+        "status": "NO_DIRECT_EFFECT",
+        "verdict": "agrees"
+      },
+      {
+        "count": 29,
+        "status": "UNKNOWN",
+        "verdict": "no_claim"
+      },
+      {
+        "count": 6,
+        "status": "UNKNOWN",
+        "verdict": "unobservable"
+      }
+    ]
+  },
+  "fabled": {
+    "atiesh_legal_with_medivh_in_hand": {
+      "decisions": 28,
+      "examples": [
+        {
+          "atiesh_first_then_free_medivh_same_turn": false,
+          "available_mana": 10,
+          "board_minions": 2,
+          "case_id": "9cee44291a9ac6ee",
+          "fabled_costs_in_hand": {
+            "TIME_890": 10,
+            "TIME_890t": 10
+          },
+          "frozen_top1_is_atiesh": true,
+          "frozen_top3": [
+            {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TLC_816",
+              "type": "PLAY_CARD"
+            }
+          ],
+          "known_episode": null,
+          "medivh_first_then_free_atiesh": true,
+          "medivh_legal": true,
+          "player_action": {
+            "source_card_id": "TIME_890",
+            "type": "PLAY_CARD"
+          },
+          "player_chose_atiesh": false
+        },
+        {
+          "atiesh_first_then_free_medivh_same_turn": false,
+          "available_mana": 10,
+          "board_minions": 3,
+          "case_id": "abacd59f61e3cd64",
+          "fabled_costs_in_hand": {
+            "TIME_890": 10,
+            "TIME_890t": 10
+          },
+          "frozen_top1_is_atiesh": true,
+          "frozen_top3": [
+            {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "EDR_449p",
+              "type": "HERO_POWER"
+            },
+            {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            }
+          ],
+          "known_episode": "atiesh_with_medivh_in_hand",
+          "medivh_first_then_free_atiesh": true,
+          "medivh_legal": true,
+          "player_action": {
+            "source_card_id": "CORE_BAR_313",
+            "target_board_position": -1,
+            "target_card_id": "HERO_04a",
+            "target_kind": "HERO",
+            "target_side": "OPPONENT",
+            "type": "ATTACK"
+          },
+          "player_chose_atiesh": false
+        },
+        {
+          "atiesh_first_then_free_medivh_same_turn": false,
+          "available_mana": 10,
+          "board_minions": 3,
+          "case_id": "1a88e6628ba7e095",
+          "fabled_costs_in_hand": {
+            "TIME_890": 10,
+            "TIME_890t": 10
+          },
+          "frozen_top1_is_atiesh": true,
+          "frozen_top3": [
+            {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "EDR_449p",
+              "type": "HERO_POWER"
+            },
+            {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            }
+          ],
+          "known_episode": null,
+          "medivh_first_then_free_atiesh": true,
+          "medivh_legal": true,
+          "player_action": {
+            "source_card_id": "TIME_890",
+            "type": "PLAY_CARD"
+          },
+          "player_chose_atiesh": false
+        },
+        {
+          "atiesh_first_then_free_medivh_same_turn": false,
+          "available_mana": 10,
+          "board_minions": 5,
+          "case_id": "48017cc7160bf201",
+          "fabled_costs_in_hand": {
+            "TIME_890": 10,
+            "TIME_890t": 10
+          },
+          "frozen_top1_is_atiesh": true,
+          "frozen_top3": [
+            {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TIME_890",
+              "type": "PLAY_CARD"
+            }
+          ],
+          "known_episode": null,
+          "medivh_first_then_free_atiesh": true,
+          "medivh_legal": true,
+          "player_action": {
+            "source_card_id": "TIME_890",
+            "type": "PLAY_CARD"
+          },
+          "player_chose_atiesh": false
+        },
+        {
+          "atiesh_first_then_free_medivh_same_turn": false,
+          "available_mana": 10,
+          "board_minions": 1,
+          "case_id": "364428798da4ea40",
+          "fabled_costs_in_hand": {
+            "TIME_890": 10,
+            "TIME_890t": 10
+          },
+          "frozen_top1_is_atiesh": true,
+          "frozen_top3": [
+            {
+              "source_card_id": "TIME_890t",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TIME_432",
+              "type": "PLAY_CARD"
+            },
+            {
+              "source_card_id": "TLC_816",
+              "type": "PLAY_CARD"
+            }
+          ],
+          "known_episode": null,
+          "medivh_first_then_free_atiesh": true,
+          "medivh_legal": true,
+          "player_action": {
+            "source_card_id": "JAIL_913",
+            "target_board_position": 1,
+            "target_card_id": "DRG_213",
+            "target_kind": "MINION",
+            "target_side": "SELF",
+            "type": "PLAY_CARD"
+          },
+          "player_chose_atiesh": false
+        }
+      ],
+      "frozen_top1_atiesh": 14,
+      "frozen_top1_atiesh_and_player_chose_atiesh": 4,
+      "frozen_top1_atiesh_while_medivh_first_frees_atiesh_and_no_karazhan_route": 5,
+      "medivh_also_legal": 25,
+      "of_those_with_minions_on_board": 5,
+      "player_chose_atiesh": 8
+    },
+    "observed_cost_transitions": [
+      {
+        "card_id": "TIME_890",
+        "cost_after": 1,
+        "cost_before": 0,
+        "count": 1,
+        "newly_controlled": "none"
+      },
+      {
+        "card_id": "TIME_890",
+        "cost_after": 10,
+        "cost_before": 0,
+        "count": 3,
+        "newly_controlled": "none"
+      },
+      {
+        "card_id": "TIME_890",
+        "cost_after": 0,
+        "cost_before": 1,
+        "count": 1,
+        "newly_controlled": "TIME_890t2"
+      },
+      {
+        "card_id": "TIME_890",
+        "cost_after": 0,
+        "cost_before": 10,
+        "count": 1,
+        "newly_controlled": "TIME_890t,TIME_890t2"
+      },
+      {
+        "card_id": "TIME_890",
+        "cost_after": 0,
+        "cost_before": 10,
+        "count": 9,
+        "newly_controlled": "TIME_890t2"
+      },
+      {
+        "card_id": "TIME_890",
+        "cost_after": 1,
+        "cost_before": 10,
+        "count": 1,
+        "newly_controlled": "none"
+      },
+      {
+        "card_id": "TIME_890t",
+        "cost_after": 0,
+        "cost_before": 10,
+        "count": 5,
+        "newly_controlled": "TIME_890"
+      },
+      {
+        "card_id": "TIME_890t",
+        "cost_after": 1,
+        "cost_before": 10,
+        "count": 1,
+        "newly_controlled": "none"
+      },
+      {
+        "card_id": "TIME_890t2",
+        "cost_after": 0,
+        "cost_before": 1,
+        "count": 1,
+        "newly_controlled": "TIME_890t"
+      },
+      {
+        "card_id": "TIME_890t2",
+        "cost_after": 0,
+        "cost_before": 10,
+        "count": 6,
+        "newly_controlled": "TIME_890t"
+      },
+      {
+        "card_id": "TIME_890t2",
+        "cost_after": 1,
+        "cost_before": 10,
+        "count": 1,
+        "newly_controlled": "none"
+      }
+    ],
+    "pinned_catalog": {
+      "TIME_890": {
+        "cost": 10,
+        "name": "Medivh the Hallowed",
+        "text": "[x]<b>Fabled</b>. Costs (0) if\nyou control Karazhan.\n<b>Battlecry:</b> <b>Silence</b> and destroy\nall other minions."
+      },
+      "TIME_890t": null,
+      "TIME_890t2": null
+    },
+    "states_medivh_on_self_board_and_atiesh_in_hand": 8,
+    "transitions_without_new_controlled_fabled_card": 7
+  },
+  "frozen_top1_checks": {
+    "DESTROY_MINIONS_MIN_ATTACK": [
+      {
+        "count": 3,
+        "side_effects": "UNKNOWN",
+        "status": "NO_DIRECT_EFFECT"
+      },
+      {
+        "count": 7,
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      }
+    ],
+    "RESTORE_TARGET": [
+      {
+        "count": 3,
+        "side_effects": "UNKNOWN",
+        "status": "DIRECT_EFFECT_PRESENT"
+      },
+      {
+        "count": 13,
+        "side_effects": "UNKNOWN",
+        "status": "NO_DIRECT_EFFECT"
+      },
+      {
+        "count": 22,
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      }
+    ]
+  },
+  "frozen_top1_restore_by_target_side": [
+    {
+      "count": 3,
+      "reason": "TARGET_DAMAGED",
+      "status": "DIRECT_EFFECT_PRESENT",
+      "target_side": "OPPONENT"
+    },
+    {
+      "count": 13,
+      "reason": "TARGET_AT_FULL_HEALTH",
+      "status": "NO_DIRECT_EFFECT",
+      "target_side": "OPPONENT"
+    },
+    {
+      "count": 8,
+      "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+      "status": "UNKNOWN",
+      "target_side": "OPPONENT"
+    },
+    {
+      "count": 13,
+      "reason": "VISIBLE_HEALING_MODIFIER",
+      "status": "UNKNOWN",
+      "target_side": "OPPONENT"
+    },
+    {
+      "count": 1,
+      "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+      "status": "UNKNOWN",
+      "target_side": "SELF"
+    }
+  ],
+  "hero_power_evidence": {
+    "card_id": "HERO_09dbp",
+    "consistent": true,
+    "damaged_target_observations": 6,
+    "full_target_observations": 2,
+    "inferred_restore": 2,
+    "observations": 8,
+    "observed_deltas": [
+      [
+        [
+          false,
+          0
+        ],
+        2
+      ],
+      [
+        [
+          true,
+          2
+        ],
+        6
+      ]
+    ]
+  },
+  "inputs": {
+    "canonical_content_sha256": "78c21cbd0a2c0c69cdaee77bd07525b086294dba781674a6c47a9a65d354e9c9",
+    "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "dataset_sha256": "b964e121d6ddb0c11be4014b1549d1a5c861cf57002bfd8975edd53b3be233c1",
+    "decisions": 2010,
+    "development_matches_in_frozen_training_splits": 0,
+    "development_test_matches": 16,
+    "frozen_checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "matches": 53,
+    "older_matches_in_frozen_training_splits": 20
+  },
+  "legal_action_checks": {
+    "DESTROY_MINIONS_MIN_ATTACK": [
+      {
+        "count": 19,
+        "reason": "MINIONS_MEET_ATTACK_THRESHOLD",
+        "side_effects": "UNKNOWN",
+        "status": "DIRECT_EFFECT_PRESENT"
+      },
+      {
+        "count": 91,
+        "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+        "side_effects": "UNKNOWN",
+        "status": "NO_DIRECT_EFFECT"
+      },
+      {
+        "count": 281,
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      },
+      {
+        "count": 39,
+        "reason": "VISIBLE_SPELL_TRIGGER",
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      }
+    ],
+    "RESTORE_TARGET": [
+      {
+        "count": 138,
+        "reason": "TARGET_DAMAGED",
+        "side_effects": "UNKNOWN",
+        "status": "DIRECT_EFFECT_PRESENT"
+      },
+      {
+        "count": 449,
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "status": "NO_DIRECT_EFFECT"
+      },
+      {
+        "count": 2275,
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      },
+      {
+        "count": 1497,
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "status": "UNKNOWN"
+      }
+    ]
+  },
+  "outcome_disagreements_and_unknowns": [
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            7
+          ],
+          "SELF": [
+            3
+          ]
+        },
+        "modifier_matching_cards": [
+          "END_026"
+        ],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_SPELL_TRIGGER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "END_026"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "39cbb2340c74a53d",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": false,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            3,
+            8
+          ],
+          "SELF": [
+            1,
+            2,
+            4
+          ]
+        },
+        "modifier_matching_cards": [
+          "END_026"
+        ],
+        "modifier_unknown_cards": [
+          "TLC_817t4"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "END_026"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "c46f56f52e813ff9",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 10,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "be5dd5d1e23b5a76",
+      "observed": {
+        "agrees": null,
+        "health_delta": -18,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            8
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_890t"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "54e976270f77d5a7",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            6
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "3d9c97f13381987c",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 1,
+        "target_card_id": "EDR_456",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 0,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "ea1ad42d41227443",
+      "observed": {
+        "agrees": null,
+        "health_delta": -5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_03",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 4,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "TLC_820"
+        ],
+        "modifier_unknown_cards": [
+          "CS2_082"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "CATA_303",
+          "CORE_AT_055",
+          "TLC_820"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CS2_082",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "16c6be5b20495b5b",
+      "observed": {
+        "agrees": null,
+        "health_delta": -7,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            7,
+            14
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_005t4"
+        ],
+        "qualifying": {
+          "OPPONENT": 2,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "JAIL_515"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "JAIL_EVENT_COIN",
+          "TIME_005t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "cdb8b53cbcf6e2ee",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            9
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_005t6"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "JAIL_515"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_005t6"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "6a8d006ca75dcfb8",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 5,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_005t9"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476",
+          "JAIL_515"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_005t9"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "a0db9b465f03fa2d",
+      "observed": {
+        "agrees": null,
+        "health_delta": 5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_11",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 13,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "d5815471465dd602",
+      "observed": {
+        "agrees": null,
+        "health_delta": -7,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            4,
+            4,
+            6
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [
+          "JAIL_800",
+          "TLC_819"
+        ],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_SPELL_TRIGGER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "JAIL_800",
+          "TLC_819"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "7ecb658e556fc00a",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": false,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 0,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "cb03ed253194c1ee",
+      "observed": {
+        "agrees": null,
+        "health_delta": -22,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 17,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "FP1_011",
+          "TIME_890t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_303",
+          "EDR_540"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "FP1_011",
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "41af967e4403df4e",
+      "observed": {
+        "agrees": null,
+        "health_delta": 17,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 16,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "CS2_101t7",
+          "TIME_700t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CS2_101t7",
+          "JAIL_EVENT_COIN",
+          "TIME_700t",
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "d52af94116e66776",
+      "observed": {
+        "agrees": null,
+        "health_delta": 7,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            6,
+            6,
+            9,
+            10
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [
+          "CATA_474"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_700t"
+        ],
+        "qualifying": {
+          "OPPONENT": 4,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_474"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_700t",
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "120ddcc1189e0f3a",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 15,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_307"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_303",
+          "CATA_307",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "47b2a02124fa60c4",
+      "observed": {
+        "agrees": null,
+        "health_delta": 10,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 5,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_307"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_303",
+          "CATA_307"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "9857e6cda034b90e",
+      "observed": {
+        "agrees": null,
+        "health_delta": 5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 2,
+        "target_card_id": "FIR_777",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 0,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CAP_800",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CAP_800",
+          "CATA_301",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "71006327e34def96",
+      "observed": {
+        "agrees": null,
+        "health_delta": -5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 2,
+        "target_card_id": "CAP_800",
+        "target_kind": "MINION",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 4,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [
+          "CAP_800",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CAP_800",
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "fbf54b3a94e9394c",
+      "observed": {
+        "agrees": null,
+        "health_delta": 4,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            7
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_890t"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "ebd0b8af28ec88b9",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": false,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 8,
+        "modifier_matching_cards": [
+          "TIME_037"
+        ],
+        "modifier_unknown_cards": [
+          "CATA_565t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_614",
+          "END_026",
+          "JAIL_407",
+          "JAIL_850",
+          "TIME_037"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CATA_565t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "e1c86bf28c479285",
+      "observed": {
+        "agrees": null,
+        "health_delta": 5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            4,
+            4,
+            5
+          ],
+          "SELF": [
+            1
+          ]
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "CS2_101t8",
+          "UNG_809t1"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "CS2_101t8",
+          "TIME_890t",
+          "UNG_809t1"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "9df2f204f8328bdc",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            5
+          ],
+          "SELF": [
+            0,
+            4
+          ]
+        },
+        "modifier_matching_cards": [
+          "END_029"
+        ],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_SPELL_TRIGGER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "END_029"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "9d7537dc403fe146",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09an_Anduin_hnv",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 23,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "7ddb11e82c787b6b",
+      "observed": {
+        "agrees": null,
+        "health_delta": -7,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 1,
+        "target_card_id": "JAIL_511t",
+        "target_kind": "MINION",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 6,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "JAIL_511t",
+          "TIME_005t7"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "JAIL_511t",
+          "TIME_005t7",
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "51861f422f85f6c9",
+      "observed": {
+        "agrees": null,
+        "health_delta": 6,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            5,
+            6
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_005t6"
+        ],
+        "qualifying": {
+          "OPPONENT": 2,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_005t6",
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "a8f54f1093c850e4",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_301",
+          "JAIL_912"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CORE_AT_055",
+          "EDR_476",
+          "JAIL_912"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "9b74fa9db88a4f9c",
+      "observed": {
+        "agrees": null,
+        "health_delta": 0,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "WON_146"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "WON_146"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "881532775b06561a",
+      "observed": {
+        "agrees": null,
+        "health_delta": 2,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            1,
+            2,
+            2,
+            4,
+            8
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "WON_146"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "WON_146"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "0469409aba94b6b6",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 11,
+        "modifier_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "4ace66afa0531174",
+      "observed": {
+        "agrees": null,
+        "health_delta": 5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 6,
+        "modifier_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "109564b577163f82",
+      "observed": {
+        "agrees": null,
+        "health_delta": 2,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 2,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "CAP_802t",
+          "TIME_890t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CAP_802t",
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "0efabc494fa513c9",
+      "observed": {
+        "agrees": null,
+        "health_delta": 2,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09c",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 0,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "c4213d38a84045f7",
+      "observed": {
+        "agrees": null,
+        "health_delta": -8,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            2,
+            8,
+            8
+          ],
+          "SELF": [
+            3
+          ]
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "CATA_EVENT_110t6t",
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "qualifying": {
+          "OPPONENT": 2,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "CATA_EVENT_110t6t",
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "8694f2f809a415eb",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09c",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 7,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_890t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CORE_AT_055",
+          "EDR_464",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "111e29c57260a7f9",
+      "observed": {
+        "agrees": null,
+        "health_delta": -18,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            2,
+            3,
+            5,
+            7
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [
+          "TIME_213"
+        ],
+        "modifier_unknown_cards": [
+          "CATA_565t"
+        ],
+        "qualifying": {
+          "OPPONENT": 2,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "TIME_213"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CATA_565t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "85dc45d58ee2710f",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            8
+          ],
+          "SELF": [
+            1
+          ]
+        },
+        "modifier_matching_cards": [
+          "TLC_814"
+        ],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_SPELL_TRIGGER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "TLC_814"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [],
+        "status": "UNKNOWN"
+      },
+      "case_id": "c446779ab2d7f9d3",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09f",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 24,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "CORE_EX1_309",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TLC_817t3"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "e9fa0952c1125928",
+      "observed": {
+        "agrees": null,
+        "health_delta": -9,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 1,
+        "target_card_id": "EDR_800",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CATA_303",
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "af0e6b752d96fb29",
+      "observed": {
+        "agrees": null,
+        "health_delta": 0,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 11,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t5"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "2122d2210a7db59b",
+      "observed": {
+        "agrees": null,
+        "health_delta": 9,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            6,
+            7
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "qualifying": {
+          "OPPONENT": 2,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "b8cc229678d15c65",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": false,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            4,
+            7
+          ],
+          "SELF": [
+            3
+          ]
+        },
+        "modifier_matching_cards": [
+          "EDR_472"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "EDR_472"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "e18ff2ade66beed7",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09a",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 0,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [
+          "CATA_216",
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_817t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "b19ec92990f386c1",
+      "observed": {
+        "agrees": null,
+        "health_delta": -18,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_07ba",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 19,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2",
+          "TLC_813",
+          "TLC_817t4"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "6fc73b213b094f1c",
+      "observed": {
+        "agrees": null,
+        "health_delta": -7,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09am_Anduin_hnv",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 20,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CATA_303",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "JAIL_941t",
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "99891553d3e52002",
+      "observed": {
+        "agrees": null,
+        "health_delta": -14,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            2,
+            6
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "CATA_580t"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "CATA_580t",
+          "JAIL_EVENT_COIN"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "ac4a9640df9db54d",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 3,
+        "target_card_id": "TLC_600",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "base_restore": 5,
+        "direct_restore_min": 1,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 1,
+        "modifier_matching_cards": [
+          "CATA_301"
+        ],
+        "modifier_unknown_cards": [
+          "CATA_580t"
+        ],
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "CATA_580t",
+          "JAIL_EVENT_COIN"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "58a5e4d3a9b984ce",
+      "observed": {
+        "agrees": null,
+        "health_delta": -5,
+        "observable": true
+      }
+    },
+    {
+      "action": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "SELF": [
+            3
+          ]
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [
+          "CATA_580t"
+        ],
+        "qualifying": {
+          "OPPONENT": 1,
+          "SELF": 0
+        },
+        "reason": "VISIBLE_ENTITY_TEXT_UNKNOWN",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "CATA_580t"
+        ],
+        "status": "UNKNOWN"
+      },
+      "case_id": "372b44bf9e651ad3",
+      "observed": {
+        "agrees": null,
+        "deathrattle_or_reborn_on_board": true,
+        "non_qualifying_kept": true,
+        "observable": true,
+        "qualifying_remaining": 0
+      }
+    }
+  ],
+  "rerank": {
+    "B_strict": {
+      "development_test": {
+        "decisions": 669,
+        "decisions_with_demoted_action": 0,
+        "player_chose_demoted_action": 0,
+        "top1_matches_player_A": 330,
+        "top1_matches_player_variant": 330,
+        "top1_supported_unknown": 13
+      },
+      "older": {
+        "decisions": 1341,
+        "decisions_with_demoted_action": 0,
+        "player_chose_demoted_action": 0,
+        "top1_matches_player_A": 750,
+        "top1_matches_player_variant": 750,
+        "top1_supported_unknown": 16
+      }
+    },
+    "C_direct_only_diagnostic": {
+      "development_test": {
+        "changed_and_A_matched_player": 0,
+        "changed_and_variant_matches_player": 0,
+        "decisions": 669,
+        "decisions_with_demoted_action": 37,
+        "player_chose_demoted_action": 1,
+        "top1_changed": 3,
+        "top1_matches_player_A": 330,
+        "top1_matches_player_variant": 330,
+        "top1_supported_unknown": 13
+      },
+      "older": {
+        "changed_and_A_matched_player": 0,
+        "changed_and_variant_matches_player": 9,
+        "decisions": 1341,
+        "decisions_with_demoted_action": 150,
+        "player_chose_demoted_action": 1,
+        "top1_changed": 13,
+        "top1_matches_player_A": 750,
+        "top1_matches_player_variant": 759,
+        "top1_supported_unknown": 16
+      }
+    }
+  },
+  "rerank_changes": [
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_01",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "da78e1a6e53e16d5",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": {
+        "agrees": true,
+        "health_delta": 2,
+        "observable": true
+      },
+      "player": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "player_rank_A": 2,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 9,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_DAMAGED",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "DIRECT_EFFECT_PRESENT"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_11",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t",
+          "TIME_890t2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "d18b6813be1c99cb",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 3,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_03",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "04e716731b4ad76d",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 3,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_08av_Jaina_hnv",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_303"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "bd307e6d003d3ff4",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 3,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_303"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "JAIL_EVENT_COIN"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "c0fe64bd2414cad9",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "player_rank_A": 2,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "3dcb070651b11b07",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 3,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer_A_top1": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            3
+          ],
+          "SELF": [
+            2,
+            2
+          ]
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 0,
+          "SELF": 0
+        },
+        "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "fbf54b3a94e9394c",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": {
+        "agrees": null,
+        "health_delta": 4,
+        "observable": true
+      },
+      "player": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": 2,
+        "target_card_id": "CAP_800",
+        "target_kind": "MINION",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 5,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 2,
+        "target_card_id": "CATA_898",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "f6dbfc91cde904a0",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "source_card_id": "DINO_COIN2",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 6,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 1,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 1,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_DAMAGED",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2"
+        ],
+        "status": "DIRECT_EFFECT_PRESENT"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 3,
+        "target_card_id": "TIME_034",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "e57821cf5b3845f6",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": {
+        "agrees": true,
+        "health_delta": 5,
+        "observable": true
+      },
+      "player": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 10,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 17,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_DAMAGED",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t2"
+        ],
+        "status": "DIRECT_EFFECT_PRESENT"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 1,
+        "target_card_id": "JAIL_802",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "f95d574a45bac043",
+      "group": "development_test",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "source_card_id": "DINO_COIN2",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 5,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer_A_top1": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            1,
+            2,
+            2,
+            4
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 0,
+          "SELF": 0
+        },
+        "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "4ace66afa0531174",
+      "group": "development_test",
+      "known_episode": "ruin_no_attack_5",
+      "observed_after_player_action": {
+        "agrees": null,
+        "health_delta": 5,
+        "observable": true
+      },
+      "player": {
+        "source_card_id": "CORE_AT_055",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 17,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09c",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "CORE_AT_055",
+          "TIME_427"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "CORE_EX1_197",
+        "type": "PLAY_CARD"
+      },
+      "analyzer_A_top1": {
+        "attack_threshold": 5,
+        "effect_provenance": "pinned_catalog_text",
+        "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+        "minion_attacks": {
+          "OPPONENT": [
+            1,
+            1,
+            2,
+            2,
+            4
+          ],
+          "SELF": []
+        },
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "qualifying": {
+          "OPPONENT": 0,
+          "SELF": 0
+        },
+        "reason": "NO_MINION_MEETS_ATTACK_THRESHOLD",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "109564b577163f82",
+      "group": "development_test",
+      "known_episode": null,
+      "observed_after_player_action": {
+        "agrees": null,
+        "health_delta": 2,
+        "observable": true
+      },
+      "player": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "player_rank_A": 3,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09c",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "modifier_unknown_cards": [],
+        "reason": "VISIBLE_HEALING_MODIFIER",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_301",
+          "TIME_427"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "TIME_890t"
+        ],
+        "status": "UNKNOWN"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 1,
+        "target_card_id": "CORE_EX1_193",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CORE_AT_055",
+          "EDR_476",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "b3d59603a5cbee8e",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 4,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 1,
+        "target_card_id": "CORE_RLK_814",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "CATA_301",
+          "CORE_AT_055"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "JAIL_EVENT_COIN"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "3e6fc14abefabff0",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "source_card_id": "CATA_301",
+        "type": "PLAY_CARD"
+      },
+      "player_rank_A": 2,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "CATA_301",
+        "type": "PLAY_CARD"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_06",
+        "target_kind": "HERO",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2",
+          "TIME_890t2"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "498279eac2cb54bd",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "player_rank_A": 2,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": -1,
+        "target_card_id": "HERO_09aa",
+        "target_kind": "HERO",
+        "target_side": "SELF",
+        "type": "HERO_POWER"
+      },
+      "variant_top1_analyzer": {
+        "base_restore": 2,
+        "direct_restore_min": 2,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 4,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_DAMAGED",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2",
+          "TIME_890t2"
+        ],
+        "status": "DIRECT_EFFECT_PRESENT"
+      }
+    },
+    {
+      "A_top1": {
+        "source_card_id": "HERO_09dbp",
+        "target_board_position": 1,
+        "target_card_id": "EDR_852",
+        "target_kind": "MINION",
+        "target_side": "OPPONENT",
+        "type": "HERO_POWER"
+      },
+      "analyzer_A_top1": {
+        "base_restore": 2,
+        "direct_restore_min": 0,
+        "effect_provenance": "observed_outcomes",
+        "mechanic": "RESTORE_TARGET",
+        "missing_health": 0,
+        "modifier_matching_cards": [],
+        "modifier_unknown_cards": [],
+        "reason": "TARGET_AT_FULL_HEALTH",
+        "side_effects": "UNKNOWN",
+        "side_matching_cards": [
+          "CATA_216",
+          "EDR_852",
+          "EDR_970"
+        ],
+        "side_reasons": [
+          "SECRET_OR_QUEST_UNIDENTIFIED",
+          "CARD_TEXT_NOT_IN_PINNED_CATALOG",
+          "VISIBLE_TEXT_MAY_REACT"
+        ],
+        "side_unknown_cards": [
+          "DINO_COIN2",
+          "TIME_890t"
+        ],
+        "status": "NO_DIRECT_EFFECT"
+      },
+      "case_id": "19ad2c574ec5cace",
+      "group": "older",
+      "known_episode": null,
+      "observed_after_player_action": null,
+      "player": {
+        "type": "END_TURN"
+      },
+      "player_rank_A": 4,
+      "variant": "C_direct_only_diagnostic",
+      "variant_top1": {
+        "type": "END_TURN"
+      },
+      "variant_top1_analyzer": {
+        "reason": "MECHANIC_NOT_SUPPORTED",
+        "side_effects": null,
+        "side_reasons": [],
+        "status": "UNSUPPORTED"
+      }
+    }
+  ],
+  "verified_effects": {
+    "CORE_AT_055": {
+      "mechanic": "RESTORE_TARGET",
+      "provenance": "pinned_catalog_text",
+      "value": 5
+    },
+    "CORE_EX1_197": {
+      "mechanic": "DESTROY_MINIONS_MIN_ATTACK",
+      "provenance": "pinned_catalog_text",
+      "value": 5
+    },
+    "HERO_09dbp": {
+      "mechanic": "RESTORE_TARGET",
+      "provenance": "observed_outcomes",
+      "value": 2
+    }
+  },
+  "visible_card_occurrences": {
+    "distinct_missing_ids": 87,
+    "most_frequent_missing": [
+      [
+        "TIME_890t",
+        1012
+      ],
+      [
+        "TIME_890t2",
+        831
+      ],
+      [
+        "CAP_107t",
+        331
+      ],
+      [
+        "TLC_817t3",
+        196
+      ],
+      [
+        "JAIL_EVENT_COIN",
+        165
+      ],
+      [
+        "TLC_817t5",
+        154
+      ],
+      [
+        "DINO_COIN2",
+        149
+      ],
+      [
+        "TLC_817t4",
+        95
+      ],
+      [
+        "JAIL_941t",
+        62
+      ],
+      [
+        "FP1_011",
+        51
+      ],
+      [
+        "EDR_492t",
+        47
+      ],
+      [
+        "TIME_700t",
+        47
+      ]
+    ],
+    "text_in_pinned_catalog": 17563,
+    "text_not_in_pinned_catalog": 3901
+  }
+}
