@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "evaluation_scope": "descriptive replay of historical observations; not independent test data",
+  "raw_inventory": {
+    "raw_log_files": 42,
+    "game_sections": 42,
+    "complete_ranked_standard_sections": 42,
+    "unique_complete_ranked_standard_by_header": 42,
+    "complete_sections_total": 42
+  },
+  "processed_corpus": {
+    "files": 37,
+    "unique_matches": 37,
+    "policy_observations": 1341,
+    "observation_action_types": {
+      "ACTIVATE_LOCATION": 57,
+      "ATTACK": 158,
+      "END_TURN": 342,
+      "HERO_POWER": 131,
+      "PLAY_CARD": 653
+    },
+    "legal_menu_presence_decisions": {
+      "ACTIVATE_LOCATION": 534,
+      "ATTACK": 599,
+      "END_TURN": 1341,
+      "HERO_POWER": 562,
+      "PLAY_CARD": 1035
+    },
+    "legal_menu_action_entries": {
+      "ACTIVATE_LOCATION": 739,
+      "ATTACK": 1552,
+      "END_TURN": 1341,
+      "HERO_POWER": 794,
+      "PLAY_CARD": 10913
+    },
+    "play_card_metadata": {
+      "known_catalog_play_actions": 9834,
+      "minion_actions_with_base_stats": 2065,
+      "minion_actions_with_empty_catalog_mechanics": 16,
+      "play_card_actions": 10913,
+      "play_card_type_LOCATION": 786,
+      "play_card_type_MINION": 2500,
+      "play_card_type_SPELL": 7558,
+      "play_card_type_WEAPON": 69,
+      "unique_catalog_card_ids": 117,
+      "simple_minion_candidate_decisions": 7
+    }
+  },
+  "historical_experiment_overlap": {
+    "matches_with_recorded_usage": 32,
+    "matches_without_recorded_usage": 5,
+    "usage_counts": {
+      "ML_EVAL_0_INFERENCE": 12,
+      "POLICY_V1_TEST": 2,
+      "POLICY_V1_TRAIN": 17,
+      "POLICY_V1_VALIDATION": 1,
+      "POLICY_V2_TEST": 2,
+      "POLICY_V2_TRAIN": 17,
+      "POLICY_V2_VALIDATION": 1
+    }
+  },
+  "models": {
+    "policy_v2": {
+      "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "user_action_top1": 0.5592841163310962,
+      "inference_ms_median_includes_encoding": 1.3832
+    },
+    "existing_heuristic": {
+      "statuses": {
+        "APPLICABLE": 17,
+        "NOT_APPLICABLE": 1324
+      },
+      "recommendation_coverage": 0.01267710663683818,
+      "user_action_agreement_when_applicable": 0.29411764705882354
+    },
+    "algorithmic_advisor": {
+      "statuses": {
+        "ABSTAIN": 1341
+      },
+      "rules": {
+        "NONE": 1334,
+        "SIMPLE_MINION_PLAY_ESTIMATE": 7
+      },
+      "abstention_reasons": {
+        "В меню нет ситуации, для которой доступны узкие арифметические правила.": 1334,
+        "Несколько существ получили одинаковую приблизительную оценку.": 7
+      },
+      "recommendation_coverage": 0.0,
+      "user_action_agreement_when_recommended": null,
+      "inference_ms_median": 0.0087,
+      "by_player_chosen_action_type": {
+        "ACTIVATE_LOCATION": {
+          "observations": 57,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 57,
+          "agreement_when_recommended": null
+        },
+        "ATTACK": {
+          "observations": 158,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 158,
+          "agreement_when_recommended": null
+        },
+        "END_TURN": {
+          "observations": 342,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 342,
+          "agreement_when_recommended": null
+        },
+        "HERO_POWER": {
+          "observations": 131,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 131,
+          "agreement_when_recommended": null
+        },
+        "PLAY_CARD": {
+          "observations": 653,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 653,
+          "agreement_when_recommended": null
+        }
+      }
+    }
+  },
+  "independent_arithmetic_examples": {
+    "source": "Hand-checked test fixtures with expected results written from combat arithmetic before advisor invocation.",
+    "count": 9,
+    "tests_passed": 9,
+    "tests_failed": 0,
+    "cases": [
+      "lethal includes armor",
+      "Taunt prevents an all-face lethal claim",
+      "opponent secret prevents proven-lethal claim",
+      "target dies and attacker survives",
+      "attacker dies while target survives",
+      "unsupported combat mechanic causes abstention",
+      "simple known minion play is approximate",
+      "unknown card metadata causes abstention",
+      "spell effect is not inferred"
+    ]
+  },
+  "safety_audit": {
+    "historical_global_best_claims": 0,
+    "historical_recommendations": 0,
+    "historical_overconfident_recommendations": 0,
+    "reason": "The advisor emits only partial arithmetic or approximate minion-play rules; it never labels a move globally best. It abstained on this corpus."
+  },
+  "recommendation_samples": [],
+  "interpretation_limits": [
+    "Agreement with a player's recorded action is imitation, not proof of optimality.",
+    "Most observations have historical ML usage; the corpus is not independent.",
+    "Unknown cards and effects are not simulated; recommendations are local arithmetic only."
+  ]
+}
