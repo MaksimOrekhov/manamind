@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 import sys
@@ -24,6 +25,7 @@ from manamind.live.session import LiveSession
 from manamind.live.trust import LiveStatus, StatusEvent
 
 from collect_power_logs import Collector
+from holdout import HoldoutError, HoldoutPreparation, prepare_holdout, verify_holdout_disjoint
 
 DEFAULT_LOGS_ROOT = Path("D:/Games/Hearthstone/Logs")  # CLI-only local default; override via flag/env.
 POLICY_V2_CHECKPOINT = ROOT / "data/processed_policy_ml2a/seed42_v2/policy.pt"
@@ -36,7 +38,8 @@ class UnifiedRuntime:
     def __init__(self, live: LiveRunner, collector: Collector, recommender: PolicyRecommender | None,
                  *, emit: Callable[[str], None] = print, collector_seconds: float = 5.0,
                  journal: PredictionJournal | None = None,
-                 on_recommendation: Callable[[Recommendation], None] | None = None) -> None:
+                 on_recommendation: Callable[[Recommendation], None] | None = None,
+                 holdout: HoldoutPreparation | None = None) -> None:
         if collector_seconds <= 0:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
@@ -46,6 +49,8 @@ class UnifiedRuntime:
         self.emit = emit
         self.journal = journal
         self.on_recommendation = on_recommendation
+        self.holdout = holdout
+        self.holdout_failed = False
         self.collector_seconds = collector_seconds
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
@@ -138,11 +143,18 @@ class UnifiedRuntime:
                 self.emit(f"LIVE warning: {type(error).__name__}; recommendations disabled")
         if now >= self.next_collect:
             self.next_collect = now + self.collector_seconds
+            if self.holdout_failed:
+                return
             try:
                 failures_before = self.collector.stats.parse_failures
                 self.collector.scan_once()
+                if self.holdout is not None:
+                    verify_holdout_disjoint(self.holdout)
                 if self.collector.stats.parse_failures > failures_before:
                     self.emit("collection warning: failed scan or import; will retry")
+            except HoldoutError as error:
+                self.holdout_failed = True
+                self.emit(f"holdout collection halted: {error}")
             except Exception as error:
                 self.emit(f"collection warning: {type(error).__name__}; will retry")
 
@@ -155,6 +167,17 @@ class UnifiedRuntime:
         stats = self.collector.stats
         self.emit(f"session: {self.decisions_scored} recommendations; "
                   f"{stats.matches_imported} matches retained; {stats.parse_failures} collection failures")
+        if self.holdout is not None:
+            try:
+                overlap = verify_holdout_disjoint(self.holdout)
+                counts = self.holdout.summary()
+                self.emit("holdout: "
+                          f"{counts['matches_collected']} new completed matches collected; "
+                          f"Policy: {counts['policy_matches']} matches / "
+                          f"{counts['policy_decisions']} decisions; "
+                          f"historical overlap: {overlap['historical_overlap']}")
+            except HoldoutError as error:
+                self.emit(f"holdout verification failed: {error}")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -166,6 +189,8 @@ def build_parser() -> argparse.ArgumentParser:
                         help="SHA-256 pin for the frozen Policy v2 checkpoint")
     parser.add_argument("--data-root", type=Path,
                         default=Path(os.environ.get("MANAMIND_DATA_ROOT", ROOT / "data")))
+    parser.add_argument("--holdout", action="store_true",
+                        help="collect into an isolated holdout after backing up and checking history")
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
     parser.add_argument("--poll-ms", type=int, default=50)
     parser.add_argument("--collector-seconds", type=float, default=5.0)
@@ -180,6 +205,21 @@ def main(argv: list[str] | None = None) -> int:
     # hslog warnings and exceptions may contain raw log text or player identifiers.
     warnings.filterwarnings("ignore")
     logging.disable(logging.CRITICAL)
+    holdout = None
+    runtime_data_root = args.data_root
+    if args.holdout:
+        try:
+            holdout = prepare_holdout(args.data_root, args.logs_root)
+            verified = verify_holdout_disjoint(holdout)
+        except HoldoutError as error:
+            raise SystemExit(f"Holdout setup refused: {error}") from None
+        runtime_data_root = holdout.root
+        manifest = json.loads(holdout.manifest_path.read_text(encoding="utf-8"))
+        print("Holdout ready: "
+              f"{len(manifest['excluded_game_ids'])} historical matches excluded "
+              f"({manifest['raw_ids_missing_from_source_state']} raw IDs recovered beyond the regular state); "
+              f"historical Policy overlap: {verified['historical_overlap']}; "
+              "new holdout matches: 0", flush=True)
     catalog = CardCatalog.from_json(args.cards)
     recommender_error = None
     try:
@@ -190,13 +230,14 @@ def main(argv: list[str] | None = None) -> int:
         recommender_error = type(error).__name__
         print(f"recommendation warning: {type(error).__name__}; collection remains active", flush=True)
     session = LiveSession(catalog)
-    recorder = Recorder(args.data_root / "raw/live", catalog_path=args.cards)
+    recorder = Recorder(runtime_data_root / "raw/live", catalog_path=args.cards)
     live = LiveRunner(args.logs_root, session, recorder)
-    collector = Collector(args.logs_root, args.data_root / "raw/collected",
-                          args.data_root / "processed_real", args.cards)
+    collector = Collector(args.logs_root, runtime_data_root / "raw/collected",
+                          runtime_data_root / "processed_real", args.cards)
     runtime = UnifiedRuntime(live, collector, recommender, emit=lambda text: print(text, flush=True),
                              collector_seconds=args.collector_seconds,
-                             journal=PredictionJournal(args.data_root / "raw/live/prediction_journal.jsonl"))
+                             journal=PredictionJournal(runtime_data_root / "raw/live/prediction_journal.jsonl"),
+                             holdout=holdout)
     runtime.recommender_unavailable = recommender_error
     print("ManaMind experimental read-only policy. Ctrl+C to stop.", flush=True)
     runtime.emit(f"status: {session.status.value}")

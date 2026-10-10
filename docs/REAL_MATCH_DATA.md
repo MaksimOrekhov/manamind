@@ -51,6 +51,8 @@ The batch command audits each file, imports eligible new matches, skips duplicat
 
 `scripts/collect_power_logs.py` watches a Hearthstone `Logs` folder and imports each finished Ranked Standard match once, without copying `Power.log` by hand. It only collects data: it never trains, touches checkpoints, ManaEngine rules or the registry.
 
+For a separate, deduplicated LIVE holdout lane through the existing single in-process collector, see [HOLDOUT_COLLECTION.md](HOLDOUT_COLLECTION.md). The opt-in mode snapshots existing IDs into a separate collector state after verifying a backup of the regular state.
+
 ```powershell
 # one pass over the current logs, then exit
 .\.venv\Scripts\python.exe .\scripts\collect_power_logs.py --logs-root "<Hearthstone>\Logs" --once
