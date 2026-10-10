@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "evaluation_scope": "descriptive replay of historical observations; not independent test data",
+  "raw_inventory": {
+    "raw_log_files": 42,
+    "game_sections": 42,
+    "complete_ranked_standard_sections": 42,
+    "unique_complete_ranked_standard_by_header": 42,
+    "complete_sections_total": 42
+  },
+  "processed_corpus": {
+    "files": 37,
+    "unique_matches": 37,
+    "policy_observations": 1341,
+    "observation_action_types": {
+      "ACTIVATE_LOCATION": 57,
+      "ATTACK": 158,
+      "END_TURN": 342,
+      "HERO_POWER": 131,
+      "PLAY_CARD": 653
+    },
+    "legal_menu_presence_decisions": {
+      "ACTIVATE_LOCATION": 534,
+      "ATTACK": 599,
+      "END_TURN": 1341,
+      "HERO_POWER": 562,
+      "PLAY_CARD": 1035
+    },
+    "legal_menu_action_entries": {
+      "ACTIVATE_LOCATION": 739,
+      "ATTACK": 1552,
+      "END_TURN": 1341,
+      "HERO_POWER": 794,
+      "PLAY_CARD": 10913
+    },
+    "play_card_metadata": {
+      "known_catalog_play_actions": 9834,
+      "minion_actions_with_base_stats": 2065,
+      "minion_actions_with_empty_catalog_mechanics": 16,
+      "play_card_actions": 10913,
+      "play_card_type_LOCATION": 786,
+      "play_card_type_MINION": 2500,
+      "play_card_type_SPELL": 7558,
+      "play_card_type_WEAPON": 69,
+      "unique_catalog_card_ids": 117
+    }
+  },
+  "historical_experiment_overlap": {
+    "matches_with_recorded_usage": 32,
+    "matches_without_recorded_usage": 5,
+    "usage_counts": {
+      "ML_EVAL_0_INFERENCE": 12,
+      "POLICY_V1_TEST": 2,
+      "POLICY_V1_TRAIN": 17,
+      "POLICY_V1_VALIDATION": 1,
+      "POLICY_V2_TEST": 2,
+      "POLICY_V2_TRAIN": 17,
+      "POLICY_V2_VALIDATION": 1
+    }
+  },
+  "models": {
+    "policy_v2": {
+      "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "user_action_top1": 0.5592841163310962,
+      "inference_ms_median_includes_encoding": 1.3797
+    },
+    "existing_heuristic": {
+      "statuses": {
+        "APPLICABLE": 17,
+        "NOT_APPLICABLE": 1324
+      },
+      "recommendation_coverage": 0.01267710663683818,
+      "user_action_agreement_when_applicable": 0.29411764705882354
+    },
+    "algorithmic_advisor": {
+      "statuses": {
+        "ABSTAIN": 1341
+      },
+      "rules": {
+        "NONE": 520,
+        "PARTIAL_VISIBLE_STATE_ANALYSIS": 821
+      },
+      "abstention_reasons": {
+        "Есть локальные факты/приблизительные признаки, но оснований сравнить все legal actions для выбора лучшего хода нет.": 821,
+        "Не найдено поддерживаемого арифметического факта или кандидата карты; лучший ход не определяется.": 520
+      },
+      "analysis_statuses": {
+        "NO_ANALYSIS": 520,
+        "PARTIAL": 821
+      },
+      "partial_analysis_situations": 821,
+      "situations_with_local_facts": 599,
+      "situations_with_minion_body_estimates": 485,
+      "situations_with_potential_attack_only_lethal": 10,
+      "potential_lethal_blockers": {
+        "CARD_METADATA_MISSING": 8,
+        "COMBAT_STATUS_FLAG": 3,
+        "HERO_ATTACK_REACTION_UNRESOLVED": 2,
+        "MECHANIC_AURA": 5,
+        "MECHANIC_DEATHRATTLE": 6,
+        "MECHANIC_LIFESTEAL": 1,
+        "MECHANIC_TRIGGER_VISUAL": 1,
+        "OPPONENT_HERO_SHIELD_UNKNOWN_OR_PRESENT": 10,
+        "OPPONENT_SECRET_REACTION_UNRESOLVED": 5
+      },
+      "fact_types": {
+        "DIRECT_ATTACK_ARITHMETIC": 942,
+        "FACE_ATTACK_DAMAGE": 610,
+        "ORDINARY_FACE_ATTACK_DAMAGE_POTENTIAL": 422,
+        "POTENTIAL_ATTACK_ONLY_LETHAL": 10
+      },
+      "blocker_counts_per_observation": {
+        "CARD_METADATA_MISSING": 115,
+        "COMBAT_STATUS_FLAG": 118,
+        "GLOBAL_ACTION_VALUES_UNASSESSED": 491,
+        "HERO_ATTACK_REACTION_UNRESOLVED": 2,
+        "HERO_DAMAGE_REACTIONS_NOT_EVALUATED": 435,
+        "INCOMPLETE_OR_AMBIGUOUS_FACE_ATTACK_MENU": 143,
+        "MECHANIC_AURA": 21,
+        "MECHANIC_DEATHRATTLE": 122,
+        "MECHANIC_DIVINE_SHIELD": 19,
+        "MECHANIC_ENRAGED": 11,
+        "MECHANIC_INVISIBLEDEATHRATTLE": 7,
+        "MECHANIC_LIFESTEAL": 58,
+        "MECHANIC_POISONOUS": 4,
+        "MECHANIC_REBORN": 31,
+        "MECHANIC_TRIGGER_VISUAL": 78,
+        "MINION_HAS_DECLARED_MECHANICS": 483,
+        "MINION_TEXT_OR_EFFECT_NOT_EVALUATED": 485,
+        "NO_PROVEN_TERMINAL_LINE": 3,
+        "NO_SUPPORTED_LOCAL_ANALYSIS": 488,
+        "OPPONENT_HERO_SHIELD_UNKNOWN_OR_PRESENT": 10,
+        "OPPONENT_SECRET_REACTION_UNRESOLVED": 5,
+        "PLAY_CARD_EFFECTS_NOT_EVALUATED": 554,
+        "UNKNOWN_MECHANIC_COLOSSAL": 6
+      },
+      "candidate_exclusion_counts": {
+        "CARD_METADATA_MISSING_OR_ID_MISMATCH": 435
+      },
+      "recommendation_coverage": 0.0,
+      "user_action_agreement_when_recommended": null,
+      "inference_ms_median": 0.0256,
+      "by_player_chosen_action_type": {
+        "ACTIVATE_LOCATION": {
+          "observations": 57,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 57,
+          "agreement_when_recommended": null
+        },
+        "ATTACK": {
+          "observations": 158,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 158,
+          "agreement_when_recommended": null
+        },
+        "END_TURN": {
+          "observations": 342,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 342,
+          "agreement_when_recommended": null
+        },
+        "HERO_POWER": {
+          "observations": 131,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 131,
+          "agreement_when_recommended": null
+        },
+        "PLAY_CARD": {
+          "observations": 653,
+          "recommendations": 0,
+          "recommendation_coverage": 0.0,
+          "abstentions": 653,
+          "agreement_when_recommended": null
+        }
+      },
+      "by_legal_menu_action_type": {
+        "ACTIVATE_LOCATION": {
+          "observations_with_action_type_in_menu": 534,
+          "partial_analysis": 353,
+          "partial_analysis_coverage": 0.6610486891385767,
+          "concrete_recommendations_of_type": 0
+        },
+        "ATTACK": {
+          "observations_with_action_type_in_menu": 599,
+          "partial_analysis": 599,
+          "partial_analysis_coverage": 1.0,
+          "concrete_recommendations_of_type": 0
+        },
+        "END_TURN": {
+          "observations_with_action_type_in_menu": 1341,
+          "partial_analysis": 821,
+          "partial_analysis_coverage": 0.6122296793437733,
+          "concrete_recommendations_of_type": 0
+        },
+        "HERO_POWER": {
+          "observations_with_action_type_in_menu": 562,
+          "partial_analysis": 412,
+          "partial_analysis_coverage": 0.7330960854092526,
+          "concrete_recommendations_of_type": 0
+        },
+        "PLAY_CARD": {
+          "observations_with_action_type_in_menu": 1035,
+          "partial_analysis": 700,
+          "partial_analysis_coverage": 0.6763285024154589,
+          "concrete_recommendations_of_type": 0
+        }
+      }
+    }
+  },
+  "safety_audit": {
+    "historical_global_best_claims": 0,
+    "historical_recommendations": 0,
+    "historical_overconfident_recommendations": 0,
+    "reason": "Only a fully supported immediate attack-only lethal receives a concrete recommendation; local combat facts and body-to-cost descriptors remain partial analysis."
+  },
+  "recommendation_samples": [],
+  "interpretation_limits": [
+    "Agreement with a player's recorded action is imitation, not proof of optimality.",
+    "Most observations have historical ML usage; the corpus is not independent.",
+    "Unknown cards and effects are not simulated; recommendations are local arithmetic only."
+  ],
+  "comparison_to_algo_first_1": {
+    "same_unique_matches": 37,
+    "same_policy_observations": 1341,
+    "algo_first_1_concrete_recommendations": 0.0,
+    "algo_first_1_partial_analysis_situations": 0,
+    "algo_first_1b_partial_analysis_situations": 821,
+    "algo_first_1b_partial_analysis_rate": 0.6122296793437733,
+    "algo_first_1b_concrete_recommendations": 0.0,
+    "interpretation": "Comparison uses the identical already-viewed historical corpus; no independent-test claim."
+  }
+}
