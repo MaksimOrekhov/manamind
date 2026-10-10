@@ -115,6 +115,7 @@ class PolicyRecommender:
             raise RecommendationUnavailable("CHECKPOINT_IDENTITY_MISMATCH")
         if hashlib.sha256(path.read_bytes()).hexdigest() != expected:
             raise RecommendationUnavailable("CHECKPOINT_IDENTITY_MISMATCH")
+        self.checkpoint_sha256 = expected
         try:
             self.policy, self.encoder, self.checkpoint = load_policy_checkpoint(path, device="cpu")
         except (KeyError, TypeError, ValueError, RuntimeError) as error:

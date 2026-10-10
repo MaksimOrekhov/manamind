@@ -1,31 +1,38 @@
 # Live bridge: FIRST_LIVE_STATE
 
 While Hearthstone runs, `scripts/live_state.py` follows the growing `Power.log` and prints one
-**sanitized, settled** snapshot at every decision point of the local player (SELF). The LIVE-0C
-runner also ranks the complete legal SELF menu with the fixed ML-1C behavior-cloning policy. It
-prints read-only experimental recommendations and uses the existing collector to retain completed
-matches. There is no ManaEngine import, search, overlay transport, HDT, OCR or memory reading.
+**sanitized, settled** snapshot at every decision point of the local player (SELF). The unified
+runner ranks the complete legal SELF menu with a pinned behavior-cloning policy, uses the existing
+collector to retain completed matches, and can show a small Windows Tkinter always-on-top panel.
+The panel is read-only; there is no ManaEngine import, search, HDT, OCR or memory reading.
 
 Design and evidence: [LIVE_REALTIME_BRIDGE_AUDIT.md](../reports/live_integration/LIVE_REALTIME_BRIDGE_AUDIT.md).
 This page is the operating guide.
 
 ## Start
 
-For the unified LIVE-0C workflow, from the repository root with the accepted ignored checkpoint
-at `data/processed_policy_ml1c/baseline_seed42_v1/policy.pt`:
+For the Windows MVP, install dependencies once and run the unified workflow from the repository
+root. The default selects frozen Policy v2 and checks its pinned SHA-256 before loading:
 
 ```powershell
-python scripts/run_manamind.py --logs-root "D:\Games\Hearthstone\Logs"
+python -m pip install -e ".[dev,replays]"
+python scripts/run_manamind.py --ui --logs-root "D:\Games\Hearthstone\Logs"
 ```
 
-The runner follows Power.log, records replayable LIVE slices under `data/raw/live/`, and invokes
+Close the panel or press Ctrl+C in the console to stop. `--ui` uses Python's standard Tkinter; no
+second server, process, Electron or Tauri installation is needed. The runner follows Power.log,
+records replayable LIVE slices under `data/raw/live/`, and invokes
 the existing completed-match collector every five seconds. New raw matches are retained under
 `data/raw/collected/` and imported using the collector's existing rules. Those paths are ignored
-local data. `--data-root` selects another local data root; `--checkpoint` selects the exact reviewed
-ML-1C file, whose SHA-256 is checked before the strict schema loader runs. The LIVE catalog must
+local data. `--data-root` selects another local data root; `--checkpoint` and `--checkpoint-sha256`
+select the pinned Policy v2 by default and are checked before the strict schema loader runs. The LIVE catalog must
 match the checkpoint-owned catalog. Checkpoint or catalog failure
 disables ranking while collection continues. Collection failures are shown and retried; they do not
 relax LIVE trust gates. Stop with Ctrl+C. No automatic retraining or model reload occurs.
+Displayed top-three rankings are appended to `data/raw/live/prediction_journal.jsonl` with match and
+decision identity, state/checkpoint hashes and invalidation events. The journal never stores player
+names or hidden opponent cards. Actual player action linkage stays `UNKNOWN` unless decision identity
+can be proven.
 
 The command below is the standalone state inspector, without policy ranking or collection:
 
@@ -42,6 +49,7 @@ The folder can also come from `MANAMIND_HEARTHSTONE_LOGS`; nothing is hard-coded
 | `--allow-mode GT_VS_AI` | developer option: also follow solo games against the AI. Without it only Ranked Standard is followed. |
 | `--record [DIR]` | record each game under `DIR` (default `data/raw/live`, git-ignored) |
 | `--cards FILE` | card catalog, default `data/cards/standard_current_enUS.json` |
+| `--ui` | show the Windows always-on-top panel; without it retain the console runner |
 
 The tool only ever opens `Power.log` for reading (for the length of one poll), never writes,
 renames or deletes anything under `Logs`, and never touches `log.config`. Hearthstone must have
@@ -149,10 +157,11 @@ scoring overhead, not Power.log delivery or UI delay.
 
 ## Current limitations
 
-Experimental Policy v2 can be selected explicitly with both --checkpoint and
---checkpoint-sha256 in the unified runner or recommendation replay. The default
-still pins the reviewed ML-1C file. Both versions use the same trust/privacy/menu
-and invalidation gates; the runtime catalog must match the saved catalog. See
+The Windows unified runner defaults to the frozen Policy v2 path and SHA-256 above. Other
+checkpoints can be selected only by supplying both `--checkpoint` and `--checkpoint-sha256`.
+Existing direct `PolicyRecommender` callers without a digest retain the reviewed ML-1C fallback.
+Both versions use the same trust/privacy/menu and invalidation gates; the runtime catalog must match
+the saved catalog. See
 [the representation contract](POLICY_REPRESENTATION.md).
 
 - Only `MAIN_ACTION` decisions. Mulligan and Discover/choice states are not emitted yet.
@@ -170,7 +179,9 @@ and invalidation gates; the runtime catalog must match the saved catalog. See
   comparison).
 - Reconnect (`CREATE_GAME` with `TURN>0`) and `GAME_RESET` handling is implemented fail-closed and
   covered by synthetic logs only; no real example was available. Do not test it in a ranked game.
-- Card names are not shown (the compact catalog has no names); output is `card_id` only.
+- The compact runtime catalog has no names. The Windows panel looks up names in the local Standard
+  metadata JSON and falls back to `card_id`, action type and hand/board position when unknown; the
+  inference catalog and checkpoint vocabulary are unchanged.
 - The reducer keeps hearthstone's entity code off the card database (see `PacketExporter`); without
   the optional `hearthstone_data` package python-hearthstone would otherwise download card data from
   the web on certain reveals.
@@ -189,4 +200,6 @@ and invalidation gates; the runtime catalog must match the saved catalog. See
 5. After the game run `scripts/live_replay.py` on the recorded directory: expect `IDENTICAL`.
 6. Optional, never in ranked: attach mid-game; briefly drop the network in a casual or solo-AI game
    (`--allow-mode GT_VS_AI`) to see the reconnect path.
-7. Report only the game date and the number of snapshots checked, not their contents.
+7. The panel path is technically tested, but remains **TECHNICALLY READY** until the user confirms
+   it on a real Windows Hearthstone client. Report only the game date and number of snapshots checked,
+   not their contents.

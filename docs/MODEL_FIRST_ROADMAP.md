@@ -33,7 +33,7 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 | 3 | Compare ID / Structural / Text / Hybrid Policy | Planned; Text/Hybrid Policy not trained |
 | 4 | Predicting observable consequences | PLANNED (experimental) |
 | 5 | Independent check of practical quality | PLANNED |
-| 6 | Live Shadow Mode | PLANNED |
+| 6 | Live Shadow Mode | MVP implemented; awaiting real-user playtest |
 | 7 | Long-term development if results are positive | PLANNED |
 
 ### 1. Evaluation Baseline
@@ -58,7 +58,11 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 
 **MODEL-FIRST-3A status: complete, INCONCLUSIVE. CARD-TEXT-AUDIT-1 and MODEL-FIRST-3A-TEXT-SAFETY are complete.** The text adapter and overlap audit are experimental safeguards; no Text or Hybrid Policy has been trained, and no gameplay benefit from text has been established.
 
-The next priority is a new independent corpus of real observations. Do not start a Text/Hybrid comparison until that corpus and its match-level evaluation split are available and reviewed.
+The immediate priority is the read-only Windows gameplay MVP and its first user trials. The panel
+uses the existing frozen Policy v2 and trust gates; it is **TECHNICALLY READY**, not PLAYTEST
+VERIFIED, until checked against the real client. Do not start a Text/Hybrid comparison until a new
+independent corpus of real observations and its match-level evaluation split are available and
+reviewed.
 
 - **Goal:** find out which card representation generalizes to unseen cards: identity embedding, structural features, card-text embedding, or a combination.
 - **Outcome:** one table on identical data and splits, including a split with cards unseen in training.
@@ -79,6 +83,10 @@ The next priority is a new independent corpus of real observations. Do not start
 - **Gate:** the gain holds on independent real data; this is the confirmation of real game quality and is required for live acceptance. Otherwise return to stage 2–4 with a new hypothesis.
 
 ### 6. Live Shadow Mode
+
+**LIVE-MVP-1:** the Windows always-on-top Tkinter panel uses the unified LIVE runner, pinned Policy
+v2 checkpoint, existing collector and trust/invalidation gates. It remains read-only. The current
+status is **TECHNICALLY READY**, not PLAYTEST VERIFIED; wait for the user's first real-client check.
 
 - **Goal:** run the useful model next to a real game, read-only, and compare its ranking with what the player did.
 - **Outcome:** recorded shadow rankings and agreement statistics; no actions are performed on the player's behalf.

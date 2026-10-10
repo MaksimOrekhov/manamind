@@ -24,6 +24,8 @@ from manamind.live.recorder import Recorder  # noqa: E402
 from manamind.live.recommendation import (  # noqa: E402
     PolicyRecommender, RecommendationUnavailable, render_recommendation,
 )
+from manamind.live.panel import OverlayPanel, describe_action, load_card_names  # noqa: E402
+from manamind.live.prediction_journal import PredictionJournal  # noqa: E402
 from manamind.live.runner import LiveRunner  # noqa: E402
 from manamind.live.session import LiveSession  # noqa: E402
 from manamind.live.trust import LiveStatus  # noqa: E402
@@ -239,7 +241,9 @@ def test_unified_startup_no_history_new_game_recorder_invalidation_and_lane_fail
     live = LiveRunner(logs, LiveSession(CATALOG), recorder, clock=clock)
     collector = DummyCollector(fail=True)
     printed = []
-    runtime = run_manamind.UnifiedRuntime(live, collector, scorer, emit=printed.append, collector_seconds=1)
+    journal = PredictionJournal(tmp_path / "data/raw/live/prediction_journal.jsonl")
+    runtime = run_manamind.UnifiedRuntime(live, collector, scorer, emit=printed.append,
+                                          collector_seconds=1, journal=journal)
     for _ in range(5):
         runtime.step(clock.now); clock.advance(0.05)
     assert not any("#1 " in row for row in printed)
@@ -260,7 +264,53 @@ def test_unified_startup_no_history_new_game_recorder_invalidation_and_lane_fail
     runtime.step(clock.now)
     assert runtime.active_identity is None
     assert any("invalidated" in row for row in printed)
+    journal_rows = [__import__("json").loads(line) for line in
+                    (tmp_path / "data/raw/live/prediction_journal.jsonl").read_text(encoding="utf-8").splitlines()]
+    assert [row["event"] for row in journal_rows] == ["RECOMMENDATION", "INVALIDATION"]
+    assert journal_rows[0]["observed_action"]["status"] == "UNKNOWN"
+    assert journal_rows[1]["observed_action"]["status"] == "UNKNOWN"
+    assert journal_rows[0]["checkpoint_sha256"] == scorer.checkpoint_sha256
+    journal_text = (tmp_path / "data/raw/live/prediction_journal.jsonl").read_text(encoding="utf-8")
+    assert SECRET_NAME not in journal_text and "Opponent#" not in journal_text
+    assert "handle" not in journal_text
     assert SECRET_NAME not in "\n".join(printed)
+
+
+def test_panel_uses_local_names_and_position_fallback_without_handles():
+    names = load_card_names(CARDS)
+    play = {"type": "PLAY_CARD", "card_type": "MINION", "card_id": "CS2_231",
+            "hand_index": 0, "play_position": 2}
+    attack = {"type": "ATTACK", "source_kind": "MINION", "source_card_id": "UNKNOWN_MINION",
+              "source_board_position": 3, "target_kind": "HERO", "target_side": "OPPONENT"}
+    assert "рука #1" in describe_action(play, names)
+    assert "слот стола #2" in describe_action(play, names)
+    assert "CS2_231" in describe_action(play, names)
+    assert "стол #3" in describe_action(attack, names)
+    assert "герой противника" in describe_action(attack, names)
+    assert "handle" not in describe_action(attack, names)
+
+
+def test_panel_hides_stale_rankings_when_status_or_decision_changes():
+    class Label:
+        def __init__(self):
+            self.text = ""
+        def configure(self, *, text):
+            self.text = text
+
+    panel = object.__new__(OverlayPanel)
+    panel.status, panel.turn, panel.advice = Label(), Label(), Label()
+    panel.on_message("status: WAITING_FOR_GAME")
+    assert panel.advice.text == "Рекомендации скрыты до следующего доверенного решения SELF."
+    panel.turn.configure(text="Ход 4")
+    panel.advice.configure(text="#1 stale")
+    panel.on_message("status: UNTRUSTED (PARSE_ERROR)")
+    assert panel.turn.text == ""
+    assert "скрыты" in panel.advice.text
+    panel.turn.configure(text="Ход 4")
+    panel.advice.configure(text="#1 stale")
+    panel.on_message("recommendation #4 invalidated")
+    assert panel.turn.text == ""
+    assert "устарел и скрыт" in panel.advice.text
 
 
 def test_real_collector_retains_once_and_restart_with_recommendations_unavailable(tmp_path):
@@ -362,12 +412,14 @@ def test_live_recommendation_composes_with_post_game_datasets(
     assert SECRET_NAME not in "\n".join(printed)
 
 
-def test_unified_cli_defaults_to_reviewed_v1_and_experimental_sha_is_opt_in():
+def test_unified_cli_defaults_to_pinned_policy_v2_and_panel_is_opt_in():
     args = run_manamind.build_parser().parse_args([])
-    assert args.checkpoint == run_manamind.ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt"
-    assert args.checkpoint_sha256 is None  # PolicyRecommender applies its reviewed ML-1C digest.
+    assert args.checkpoint == run_manamind.POLICY_V2_CHECKPOINT
+    assert args.checkpoint_sha256 == run_manamind.POLICY_V2_SHA256
+    assert args.ui is False
     experimental = run_manamind.build_parser().parse_args([
-        "--checkpoint", "policy-v2.pt", "--checkpoint-sha256", "a" * 64,
+        "--ui", "--checkpoint", "policy-other.pt", "--checkpoint-sha256", "a" * 64,
     ])
-    assert str(experimental.checkpoint) == "policy-v2.pt"
+    assert str(experimental.checkpoint) == "policy-other.pt"
     assert experimental.checkpoint_sha256 == "a" * 64
+    assert experimental.ui is True

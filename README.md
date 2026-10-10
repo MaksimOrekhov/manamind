@@ -92,6 +92,16 @@ Use Python 3.12 or newer as specified by `pyproject.toml`. No Git submodules and
 | `configs/value_v1.yaml` | Value-model/training defaults |
 | `configs/standard_profile.json` | Pinned Standard catalog inputs (and a pointer to a frozen historical registry) |
 
+On Windows, start the always-on-top LIVE MVP panel and its single in-process collector with:
+
+```powershell
+python scripts/run_manamind.py --ui
+```
+
+The default uses frozen Policy v2 with its pinned SHA-256 and the default Hearthstone logs folder;
+see [the LIVE guide](docs/LIVE_BRIDGE.md) for dependency setup and path overrides. It is a read-only
+adviser and is **TECHNICALLY READY**, pending the first real-client playtest.
+
 The former RosettaStone self-play entry points (`train_selfplay.py`, `evaluate_policy.py`) were removed in MODEL-FIRST-MIGRATION-1; see [reports/model_first_migration_1/README.md](reports/model_first_migration_1/README.md).
 
 From the repository root, source verification commands are:

@@ -71,9 +71,10 @@ See [the ML-2A report](../reports/ml/ML2A_POLICY_V2.md).
 
 ## Experimental LIVE selection
 
-Training and LIVE share encode_policy_inputs. The default LIVE pin remains the
-accepted ML-1C checkpoint. V2 requires an explicit file and independently recorded
-digest; there is no automatic promotion or model reload:
+Training and LIVE share encode_policy_inputs. Existing callers of `PolicyRecommender` that omit a
+digest retain the reviewed ML-1C fallback. The Windows LIVE-MVP-1 command explicitly selects the
+frozen Policy v2 path and its independently recorded digest. There is no automatic promotion or
+model reload:
 
 ```powershell
 python scripts/replay_live_recommendations.py <private-recording> `
