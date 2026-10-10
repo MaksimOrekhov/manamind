@@ -3,14 +3,15 @@
 ``GameState`` packets run ahead of what the player sees. The client's own task-list
 markers say how far the UI is: ``PowerTaskList.DebugDump ID=n`` queues list ``n`` and
 ``PowerProcessor.EndCurrentTaskList m_currentTaskList=n`` finishes it. An options
-message is emitted only when it is complete, nothing newer was read after it, and
-every queued list has finished.
+message is emitted only when it is complete, no newer GameState packet superseded
+it, and every queued list has finished. Later client task lists hide the rating
+and revalidate this same menu after settling, if no GameState packet replaced it.
 """
 
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 SETTLE_TIMEOUT_MS = 15_000
 MESSAGE_IDLE_MS = 100  # quiet time after which an options message is taken as complete
@@ -35,6 +36,7 @@ class SettleGate:
     q_created: int = 0
     q_ended: int = 0
     pending: PendingOptions | None = None
+    last_taken: PendingOptions | None = None
     superseded: int = 0
     emitted_ids: set[int] = field(default_factory=set)
 
@@ -42,6 +44,7 @@ class SettleGate:
         self.q_created = 0
         self.q_ended = 0
         self.pending = None
+        self.last_taken = None
         self.superseded = 0
         self.emitted_ids = set()
 
@@ -63,6 +66,17 @@ class SettleGate:
         if self.pending is not None:
             self.superseded += 1
         self.pending = PendingOptions(options_id, packet, now_ms, now_ms, line_in_game=line_in_game)
+        self.last_taken = None
+
+    def recheck_current(self, now_ms: int) -> None:
+        """Revalidate an unchanged menu after new client task lists.
+
+        The rating is hidden while tasks run. Only task-list markers can rearm
+        this menu; a newer GameState packet clears it through supersede/begin.
+        """
+        if self.pending is None and self.last_taken is not None:
+            self.pending = replace(self.last_taken, started_ms=now_ms)
+            self.emitted_ids.discard(self.pending.options_id)
 
     def touch(self, now_ms: int) -> None:
         if self.pending is not None:
@@ -81,12 +95,14 @@ class SettleGate:
             pending.complete = True
 
     def supersede(self) -> None:
+        self.last_taken = None
         if self.pending is not None:
             self.pending = None
             self.superseded += 1
 
     def discard(self) -> None:
         self.pending = None
+        self.last_taken = None
 
     def timed_out(self, now_ms: int) -> bool:
         pending = self.pending
@@ -99,6 +115,7 @@ class SettleGate:
             return None
         self.pending = None
         if pending.options_id in self.emitted_ids:
-            return None  # once per options id
+            return None  # no duplicate without an explicit task-list recheck
         self.emitted_ids.add(pending.options_id)
+        self.last_taken = pending
         return pending

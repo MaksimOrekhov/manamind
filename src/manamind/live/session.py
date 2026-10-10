@@ -262,6 +262,7 @@ class LiveSession:
                     if dump:
                         if int(dump.group(1)) > game.gate.q_created:
                             self._invalidate_current()
+                            game.gate.recheck_current(now_ms)
                         game.gate.queued(int(dump.group(1)))
                 elif owner == "PowerProcessor" and method == "EndCurrentTaskList":
                     end = END_RE.match(message)
@@ -270,8 +271,9 @@ class LiveSession:
         except ReducerError as error:
             self._untrusted(game, error.reason)
             return
-        if game.mode_state == _MODE_OK and not (self._quiet or self._catchup):
-            self._try_emit(game)
+        # Evaluate once at the end of feed/tick. A completed list can be followed
+        # by more queued lists in this same read batch; do not consume the menu
+        # at a transient settled point between those markers.
 
     def _begin_game(self, line: str) -> None:
         self._invalidate_current()

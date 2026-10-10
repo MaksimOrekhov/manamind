@@ -1,0 +1,19 @@
+{
+  "recordings": 2,
+  "snapshots": 138,
+  "scored": 126,
+  "superseded_in_batch": 0,
+  "recorded_hashes_match": false,
+  "ranking_replay_identical": true,
+  "ml1b_parity": 0,
+  "skips": {
+    "AMBIGUOUS_SELECTION": 12
+  },
+  "latency_ms": {
+    "median": 3.0943500000000004,
+    "p90": 4.32875,
+    "p99": 5.668925
+  },
+  "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+  "historical_hash_sequence_mismatch_expected": true
+}

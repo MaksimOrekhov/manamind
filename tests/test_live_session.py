@@ -112,6 +112,73 @@ def test_unsettled_message_waits_for_the_ui_then_emits_once():
     assert snapshots(session.tick(9000)) == []  # once per options id
 
 
+def test_options_survive_trailing_task_lists_in_one_read_batch():
+    """Real sequence: options, end list, then two UI-only lists before player action."""
+    session = make()
+    log = LiveLog(canaries=True).create_game().mulligan()
+    log.batch(["TAG_CHANGE Entity=GameEntity tag=TURN value=1",
+               "TAG_CHANGE Entity=2 tag=CURRENT_PLAYER value=1",
+               "TAG_CHANGE Entity=3 tag=CURRENT_PLAYER value=0"])
+    log.options()
+    assert snapshots(drive(session, log.lines)) == []
+    log.lines.clear()
+    log.finish_list()
+    for _ in range(2):
+        log.q += 1
+        log.raw("PowerTaskList", "DebugDump", f"ID={log.q} ParentID=0 PreviousID=0 TaskCount=0")
+        log.finish_list()
+    ready = snapshots(session.feed(log.lines, 2000))
+    assert len(ready) == 1 and session.current_snapshot is ready[0]
+    assert session.status is LiveStatus.READY
+    assert not any(canary in ready[0].to_json() for canary in CANARIES)
+    assert snapshots(session.tick(20_000)) == []
+    assert session.current_snapshot is ready[0]  # still BEFORE SendOption, no artificial expiry
+
+
+def test_new_task_hides_rating_then_revalidates_current_menu_before_send_option():
+    session = make()
+    log = decision_log()
+    first = snapshots(drive(session, log.lines))[0]
+    log.lines.clear()
+    log.q += 1
+    log.raw("PowerTaskList", "DebugDump", f"ID={log.q} ParentID=0 PreviousID=0 TaskCount=1")
+    events = session.feed(log.lines, 30_000)
+    assert snapshots(events) == [] and session.current_snapshot is None
+    assert session.status is LiveStatus.SYNCING
+    log.lines.clear()
+    log.finish_list()
+    ready = snapshots(session.feed(log.lines, 30_500))
+    assert len(ready) == 1
+    assert ready[0].seq > first.seq
+    assert ready[0].decision == first.decision and ready[0].state_hash == first.state_hash
+    assert session.current_snapshot is ready[0]
+    log.lines.clear()
+    log.send_option(1)
+    assert snapshots(session.feed(log.lines, 40_000)) == []
+    assert session.current_snapshot is None
+
+
+@pytest.mark.parametrize("superseding_line", [
+    "GameState.SendOption() - selectedOption=1 selectedSubOption=-1 selectedTarget=0 selectedPosition=0",
+    "GameState.DebugPrintPower() - TAG_CHANGE Entity=2 tag=RESOURCES_USED value=1",
+])
+def test_task_completion_cannot_restore_menu_after_action_or_state_change(superseding_line):
+    session = make()
+    log = decision_log()
+    assert len(snapshots(drive(session, log.lines))) == 1
+    log.lines.clear()
+    log.q += 1
+    log.raw("PowerTaskList", "DebugDump", f"ID={log.q} ParentID=0 PreviousID=0 TaskCount=1")
+    session.feed(log.lines, 2000)
+    assert session.current_snapshot is None
+    events = session.feed([f"D 20:00:03.0000000 {superseding_line}"], 3000)
+    log.lines.clear()
+    log.finish_list()
+    events += drive(session, log.lines, 4000)
+    assert snapshots(events) == [] and session.current_snapshot is None
+    assert session.game.gate.last_taken is None
+
+
 def test_settle_timeout_makes_the_game_untrusted_then_resyncs():
     session = make()
     log = LiveLog().create_game().mulligan()

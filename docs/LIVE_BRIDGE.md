@@ -82,6 +82,9 @@ Notes:
 - A LIVE-0C recommendation is bound to the current READY snapshot. SendOption, any newer
   GameState line, task-list advancement, reset, trust loss, source change and game completion
   invalidate it. The runner prints an invalidation when a displayed ranking becomes stale.
+  After task-list advancement alone, the unchanged legal menu can be revalidated once all
+  queued lists finish. It gets a new snapshot/ranking; a superseding GameState packet or
+  SendOption clears the retained menu and prevents this revalidation.
 - Unknown `GameTag` names (new patch, older `hearthstone` package) are counted and skipped because
   they cannot be tags the bridge reads. Any other unknown enum is `PARSE_ERROR`.
 
@@ -90,15 +93,18 @@ Notes:
 `GameState` packets run ahead of the screen (median 0.3-1 s). A decision is emitted only when
 
 1. a SELF `DebugPrintOptions` message is complete and has at least one option with `error=NONE`, or an `END_TURN` option while it is SELF's turn (real logs always give `END_TURN` `error=INVALID`);
-2. nothing newer was read after it (any later `GameState` line, including `SendOption`, supersedes it
+2. no newer `GameState` data was read after it (any later `GameState` line, including `SendOption`, supersedes it
    and it is dropped, which also covers the player acting before the screen caught up);
 3. every task list the client queued (`PowerTaskList.DebugDump ID=n`) has finished
    (`PowerProcessor.EndCurrentTaskList m_currentTaskList=n`);
 4. SELF, the mode and all invariants check out.
 
-So there is exactly one snapshot per settled SELF decision, none in the opponent's turn, and none
-for a message the player already answered. On the 15 local games checked (aggregate only), about
-12 % of legal options messages were answered before the screen settled and are therefore not shown.
+Read batches are evaluated after all their lines have been processed, avoiding transient READY
+states between task-list markers. A settled SELF menu is emitted once; if later UI task lists
+invalidate it, it can produce another snapshot after those lists finish, while its GameState/menu
+binding is still current. There are no snapshots in the opponent's turn or for a message already
+answered by SendOption. This does not weaken the `q_ended >= q_created` check or preserve an old
+rating while tasks run. See [the real timing diagnosis](../reports/live_mvp_timing/README.md).
 
 ## Snapshot (`manamind.live.snapshot/1`)
 
