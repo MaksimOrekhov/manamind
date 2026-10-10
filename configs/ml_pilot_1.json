@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "split_seed": 42,
+  "max_epochs": 30,
+  "patience": 6,
+  "min_delta": 0.0001,
+  "hidden_size": 64,
+  "dropout": 0.1,
+  "learning_rate": 0.001,
+  "weight_decay": 0.001,
+  "batch_size": 32,
+  "gradient_clip": 1.0,
+  "torch_threads": 1,
+  "device": "cpu",
+  "bootstrap_seed": 20261010,
+  "bootstrap_replicates": 2000
+}

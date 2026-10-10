@@ -1,0 +1,792 @@
+{
+  "cases": {
+    "atiesh_with_medivh_in_hand": {
+      "observation_sha256": "abacd59f61e3cd64670f2d48608c3b0d11befdae8d3ea37f5493a3b1e6ce70fd",
+      "self_hand_size": 9,
+      "top3": {
+        "frozen": [
+          {
+            "card_id": "TIME_890t",
+            "hand_index": 1,
+            "play_position": 0,
+            "source_card_id": "TIME_890t",
+            "source_kind": "WEAPON",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "EDR_449p",
+            "play_position": 0,
+            "source_card_id": "EDR_449p",
+            "source_kind": "HERO_POWER",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "TIME_432",
+            "hand_index": 2,
+            "play_position": 0,
+            "source_card_id": "TIME_432",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ],
+        "hybrid": [
+          {
+            "card_id": "TIME_890t",
+            "hand_index": 1,
+            "play_position": 0,
+            "source_card_id": "TIME_890t",
+            "source_kind": "WEAPON",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "EDR_449p",
+            "play_position": 0,
+            "source_card_id": "EDR_449p",
+            "source_kind": "HERO_POWER",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "TIME_432",
+            "hand_index": 2,
+            "play_position": 0,
+            "source_card_id": "TIME_432",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ],
+        "retrained": [
+          {
+            "card_id": "TIME_890t",
+            "hand_index": 1,
+            "play_position": 0,
+            "source_card_id": "TIME_890t",
+            "source_kind": "WEAPON",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "EDR_449p",
+            "play_position": 0,
+            "source_card_id": "EDR_449p",
+            "source_kind": "HERO_POWER",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "EDR_476",
+            "hand_index": 3,
+            "play_position": 0,
+            "source_card_id": "EDR_476",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ]
+      }
+    },
+    "coin_without_followup": {
+      "status": "exact observation not recovered"
+    },
+    "full_health_heal": {
+      "observation_sha256": "83e9144a6f6061b12f62ff1ef94432c40cb92c8cecb8e79dfefd0ff13c43f277",
+      "self_hand_size": 6,
+      "top3": {
+        "frozen": [
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 1,
+            "target_card_id": "TLC_438",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": -1,
+            "target_card_id": "HERO_04",
+            "target_kind": "HERO",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 2,
+            "target_card_id": "CS2_101t",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          }
+        ],
+        "hybrid": [
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 1,
+            "target_card_id": "TLC_438",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": -1,
+            "target_card_id": "HERO_04",
+            "target_kind": "HERO",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          }
+        ],
+        "retrained": [
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 1,
+            "target_card_id": "TLC_438",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "JAIL_EVENT_COIN",
+            "hand_index": 2,
+            "play_position": 0,
+            "source_card_id": "JAIL_EVENT_COIN",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ]
+      }
+    },
+    "medivh_against_board": {
+      "observation_sha256": "be831feae52a9120d342147a578363343e9dd19f16bb0661606b4946c832c6de",
+      "self_hand_size": 8,
+      "top3": {
+        "frozen": [
+          {
+            "card_id": "TIME_890",
+            "hand_index": 2,
+            "play_position": 2,
+            "source_card_id": "TIME_890",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TIME_890t2",
+            "play_position": 0,
+            "source_card_id": "TIME_890t2",
+            "source_kind": "LOCATION",
+            "type": "ACTIVATE_LOCATION"
+          },
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          }
+        ],
+        "hybrid": [
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          },
+          {
+            "card_id": "TIME_890t2",
+            "play_position": 0,
+            "source_card_id": "TIME_890t2",
+            "source_kind": "LOCATION",
+            "type": "ACTIVATE_LOCATION"
+          },
+          {
+            "card_id": "TIME_890",
+            "hand_index": 2,
+            "play_position": 2,
+            "source_card_id": "TIME_890",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          }
+        ],
+        "retrained": [
+          {
+            "card_id": "TIME_890t2",
+            "play_position": 0,
+            "source_card_id": "TIME_890t2",
+            "source_kind": "LOCATION",
+            "type": "ACTIVATE_LOCATION"
+          },
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          },
+          {
+            "card_id": "TIME_890",
+            "hand_index": 2,
+            "play_position": 2,
+            "source_card_id": "TIME_890",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          }
+        ]
+      }
+    },
+    "near_full_hand_play": {
+      "observation_sha256": "41e2e48fcb8c41d7bfe16bcbb745edc4649e7551cc67d6b2f7828cb434a4ff3f",
+      "self_hand_size": 10,
+      "top3": {
+        "frozen": [
+          {
+            "card_id": "EDR_449",
+            "hand_index": 7,
+            "play_position": 2,
+            "source_card_id": "EDR_449",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TIME_875t",
+            "hand_index": 5,
+            "play_position": 2,
+            "source_card_id": "TIME_875t",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TLC_816",
+            "hand_index": 4,
+            "play_position": 0,
+            "source_card_id": "TLC_816",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ],
+        "hybrid": [
+          {
+            "card_id": "EDR_449",
+            "hand_index": 7,
+            "play_position": 2,
+            "source_card_id": "EDR_449",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TIME_875t",
+            "hand_index": 5,
+            "play_position": 2,
+            "source_card_id": "TIME_875t",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TLC_816",
+            "hand_index": 4,
+            "play_position": 0,
+            "source_card_id": "TLC_816",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          }
+        ],
+        "retrained": [
+          {
+            "card_id": "EDR_449",
+            "hand_index": 7,
+            "play_position": 2,
+            "source_card_id": "EDR_449",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TLC_816",
+            "hand_index": 4,
+            "play_position": 0,
+            "source_card_id": "TLC_816",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "TIME_875t",
+            "hand_index": 5,
+            "play_position": 2,
+            "source_card_id": "TIME_875t",
+            "source_kind": "MINION",
+            "type": "PLAY_CARD"
+          }
+        ]
+      }
+    },
+    "ruin_no_attack_5": {
+      "observation_sha256": "4ace66afa0531174116b60eb257f76d2d3d52f3222a9e577c4b622614fe368e4",
+      "self_hand_size": 5,
+      "top3": {
+        "frozen": [
+          {
+            "card_id": "CORE_EX1_197",
+            "hand_index": 4,
+            "play_position": 0,
+            "source_card_id": "CORE_EX1_197",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": -1,
+            "target_card_id": "HERO_09c",
+            "target_kind": "HERO",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": -1,
+            "target_card_id": "HERO_09aa",
+            "target_kind": "HERO",
+            "target_side": "SELF",
+            "type": "HERO_POWER"
+          }
+        ],
+        "hybrid": [
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 4,
+            "target_card_id": "EDR_800",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 3,
+            "target_card_id": "JAIL_202",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "play_position": 0,
+            "type": "END_TURN"
+          }
+        ],
+        "retrained": [
+          {
+            "card_id": "HERO_09dbp",
+            "play_position": 0,
+            "source_card_id": "HERO_09dbp",
+            "source_kind": "HERO_POWER",
+            "target_board_position": 4,
+            "target_card_id": "EDR_800",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "HERO_POWER"
+          },
+          {
+            "card_id": "CORE_EX1_197",
+            "hand_index": 4,
+            "play_position": 0,
+            "source_card_id": "CORE_EX1_197",
+            "source_kind": "SPELL",
+            "type": "PLAY_CARD"
+          },
+          {
+            "card_id": "JAIL_913",
+            "hand_index": 2,
+            "play_position": 0,
+            "source_card_id": "JAIL_913",
+            "source_kind": "SPELL",
+            "target_board_position": 4,
+            "target_card_id": "EDR_800",
+            "target_kind": "MINION",
+            "target_side": "OPPONENT",
+            "type": "PLAY_CARD"
+          }
+        ]
+      }
+    }
+  },
+  "checkpoints": {
+    "frozen": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "hybrid": "db0abe3865ccfb1f3ff5bf7361a89584314305333efa47dce2a83c545ec74f17",
+    "retrained": "03c675d152ca19244080a0c1395b271b7132aa27699558402a8ee6df69aea47a"
+  },
+  "config_sha256": "2155bf456a28eed3c2d48521d64976dd271248e19e3e2721cede3012be1259d8",
+  "data_identity_sha256": "b964e121d6ddb0c11be4014b1549d1a5c861cf57002bfd8975edd53b3be233c1",
+  "errors": {
+    "frozen": {},
+    "hybrid": {},
+    "retrained": {}
+  },
+  "interpretation": "development test, imitation only; no gameplay-strength claim",
+  "metrics": {
+    "frozen": {
+      "all": {
+        "ci95": {
+          "mrr": [
+            0.5925894322103088,
+            0.6598053623990634
+          ],
+          "top1": [
+            0.4512466546507182,
+            0.5422658262789841
+          ],
+          "top3": [
+            0.6018457970042477,
+            0.6461016800212335
+          ]
+        },
+        "point": {
+          "mrr": 0.6228333153854575,
+          "n": 669,
+          "top1": 0.49327354260089684,
+          "top3": 0.6234458259325044,
+          "top3_n": 563
+        }
+      },
+      "by_kind": {
+        "ACTIVATE_LOCATION": {
+          "mrr": 0.3385275674406109,
+          "n": 30,
+          "top1": 0.2,
+          "top3": 0.3333333333333333,
+          "top3_n": 30
+        },
+        "ATTACK": {
+          "mrr": 0.48243910103621607,
+          "n": 107,
+          "top1": 0.308411214953271,
+          "top3": 0.5346534653465347,
+          "top3_n": 101
+        },
+        "END_TURN": {
+          "mrr": 0.9069388214125057,
+          "n": 152,
+          "top1": 0.8552631578947368,
+          "top3": 0.8852459016393442,
+          "top3_n": 61
+        },
+        "HERO_POWER": {
+          "mrr": 0.7669733044733045,
+          "n": 66,
+          "top1": 0.6515151515151515,
+          "top3": 0.8307692307692308,
+          "top3_n": 65
+        },
+        "PLAY_CARD": {
+          "mrr": 0.5300119051236901,
+          "n": 314,
+          "top1": 0.37579617834394907,
+          "top3": 0.5849673202614379,
+          "top3_n": 306
+        }
+      },
+      "latency": {
+        "mean_ms": 2.1824509997532004,
+        "n": 100,
+        "p50_ms": 2.077999997709412,
+        "p95_ms": 3.208955004447489,
+        "scope": "CPU single thread, full row encoding plus forward, warm text cache"
+      }
+    },
+    "hybrid": {
+      "all": {
+        "ci95": {
+          "mrr": [
+            0.5925589000041277,
+            0.6547579713425405
+          ],
+          "top1": [
+            0.45145833333333335,
+            0.5335696029274152
+          ],
+          "top3": [
+            0.6011692724570505,
+            0.6641795651372766
+          ]
+        },
+        "point": {
+          "mrr": 0.6209445096148686,
+          "n": 669,
+          "top1": 0.48878923766816146,
+          "top3": 0.6341030195381883,
+          "top3_n": 563
+        }
+      },
+      "by_kind": {
+        "ACTIVATE_LOCATION": {
+          "mrr": 0.21541374604068103,
+          "n": 30,
+          "top1": 0.0,
+          "top3": 0.26666666666666666,
+          "top3_n": 30
+        },
+        "ATTACK": {
+          "mrr": 0.3804768997113692,
+          "n": 107,
+          "top1": 0.16822429906542055,
+          "top3": 0.43564356435643564,
+          "top3_n": 101
+        },
+        "END_TURN": {
+          "mrr": 0.9650950292397662,
+          "n": 152,
+          "top1": 0.9473684210526315,
+          "top3": 0.9508196721311475,
+          "top3_n": 61
+        },
+        "HERO_POWER": {
+          "mrr": 0.8022612488521579,
+          "n": 66,
+          "top1": 0.696969696969697,
+          "top3": 0.8923076923076924,
+          "top3_n": 65
+        },
+        "PLAY_CARD": {
+          "mrr": 0.5369259535456155,
+          "n": 314,
+          "top1": 0.37898089171974525,
+          "top3": 0.6176470588235294,
+          "top3_n": 306
+        }
+      },
+      "latency": {
+        "mean_ms": 2.3862949998874683,
+        "n": 100,
+        "p50_ms": 2.2463500026788097,
+        "p95_ms": 3.707790001135436,
+        "scope": "CPU single thread, full row encoding plus forward, warm text cache"
+      }
+    },
+    "retrained": {
+      "all": {
+        "ci95": {
+          "mrr": [
+            0.5965947394712973,
+            0.6690271109233945
+          ],
+          "top1": [
+            0.4536432245837282,
+            0.5500073964497042
+          ],
+          "top3": [
+            0.6089523246392046,
+            0.6793206102517478
+          ]
+        },
+        "point": {
+          "mrr": 0.6302956465266896,
+          "n": 669,
+          "top1": 0.4962630792227205,
+          "top3": 0.6465364120781527,
+          "top3_n": 563
+        }
+      },
+      "by_kind": {
+        "ACTIVATE_LOCATION": {
+          "mrr": 0.3483170687337354,
+          "n": 30,
+          "top1": 0.2,
+          "top3": 0.3333333333333333,
+          "top3_n": 30
+        },
+        "ATTACK": {
+          "mrr": 0.45174400610079557,
+          "n": 107,
+          "top1": 0.27102803738317754,
+          "top3": 0.5346534653465347,
+          "top3_n": 101
+        },
+        "END_TURN": {
+          "mrr": 0.9115758145363407,
+          "n": 152,
+          "top1": 0.8552631578947368,
+          "top3": 0.9016393442622951,
+          "top3_n": 61
+        },
+        "HERO_POWER": {
+          "mrr": 0.7940987253487254,
+          "n": 66,
+          "top1": 0.696969696969697,
+          "top3": 0.8461538461538461,
+          "top3_n": 65
+        },
+        "PLAY_CARD": {
+          "mrr": 0.5474892583726702,
+          "n": 314,
+          "top1": 0.3853503184713376,
+          "top3": 0.6209150326797386,
+          "top3_n": 306
+        }
+      },
+      "latency": {
+        "mean_ms": 2.133705000160262,
+        "n": 100,
+        "p50_ms": 2.0376499996928032,
+        "p95_ms": 3.1222450001223474,
+        "scope": "CPU single thread, full row encoding plus forward, warm text cache"
+      }
+    }
+  },
+  "paired": {
+    "frozen_to_hybrid": {
+      "changed_top1": 175,
+      "ci95": {
+        "mrr": [
+          -0.021062250569461528,
+          0.016710003284308377
+        ],
+        "top1": [
+          -0.033569234217604466,
+          0.02574274807892583
+        ],
+        "top3": [
+          -0.019562063781036674,
+          0.036485770177320576
+        ]
+      },
+      "first_right_second_wrong": 43,
+      "first_wrong_second_right": 40,
+      "second_minus_first": {
+        "mrr": -0.0018888057705889194,
+        "top1": -0.0044843049327353834,
+        "top3": 0.010657193605683846
+      }
+    },
+    "frozen_to_retrained": {
+      "changed_top1": 182,
+      "ci95": {
+        "mrr": [
+          -0.008767044317235401,
+          0.023571973544433758
+        ],
+        "top1": [
+          -0.027448216592586172,
+          0.03285336201479187
+        ],
+        "top3": [
+          -0.003919139750237052,
+          0.04878159043796579
+        ]
+      },
+      "first_right_second_wrong": 33,
+      "first_wrong_second_right": 35,
+      "second_minus_first": {
+        "mrr": 0.00746233114123207,
+        "top1": 0.002989536621823663,
+        "top3": 0.023090586145648295
+      }
+    },
+    "retrained_to_hybrid": {
+      "changed_top1": 185,
+      "ci95": {
+        "mrr": [
+          -0.026772657354158118,
+          0.005651247163304691
+        ],
+        "top1": [
+          -0.04107155503844594,
+          0.022456300479210333
+        ],
+        "top3": [
+          -0.043480081567256544,
+          0.0127395311017753
+        ]
+      },
+      "first_right_second_wrong": 46,
+      "first_wrong_second_right": 41,
+      "second_minus_first": {
+        "mrr": -0.00935113691182099,
+        "top1": -0.007473841554559046,
+        "top3": -0.01243339253996445
+      }
+    }
+  },
+  "seen_source_cards": {
+    "frozen": {
+      "seen": {
+        "mrr": 0.533070366077247,
+        "n": 419,
+        "top1": 0.38902147971360385,
+        "top3": 0.5700245700245701,
+        "top3_n": 407
+      },
+      "unseen": {
+        "mrr": 0.565962283181671,
+        "n": 98,
+        "top1": 0.37755102040816324,
+        "top3": 0.6842105263157895,
+        "top3_n": 95
+      }
+    },
+    "hybrid": {
+      "seen": {
+        "mrr": 0.5197693901450032,
+        "n": 419,
+        "top1": 0.360381861575179,
+        "top3": 0.5995085995085995,
+        "top3_n": 407
+      },
+      "unseen": {
+        "mrr": 0.5197352858892474,
+        "n": 98,
+        "top1": 0.32653061224489793,
+        "top3": 0.5789473684210527,
+        "top3_n": 95
+      }
+    },
+    "retrained": {
+      "seen": {
+        "mrr": 0.5472881882499533,
+        "n": 419,
+        "top1": 0.3914081145584726,
+        "top3": 0.6142506142506142,
+        "top3_n": 407
+      },
+      "unseen": {
+        "mrr": 0.5489236004091946,
+        "n": 98,
+        "top1": 0.3877551020408163,
+        "top3": 0.6210526315789474,
+        "top3_n": 95
+      }
+    }
+  },
+  "selected_epochs": {
+    "hybrid": 3,
+    "retrained": 12
+  },
+  "split_sha256": "a73ac939f4ddae15ae08a37deab411b2a52df120cfacfe0dcccd4a8ee98584a2",
+  "text_coverage": {
+    "chosen_total": 669,
+    "chosen_usable": 383,
+    "legal_total": 8026,
+    "legal_usable": 5755
+  },
+  "text_effect_max_logit_delta": 0.33663690090179443
+}
