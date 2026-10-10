@@ -41,7 +41,7 @@ python scripts/run_manamind.py --ui
 - `tests/test_live_recommendation.py`: 46 passed; повторный live-only запуск test block — 46 passed.
 - Полный локальный pytest: 624 passed, 1 skipped, 2 сбоя только из-за посторонних незатреканных `vendor/RosettaStone` и stale `src/manamind.egg-info/SOURCES.txt`; эти артефакты не менялись. Чистые CI runners не содержат их.
 - Ruff (`src tests scripts`), source guard и генерация pinned artifacts прошли.
-- Source CI на Ubuntu/Windows проверяет весь pytest и ожидает запуска после push.
+- Source CI на Ubuntu/Windows прошёл полностью на реализации `df43ecb` ([run](https://github.com/MaksimOrekhov/manamind/actions/runs/38042826035)); обе ОС выполнили Ruff, source guard, pinned artifact check и полный pytest успешно.
 
 Это не тест реального Hearthstone UI: он требует проверки пользователем на его Windows машине и в партии. После запуска сообщите только дату партии и число просмотренных решений; не присылайте unsanitized raw log.
 
