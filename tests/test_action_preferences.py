@@ -63,6 +63,41 @@ def test_abstention_and_equivalence_are_separate_from_strict_pairs():
     assert not result["strict_preferences"] and len(result["aspect_equivalences"]) == 1
 
 
+@pytest.mark.parametrize("result_key,bucket", [
+    ("BOTH_BAD", "both_bad"),
+    ("SEQUENCE_DEPENDENT", "sequence_dependent"),
+])
+def test_new_assessments_stay_outside_pairwise_training_categories(result_key, bucket):
+    p = pack()
+    a = annotation(p)
+    a["schema"] = "manamind.preference_annotations/2"
+    label = a["annotations"][0]["initial"]
+    label.update(result=result_key, basis="expert", aspect="strategic")
+    result = validate_annotations(p, a)
+    assert len(result[bucket]) == 1
+    assert not result["strict_preferences"]
+    assert not result["aspect_equivalences"]
+    assert not result["abstentions"]
+    assert result[bucket][0]["label"]["result"] == result_key
+
+
+def test_legacy_annotations_remain_accepted_without_relabeling():
+    p = pack()
+    a = annotation(p)
+    assert a["schema"] == "manamind.preference_annotations/1"
+    result = validate_annotations(p, a)
+    assert result["strict_preferences"][0]["label"]["result"] == "A"
+    assert not result["both_bad"] and not result["sequence_dependent"]
+
+
+def test_new_assessments_require_annotation_schema_v2():
+    p = pack()
+    a = annotation(p)
+    a["annotations"][0]["initial"].update(result="BOTH_BAD", basis="expert", aspect="strategic")
+    with pytest.raises(ValueError, match="schema /2"):
+        validate_annotations(p, a)
+
+
 def test_corrections_do_not_overwrite_initial_blind_label():
     p = pack()
     a = annotation(p)

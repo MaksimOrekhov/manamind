@@ -101,5 +101,52 @@
     "scripts/validate_action_preferences.py": "0fbdd4912c75093e9699c2ec5093fd8aa52535cecebbf5b815bf9e3ad31e36f3",
     "src/manamind/training/action_preferences.py": "5fc59ad1573386641490606992aa0e7acf8c566115535c7323e74c22d44d141f",
     "tests/test_action_preferences.py": "35da5ec7d500ae6b1fa4bb5601ff21a5060a5fed729acba2d5d07e8cead6d04e"
+  },
+  "ux2_e2e": {
+    "browser": "Microsoft Edge 155 on Windows",
+    "launch": "direct file:// in a separate temporary Edge profile; automated DOM interaction in headless Edge",
+    "response_values": [
+      "A",
+      "B",
+      "EQUIVALENT",
+      "BOTH_BAD",
+      "SEQUENCE_DEPENDENT",
+      "INSUFFICIENT"
+    ],
+    "legacy_v1_import_preserves_initial_explanation_and_pair_sha": true,
+    "feedback_remains_hidden_until_initial_saved": true,
+    "feedback_reveal_and_revision_preserve_initial": true,
+    "export_schema": "manamind.preference_annotations/2",
+    "roundtrip_preserves_annotations_sha_explanations_and_revisions": true,
+    "invalid_pack_digest_rejected_without_data_loss": true,
+    "localstorage_recovers_after_browser_restart": true,
+    "browser_export_validator": {
+      "strict_preferences": 2,
+      "equivalences": 1,
+      "abstentions": 1,
+      "both_bad": 1,
+      "sequence_dependent": 1,
+      "unlabelled": 34,
+      "ready_for_training": false
+    },
+    "existing_claude_v1_export_validator": {
+      "strict_preferences": 7,
+      "equivalences": 0,
+      "abstentions": 3,
+      "both_bad": 0,
+      "sequence_dependent": 0
+    },
+    "existing_user_v1_export_validator": {
+      "strict_preferences": 8,
+      "equivalences": 0,
+      "abstentions": 2,
+      "both_bad": 0,
+      "sequence_dependent": 0
+    },
+    "pack_sha256_before_and_after": "e8b92ade254126d893331e7762a76c569917ed388c0e494b0b46d0d7d042f03c",
+    "private_test_artifacts": "ignored data/processed_real_action_preferences_1/e2e_ux2_1/",
+    "original_40_situations_and_existing_annotations_modified": false,
+    "schema_v1_rejects_new_result_values": true,
+    "focused_tests": 17
   }
 }

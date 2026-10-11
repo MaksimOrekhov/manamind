@@ -6,7 +6,8 @@ from datetime import datetime
 
 from manamind.training.policy_checkpoint import identity
 
-RESULTS = ("A", "B", "EQUIVALENT", "INSUFFICIENT")
+ANNOTATION_SCHEMAS = ("manamind.preference_annotations/1", "manamind.preference_annotations/2")
+RESULTS = ("A", "B", "EQUIVALENT", "BOTH_BAD", "SEQUENCE_DEPENDENT", "INSUFFICIENT")
 CONFIDENCE = ("low", "medium", "high")
 ASPECTS = ("strategic", "source_survival", "target_destruction")
 BASES = ("expert", "verified_mechanics", "insufficient")
@@ -77,12 +78,12 @@ def mechanical_scopes(pair):
 
 def validate_annotations(pack, payload):
     """Validate manual labels and preserve provenance. Insufficient never becomes a negative."""
-    if payload.get("schema") != "manamind.preference_annotations/1" or payload.get("pack_sha256") != identity(pack):
+    if payload.get("schema") not in ANNOTATION_SCHEMAS or payload.get("pack_sha256") != identity(pack):
         raise ValueError("Wrong annotation schema or stale pack digest")
     if not isinstance(payload.get("reviewer"), str) or not payload["reviewer"].strip():
         raise ValueError("Reviewer required")
     pairs = {p["pair_id"]: p for p in pack["pairs"]}
-    seen, accepted, abstentions, equivalent = set(), [], [], []
+    seen, accepted, abstentions, equivalent, both_bad, sequence_dependent = set(), [], [], [], [], []
     annotations = payload.get("annotations")
     if not isinstance(annotations, list): raise ValueError("Annotation list required")
     for entry in annotations:
@@ -101,6 +102,9 @@ def validate_annotations(pack, payload):
                     or not isinstance(label.get("explanation"), str) or not label["explanation"].strip()
                     or not isinstance(label.get("timestamp"), str) or not label["timestamp"]):
                 raise ValueError("Incomplete label")
+            if payload["schema"] == "manamind.preference_annotations/1" and label["result"] in {
+                    "BOTH_BAD", "SEQUENCE_DEPENDENT"}:
+                raise ValueError("New result requires annotation schema /2")
             try:
                 when = datetime.fromisoformat(label["timestamp"].replace("Z", "+00:00"))
                 if when.tzinfo is None: raise ValueError("Timezone required")
@@ -130,7 +134,10 @@ def validate_annotations(pack, payload):
                   "reveal_timestamp": entry.get("reveal_timestamp"), "independent_review": payload.get("independent_review", False)}
         if initial["result"] == "INSUFFICIENT": abstentions.append(result)
         elif initial["result"] == "EQUIVALENT": equivalent.append(result)
+        elif initial["result"] == "BOTH_BAD": both_bad.append(result)
+        elif initial["result"] == "SEQUENCE_DEPENDENT": sequence_dependent.append(result)
         else: accepted.append(result)
     return {"strict_preferences": accepted, "aspect_equivalences": equivalent, "abstentions": abstentions,
+            "both_bad": both_bad, "sequence_dependent": sequence_dependent,
             "unlabelled": len(pairs) - len(seen), "ready_for_training": False,
             "reason": "Manual agreement/quality review and a match-level future split remain required"}

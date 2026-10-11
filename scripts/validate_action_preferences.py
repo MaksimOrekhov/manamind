@@ -29,7 +29,9 @@ def main():
     if pack.get("schema") != "manamind.action_preference_pack/1": raise ValueError("Wrong pack schema")
     result = validate_annotations(pack, first)
     summary = {"strict_preferences": len(result["strict_preferences"]), "equivalences": len(result["aspect_equivalences"]),
-               "abstentions": len(result["abstentions"]), "unlabelled": result["unlabelled"], "ready_for_training": False}
+               "abstentions": len(result["abstentions"]), "both_bad": len(result["both_bad"]),
+               "sequence_dependent": len(result["sequence_dependent"]), "unlabelled": result["unlabelled"],
+               "ready_for_training": False}
     if args.second:
         second = read(args.second)
         if second.get("reviewer") == first.get("reviewer") or second.get("independent_review") is not True:
