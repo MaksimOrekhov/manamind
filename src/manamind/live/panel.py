@@ -116,6 +116,16 @@ def describe_action(action: dict, names: dict[str, str]) -> str:
         position = action.get("play_position", 0)
         if type(position) is int and position > 0:
             text += f" · слот стола #{position}"
+        if action.get("target_kind"):
+            side = "свой" if action.get("target_side") == "SELF" else "противника"
+            if action["target_kind"] == "HERO":
+                target = "свой герой" if side == "свой" else "герой противника"
+            else:
+                target = f"{side}: {_card_name(action.get('target_card_id'), names)}"
+                position = action.get("target_board_position")
+                if type(position) is int and position > 0:
+                    target += f" · стол #{position}"
+            text += f" → цель: {target}"
         return text
 
     source_id = action.get("source_card_id") or action.get("card_id")
