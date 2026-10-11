@@ -1,0 +1,428 @@
+{
+ "SELF_HARM": {
+  "actions": {
+   "rest": 50,
+   "top1": 0,
+   "top3": 10
+  },
+  "chosen_by_player": 0,
+  "decisions_where_player_took_the_dominating_alternative": 0,
+  "distinct_decisions": {
+   "rest": 23,
+   "top1": 0,
+   "top3": 7
+  },
+  "distinct_decisions_with_flag_in_top3": 7
+ },
+ "SIDE_MISDIRECTION": {
+  "actions": {
+   "rest": 1751,
+   "top1": 10,
+   "top3": 37
+  },
+  "chosen_by_player": 0,
+  "decisions_where_player_took_the_dominating_alternative": 17,
+  "distinct_decisions": {
+   "rest": 360,
+   "top1": 6,
+   "top3": 21
+  },
+  "distinct_decisions_with_flag_in_top3": 25
+ },
+ "abstention_reasons_by_rank": {
+  "SELF_HARM AURA_ON_BOARD rest": 72,
+  "SELF_HARM AURA_ON_BOARD top3": 9,
+  "SELF_HARM BOARD_STATIC_TEXT rest": 1391,
+  "SELF_HARM BOARD_STATIC_TEXT top1": 19,
+  "SELF_HARM BOARD_STATIC_TEXT top3": 113,
+  "SELF_HARM BOARD_TEXT_MISSING rest": 760,
+  "SELF_HARM BOARD_TEXT_MISSING top1": 9,
+  "SELF_HARM BOARD_TEXT_MISSING top3": 64,
+  "SELF_HARM BOARD_TRIGGER rest": 196,
+  "SELF_HARM BOARD_TRIGGER top1": 2,
+  "SELF_HARM BOARD_TRIGGER top3": 12,
+  "SELF_HARM DEATHRATTLE_POSSIBLE rest": 38,
+  "SELF_HARM DEATHRATTLE_POSSIBLE top1": 3,
+  "SELF_HARM DEATHRATTLE_POSSIBLE top3": 2,
+  "SELF_HARM DELAYED_DAMAGE_TRIGGER rest": 71,
+  "SELF_HARM INSUFFICIENT_FORECAST rest": 5231,
+  "SELF_HARM INSUFFICIENT_FORECAST top1": 874,
+  "SELF_HARM INSUFFICIENT_FORECAST top3": 1476,
+  "SELF_HARM OWN_SECRET_OR_QUEST rest": 1406,
+  "SELF_HARM OWN_SECRET_OR_QUEST top1": 19,
+  "SELF_HARM OWN_SECRET_OR_QUEST top3": 108,
+  "SIDE_MISDIRECTION INSUFFICIENT_FORECAST rest": 889,
+  "SIDE_MISDIRECTION INSUFFICIENT_FORECAST top1": 74,
+  "SIDE_MISDIRECTION INSUFFICIENT_FORECAST top3": 146
+ },
+ "chosen_flagged": [],
+ "decisions": 1684,
+ "distinct_decisions_blocked_in_top3": {
+  "SELF_HARM blocked AURA_ON_BOARD": 5,
+  "SELF_HARM blocked BOARD_STATIC_TEXT": 78,
+  "SELF_HARM blocked BOARD_TEXT_MISSING": 43,
+  "SELF_HARM blocked BOARD_TRIGGER": 8,
+  "SELF_HARM blocked DEATHRATTLE_POSSIBLE": 4,
+  "SELF_HARM blocked OWN_SECRET_OR_QUEST": 72
+ },
+ "examples_top3": [
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #1 JAIL_912",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 TRL_526",
+   "decision": 81,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "0a03f66a",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 32,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "5090e909",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 92,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "5090e909",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 122,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "5090e909",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT minion #2 CORE_CATA_002",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 122,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "5090e909",
+   "rank": 2
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> OPPONENT minion #1 CORE_ULD_723",
+   "against": null,
+   "decision": 33,
+   "flag": "SELF_HARM",
+   "game": "55cdf9c5",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 39,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "65217195",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CAP_801 -> OPPONENT minion #3 JAIL_877t",
+   "against": "PLAY_CARD CAP_801 -> SELF minion #2 EDR_449",
+   "decision": 152,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "65217195",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CAP_801 -> OPPONENT minion #2 TLC_250",
+   "against": "PLAY_CARD CAP_801 -> SELF minion #2 EDR_449",
+   "decision": 152,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "65217195",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #5 TIME_700t",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_449",
+   "decision": 64,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "6a19441e",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #6 TIME_700t",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_449",
+   "decision": 64,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "6a19441e",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 25,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "74eb6899",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT minion #1 CATA_898",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 25,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "74eb6899",
+   "rank": 2
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #2 CAP_107",
+   "against": null,
+   "decision": 10,
+   "flag": "SELF_HARM",
+   "game": "80623afa",
+   "rank": 2
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #3 CAP_107t",
+   "against": null,
+   "decision": 15,
+   "flag": "SELF_HARM",
+   "game": "80623afa",
+   "rank": 3
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #3 CAP_107t",
+   "against": null,
+   "decision": 16,
+   "flag": "SELF_HARM",
+   "game": "80623afa",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 39,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 49,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #5 CATA_897",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #1 END_026",
+   "decision": 58,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #5 CATA_897",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #1 END_026",
+   "decision": 59,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #5 CATA_897",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 END_026",
+   "decision": 60,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT minion #5 CATA_897",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 61,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT minion #5 CATA_897",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 62,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "87f99319",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 JAIL_998",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #1 CATA_216",
+   "decision": 30,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "99e6a7eb",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 57,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "99e6a7eb",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #1 TIME_005t7",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #1 JAIL_511t",
+   "decision": 69,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "99e6a7eb",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #1 TLC_814",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_970",
+   "decision": 85,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "a111983d",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 CAP_802t",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_970",
+   "decision": 85,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "a111983d",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 CAP_803",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_449",
+   "decision": 96,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "a111983d",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 CAP_803",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_449",
+   "decision": 98,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "a111983d",
+   "rank": 1
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 MEND_100",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 TIME_427",
+   "decision": 106,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "a111983d",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 TIME_431",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_970",
+   "decision": 36,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "c28bb4e4",
+   "rank": 2
+  },
+  {
+   "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #1 EDR_970",
+   "against": "PLAY_CARD JAIL_913 -> SELF minion #2 CATA_216",
+   "decision": 70,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "c28bb4e4",
+   "rank": 3
+  },
+  {
+   "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+   "against": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+   "decision": 68,
+   "flag": "SIDE_MISDIRECTION",
+   "game": "c70dbc98",
+   "rank": 3
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #2 CAP_107t",
+   "against": null,
+   "decision": 7,
+   "flag": "SELF_HARM",
+   "game": "e57640e6",
+   "rank": 2
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #3 CAP_107t",
+   "against": null,
+   "decision": 7,
+   "flag": "SELF_HARM",
+   "game": "e57640e6",
+   "rank": 3
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #4 EDR_492t",
+   "against": null,
+   "decision": 16,
+   "flag": "SELF_HARM",
+   "game": "e57640e6",
+   "rank": 3
+  },
+  {
+   "action": "ACTIVATE_LOCATION CORE_REV_990@1 -> SELF minion #3 EDR_492t",
+   "against": null,
+   "decision": 19,
+   "flag": "SELF_HARM",
+   "game": "e57640e6",
+   "rank": 2
+  }
+ ],
+ "games": 29,
+ "games_not_labelled": 4,
+ "sensitivity": {
+  "ignore OWN_SECRET_OR_QUEST | SELF_HARM": {
+   "chosen_by_player": 0,
+   "top1_decisions": 0,
+   "top3_decisions": 8
+  },
+  "ignore OWN_SECRET_OR_QUEST | SIDE_MISDIRECTION": {
+   "chosen_by_player": 0,
+   "top1_decisions": 6,
+   "top3_decisions": 25
+  },
+  "ignore OWN_SECRET_OR_QUEST, BOARD_TRIGGER | SELF_HARM": {
+   "chosen_by_player": 0,
+   "top1_decisions": 0,
+   "top3_decisions": 11
+  },
+  "ignore OWN_SECRET_OR_QUEST, BOARD_TRIGGER | SIDE_MISDIRECTION": {
+   "chosen_by_player": 0,
+   "top1_decisions": 6,
+   "top3_decisions": 25
+  },
+  "ignore all text/trigger abstentions | SELF_HARM": {
+   "chosen_by_player": 2,
+   "top1_decisions": 12,
+   "top3_decisions": 94
+  },
+  "ignore all text/trigger abstentions | SIDE_MISDIRECTION": {
+   "chosen_by_player": 0,
+   "top1_decisions": 6,
+   "top3_decisions": 25
+  },
+  "ignore everything incl. Deathrattle | SELF_HARM": {
+   "chosen_by_player": 2,
+   "top1_decisions": 14,
+   "top3_decisions": 98
+  },
+  "ignore everything incl. Deathrattle | SIDE_MISDIRECTION": {
+   "chosen_by_player": 0,
+   "top1_decisions": 6,
+   "top3_decisions": 25
+  },
+  "strict (production) | SELF_HARM": {
+   "chosen_by_player": 0,
+   "top1_decisions": 0,
+   "top3_decisions": 7
+  },
+  "strict (production) | SIDE_MISDIRECTION": {
+   "chosen_by_player": 0,
+   "top1_decisions": 6,
+   "top3_decisions": 25
+  }
+ }
+}

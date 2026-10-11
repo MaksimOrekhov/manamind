@@ -1,0 +1,37 @@
+{
+ "actions": 14788,
+ "changed_by_cause": {
+  "compound-text card as source": 195,
+  "location activation": 862,
+  "source is a token with new text": 153,
+  "token text now known on the board": 944
+ },
+ "digest_changed": 2154,
+ "exact_forecasts_contradicted_branch": 0,
+ "exact_forecasts_contradicted_main": 0,
+ "pairs_branch": {
+  "effect_confirmed": 4210,
+  "effect_contradicted": 61,
+  "expl UNEXPLAINED": 18,
+  "pairs": 819,
+  "status EXACT": 15,
+  "status PARTIAL": 768,
+  "status UNSUPPORTED": 36,
+  "verdict CONFIRMED": 391,
+  "verdict CONTRADICTED": 119,
+  "verdict INCOMPLETE": 273
+ },
+ "pairs_main": {
+  "effect_confirmed": 4202,
+  "effect_contradicted": 61,
+  "expl UNEXPLAINED": 18,
+  "pairs": 819,
+  "status EXACT": 14,
+  "status PARTIAL": 769,
+  "status UNSUPPORTED": 36,
+  "verdict CONFIRMED": 386,
+  "verdict CONTRADICTED": 119,
+  "verdict INCOMPLETE": 278
+ },
+ "what": "forecast digests of every legal action of every labelled decision (29 games), unmodified main 7d15003 vs this branch; and scoring of every adjacent pair against the next observation"
+}
