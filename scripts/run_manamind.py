@@ -18,6 +18,7 @@ from manamind.live.recorder import Recorder
 from manamind.live.recommendation import (
     PolicyRecommender, Recommendation, RecommendationUnavailable, render_recommendation,
 )
+from manamind.outcome.live_shadow import OutcomeShadow, ShadowFailed, load_texts
 from manamind.live.prediction_journal import PredictionJournal
 from manamind.live.presentation import PresentationEvent
 from manamind.live.runner import LiveRunner
@@ -38,7 +39,8 @@ class UnifiedRuntime:
                  *, emit: Callable[[str], None] = print, collector_seconds: float = 5.0,
                  journal: PredictionJournal | None = None,
                  on_recommendation: Callable[[Recommendation], None] | None = None,
-                 on_event: Callable[[PresentationEvent], None] | None = None) -> None:
+                 on_event: Callable[[PresentationEvent], None] | None = None,
+                 outcome_shadow: OutcomeShadow | None = None) -> None:
         if collector_seconds <= 0:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
@@ -49,6 +51,8 @@ class UnifiedRuntime:
         self.journal = journal
         self.on_recommendation = on_recommendation
         self.on_event = on_event
+        self.outcome_shadow = outcome_shadow
+        self.shadow_snapshot = None        # the displayed decision whose shadow row is in the shadow journal
         self.collector_seconds = collector_seconds
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
@@ -72,11 +76,51 @@ class UnifiedRuntime:
                         self.journal.invalidation(snapshot, reason)
                     except OSError as error:
                         self.emit(f"prediction journal warning: {type(error).__name__}")
+            self._shadow_invalidated(reason)
             self.emit(f"recommendation #{self.active_identity[1]} invalidated")
             self.active_identity = None
             self.active_snapshot = None
         status = self.live.session.status.value
         self._present(PresentationEvent("invalidated", status=status if status != "READY" else "SYNCING", reason=reason))
+
+    def _shadow_invalidated(self, reason: str) -> None:
+        snapshot, self.shadow_snapshot = self.shadow_snapshot, None
+        if snapshot is None or self.journal is None:
+            return
+        try:
+            self.journal.outcome_shadow_invalidation(snapshot, reason)
+        except OSError:
+            self.outcome_shadow.stats.journal_failures += 1
+
+    def _run_shadow(self, snapshot, result: Recommendation) -> None:
+        """Optional read-only consequence forecast of the displayed decision. Never raises, never delays the display."""
+        shadow = self.outcome_shadow
+        shadow.stats.decisions += 1
+        try:
+            try:
+                record = shadow.forecast(snapshot, result)
+            except ShadowFailed as error:
+                shadow.fail(error.reason)
+                self._shadow_error(snapshot, error.reason)
+                return
+            if self.journal is not None:
+                self.journal.outcome_shadow(snapshot, record)
+                self.shadow_snapshot = snapshot
+            shadow.count(record)
+        except OSError as error:
+            shadow.stats.journal_failures += 1
+            self.emit(f"outcome shadow warning: {type(error).__name__}")
+        except Exception:                      # the shadow must never cost the Policy path anything
+            shadow.fail("SHADOW_RUNTIME_ERROR")
+            self._shadow_error(snapshot, "SHADOW_RUNTIME_ERROR")
+
+    def _shadow_error(self, snapshot, reason: str) -> None:
+        if self.journal is None:
+            return
+        try:
+            self.journal.outcome_shadow_error(snapshot, reason)
+        except OSError:
+            self.outcome_shadow.stats.journal_failures += 1
 
     def _events(self, events) -> None:
         for event in events:
@@ -132,6 +176,8 @@ class UnifiedRuntime:
                             self._present(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
                             self.latencies_ms.append(result.latency_ms)
                             self.decisions_scored += 1
+                            if self.outcome_shadow is not None:
+                                self._run_shadow(snap, result)
                         else:
                             self.emit("no recommendation: DECISION_CHANGED_DURING_INFERENCE")
                             self._present(PresentationEvent("unavailable", reason="DECISION_CHANGED_DURING_INFERENCE"))
@@ -170,6 +216,8 @@ class UnifiedRuntime:
         except Exception as error:
             self.emit(f"collection summary warning: {type(error).__name__}")
         stats = self.collector.stats
+        if self.outcome_shadow is not None:
+            self.emit(self.outcome_shadow.stats.summary())
         self.emit(f"session: {self.decisions_scored} recommendations; "
                   f"{stats.matches_imported} matches retained; {stats.parse_failures} collection failures")
 
@@ -186,6 +234,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
     parser.add_argument("--poll-ms", type=int, default=50)
     parser.add_argument("--collector-seconds", type=float, default=5.0)
+    parser.add_argument("--outcome-shadow", action="store_true",
+                        help="Forecast the immediate consequences of every legal action next to the Policy ranking and "
+                             "write them to <journal>.outcome_shadow.jsonl. Read-only: the Top-3 is unchanged")
+    parser.add_argument("--outcome-shadow-budget-ms", type=float, default=250.0,
+                        help="Wall-clock budget per decision; actions left over are recorded as NOT_COMPUTED")
     parser.add_argument("--ui", action="store_true", help="Show the Windows always-on-top recommendation panel")
     parser.add_argument("--overlay", action="store_true", help="Show the Vue / WebView2 desktop overlay")
     return parser
@@ -209,13 +262,19 @@ def main(argv: list[str] | None = None) -> int:
         recommender = None
         recommender_error = type(error).__name__
         print(f"recommendation warning: {type(error).__name__}; collection remains active", flush=True)
+    shadow = None
+    if args.outcome_shadow:
+        try:
+            shadow = OutcomeShadow(load_texts(ROOT), budget_ms=args.outcome_shadow_budget_ms)
+        except Exception as error:
+            print(f"outcome shadow warning: {type(error).__name__}; shadow disabled, Policy unaffected", flush=True)
     session = LiveSession(catalog)
     recorder = Recorder(args.data_root / "raw/live", catalog_path=args.cards)
     live = LiveRunner(args.logs_root, session, recorder)
     collector = Collector(args.logs_root, args.data_root / "raw/collected",
                           args.data_root / "processed_real", args.cards)
     runtime = UnifiedRuntime(live, collector, recommender, emit=lambda text: print(text, flush=True),
-                             collector_seconds=args.collector_seconds,
+                             collector_seconds=args.collector_seconds, outcome_shadow=shadow,
                              journal=PredictionJournal(args.data_root / "raw/live/prediction_journal.jsonl"))
     runtime.recommender_unavailable = recommender_error
     print("ManaMind experimental read-only policy. Ctrl+C to stop.", flush=True)

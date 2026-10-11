@@ -5,7 +5,7 @@ import hashlib
 import math
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field as dataclass_field
 from pathlib import Path
 
 import torch
@@ -42,6 +42,9 @@ class Recommendation:
     menu_size: int
     ranked: tuple[RankedAction, ...]
     latency_ms: float
+    # The whole legal menu in Policy rank order (``RankedAction.index`` is the menu index), kept for read-only side
+    # analyses such as the outcome shadow. Not part of equality; Top-3 above is what is displayed and journaled.
+    menu: tuple[RankedAction, ...] = dataclass_field(default=(), compare=False, repr=False)
 
 
 def _validate_snapshot(snapshot: Snapshot, session: LiveSession):
@@ -143,14 +146,15 @@ class PolicyRecommender:
             if logits.ndim != 1 or len(logits) != len(mapped.actions) or not torch.isfinite(logits).all():
                 raise RecommendationUnavailable("INVALID_MODEL_OUTPUT")
             order = torch.argsort(logits, descending=True, stable=True).tolist()
-            ranked = tuple(RankedAction(i, float(logits[i]), mapped.actions[i]) for i in order[:3])
+            menu = tuple(RankedAction(i, float(logits[i]), mapped.actions[i]) for i in order)
+            ranked = menu[:3]
             if any(not math.isfinite(item.score) for item in ranked):
                 raise RecommendationUnavailable("INVALID_MODEL_OUTPUT")
             if session.current_snapshot is not snapshot or session.status is not LiveStatus.READY:
                 raise RecommendationUnavailable("OPTIONS_CHANGED")
             return Recommendation(
                 (snapshot.game_key, snapshot.seq, packet.id, snapshot.state_hash),
-                snapshot.turn, len(mapped.actions), ranked, (time.perf_counter_ns() - started) / 1e6,
+                snapshot.turn, len(mapped.actions), ranked, (time.perf_counter_ns() - started) / 1e6, menu,
             )
         except ActionMappingError as error:
             raise RecommendationUnavailable(error.reason) from error

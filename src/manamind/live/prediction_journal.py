@@ -17,15 +17,30 @@ def decision_id(snapshot: Snapshot) -> str:
     return f"{snapshot.game_key}:{snapshot.seq}:{snapshot.decision['options_id']}:{snapshot.state_hash}"
 
 
+SHADOW_MAX_BYTES = 64 * 1024 * 1024
+
+
 class PredictionJournal:
-    """Store only sanitized action descriptors, hashes and stable game identity."""
+    """Store only sanitized action descriptors, hashes and stable game identity.
 
-    def __init__(self, path: Path) -> None:
+    The outcome shadow (ACTION-OUTCOME-2) writes to its own append-only file next to this journal so that the
+    format and the growth of the RECOMMENDATION stream stay exactly what they were; rows of both files join on
+    ``decision_id``. The shadow file is created only when the shadow is switched on. At ``shadow_max_bytes`` it is
+    renamed (never deleted or truncated) to ``<name>.<UTC time>.jsonl`` and a fresh file is started, so one file never
+    grows without bound and no row is lost; archive or analyze the rotated files at will.
+    """
+
+    def __init__(self, path: Path, *, shadow_path: Path | None = None,
+                 shadow_max_bytes: int = SHADOW_MAX_BYTES) -> None:
         self.path = Path(path)
+        self.shadow_path = (Path(shadow_path) if shadow_path is not None
+                            else self.path.with_name(f"{self.path.stem}.outcome_shadow.jsonl"))
+        self.shadow_max_bytes = shadow_max_bytes
 
-    def _append(self, event: dict) -> None:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        with self.path.open("a", encoding="utf-8", newline="\n") as file:
+    def _append(self, event: dict, path: Path | None = None) -> None:
+        target = self.path if path is None else path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        with target.open("a", encoding="utf-8", newline="\n") as file:
             file.write(json.dumps(event, sort_keys=True, separators=(",", ":"), ensure_ascii=False))
             file.write("\n")
             file.flush()
@@ -77,4 +92,51 @@ class PredictionJournal:
             "at_utc": _utc_now(),
             "reason": reason,
             "observed_action": {"status": "UNKNOWN"},
+        })
+
+    # -- outcome shadow (ACTION-OUTCOME-2) ---------------------------------------------------------------------
+
+    def _append_shadow(self, event: dict) -> None:
+        try:
+            size = self.shadow_path.stat().st_size
+        except FileNotFoundError:
+            size = 0
+        if size >= self.shadow_max_bytes:
+            stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+            self.shadow_path.replace(self.shadow_path.with_name(f"{self.shadow_path.stem}.{stamp}.jsonl"))
+        self._append(event, self.shadow_path)
+
+    def outcome_shadow(self, snapshot: Snapshot, record: dict) -> None:
+        """One row per displayed decision: the compact forecast of its whole menu (see ``outcome.shadow``)."""
+        self._append_shadow({
+            "event": "OUTCOME_SHADOW",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "seq": snapshot.seq,
+            "options_id": snapshot.decision["options_id"],
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            **record,
+        })
+
+    def outcome_shadow_error(self, snapshot: Snapshot, reason: str) -> None:
+        """A shadow that failed or was discarded; ``reason`` is a stable code, never exception or log text."""
+        self._append_shadow({
+            "event": "OUTCOME_SHADOW_ERROR",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
+        })
+
+    def outcome_shadow_invalidation(self, snapshot: Snapshot, reason: str) -> None:
+        """The decision a shadow row belongs to is no longer current: its forecasts are history, not advice."""
+        self._append_shadow({
+            "event": "OUTCOME_SHADOW_INVALIDATION",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
         })
