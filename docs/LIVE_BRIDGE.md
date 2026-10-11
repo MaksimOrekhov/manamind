@@ -50,6 +50,7 @@ The folder can also come from `MANAMIND_HEARTHSTONE_LOGS`; nothing is hard-coded
 | `--record [DIR]` | record each game under `DIR` (default `data/raw/live`, git-ignored) |
 | `--cards FILE` | card catalog, default `data/cards/standard_current_enUS.json` |
 | `--ui` | show the Windows always-on-top panel; without it retain the console runner |
+| `--overlay` | optional Vue / WebView2 desktop overlay; structured LIVE DTO, official RU/EN names; mutually exclusive with `--ui` |
 
 The tool only ever opens `Power.log` for reading (for the length of one poll), never writes,
 renames or deletes anything under `Logs`, and never touches `log.config`. Hearthstone must have
@@ -188,6 +189,11 @@ the saved catalog. See
 - The compact runtime catalog has no names. The Windows panel looks up names in the local Standard
   metadata JSON and falls back to `card_id`, action type and hand/board position when unknown; the
   inference catalog and checkpoint vocabulary are unchanged.
+  The optional Vue overlay uses a separate pinned RU/EN display-name snapshot (all client entities),
+  with RU → EN → ID fallback. See [setup and position contract](../apps/overlay-ui/README.md).
+  It receives typed `PresentationEvent` callbacks, never console text. Board coordinates share minion/Location
+  slots; both sides run left to right on the player's screen. Missing or inconsistent coordinates are omitted.
+  Its Windows host has been checked separately; actual Hearthstone/DPI/fullscreen verification remains pending.
 - The reducer keeps hearthstone's entity code off the card database (see `PacketExporter`); without
   the optional `hearthstone_data` package python-hearthstone would otherwise download card data from
   the web on certain reveals.

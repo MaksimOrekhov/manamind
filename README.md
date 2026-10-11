@@ -98,6 +98,12 @@ On Windows, start the always-on-top LIVE MVP panel and its single in-process col
 python scripts/run_manamind.py --ui
 ```
 
+The optional Vue / WebView2 desktop overlay adds official RU/EN names, structured
+source/target instructions, frameless dragging, collapse, opacity and saved position.
+After installing `.[overlay]`, start `scripts/start_overlay.ps1`; see
+[overlay setup](apps/overlay-ui/README.md) and [verification results](reports/live_overlay_1/README.md).
+The console and Tkinter runners remain available.
+
 The default uses frozen Policy v2 with its pinned SHA-256 and the default Hearthstone logs folder;
 see [the LIVE guide](docs/LIVE_BRIDGE.md) for dependency setup and path overrides. It is a read-only
 adviser and is **TECHNICALLY READY**, pending the first real-client playtest.

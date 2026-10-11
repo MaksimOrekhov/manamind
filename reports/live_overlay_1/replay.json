@@ -1,0 +1,329 @@
+{
+  "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+  "counts": {
+    "ACTIVATE_LOCATION": 353,
+    "ATTACK": 788,
+    "END_TURN": 772,
+    "HERO_POWER": 764,
+    "PLAY_CARD": 2587,
+    "named_entities": 6048,
+    "rankings": 1870,
+    "recordings": 31,
+    "ru_name_missing": 0,
+    "targeted": 1556,
+    "unverified_coordinates": 0
+  },
+  "replay": [
+    {
+      "scored": 40,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 22
+      },
+      "input_sha256": "e43b4290e7d050ccfe36d99615916428d417759e703fbf083b27a2d1c4e6ec54"
+    },
+    {
+      "scored": 86,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 17
+      },
+      "input_sha256": "28d0880d0fbbb84a97716a0851ab558a6cfb258e20f3c6a6246f6dc5a1002fb7"
+    },
+    {
+      "scored": 131,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 10
+      },
+      "input_sha256": "2c33c69494c7aaea7ff8190d9d4d454439b70e39e590fa296feb09e582d8b1a2"
+    },
+    {
+      "scored": 62,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 7
+      },
+      "input_sha256": "f514d6a95ad391be386f6bcfbc1a7e640d6bd27b09c1c763dae88de50369d5c4"
+    },
+    {
+      "scored": 24,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 23
+      },
+      "input_sha256": "7e2ccd7da01699b14d800fdf1bfcd2c9c774a72d2b04b8ad6554d7a9ba385948"
+    },
+    {
+      "scored": 137,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 7
+      },
+      "input_sha256": "1df5da51ea1b5137416112b22a3bdabae6c700f6449b19623eebf94ed23aad41"
+    },
+    {
+      "scored": 17,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 4
+      },
+      "input_sha256": "424f2a32d8512945da860ebe147da6ff6993f6790f82bf714e2c3295768fae77"
+    },
+    {
+      "scored": 52,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 11
+      },
+      "input_sha256": "b7f5a7e0697a24d63d1f678a18a34a0c95de39d935bfc7ffe73abc56dc36d860"
+    },
+    {
+      "scored": 30,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 21
+      },
+      "input_sha256": "33aac0af07c9371033a20436183cb5e71c92209c9fee9975257c8adc2e295d59"
+    },
+    {
+      "scored": 56,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 10
+      },
+      "input_sha256": "11e5b456a1287be79cbc5c5083f1483da2e93eec7d69b317d24e1211d90c9cf4"
+    },
+    {
+      "scored": 51,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 1
+      },
+      "input_sha256": "6f779076e6499925ae0387d13ab766ec97dc5599ff6dd4e48274a6b07cd7c711"
+    },
+    {
+      "scored": 45,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 23
+      },
+      "input_sha256": "faaad06cd70b27a439e287f33f2bead817aba8b4da5beda422c3c5f50ab30947"
+    },
+    {
+      "scored": 49,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 8
+      },
+      "input_sha256": "2cde4d40a940119b8587e314018f5b90b510b19be96031b26c68280343f6a4a5"
+    },
+    {
+      "scored": 77,
+      "recorded_hashes_match": false,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 4
+      },
+      "input_sha256": "e34f500b6f11f4c38edb12a9bca5b75b8ad9475ae9e3584f2589ab29c9bbf8b5"
+    },
+    {
+      "scored": 169,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 18
+      },
+      "input_sha256": "77ab97723434b8233c77e5175c946b3a923eb2749db0ef2c4702e46fa8a7288e"
+    },
+    {
+      "scored": 58,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "c71bc42cdbca8d1847a57b4ab3fbf309237fe066b0ee902cb868222f552db989"
+    },
+    {
+      "scored": 25,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "8171a8921bf2d7225bf8e5b602edb8c7c898ee0ccb933be25eb0ca04e4bdf546"
+    },
+    {
+      "scored": 41,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "abe6d99a0a8d05432a8c8137b153103b5be83709e977215796560686412f6509"
+    },
+    {
+      "scored": 51,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "8c0fb39e81cad0969ee33419aedc2a11ae56a361d2d3853fd398fac9614e2990"
+    },
+    {
+      "scored": 30,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "e93297d512bf681e12b5e04b483959c40209c539ce45a40ea42d6fd45532f091"
+    },
+    {
+      "scored": 21,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "f443cbadb06c63abb311933d724aed5dd5a110b4d9d84c9333317404bffa8a11"
+    },
+    {
+      "scored": 95,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 1
+      },
+      "input_sha256": "bae8994cc405325f702a741d98ba7ba55961d2d08bbb820a1ae8ff4668a4c437"
+    },
+    {
+      "scored": 31,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 2,
+        "CHOICE_UNRESOLVED": 1
+      },
+      "input_sha256": "56594374ea2bb8a0cab58873916b4f7180f6894e18c5d96f3b43700d6e734fd0"
+    },
+    {
+      "scored": 78,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 8
+      },
+      "input_sha256": "ed31d0fb4558029f55a076931f72f552af4ed21a4da9652705cbe5c886058885"
+    },
+    {
+      "scored": 47,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 13
+      },
+      "input_sha256": "ee1ebea8b4429a5f9e4ebfb63fa75da5d573ce6baf382a802f383069b8def1e1"
+    },
+    {
+      "scored": 105,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 12
+      },
+      "input_sha256": "9078ce4b29696d0540f5d1cac731234f583a84cc7034bbd2885782a4f5e5aa9d"
+    },
+    {
+      "scored": 112,
+      "recorded_hashes_match": true,
+      "skips": {
+        "AMBIGUOUS_SELECTION": 4,
+        "CHOICE_UNRESOLVED": 1
+      },
+      "input_sha256": "b9a7cf539476eac79f534f82a0ff0a65a712fecc9f7de3006a0630d768efe56e"
+    },
+    {
+      "scored": 16,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "e18ba2974b1312083ab0af4d2796b04a0a3eaf4409eec331dfc01171c06807d3"
+    },
+    {
+      "scored": 42,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "0771be0a5a79d79a8c52ff224650bdd86b62293d6faf40f9dd893a2369306ff6"
+    },
+    {
+      "scored": 59,
+      "recorded_hashes_match": true,
+      "skips": {
+        "TARGET_UNRESOLVED": 7
+      },
+      "input_sha256": "ec211f46da4cbb56b1e3ceb93b3a171655f8886420bafa6fa1832800d36c1147"
+    },
+    {
+      "scored": 33,
+      "recorded_hashes_match": true,
+      "skips": {},
+      "input_sha256": "1b5909d2112663b2ea83ac92d744990887b4d693f540804ec2e1f47a0f220c66"
+    }
+  ],
+  "examples": {
+    "PLAY_CARD": {
+      "verb": "РАЗЫГРАТЬ",
+      "source": "ИЗ РУКИ: Достичь равновесия · 1-я карта слева",
+      "target": "",
+      "placement": "",
+      "warning": ""
+    },
+    "END_TURN": {
+      "verb": "ЗАВЕРШИТЬ ХОД",
+      "source": "",
+      "target": "",
+      "placement": "",
+      "warning": ""
+    },
+    "ATTACK": {
+      "verb": "АТАКОВАТЬ",
+      "source": "ТВОЁ СУЩЕСТВО: Телепатка · 1/2 · 1-е слева",
+      "target": "СУЩЕСТВО ПРОТИВНИКА: Пухокрылка-страж · 4/4 · 1-е слева",
+      "placement": "",
+      "warning": ""
+    },
+    "ATTACK_TARGETED": {
+      "verb": "АТАКОВАТЬ",
+      "source": "ТВОЁ СУЩЕСТВО: Телепатка · 1/2 · 1-е слева",
+      "target": "СУЩЕСТВО ПРОТИВНИКА: Пухокрылка-страж · 4/4 · 1-е слева",
+      "placement": "",
+      "warning": ""
+    },
+    "PLACEMENT": {
+      "verb": "РАЗЫГРАТЬ",
+      "source": "ИЗ РУКИ: Лунокрыл-посланник · 10-я карта слева",
+      "target": "",
+      "placement": "Справа от всех своих карт на столе",
+      "warning": ""
+    },
+    "HERO_POWER": {
+      "verb": "СИЛА ГЕРОЯ",
+      "source": "ТВОЯ СИЛА ГЕРОЯ: Благословение Луны",
+      "target": "",
+      "placement": "",
+      "warning": ""
+    },
+    "PLAY_CARD_TARGETED": {
+      "verb": "РАЗЫГРАТЬ",
+      "source": "ИЗ РУКИ: Ткач круговорота · 10-я карта слева",
+      "target": "СУЩЕСТВО ПРОТИВНИКА: Хроми · 4/6 · 2-е слева",
+      "placement": "Справа от всех своих карт на столе",
+      "warning": ""
+    },
+    "ACTIVATE_LOCATION": {
+      "verb": "АКТИВИРОВАТЬ ЛОКАЦИЮ",
+      "source": "ТВОЯ ЛОКАЦИЯ: Рубиновое святилище · 3 прочности · 1-е слева",
+      "target": "",
+      "placement": "",
+      "warning": ""
+    },
+    "HERO_ATTACK": {
+      "verb": "АТАКОВАТЬ",
+      "source": "ТВОЙ ГЕРОЙ · 1/30",
+      "target": "СУЩЕСТВО ПРОТИВНИКА: Вероломный мучитель · 5/8 · 6-е слева",
+      "placement": "",
+      "warning": ""
+    },
+    "HERO_POWER_TARGETED": {
+      "verb": "СИЛА ГЕРОЯ",
+      "source": "ТВОЯ СИЛА ГЕРОЯ: Малое исцеление",
+      "target": "ГЕРОЙ ПРОТИВНИКА · 40 здоровья",
+      "placement": "",
+      "warning": ""
+    },
+    "ACTIVATE_LOCATION_TARGETED": {
+      "verb": "АКТИВИРОВАТЬ ЛОКАЦИЮ",
+      "source": "ТВОЯ ЛОКАЦИЯ: Кровавые катакомбы · 3 прочности · 1-е слева",
+      "target": "ТВОЁ СУЩЕСТВО: Главный канонир · 3/1 · 2-е слева",
+      "placement": "",
+      "warning": ""
+    }
+  }
+}

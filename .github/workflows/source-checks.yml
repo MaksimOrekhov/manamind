@@ -25,3 +25,22 @@ jobs:
         run: python scripts/check_generated_artifacts.py
       - run: git diff --exit-code
       - run: python -m pytest -q
+  overlay-ui:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/overlay-ui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: '9.14.3'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: apps/overlay-ui/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck
+      - run: pnpm test
+      - run: pnpm run build

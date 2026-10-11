@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.6"]
 replays = ["hslog==1.20.0"]
+overlay = ["pywebview==6.2.1"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

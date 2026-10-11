@@ -24,7 +24,8 @@ from manamind.training.real_policy import encode_example, load_examples
 from manamind.models.policy_inputs import representation_of
 
 
-def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict | None = None) -> dict:
+def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict | None = None,
+                *, on_recommendation=None) -> dict:
     """Replay read-batch boundaries; score only the snapshot still current at each batch end."""
     meta = json.loads((directory / "meta.json").read_text(encoding="utf-8"))
     policy = ModePolicy(frozenset(meta.get("extra_game_types", [])))
@@ -53,6 +54,8 @@ def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict 
             reasons[str(error)] += 1
             continue
         ranks.append((result.identity, [(item.index, item.score) for item in result.ranked]))
+        if on_recommendation is not None:
+            on_recommendation(snapshot, result)
         latencies.append(result.latency_ms)
         if admitted is not None:
             key = f"{snapshot.game_key}:{snapshot.decision['options_id']}"

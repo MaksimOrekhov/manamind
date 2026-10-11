@@ -1,0 +1,12 @@
+{
+  "app_mounted": true,
+  "ru_source_target": true,
+  "en_switch": true,
+  "collapsed_height": 56,
+  "native_opacity": 0.65,
+  "native_topmost": true,
+  "native_border_style": "None",
+  "restored_height": 640,
+  "game_over_clears_advice": true,
+  "no_http_server": true
+}

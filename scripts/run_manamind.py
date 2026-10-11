@@ -19,6 +19,7 @@ from manamind.live.recommendation import (
     PolicyRecommender, Recommendation, RecommendationUnavailable, render_recommendation,
 )
 from manamind.live.prediction_journal import PredictionJournal
+from manamind.live.presentation import PresentationEvent
 from manamind.live.runner import LiveRunner
 from manamind.live.session import LiveSession
 from manamind.live.trust import LiveStatus, StatusEvent
@@ -36,7 +37,8 @@ class UnifiedRuntime:
     def __init__(self, live: LiveRunner, collector: Collector, recommender: PolicyRecommender | None,
                  *, emit: Callable[[str], None] = print, collector_seconds: float = 5.0,
                  journal: PredictionJournal | None = None,
-                 on_recommendation: Callable[[Recommendation], None] | None = None) -> None:
+                 on_recommendation: Callable[[Recommendation], None] | None = None,
+                 on_event: Callable[[PresentationEvent], None] | None = None) -> None:
         if collector_seconds <= 0:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
@@ -46,6 +48,7 @@ class UnifiedRuntime:
         self.emit = emit
         self.journal = journal
         self.on_recommendation = on_recommendation
+        self.on_event = on_event
         self.collector_seconds = collector_seconds
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
@@ -54,6 +57,10 @@ class UnifiedRuntime:
         self.live_failed = False
         self.latencies_ms: list[float] = []
         self.decisions_scored = 0
+
+    def _present(self, event: PresentationEvent) -> None:
+        if self.on_event is not None:
+            self.on_event(event)
 
     def _invalidate(self, reason: str = "DECISION_CHANGED") -> None:
         if self.active_identity is not None:
@@ -68,12 +75,17 @@ class UnifiedRuntime:
             self.emit(f"recommendation #{self.active_identity[1]} invalidated")
             self.active_identity = None
             self.active_snapshot = None
+        status = self.live.session.status.value
+        self._present(PresentationEvent("invalidated", status=status if status != "READY" else "SYNCING", reason=reason))
 
     def _events(self, events) -> None:
         for event in events:
             if isinstance(event, StatusEvent):
                 reason = f" ({event.reason})" if event.reason else ""
                 self.emit(f"status: {event.status.value}{reason}")
+                self._present(PresentationEvent("status", status=event.status.value, reason=event.reason))
+                if event.status is LiveStatus.READY and self.recommender is None:
+                    self._present(PresentationEvent("unavailable", reason="CHECKPOINT_UNAVAILABLE"))
         snap = self.live.session.current_snapshot
         if (self.active_identity is not None
                 and (snap is None or snap.game_key != self.active_identity[0]
@@ -101,6 +113,7 @@ class UnifiedRuntime:
                 if (self.recommender is not None and snap is not None
                         and identity != self.attempted_identity and self.active_identity is None):
                     self.attempted_identity = identity
+                    self._present(PresentationEvent("thinking"))
                     try:
                         result = self.recommender.score(snap, self.live.session)
                         # Read any lines that appeared during inference before displaying the result.
@@ -116,10 +129,12 @@ class UnifiedRuntime:
                                     self.emit(f"prediction journal warning: {type(error).__name__}")
                             if self.on_recommendation is not None:
                                 self.on_recommendation(result)
+                            self._present(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
                             self.latencies_ms.append(result.latency_ms)
                             self.decisions_scored += 1
                         else:
                             self.emit("no recommendation: DECISION_CHANGED_DURING_INFERENCE")
+                            self._present(PresentationEvent("unavailable", reason="DECISION_CHANGED_DURING_INFERENCE"))
                             if self.journal is not None:
                                 try:
                                     self.journal.discarded(snap, "DECISION_CHANGED_DURING_INFERENCE")
@@ -127,6 +142,7 @@ class UnifiedRuntime:
                                     self.emit(f"prediction journal warning: {type(error).__name__}")
                     except RecommendationUnavailable as error:
                         self.emit(f"no recommendation: {error}")
+                        self._present(PresentationEvent("unavailable", reason=str(error)))
                         if self.journal is not None:
                             try:
                                 self.journal.unavailable(snap, str(error))
@@ -136,6 +152,7 @@ class UnifiedRuntime:
                 self._invalidate()
                 self.live_failed = True
                 self.emit(f"LIVE warning: {type(error).__name__}; recommendations disabled")
+                self._present(PresentationEvent("unavailable", reason="LIVE_FAILED"))
         if now >= self.next_collect:
             self.next_collect = now + self.collector_seconds
             try:
@@ -170,6 +187,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--poll-ms", type=int, default=50)
     parser.add_argument("--collector-seconds", type=float, default=5.0)
     parser.add_argument("--ui", action="store_true", help="Show the Windows always-on-top recommendation panel")
+    parser.add_argument("--overlay", action="store_true", help="Show the Vue / WebView2 desktop overlay")
     return parser
 
 
@@ -177,6 +195,8 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.poll_ms < 10 or args.collector_seconds <= 0:
         raise SystemExit("poll-ms must be >=10 and collector-seconds must be positive")
+    if args.ui and args.overlay:
+        raise SystemExit("Choose --ui or --overlay")
     # hslog warnings and exceptions may contain raw log text or player identifiers.
     warnings.filterwarnings("ignore")
     logging.disable(logging.CRITICAL)
@@ -200,11 +220,14 @@ def main(argv: list[str] | None = None) -> int:
     runtime.recommender_unavailable = recommender_error
     print("ManaMind experimental read-only policy. Ctrl+C to stop.", flush=True)
     runtime.emit(f"status: {session.status.value}")
-    if args.ui:
+    if args.ui or args.overlay:
         try:
-            from manamind.live.panel import launch_overlay
-
-            launch_overlay(runtime, args.cards, args.poll_ms)
+            if args.overlay:
+                from manamind.live.desktop import launch_desktop
+                launch_desktop(runtime, ROOT, args.cards, args.poll_ms)
+            else:
+                from manamind.live.panel import launch_overlay
+                launch_overlay(runtime, args.cards, args.poll_ms)
         except KeyboardInterrupt:
             pass
         finally:
