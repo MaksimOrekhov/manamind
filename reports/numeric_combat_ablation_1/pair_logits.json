@@ -1,0 +1,1274 @@
+{
+  "nca_attack_0": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.04107093811035156,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.020557522773742676,
+        "ranks": [
+          6,
+          6
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "B": {
+        "delta_range": 0.1757349967956543,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.0879366397857666,
+        "ranks": [
+          5,
+          5
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.04107093811035156,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.020557522773742676,
+        "ranks": [
+          6,
+          6
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "nca_attack_0_id": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.04114031791687012,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.020592331886291504,
+        "ranks": [
+          3,
+          3
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "B": {
+        "delta_range": 0.17584681510925293,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.08799219131469727,
+        "ranks": [
+          1,
+          1
+        ],
+        "sources": [
+          1,
+          2
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.04114031791687012,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.020592331886291504,
+        "ranks": [
+          3,
+          3
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      }
+    }
+  },
+  "nca_attack_0_position": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.041023850440979004,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.020544767379760742,
+        "ranks": [
+          7,
+          11
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "B": {
+        "delta_range": 0.17556369304656982,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.08787143230438232,
+        "ranks": [
+          5,
+          6
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.041023850440979004,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.020544767379760742,
+        "ranks": [
+          7,
+          11
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      }
+    }
+  },
+  "nca_attack_1": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.04057455062866211,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.02037942409515381,
+        "ranks": [
+          3,
+          7
+        ],
+        "sources": [
+          1,
+          1
+        ]
+      },
+      "B": {
+        "delta_range": 0.17284762859344482,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.08774280548095703,
+        "ranks": [
+          2,
+          5
+        ],
+        "sources": [
+          1,
+          1
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.04057455062866211,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.02037942409515381,
+        "ranks": [
+          3,
+          7
+        ],
+        "sources": [
+          1,
+          1
+        ]
+      }
+    }
+  },
+  "nca_attack_1_id": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.040766000747680664,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.020416736602783203,
+        "ranks": [
+          6,
+          3
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      },
+      "B": {
+        "delta_range": 0.17540264129638672,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.08779048919677734,
+        "ranks": [
+          1,
+          1
+        ],
+        "sources": [
+          2,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.040766000747680664,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.020416736602783203,
+        "ranks": [
+          6,
+          3
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "nca_attack_1_position": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.04058349132537842,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.020378947257995605,
+        "ranks": [
+          3,
+          5
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      },
+      "B": {
+        "delta_range": 0.17281556129455566,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.08774018287658691,
+        "ranks": [
+          2,
+          5
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.04058349132537842,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.020378947257995605,
+        "ranks": [
+          3,
+          5
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "nca_attack_2": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.03928565979003906,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.02016758918762207,
+        "ranks": [
+          1,
+          9
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.16996216773986816,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.08743691444396973,
+        "ranks": [
+          1,
+          5
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.03928565979003906,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.02016758918762207,
+        "ranks": [
+          1,
+          9
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "nca_attack_2_id": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.040436387062072754,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.020243167877197266,
+        "ranks": [
+          4,
+          5
+        ],
+        "sources": [
+          7,
+          7
+        ]
+      },
+      "B": {
+        "delta_range": 0.17509758472442627,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0876239538192749,
+        "ranks": [
+          1,
+          1
+        ],
+        "sources": [
+          3,
+          4
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.040436387062072754,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.020243167877197266,
+        "ranks": [
+          4,
+          5
+        ],
+        "sources": [
+          7,
+          7
+        ]
+      }
+    }
+  },
+  "nca_attack_2_position": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.03919708728790283,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.02010977268218994,
+        "ranks": [
+          1,
+          17
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "B": {
+        "delta_range": 0.16971099376678467,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.08728575706481934,
+        "ranks": [
+          1,
+          11
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.03919708728790283,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.02010977268218994,
+        "ranks": [
+          1,
+          17
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      }
+    }
+  },
+  "nca_attack_3": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.03875315189361572,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.01988375186920166,
+        "ranks": [
+          1,
+          8
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "B": {
+        "delta_range": 0.16891193389892578,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.08688843250274658,
+        "ranks": [
+          1,
+          5
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.03875315189361572,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.01988375186920166,
+        "ranks": [
+          1,
+          8
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "nca_attack_3_id": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.03988957405090332,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.019969582557678223,
+        "ranks": [
+          2,
+          5
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "B": {
+        "delta_range": 0.17402946949005127,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.08708858489990234,
+        "ranks": [
+          1,
+          1
+        ],
+        "sources": [
+          4,
+          5
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.03988957405090332,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.019969582557678223,
+        "ranks": [
+          2,
+          5
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "nca_attack_3_position": {
+    "field": "current_attack",
+    "models": {
+      "A": {
+        "delta_range": 0.038631558418273926,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.01979053020477295,
+        "ranks": [
+          1,
+          15
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "B": {
+        "delta_range": 0.16856682300567627,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.08665943145751953,
+        "ranks": [
+          1,
+          14
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.038631558418273926,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.01979053020477295,
+        "ranks": [
+          1,
+          15
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      }
+    }
+  },
+  "nca_health_0": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.005077481269836426,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.00282442569732666,
+        "ranks": [
+          7,
+          4
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "B": {
+        "delta_range": 0.007893085479736328,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.004335165023803711,
+        "ranks": [
+          7,
+          2
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.005077481269836426,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.00282442569732666,
+        "ranks": [
+          7,
+          4
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "nca_health_0_id": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.00561678409576416,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.0028172731399536133,
+        "ranks": [
+          4,
+          5
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "B": {
+        "delta_range": 0.0085984468460083,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.004304766654968262,
+        "ranks": [
+          4,
+          4
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.00561678409576416,
+        "gold_sources": [
+          1,
+          2
+        ],
+        "max_logit_change": 0.0028172731399536133,
+        "ranks": [
+          4,
+          5
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      }
+    }
+  },
+  "nca_health_0_position": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.005018830299377441,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.002788543701171875,
+        "ranks": [
+          6,
+          4
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "B": {
+        "delta_range": 0.007872819900512695,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.004294633865356445,
+        "ranks": [
+          5,
+          3
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.005018830299377441,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.002788543701171875,
+        "ranks": [
+          6,
+          4
+        ],
+        "sources": [
+          2,
+          2
+        ]
+      }
+    }
+  },
+  "nca_health_1": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004449725151062012,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.0024750232696533203,
+        "ranks": [
+          16,
+          4
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "B": {
+        "delta_range": 0.007550716400146484,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.004139304161071777,
+        "ranks": [
+          10,
+          4
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004449725151062012,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.0024750232696533203,
+        "ranks": [
+          16,
+          4
+        ],
+        "sources": [
+          4,
+          4
+        ]
+      }
+    }
+  },
+  "nca_health_1_id": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004928946495056152,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.002468705177307129,
+        "ranks": [
+          14,
+          9
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      },
+      "B": {
+        "delta_range": 0.008205413818359375,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.0041141510009765625,
+        "ranks": [
+          8,
+          6
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004928946495056152,
+        "gold_sources": [
+          2,
+          3
+        ],
+        "max_logit_change": 0.002468705177307129,
+        "ranks": [
+          14,
+          9
+        ],
+        "sources": [
+          6,
+          6
+        ]
+      }
+    }
+  },
+  "nca_health_1_position": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004421234130859375,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.002453923225402832,
+        "ranks": [
+          9,
+          4
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.007480025291442871,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.004084467887878418,
+        "ranks": [
+          6,
+          3
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004421234130859375,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.002453923225402832,
+        "ranks": [
+          9,
+          4
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "nca_health_2": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004021763801574707,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0022356510162353516,
+        "ranks": [
+          1,
+          15
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.008348941802978516,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.004525661468505859,
+        "ranks": [
+          1,
+          11
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004021763801574707,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0022356510162353516,
+        "ranks": [
+          1,
+          15
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "nca_health_2_id": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004495739936828613,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0022525787353515625,
+        "ranks": [
+          9,
+          12
+        ],
+        "sources": [
+          7,
+          7
+        ]
+      },
+      "B": {
+        "delta_range": 0.007624149322509766,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0038156509399414062,
+        "ranks": [
+          5,
+          8
+        ],
+        "sources": [
+          7,
+          7
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004495739936828613,
+        "gold_sources": [
+          3,
+          4
+        ],
+        "max_logit_change": 0.0022525787353515625,
+        "ranks": [
+          9,
+          12
+        ],
+        "sources": [
+          7,
+          7
+        ]
+      }
+    }
+  },
+  "nca_health_2_position": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004007577896118164,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.0022356510162353516,
+        "ranks": [
+          1,
+          14
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "B": {
+        "delta_range": 0.008317112922668457,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.0044918060302734375,
+        "ranks": [
+          1,
+          9
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004007577896118164,
+        "gold_sources": [
+          5,
+          4
+        ],
+        "max_logit_change": 0.0022356510162353516,
+        "ranks": [
+          1,
+          14
+        ],
+        "sources": [
+          5,
+          5
+        ]
+      }
+    }
+  },
+  "nca_health_3": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004122376441955566,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.0020635128021240234,
+        "ranks": [
+          6,
+          5
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.007280707359313965,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.0036472082138061523,
+        "ranks": [
+          6,
+          5
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004122376441955566,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.0020635128021240234,
+        "ranks": [
+          6,
+          5
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "nca_health_3_id": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004119396209716797,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.0020619630813598633,
+        "ranks": [
+          3,
+          2
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.007234930992126465,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.003624558448791504,
+        "ranks": [
+          3,
+          1
+        ],
+        "sources": [
+          3,
+          5
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004119396209716797,
+        "gold_sources": [
+          4,
+          5
+        ],
+        "max_logit_change": 0.0020619630813598633,
+        "ranks": [
+          3,
+          2
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  },
+  "nca_health_3_position": {
+    "field": "current_health",
+    "models": {
+      "A": {
+        "delta_range": 0.004164338111877441,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.0020873546600341797,
+        "ranks": [
+          13,
+          15
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "B": {
+        "delta_range": 0.0075037479400634766,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.003766775131225586,
+        "ranks": [
+          11,
+          13
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      },
+      "TL2_B": {
+        "delta_range": 0.004164338111877441,
+        "gold_sources": [
+          2,
+          1
+        ],
+        "max_logit_change": 0.0020873546600341797,
+        "ranks": [
+          13,
+          15
+        ],
+        "sources": [
+          3,
+          3
+        ]
+      }
+    }
+  }
+}

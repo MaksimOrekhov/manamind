@@ -1,0 +1,1116 @@
+{
+  "coverage": {
+    "real_train": {
+      "actions": 13048,
+      "decisions": 1175,
+      "decisions_with_known_combat": 0,
+      "known_combat_actions": 0
+    },
+    "real_validation": {
+      "actions": 3643,
+      "decisions": 281,
+      "decisions_with_known_combat": 0,
+      "known_combat_actions": 0
+    },
+    "tactical_control": {
+      "decisions": 64,
+      "decisions_with_known_combat": 56
+    },
+    "tactical_train": {
+      "decisions": 192,
+      "decisions_with_known_combat": 128
+    },
+    "tactical_validation": {
+      "decisions": 32,
+      "decisions_with_known_combat": 24
+    }
+  },
+  "examples": {
+    "nca_attack_0_a": [
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      }
+    ],
+    "nca_attack_0_b": [
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      }
+    ],
+    "nca_health_0_a": [
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      }
+    ],
+    "nca_health_0_a_id": [
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      }
+    ],
+    "nca_health_0_b": [
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      }
+    ],
+    "nca_health_0_b_id": [
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "source_position": null,
+        "target_position": null,
+        "type": "END_TURN"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 1,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 5,
+        "target_position": 3,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 1,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 3,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          0.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 4,
+        "target_position": 2,
+        "type": "ATTACK"
+      },
+      {
+        "features": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "source_position": 2,
+        "target_position": 1,
+        "type": "ATTACK"
+      }
+    ]
+  },
+  "features": [
+    "ordinary_target_destroyed",
+    "target_destroyed_known",
+    "ordinary_source_survives",
+    "source_survives_known"
+  ],
+  "new_column_l2_norms": [
+    0.10010802000761032,
+    0.03001284785568714,
+    0.01899486407637596,
+    0.03001284785568714
+  ],
+  "new_column_max_abs": [
+    0.014165850356221199,
+    0.006639030762016773,
+    0.007304537575691938,
+    0.006639030762016773
+  ]
+}

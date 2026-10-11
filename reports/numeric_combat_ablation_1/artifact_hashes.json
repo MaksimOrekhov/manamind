@@ -1,0 +1,21 @@
+{
+  "B_companion_base_sha256": "57dfa5d67778223e2aa0f5685d13b4df9ee7f4ba13828af3b13cd2037eb9e675",
+  "control_opened_sha256": "1968df2f7a202b08d02f45125fa966ba148a418158d29c9d85c41e54d3ab71a6",
+  "private_predictions": {
+    "A": "db053350f182449baad00ccaf25660cfc102a50c3e7100990b3186e7034fd16b",
+    "B": "b1377880b366b4f03896df17d7435dbbec04b0a58db4f024ee102b197e8f9e69",
+    "TL2_A": "619c69249e377b4c6de3f73943c7d6f6e4e6d1a0632f3abcebb00d66eb44d4a3",
+    "TL2_B": "5cb1628e1e8287c4bb6e222ba8500cfc5096f0adc33b2aa2b84308020af2d031",
+    "frozen": "1b8079846f03fb26b99dc183bae0abb68b33a5a15c5849df49aba544ecfbc544",
+    "initial": "246327768fc70a578c96558d6f6af620e44865b6b04029a69d629c432073de75"
+  },
+  "source_sha256": {
+    "scripts/report_numeric_combat_ablation.py": "24f86d392c5baed6949a87644a67f17bcbb98b488d086f17bb4d48f4da3cb0a0",
+    "scripts\\evaluate_numeric_combat_ablation.py": "66affede9f6d62deaa740eca6214c3384b40407d51d8aadb0809c3a076de51d0",
+    "scripts\\prepare_numeric_combat_ablation.py": "99f042091d50ecc1fee89f3bb145d1086ccf7431577eb47cc7294bb2cbc4e3b5",
+    "scripts\\report_numeric_combat_ablation.py": "ed4ed18773195ccdeb35d10a04bbe69a850bcd680ac9c6a3e9a90dd3bfacf22e",
+    "scripts\\train_numeric_combat_ablation.py": "0e50e765d2dd490cc64962a10b2ffbbeef77efd62ec9326c9a516281a705764b",
+    "src\\manamind\\training\\numeric_combat.py": "5d0df4ca0df578b551e31375ea268b866e3d65a792f1b42df0caafe1c11b8125",
+    "tests\\test_numeric_combat.py": "7f68ad0c6d454a83670817aa8d5b0f5c1cee4885031690bd062dd3387b8290aa"
+  }
+}

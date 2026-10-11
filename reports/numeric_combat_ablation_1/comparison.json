@@ -1,0 +1,3698 @@
+{
+  "checks": {
+    "no_new_lethal": true,
+    "pair_gain": false,
+    "position_pairs": false,
+    "primary_pairs": false,
+    "real_CE": true,
+    "real_top1": true,
+    "selection_guards": true,
+    "unknown_ID_pairs": true
+  },
+  "comparison": {
+    "B_vs_A": {
+      "fixed": [
+        "nca_health_3_b_id",
+        "nca_attack_0_a_id",
+        "nca_attack_0_b_id",
+        "nca_attack_1_a_id",
+        "nca_attack_1_b_id",
+        "nca_attack_2_a_id",
+        "nca_attack_2_b_id",
+        "nca_attack_3_a_id",
+        "nca_attack_3_b_id"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_health_0_a",
+        "nca_health_0_b",
+        "nca_health_1_a",
+        "nca_health_1_b",
+        "nca_health_2_b",
+        "nca_health_3_a",
+        "nca_health_3_b",
+        "nca_attack_0_a",
+        "nca_attack_0_b",
+        "nca_attack_1_a",
+        "nca_attack_1_b",
+        "nca_attack_2_b",
+        "nca_attack_3_b",
+        "nca_health_0_a_position",
+        "nca_health_0_b_position",
+        "nca_health_1_a_position",
+        "nca_health_1_b_position",
+        "nca_health_2_b_position",
+        "nca_health_3_a_position",
+        "nca_health_3_b_position",
+        "nca_attack_0_a_position",
+        "nca_attack_0_b_position",
+        "nca_attack_1_a_position",
+        "nca_attack_1_b_position",
+        "nca_attack_2_b_position",
+        "nca_attack_3_b_position",
+        "nca_health_0_a_id",
+        "nca_health_0_b_id",
+        "nca_health_1_a_id",
+        "nca_health_1_b_id",
+        "nca_health_2_a_id",
+        "nca_health_2_b_id",
+        "nca_health_3_a_id",
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "B_vs_TL2_A": {
+      "fixed": [
+        "nca_health_2_a",
+        "nca_attack_2_a",
+        "nca_attack_3_a",
+        "nca_health_2_a_position",
+        "nca_attack_2_a_position",
+        "nca_attack_3_a_position",
+        "nca_health_3_b_id",
+        "nca_attack_0_a_id",
+        "nca_attack_0_b_id",
+        "nca_attack_1_a_id",
+        "nca_attack_1_b_id",
+        "nca_attack_2_a_id",
+        "nca_attack_2_b_id",
+        "nca_attack_3_a_id",
+        "nca_attack_3_b_id",
+        "nca_lethal_3",
+        "nca_lethal_4",
+        "nca_lethal_5",
+        "nca_lethal_6"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_health_0_a",
+        "nca_health_0_b",
+        "nca_health_1_a",
+        "nca_health_1_b",
+        "nca_health_2_b",
+        "nca_health_3_a",
+        "nca_health_3_b",
+        "nca_attack_0_a",
+        "nca_attack_0_b",
+        "nca_attack_1_a",
+        "nca_attack_1_b",
+        "nca_attack_2_b",
+        "nca_attack_3_b",
+        "nca_health_0_a_position",
+        "nca_health_0_b_position",
+        "nca_health_1_a_position",
+        "nca_health_1_b_position",
+        "nca_health_2_b_position",
+        "nca_health_3_a_position",
+        "nca_health_3_b_position",
+        "nca_attack_0_a_position",
+        "nca_attack_0_b_position",
+        "nca_attack_1_a_position",
+        "nca_attack_1_b_position",
+        "nca_attack_2_b_position",
+        "nca_attack_3_b_position",
+        "nca_health_0_a_id",
+        "nca_health_0_b_id",
+        "nca_health_1_a_id",
+        "nca_health_1_b_id",
+        "nca_health_2_a_id",
+        "nca_health_2_b_id",
+        "nca_health_3_a_id",
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "B_vs_TL2_B": {
+      "fixed": [
+        "nca_health_3_b_id",
+        "nca_attack_0_a_id",
+        "nca_attack_0_b_id",
+        "nca_attack_1_a_id",
+        "nca_attack_1_b_id",
+        "nca_attack_2_a_id",
+        "nca_attack_2_b_id",
+        "nca_attack_3_a_id",
+        "nca_attack_3_b_id"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_health_0_a",
+        "nca_health_0_b",
+        "nca_health_1_a",
+        "nca_health_1_b",
+        "nca_health_2_b",
+        "nca_health_3_a",
+        "nca_health_3_b",
+        "nca_attack_0_a",
+        "nca_attack_0_b",
+        "nca_attack_1_a",
+        "nca_attack_1_b",
+        "nca_attack_2_b",
+        "nca_attack_3_b",
+        "nca_health_0_a_position",
+        "nca_health_0_b_position",
+        "nca_health_1_a_position",
+        "nca_health_1_b_position",
+        "nca_health_2_b_position",
+        "nca_health_3_a_position",
+        "nca_health_3_b_position",
+        "nca_attack_0_a_position",
+        "nca_attack_0_b_position",
+        "nca_attack_1_a_position",
+        "nca_attack_1_b_position",
+        "nca_attack_2_b_position",
+        "nca_attack_3_b_position",
+        "nca_health_0_a_id",
+        "nca_health_0_b_id",
+        "nca_health_1_a_id",
+        "nca_health_1_b_id",
+        "nca_health_2_a_id",
+        "nca_health_2_b_id",
+        "nca_health_3_a_id",
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "B_vs_frozen": {
+      "fixed": [
+        "nca_health_2_a",
+        "nca_attack_2_a",
+        "nca_attack_3_a",
+        "nca_health_2_a_position",
+        "nca_attack_2_a_position",
+        "nca_attack_3_a_position",
+        "nca_health_3_b_id",
+        "nca_attack_0_a_id",
+        "nca_attack_0_b_id",
+        "nca_attack_1_a_id",
+        "nca_attack_1_b_id",
+        "nca_attack_2_a_id",
+        "nca_attack_2_b_id",
+        "nca_attack_3_a_id",
+        "nca_attack_3_b_id"
+      ],
+      "new_errors": [
+        "nca_health_0_b",
+        "nca_health_1_b",
+        "nca_attack_1_a",
+        "nca_health_0_b_position",
+        "nca_health_1_b_position",
+        "nca_attack_1_a_position"
+      ],
+      "shared_errors": [
+        "nca_health_0_a",
+        "nca_health_1_a",
+        "nca_health_2_b",
+        "nca_health_3_a",
+        "nca_health_3_b",
+        "nca_attack_0_a",
+        "nca_attack_0_b",
+        "nca_attack_1_b",
+        "nca_attack_2_b",
+        "nca_attack_3_b",
+        "nca_health_0_a_position",
+        "nca_health_1_a_position",
+        "nca_health_2_b_position",
+        "nca_health_3_a_position",
+        "nca_health_3_b_position",
+        "nca_attack_0_a_position",
+        "nca_attack_0_b_position",
+        "nca_attack_1_b_position",
+        "nca_attack_2_b_position",
+        "nca_attack_3_b_position",
+        "nca_health_0_a_id",
+        "nca_health_0_b_id",
+        "nca_health_1_a_id",
+        "nca_health_1_b_id",
+        "nca_health_2_a_id",
+        "nca_health_2_b_id",
+        "nca_health_3_a_id",
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "B_vs_initial": {
+      "fixed": [
+        "nca_health_2_a",
+        "nca_attack_2_a",
+        "nca_attack_3_a",
+        "nca_health_2_a_position",
+        "nca_attack_2_a_position",
+        "nca_attack_3_a_position",
+        "nca_health_3_b_id",
+        "nca_attack_0_a_id",
+        "nca_attack_0_b_id",
+        "nca_attack_1_a_id",
+        "nca_attack_1_b_id",
+        "nca_attack_2_a_id",
+        "nca_attack_2_b_id",
+        "nca_attack_3_a_id",
+        "nca_attack_3_b_id",
+        "nca_lethal_3",
+        "nca_lethal_4",
+        "nca_lethal_5",
+        "nca_lethal_6"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_health_0_a",
+        "nca_health_0_b",
+        "nca_health_1_a",
+        "nca_health_1_b",
+        "nca_health_2_b",
+        "nca_health_3_a",
+        "nca_health_3_b",
+        "nca_attack_0_a",
+        "nca_attack_0_b",
+        "nca_attack_1_a",
+        "nca_attack_1_b",
+        "nca_attack_2_b",
+        "nca_attack_3_b",
+        "nca_health_0_a_position",
+        "nca_health_0_b_position",
+        "nca_health_1_a_position",
+        "nca_health_1_b_position",
+        "nca_health_2_b_position",
+        "nca_health_3_a_position",
+        "nca_health_3_b_position",
+        "nca_attack_0_a_position",
+        "nca_attack_0_b_position",
+        "nca_attack_1_a_position",
+        "nca_attack_1_b_position",
+        "nca_attack_2_b_position",
+        "nca_attack_3_b_position",
+        "nca_health_0_a_id",
+        "nca_health_0_b_id",
+        "nca_health_1_a_id",
+        "nca_health_1_b_id",
+        "nca_health_2_a_id",
+        "nca_health_2_b_id",
+        "nca_health_3_a_id",
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    }
+  },
+  "lethal_changes": {
+    "A": {
+      "fixed": [],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "TL2_B": {
+      "fixed": [],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    },
+    "frozen": {
+      "fixed": [],
+      "new_errors": [],
+      "shared_errors": [
+        "nca_lethal_0",
+        "nca_lethal_1",
+        "nca_lethal_2",
+        "nca_lethal_7"
+      ]
+    }
+  },
+  "models": {
+    "A": {
+      "TL2_disclosed_control": {
+        "by_category": {
+          "attack": {
+            "correct": 1,
+            "cross_entropy": 2.0685411244630814,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.41041666666666665,
+            "predicted_END": 0,
+            "source_agreement": 0.125,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.125,
+            "top3_accuracy": 0.625,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "harm": {
+            "correct": 8,
+            "cross_entropy": 0.5892637968063354,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 8,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 2,
+            "cross_entropy": 2.0633267015218735,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4354166666666667,
+            "predicted_END": 0,
+            "source_agreement": 0.25,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.25,
+            "top3_accuracy": 0.5,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "multi_finish": {
+            "correct": 6,
+            "cross_entropy": 0.33901841938495636,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.8541666666666666,
+            "predicted_END": 0,
+            "source_agreement": 0.75,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.75,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 2,
+            "cross_entropy": 2.1026231944561005,
+            "decisions": 12,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4895833333333333,
+            "predicted_END": 0,
+            "source_agreement": 0.4166666666666667,
+            "source_decisions": 12,
+            "target_agreement": 0.6666666666666666,
+            "target_decisions": 12,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.75,
+            "top3_decisions": 12,
+            "type_agreement": 1.0
+          },
+          "target": {
+            "correct": 8,
+            "cross_entropy": 1.148577719926834,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "MAGE": {
+            "correct": 8,
+            "cross_entropy": 1.148577719926834,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "WARRIOR": {
+            "correct": 19,
+            "cross_entropy": 1.4934699697927996,
+            "decisions": 44,
+            "false_END": 0,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6244318181818183,
+            "predicted_END": 8,
+            "source_agreement": 0.3888888888888889,
+            "source_decisions": 36,
+            "target_agreement": 0.8888888888888888,
+            "target_decisions": 36,
+            "top1_accuracy": 0.4318181818181818,
+            "top3_accuracy": 0.7222222222222222,
+            "top3_decisions": 36,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 27,
+          "cross_entropy": 1.440409623659574,
+          "decisions": 52,
+          "false_END": 0,
+          "gold_END": 8,
+          "mean_reciprocal_rank": 0.6822115384615385,
+          "predicted_END": 8,
+          "source_agreement": 0.5,
+          "source_decisions": 44,
+          "target_agreement": 0.9090909090909091,
+          "target_decisions": 44,
+          "top1_accuracy": 0.5192307692307693,
+          "top3_accuracy": 0.7727272727272727,
+          "top3_decisions": 44,
+          "type_agreement": 1.0
+        }
+      },
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 4,
+            "cross_entropy": 2.80469540754954,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.34395380626998273,
+            "predicted_END": 0,
+            "source_agreement": 0.20833333333333334,
+            "source_decisions": 24,
+            "target_agreement": 0.9166666666666666,
+            "target_decisions": 24,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.4166666666666667,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 2,
+            "cross_entropy": 2.8383015195528665,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.2413251678876679,
+            "predicted_END": 0,
+            "source_agreement": 0.08333333333333333,
+            "source_decisions": 24,
+            "target_agreement": 0.8333333333333334,
+            "target_decisions": 24,
+            "top1_accuracy": 0.08333333333333333,
+            "top3_accuracy": 0.16666666666666666,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 4,
+            "cross_entropy": 2.0555202811956406,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 10,
+            "cross_entropy": 2.71207300892898,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3579767032104217,
+            "predicted_END": 0,
+            "source_agreement": 0.19642857142857142,
+            "source_decisions": 56,
+            "target_agreement": 0.8928571428571429,
+            "target_decisions": 56,
+            "top1_accuracy": 0.17857142857142858,
+            "top3_accuracy": 0.39285714285714285,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 2.71207300892898,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.3579767032104217,
+          "predicted_END": 0,
+          "source_agreement": 0.19642857142857142,
+          "source_decisions": 56,
+          "target_agreement": 0.8928571428571429,
+          "target_decisions": 56,
+          "top1_accuracy": 0.17857142857142858,
+          "top3_accuracy": 0.39285714285714285,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 765,
+            "cross_entropy": 1.1667073504087773,
+            "decisions": 1175,
+            "false_END": 53,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7550282834073757,
+            "predicted_END": 337,
+            "source_agreement": 0.5765247410817032,
+            "source_decisions": 869,
+            "target_agreement": 0.5882352941176471,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6510638297872341,
+            "top3_accuracy": 0.7755532139093783,
+            "top3_decisions": 949,
+            "type_agreement": 0.8059574468085107
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.8729969123096177,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8191919191919192,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 667,
+            "cross_entropy": 1.1626531588936984,
+            "decisions": 1012,
+            "false_END": 46,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7585544936457438,
+            "predicted_END": 295,
+            "source_agreement": 0.5798657718120805,
+            "source_decisions": 745,
+            "target_agreement": 0.5805084745762712,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6590909090909091,
+            "top3_accuracy": 0.7749391727493917,
+            "top3_decisions": 822,
+            "type_agreement": 0.799407114624506
+          },
+          "WARRIOR": {
+            "correct": 75,
+            "cross_entropy": 1.2728249371051787,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7112904007756948,
+            "predicted_END": 32,
+            "source_agreement": 0.53,
+            "source_decisions": 100,
+            "target_agreement": 0.5777777777777777,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5769230769230769,
+            "top3_accuracy": 0.7596153846153846,
+            "top3_decisions": 104,
+            "type_agreement": 0.8307692307692308
+          }
+        },
+        "overall": {
+          "correct": 765,
+          "cross_entropy": 1.1667073504087773,
+          "decisions": 1175,
+          "false_END": 53,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7550282834073757,
+          "predicted_END": 337,
+          "source_agreement": 0.5765247410817032,
+          "source_decisions": 869,
+          "target_agreement": 0.5882352941176471,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6510638297872341,
+          "top3_accuracy": 0.7755532139093783,
+          "top3_decisions": 949,
+          "type_agreement": 0.8059574468085107
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 145,
+            "cross_entropy": 1.5494513173332418,
+            "decisions": 281,
+            "false_END": 17,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6581825826979414,
+            "predicted_END": 79,
+            "source_agreement": 0.43661971830985913,
+            "source_decisions": 213,
+            "target_agreement": 0.26865671641791045,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5160142348754448,
+            "top3_accuracy": 0.7142857142857143,
+            "top3_decisions": 231,
+            "type_agreement": 0.7508896797153025
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 128,
+            "cross_entropy": 1.5377836552478614,
+            "decisions": 248,
+            "false_END": 15,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6590313787443456,
+            "predicted_END": 69,
+            "source_agreement": 0.44680851063829785,
+            "source_decisions": 188,
+            "target_agreement": 0.27586206896551724,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5161290322580645,
+            "top3_accuracy": 0.7259615384615384,
+            "top3_decisions": 208,
+            "type_agreement": 0.7540322580645161
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.6371355657324647,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6518037518037518,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 145,
+          "cross_entropy": 1.5494513173332418,
+          "decisions": 281,
+          "false_END": 17,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6581825826979414,
+          "predicted_END": 79,
+          "source_agreement": 0.43661971830985913,
+          "source_decisions": 213,
+          "target_agreement": 0.26865671641791045,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5160142348754448,
+          "top3_accuracy": 0.7142857142857143,
+          "top3_decisions": 231,
+          "type_agreement": 0.7508896797153025
+        }
+      }
+    },
+    "B": {
+      "TL2_disclosed_control": {
+        "by_category": {
+          "attack": {
+            "correct": 1,
+            "cross_entropy": 2.0093960762023926,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4479166666666667,
+            "predicted_END": 0,
+            "source_agreement": 0.125,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.125,
+            "top3_accuracy": 0.625,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "harm": {
+            "correct": 8,
+            "cross_entropy": 0.5886580795049667,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 8,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 2,
+            "cross_entropy": 2.0315427035093307,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4458333333333333,
+            "predicted_END": 0,
+            "source_agreement": 0.25,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.25,
+            "top3_accuracy": 0.5,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "multi_finish": {
+            "correct": 6,
+            "cross_entropy": 0.3375683054327965,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.8541666666666666,
+            "predicted_END": 0,
+            "source_agreement": 0.75,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.75,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 2,
+            "cross_entropy": 2.087966879208883,
+            "decisions": 12,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4930555555555556,
+            "predicted_END": 0,
+            "source_agreement": 0.4166666666666667,
+            "source_decisions": 12,
+            "target_agreement": 0.6666666666666666,
+            "target_decisions": 12,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.75,
+            "top3_decisions": 12,
+            "type_agreement": 1.0
+          },
+          "target": {
+            "correct": 8,
+            "cross_entropy": 1.1434524804353714,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "MAGE": {
+            "correct": 8,
+            "cross_entropy": 1.1434524804353714,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "WARRIOR": {
+            "correct": 19,
+            "cross_entropy": 1.472566451538693,
+            "decisions": 44,
+            "false_END": 0,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.634090909090909,
+            "predicted_END": 8,
+            "source_agreement": 0.3888888888888889,
+            "source_decisions": 36,
+            "target_agreement": 0.8888888888888888,
+            "target_decisions": 36,
+            "top1_accuracy": 0.4318181818181818,
+            "top3_accuracy": 0.7222222222222222,
+            "top3_decisions": 36,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 27,
+          "cross_entropy": 1.4219335329074125,
+          "decisions": 52,
+          "false_END": 0,
+          "gold_END": 8,
+          "mean_reciprocal_rank": 0.6903846153846154,
+          "predicted_END": 8,
+          "source_agreement": 0.5,
+          "source_decisions": 44,
+          "target_agreement": 0.9090909090909091,
+          "target_decisions": 44,
+          "top1_accuracy": 0.5192307692307693,
+          "top3_accuracy": 0.7727272727272727,
+          "top3_decisions": 44,
+          "type_agreement": 1.0
+        }
+      },
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 12,
+            "cross_entropy": 2.7436870535214744,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.6137085137085138,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 24,
+            "target_agreement": 1.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 0.5833333333333334,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 3,
+            "cross_entropy": 2.7956000367800393,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.300529563029563,
+            "predicted_END": 0,
+            "source_agreement": 0.125,
+            "source_decisions": 24,
+            "target_agreement": 1.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.125,
+            "top3_accuracy": 0.2916666666666667,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 4,
+            "cross_entropy": 2.0402390211820602,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 19,
+            "cross_entropy": 2.6654428988695145,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.49895917574489,
+            "predicted_END": 0,
+            "source_agreement": 0.3392857142857143,
+            "source_decisions": 56,
+            "target_agreement": 1.0,
+            "target_decisions": 56,
+            "top1_accuracy": 0.3392857142857143,
+            "top3_accuracy": 0.5178571428571429,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 19,
+          "cross_entropy": 2.6654428988695145,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.49895917574489,
+          "predicted_END": 0,
+          "source_agreement": 0.3392857142857143,
+          "source_decisions": 56,
+          "target_agreement": 1.0,
+          "target_decisions": 56,
+          "top1_accuracy": 0.3392857142857143,
+          "top3_accuracy": 0.5178571428571429,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "numeric_zero_control": {
+        "by_category": {
+          "attack": {
+            "correct": 4,
+            "cross_entropy": 2.8047690391540527,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.343375102566279,
+            "predicted_END": 0,
+            "source_agreement": 0.20833333333333334,
+            "source_decisions": 24,
+            "target_agreement": 0.9166666666666666,
+            "target_decisions": 24,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.4166666666666667,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 2,
+            "cross_entropy": 2.83816659450531,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.2413251678876679,
+            "predicted_END": 0,
+            "source_agreement": 0.08333333333333333,
+            "source_decisions": 24,
+            "target_agreement": 0.8333333333333334,
+            "target_decisions": 24,
+            "top1_accuracy": 0.08333333333333333,
+            "top3_accuracy": 0.16666666666666666,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 4,
+            "cross_entropy": 2.0633115023374557,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 10,
+            "cross_entropy": 2.7131597719022205,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3577286873374058,
+            "predicted_END": 0,
+            "source_agreement": 0.19642857142857142,
+            "source_decisions": 56,
+            "target_agreement": 0.8928571428571429,
+            "target_decisions": 56,
+            "top1_accuracy": 0.17857142857142858,
+            "top3_accuracy": 0.39285714285714285,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 2.7131597719022205,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.3577286873374058,
+          "predicted_END": 0,
+          "source_agreement": 0.19642857142857142,
+          "source_decisions": 56,
+          "target_agreement": 0.8928571428571429,
+          "target_decisions": 56,
+          "top1_accuracy": 0.17857142857142858,
+          "top3_accuracy": 0.39285714285714285,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "numeric_zero_pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 4,
+          "both_correct_and_changed_source": 4,
+          "changed_source": 5,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": false
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 3
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 765,
+            "cross_entropy": 1.1665888455573548,
+            "decisions": 1175,
+            "false_END": 53,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7550566522017019,
+            "predicted_END": 337,
+            "source_agreement": 0.5765247410817032,
+            "source_decisions": 869,
+            "target_agreement": 0.5847750865051903,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6510638297872341,
+            "top3_accuracy": 0.7755532139093783,
+            "top3_decisions": 949,
+            "type_agreement": 0.8051063829787234
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.8726502846587788,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8191919191919192,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 667,
+            "cross_entropy": 1.1626135324654372,
+            "decisions": 1012,
+            "false_END": 46,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7585874317221603,
+            "predicted_END": 295,
+            "source_agreement": 0.5798657718120805,
+            "source_decisions": 745,
+            "target_agreement": 0.5805084745762712,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6590909090909091,
+            "top3_accuracy": 0.7749391727493917,
+            "top3_decisions": 822,
+            "type_agreement": 0.799407114624506
+          },
+          "WARRIOR": {
+            "correct": 75,
+            "cross_entropy": 1.272150302162537,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7112904007756948,
+            "predicted_END": 32,
+            "source_agreement": 0.53,
+            "source_decisions": 100,
+            "target_agreement": 0.5555555555555556,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5769230769230769,
+            "top3_accuracy": 0.7596153846153846,
+            "top3_decisions": 104,
+            "type_agreement": 0.823076923076923
+          }
+        },
+        "overall": {
+          "correct": 765,
+          "cross_entropy": 1.1665888455573548,
+          "decisions": 1175,
+          "false_END": 53,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7550566522017019,
+          "predicted_END": 337,
+          "source_agreement": 0.5765247410817032,
+          "source_decisions": 869,
+          "target_agreement": 0.5847750865051903,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6510638297872341,
+          "top3_accuracy": 0.7755532139093783,
+          "top3_decisions": 949,
+          "type_agreement": 0.8051063829787234
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 145,
+            "cross_entropy": 1.5503200706213818,
+            "decisions": 281,
+            "false_END": 17,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6581825826979414,
+            "predicted_END": 79,
+            "source_agreement": 0.43661971830985913,
+            "source_decisions": 213,
+            "target_agreement": 0.26865671641791045,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5160142348754448,
+            "top3_accuracy": 0.7142857142857143,
+            "top3_decisions": 231,
+            "type_agreement": 0.7508896797153025
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 128,
+            "cross_entropy": 1.5384589780963236,
+            "decisions": 248,
+            "false_END": 15,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6590313787443456,
+            "predicted_END": 69,
+            "source_agreement": 0.44680851063829785,
+            "source_decisions": 188,
+            "target_agreement": 0.27586206896551724,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5161290322580645,
+            "top3_accuracy": 0.7259615384615384,
+            "top3_decisions": 208,
+            "type_agreement": 0.7540322580645161
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.6394579780824257,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6518037518037518,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 145,
+          "cross_entropy": 1.5503200706213818,
+          "decisions": 281,
+          "false_END": 17,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6581825826979414,
+          "predicted_END": 79,
+          "source_agreement": 0.43661971830985913,
+          "source_decisions": 213,
+          "target_agreement": 0.26865671641791045,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5160142348754448,
+          "top3_accuracy": 0.7142857142857143,
+          "top3_decisions": 231,
+          "type_agreement": 0.7508896797153025
+        }
+      }
+    },
+    "TL2_A": {
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 0,
+            "cross_entropy": 2.971968154112498,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.08789523635692366,
+            "predicted_END": 0,
+            "source_agreement": 0.16666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 0,
+            "cross_entropy": 3.0200924575328827,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.08081836535783904,
+            "predicted_END": 0,
+            "source_agreement": 0.08333333333333333,
+            "source_decisions": 24,
+            "target_agreement": 0.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 0,
+            "cross_entropy": 3.1938028037548065,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.09086538461538461,
+            "predicted_END": 0,
+            "source_agreement": 0.0,
+            "source_decisions": 8,
+            "target_agreement": 0.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 0,
+            "cross_entropy": 3.0242835198129927,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.0852865985370961,
+            "predicted_END": 0,
+            "source_agreement": 0.10714285714285714,
+            "source_decisions": 56,
+            "target_agreement": 0.0,
+            "target_decisions": 56,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 0,
+          "cross_entropy": 3.0242835198129927,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.0852865985370961,
+          "predicted_END": 0,
+          "source_agreement": 0.10714285714285714,
+          "source_decisions": 56,
+          "target_agreement": 0.0,
+          "target_decisions": 56,
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.0,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 765,
+            "cross_entropy": 1.1439478158506942,
+            "decisions": 1175,
+            "false_END": 46,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7558566234905408,
+            "predicted_END": 326,
+            "source_agreement": 0.5811277330264673,
+            "source_decisions": 869,
+            "target_agreement": 0.532871972318339,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6510638297872341,
+            "top3_accuracy": 0.779768177028451,
+            "top3_decisions": 949,
+            "type_agreement": 0.8178723404255319
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.8633580532940951,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8191919191919192,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 669,
+            "cross_entropy": 1.1401778404553065,
+            "decisions": 1012,
+            "false_END": 38,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7603953494385952,
+            "predicted_END": 283,
+            "source_agreement": 0.5879194630872483,
+            "source_decisions": 745,
+            "target_agreement": 0.5423728813559322,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6610671936758893,
+            "top3_accuracy": 0.7798053527980535,
+            "top3_decisions": 822,
+            "type_agreement": 0.8181818181818182
+          },
+          "WARRIOR": {
+            "correct": 73,
+            "cross_entropy": 1.2445222563468492,
+            "decisions": 130,
+            "false_END": 7,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7044469664322606,
+            "predicted_END": 33,
+            "source_agreement": 0.51,
+            "source_decisions": 100,
+            "target_agreement": 0.4222222222222222,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5615384615384615,
+            "top3_accuracy": 0.7596153846153846,
+            "top3_decisions": 104,
+            "type_agreement": 0.7923076923076923
+          }
+        },
+        "overall": {
+          "correct": 765,
+          "cross_entropy": 1.1439478158506942,
+          "decisions": 1175,
+          "false_END": 46,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7558566234905408,
+          "predicted_END": 326,
+          "source_agreement": 0.5811277330264673,
+          "source_decisions": 869,
+          "target_agreement": 0.532871972318339,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6510638297872341,
+          "top3_accuracy": 0.779768177028451,
+          "top3_decisions": 949,
+          "type_agreement": 0.8178723404255319
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 149,
+            "cross_entropy": 1.5581233619158803,
+            "decisions": 281,
+            "false_END": 14,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6657352959001208,
+            "predicted_END": 76,
+            "source_agreement": 0.4647887323943662,
+            "source_decisions": 213,
+            "target_agreement": 0.23880597014925373,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5302491103202847,
+            "top3_accuracy": 0.7186147186147186,
+            "top3_decisions": 231,
+            "type_agreement": 0.7829181494661922
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 131,
+            "cross_entropy": 1.5468162419574876,
+            "decisions": 248,
+            "false_END": 12,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6653713481387505,
+            "predicted_END": 66,
+            "source_agreement": 0.4734042553191489,
+            "source_decisions": 188,
+            "target_agreement": 0.2413793103448276,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5282258064516129,
+            "top3_accuracy": 0.7307692307692307,
+            "top3_decisions": 208,
+            "type_agreement": 0.7862903225806451
+          },
+          "WARRIOR": {
+            "correct": 18,
+            "cross_entropy": 1.6430980816031948,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6684704184704184,
+            "predicted_END": 10,
+            "source_agreement": 0.4,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5454545454545454,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7575757575757576
+          }
+        },
+        "overall": {
+          "correct": 149,
+          "cross_entropy": 1.5581233619158803,
+          "decisions": 281,
+          "false_END": 14,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6657352959001208,
+          "predicted_END": 76,
+          "source_agreement": 0.4647887323943662,
+          "source_decisions": 213,
+          "target_agreement": 0.23880597014925373,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5302491103202847,
+          "top3_accuracy": 0.7186147186147186,
+          "top3_decisions": 231,
+          "type_agreement": 0.7829181494661922
+        }
+      }
+    },
+    "TL2_B": {
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 4,
+            "cross_entropy": 2.80469540754954,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.34395380626998273,
+            "predicted_END": 0,
+            "source_agreement": 0.20833333333333334,
+            "source_decisions": 24,
+            "target_agreement": 0.9166666666666666,
+            "target_decisions": 24,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.4166666666666667,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 2,
+            "cross_entropy": 2.8383015195528665,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.2413251678876679,
+            "predicted_END": 0,
+            "source_agreement": 0.08333333333333333,
+            "source_decisions": 24,
+            "target_agreement": 0.8333333333333334,
+            "target_decisions": 24,
+            "top1_accuracy": 0.08333333333333333,
+            "top3_accuracy": 0.16666666666666666,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 4,
+            "cross_entropy": 2.0555202811956406,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 10,
+            "cross_entropy": 2.71207300892898,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3579767032104217,
+            "predicted_END": 0,
+            "source_agreement": 0.19642857142857142,
+            "source_decisions": 56,
+            "target_agreement": 0.8928571428571429,
+            "target_decisions": 56,
+            "top1_accuracy": 0.17857142857142858,
+            "top3_accuracy": 0.39285714285714285,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 2.71207300892898,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.3579767032104217,
+          "predicted_END": 0,
+          "source_agreement": 0.19642857142857142,
+          "source_decisions": 56,
+          "target_agreement": 0.8928571428571429,
+          "target_decisions": 56,
+          "top1_accuracy": 0.17857142857142858,
+          "top3_accuracy": 0.39285714285714285,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 765,
+            "cross_entropy": 1.1667073504087773,
+            "decisions": 1175,
+            "false_END": 53,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7550282834073757,
+            "predicted_END": 337,
+            "source_agreement": 0.5765247410817032,
+            "source_decisions": 869,
+            "target_agreement": 0.5882352941176471,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6510638297872341,
+            "top3_accuracy": 0.7755532139093783,
+            "top3_decisions": 949,
+            "type_agreement": 0.8059574468085107
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.8729969123096177,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8191919191919192,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 667,
+            "cross_entropy": 1.1626531588936984,
+            "decisions": 1012,
+            "false_END": 46,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7585544936457438,
+            "predicted_END": 295,
+            "source_agreement": 0.5798657718120805,
+            "source_decisions": 745,
+            "target_agreement": 0.5805084745762712,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6590909090909091,
+            "top3_accuracy": 0.7749391727493917,
+            "top3_decisions": 822,
+            "type_agreement": 0.799407114624506
+          },
+          "WARRIOR": {
+            "correct": 75,
+            "cross_entropy": 1.2728249371051787,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7112904007756948,
+            "predicted_END": 32,
+            "source_agreement": 0.53,
+            "source_decisions": 100,
+            "target_agreement": 0.5777777777777777,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5769230769230769,
+            "top3_accuracy": 0.7596153846153846,
+            "top3_decisions": 104,
+            "type_agreement": 0.8307692307692308
+          }
+        },
+        "overall": {
+          "correct": 765,
+          "cross_entropy": 1.1667073504087773,
+          "decisions": 1175,
+          "false_END": 53,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7550282834073757,
+          "predicted_END": 337,
+          "source_agreement": 0.5765247410817032,
+          "source_decisions": 869,
+          "target_agreement": 0.5882352941176471,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6510638297872341,
+          "top3_accuracy": 0.7755532139093783,
+          "top3_decisions": 949,
+          "type_agreement": 0.8059574468085107
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 145,
+            "cross_entropy": 1.5494513173332418,
+            "decisions": 281,
+            "false_END": 17,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6581825826979414,
+            "predicted_END": 79,
+            "source_agreement": 0.43661971830985913,
+            "source_decisions": 213,
+            "target_agreement": 0.26865671641791045,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5160142348754448,
+            "top3_accuracy": 0.7142857142857143,
+            "top3_decisions": 231,
+            "type_agreement": 0.7508896797153025
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 128,
+            "cross_entropy": 1.5377836552478614,
+            "decisions": 248,
+            "false_END": 15,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6590313787443456,
+            "predicted_END": 69,
+            "source_agreement": 0.44680851063829785,
+            "source_decisions": 188,
+            "target_agreement": 0.27586206896551724,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5161290322580645,
+            "top3_accuracy": 0.7259615384615384,
+            "top3_decisions": 208,
+            "type_agreement": 0.7540322580645161
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.6371355657324647,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6518037518037518,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 145,
+          "cross_entropy": 1.5494513173332418,
+          "decisions": 281,
+          "false_END": 17,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6581825826979414,
+          "predicted_END": 79,
+          "source_agreement": 0.43661971830985913,
+          "source_decisions": 213,
+          "target_agreement": 0.26865671641791045,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5160142348754448,
+          "top3_accuracy": 0.7142857142857143,
+          "top3_decisions": 231,
+          "type_agreement": 0.7508896797153025
+        }
+      }
+    },
+    "frozen": {
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 2,
+            "cross_entropy": 2.7576508820056915,
+            "decisions": 24,
+            "false_END": 8,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.31532738095238094,
+            "predicted_END": 8,
+            "source_agreement": 0.08333333333333333,
+            "source_decisions": 24,
+            "target_agreement": 0.6666666666666666,
+            "target_decisions": 24,
+            "top1_accuracy": 0.08333333333333333,
+            "top3_accuracy": 0.375,
+            "top3_decisions": 24,
+            "type_agreement": 0.6666666666666666
+          },
+          "health": {
+            "correct": 4,
+            "cross_entropy": 2.7150251865386963,
+            "decisions": 24,
+            "false_END": 8,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.388938492063492,
+            "predicted_END": 8,
+            "source_agreement": 0.16666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.6666666666666666,
+            "target_decisions": 24,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.4166666666666667,
+            "top3_decisions": 24,
+            "type_agreement": 0.6666666666666666
+          },
+          "one_finish": {
+            "correct": 4,
+            "cross_entropy": 2.2405329197645187,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.5714285714285714,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 0.5,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 10,
+            "cross_entropy": 2.665508732199669,
+            "decisions": 56,
+            "false_END": 16,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.38346088435374154,
+            "predicted_END": 16,
+            "source_agreement": 0.17857142857142858,
+            "source_decisions": 56,
+            "target_agreement": 0.7142857142857143,
+            "target_decisions": 56,
+            "top1_accuracy": 0.17857142857142858,
+            "top3_accuracy": 0.4107142857142857,
+            "top3_decisions": 56,
+            "type_agreement": 0.7142857142857143
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 2.665508732199669,
+          "decisions": 56,
+          "false_END": 16,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.38346088435374154,
+          "predicted_END": 16,
+          "source_agreement": 0.17857142857142858,
+          "source_decisions": 56,
+          "target_agreement": 0.7142857142857143,
+          "target_decisions": 56,
+          "top1_accuracy": 0.17857142857142858,
+          "top3_accuracy": 0.4107142857142857,
+          "top3_decisions": 56,
+          "type_agreement": 0.7142857142857143
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 654,
+            "cross_entropy": 1.5012402789897108,
+            "decisions": 1175,
+            "false_END": 23,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.6787561009678293,
+            "predicted_END": 274,
+            "source_agreement": 0.5212888377445339,
+            "source_decisions": 869,
+            "target_agreement": 0.4013840830449827,
+            "target_decisions": 289,
+            "top1_accuracy": 0.556595744680851,
+            "top3_accuracy": 0.6765015806111696,
+            "top3_decisions": 949,
+            "type_agreement": 0.7693617021276595
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 19,
+            "cross_entropy": 1.3479864199956257,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.7015873015873015,
+            "predicted_END": 11,
+            "source_agreement": 0.625,
+            "source_decisions": 24,
+            "target_agreement": 0.375,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5757575757575758,
+            "top3_accuracy": 0.6521739130434783,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 575,
+            "cross_entropy": 1.4799545790425874,
+            "decisions": 1012,
+            "false_END": 14,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.6866137379418237,
+            "predicted_END": 230,
+            "source_agreement": 0.5355704697986577,
+            "source_decisions": 745,
+            "target_agreement": 0.4110169491525424,
+            "target_decisions": 236,
+            "top1_accuracy": 0.5681818181818182,
+            "top3_accuracy": 0.6849148418491484,
+            "top3_decisions": 822,
+            "type_agreement": 0.7598814229249012
+          },
+          "WARRIOR": {
+            "correct": 60,
+            "cross_entropy": 1.7058441689381232,
+            "decisions": 130,
+            "false_END": 7,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.6117918068284073,
+            "predicted_END": 33,
+            "source_agreement": 0.39,
+            "source_decisions": 100,
+            "target_agreement": 0.35555555555555557,
+            "target_decisions": 45,
+            "top1_accuracy": 0.46153846153846156,
+            "top3_accuracy": 0.6153846153846154,
+            "top3_decisions": 104,
+            "type_agreement": 0.8076923076923077
+          }
+        },
+        "overall": {
+          "correct": 654,
+          "cross_entropy": 1.5012402789897108,
+          "decisions": 1175,
+          "false_END": 23,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.6787561009678293,
+          "predicted_END": 274,
+          "source_agreement": 0.5212888377445339,
+          "source_decisions": 869,
+          "target_agreement": 0.4013840830449827,
+          "target_decisions": 289,
+          "top1_accuracy": 0.556595744680851,
+          "top3_accuracy": 0.6765015806111696,
+          "top3_decisions": 949,
+          "type_agreement": 0.7693617021276595
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 158,
+            "cross_entropy": 1.5265156515340363,
+            "decisions": 281,
+            "false_END": 4,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6802809264824348,
+            "predicted_END": 63,
+            "source_agreement": 0.5164319248826291,
+            "source_decisions": 213,
+            "target_agreement": 0.40298507462686567,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5622775800711743,
+            "top3_accuracy": 0.7012987012987013,
+            "top3_decisions": 231,
+            "type_agreement": 0.7722419928825622
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 144,
+            "cross_entropy": 1.514569383595259,
+            "decisions": 248,
+            "false_END": 2,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6904258347106083,
+            "predicted_END": 54,
+            "source_agreement": 0.5425531914893617,
+            "source_decisions": 188,
+            "target_agreement": 0.41379310344827586,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5806451612903226,
+            "top3_accuracy": 0.7115384615384616,
+            "top3_decisions": 208,
+            "type_agreement": 0.7782258064516129
+          },
+          "WARRIOR": {
+            "correct": 14,
+            "cross_entropy": 1.6162936651345454,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.604040404040404,
+            "predicted_END": 9,
+            "source_agreement": 0.32,
+            "source_decisions": 25,
+            "target_agreement": 0.3333333333333333,
+            "target_decisions": 9,
+            "top1_accuracy": 0.42424242424242425,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 158,
+          "cross_entropy": 1.5265156515340363,
+          "decisions": 281,
+          "false_END": 4,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6802809264824348,
+          "predicted_END": 63,
+          "source_agreement": 0.5164319248826291,
+          "source_decisions": 213,
+          "target_agreement": 0.40298507462686567,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5622775800711743,
+          "top3_accuracy": 0.7012987012987013,
+          "top3_decisions": 231,
+          "type_agreement": 0.7722419928825622
+        }
+      }
+    },
+    "initial": {
+      "control": {
+        "by_category": {
+          "attack": {
+            "correct": 0,
+            "cross_entropy": 2.957849532365799,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.0870240394137453,
+            "predicted_END": 0,
+            "source_agreement": 0.16666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "health": {
+            "correct": 0,
+            "cross_entropy": 3.0048597355683646,
+            "decisions": 24,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.08326863678547115,
+            "predicted_END": 0,
+            "source_agreement": 0.125,
+            "source_decisions": 24,
+            "target_agreement": 0.0,
+            "target_decisions": 24,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 24,
+            "type_agreement": 1.0
+          },
+          "one_finish": {
+            "correct": 0,
+            "cross_entropy": 3.078422963619232,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.08806818181818182,
+            "predicted_END": 0,
+            "source_agreement": 0.0,
+            "source_decisions": 8,
+            "target_agreement": 0.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "WARRIOR": {
+            "correct": 0,
+            "cross_entropy": 2.9952215382031033,
+            "decisions": 56,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.08556374434511874,
+            "predicted_END": 0,
+            "source_agreement": 0.125,
+            "source_decisions": 56,
+            "target_agreement": 0.0,
+            "target_decisions": 56,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 56,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 0,
+          "cross_entropy": 2.9952215382031033,
+          "decisions": 56,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.08556374434511874,
+          "predicted_END": 0,
+          "source_agreement": 0.125,
+          "source_decisions": 56,
+          "target_agreement": 0.0,
+          "target_decisions": 56,
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.0,
+          "top3_decisions": 56,
+          "type_agreement": 1.0
+        }
+      },
+      "pairs": {
+        "base": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "id": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_id",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_id",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        },
+        "position": {
+          "both_correct": 0,
+          "both_correct_and_changed_source": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "nca_health_3_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_0_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_1_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_2_position",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "nca_attack_3_position",
+              "same_choice": true
+            }
+          ],
+          "pairs": 8,
+          "same_semantic_choice": 8
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 741,
+            "cross_entropy": 1.20501515907176,
+            "decisions": 1175,
+            "false_END": 29,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7444063216716533,
+            "predicted_END": 297,
+            "source_agreement": 0.570771001150748,
+            "source_decisions": 869,
+            "target_agreement": 0.5190311418685121,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6306382978723404,
+            "top3_accuracy": 0.7734457323498419,
+            "top3_decisions": 949,
+            "type_agreement": 0.7880851063829787
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.951985520846916,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8157768157768158,
+            "predicted_END": 10,
+            "source_agreement": 0.7083333333333334,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 644,
+            "cross_entropy": 1.1991250028045988,
+            "decisions": 1012,
+            "false_END": 22,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7471062693184002,
+            "predicted_END": 255,
+            "source_agreement": 0.5731543624161074,
+            "source_decisions": 745,
+            "target_agreement": 0.5042372881355932,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6363636363636364,
+            "top3_accuracy": 0.7761557177615572,
+            "top3_decisions": 822,
+            "type_agreement": 0.7816205533596838
+          },
+          "WARRIOR": {
+            "correct": 74,
+            "cross_entropy": 1.315098360639352,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7052711422564364,
+            "predicted_END": 32,
+            "source_agreement": 0.52,
+            "source_decisions": 100,
+            "target_agreement": 0.5333333333333333,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5692307692307692,
+            "top3_accuracy": 0.7307692307692307,
+            "top3_decisions": 104,
+            "type_agreement": 0.8076923076923077
+          }
+        },
+        "overall": {
+          "correct": 741,
+          "cross_entropy": 1.20501515907176,
+          "decisions": 1175,
+          "false_END": 29,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7444063216716533,
+          "predicted_END": 297,
+          "source_agreement": 0.570771001150748,
+          "source_decisions": 869,
+          "target_agreement": 0.5190311418685121,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6306382978723404,
+          "top3_accuracy": 0.7734457323498419,
+          "top3_decisions": 949,
+          "type_agreement": 0.7880851063829787
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 147,
+            "cross_entropy": 1.528246774792247,
+            "decisions": 281,
+            "false_END": 12,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6660864999675968,
+            "predicted_END": 72,
+            "source_agreement": 0.4507042253521127,
+            "source_decisions": 213,
+            "target_agreement": 0.23880597014925373,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5231316725978647,
+            "top3_accuracy": 0.7316017316017316,
+            "top3_decisions": 231,
+            "type_agreement": 0.7402135231316725
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 130,
+            "cross_entropy": 1.5257919470389043,
+            "decisions": 248,
+            "false_END": 10,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6672285784003051,
+            "predicted_END": 62,
+            "source_agreement": 0.4627659574468085,
+            "source_decisions": 188,
+            "target_agreement": 0.2413793103448276,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5241935483870968,
+            "top3_accuracy": 0.7403846153846154,
+            "top3_decisions": 208,
+            "type_agreement": 0.7419354838709677
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.546695177302216,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6575036075036075,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6521739130434783,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 147,
+          "cross_entropy": 1.528246774792247,
+          "decisions": 281,
+          "false_END": 12,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6660864999675968,
+          "predicted_END": 72,
+          "source_agreement": 0.4507042253521127,
+          "source_decisions": 213,
+          "target_agreement": 0.23880597014925373,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5231316725978647,
+          "top3_accuracy": 0.7316017316017316,
+          "top3_decisions": 231,
+          "type_agreement": 0.7402135231316725
+        }
+      }
+    }
+  },
+  "training": {
+    "candidates": {
+      "A": {
+        "checkpoint_sha256": "c1d99af8710ea0540dc2976b7c17ce25d0852f4321dd8361dd162523bda728b7",
+        "epochs_run": 7,
+        "optimizer_steps": 350,
+        "seconds": 31.547999800008256,
+        "selected_epoch": 3,
+        "selection_guard_passed": true
+      },
+      "B": {
+        "checkpoint_sha256": "9975909f8b714aa42c946da9409dd2eca2415716be806da41a83ce9400e3f210",
+        "epochs_run": 7,
+        "optimizer_steps": 350,
+        "seconds": 30.15472960000625,
+        "selected_epoch": 3,
+        "selection_guard_passed": true
+      }
+    },
+    "dataset_manifest_sha256": "0d04e5244b7d18ea72edc913c49bd25b48b9c21939f2c42a2e60c95457f62b21"
+  },
+  "verdict": "NO-GO"
+}

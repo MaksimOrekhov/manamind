@@ -1,0 +1,251 @@
+{
+  "config": {
+    "batch_size": 32,
+    "device": "cuda",
+    "gates": {
+      "maximum_new_lethal_errors": 0,
+      "maximum_real_CE_increase": 0.05,
+      "maximum_real_top1_drop": 0.03,
+      "minimum_base_stats_pairs": 4,
+      "minimum_stats_pair_gain_over_A": 2,
+      "minimum_variant_stats_pairs": 4
+    },
+    "gradient_clip": 1.0,
+    "learning_rate": 0.0001,
+    "max_epochs": 12,
+    "patience": 4,
+    "real_selection_CE_tolerance": 0.03,
+    "real_selection_top1_tolerance": 0.03,
+    "seconds_per_candidate": 600,
+    "seed": 42,
+    "selection": "minimum tactical validation CE subject to real CE<=initial+0.03 and Top1>=initial-0.03; matched common patience4",
+    "steps_per_epoch": 50,
+    "tactical_counts_cycle": [
+      6,
+      6,
+      6,
+      7,
+      7
+    ],
+    "weight_decay": 0.001
+  },
+  "config_sha256": "5ea8858d903036f4bb27a45c1f8262265f0b7763153568549d9563370306022a",
+  "data_gate_sha256": "d8f1f048841ae9885b1ac3dd9e55c379d981006b0c3dfa0f3fa696a07a22c11c",
+  "dataset_manifest_sha256": "0d04e5244b7d18ea72edc913c49bd25b48b9c21939f2c42a2e60c95457f62b21",
+  "initial_logit_max_difference": 0.0,
+  "initial_sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
+  "initial_tactical_validation": {
+    "by_category": {
+      "attack": {
+        "correct": 1,
+        "cross_entropy": 2.088120460510254,
+        "decisions": 8,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.33779761904761907,
+        "predicted_END": 0,
+        "source_agreement": 0.25,
+        "source_decisions": 8,
+        "target_agreement": 0.25,
+        "target_decisions": 8,
+        "top1_accuracy": 0.125,
+        "top3_accuracy": 0.25,
+        "top3_decisions": 8,
+        "type_agreement": 1.0
+      },
+      "health": {
+        "correct": 0,
+        "cross_entropy": 1.8907273411750793,
+        "decisions": 8,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.2895833333333333,
+        "predicted_END": 0,
+        "source_agreement": 0.375,
+        "source_decisions": 8,
+        "target_agreement": 0.0,
+        "target_decisions": 8,
+        "top1_accuracy": 0.0,
+        "top3_accuracy": 0.375,
+        "top3_decisions": 8,
+        "type_agreement": 1.0
+      },
+      "multi_finish": {
+        "correct": 1,
+        "cross_entropy": 0.7699140980839729,
+        "decisions": 8,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.5625,
+        "predicted_END": 0,
+        "source_agreement": 0.125,
+        "source_decisions": 8,
+        "target_agreement": 1.0,
+        "target_decisions": 8,
+        "top1_accuracy": 0.125,
+        "top3_accuracy": 1.0,
+        "top3_decisions": 8,
+        "type_agreement": 1.0
+      },
+      "target": {
+        "correct": 5,
+        "cross_entropy": 1.054500237107277,
+        "decisions": 8,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.8125,
+        "predicted_END": 0,
+        "source_agreement": 1.0,
+        "source_decisions": 8,
+        "target_agreement": 0.625,
+        "target_decisions": 8,
+        "top1_accuracy": 0.625,
+        "top3_accuracy": 1.0,
+        "top3_decisions": 8,
+        "type_agreement": 1.0
+      }
+    },
+    "by_class": {
+      "MAGE": {
+        "correct": 5,
+        "cross_entropy": 1.054500237107277,
+        "decisions": 8,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.8125,
+        "predicted_END": 0,
+        "source_agreement": 1.0,
+        "source_decisions": 8,
+        "target_agreement": 0.625,
+        "target_decisions": 8,
+        "top1_accuracy": 0.625,
+        "top3_accuracy": 1.0,
+        "top3_decisions": 8,
+        "type_agreement": 1.0
+      },
+      "WARRIOR": {
+        "correct": 2,
+        "cross_entropy": 1.5829206332564354,
+        "decisions": 24,
+        "false_END": 0,
+        "gold_END": 0,
+        "mean_reciprocal_rank": 0.3966269841269841,
+        "predicted_END": 0,
+        "source_agreement": 0.25,
+        "source_decisions": 24,
+        "target_agreement": 0.4166666666666667,
+        "target_decisions": 24,
+        "top1_accuracy": 0.08333333333333333,
+        "top3_accuracy": 0.5416666666666666,
+        "top3_decisions": 24,
+        "type_agreement": 1.0
+      }
+    },
+    "overall": {
+      "correct": 7,
+      "cross_entropy": 1.4508155342191458,
+      "decisions": 32,
+      "false_END": 0,
+      "gold_END": 0,
+      "mean_reciprocal_rank": 0.5005952380952381,
+      "predicted_END": 0,
+      "source_agreement": 0.4375,
+      "source_decisions": 32,
+      "target_agreement": 0.46875,
+      "target_decisions": 32,
+      "top1_accuracy": 0.21875,
+      "top3_accuracy": 0.65625,
+      "top3_decisions": 32,
+      "type_agreement": 1.0
+    }
+  },
+  "initial_validation": {
+    "by_category": {
+      "None": {
+        "correct": 147,
+        "cross_entropy": 1.528246778345193,
+        "decisions": 281,
+        "false_END": 12,
+        "gold_END": 68,
+        "mean_reciprocal_rank": 0.6660864999675968,
+        "predicted_END": 72,
+        "source_agreement": 0.4507042253521127,
+        "source_decisions": 213,
+        "target_agreement": 0.23880597014925373,
+        "target_decisions": 67,
+        "top1_accuracy": 0.5231316725978647,
+        "top3_accuracy": 0.7316017316017316,
+        "top3_decisions": 231,
+        "type_agreement": 0.7402135231316725
+      }
+    },
+    "by_class": {
+      "PRIEST": {
+        "correct": 130,
+        "cross_entropy": 1.5257919553306796,
+        "decisions": 248,
+        "false_END": 10,
+        "gold_END": 60,
+        "mean_reciprocal_rank": 0.6672285784003051,
+        "predicted_END": 62,
+        "source_agreement": 0.4627659574468085,
+        "source_decisions": 188,
+        "target_agreement": 0.2413793103448276,
+        "target_decisions": 58,
+        "top1_accuracy": 0.5241935483870968,
+        "top3_accuracy": 0.7403846153846154,
+        "top3_decisions": 208,
+        "type_agreement": 0.7419354838709677
+      },
+      "WARRIOR": {
+        "correct": 17,
+        "cross_entropy": 1.546695145242142,
+        "decisions": 33,
+        "false_END": 2,
+        "gold_END": 8,
+        "mean_reciprocal_rank": 0.6575036075036075,
+        "predicted_END": 10,
+        "source_agreement": 0.36,
+        "source_decisions": 25,
+        "target_agreement": 0.2222222222222222,
+        "target_decisions": 9,
+        "top1_accuracy": 0.5151515151515151,
+        "top3_accuracy": 0.6521739130434783,
+        "top3_decisions": 23,
+        "type_agreement": 0.7272727272727273
+      }
+    },
+    "overall": {
+      "correct": 147,
+      "cross_entropy": 1.528246778345193,
+      "decisions": 281,
+      "false_END": 12,
+      "gold_END": 68,
+      "mean_reciprocal_rank": 0.6660864999675968,
+      "predicted_END": 72,
+      "source_agreement": 0.4507042253521127,
+      "source_decisions": 213,
+      "target_agreement": 0.23880597014925373,
+      "target_decisions": 67,
+      "top1_accuracy": 0.5231316725978647,
+      "top3_accuracy": 0.7316017316017316,
+      "top3_decisions": 231,
+      "type_agreement": 0.7402135231316725
+    }
+  },
+  "real_input_sha256": {
+    "train": "abcf75fccd45efc0d27eade7678e1de26f1374af2451d6e404d6b1fc733076dc",
+    "validation": "b8451e62c25f369e1a196adf40020553c89b7316efc678a8399afbe47ccf36ac"
+  },
+  "real_split_sha256": "bb578b31ef688b71461ac6cd532137efd19fbc2f867c248669168c33c95edaaf",
+  "runtime": {
+    "gpu": "NVIDIA GeForce RTX 5080",
+    "torch": "2.14.0+cu130"
+  },
+  "source_sha256": {
+    "scripts/train_numeric_combat_ablation.py": "0e50e765d2dd490cc64962a10b2ffbbeef77efd62ec9326c9a516281a705764b",
+    "src/manamind/training/numeric_combat.py": "5d0df4ca0df578b551e31375ea268b866e3d65a792f1b42df0caafe1c11b8125",
+    "src/manamind/training/tactical_certificates.py": "53baeac3706d06b244a9133b95f9f12ecbb845eabb20dc97fb7b369cebce762f",
+    "src/manamind/training/tactical_learning.py": "21a2a4854a52360012ec617bed89d6beaca5789d73d78252d302665ef44fa2ef"
+  }
+}

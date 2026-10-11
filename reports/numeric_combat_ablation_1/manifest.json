@@ -1,0 +1,52 @@
+{
+  "config": {
+    "batch_size": 32,
+    "device": "cuda",
+    "gates": {
+      "maximum_new_lethal_errors": 0,
+      "maximum_real_CE_increase": 0.05,
+      "maximum_real_top1_drop": 0.03,
+      "minimum_base_stats_pairs": 4,
+      "minimum_stats_pair_gain_over_A": 2,
+      "minimum_variant_stats_pairs": 4
+    },
+    "gradient_clip": 1.0,
+    "learning_rate": 0.0001,
+    "max_epochs": 12,
+    "patience": 4,
+    "real_selection_CE_tolerance": 0.03,
+    "real_selection_top1_tolerance": 0.03,
+    "seconds_per_candidate": 600,
+    "seed": 42,
+    "selection": "minimum tactical validation CE subject to real CE<=initial+0.03 and Top1>=initial-0.03; matched common patience4",
+    "steps_per_epoch": 50,
+    "tactical_counts_cycle": [
+      6,
+      6,
+      6,
+      7,
+      7
+    ],
+    "weight_decay": 0.001
+  },
+  "config_sha256": "5ea8858d903036f4bb27a45c1f8262265f0b7763153568549d9563370306022a",
+  "counts": {
+    "control": 64,
+    "train": 192,
+    "validation": 32
+  },
+  "files": {
+    "control": "5beb36fde91c57c2e29b93f0ed78904c6aa433c7307a1b8f1bcd6a1edaf60f33",
+    "train": "4f24a2b176a1b9fdf190dba398cf3604ff07b0628292586fecb1fbd4f11d6219",
+    "validation": "347a78a941c86a5915aa6278cbf91b2ab7f71dfc7355ac6998635dc716d3dc51"
+  },
+  "initial_sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
+  "metadata_sha256": "38d2154103477c0f05ea32d3e741936673aff4c4b483af59cd75f5c466de7f0d",
+  "old_controls_overlap": 0,
+  "schema": "numeric_combat_ablation/1",
+  "source_sha256": {
+    "scripts/prepare_numeric_combat_ablation.py": "99f042091d50ecc1fee89f3bb145d1086ccf7431577eb47cc7294bb2cbc4e3b5",
+    "src/manamind/training/numeric_combat.py": "5d0df4ca0df578b551e31375ea268b866e3d65a792f1b42df0caafe1c11b8125"
+  },
+  "tl2_manifest_sha256": "35693b3a1d8b1892334842f95ed87484f9b53a9445f73ae9470d91bd14b8ed65"
+}

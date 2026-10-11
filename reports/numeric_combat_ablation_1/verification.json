@@ -1,0 +1,16 @@
+{
+  "ruff": "PASS",
+  "pinned_regeneration": {"outputs": 2, "diff": "clean"},
+  "focused_numeric_and_TL2_tests": {"passed": 45},
+  "clean_source_full_pytest": {"passed": 977, "skipped": 1, "deselected_optimizer_training_tests": 4, "failed": 0},
+  "new_fits": 2,
+  "post_control_fits": 0,
+  "initial_logit_max_difference": 0.0,
+  "A_common_weights_exactly_reproduce_TL2_B": true,
+  "checkpoint_reload_exact_logits": true,
+  "production_rejects_numeric_checkpoint_schema": true,
+  "unknown_context_inputs_zero": true,
+  "unknown_context_logits_equal_numeric_zero": true,
+  "source_input_checkpoint_seals": "PASS",
+  "public_private_identifiers_states_logits_scan": "PASS"
+}

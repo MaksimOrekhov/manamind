@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "pinned text/base metadata",
+    "synthetic declarations",
+    "legal menu",
+    "independent arithmetic vs exact Outcome",
+    "new control normalized overlap TL1/TL2/MF1/MF2C = 0",
+    "encoding before optimizers"
+  ],
+  "passed": true,
+  "rows": 288,
+  "sha256": "d8f1f048841ae9885b1ac3dd9e55c379d981006b0c3dfa0f3fa696a07a22c11c"
+}
