@@ -1,0 +1,41 @@
+{
+  "cached_report_byte_reproduction": true,
+  "environment_note": "Default sandbox pytest temp could not create numbered directories; final full run used a fresh workspace basetemp. No test was changed or suppressed to hide a failure.",
+  "fits": 0,
+  "focused_tests": {
+    "command": "python -m pytest tests/test_combat_reality.py tests/test_outcome_forecast.py tests/test_outcome_contract.py tests/test_outcome_verify.py -q",
+    "passed": 105
+  },
+  "full_tests": {
+    "basetemp": "data/processed_combat_reality_1/pytest_full",
+    "deselected": 4,
+    "failed": 1,
+    "failure": "test_no_submodules_or_vendored_engine: pre-existing untracked vendor/RosettaStone directory",
+    "passed": 1000,
+    "skipped": 1,
+    "training_run": false,
+    "training_test_exclusions": [
+      "small_synthetic_training_reduces_train_loss",
+      "v2_training_frozen_reference_and_reproduction",
+      "split_and_training_reproduce_and_test_is_only_scored_after_checkpoint",
+      "short_training_roundtrips_checkpoint_from_existing_v2_contract"
+    ]
+  },
+  "input_seals_rechecked": true,
+  "manual_level_assertions": 108,
+  "manual_value_assertions": 108,
+  "pinned_generation": {
+    "catalog_diff": "empty",
+    "outputs_reproduced": 2
+  },
+  "policy_model_loads_in_audit": 0,
+  "production_files_modified": [],
+  "public_json_privacy_check": true,
+  "ruff": "src scripts tests: passed",
+  "source_hashes": {
+    "scripts\\combat_reality_audit.py": "ff6ea8643e3d03ea62bf29554e2d15e004e7efd5b84532e156b62c134262e08f",
+    "scripts\\report_combat_reality.py": "0cf3b6521ab770cb7d208c6358996761a4fd4af02e71db0d2fd46a0c698129a6",
+    "src\\manamind\\training\\combat_reality.py": "9e2b6bd0d16b582f43f2f9d8aa291e501a395d3db7a32b4e84afd5882b030f5d",
+    "tests\\test_combat_reality.py": "1d272dc5355757026e36369452dad6d148d483afd3acaac8cacadd936587209a"
+  }
+}

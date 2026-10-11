@@ -1,0 +1,265 @@
+{
+  "cases": [
+    {
+      "case": 1,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": false,
+        "source_damage_packet": 1,
+        "source_health_after_packet": 1,
+        "source_shield_removed": false,
+        "target_body_dies": false,
+        "target_damage_packet": 3,
+        "target_health_after_packet": 1,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": false,
+        "attack_health_margin": -1,
+        "health_retaliation_margin": 1,
+        "retaliation_attack": 1
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT"
+      ],
+      "strata": [
+        "location",
+        "ordinary_first"
+      ]
+    },
+    {
+      "case": 2,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": true,
+        "source_damage_packet": 6,
+        "source_health_after_packet": 0,
+        "source_shield_removed": false,
+        "target_body_dies": false,
+        "target_damage_packet": 3,
+        "target_health_after_packet": 3,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": false,
+        "attack_health_margin": -3,
+        "health_retaliation_margin": 0,
+        "retaliation_attack": 6
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT",
+        "BOARD_TEXT_MISSING"
+      ],
+      "strata": [
+        "deathrattle"
+      ]
+    },
+    {
+      "case": 3,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": true,
+        "source_damage_packet": 6,
+        "source_health_after_packet": 0,
+        "source_shield_removed": false,
+        "target_body_dies": false,
+        "target_damage_packet": 3,
+        "target_health_after_packet": 3,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": false,
+        "attack_health_margin": -3,
+        "health_retaliation_margin": 0,
+        "retaliation_attack": 6
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT",
+        "BOARD_TEXT_MISSING",
+        "PASSIVE_WEAPON_EFFECT_UNREVIEWED"
+      ],
+      "strata": [
+        "weapon"
+      ]
+    },
+    {
+      "case": 4,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": false,
+        "source_damage_packet": 3,
+        "source_health_after_packet": 2,
+        "source_shield_removed": false,
+        "target_body_dies": true,
+        "target_damage_packet": 2,
+        "target_health_after_packet": 0,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": true,
+        "attack_health_margin": 0,
+        "health_retaliation_margin": 2,
+        "retaliation_attack": 3
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT",
+        "BOARD_TEXT_MISSING",
+        "HEALING_BONUS_UNOBSERVED",
+        "OPPONENT_SECRET",
+        "SANCTUM_UNOBSERVED"
+      ],
+      "strata": [
+        "secret"
+      ]
+    },
+    {
+      "case": 5,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": false,
+        "source_damage_packet": 2,
+        "source_health_after_packet": 3,
+        "source_shield_removed": false,
+        "target_body_dies": true,
+        "target_damage_packet": 2,
+        "target_health_after_packet": -1,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": true,
+        "attack_health_margin": 1,
+        "health_retaliation_margin": 3,
+        "retaliation_attack": 2
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT",
+        "BOARD_TEXT_MISSING",
+        "OPPONENT_SECRET",
+        "REBORN_BASE_UNKNOWN"
+      ],
+      "strata": [
+        "reborn"
+      ]
+    },
+    {
+      "case": 6,
+      "exchange_level": "VERIFIED_LOCAL",
+      "hand_expected_exchange": {
+        "source_body_dies": true,
+        "source_damage_packet": 2,
+        "source_health_after_packet": -1,
+        "source_shield_removed": false,
+        "target_body_dies": true,
+        "target_damage_packet": 3,
+        "target_health_after_packet": 0,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": true,
+        "attack_health_margin": 0,
+        "health_retaliation_margin": -1,
+        "retaliation_attack": 2
+      },
+      "passed": true,
+      "refusal_reasons": [],
+      "strata": [
+        "verified"
+      ]
+    },
+    {
+      "case": 7,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": false,
+        "source_damage_packet": 2,
+        "source_health_after_packet": 3,
+        "source_shield_removed": false,
+        "target_body_dies": true,
+        "target_damage_packet": 4,
+        "target_health_after_packet": -2,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": true,
+        "attack_health_margin": 2,
+        "health_retaliation_margin": 3,
+        "retaliation_attack": 2
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "AURA_SCOPE_UNREVIEWED",
+        "BOARD_STATIC_TEXT",
+        "BOARD_TRIGGER",
+        "DEATHRATTLE",
+        "OPPONENT_SECRET"
+      ],
+      "strata": [
+        "aura"
+      ]
+    },
+    {
+      "case": 8,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": true,
+        "source_damage_packet": 4,
+        "source_health_after_packet": -2,
+        "source_shield_removed": false,
+        "target_body_dies": false,
+        "target_damage_packet": 0,
+        "target_health_after_packet": 4,
+        "target_shield_removed": true
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": false,
+        "attack_health_margin": -3,
+        "health_retaliation_margin": -2,
+        "retaliation_attack": 4
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_TEXT_MISSING"
+      ],
+      "strata": [
+        "shield"
+      ]
+    },
+    {
+      "case": 9,
+      "exchange_level": "CONDITIONAL",
+      "hand_expected_exchange": {
+        "source_body_dies": true,
+        "source_damage_packet": 3,
+        "source_health_after_packet": -2,
+        "source_shield_removed": false,
+        "target_body_dies": true,
+        "target_damage_packet": 2,
+        "target_health_after_packet": 1,
+        "target_shield_removed": false
+      },
+      "hand_expected_relations": {
+        "attack_ge_health": false,
+        "attack_health_margin": -1,
+        "health_retaliation_margin": -2,
+        "retaliation_attack": 3
+      },
+      "passed": true,
+      "refusal_reasons": [
+        "BOARD_STATIC_TEXT",
+        "OPPONENT_SECRET"
+      ],
+      "strata": [
+        "poisonous"
+      ]
+    }
+  ],
+  "level_assertions": 108,
+  "limitations": "nine cases are not independent game-quality evaluation; Immune/unknown flags covered by isolated tests, absent in real attack sample",
+  "selection": "first pre-action feature-stratified cases in pinned split order",
+  "value_assertions": 108
+}
