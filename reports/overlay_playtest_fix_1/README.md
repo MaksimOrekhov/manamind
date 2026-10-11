@@ -39,5 +39,7 @@
 ## Проверки
 
 - `tests/test_overlay_presentation.py`: 21 passed.
-- `apps/overlay-ui`: Vitest 11 passed; `vue-tsc --noEmit` passed.
+- Финальный полный набор Python: 670 passed, 1 skipped; ruff и offline regeneration pinned artifacts прошли.
+- `apps/overlay-ui`: Vitest 11 passed; `vue-tsc --noEmit` и production build прошли.
+- Windows/WebView2 smoke: все 12 обязательных результатов прошли, включая RU/EN источник/цель и предупреждение, переключение настроек окна, очистку после окончания матча и отсутствие HTTP-сервера. Exit code — 0.
 - Ранжирование, checkpoint, Policy v2, StateEncoder и LIVE state contract не изменялись.

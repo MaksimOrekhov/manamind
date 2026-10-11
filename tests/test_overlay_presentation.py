@@ -50,7 +50,7 @@ def recommendation():
 def _enemy_6_6_state():
     return {"self_hand": [{"card_id": "JAIL_913"}],
             "self_player": {"hand_size": 1, "board": [], "locations": [], "active_effects": []},
-            "opponent": {"board": [{"card": {"card_id": "JAIL_912"}, "board_position": 1,
+            "opponent": {"board": [{"card": {"card_id": "TIME_005t6"}, "board_position": 1,
                                       "current_attack": 6, "current_health": 6, "max_health": 6,
                                       "divine_shield": False, "lifesteal": False}], "locations": []}}
 
@@ -61,7 +61,7 @@ def test_jail_913_enemy_6_6_top1_gets_localized_caution_without_reranking():
     state_value["self_player"]["active_effects"] = [{"card_id": "QUEST_001"}]
     play = {"type": "PLAY_CARD", "card_id": "JAIL_913", "source_card_id": "JAIL_913",
             "source_kind": "SPELL", "target_kind": "MINION", "target_side": "OPPONENT",
-            "target_card_id": "JAIL_912", "target_board_position": 1,
+            "target_card_id": "TIME_005t6", "target_board_position": 1,
             "target_attack": 6, "target_health": 6, "hand_index": 0, "play_position": 0}
     snap = SimpleNamespace(game_key="private_game_key", seq=78, decision={"options_id": 91},
                            state_hash="hash", status="READY", active_player="SELF", state=state_value)
@@ -80,7 +80,7 @@ def test_jail_913_enemy_6_6_top1_gets_localized_caution_without_reranking():
 
 def test_enemy_benefit_warning_is_fail_closed_and_does_not_assume_intent():
     play = {"type": "PLAY_CARD", "card_id": "JAIL_913", "source_card_id": "JAIL_913",
-            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "JAIL_912",
+            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "TIME_005t6",
             "target_board_position": 1, "target_attack": 6, "target_health": 6}
     state_value = _enemy_6_6_state()
     # A visible objective can make casting a spell intentional; this display-only warning
@@ -97,7 +97,7 @@ def test_enemy_benefit_warning_is_fail_closed_and_does_not_assume_intent():
 def test_benefit_classifier_covers_only_clear_direct_effects():
     state_value = _enemy_6_6_state()
     play = {"type": "HERO_POWER", "card_id": "TEST", "source_card_id": "TEST",
-            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "JAIL_912",
+            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "TIME_005t6",
             "target_board_position": 1, "target_attack": 6, "target_health": 6}
     for text, category in [("Give a minion Divine Shield.", "Божественный щит"),
                            ("Give a minion Lifesteal.", "Похищение жизни")]:

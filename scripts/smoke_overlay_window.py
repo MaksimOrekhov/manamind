@@ -15,10 +15,21 @@ from types import SimpleNamespace
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+_REQUIRED_CHECKS = (
+    "app_mounted", "ru_source_target", "warning_ru", "en_switch", "warning_en",
+    "collapsed_height_ok", "native_opacity_ok", "native_topmost", "native_borderless",
+    "restored_height_ok", "game_over_clears_advice", "no_http_server",
+)
+
+
 from manamind.live.desktop import DesktopApi, inline_app, window_geometry
 from manamind.live.localization import CardNames
 from manamind.live.presentation import OverlayFeed, PresentationEvent
 from manamind.live.recommendation import RankedAction, Recommendation
+
+
+def smoke_passed(result: dict) -> bool:
+    return not result.get("failure_class") and all(result.get(name) is True for name in _REQUIRED_CHECKS)
 
 
 def main() -> None:
@@ -27,7 +38,8 @@ def main() -> None:
     args = parser.parse_args()
     import webview
 
-    feed = OverlayFeed(CardNames.load(ROOT / "data/localization/card_names_253932.json"))
+    feed = OverlayFeed(CardNames.load(ROOT / "data/localization/card_names_253932.json",
+                                       ROOT / "data/cards/standard_current_enUS.json"))
     api = DesktopApi(feed, args.output.parent / "smoke_preferences.json")
     api.set_preferences({"language": "ru", "collapsed": False, "opacity": .92})
     window = webview.create_window("ManaMind host smoke", html=inline_app(ROOT / "apps/overlay-ui/dist"),
@@ -52,27 +64,43 @@ def main() -> None:
             # The Vue module needs a DOM and the pywebviewready bridge.
             time.sleep(.8)
             result["app_mounted"] = bool(window.evaluate_js("document.querySelector('header')"))
-            state = {"self_hand": [{"card_id": "CS2_029"}], "self_player": {"hand_size": 1, "board": [], "locations": []},
-                     "opponent": {"board": [], "locations": []}}
+            state = {"self_hand": [{"card_id": "JAIL_913"}],
+                     "self_player": {"hand_size": 1, "board": [], "locations": []},
+                     "opponent": {"board": [{"card": {"card_id": "TIME_005t6"}, "board_position": 1,
+                                              "current_attack": 6, "current_health": 6, "max_health": 6,
+                                              "divine_shield": False, "lifesteal": False}], "locations": []}}
             snap = SimpleNamespace(game_key="smoke", seq=1, decision={"options_id": 1}, state_hash="smoke",
                                    status="READY", active_player="SELF", state=state)
-            ranked = Recommendation(("smoke", 1, 1, "smoke"), 1, 1, (RankedAction(0, 1.0, {
-                "type": "PLAY_CARD", "card_id": "CS2_029", "hand_index": 0, "target_kind": "HERO",
-                "target_side": "OPPONENT", "play_position": 0}),), 1.0)
+            ranked = Recommendation(("smoke", 1, 1, "smoke"), 1, 2, (RankedAction(0, 1.0, {
+                "type": "PLAY_CARD", "card_id": "JAIL_913", "source_card_id": "JAIL_913",
+                "source_kind": "SPELL", "hand_index": 0, "target_kind": "MINION",
+                "target_side": "OPPONENT", "target_card_id": "TIME_005t6", "target_board_position": 1,
+                "target_attack": 6, "target_health": 6, "play_position": 0}),
+                RankedAction(1, 0.0, {"type": "END_TURN", "play_position": 0})), 1.0)
             feed.publish(PresentationEvent("recommendation", snapshot=snap, recommendation=ranked))
             time.sleep(.4)
             text = window.evaluate_js("document.querySelector('main').innerText")
-            result["ru_source_target"] = "Огненный шар" in text and "ГЕРОЙ ПРОТИВНИКА" in text
+            result["ru_source_target"] = "Задержи их!" in text and "СУЩЕСТВО ПРОТИВНИКА" in text
+            ru_warning = window.evaluate_js("document.querySelector('.item__risk-warning')?.innerText || ''")
+            result["warning_ru"] = "Внимание" in ru_warning and "Похищение жизни" in ru_warning
             window.evaluate_js("document.querySelector('.language').click()")
             time.sleep(.3)
-            result["en_switch"] = "Fireball" in window.evaluate_js("document.querySelector('.item__source').innerText")
+            en_text = window.evaluate_js("document.querySelector('.item__source').innerText")
+            result["en_switch"] = "Hold Them Off!" in en_text
+            en_warning = window.evaluate_js("document.querySelector('.item__risk-warning')?.innerText || ''")
+            result["warning_en"] = "Warning" in en_warning and "Lifesteal" in en_warning
             api.set_preferences({"language": "en", "opacity": .65, "collapsed": True})
-            result["collapsed_height"] = window.height
+            result["collapsed_height"] = int(window.height)
+            result["collapsed_height_ok"] = result["collapsed_height"] == 56
             result["native_opacity"] = float(window.native.Opacity)
+            result["native_opacity_ok"] = abs(result["native_opacity"] - .65) <= .02
             result["native_topmost"] = bool(window.native.TopMost)
             result["native_border_style"] = str(window.native.FormBorderStyle)
+            result["native_borderless"] = "none" in result["native_border_style"].lower()
             api.set_preferences({"collapsed": False})
-            result["restored_height"] = window.height
+            time.sleep(.2)
+            result["restored_height"] = int(window.height)
+            result["restored_height_ok"] = result["restored_height"] > 56
             feed.publish(PresentationEvent("status", status="GAME_OVER"))
             time.sleep(.4)
             result["game_over_clears_advice"] = window.evaluate_js("document.querySelectorAll('.item').length") == 0
@@ -87,8 +115,10 @@ def main() -> None:
             window.destroy()
 
     webview.start(func=check, gui="edgechromium", debug=False, http_server=False)
+    failed = [name for name in _REQUIRED_CHECKS if result.get(name) is not True]
+    result["failed_checks"] = failed
     print(json.dumps(result))
-    if result.get("failure_class") or not result.get("ru_source_target"):
+    if not smoke_passed(result):
         raise SystemExit(1)
 
 
