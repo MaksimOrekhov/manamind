@@ -1,4 +1,4 @@
-"""One frozen CPU behavior-cloning run; test opens only after checkpoint selection."""
+"""Bounded behavior cloning; test opens only after checkpoint selection."""
 from __future__ import annotations
 
 import argparse
@@ -8,6 +8,7 @@ import json
 import random
 import shutil
 import subprocess
+import time
 from pathlib import Path
 
 import numpy as np
@@ -75,36 +76,64 @@ def validate_config(config):
         raise ValueError("Learning rate and gradient clip must be positive")
 
 
-def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_checkpoint: Path | None = None) -> dict:
-    validate_config(config)
+def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_checkpoint: Path | None = None,
+        prepared_manifest: Path | None = None) -> dict:
+    # The historical ML-1C/ML-2A protocol stays reproducible. Expanded-data runs
+    # require a separately frozen manifest and the exact frozen v2 representation.
+    validation_config = dict(config)
+    if prepared_manifest is not None:
+        if config.get("representation") != 2 or config["device"] not in {"cpu", "cuda"}:
+            raise ValueError("Retraining requires Policy v2 and cpu/cuda")
+        validation_config["device"] = "cpu"
+    validate_config(validation_config)
+    device = torch.device(config["device"])
+    if device.type == "cuda" and not torch.cuda.is_available():
+        raise ValueError("Requested CUDA is unavailable")
     catalog = CardCatalog.from_json(cards)
     audit = audit_dataset(directory, catalog)
     rows = sorted(load_examples(directory), key=lambda r: r["decision_id"])
-    parts, old_test = freeze_split(rows, config["split_seed"], config["previous_smoke_split_seed"])
     dataset_sha = identity(rows)
-    split = {"algorithm": "ML1B_outcome_hash_split_with_published_smoke_test_forced_to_train/1",
+    manifest = None
+    if prepared_manifest is not None:
+        try:
+            from scripts.prepare_policy_retrain import validate_manifest
+        except ModuleNotFoundError:
+            from prepare_policy_retrain import validate_manifest
+        manifest = json.loads(prepared_manifest.read_text(encoding="utf-8"))
+        parts = validate_manifest(manifest, rows, config, baseline_checkpoint)
+        split = manifest["split"]
+    else:
+        parts, old_test = freeze_split(rows, config["split_seed"], config["previous_smoke_split_seed"])
+        split = {"algorithm": "ML1B_outcome_hash_split_with_published_smoke_test_forced_to_train/1",
              "seed": config["split_seed"], "previous_smoke_split_seed": config["previous_smoke_split_seed"],
              "published_smoke_test_game_ids": old_test, "dataset_sha256": dataset_sha,
              "game_ids": {k: sorted({r["game_id"] for r in rs}) for k, rs in parts.items()},
-             "decision_ids": {k: [r["decision_id"] for r in rs] for k, rs in parts.items()}}
+                 "decision_ids": {k: [r["decision_id"] for r in rs] for k, rs in parts.items()}}
     representation = config.get("representation", 1)
     reference = None
     if representation == 2:
         if baseline_checkpoint is None:
-            raise ValueError("Policy v2 requires an explicit frozen v1 checkpoint")
+            raise ValueError("Policy v2 requires an explicit frozen comparison checkpoint")
         reference, reference_encoder, reference_payload = load_policy_checkpoint(baseline_checkpoint)
-        if not isinstance(reference, PolicyNetwork):
-            raise ValueError("Comparison reference must be policy v1")
-        experiment = reference_payload["experiment"]
-        if (experiment["dataset_sha256"] != dataset_sha or experiment["split"] != split
-                or identity(catalog.to_dict()) != reference_payload["catalog_sha256"]):
-            raise ValueError("V1/v2 data, catalog or frozen split identity mismatch")
+        if manifest is not None:
+            if (not isinstance(reference, PolicyNetworkV2)
+                    or config["hidden_size"] != reference.hidden_size or config["dropout"] != reference.dropout
+                    or identity(catalog.to_dict()) != reference_payload["catalog_sha256"]):
+                raise ValueError("Retraining architecture/catalog differs from frozen Policy v2")
+        else:
+            if not isinstance(reference, PolicyNetwork):
+                raise ValueError("Comparison reference must be policy v1")
+            experiment = reference_payload["experiment"]
+            if (experiment["dataset_sha256"] != dataset_sha or experiment["split"] != split
+                    or identity(catalog.to_dict()) != reference_payload["catalog_sha256"]):
+                raise ValueError("V1/v2 data, catalog or frozen split identity mismatch")
     output.mkdir(parents=True, exist_ok=False)
-    snapshot = output / "dataset"
-    snapshot.mkdir()
-    for path in sorted(directory.iterdir()):
-        if path.suffix == ".jsonl" or path.name.endswith(".audit.json"):
-            shutil.copyfile(path, snapshot / path.name)
+    snapshot = directory if manifest is not None else output / "dataset"
+    if manifest is None:
+        snapshot.mkdir()
+        for path in sorted(directory.iterdir()):
+            if path.suffix == ".jsonl" or path.name.endswith(".audit.json"):
+                shutil.copyfile(path, snapshot / path.name)
     if identity(sorted(load_examples(snapshot), key=lambda r: r["decision_id"])) != dataset_sha:
         raise ValueError("Dataset changed during snapshot creation")
     if audit_dataset(snapshot, catalog) != audit:
@@ -117,21 +146,30 @@ def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_ch
     if representation == 2:
         source_paths.extend(ROOT / p for p in ("src/manamind/models/policy_v2.py",
                                               "src/manamind/models/policy_inputs.py"))
+    if manifest is not None:
+        source_paths.append(ROOT / "scripts/prepare_policy_retrain.py")
     metadata = {"dataset_sha256": dataset_sha, "split": split, "split_sha256": identity(split),
                 "config": config, "config_sha256": identity(config),
                 "base_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
                 "source_sha256": {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
                                   for p in source_paths},
                 "runtime": {"python": __import__("sys").version, "torch": str(torch.__version__),
-                            "numpy": np.__version__},
+                            "numpy": np.__version__, "device": str(device),
+                            "gpu": torch.cuda.get_device_name(device) if device.type == "cuda" else None},
                 "selection": "minimum_validation_cross_entropy_with_min_delta", "strength_claim": False}
     if reference is not None:
-        metadata["v1_reference_sha256"] = hashlib.sha256(Path(baseline_checkpoint).read_bytes()).hexdigest()
+        metadata["frozen_v2_reference_sha256" if manifest else "v1_reference_sha256"] = hashlib.sha256(
+            Path(baseline_checkpoint).read_bytes()).hexdigest()
+    if manifest is not None:
+        metadata["protocol_sha256"] = identity(manifest)
+        metadata["snapshot_directory"] = str(directory.resolve())
     write_json(output / "frozen_experiment.json", metadata)
     write_json(output / "audit.json", audit)
     random.seed(config["seed"])
     np.random.seed(config["seed"])
     torch.manual_seed(config["seed"])
+    if device.type == "cuda":
+        torch.cuda.manual_seed_all(config["seed"])
     torch.set_num_threads(config["torch_threads"])
     torch.use_deterministic_algorithms(True)
     encoder = StateEncoder(catalog)
@@ -143,12 +181,14 @@ def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_ch
                                  hidden_size=config["hidden_size"], dropout=config["dropout"])
     else:
         policy = PolicyNetwork(card_count=encoder.vocabulary.card_count, hidden_size=config["hidden_size"])
+    policy = policy.to(device)
     optimizer = torch.optim.AdamW(policy.parameters(), lr=config["learning_rate"], weight_decay=config["weight_decay"])
-    train = [(encode_example(r, encoder, representation=representation), r["chosen_action_index"])
+    train = [(encode_example(r, encoder, device=device, representation=representation), r["chosen_action_index"])
              for r in parts["train"]]
     rng = random.Random(config["seed"])
     initial_validation, _ = evaluate(policy, parts["validation"], encoder)
     history, best, best_epoch, best_weights, stale = [], float("inf"), 0, None, 0
+    started = time.perf_counter()
     for epoch in range(1, config["max_epochs"] + 1):
         policy.train()
         order = list(range(len(train)))
@@ -157,7 +197,7 @@ def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_ch
         for start in range(0, len(order), config["batch_size"]):
             indices = order[start:start+config["batch_size"]]
             losses = [torch.nn.functional.cross_entropy(policy(*train[i][0])[None],
-                       torch.tensor([train[i][1]])) for i in indices]
+                       torch.tensor([train[i][1]], device=device)) for i in indices]
             loss = torch.stack(losses).mean()
             if not torch.isfinite(loss):
                 raise ValueError("Nonfinite training loss")
@@ -182,8 +222,11 @@ def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_ch
     policy.load_state_dict(best_weights)
     metadata["selected_epoch"] = best_epoch
     metadata["epochs_run"] = len(history)
+    metadata["training_seconds"] = time.perf_counter() - started
     write_json(output / "history.json", {"initial_validation": initial_validation, "epochs": history})
     checkpoint = output / "policy.pt"
+    # Store portable CPU tensors; preserve the selected model's exact parameters.
+    policy.cpu()
     save_policy_checkpoint(checkpoint, policy, encoder, metadata)
     restored, saved_encoder, _ = load_policy_checkpoint(checkpoint)
     if not all(torch.equal(t, restored.state_dict()[k]) for k, t in policy.state_dict().items()):
@@ -196,8 +239,8 @@ def run(directory: Path, cards: Path, output: Path, config: dict, *, baseline_ch
         details[name] = {"diagnostics": diagnostics(records), "concentration": concentration(rs)}
         if reference is not None:
             metrics, reference_records = evaluate(reference, rs, reference_encoder)
-            results[name]["frozen_v1"] = metrics
-            details[name]["v1_diagnostics"] = diagnostics(reference_records)
+            results[name]["frozen_v2" if manifest else "frozen_v1"] = metrics
+            details[name]["v2_diagnostics" if manifest else "v1_diagnostics"] = diagnostics(reference_records)
     result = {"selected_epoch": best_epoch, "epochs_run": len(history), "metrics": results,
               "dataset_sha256": dataset_sha, "split_sha256": identity(split),
               "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(), "strength_claim": False}
@@ -218,10 +261,11 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--config", type=Path, default=ROOT / "configs/real_policy_ml1c.json")
     parser.add_argument("--baseline-checkpoint", type=Path, help="V2 requires the frozen ML-1C v1 reference")
+    parser.add_argument("--manifest", type=Path, help="Frozen expanded-data protocol; comparison baseline must be v2")
     args = parser.parse_args()
     try:
         result = run(args.directory, args.cards, args.output, json.loads(args.config.read_text(encoding="utf-8-sig")),
-                     baseline_checkpoint=args.baseline_checkpoint)
+                     baseline_checkpoint=args.baseline_checkpoint, prepared_manifest=args.manifest)
     except Exception as error:
         print(json.dumps({"result": "FAILED", "reason": type(error).__name__}), flush=True)
         return 1

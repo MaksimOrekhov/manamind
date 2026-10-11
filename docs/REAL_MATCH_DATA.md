@@ -213,6 +213,35 @@ are recorded in `reports/ml/ML1B_REAL_POLICY_DATASET.md`.
 
 ## First real PolicyNetwork baseline (ML-1C)
 
+### Expanded real Policy retraining
+
+`REAL-POLICY-RETRAIN-1` reuses `train_real_policy.py` with a private, pre-frozen
+`--manifest`, rather than regenerating a split during training. The original
+ML-1C/ML-2A CPU protocol is unchanged when this option is omitted. Retraining
+requires a frozen v2 comparison checkpoint, matching architecture/catalog/vocabulary,
+and exact corpus, configuration and whole-match membership identities. It initializes
+new weights; validation selects the epoch and test is scored after checkpoint save/reload.
+The fixed canonical corpus is referenced directly, without a second dataset copy.
+
+`scripts/prepare_policy_retrain.py` stratifies by SELF class/outcome and excludes
+all frozen v2 train/validation/test matches from its test. Use an up-to-date usage
+registry covering **all** subsequent studies, not just ML-DATA-REFRESH-2. The latter
+missed ML-PILOT-1 and later diagnostics in the first run; a supplementary audit
+corrects the interpretation without changing its saved protocol or checkpoint.
+`scripts/audit_policy_retrain_usage.py` records later checkpoint splits and reviewed
+corpora, checks the raw inventory and writes a compatible extended private registry.
+`--allow-reviewed-test` permits reused research matches only when their reuse is
+explicitly reported; it does not make them independent. New runs must audit usage
+before freezing, and may never tune against this run's already opened test.
+
+CUDA training requires `CUBLAS_WORKSPACE_CONFIG=:4096:8` for deterministic Torch
+matrix multiplication. CPU inference/reload remains supported. A reproduction
+with the original saved manifest is in
+[the experiment report](../reports/real_policy_retrain_1/README.md); run it only
+under an explicit experiment authorization and always use a new output directory.
+
+### Historical baseline protocol
+
 The bounded behavior-cloning runner is separate from the one-update smoke:
 
 ```powershell

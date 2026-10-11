@@ -41,11 +41,12 @@ def action_root(action) -> tuple:
 
 def evaluate(policy, rows, encoder) -> tuple:
     records = []
+    device = next(policy.parameters()).device
     policy.eval()
     with torch.no_grad():
         for row in rows:
             representation = representation_of(policy)
-            inputs = encode_example(row, encoder, representation=representation)
+            inputs = encode_example(row, encoder, device=device, representation=representation)
             logits = policy(*inputs)
             if not torch.isfinite(logits).all():
                 raise ValueError("Nonfinite policy evaluation logits")
@@ -66,7 +67,7 @@ def evaluate(policy, rows, encoder) -> tuple:
                                for c in row["state"]["self_hand"])
             chosen_unknown = bool(card_ids[chosen] == 1) and action["type"] != "END_TURN"
             record = {"game_id": row["game_id"], "menu_size": len(order), "rank": order.index(chosen)+1,
-                      "loss": torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen])).item(),
+                      "loss": torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen], device=device)).item(),
                       "kind": action["type"], "class": row["state"]["self_player"]["player_class"],
                       "unknown_hand": unknown_hand, "chosen_unknown": chosen_unknown,
                       "targeted": "target_kind" in action, "placement": action["play_position"] > 0,
