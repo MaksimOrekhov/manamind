@@ -1,0 +1,24 @@
+{
+  "seed": 42,
+  "max_epochs": 12,
+  "patience": 4,
+  "seconds_per_candidate": 600,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.001,
+  "gradient_clip": 1.0,
+  "batch_size": 32,
+  "steps_per_epoch": 50,
+  "tactical_counts_cycle": [6, 6, 6, 7, 7],
+  "device": "cuda",
+  "selection": "minimum real validation CE among epochs losing <=2 tactical validation correct versus initial; if none, minimum real CE marked guard failure; common stop when either candidate has patience 4",
+  "tactical_validation_maximum_correct_loss": 2,
+  "gates_on": "gain on 32 certified base controls; no-new-error safety on all 44 certified controls",
+  "gates": {
+    "minimum_B_minus_A_proven_correct": 4,
+    "maximum_real_validation_CE_increase": 0.05,
+    "maximum_real_validation_top1_drop": 0.03,
+    "maximum_Warrior_validation_top1_drop": 0.05,
+    "maximum_new_proven_errors_against_A": 0,
+    "maximum_new_proven_errors_against_initial": 0
+  }
+}

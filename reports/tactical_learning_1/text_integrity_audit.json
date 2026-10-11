@@ -1,0 +1,1888 @@
+{
+  "catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "issue": "As-run generator filtered mechanics only and declared blank text for some non-vanilla known IDs",
+  "model_ranking_repeated": false,
+  "splits": {
+    "control": {
+      "actual_text_certificates_rejected": 45,
+      "actual_text_gold_changed": 0,
+      "actual_text_gold_unchanged_accepted": 0,
+      "changed": [],
+      "known_text_mismatch_rows": 53,
+      "mismatches": [
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King."
+          },
+          "scenario": "tl1_control_hero_shield_finish_1_0"
+        },
+        {
+          "cards": {
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_hero_shield_finish_2_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_control_hero_shield_finish_3_0"
+        },
+        {
+          "cards": {
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_control_hero_shield_finish_4_0"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks."
+          },
+          "scenario": "tl1_control_hero_shield_finish_5_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_control_hero_shield_finish_6_0"
+        },
+        {
+          "cards": {
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_control_hero_shield_finish_7_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_control_two_taunts_0_0"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_control_two_taunts_1_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_two_taunts_2_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_two_taunts_3_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this.",
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_control_two_taunts_4_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_two_taunts_5_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_two_taunts_6_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_control_two_taunts_7_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_stats_target_0_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_stats_target_0_0_health_swap"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_control_stats_target_2_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_control_stats_target_2_0_health_swap"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged."
+          },
+          "scenario": "tl1_control_stats_target_4_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged."
+          },
+          "scenario": "tl1_control_stats_target_4_0_health_swap"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_stats_target_6_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_stats_target_6_0_health_swap"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_control_two_self_damage_0_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_two_self_damage_1_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_control_two_self_damage_2_0"
+        },
+        {
+          "cards": {
+            "TIME_060": "This minion takes double damage from all sources.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_two_self_damage_3_0"
+        },
+        {
+          "cards": {
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_control_spell_side_0_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_control_spell_side_1_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_spell_side_2_0"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_control_spell_side_3_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King."
+          },
+          "scenario": "tl1_control_heuristic_trade_0_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_control_heuristic_trade_1_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_control_heuristic_trade_2_0"
+        },
+        {
+          "cards": {
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_control_heuristic_trade_3_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_control_heuristic_trade_4_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_control_heuristic_trade_5_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_heuristic_trade_6_0"
+        },
+        {
+          "cards": {
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_heuristic_trade_7_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_ambiguous_face_0_0"
+        },
+        {
+          "cards": {
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_control_ambiguous_face_1_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_ambiguous_face_2_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_control_ambiguous_face_3_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions."
+          },
+          "scenario": "tl1_control_ambiguous_face_4_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_control_ambiguous_face_5_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_control_ambiguous_face_6_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_ambiguous_face_7_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_control_two_taunts_0_0_position"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_control_two_taunts_1_0_position"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_control_two_taunts_2_0_position"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_control_two_taunts_3_0_position"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this.",
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_control_two_taunts_4_0_position"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_control_two_taunts_5_0_position"
+        }
+      ],
+      "rejected": [
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_hero_shield_finish_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_0_0_health_swap"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_2_0_health_swap"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_4_0_health_swap"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_stats_target_6_0_health_swap"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_self_damage_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_self_damage_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_self_damage_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_self_damage_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_spell_side_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_spell_side_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_spell_side_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_spell_side_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_heuristic_trade_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_0_0_position"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_1_0_position"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_2_0_position"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_3_0_position"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_4_0_position"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_control_two_taunts_5_0_position"
+        }
+      ],
+      "rows": 60
+    },
+    "train": {
+      "actual_text_certificates_rejected": 90,
+      "actual_text_gold_changed": 0,
+      "actual_text_gold_unchanged_accepted": 3,
+      "changed": [],
+      "known_text_mismatch_rows": 93,
+      "mismatches": [
+        {
+          "cards": {
+            "END_022": "Has <b>Spell Damage +2</b> while damaged."
+          },
+          "scenario": "tl1_train_armor_finish_0_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_train_armor_finish_1_0"
+        },
+        {
+          "cards": {
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_armor_finish_2_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game."
+          },
+          "scenario": "tl1_train_armor_finish_3_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions."
+          },
+          "scenario": "tl1_train_armor_finish_5_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_armor_finish_6_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_armor_finish_8_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_armor_finish_9_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions."
+          },
+          "scenario": "tl1_train_armor_finish_10_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_armor_finish_13_0"
+        },
+        {
+          "cards": {
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_train_shield_finish_1_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game."
+          },
+          "scenario": "tl1_train_shield_finish_2_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_shield_finish_3_0"
+        },
+        {
+          "cards": {
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_shield_finish_6_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_shield_finish_8_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_shield_finish_9_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game."
+          },
+          "scenario": "tl1_train_shield_finish_10_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_shield_finish_11_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_shield_finish_12_0"
+        },
+        {
+          "cards": {
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_train_shield_finish_13_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_taunt_finish_0_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_taunt_finish_1_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_taunt_finish_2_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_taunt_finish_4_0"
+        },
+        {
+          "cards": {
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_taunt_finish_5_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_taunt_finish_6_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_taunt_finish_7_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_taunt_finish_8_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_taunt_finish_9_0"
+        },
+        {
+          "cards": {
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions."
+          },
+          "scenario": "tl1_train_taunt_finish_10_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_taunt_finish_11_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_taunt_finish_12_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_train_taunt_finish_13_0"
+        },
+        {
+          "cards": {
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_taunt_finish_14_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_taunt_finish_15_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_poison_0_0"
+        },
+        {
+          "cards": {
+            "END_022": "Has <b>Spell Damage +2</b> while damaged."
+          },
+          "scenario": "tl1_train_poison_1_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_poison_2_0"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_poison_3_0"
+        },
+        {
+          "cards": {
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_train_poison_4_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_train_poison_5_0"
+        },
+        {
+          "cards": {
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_train_poison_6_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_train_poison_7_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_train_poison_8_0"
+        },
+        {
+          "cards": {
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "TIME_060": "This minion takes double damage from all sources.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_train_poison_9_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions."
+          },
+          "scenario": "tl1_train_poison_10_0"
+        },
+        {
+          "cards": {
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_poison_11_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_train_poison_12_0"
+        },
+        {
+          "cards": {
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_poison_14_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_poison_15_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played."
+          },
+          "scenario": "tl1_train_poison_taunt_0_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_train_poison_taunt_1_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_poison_taunt_2_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_train_poison_taunt_3_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_train_poison_taunt_4_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_poison_taunt_6_0"
+        },
+        {
+          "cards": {
+            "END_022": "Has <b>Spell Damage +2</b> while damaged."
+          },
+          "scenario": "tl1_train_poison_taunt_7_0"
+        },
+        {
+          "cards": {
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_poison_taunt_8_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game."
+          },
+          "scenario": "tl1_train_poison_taunt_9_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played."
+          },
+          "scenario": "tl1_train_poison_taunt_10_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_train_poison_taunt_13_0"
+        },
+        {
+          "cards": {
+            "END_022": "Has <b>Spell Damage +2</b> while damaged.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_poison_taunt_14_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TIME_060": "This minion takes double damage from all sources.",
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_train_poison_taunt_15_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_train_immune_0_0"
+        },
+        {
+          "cards": {
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_immune_1_0"
+        },
+        {
+          "cards": {
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_immune_3_0"
+        },
+        {
+          "cards": {
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_train_immune_4_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_immune_5_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_train_immune_6_0"
+        },
+        {
+          "cards": {
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_immune_8_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_train_immune_9_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions.",
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_train_immune_10_0"
+        },
+        {
+          "cards": {
+            "DINO_138": "<b>Kindred:</b> Deal 6 damage to your opponent's left and right-most minions.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_immune_11_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions."
+          },
+          "scenario": "tl1_train_immune_12_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_train_immune_14_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped."
+          },
+          "scenario": "tl1_train_immune_15_0"
+        },
+        {
+          "cards": {
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_train_self_damage_2_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King."
+          },
+          "scenario": "tl1_train_self_damage_5_0"
+        },
+        {
+          "cards": {
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_self_damage_6_0"
+        },
+        {
+          "cards": {
+            "EDR_781": "[x]Whenever this enters your\nhand from the battlefield,\nsummon two random\n2-Cost minions."
+          },
+          "scenario": "tl1_train_self_damage_7_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played."
+          },
+          "scenario": "tl1_train_self_damage_8_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_train_self_damage_13_0"
+        },
+        {
+          "cards": {
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_train_self_damage_14_0"
+        },
+        {
+          "cards": {
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_train_spell_finish_1_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_spell_finish_2_0"
+        },
+        {
+          "cards": {
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn."
+          },
+          "scenario": "tl1_train_spell_finish_3_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_train_spell_finish_4_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_train_spell_finish_5_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_train_spell_finish_6_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_train_spell_finish_7_0"
+        },
+        {
+          "cards": {
+            "EDR_979": "[x]<b>Dormant</b> for 2 turns.\nWhile <b>Dormant</b>, gain 3\nArmor and draw a card at\nthe end of your turn.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_spell_finish_9_0"
+        },
+        {
+          "cards": {
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_train_spell_finish_14_0"
+        },
+        {
+          "cards": {
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_train_spell_finish_15_0"
+        }
+      ],
+      "rejected": [
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_armor_finish_13_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_11_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_12_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_shield_finish_13_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_11_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_12_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_13_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_14_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_taunt_finish_15_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_11_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_12_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_14_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_15_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_13_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_14_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_poison_taunt_15_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_10_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_11_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_12_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_14_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_immune_15_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_8_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_self_damage_13_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_9_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_14_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_train_spell_finish_15_0"
+        }
+      ],
+      "rows": 128
+    },
+    "validation": {
+      "actual_text_certificates_rejected": 26,
+      "actual_text_gold_changed": 0,
+      "actual_text_gold_unchanged_accepted": 0,
+      "changed": [],
+      "known_text_mismatch_rows": 26,
+      "mismatches": [
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_validation_combined_finish_0_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken.",
+            "TLC_825": "[x]<b>Kindred:</b> Deal damage to\nan enemy minion equal to\nthis minion's Attack."
+          },
+          "scenario": "tl1_validation_combined_finish_1_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played."
+          },
+          "scenario": "tl1_validation_combined_finish_2_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks."
+          },
+          "scenario": "tl1_validation_combined_finish_3_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played.",
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>."
+          },
+          "scenario": "tl1_validation_combined_finish_4_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped."
+          },
+          "scenario": "tl1_validation_combined_finish_5_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TIME_060": "This minion takes double damage from all sources.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>"
+          },
+          "scenario": "tl1_validation_combined_finish_6_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_validation_combined_finish_7_0"
+        },
+        {
+          "cards": {
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_validation_poison_shield_1_0"
+        },
+        {
+          "cards": {
+            "DINO_404": "<b>Kindred:</b> Give your other minions <b>Rush</b>.",
+            "TLC_253": "[x]Starts <b>Dormant. </b>While\n<b>Dormant</b>, gain +2/+2 at the\nstart of your turn. <i>(50% chance\nto awaken instead.)</i>",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_validation_poison_shield_4_0"
+        },
+        {
+          "cards": {
+            "CORE_SCH_605": "Also damages the minions next to whomever\nthis attacks."
+          },
+          "scenario": "tl1_validation_poison_shield_5_0"
+        },
+        {
+          "cards": {
+            "CATA_616": "[x]This minion's Cost is\nreduced by the Cost of the\nlast card you played."
+          },
+          "scenario": "tl1_validation_poison_shield_6_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens."
+          },
+          "scenario": "tl1_validation_poison_shield_7_0"
+        },
+        {
+          "cards": {
+            "TLC_452": "Gains a random <b>Titan</b> ability in your hand that changes each turn."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_0_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_1_0"
+        },
+        {
+          "cards": {
+            "TIME_876": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_2_0"
+        },
+        {
+          "cards": {
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_4_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "MEND_040": "[x]Starts <b>Dormant</b>.\nWhen your board is\nfull, awaken."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_5_0"
+        },
+        {
+          "cards": {
+            "CORE_WON_351": "Has +2 Attack while you have a weapon equipped.",
+            "TLC_429": "<b>Kindred:</b> Summon two\n1/1 Murlocs with <b>Rush</b>."
+          },
+          "scenario": "tl1_validation_shield_lifesteal_7_0"
+        },
+        {
+          "cards": {
+            "EDR_469": "[x]Starts <b>Dormant</b>.\nAfter you use your Hero\nPower, this awakens.",
+            "EDR_487": "While this is in your hand\nor deck, it gains a copy of every <b>Dark Gift</b> given to your minions.",
+            "JAIL_204": "Costs (2) if there are no minions on the battlefield."
+          },
+          "scenario": "tl1_validation_lifesteal_0_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game.",
+            "DINO_435": "<b>Kindred:</b> Summon a\ncopy of this."
+          },
+          "scenario": "tl1_validation_lifesteal_1_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King."
+          },
+          "scenario": "tl1_validation_lifesteal_2_0"
+        },
+        {
+          "cards": {
+            "CATA_615": "[x]While holding this, if the\nrest of your hand is all even\nor all odd, transform into\nthe 6/5 Worgen King.",
+            "DINO_407": "[x]While in your hand, this is a\n3/4 copy of the last minion\nyour opponent played."
+          },
+          "scenario": "tl1_validation_lifesteal_3_0"
+        },
+        {
+          "cards": {
+            "CATA_529": "[x]Costs (1) less for\neach Fel spell you've\ncast this game."
+          },
+          "scenario": "tl1_validation_lifesteal_4_0"
+        },
+        {
+          "cards": {
+            "EDR_209": "[x]<b>Choose Thrice -</b> Give your\nother minions +1/+3; or\nSummon a 5/5 Ancient\nwith <b>Taunt</b>."
+          },
+          "scenario": "tl1_validation_lifesteal_5_0"
+        },
+        {
+          "cards": {
+            "TIME_060": "This minion takes double damage from all sources."
+          },
+          "scenario": "tl1_validation_lifesteal_6_0"
+        }
+      ],
+      "rejected": [
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_combined_finish_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_poison_shield_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_poison_shield_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_poison_shield_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_poison_shield_6_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_poison_shield_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_shield_lifesteal_7_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_0_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_1_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_2_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_3_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_4_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_5_0"
+        },
+        {
+          "reason": "Certificate has unobserved effects or reactions",
+          "scenario": "tl1_validation_lifesteal_6_0"
+        }
+      ],
+      "rows": 32
+    }
+  },
+  "training_repeated": false
+}

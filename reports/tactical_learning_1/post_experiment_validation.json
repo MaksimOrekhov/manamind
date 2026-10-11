@@ -1,0 +1,20 @@
+{
+  "certificate_source_as_run": "d2128a4e788df1c3d4440cda9c6214bb5937b80ea6cf952af520f36bb565178e",
+  "certificates_unchanged": {
+    "control": 60,
+    "train": 128,
+    "validation": 32
+  },
+  "checkpoints_unchanged": true,
+  "final_source_sha256": {
+    "src/manamind/training/tactical_certificates.py": "53baeac3706d06b244a9133b95f9f12ecbb845eabb20dc97fb7b369cebce762f",
+    "tests/test_tactical_learning.py": "234105686da2fbcd0aaa50168b3aa1b6811a2753d77804bb7df7e577bb481439"
+  },
+  "full_source_tests": "928 passed, 1 skipped, 3 training tests deselected; existing untracked-vendor migration guard failure",
+  "generated_artifacts": "2 pinned outputs reproduced; tracked diff clean",
+  "new_regression_tests": "27 passed",
+  "post_run_change": "Fail closed on hero+minion source bound and invalid readiness; all frozen gold sets identical; no model ranking or optimization repeated",
+  "private_real_game_ids_in_public_reports": 0,
+  "qualification": "Original gold sets unchanged under declared fixture texts, but known-card text integrity FAILED; see text_integrity_audit.json",
+  "ruff": "PASS"
+}

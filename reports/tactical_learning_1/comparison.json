@@ -1,0 +1,2918 @@
+{
+  "all_proven": 44,
+  "as_run_numeric_verdict": "GO",
+  "base_proven": 32,
+  "checks": {
+    "Warrior_top1": true,
+    "certified_base_gain": true,
+    "no_new_vs_A": true,
+    "no_new_vs_initial": true,
+    "real_CE": true,
+    "real_top1": true,
+    "selection_guards": true
+  },
+  "comparison": {
+    "B_vs_A": {
+      "fixed": [
+        "tl1_control_hero_shield_finish_0_0",
+        "tl1_control_hero_shield_finish_2_0",
+        "tl1_control_hero_shield_finish_3_0",
+        "tl1_control_hero_shield_finish_5_0",
+        "tl1_control_two_taunts_2_0",
+        "tl1_control_two_taunts_5_0",
+        "tl1_control_spell_side_0_0",
+        "tl1_control_two_taunts_2_0_position",
+        "tl1_control_hero_shield_finish_0_0_alias",
+        "tl1_control_hero_shield_finish_1_0_alias",
+        "tl1_control_hero_shield_finish_2_0_alias",
+        "tl1_control_hero_shield_finish_3_0_alias",
+        "tl1_control_hero_shield_finish_5_0_alias"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "tl1_control_hero_shield_finish_6_0",
+        "tl1_control_two_taunts_7_0",
+        "tl1_control_stats_target_0_0",
+        "tl1_control_stats_target_2_0",
+        "tl1_control_stats_target_4_0",
+        "tl1_control_stats_target_6_0",
+        "tl1_control_two_self_damage_0_0",
+        "tl1_control_two_self_damage_1_0",
+        "tl1_control_two_self_damage_2_0",
+        "tl1_control_two_self_damage_3_0",
+        "tl1_control_spell_side_2_0",
+        "tl1_control_hero_shield_finish_4_0_alias"
+      ]
+    },
+    "B_vs_A_base": {
+      "fixed": [
+        "tl1_control_hero_shield_finish_0_0",
+        "tl1_control_hero_shield_finish_2_0",
+        "tl1_control_hero_shield_finish_3_0",
+        "tl1_control_hero_shield_finish_5_0",
+        "tl1_control_two_taunts_2_0",
+        "tl1_control_two_taunts_5_0",
+        "tl1_control_spell_side_0_0"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "tl1_control_hero_shield_finish_6_0",
+        "tl1_control_two_taunts_7_0",
+        "tl1_control_stats_target_0_0",
+        "tl1_control_stats_target_2_0",
+        "tl1_control_stats_target_4_0",
+        "tl1_control_stats_target_6_0",
+        "tl1_control_two_self_damage_0_0",
+        "tl1_control_two_self_damage_1_0",
+        "tl1_control_two_self_damage_2_0",
+        "tl1_control_two_self_damage_3_0",
+        "tl1_control_spell_side_2_0"
+      ]
+    },
+    "B_vs_frozen": {
+      "fixed": [
+        "tl1_control_hero_shield_finish_0_0",
+        "tl1_control_stats_target_0_0_health_swap",
+        "tl1_control_stats_target_6_0_health_swap",
+        "tl1_control_spell_side_3_0",
+        "tl1_control_hero_shield_finish_0_0_alias",
+        "tl1_control_hero_shield_finish_1_0_alias",
+        "tl1_control_hero_shield_finish_2_0_alias",
+        "tl1_control_hero_shield_finish_3_0_alias",
+        "tl1_control_hero_shield_finish_5_0_alias"
+      ],
+      "new_errors": [
+        "tl1_control_hero_shield_finish_6_0",
+        "tl1_control_stats_target_6_0"
+      ],
+      "shared_errors": [
+        "tl1_control_two_taunts_7_0",
+        "tl1_control_stats_target_0_0",
+        "tl1_control_stats_target_2_0",
+        "tl1_control_stats_target_4_0",
+        "tl1_control_two_self_damage_0_0",
+        "tl1_control_two_self_damage_1_0",
+        "tl1_control_two_self_damage_2_0",
+        "tl1_control_two_self_damage_3_0",
+        "tl1_control_spell_side_2_0",
+        "tl1_control_hero_shield_finish_4_0_alias"
+      ]
+    },
+    "B_vs_initial": {
+      "fixed": [
+        "tl1_control_hero_shield_finish_0_0",
+        "tl1_control_hero_shield_finish_2_0",
+        "tl1_control_hero_shield_finish_3_0",
+        "tl1_control_two_taunts_2_0",
+        "tl1_control_spell_side_0_0",
+        "tl1_control_two_taunts_2_0_position",
+        "tl1_control_hero_shield_finish_0_0_alias",
+        "tl1_control_hero_shield_finish_2_0_alias",
+        "tl1_control_hero_shield_finish_3_0_alias"
+      ],
+      "new_errors": [],
+      "shared_errors": [
+        "tl1_control_hero_shield_finish_6_0",
+        "tl1_control_two_taunts_7_0",
+        "tl1_control_stats_target_0_0",
+        "tl1_control_stats_target_2_0",
+        "tl1_control_stats_target_4_0",
+        "tl1_control_stats_target_6_0",
+        "tl1_control_two_self_damage_0_0",
+        "tl1_control_two_self_damage_1_0",
+        "tl1_control_two_self_damage_2_0",
+        "tl1_control_two_self_damage_3_0",
+        "tl1_control_spell_side_2_0",
+        "tl1_control_hero_shield_finish_4_0_alias"
+      ]
+    }
+  },
+  "data_validity": {
+    "audit": "text_integrity_audit.json",
+    "issue": "Known non-vanilla card texts replaced with blank fixture text",
+    "no_post_control_training": true,
+    "passed": false
+  },
+  "manifest_sha256": "ea70ffb51b1ef38d0777d51fd3300cc22351c2e7e2626e8da8c435a817965c0c",
+  "models": {
+    "A": {
+      "MF1": {
+        "by_category": {
+          "lethal": {
+            "correct": 2,
+            "cross_entropy": 0.13118362426757812,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "menu_order": {
+            "correct": 2,
+            "cross_entropy": 1.0256410241127014,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "target_selection": {
+            "correct": 3,
+            "cross_entropy": 0.9005876978238424,
+            "decisions": 3,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 3,
+            "target_agreement": 1.0,
+            "target_decisions": 3,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 3,
+            "type_agreement": 1.0
+          },
+          "taunt": {
+            "correct": 1,
+            "cross_entropy": 0.6751269102096558,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 1.0,
+            "target_decisions": 1,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "trades": {
+            "correct": 2,
+            "cross_entropy": 0.5817330479621887,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "unknown_cards": {
+            "correct": 0,
+            "cross_entropy": 1.6869466304779053,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3333333333333333,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 0.0,
+            "target_decisions": 1,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 10,
+            "cross_entropy": 0.7764501842585477,
+            "decisions": 11,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9393939393939394,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 11,
+            "target_agreement": 0.9090909090909091,
+            "target_decisions": 11,
+            "top1_accuracy": 0.9090909090909091,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 10,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 0.7764501842585477,
+          "decisions": 11,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.9393939393939394,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 11,
+          "target_agreement": 0.9090909090909091,
+          "target_decisions": 11,
+          "top1_accuracy": 0.9090909090909091,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 10,
+          "type_agreement": 1.0
+        }
+      },
+      "MF2C": {
+        "by_category": {
+          "favorable_trade": {
+            "correct": 162,
+            "cross_entropy": 1.8819334761398594,
+            "decisions": 328,
+            "false_END": 31,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7104711091753775,
+            "predicted_END": 31,
+            "source_agreement": 0.5945121951219512,
+            "source_decisions": 328,
+            "target_agreement": 0.8140243902439024,
+            "target_decisions": 328,
+            "top1_accuracy": 0.49390243902439024,
+            "top3_accuracy": 0.9146341463414634,
+            "top3_decisions": 328,
+            "type_agreement": 0.9054878048780488
+          },
+          "lethal": {
+            "correct": 14,
+            "cross_entropy": 1.61935313211547,
+            "decisions": 36,
+            "false_END": 8,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.6018518518518519,
+            "predicted_END": 8,
+            "source_agreement": 0.7777777777777778,
+            "source_decisions": 36,
+            "target_agreement": 0.3888888888888889,
+            "target_decisions": 36,
+            "top1_accuracy": 0.3888888888888889,
+            "top3_accuracy": 0.7777777777777778,
+            "top3_decisions": 36,
+            "type_agreement": 0.7777777777777778
+          },
+          "no_proven_gain": {
+            "correct": 17,
+            "cross_entropy": 2.4277248117658825,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.6466049382716049,
+            "predicted_END": 17,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.4722222222222222,
+            "top3_accuracy": 0.8333333333333334,
+            "top3_decisions": 36,
+            "type_agreement": 0.4722222222222222
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 193,
+            "cross_entropy": 1.9074224653840064,
+            "decisions": 400,
+            "false_END": 39,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.6949474206349207,
+            "predicted_END": 56,
+            "source_agreement": 0.6126373626373627,
+            "source_decisions": 364,
+            "target_agreement": 0.771978021978022,
+            "target_decisions": 364,
+            "top1_accuracy": 0.4825,
+            "top3_accuracy": 0.895,
+            "top3_decisions": 400,
+            "type_agreement": 0.855
+          }
+        },
+        "overall": {
+          "correct": 193,
+          "cross_entropy": 1.9074224653840064,
+          "decisions": 400,
+          "false_END": 39,
+          "gold_END": 36,
+          "mean_reciprocal_rank": 0.6949474206349207,
+          "predicted_END": 56,
+          "source_agreement": 0.6126373626373627,
+          "source_decisions": 364,
+          "target_agreement": 0.771978021978022,
+          "target_decisions": 364,
+          "top1_accuracy": 0.4825,
+          "top3_accuracy": 0.895,
+          "top3_decisions": 400,
+          "type_agreement": 0.855
+        }
+      },
+      "control": {
+        "ambiguous": {
+          "count": 8,
+          "predicted_END": 0
+        },
+        "by_proven_category": {
+          "hero_shield_finish": {
+            "correct": 3,
+            "cross_entropy": 1.0595785336835044,
+            "decisions": 14,
+            "false_END": 11,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.6071428571428571,
+            "predicted_END": 11,
+            "source_agreement": 0.21428571428571427,
+            "source_decisions": 14,
+            "target_agreement": 0.21428571428571427,
+            "target_decisions": 14,
+            "top1_accuracy": 0.21428571428571427,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 0.21428571428571427
+          },
+          "spell_side": {
+            "correct": 2,
+            "cross_entropy": 1.0488527044653893,
+            "decisions": 4,
+            "false_END": 1,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 1,
+            "source_agreement": 0.75,
+            "source_decisions": 4,
+            "target_agreement": 0.5,
+            "target_decisions": 4,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 4,
+            "type_agreement": 0.75
+          },
+          "stats_target": {
+            "correct": 4,
+            "cross_entropy": 1.2993053905665874,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7083333333333334,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "two_self_damage": {
+            "correct": 0,
+            "cross_entropy": 1.012998715043068,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 4,
+            "mean_reciprocal_rank": 0.5,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 0.0
+          },
+          "two_taunts": {
+            "correct": 10,
+            "cross_entropy": 0.4905454899583544,
+            "decisions": 14,
+            "false_END": 2,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.8452380952380952,
+            "predicted_END": 2,
+            "source_agreement": 0.7142857142857143,
+            "source_decisions": 14,
+            "target_agreement": 0.8571428571428571,
+            "target_decisions": 14,
+            "top1_accuracy": 0.7142857142857143,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 0.8571428571428571
+          }
+        },
+        "heuristic": {
+          "correct": 2,
+          "cross_entropy": 1.6562243178486824,
+          "decisions": 8,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.5416666666666666,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 8,
+          "target_agreement": 0.25,
+          "target_decisions": 8,
+          "top1_accuracy": 0.25,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 8,
+          "type_agreement": 1.0
+        },
+        "proven": {
+          "correct": 19,
+          "cross_entropy": 0.9168996621261943,
+          "decisions": 44,
+          "false_END": 14,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.7045454545454546,
+          "predicted_END": 14,
+          "source_agreement": 0.5,
+          "source_decisions": 40,
+          "target_agreement": 0.625,
+          "target_decisions": 40,
+          "top1_accuracy": 0.4318181818181818,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 40,
+          "type_agreement": 0.5909090909090909
+        },
+        "proven_base": {
+          "correct": 14,
+          "cross_entropy": 0.9746004864573479,
+          "decisions": 32,
+          "false_END": 7,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.703125,
+          "predicted_END": 7,
+          "source_agreement": 0.5357142857142857,
+          "source_decisions": 28,
+          "target_agreement": 0.7142857142857143,
+          "target_decisions": 28,
+          "top1_accuracy": 0.4375,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 28,
+          "type_agreement": 0.65625
+        }
+      },
+      "pairs": {
+        "id": {
+          "both_correct": 0,
+          "changed_source": 2,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_1",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_4",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 4
+        },
+        "position": {
+          "both_correct": 4,
+          "changed_source": 1,
+          "details": [
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "position_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "position_5",
+              "same_choice": false
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 5
+        },
+        "stats": {
+          "both_correct": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_6",
+              "same_choice": true
+            }
+          ],
+          "pairs": 4,
+          "same_semantic_choice": 4
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 755,
+            "cross_entropy": 1.1730821771697795,
+            "decisions": 1175,
+            "false_END": 44,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7500596045589788,
+            "predicted_END": 324,
+            "source_agreement": 0.569620253164557,
+            "source_decisions": 869,
+            "target_agreement": 0.5224913494809689,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6425531914893617,
+            "top3_accuracy": 0.7702845100105374,
+            "top3_decisions": 949,
+            "type_agreement": 0.8076595744680851
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.8997717251380285,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8181818181818182,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 659,
+            "cross_entropy": 1.1675385817473114,
+            "decisions": 1012,
+            "false_END": 36,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7539994913796064,
+            "predicted_END": 281,
+            "source_agreement": 0.574496644295302,
+            "source_decisions": 745,
+            "target_agreement": 0.5254237288135594,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6511857707509882,
+            "top3_accuracy": 0.7712895377128953,
+            "top3_decisions": 822,
+            "type_agreement": 0.8053359683794467
+          },
+          "WARRIOR": {
+            "correct": 73,
+            "cross_entropy": 1.285615742435822,
+            "decisions": 130,
+            "false_END": 7,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7020965390818331,
+            "predicted_END": 33,
+            "source_agreement": 0.51,
+            "source_decisions": 100,
+            "target_agreement": 0.4444444444444444,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5615384615384615,
+            "top3_accuracy": 0.7403846153846154,
+            "top3_decisions": 104,
+            "type_agreement": 0.8
+          }
+        },
+        "overall": {
+          "correct": 755,
+          "cross_entropy": 1.1730821771697795,
+          "decisions": 1175,
+          "false_END": 44,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7500596045589788,
+          "predicted_END": 324,
+          "source_agreement": 0.569620253164557,
+          "source_decisions": 869,
+          "target_agreement": 0.5224913494809689,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6425531914893617,
+          "top3_accuracy": 0.7702845100105374,
+          "top3_decisions": 949,
+          "type_agreement": 0.8076595744680851
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 151,
+            "cross_entropy": 1.539295958772673,
+            "decisions": 281,
+            "false_END": 14,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6710140936564424,
+            "predicted_END": 76,
+            "source_agreement": 0.4647887323943662,
+            "source_decisions": 213,
+            "target_agreement": 0.2537313432835821,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5373665480427047,
+            "top3_accuracy": 0.7186147186147186,
+            "top3_decisions": 231,
+            "type_agreement": 0.7651245551601423
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 134,
+            "cross_entropy": 1.5296478194575156,
+            "decisions": 248,
+            "false_END": 12,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.672831061187916,
+            "predicted_END": 66,
+            "source_agreement": 0.4787234042553192,
+            "source_decisions": 188,
+            "target_agreement": 0.25862068965517243,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5403225806451613,
+            "top3_accuracy": 0.7259615384615384,
+            "top3_decisions": 208,
+            "type_agreement": 0.7701612903225806
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.61180318756537,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6573593073593074,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6521739130434783,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 151,
+          "cross_entropy": 1.539295958772673,
+          "decisions": 281,
+          "false_END": 14,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6710140936564424,
+          "predicted_END": 76,
+          "source_agreement": 0.4647887323943662,
+          "source_decisions": 213,
+          "target_agreement": 0.2537313432835821,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5373665480427047,
+          "top3_accuracy": 0.7186147186147186,
+          "top3_decisions": 231,
+          "type_agreement": 0.7651245551601423
+        }
+      }
+    },
+    "B": {
+      "MF1": {
+        "by_category": {
+          "lethal": {
+            "correct": 2,
+            "cross_entropy": 0.08752745389938354,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "menu_order": {
+            "correct": 2,
+            "cross_entropy": 1.000017762184143,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "target_selection": {
+            "correct": 3,
+            "cross_entropy": 0.8660997549692789,
+            "decisions": 3,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 3,
+            "target_agreement": 1.0,
+            "target_decisions": 3,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 3,
+            "type_agreement": 1.0
+          },
+          "taunt": {
+            "correct": 1,
+            "cross_entropy": 0.654262900352478,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 1.0,
+            "target_decisions": 1,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "trades": {
+            "correct": 2,
+            "cross_entropy": 0.5436367988586426,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "unknown_cards": {
+            "correct": 0,
+            "cross_entropy": 1.5686254501342773,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3333333333333333,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 0.0,
+            "target_decisions": 1,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 10,
+            "cross_entropy": 0.7348683313889937,
+            "decisions": 11,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9393939393939394,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 11,
+            "target_agreement": 0.9090909090909091,
+            "target_decisions": 11,
+            "top1_accuracy": 0.9090909090909091,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 10,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 0.7348683313889937,
+          "decisions": 11,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.9393939393939394,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 11,
+          "target_agreement": 0.9090909090909091,
+          "target_decisions": 11,
+          "top1_accuracy": 0.9090909090909091,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 10,
+          "type_agreement": 1.0
+        }
+      },
+      "MF2C": {
+        "by_category": {
+          "favorable_trade": {
+            "correct": 203,
+            "cross_entropy": 1.8329486432598858,
+            "decisions": 328,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.780135743321719,
+            "predicted_END": 0,
+            "source_agreement": 0.7134146341463414,
+            "source_decisions": 328,
+            "target_agreement": 0.9085365853658537,
+            "target_decisions": 328,
+            "top1_accuracy": 0.6189024390243902,
+            "top3_accuracy": 0.9237804878048781,
+            "top3_decisions": 328,
+            "type_agreement": 1.0
+          },
+          "lethal": {
+            "correct": 6,
+            "cross_entropy": 1.641322299838066,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.38411696328362993,
+            "predicted_END": 0,
+            "source_agreement": 0.9444444444444444,
+            "source_decisions": 36,
+            "target_agreement": 0.16666666666666666,
+            "target_decisions": 36,
+            "top1_accuracy": 0.16666666666666666,
+            "top3_accuracy": 0.4722222222222222,
+            "top3_decisions": 36,
+            "type_agreement": 1.0
+          },
+          "no_proven_gain": {
+            "correct": 0,
+            "cross_entropy": 3.212641398111979,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.08640659457104329,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 36,
+            "type_agreement": 0.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 209,
+            "cross_entropy": 1.9398746202886104,
+            "decisions": 400,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.6820584297307302,
+            "predicted_END": 0,
+            "source_agreement": 0.7362637362637363,
+            "source_decisions": 364,
+            "target_agreement": 0.8351648351648352,
+            "target_decisions": 364,
+            "top1_accuracy": 0.5225,
+            "top3_accuracy": 0.8,
+            "top3_decisions": 400,
+            "type_agreement": 0.91
+          }
+        },
+        "overall": {
+          "correct": 209,
+          "cross_entropy": 1.9398746202886104,
+          "decisions": 400,
+          "false_END": 0,
+          "gold_END": 36,
+          "mean_reciprocal_rank": 0.6820584297307302,
+          "predicted_END": 0,
+          "source_agreement": 0.7362637362637363,
+          "source_decisions": 364,
+          "target_agreement": 0.8351648351648352,
+          "target_decisions": 364,
+          "top1_accuracy": 0.5225,
+          "top3_accuracy": 0.8,
+          "top3_decisions": 400,
+          "type_agreement": 0.91
+        }
+      },
+      "control": {
+        "ambiguous": {
+          "count": 8,
+          "predicted_END": 0
+        },
+        "by_proven_category": {
+          "hero_shield_finish": {
+            "correct": 12,
+            "cross_entropy": 0.6095197562660489,
+            "decisions": 14,
+            "false_END": 2,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9285714285714286,
+            "predicted_END": 2,
+            "source_agreement": 0.8571428571428571,
+            "source_decisions": 14,
+            "target_agreement": 0.8571428571428571,
+            "target_decisions": 14,
+            "top1_accuracy": 0.8571428571428571,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 0.8571428571428571
+          },
+          "spell_side": {
+            "correct": 3,
+            "cross_entropy": 0.9431094117462635,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.875,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 4,
+            "target_agreement": 0.75,
+            "target_decisions": 4,
+            "top1_accuracy": 0.75,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 4,
+            "type_agreement": 1.0
+          },
+          "stats_target": {
+            "correct": 4,
+            "cross_entropy": 1.1792616453021765,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7083333333333334,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "two_self_damage": {
+            "correct": 0,
+            "cross_entropy": 0.9359132349491119,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 4,
+            "mean_reciprocal_rank": 0.5,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 0.0
+          },
+          "two_taunts": {
+            "correct": 13,
+            "cross_entropy": 0.44485981123788015,
+            "decisions": 14,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9523809523809524,
+            "predicted_END": 0,
+            "source_agreement": 0.9285714285714286,
+            "source_decisions": 14,
+            "target_agreement": 1.0,
+            "target_decisions": 14,
+            "top1_accuracy": 0.9285714285714286,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 1.0
+          }
+        },
+        "heuristic": {
+          "correct": 2,
+          "cross_entropy": 1.5710546262562275,
+          "decisions": 8,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.5833333333333334,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 8,
+          "target_agreement": 0.25,
+          "target_decisions": 8,
+          "top1_accuracy": 0.25,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 8,
+          "type_agreement": 1.0
+        },
+        "proven": {
+          "correct": 32,
+          "cross_entropy": 0.7207158566875891,
+          "decisions": 44,
+          "false_END": 2,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.8522727272727273,
+          "predicted_END": 2,
+          "source_agreement": 0.825,
+          "source_decisions": 40,
+          "target_agreement": 0.925,
+          "target_decisions": 40,
+          "top1_accuracy": 0.7272727272727273,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 40,
+          "type_agreement": 0.8636363636363636
+        },
+        "proven_base": {
+          "correct": 21,
+          "cross_entropy": 0.812833852134645,
+          "decisions": 32,
+          "false_END": 1,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.8125,
+          "predicted_END": 1,
+          "source_agreement": 0.7857142857142857,
+          "source_decisions": 28,
+          "target_agreement": 0.9285714285714286,
+          "target_decisions": 28,
+          "top1_accuracy": 0.65625,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 28,
+          "type_agreement": 0.84375
+        }
+      },
+      "pairs": {
+        "id": {
+          "both_correct": 5,
+          "changed_source": 6,
+          "details": [
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_4",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 5
+        },
+        "position": {
+          "both_correct": 6,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 6
+        },
+        "stats": {
+          "both_correct": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_6",
+              "same_choice": true
+            }
+          ],
+          "pairs": 4,
+          "same_semantic_choice": 4
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 761,
+            "cross_entropy": 1.1836270326375962,
+            "decisions": 1175,
+            "false_END": 40,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7533993202597709,
+            "predicted_END": 320,
+            "source_agreement": 0.5776754890678941,
+            "source_decisions": 869,
+            "target_agreement": 0.5778546712802768,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6476595744680851,
+            "top3_accuracy": 0.768177028451001,
+            "top3_decisions": 949,
+            "type_agreement": 0.8102127659574468
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.9179700369184668,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8184704184704185,
+            "predicted_END": 10,
+            "source_agreement": 0.6666666666666666,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 661,
+            "cross_entropy": 1.1776769414043473,
+            "decisions": 1012,
+            "false_END": 33,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7550499408235981,
+            "predicted_END": 278,
+            "source_agreement": 0.5798657718120805,
+            "source_decisions": 745,
+            "target_agreement": 0.559322033898305,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6531620553359684,
+            "top3_accuracy": 0.767639902676399,
+            "top3_decisions": 822,
+            "type_agreement": 0.8023715415019763
+          },
+          "WARRIOR": {
+            "correct": 77,
+            "cross_entropy": 1.2973822109974347,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7240318260171201,
+            "predicted_END": 32,
+            "source_agreement": 0.54,
+            "source_decisions": 100,
+            "target_agreement": 0.6222222222222222,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5923076923076923,
+            "top3_accuracy": 0.75,
+            "top3_decisions": 104,
+            "type_agreement": 0.8461538461538461
+          }
+        },
+        "overall": {
+          "correct": 761,
+          "cross_entropy": 1.1836270326375962,
+          "decisions": 1175,
+          "false_END": 40,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7533993202597709,
+          "predicted_END": 320,
+          "source_agreement": 0.5776754890678941,
+          "source_decisions": 869,
+          "target_agreement": 0.5778546712802768,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6476595744680851,
+          "top3_accuracy": 0.768177028451001,
+          "top3_decisions": 949,
+          "type_agreement": 0.8102127659574468
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 150,
+            "cross_entropy": 1.5286932170815315,
+            "decisions": 281,
+            "false_END": 13,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6681585251027095,
+            "predicted_END": 75,
+            "source_agreement": 0.460093896713615,
+            "source_decisions": 213,
+            "target_agreement": 0.26865671641791045,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5338078291814946,
+            "top3_accuracy": 0.7229437229437229,
+            "top3_decisions": 231,
+            "type_agreement": 0.7580071174377224
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 133,
+            "cross_entropy": 1.5244231823110772,
+            "decisions": 248,
+            "false_END": 11,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6701139509660308,
+            "predicted_END": 65,
+            "source_agreement": 0.4734042553191489,
+            "source_decisions": 188,
+            "target_agreement": 0.27586206896551724,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5362903225806451,
+            "top3_accuracy": 0.7355769230769231,
+            "top3_decisions": 208,
+            "type_agreement": 0.7620967741935484
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.5607831753564603,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6534632034632034,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 150,
+          "cross_entropy": 1.5286932170815315,
+          "decisions": 281,
+          "false_END": 13,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6681585251027095,
+          "predicted_END": 75,
+          "source_agreement": 0.460093896713615,
+          "source_decisions": 213,
+          "target_agreement": 0.26865671641791045,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5338078291814946,
+          "top3_accuracy": 0.7229437229437229,
+          "top3_decisions": 231,
+          "type_agreement": 0.7580071174377224
+        }
+      }
+    },
+    "frozen": {
+      "MF1": {
+        "by_category": {
+          "lethal": {
+            "correct": 2,
+            "cross_entropy": 0.2036377191543579,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "menu_order": {
+            "correct": 2,
+            "cross_entropy": 1.1162452697753906,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "target_selection": {
+            "correct": 3,
+            "cross_entropy": 1.0009380181630452,
+            "decisions": 3,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 3,
+            "target_agreement": 1.0,
+            "target_decisions": 3,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 3,
+            "type_agreement": 1.0
+          },
+          "taunt": {
+            "correct": 1,
+            "cross_entropy": 0.8031317591667175,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 1.0,
+            "target_decisions": 1,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "trades": {
+            "correct": 2,
+            "cross_entropy": 0.7186253070831299,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "unknown_cards": {
+            "correct": 0,
+            "cross_entropy": 1.2599387168884277,
+            "decisions": 1,
+            "false_END": 1,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3333333333333333,
+            "predicted_END": 1,
+            "source_agreement": 0.0,
+            "source_decisions": 1,
+            "target_agreement": 0.0,
+            "target_decisions": 1,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 0.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 10,
+            "cross_entropy": 0.831172829324549,
+            "decisions": 11,
+            "false_END": 1,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9393939393939394,
+            "predicted_END": 1,
+            "source_agreement": 0.9090909090909091,
+            "source_decisions": 11,
+            "target_agreement": 0.9090909090909091,
+            "target_decisions": 11,
+            "top1_accuracy": 0.9090909090909091,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 10,
+            "type_agreement": 0.9090909090909091
+          }
+        },
+        "overall": {
+          "correct": 10,
+          "cross_entropy": 0.831172829324549,
+          "decisions": 11,
+          "false_END": 1,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.9393939393939394,
+          "predicted_END": 1,
+          "source_agreement": 0.9090909090909091,
+          "source_decisions": 11,
+          "target_agreement": 0.9090909090909091,
+          "target_decisions": 11,
+          "top1_accuracy": 0.9090909090909091,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 10,
+          "type_agreement": 0.9090909090909091
+        }
+      },
+      "MF2C": {
+        "by_category": {
+          "favorable_trade": {
+            "correct": 0,
+            "cross_entropy": 2.107717897652126,
+            "decisions": 328,
+            "false_END": 308,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.4576909117305459,
+            "predicted_END": 308,
+            "source_agreement": 0.051829268292682924,
+            "source_decisions": 328,
+            "target_agreement": 0.0,
+            "target_decisions": 328,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.926829268292683,
+            "top3_decisions": 328,
+            "type_agreement": 0.06097560975609756
+          },
+          "lethal": {
+            "correct": 0,
+            "cross_entropy": 1.6329906599389181,
+            "decisions": 36,
+            "false_END": 36,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.49537037037037035,
+            "predicted_END": 36,
+            "source_agreement": 0.0,
+            "source_decisions": 36,
+            "target_agreement": 0.0,
+            "target_decisions": 36,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 36,
+            "type_agreement": 0.0
+          },
+          "no_proven_gain": {
+            "correct": 36,
+            "cross_entropy": 2.068821049398846,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 36,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 36,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 36,
+            "cross_entropy": 2.061491729915142,
+            "decisions": 400,
+            "false_END": 344,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.509889880952381,
+            "predicted_END": 380,
+            "source_agreement": 0.046703296703296704,
+            "source_decisions": 364,
+            "target_agreement": 0.0,
+            "target_decisions": 364,
+            "top1_accuracy": 0.09,
+            "top3_accuracy": 0.94,
+            "top3_decisions": 400,
+            "type_agreement": 0.14
+          }
+        },
+        "overall": {
+          "correct": 36,
+          "cross_entropy": 2.061491729915142,
+          "decisions": 400,
+          "false_END": 344,
+          "gold_END": 36,
+          "mean_reciprocal_rank": 0.509889880952381,
+          "predicted_END": 380,
+          "source_agreement": 0.046703296703296704,
+          "source_decisions": 364,
+          "target_agreement": 0.0,
+          "target_decisions": 364,
+          "top1_accuracy": 0.09,
+          "top3_accuracy": 0.94,
+          "top3_decisions": 400,
+          "type_agreement": 0.14
+        }
+      },
+      "control": {
+        "ambiguous": {
+          "count": 8,
+          "predicted_END": 0
+        },
+        "by_proven_category": {
+          "hero_shield_finish": {
+            "correct": 7,
+            "cross_entropy": 0.7079935031277793,
+            "decisions": 14,
+            "false_END": 7,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 7,
+            "source_agreement": 0.5,
+            "source_decisions": 14,
+            "target_agreement": 0.5,
+            "target_decisions": 14,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 0.5
+          },
+          "spell_side": {
+            "correct": 2,
+            "cross_entropy": 0.9387335479259491,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 4,
+            "target_agreement": 0.5,
+            "target_decisions": 4,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 4,
+            "type_agreement": 1.0
+          },
+          "stats_target": {
+            "correct": 3,
+            "cross_entropy": 1.0144161134958267,
+            "decisions": 8,
+            "false_END": 2,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.6666666666666666,
+            "predicted_END": 2,
+            "source_agreement": 0.375,
+            "source_decisions": 8,
+            "target_agreement": 0.75,
+            "target_decisions": 8,
+            "top1_accuracy": 0.375,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 0.75
+          },
+          "two_self_damage": {
+            "correct": 0,
+            "cross_entropy": 0.9143801331520081,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 4,
+            "mean_reciprocal_rank": 0.5,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 0.0
+          },
+          "two_taunts": {
+            "correct": 13,
+            "cross_entropy": 0.2713383947099958,
+            "decisions": 14,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.9642857142857143,
+            "predicted_END": 0,
+            "source_agreement": 0.9285714285714286,
+            "source_decisions": 14,
+            "target_agreement": 1.0,
+            "target_decisions": 14,
+            "top1_accuracy": 0.9285714285714286,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 1.0
+          }
+        },
+        "heuristic": {
+          "correct": 4,
+          "cross_entropy": 1.526653066277504,
+          "decisions": 8,
+          "false_END": 2,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.6666666666666666,
+          "predicted_END": 2,
+          "source_agreement": 0.75,
+          "source_decisions": 8,
+          "target_agreement": 0.5,
+          "target_decisions": 8,
+          "top1_accuracy": 0.5,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 8,
+          "type_agreement": 0.75
+        },
+        "proven": {
+          "correct": 25,
+          "cross_entropy": 0.6645097773183476,
+          "decisions": 44,
+          "false_END": 9,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.7803030303030304,
+          "predicted_END": 9,
+          "source_agreement": 0.675,
+          "source_decisions": 40,
+          "target_agreement": 0.725,
+          "target_decisions": 40,
+          "top1_accuracy": 0.5681818181818182,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 40,
+          "type_agreement": 0.7045454545454546
+        },
+        "proven_base": {
+          "correct": 19,
+          "cross_entropy": 0.6746855732053518,
+          "decisions": 32,
+          "false_END": 3,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.7916666666666666,
+          "predicted_END": 3,
+          "source_agreement": 0.75,
+          "source_decisions": 28,
+          "target_agreement": 0.8214285714285714,
+          "target_decisions": 28,
+          "top1_accuracy": 0.59375,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 28,
+          "type_agreement": 0.78125
+        }
+      },
+      "pairs": {
+        "id": {
+          "both_correct": 0,
+          "changed_source": 5,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_1",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_2",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_3",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_4",
+              "same_choice": false
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_5",
+              "same_choice": false
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 1
+        },
+        "position": {
+          "both_correct": 6,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 6
+        },
+        "stats": {
+          "both_correct": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_6",
+              "same_choice": true
+            }
+          ],
+          "pairs": 4,
+          "same_semantic_choice": 4
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 654,
+            "cross_entropy": 1.5012402789897108,
+            "decisions": 1175,
+            "false_END": 23,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.6787561009678293,
+            "predicted_END": 274,
+            "source_agreement": 0.5212888377445339,
+            "source_decisions": 869,
+            "target_agreement": 0.4013840830449827,
+            "target_decisions": 289,
+            "top1_accuracy": 0.556595744680851,
+            "top3_accuracy": 0.6765015806111696,
+            "top3_decisions": 949,
+            "type_agreement": 0.7693617021276595
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 19,
+            "cross_entropy": 1.3479864199956257,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.7015873015873015,
+            "predicted_END": 11,
+            "source_agreement": 0.625,
+            "source_decisions": 24,
+            "target_agreement": 0.375,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5757575757575758,
+            "top3_accuracy": 0.6521739130434783,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 575,
+            "cross_entropy": 1.4799545790425874,
+            "decisions": 1012,
+            "false_END": 14,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.6866137379418237,
+            "predicted_END": 230,
+            "source_agreement": 0.5355704697986577,
+            "source_decisions": 745,
+            "target_agreement": 0.4110169491525424,
+            "target_decisions": 236,
+            "top1_accuracy": 0.5681818181818182,
+            "top3_accuracy": 0.6849148418491484,
+            "top3_decisions": 822,
+            "type_agreement": 0.7598814229249012
+          },
+          "WARRIOR": {
+            "correct": 60,
+            "cross_entropy": 1.7058441689381232,
+            "decisions": 130,
+            "false_END": 7,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.6117918068284073,
+            "predicted_END": 33,
+            "source_agreement": 0.39,
+            "source_decisions": 100,
+            "target_agreement": 0.35555555555555557,
+            "target_decisions": 45,
+            "top1_accuracy": 0.46153846153846156,
+            "top3_accuracy": 0.6153846153846154,
+            "top3_decisions": 104,
+            "type_agreement": 0.8076923076923077
+          }
+        },
+        "overall": {
+          "correct": 654,
+          "cross_entropy": 1.5012402789897108,
+          "decisions": 1175,
+          "false_END": 23,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.6787561009678293,
+          "predicted_END": 274,
+          "source_agreement": 0.5212888377445339,
+          "source_decisions": 869,
+          "target_agreement": 0.4013840830449827,
+          "target_decisions": 289,
+          "top1_accuracy": 0.556595744680851,
+          "top3_accuracy": 0.6765015806111696,
+          "top3_decisions": 949,
+          "type_agreement": 0.7693617021276595
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 158,
+            "cross_entropy": 1.5265156515340363,
+            "decisions": 281,
+            "false_END": 4,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6802809264824348,
+            "predicted_END": 63,
+            "source_agreement": 0.5164319248826291,
+            "source_decisions": 213,
+            "target_agreement": 0.40298507462686567,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5622775800711743,
+            "top3_accuracy": 0.7012987012987013,
+            "top3_decisions": 231,
+            "type_agreement": 0.7722419928825622
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 144,
+            "cross_entropy": 1.514569383595259,
+            "decisions": 248,
+            "false_END": 2,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6904258347106083,
+            "predicted_END": 54,
+            "source_agreement": 0.5425531914893617,
+            "source_decisions": 188,
+            "target_agreement": 0.41379310344827586,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5806451612903226,
+            "top3_accuracy": 0.7115384615384616,
+            "top3_decisions": 208,
+            "type_agreement": 0.7782258064516129
+          },
+          "WARRIOR": {
+            "correct": 14,
+            "cross_entropy": 1.6162936651345454,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.604040404040404,
+            "predicted_END": 9,
+            "source_agreement": 0.32,
+            "source_decisions": 25,
+            "target_agreement": 0.3333333333333333,
+            "target_decisions": 9,
+            "top1_accuracy": 0.42424242424242425,
+            "top3_accuracy": 0.6086956521739131,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 158,
+          "cross_entropy": 1.5265156515340363,
+          "decisions": 281,
+          "false_END": 4,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6802809264824348,
+          "predicted_END": 63,
+          "source_agreement": 0.5164319248826291,
+          "source_decisions": 213,
+          "target_agreement": 0.40298507462686567,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5622775800711743,
+          "top3_accuracy": 0.7012987012987013,
+          "top3_decisions": 231,
+          "type_agreement": 0.7722419928825622
+        }
+      }
+    },
+    "initial": {
+      "MF1": {
+        "by_category": {
+          "lethal": {
+            "correct": 2,
+            "cross_entropy": 0.10941958427429199,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "menu_order": {
+            "correct": 2,
+            "cross_entropy": 1.0970388650894165,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "target_selection": {
+            "correct": 2,
+            "cross_entropy": 0.981285293896993,
+            "decisions": 3,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.8333333333333334,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 3,
+            "target_agreement": 0.6666666666666666,
+            "target_decisions": 3,
+            "top1_accuracy": 0.6666666666666666,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 3,
+            "type_agreement": 1.0
+          },
+          "taunt": {
+            "correct": 1,
+            "cross_entropy": 0.6858522295951843,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 1.0,
+            "target_decisions": 1,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          },
+          "trades": {
+            "correct": 2,
+            "cross_entropy": 0.6802962124347687,
+            "decisions": 2,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 1.0,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 2,
+            "target_agreement": 1.0,
+            "target_decisions": 2,
+            "top1_accuracy": 1.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 2,
+            "type_agreement": 1.0
+          },
+          "unknown_cards": {
+            "correct": 0,
+            "cross_entropy": 1.4881023168563843,
+            "decisions": 1,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.3333333333333333,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 1,
+            "target_agreement": 0.0,
+            "target_decisions": 1,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 1,
+            "type_agreement": 1.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 9,
+            "cross_entropy": 0.808301795612682,
+            "decisions": 11,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.893939393939394,
+            "predicted_END": 0,
+            "source_agreement": 1.0,
+            "source_decisions": 11,
+            "target_agreement": 0.8181818181818182,
+            "target_decisions": 11,
+            "top1_accuracy": 0.8181818181818182,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 10,
+            "type_agreement": 1.0
+          }
+        },
+        "overall": {
+          "correct": 9,
+          "cross_entropy": 0.808301795612682,
+          "decisions": 11,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.893939393939394,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 11,
+          "target_agreement": 0.8181818181818182,
+          "target_decisions": 11,
+          "top1_accuracy": 0.8181818181818182,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 10,
+          "type_agreement": 1.0
+        }
+      },
+      "MF2C": {
+        "by_category": {
+          "favorable_trade": {
+            "correct": 188,
+            "cross_entropy": 1.8590586100046227,
+            "decisions": 328,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7557454994192799,
+            "predicted_END": 0,
+            "source_agreement": 0.6707317073170732,
+            "source_decisions": 328,
+            "target_agreement": 0.9024390243902439,
+            "target_decisions": 328,
+            "top1_accuracy": 0.573170731707317,
+            "top3_accuracy": 0.9176829268292683,
+            "top3_decisions": 328,
+            "type_agreement": 1.0
+          },
+          "lethal": {
+            "correct": 22,
+            "cross_entropy": 1.567597938908471,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.755787037037037,
+            "predicted_END": 0,
+            "source_agreement": 0.9444444444444444,
+            "source_decisions": 36,
+            "target_agreement": 0.6111111111111112,
+            "target_decisions": 36,
+            "top1_accuracy": 0.6111111111111112,
+            "top3_accuracy": 0.8888888888888888,
+            "top3_decisions": 36,
+            "type_agreement": 1.0
+          },
+          "no_proven_gain": {
+            "correct": 0,
+            "cross_entropy": 2.988756984472275,
+            "decisions": 36,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.08640659457104329,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": 0.0,
+            "top3_decisions": 36,
+            "type_agreement": 0.0
+          }
+        },
+        "by_class": {
+          "UNKNOWN_CLASS": {
+            "correct": 210,
+            "cross_entropy": 1.9345000033080577,
+            "decisions": 400,
+            "false_END": 0,
+            "gold_END": 36,
+            "mean_reciprocal_rank": 0.6955087363685368,
+            "predicted_END": 0,
+            "source_agreement": 0.6978021978021978,
+            "source_decisions": 364,
+            "target_agreement": 0.8736263736263736,
+            "target_decisions": 364,
+            "top1_accuracy": 0.525,
+            "top3_accuracy": 0.8325,
+            "top3_decisions": 400,
+            "type_agreement": 0.91
+          }
+        },
+        "overall": {
+          "correct": 210,
+          "cross_entropy": 1.9345000033080577,
+          "decisions": 400,
+          "false_END": 0,
+          "gold_END": 36,
+          "mean_reciprocal_rank": 0.6955087363685368,
+          "predicted_END": 0,
+          "source_agreement": 0.6978021978021978,
+          "source_decisions": 364,
+          "target_agreement": 0.8736263736263736,
+          "target_decisions": 364,
+          "top1_accuracy": 0.525,
+          "top3_accuracy": 0.8325,
+          "top3_decisions": 400,
+          "type_agreement": 0.91
+        }
+      },
+      "control": {
+        "ambiguous": {
+          "count": 8,
+          "predicted_END": 0
+        },
+        "by_proven_category": {
+          "hero_shield_finish": {
+            "correct": 6,
+            "cross_entropy": 0.7736259060246604,
+            "decisions": 14,
+            "false_END": 8,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7142857142857143,
+            "predicted_END": 8,
+            "source_agreement": 0.42857142857142855,
+            "source_decisions": 14,
+            "target_agreement": 0.42857142857142855,
+            "target_decisions": 14,
+            "top1_accuracy": 0.42857142857142855,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 0.42857142857142855
+          },
+          "spell_side": {
+            "correct": 2,
+            "cross_entropy": 1.0059740617871284,
+            "decisions": 4,
+            "false_END": 1,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.75,
+            "predicted_END": 1,
+            "source_agreement": 0.75,
+            "source_decisions": 4,
+            "target_agreement": 0.5,
+            "target_decisions": 4,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 4,
+            "type_agreement": 0.75
+          },
+          "stats_target": {
+            "correct": 4,
+            "cross_entropy": 1.2564582750201225,
+            "decisions": 8,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.7083333333333334,
+            "predicted_END": 0,
+            "source_agreement": 0.5,
+            "source_decisions": 8,
+            "target_agreement": 1.0,
+            "target_decisions": 8,
+            "top1_accuracy": 0.5,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 8,
+            "type_agreement": 1.0
+          },
+          "two_self_damage": {
+            "correct": 0,
+            "cross_entropy": 1.39952352643013,
+            "decisions": 4,
+            "false_END": 0,
+            "gold_END": 4,
+            "mean_reciprocal_rank": 0.5,
+            "predicted_END": 0,
+            "source_agreement": null,
+            "source_decisions": 0,
+            "target_agreement": null,
+            "target_decisions": 0,
+            "top1_accuracy": 0.0,
+            "top3_accuracy": null,
+            "top3_decisions": 0,
+            "type_agreement": 0.0
+          },
+          "two_taunts": {
+            "correct": 11,
+            "cross_entropy": 0.49066335388592314,
+            "decisions": 14,
+            "false_END": 0,
+            "gold_END": 0,
+            "mean_reciprocal_rank": 0.8571428571428571,
+            "predicted_END": 0,
+            "source_agreement": 0.7857142857142857,
+            "source_decisions": 14,
+            "target_agreement": 1.0,
+            "target_decisions": 14,
+            "top1_accuracy": 0.7857142857142857,
+            "top3_accuracy": 1.0,
+            "top3_decisions": 14,
+            "type_agreement": 1.0
+          }
+        },
+        "heuristic": {
+          "correct": 2,
+          "cross_entropy": 1.6418597139418125,
+          "decisions": 8,
+          "false_END": 0,
+          "gold_END": 0,
+          "mean_reciprocal_rank": 0.5625,
+          "predicted_END": 0,
+          "source_agreement": 1.0,
+          "source_decisions": 8,
+          "target_agreement": 0.25,
+          "target_decisions": 8,
+          "top1_accuracy": 0.25,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 8,
+          "type_agreement": 1.0
+        },
+        "proven": {
+          "correct": 23,
+          "cross_entropy": 0.8494024134495042,
+          "decisions": 44,
+          "false_END": 9,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.7424242424242423,
+          "predicted_END": 9,
+          "source_agreement": 0.6,
+          "source_decisions": 40,
+          "target_agreement": 0.75,
+          "target_decisions": 40,
+          "top1_accuracy": 0.5227272727272727,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 40,
+          "type_agreement": 0.7045454545454546
+        },
+        "proven_base": {
+          "correct": 16,
+          "cross_entropy": 0.9554373612627387,
+          "decisions": 32,
+          "false_END": 5,
+          "gold_END": 4,
+          "mean_reciprocal_rank": 0.7291666666666666,
+          "predicted_END": 5,
+          "source_agreement": 0.6071428571428571,
+          "source_decisions": 28,
+          "target_agreement": 0.7857142857142857,
+          "target_decisions": 28,
+          "top1_accuracy": 0.5,
+          "top3_accuracy": 1.0,
+          "top3_decisions": 28,
+          "type_agreement": 0.71875
+        }
+      },
+      "pairs": {
+        "id": {
+          "both_correct": 2,
+          "changed_source": 3,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "id_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": true,
+              "field": null,
+              "id": "id_4",
+              "same_choice": false
+            },
+            {
+              "both_correct": true,
+              "changed_source": true,
+              "field": null,
+              "id": "id_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 5
+        },
+        "position": {
+          "both_correct": 5,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_1",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": null,
+              "id": "position_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_3",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": true,
+              "changed_source": false,
+              "field": null,
+              "id": "position_5",
+              "same_choice": true
+            }
+          ],
+          "pairs": 6,
+          "same_semantic_choice": 6
+        },
+        "stats": {
+          "both_correct": 0,
+          "changed_source": 0,
+          "details": [
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_0",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_health",
+              "id": "stats_2",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_4",
+              "same_choice": true
+            },
+            {
+              "both_correct": false,
+              "changed_source": false,
+              "field": "current_attack",
+              "id": "stats_6",
+              "same_choice": true
+            }
+          ],
+          "pairs": 4,
+          "same_semantic_choice": 4
+        }
+      },
+      "train": {
+        "by_category": {
+          "None": {
+            "correct": 741,
+            "cross_entropy": 1.20501515907176,
+            "decisions": 1175,
+            "false_END": 29,
+            "gold_END": 306,
+            "mean_reciprocal_rank": 0.7444063216716533,
+            "predicted_END": 297,
+            "source_agreement": 0.570771001150748,
+            "source_decisions": 869,
+            "target_agreement": 0.5190311418685121,
+            "target_decisions": 289,
+            "top1_accuracy": 0.6306382978723404,
+            "top3_accuracy": 0.7734457323498419,
+            "top3_decisions": 949,
+            "type_agreement": 0.7880851063829787
+          }
+        },
+        "by_class": {
+          "DEATHKNIGHT": {
+            "correct": 23,
+            "cross_entropy": 0.951985520846916,
+            "decisions": 33,
+            "false_END": 1,
+            "gold_END": 9,
+            "mean_reciprocal_rank": 0.8157768157768158,
+            "predicted_END": 10,
+            "source_agreement": 0.7083333333333334,
+            "source_decisions": 24,
+            "target_agreement": 0.875,
+            "target_decisions": 8,
+            "top1_accuracy": 0.696969696969697,
+            "top3_accuracy": 0.8695652173913043,
+            "top3_decisions": 23,
+            "type_agreement": 0.9090909090909091
+          },
+          "PRIEST": {
+            "correct": 644,
+            "cross_entropy": 1.1991250028045988,
+            "decisions": 1012,
+            "false_END": 22,
+            "gold_END": 267,
+            "mean_reciprocal_rank": 0.7471062693184002,
+            "predicted_END": 255,
+            "source_agreement": 0.5731543624161074,
+            "source_decisions": 745,
+            "target_agreement": 0.5042372881355932,
+            "target_decisions": 236,
+            "top1_accuracy": 0.6363636363636364,
+            "top3_accuracy": 0.7761557177615572,
+            "top3_decisions": 822,
+            "type_agreement": 0.7816205533596838
+          },
+          "WARRIOR": {
+            "correct": 74,
+            "cross_entropy": 1.315098360639352,
+            "decisions": 130,
+            "false_END": 6,
+            "gold_END": 30,
+            "mean_reciprocal_rank": 0.7052711422564364,
+            "predicted_END": 32,
+            "source_agreement": 0.52,
+            "source_decisions": 100,
+            "target_agreement": 0.5333333333333333,
+            "target_decisions": 45,
+            "top1_accuracy": 0.5692307692307692,
+            "top3_accuracy": 0.7307692307692307,
+            "top3_decisions": 104,
+            "type_agreement": 0.8076923076923077
+          }
+        },
+        "overall": {
+          "correct": 741,
+          "cross_entropy": 1.20501515907176,
+          "decisions": 1175,
+          "false_END": 29,
+          "gold_END": 306,
+          "mean_reciprocal_rank": 0.7444063216716533,
+          "predicted_END": 297,
+          "source_agreement": 0.570771001150748,
+          "source_decisions": 869,
+          "target_agreement": 0.5190311418685121,
+          "target_decisions": 289,
+          "top1_accuracy": 0.6306382978723404,
+          "top3_accuracy": 0.7734457323498419,
+          "top3_decisions": 949,
+          "type_agreement": 0.7880851063829787
+        }
+      },
+      "validation": {
+        "by_category": {
+          "None": {
+            "correct": 147,
+            "cross_entropy": 1.528246774792247,
+            "decisions": 281,
+            "false_END": 12,
+            "gold_END": 68,
+            "mean_reciprocal_rank": 0.6660864999675968,
+            "predicted_END": 72,
+            "source_agreement": 0.4507042253521127,
+            "source_decisions": 213,
+            "target_agreement": 0.23880597014925373,
+            "target_decisions": 67,
+            "top1_accuracy": 0.5231316725978647,
+            "top3_accuracy": 0.7316017316017316,
+            "top3_decisions": 231,
+            "type_agreement": 0.7402135231316725
+          }
+        },
+        "by_class": {
+          "PRIEST": {
+            "correct": 130,
+            "cross_entropy": 1.5257919470389043,
+            "decisions": 248,
+            "false_END": 10,
+            "gold_END": 60,
+            "mean_reciprocal_rank": 0.6672285784003051,
+            "predicted_END": 62,
+            "source_agreement": 0.4627659574468085,
+            "source_decisions": 188,
+            "target_agreement": 0.2413793103448276,
+            "target_decisions": 58,
+            "top1_accuracy": 0.5241935483870968,
+            "top3_accuracy": 0.7403846153846154,
+            "top3_decisions": 208,
+            "type_agreement": 0.7419354838709677
+          },
+          "WARRIOR": {
+            "correct": 17,
+            "cross_entropy": 1.546695177302216,
+            "decisions": 33,
+            "false_END": 2,
+            "gold_END": 8,
+            "mean_reciprocal_rank": 0.6575036075036075,
+            "predicted_END": 10,
+            "source_agreement": 0.36,
+            "source_decisions": 25,
+            "target_agreement": 0.2222222222222222,
+            "target_decisions": 9,
+            "top1_accuracy": 0.5151515151515151,
+            "top3_accuracy": 0.6521739130434783,
+            "top3_decisions": 23,
+            "type_agreement": 0.7272727272727273
+          }
+        },
+        "overall": {
+          "correct": 147,
+          "cross_entropy": 1.528246774792247,
+          "decisions": 281,
+          "false_END": 12,
+          "gold_END": 68,
+          "mean_reciprocal_rank": 0.6660864999675968,
+          "predicted_END": 72,
+          "source_agreement": 0.4507042253521127,
+          "source_decisions": 213,
+          "target_agreement": 0.23880597014925373,
+          "target_decisions": 67,
+          "top1_accuracy": 0.5231316725978647,
+          "top3_accuracy": 0.7316017316017316,
+          "top3_decisions": 231,
+          "type_agreement": 0.7402135231316725
+        }
+      }
+    }
+  },
+  "real_validation_paired_bootstrap": {
+    "A": {
+      "CE_delta_95": [
+        -0.02983988727640918,
+        0.008622218850182325
+      ],
+      "matches": 7,
+      "top1_delta_95": [
+        -0.009771986970684038,
+        0.0
+      ]
+    },
+    "initial": {
+      "CE_delta_95": [
+        -0.013689215309056804,
+        0.013553543406512897
+      ],
+      "matches": 7,
+      "top1_delta_95": [
+        -0.006644518272425249,
+        0.03669724770642202
+      ]
+    }
+  },
+  "semantic_unique_states": {
+    "control": 32,
+    "train": 68,
+    "validation": 26
+  },
+  "training": {
+    "candidates": {
+      "A": {
+        "checkpoint_sha256": "54f837cac6cb1f5abdca829312ddf9439052732bcc417d74246c7dbe8cf0df79",
+        "epochs_run": 5,
+        "optimizer_steps": 250,
+        "seconds": 84.97891980000713,
+        "selected_epoch": 1,
+        "selection_guard_passed": true
+      },
+      "B": {
+        "checkpoint_sha256": "bf39816c90c3dcb282f50b71e7745da1d0a291452f1c77509bf8d1ac018c6820",
+        "epochs_run": 5,
+        "optimizer_steps": 250,
+        "seconds": 25.63311480000266,
+        "selected_epoch": 1,
+        "selection_guard_passed": true
+      }
+    },
+    "dataset_manifest_sha256": "ea70ffb51b1ef38d0777d51fd3300cc22351c2e7e2626e8da8c435a817965c0c"
+  },
+  "verdict": "INCONCLUSIVE"
+}
