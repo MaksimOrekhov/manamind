@@ -1,0 +1,76 @@
+
+=== Hold Them Off! on an enemy 6/6 versus its alternatives
+  SELF: hero 24 armor 0 mana 5 hand 3 secrets 0 | board: #1 DEMO_OWN_3_3 3/3
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_ENEMY_6_6 6/6, #2 DEMO_ENEMY_2_2 2/2
+
+[1] PLAY_CARD JAIL_913 -> OPPONENT minion #1 DEMO_ENEMY_6_6  ->  EXACT
+      SELF player.available_mana: 5 -> 0 (-5) (pays 5 Mana)
+      OPPONENT board#1 DEMO_ENEMY_6_6.attack: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 DEMO_ENEMY_6_6.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 DEMO_ENEMY_6_6.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 DEMO_ENEMY_6_6.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -5
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      . 'Give a minion +5/+5 and Lifesteal': +5/+5
+      . 'Give a minion +5/+5 and Lifesteal': gains lifesteal
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[2] PLAY_CARD JAIL_913 -> OPPONENT minion #2 DEMO_ENEMY_2_2  ->  EXACT
+      SELF player.available_mana: 5 -> 0 (-5) (pays 5 Mana)
+      OPPONENT board#2 DEMO_ENEMY_2_2.attack: 2 -> 7 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 DEMO_ENEMY_2_2.health: 2 -> 7 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 DEMO_ENEMY_2_2.max_health: 2 -> 7 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 DEMO_ENEMY_2_2.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -5
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      . 'Give a minion +5/+5 and Lifesteal': +5/+5
+      . 'Give a minion +5/+5 and Lifesteal': gains lifesteal
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[3] PLAY_CARD JAIL_913 -> SELF minion #1 DEMO_OWN_3_3  ->  EXACT
+      SELF player.available_mana: 5 -> 0 (-5) (pays 5 Mana)
+      SELF board#1 DEMO_OWN_3_3.attack: 3 -> 8 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#1 DEMO_OWN_3_3.health: 3 -> 8 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#1 DEMO_OWN_3_3.max_health: 3 -> 8 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#1 DEMO_OWN_3_3.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: board_attack +5, board_health +5, keywords +1, mana -5
+      . 'Give a minion +5/+5 and Lifesteal': +5/+5
+      . 'Give a minion +5/+5 and Lifesteal': gains lifesteal
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[4] PLAY_CARD CORE_CS2_029 -> OPPONENT minion #1 DEMO_ENEMY_6_6  ->  EXACT
+      SELF player.available_mana: 5 -> 1 (-4) (pays 4 Mana)
+      OPPONENT board#1 DEMO_ENEMY_6_6.health: 6 -> 0 (-6) ('Deal $6 damage')
+      OPPONENT board#1 DEMO_ENEMY_6_6 leaves play (death)
+      SELF hand#1 CORE_CS2_029 leaves the hand (card leaves hand)
+      net SELF: mana -4
+      net OPPONENT: minions -1, board_attack -6, board_health -6
+      . 'Deal $6 damage': 6 damage
+      . OPPONENT board#1 DEMO_ENEMY_6_6 dies
+[5] PLAY_CARD CORE_CS2_029 -> OPPONENT hero hero  ->  EXACT
+      OPPONENT hero.health: 30 -> 24 (-6) ('Deal $6 damage')
+      SELF player.available_mana: 5 -> 1 (-4) (pays 4 Mana)
+      SELF hand#1 CORE_CS2_029 leaves the hand (card leaves hand)
+      net SELF: mana -4
+      net OPPONENT: hero_health -6
+      . 'Deal $6 damage': 0 absorbed by armor
+[6] PLAY_CARD CORE_AT_055 -> SELF hero hero  ->  EXACT
+      SELF hero.health: 24 -> 29 (+5) ('Restore #5 Health')
+      SELF player.available_mana: 5 -> 4 (-1) (pays 1 Mana)
+      SELF hand#2 CORE_AT_055 leaves the hand (card leaves hand)
+      net SELF: hero_health +5, mana -1
+      . 'Restore #5 Health': restores 5 (base 5, bonus 0, missing 6)
+[7] ATTACK DEMO_OWN_3_3@1 -> OPPONENT minion #2 DEMO_ENEMY_2_2  ->  EXACT
+      OPPONENT board#2 DEMO_ENEMY_2_2.health: 2 -> -1 (-3) (attack damage)
+      OPPONENT board#2 DEMO_ENEMY_2_2 leaves play (death)
+      SELF board#1 DEMO_OWN_3_3.health: 3 -> 1 (-2) (counter-attack damage)
+      SELF board#1 DEMO_OWN_3_3.can_attack: True -> False (the attack is spent)
+      net SELF: board_health -2
+      net OPPONENT: minions -1, board_attack -2, board_health -2
+      . attack damage: 3 damage
+      . counter-attack damage: 2 damage
+      . OPPONENT board#2 DEMO_ENEMY_2_2 dies
+[8] END_TURN  ->  EXACT
+      . SELF ends the turn; the opponent's turn is not modelled

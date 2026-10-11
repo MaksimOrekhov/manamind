@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "purpose": "Rules text for tokens that no pinned snapshot carries, written from public Hearthstone rules and used only by the ACTION-OUTCOME-1 forecaster as a lowest-priority supplement. Each entry is checked against logged uses in reports/action_outcome_1; remove an entry that the log contradicts. DINO_COIN2 was removed: its logged mana change is +1 once and 0 once (its cost is not observed), so the text is not confirmed.",
+  "cards": [
+    {
+      "id": "JAIL_EVENT_COIN",
+      "type": "SPELL",
+      "mechanics": [],
+      "text": "Gain 1 Mana Crystal this turn only."
+    },
+    {
+      "id": "HERO_01bp",
+      "type": "HERO_POWER",
+      "mechanics": [],
+      "text": "Gain 2 Armor."
+    }
+  ]
+}

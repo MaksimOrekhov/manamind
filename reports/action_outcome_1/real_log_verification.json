@@ -1,0 +1,1207 @@
+{
+  "corpus": {
+    "adjacent_pairs_scored": 1330,
+    "decision_ids_sha256": "e43e326c9034a601880bfc00f8f07fdecb73cd19cec5859e326d5b21434c9142",
+    "games": 53,
+    "labeled_decisions": 2010
+  },
+  "menu_scan": {
+    "by_card": {
+      "CAP_801": 10,
+      "CORE_CS2_004": 2,
+      "JAIL_913": 729,
+      "TIME_447": 2
+    },
+    "by_status": {
+      "EXACT": 343,
+      "PARTIAL": 22883,
+      "UNSUPPORTED": 139
+    },
+    "by_type_and_status": {
+      "ACTIVATE_LOCATION/PARTIAL": 1243,
+      "ATTACK/EXACT": 5,
+      "ATTACK/PARTIAL": 2894,
+      "END_TURN/EXACT": 303,
+      "END_TURN/PARTIAL": 1707,
+      "HERO_POWER/EXACT": 3,
+      "HERO_POWER/PARTIAL": 1256,
+      "HERO_POWER/UNSUPPORTED": 3,
+      "PLAY_CARD/EXACT": 32,
+      "PLAY_CARD/PARTIAL": 15783,
+      "PLAY_CARD/UNSUPPORTED": 136
+    },
+    "chosen_by_the_player": 0,
+    "decisions_offering_one": 268,
+    "legal_actions": 23365,
+    "of_which_own_effect_known": 739,
+    "opponent_only_improvement_actions": 743
+  },
+  "runs": {
+    "assumed_defaults": {
+      "blockers": {
+        "exact_if_resolved": {
+          "everything_except_opponent_secrets": 867,
+          "observation_gaps_closed": 87,
+          "observation_gaps_closed_and_board_rules_understood": 462
+        },
+        "exact_now": 17,
+        "forecasts": 1303,
+        "forecasts_blocked_by": {
+          "ATTACKS_USED_UNOBSERVED": 2,
+          "BOARD_STATIC_TEXT": 1004,
+          "BOARD_TEXT_MISSING": 501,
+          "BOARD_TRIGGER": 155,
+          "COST_UNOBSERVED": 5,
+          "DEATHRATTLE_OR_REBORN": 66,
+          "OPPONENT_SECRET": 436,
+          "OWN_SECRET_OR_QUEST": 901,
+          "OWN_TEXT_KEYWORD": 39,
+          "OWN_TEXT_MISSING": 218,
+          "OWN_TEXT_RANDOM": 81,
+          "OWN_TEXT_UNPARSED": 536,
+          "WEAPON_UNOBSERVED": 1
+        },
+        "untagged_unknowns": 0,
+        "would_become_exact_if_only_this_class_were_resolved": {
+          "BOARD_STATIC_TEXT": 20,
+          "BOARD_TEXT_MISSING": 12,
+          "BOARD_TRIGGER": 4,
+          "DEATHRATTLE_OR_REBORN": 1,
+          "OWN_SECRET_OR_QUEST": 21,
+          "OWN_TEXT_MISSING": 3,
+          "OWN_TEXT_RANDOM": 9,
+          "OWN_TEXT_UNPARSED": 16
+        }
+      },
+      "by_family": {
+        "ACTIVATE_LOCATION": {
+          "confirmed_paths": 145,
+          "contradicted_paths": 0,
+          "n": 78,
+          "status": {
+            "PARTIAL": 78
+          },
+          "verdict": {
+            "CONFIRMED": 44,
+            "INCOMPLETE": 34
+          }
+        },
+        "ATTACK": {
+          "confirmed_paths": 415,
+          "contradicted_paths": 18,
+          "n": 185,
+          "status": {
+            "EXACT": 4,
+            "PARTIAL": 181
+          },
+          "verdict": {
+            "CONFIRMED": 140,
+            "CONTRADICTED": 15,
+            "INCOMPLETE": 30
+          }
+        },
+        "HERO_POWER": {
+          "confirmed_paths": 359,
+          "contradicted_paths": 0,
+          "n": 176,
+          "status": {
+            "PARTIAL": 175,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 10,
+            "INCOMPLETE": 165,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/LOCATION": {
+          "confirmed_paths": 321,
+          "contradicted_paths": 0,
+          "n": 56,
+          "status": {
+            "EXACT": 4,
+            "PARTIAL": 51,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 54,
+            "INCOMPLETE": 1,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/MINION": {
+          "confirmed_paths": 7421,
+          "contradicted_paths": 109,
+          "n": 382,
+          "status": {
+            "EXACT": 8,
+            "PARTIAL": 373,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 220,
+            "CONTRADICTED": 69,
+            "INCOMPLETE": 92,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/SPELL": {
+          "confirmed_paths": 1615,
+          "contradicted_paths": 238,
+          "n": 431,
+          "status": {
+            "EXACT": 1,
+            "PARTIAL": 428,
+            "UNSUPPORTED": 2
+          },
+          "verdict": {
+            "CONFIRMED": 118,
+            "CONTRADICTED": 195,
+            "INCOMPLETE": 116,
+            "UNSUPPORTED": 2
+          }
+        },
+        "PLAY_CARD/WEAPON": {
+          "confirmed_paths": 0,
+          "contradicted_paths": 0,
+          "n": 22,
+          "status": {
+            "UNSUPPORTED": 22
+          },
+          "verdict": {
+            "UNSUPPORTED": 22
+          }
+        }
+      },
+      "confirmed_paths": 10276,
+      "contradicted_paths": 365,
+      "contradiction_examples": [
+        {
+          "action": "PLAY_CARD CORE_EX1_193 (position 3)",
+          "contradicted": {
+            "SELF.hand_size": [
+              6,
+              7
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:33",
+          "open_unknowns": [
+            "CORE_EX1_193: 'Copy a card in your opponent’s deck and add it to your hand'",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#1 EDR_970: static rule 'Imbue your Hero Power' is not modelled",
+            "OPPONENT board#2 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD EDR_476",
+          "contradicted": {
+            "SELF.hero.health": [
+              27,
+              29
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:77",
+          "open_unknowns": [
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 JAIL_942: static rule 'Can't attack' is not modelled",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled",
+            "OPPONENT board#1 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": true,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_BOT_222 -> OPPONENT minion #1 TIME_431",
+          "contradicted": {
+            "SELF.hand_size": [
+              8,
+              10
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:101",
+          "open_unknowns": [
+            "CORE_BOT_222: 'Deal $4 damage to a minion and your hero'",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 END_026: 'After you cast a spell on a minion, draw a card' may fire on ['SPELL_CAST']",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TLC_817t4 (position 2)",
+          "contradicted": {
+            "SELF.board.new[TLC_817t4].reborn": [
+              false,
+              true
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:102",
+          "open_unknowns": [
+            "no rules text for minion TLC_817t4",
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD FIR_777 (position 4)",
+          "contradicted": {
+            "SELF.board.new[FIR_777].current_attack": [
+              1,
+              4
+            ],
+            "SELF.board.new[FIR_777].current_health": [
+              3,
+              6
+            ],
+            "SELF.board.new[FIR_777].max_health": [
+              3,
+              6
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:104",
+          "open_unknowns": [
+            "FIR_777: 'If you used your Hero Power this turn, gain +3/+3'",
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF board#2 TLC_817t4: no rules text, triggers and static rules unknown",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD EDR_476",
+          "contradicted": {
+            "OPPONENT.hero.health": [
+              22,
+              24
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:132",
+          "open_unknowns": [
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF board#2 TLC_817t4: no rules text, triggers and static rules unknown",
+            "SELF board#3 END_026: 'After you cast a spell on a minion, draw a card' may fire on ['SPELL_CAST']",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": true,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+          "contradicted": {
+            "OPPONENT.hero.health": [
+              35,
+              12
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:155",
+          "open_unknowns": [
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled",
+            "SELF location#2 TIME_890t2: no rules text, triggers and static rules unknown"
+          ],
+          "own_effect_known": true,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_SW_442 -> OPPONENT hero hero",
+          "contradicted": {
+            "OPPONENT.hero.health": [
+              8,
+              4
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:156",
+          "open_unknowns": [
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled",
+            "SELF location#2 TIME_890t2: no rules text, triggers and static rules unknown"
+          ],
+          "own_effect_known": true,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD EDR_476",
+          "contradicted": {
+            "OPPONENT.board[2:CAP_802t].gone": [
+              true,
+              false
+            ],
+            "SELF.hero.health": [
+              29,
+              30
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:44",
+          "open_unknowns": [
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled",
+            "OPPONENT board#1 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": true,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD END_027",
+          "contradicted": {
+            "SELF.hand_size": [
+              6,
+              7
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:72",
+          "open_unknowns": [
+            "END_027: 'Discover a Dragon from the past with a Dark Gift'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TRL_526 (position 3)",
+          "contradicted": {
+            "SELF.board.new[TRL_526].can_attack": [
+              false,
+              true
+            ],
+            "SELF.board.new[TRL_526].charge": [
+              false,
+              true
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:73",
+          "open_unknowns": [
+            "TRL_526: 'Deal 1 damage to all other minions'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_EX1_193 (position 5)",
+          "contradicted": {
+            "SELF.hand_size": [
+              5,
+              6
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:102",
+          "open_unknowns": [
+            "CORE_EX1_193: 'Copy a card in your opponent’s deck and add it to your hand'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#3 TLC_605: static rule 'Has +6 Attack during your opponent's turn' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        }
+      ],
+      "exact_violations": [
+        {
+          "action": "PLAY_CARD CORE_AT_055 -> OPPONENT hero hero",
+          "contradicted": {
+            "OPPONENT.hero.health": [
+              28,
+              5
+            ]
+          },
+          "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:196"
+        }
+      ],
+      "jail_913": {
+        "by_target_side": {
+          "SELF": 20
+        },
+        "card_id": "JAIL_913",
+        "casts": 20,
+        "confirmed_path_fields": {
+          "current_attack": 20,
+          "current_health": 20,
+          "gone": 20,
+          "hand_size": 16,
+          "lifesteal": 18,
+          "mana": 15,
+          "max_health": 20
+        },
+        "contradicted": [
+          {
+            "decision": "99e6a7ebe8fa2ccef7b614432f7bf3ebc827a14c668b7bdb50b933a75f2cbb28:30",
+            "paths": {
+              "SELF.hand_size": [
+                7,
+                8
+              ]
+            }
+          },
+          {
+            "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:106",
+            "paths": {
+              "SELF.hand_size": [
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "decision": "b8ca2e8436f9d3c74676450f4c236fc40db6681fc2545607b3d308bca511b065:76",
+            "paths": {
+              "SELF.hand_size": [
+                9,
+                10
+              ]
+            }
+          },
+          {
+            "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:69",
+            "paths": {
+              "SELF.hand_size": [
+                8,
+                9
+              ]
+            }
+          }
+        ],
+        "missed": [
+          {
+            "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:139",
+            "paths": {
+              "SELF.hand.new[TLC_817t5].present": [
+                false,
+                true
+              ],
+              "SELF.hand[7:TLC_817t4].gone": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "99e6a7ebe8fa2ccef7b614432f7bf3ebc827a14c668b7bdb50b933a75f2cbb28:30",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:106",
+            "paths": {
+              "SELF.board[0:TIME_427].can_attack": [
+                false,
+                true
+              ],
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "b8ca2e8436f9d3c74676450f4c236fc40db6681fc2545607b3d308bca511b065:76",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:69",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "c70dbc985f55d9000746c59af88bbe3b0284d4a723d6a9ea327f14c445890578:100",
+            "paths": {
+              "SELF.hand.new[TLC_817t5].present": [
+                false,
+                true
+              ],
+              "SELF.hand[5:TLC_817t4].gone": [
+                false,
+                true
+              ]
+            }
+          }
+        ],
+        "status": {
+          "PARTIAL": 20
+        },
+        "verdict": {
+          "CONFIRMED": 14,
+          "CONTRADICTED": 4,
+          "INCOMPLETE": 2
+        }
+      },
+      "missed_paths": 1215,
+      "pairs": 1330,
+      "partial_contradicted_without_altering_unknown": 1,
+      "status": {
+        "EXACT": 17,
+        "PARTIAL": 1286,
+        "UNSUPPORTED": 27
+      },
+      "tiers": {
+        "EXACT": {
+          "confirmed_paths": 195,
+          "contradicted_paths": 1,
+          "n": 17,
+          "verdict": {
+            "CONFIRMED": 16,
+            "CONTRADICTED": 1
+          }
+        },
+        "OWN_EFFECT_KNOWN (reactions of other objects still open)": {
+          "confirmed_paths": 2791,
+          "contradicted_paths": 98,
+          "n": 460,
+          "verdict": {
+            "CONFIRMED": 318,
+            "CONTRADICTED": 73,
+            "INCOMPLETE": 69
+          }
+        }
+      },
+      "unknown_kinds": {
+        "HIDDEN_SECRET": 436,
+        "KEYWORD_UNDEFINED": 39,
+        "MODIFIER_UNOBSERVED": 8,
+        "POSSIBLE_REACTION": 1209,
+        "RANDOM_OUTCOME": 81,
+        "TEXT_UNAVAILABLE": 643,
+        "UNPARSED_CLAUSE": 536
+      },
+      "unsupported_reasons": {
+        "COST_EXCEEDS_AVAILABLE_MANA": 4,
+        "NO_TARGET_FOR_CHOSEN_CLAUSE": 1,
+        "PLAY_WEAPON_NOT_MODELLED": 22
+      },
+      "verdict_by_status": {
+        "EXACT": {
+          "CONFIRMED": 16,
+          "CONTRADICTED": 1
+        },
+        "PARTIAL": {
+          "CONFIRMED": 570,
+          "CONTRADICTED": 278,
+          "INCOMPLETE": 438
+        },
+        "UNSUPPORTED": {
+          "UNSUPPORTED": 27
+        }
+      }
+    },
+    "observed_only": {
+      "blockers": {
+        "exact_if_resolved": {
+          "everything_except_opponent_secrets": 867,
+          "observation_gaps_closed": 87,
+          "observation_gaps_closed_and_board_rules_understood": 462
+        },
+        "exact_now": 4,
+        "forecasts": 1303,
+        "forecasts_blocked_by": {
+          "ATTACKS_USED_UNOBSERVED": 2,
+          "BOARD_STATIC_TEXT": 1004,
+          "BOARD_TEXT_MISSING": 501,
+          "BOARD_TRIGGER": 153,
+          "CONDITION_UNOBSERVED": 12,
+          "COST_UNOBSERVED": 5,
+          "DEATHRATTLE_OR_REBORN": 66,
+          "HAND_KEYWORDS_UNOBSERVED": 381,
+          "HEALING_BONUS_UNOBSERVED": 168,
+          "HERO_SHIELD_UNOBSERVED": 116,
+          "OPPONENT_SECRET": 436,
+          "OWN_SECRET_OR_QUEST": 901,
+          "OWN_TEXT_KEYWORD": 39,
+          "OWN_TEXT_MISSING": 218,
+          "OWN_TEXT_RANDOM": 81,
+          "OWN_TEXT_UNPARSED": 535,
+          "SANCTUM_UNOBSERVED": 168,
+          "SPELL_DAMAGE_UNOBSERVED": 161,
+          "WEAPON_UNOBSERVED": 1
+        },
+        "untagged_unknowns": 0,
+        "would_become_exact_if_only_this_class_were_resolved": {
+          "BOARD_STATIC_TEXT": 9,
+          "BOARD_TEXT_MISSING": 6,
+          "BOARD_TRIGGER": 2,
+          "DEATHRATTLE_OR_REBORN": 1,
+          "HAND_KEYWORDS_UNOBSERVED": 8,
+          "HERO_SHIELD_UNOBSERVED": 4,
+          "OWN_SECRET_OR_QUEST": 15,
+          "OWN_TEXT_MISSING": 1,
+          "OWN_TEXT_UNPARSED": 10
+        }
+      },
+      "by_family": {
+        "ACTIVATE_LOCATION": {
+          "confirmed_paths": 145,
+          "contradicted_paths": 0,
+          "n": 78,
+          "status": {
+            "PARTIAL": 78
+          },
+          "verdict": {
+            "CONFIRMED": 44,
+            "INCOMPLETE": 34
+          }
+        },
+        "ATTACK": {
+          "confirmed_paths": 325,
+          "contradicted_paths": 15,
+          "n": 185,
+          "status": {
+            "PARTIAL": 185
+          },
+          "verdict": {
+            "CONFIRMED": 140,
+            "CONTRADICTED": 12,
+            "INCOMPLETE": 33
+          }
+        },
+        "HERO_POWER": {
+          "confirmed_paths": 359,
+          "contradicted_paths": 0,
+          "n": 176,
+          "status": {
+            "PARTIAL": 175,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 10,
+            "INCOMPLETE": 165,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/LOCATION": {
+          "confirmed_paths": 321,
+          "contradicted_paths": 0,
+          "n": 56,
+          "status": {
+            "EXACT": 4,
+            "PARTIAL": 51,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 54,
+            "INCOMPLETE": 1,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/MINION": {
+          "confirmed_paths": 7421,
+          "contradicted_paths": 109,
+          "n": 382,
+          "status": {
+            "PARTIAL": 381,
+            "UNSUPPORTED": 1
+          },
+          "verdict": {
+            "CONFIRMED": 220,
+            "CONTRADICTED": 69,
+            "INCOMPLETE": 92,
+            "UNSUPPORTED": 1
+          }
+        },
+        "PLAY_CARD/SPELL": {
+          "confirmed_paths": 1490,
+          "contradicted_paths": 159,
+          "n": 431,
+          "status": {
+            "PARTIAL": 429,
+            "UNSUPPORTED": 2
+          },
+          "verdict": {
+            "CONFIRMED": 161,
+            "CONTRADICTED": 142,
+            "INCOMPLETE": 126,
+            "UNSUPPORTED": 2
+          }
+        },
+        "PLAY_CARD/WEAPON": {
+          "confirmed_paths": 0,
+          "contradicted_paths": 0,
+          "n": 22,
+          "status": {
+            "UNSUPPORTED": 22
+          },
+          "verdict": {
+            "UNSUPPORTED": 22
+          }
+        }
+      },
+      "confirmed_paths": 10061,
+      "contradicted_paths": 283,
+      "contradiction_examples": [
+        {
+          "action": "PLAY_CARD CORE_EX1_193 (position 3)",
+          "contradicted": {
+            "SELF.hand_size": [
+              6,
+              7
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:33",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "CORE_EX1_193: 'Copy a card in your opponent’s deck and add it to your hand'",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#1 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_BOT_222 -> OPPONENT minion #1 TIME_431",
+          "contradicted": {
+            "SELF.hand_size": [
+              8,
+              10
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:101",
+          "open_unknowns": [
+            "CORE_BOT_222: 'Deal $4 damage to a minion and your hero'",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 END_026: 'After you cast a spell on a minion, draw a card' may fire on ['SPELL_CAST']",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TLC_817t4 (position 2)",
+          "contradicted": {
+            "SELF.board.new[TLC_817t4].reborn": [
+              false,
+              true
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:102",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "no rules text for minion TLC_817t4",
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD FIR_777 (position 4)",
+          "contradicted": {
+            "SELF.board.new[FIR_777].current_attack": [
+              1,
+              4
+            ],
+            "SELF.board.new[FIR_777].current_health": [
+              3,
+              6
+            ],
+            "SELF.board.new[FIR_777].max_health": [
+              3,
+              6
+            ]
+          },
+          "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:104",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "FIR_777: 'If you used your Hero Power this turn, gain +3/+3'",
+            "SELF has 1 Secret/Quest object(s)",
+            "SELF board#2 TLC_817t4: no rules text, triggers and static rules unknown"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD EDR_476",
+          "contradicted": {
+            "OPPONENT.board[2:CAP_802t].gone": [
+              true,
+              false
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:44",
+          "open_unknowns": [
+            "Spell Damage is not observed (a 0 in GameState may be a default); damage is a lower bound",
+            "OPPONENT hero Divine Shield state is not observed",
+            "healing-to-damage conversion (Ruby Sanctum) is not exposed by GameState",
+            "SELF healing bonus is not observed"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD END_027",
+          "contradicted": {
+            "SELF.hand_size": [
+              6,
+              7
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:72",
+          "open_unknowns": [
+            "END_027: 'Discover a Dragon from the past with a Dark Gift'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)",
+            "SELF board#2 EDR_970: static rule 'Imbue your Hero Power' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TRL_526 (position 3)",
+          "contradicted": {
+            "SELF.board.new[TRL_526].can_attack": [
+              false,
+              true
+            ],
+            "SELF.board.new[TRL_526].charge": [
+              false,
+              true
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:73",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "TRL_526: 'Deal 1 damage to all other minions'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD CORE_EX1_193 (position 5)",
+          "contradicted": {
+            "SELF.hand_size": [
+              5,
+              6
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:102",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "CORE_EX1_193: 'Copy a card in your opponent’s deck and add it to your hand'",
+            "opponent has 2 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD FIR_777 (position 3)",
+          "contradicted": {
+            "SELF.board.new[FIR_777].current_attack": [
+              1,
+              4
+            ],
+            "SELF.board.new[FIR_777].current_health": [
+              3,
+              6
+            ],
+            "SELF.board.new[FIR_777].max_health": [
+              3,
+              6
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:121",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "FIR_777: 'If you used your Hero Power this turn, gain +3/+3'",
+            "opponent has 1 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TLC_815",
+          "contradicted": {
+            "SELF.hand_size": [
+              7,
+              8
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:130",
+          "open_unknowns": [
+            "TLC_815: 'Summon a random 4-Cost minion and give it Taunt'",
+            "TLC_815: 'Kindred: Do it again'",
+            "opponent has 1 Secret(s) that may trigger",
+            "SELF has 2 Secret/Quest object(s)"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TLC_816",
+          "contradicted": {
+            "SELF.hand_size": [
+              8,
+              10
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:147",
+          "open_unknowns": [
+            "TLC_816: 'Draw 2 cards'",
+            "opponent has 1 Secret(s) that may trigger",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled",
+            "OPPONENT board#1 TLC_817t4: no rules text, triggers and static rules unknown"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        },
+        {
+          "action": "PLAY_CARD TLC_817t5 (position 1)",
+          "contradicted": {
+            "SELF.board.new[TLC_817t5].reborn": [
+              false,
+              true
+            ],
+            "SELF.board.new[TLC_817t5].taunt": [
+              false,
+              true
+            ]
+          },
+          "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:148",
+          "open_unknowns": [
+            "keyword enchantments on the hand instance are not observed; the keywords shown come from the base card",
+            "no rules text for minion TLC_817t5",
+            "opponent has 1 Secret(s) that may trigger",
+            "SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled"
+          ],
+          "own_effect_known": false,
+          "status": "PARTIAL"
+        }
+      ],
+      "exact_violations": [],
+      "jail_913": {
+        "by_target_side": {
+          "SELF": 20
+        },
+        "card_id": "JAIL_913",
+        "casts": 20,
+        "confirmed_path_fields": {
+          "current_attack": 20,
+          "current_health": 20,
+          "gone": 20,
+          "hand_size": 16,
+          "lifesteal": 18,
+          "mana": 15,
+          "max_health": 20
+        },
+        "contradicted": [
+          {
+            "decision": "99e6a7ebe8fa2ccef7b614432f7bf3ebc827a14c668b7bdb50b933a75f2cbb28:30",
+            "paths": {
+              "SELF.hand_size": [
+                7,
+                8
+              ]
+            }
+          },
+          {
+            "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:106",
+            "paths": {
+              "SELF.hand_size": [
+                3,
+                4
+              ]
+            }
+          },
+          {
+            "decision": "b8ca2e8436f9d3c74676450f4c236fc40db6681fc2545607b3d308bca511b065:76",
+            "paths": {
+              "SELF.hand_size": [
+                9,
+                10
+              ]
+            }
+          },
+          {
+            "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:69",
+            "paths": {
+              "SELF.hand_size": [
+                8,
+                9
+              ]
+            }
+          }
+        ],
+        "missed": [
+          {
+            "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:139",
+            "paths": {
+              "SELF.hand.new[TLC_817t5].present": [
+                false,
+                true
+              ],
+              "SELF.hand[7:TLC_817t4].gone": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "99e6a7ebe8fa2ccef7b614432f7bf3ebc827a14c668b7bdb50b933a75f2cbb28:30",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:106",
+            "paths": {
+              "SELF.board[0:TIME_427].can_attack": [
+                false,
+                true
+              ],
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "b8ca2e8436f9d3c74676450f4c236fc40db6681fc2545607b3d308bca511b065:76",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:69",
+            "paths": {
+              "SELF.hand.new[TLC_817t3].present": [
+                false,
+                true
+              ]
+            }
+          },
+          {
+            "decision": "c70dbc985f55d9000746c59af88bbe3b0284d4a723d6a9ea327f14c445890578:100",
+            "paths": {
+              "SELF.hand.new[TLC_817t5].present": [
+                false,
+                true
+              ],
+              "SELF.hand[5:TLC_817t4].gone": [
+                false,
+                true
+              ]
+            }
+          }
+        ],
+        "status": {
+          "PARTIAL": 20
+        },
+        "verdict": {
+          "CONFIRMED": 14,
+          "CONTRADICTED": 4,
+          "INCOMPLETE": 2
+        }
+      },
+      "missed_paths": 1209,
+      "pairs": 1330,
+      "partial_contradicted_without_altering_unknown": 0,
+      "status": {
+        "EXACT": 4,
+        "PARTIAL": 1299,
+        "UNSUPPORTED": 27
+      },
+      "tiers": {
+        "EXACT": {
+          "confirmed_paths": 24,
+          "contradicted_paths": 0,
+          "n": 4,
+          "verdict": {
+            "CONFIRMED": 4
+          }
+        },
+        "OWN_EFFECT_KNOWN (reactions of other objects still open)": {
+          "confirmed_paths": 785,
+          "contradicted_paths": 17,
+          "n": 191,
+          "verdict": {
+            "CONFIRMED": 144,
+            "CONTRADICTED": 14,
+            "INCOMPLETE": 33
+          }
+        }
+      },
+      "unknown_kinds": {
+        "HIDDEN_SECRET": 436,
+        "KEYWORD_UNDEFINED": 39,
+        "MODIFIER_UNOBSERVED": 692,
+        "POSSIBLE_REACTION": 1209,
+        "RANDOM_OUTCOME": 81,
+        "TEXT_UNAVAILABLE": 643,
+        "UNPARSED_CLAUSE": 535
+      },
+      "unsupported_reasons": {
+        "COST_EXCEEDS_AVAILABLE_MANA": 4,
+        "NO_TARGET_FOR_CHOSEN_CLAUSE": 1,
+        "PLAY_WEAPON_NOT_MODELLED": 22
+      },
+      "verdict_by_status": {
+        "EXACT": {
+          "CONFIRMED": 4
+        },
+        "PARTIAL": {
+          "CONFIRMED": 625,
+          "CONTRADICTED": 223,
+          "INCOMPLETE": 451
+        },
+        "UNSUPPORTED": {
+          "UNSUPPORTED": 27
+        }
+      }
+    }
+  },
+  "text_sources": {
+    "hearthstonejson_latest_enUS.json": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "reviewed_texts.json": "1f577c62cf950abba1db27763db82b1c059d09ccc3d04e404f9ed28f8f19252c",
+    "standard_current_enUS.json": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+  },
+  "timing": {
+    "menu_size": {
+      "max": 82,
+      "mean": 11.6,
+      "p95": 31.0
+    },
+    "single_action_ms": {
+      "max": 0.8316,
+      "mean": 0.171,
+      "n": 1330,
+      "p50": 0.1539,
+      "p95": 0.3341
+    },
+    "whole_menu_ms": {
+      "max": 26.942,
+      "mean": 2.182,
+      "n": 2010,
+      "p50": 1.28,
+      "p95": 7.596
+    }
+  }
+}

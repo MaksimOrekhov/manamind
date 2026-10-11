@@ -31,7 +31,7 @@ Real logs feed training and evaluation datasets. Synthetic tactical cases feed c
 | 2 | Synthetic training on tactical decisions (MODEL-FIRST-2, 2B, 2C) | Complete; ambiguous results, shortcut learning and regressions found |
 | 3A | Card representation and text safety pilots | Complete; INCONCLUSIVE |
 | 3 | Compare ID / Structural / Text / Hybrid Policy | Planned; Text/Hybrid Policy not trained |
-| 4 | Predicting observable consequences | PLANNED (experimental) |
+| 4 | Predicting observable consequences | PLANNED (experimental); ACTION-OUTCOME-1 forecaster prototype awaiting review, see [report](../reports/action_outcome_1/README.md) |
 | 5 | Independent check of practical quality | PLANNED |
 | 6 | Live Shadow Mode | MVP implemented; technically PLAYTEST VERIFIED; Policy v2 quality not validated |
 | 7 | Long-term development if results are positive | PLANNED |
@@ -71,6 +71,7 @@ The LIVE-MVP has been checked in real Ranked Standard games and is **PLAYTEST VE
 - **Outcome:** ablation with and without the auxiliary head under the same budget.
 - **Gate:** measurable Policy gain on the stage-1 metrics. No hidden information as a target.
 - **Data limits:** only consequences visible in Power.log; no simulator-generated labels unless a separate task authorizes ManaEngine verification.
+- **ACTION-OUTCOME-1 (prototype, no training):** `manamind.outcome` forecasts the immediate, directly visible consequences of one legal action (stat, Health, Armor, Mana, keyword, destruction, hand and board changes) with an explicit list of what it cannot know. It is read-only, not wired into LIVE or the Policy, and its real-log scores are diagnostics on already-seen matches. It is the input layer for any later position evaluation; it does not authorize a Value or Policy change.
 
 ### 5. Independent check of practical quality
 

@@ -1,0 +1,74 @@
+
+=== Purifying Breath (5 damage, 'if it dies' restore 5 to the enemy hero) on a Divine Shield minion
+  SELF: hero 30 armor 0 mana 5 hand 1 secrets 0 | board: -
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_ENEMY_SHIELD 4/3 [divine_shield]
+
+[1] PLAY_CARD CATA_303 -> OPPONENT minion #1 DEMO_ENEMY_SHIELD  ->  EXACT
+      SELF player.available_mana: 5 -> 3 (-2) (pays 2 Mana)
+      OPPONENT board#1 DEMO_ENEMY_SHIELD.divine_shield: True -> False ('Deal $5 damage to a minion')
+      SELF hand#0 CATA_303 leaves the hand (card leaves hand)
+      net SELF: mana -2
+      net OPPONENT: keywords -1
+      . 'Deal $5 damage to a minion': Divine Shield absorbed 5, no health lost
+      . 'If it dies, restore #5 Health to the enemy hero': condition false, clause skipped
+
+=== Drain Soul (Lifesteal, 3 damage) on a 1-Health minion while at 20/30: heals the full 3, not 1
+  SELF: hero 20 armor 0 mana 5 hand 1 secrets 0 | board: -
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_ENEMY_DAMAGED 2/1
+
+[1] PLAY_CARD CORE_ICC_055 -> OPPONENT minion #1 DEMO_ENEMY_DAMAGED  ->  EXACT
+      SELF hero.health: 20 -> 23 (+3) (Lifesteal 'Deal $3 damage to a minion')
+      SELF player.available_mana: 5 -> 3 (-2) (pays 2 Mana)
+      OPPONENT board#1 DEMO_ENEMY_DAMAGED.health: 1 -> -2 (-3) ('Deal $3 damage to a minion')
+      OPPONENT board#1 DEMO_ENEMY_DAMAGED leaves play (death)
+      SELF hand#0 CORE_ICC_055 leaves the hand (card leaves hand)
+      net SELF: hero_health +3, mana -2
+      net OPPONENT: minions -1, board_attack -2, board_health -1
+      . 'Deal $3 damage to a minion': 3 damage
+      . Lifesteal 'Deal $3 damage to a minion': restores 3 (base 3, bonus 0, missing 10)
+      . OPPONENT board#1 DEMO_ENEMY_DAMAGED dies
+
+=== A Poisonous minion attacks a Divine Shield minion: the shield absorbs the hit, so no poison kill
+  SELF: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_OWN_3_3 1/3 [poisonous]
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_ENEMY_SHIELD 4/9 [divine_shield]
+
+[1] ATTACK DEMO_OWN_3_3@1 -> OPPONENT minion #1 DEMO_ENEMY_SHIELD  ->  EXACT
+      OPPONENT board#1 DEMO_ENEMY_SHIELD.divine_shield: True -> False (attack damage)
+      SELF board#1 DEMO_OWN_3_3.health: 3 -> -1 (-4) (counter-attack damage)
+      SELF board#1 DEMO_OWN_3_3.can_attack: True -> False (the attack is spent)
+      SELF board#1 DEMO_OWN_3_3 leaves play (death)
+      net SELF: minions -1, board_attack -1, board_health -3, keywords -1
+      net OPPONENT: keywords -1
+      . attack damage: Divine Shield absorbed 1, no health lost
+      . counter-attack damage: 4 damage
+      . SELF board#1 DEMO_OWN_3_3 dies
+
+=== Hold Them Off! on an enemy that already has Lifesteal: only the +5/+5 is new
+  SELF: hero 30 armor 0 mana 5 hand 1 secrets 0 | board: -
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: #1 DEMO_ENEMY_LIFESTEAL 6/6 [lifesteal]
+
+[1] PLAY_CARD JAIL_913 -> OPPONENT minion #1 DEMO_ENEMY_LIFESTEAL  ->  EXACT
+      SELF player.available_mana: 5 -> 0 (-5) (pays 5 Mana)
+      OPPONENT board#1 DEMO_ENEMY_LIFESTEAL.attack: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 DEMO_ENEMY_LIFESTEAL.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 DEMO_ENEMY_LIFESTEAL.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -5
+      net OPPONENT: board_attack +5, board_health +5
+      . 'Give a minion +5/+5 and Lifesteal': +5/+5
+      . 'Give a minion +5/+5 and Lifesteal': already has lifesteal, nothing changes
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+
+=== A minion with a Battlecry outside the grammar: the body is exact, the Battlecry is reported unknown
+  SELF: hero 30 armor 0 mana 5 hand 1 secrets 0 | board: -
+  OPPONENT: hero 30 armor 0 mana 10 hand 0 secrets 0 | board: -
+
+[1] PLAY_CARD CORE_EX1_193 (position 1)  ->  PARTIAL
+      SELF player.available_mana: 5 -> 4 (-1) (pays 1 Mana)
+      SELF board#1 CORE_EX1_193 enters play (played from hand)
+      SELF board#1 CORE_EX1_193.body: None -> 2/2 (summon)
+      SELF hand#0 CORE_EX1_193 leaves the hand (card leaves hand)
+      net SELF: minions +1, board_attack +2, board_health +2, mana -1
+      . CORE_EX1_193 enters play at position 1 as 2/2
+      ? UNPARSED_CLAUSE: CORE_EX1_193: 'Copy a card in your opponent’s deck and add it to your hand'

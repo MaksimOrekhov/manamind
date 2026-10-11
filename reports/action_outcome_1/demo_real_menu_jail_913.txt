@@ -1,0 +1,87 @@
+
+=== real decision ...9e92bfeca6e:81 (turn 22)
+  SELF: hero 23 armor 0 mana 10 hand 7 secrets 2 | board: #2 TRL_526 3/6
+  OPPONENT: hero 40 armor 0 mana 0 hand 9 secrets 2 | board: #1 JAIL_912 6/6 [taunt], #2 CATA_216 4/5
+
+[1] END_TURN  ->  PARTIAL
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+[2] PLAY_CARD JAIL_913 -> SELF minion #2 TRL_526  ->  PARTIAL
+      SELF player.available_mana: 10 -> 9 (-1) (pays 1 Mana)
+      SELF board#2 TRL_526.attack: 3 -> 8 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: board_attack +5, board_health +5, keywords +1, mana -1
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[3] PLAY_CARD JAIL_913 -> OPPONENT minion #2 CATA_216  ->  PARTIAL
+      SELF player.available_mana: 10 -> 9 (-1) (pays 1 Mana)
+      OPPONENT board#2 CATA_216.attack: 4 -> 9 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.health: 5 -> 10 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.max_health: 5 -> 10 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -1
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[4] PLAY_CARD JAIL_913 -> OPPONENT minion #1 JAIL_912  ->  PARTIAL
+      SELF player.available_mana: 10 -> 9 (-1) (pays 1 Mana)
+      OPPONENT board#1 JAIL_912.attack: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#0 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -1
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[5] PLAY_CARD JAIL_913 -> SELF minion #2 TRL_526  ->  PARTIAL
+      SELF player.available_mana: 10 -> 7 (-3) (pays 3 Mana)
+      SELF board#2 TRL_526.attack: 3 -> 8 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      SELF board#2 TRL_526.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#3 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: board_attack +5, board_health +5, keywords +1, mana -3
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[6] PLAY_CARD JAIL_913 -> OPPONENT minion #2 CATA_216  ->  PARTIAL
+      SELF player.available_mana: 10 -> 7 (-3) (pays 3 Mana)
+      OPPONENT board#2 CATA_216.attack: 4 -> 9 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.health: 5 -> 10 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.max_health: 5 -> 10 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#2 CATA_216.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#3 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -3
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
+[7] PLAY_CARD JAIL_913 -> OPPONENT minion #1 JAIL_912  ->  PARTIAL
+      SELF player.available_mana: 10 -> 7 (-3) (pays 3 Mana)
+      OPPONENT board#1 JAIL_912.attack: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.max_health: 6 -> 11 (+5) ('Give a minion +5/+5 and Lifesteal')
+      OPPONENT board#1 JAIL_912.lifesteal: False -> True ('Give a minion +5/+5 and Lifesteal')
+      SELF hand#3 JAIL_913 leaves the hand (card leaves hand)
+      net SELF: mana -3
+      net OPPONENT: board_attack +5, board_health +5, keywords +1
+      note: direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost paid (strategic value, e.g. combos, is not assessed)
+      ? HIDDEN_SECRET: opponent has 2 Secret(s) that may trigger
+      ? POSSIBLE_REACTION: SELF has 2 Secret/Quest object(s)
+      ? POSSIBLE_REACTION: SELF location#1 CATA_301: Location effect 'Your next Healing effect this turn deals damage instead' is not modelled
+      assumption: Prepare is treated as availability-only: it changes when the card can be cast, not what the cast does
