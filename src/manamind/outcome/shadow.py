@@ -16,6 +16,7 @@ from collections.abc import Callable, Sequence
 from typing import Any
 
 from manamind.domain.game_state import GameState
+from manamind.outcome.diagnostics import diagnose_menu
 from manamind.outcome.forecast import describe_action, forecast_action
 from manamind.outcome.model import Forecast, Status, Tier
 from manamind.outcome.texts import TextSource
@@ -114,6 +115,7 @@ def forecast_menu(
     """
     started = clock()
     rows: list[dict[str, Any]] = []
+    forecasts: dict[int, tuple[dict[str, Any], Forecast]] = {}
     spent = False
     for index, rank, action in list(menu)[:MAX_MENU]:
         row: dict[str, Any] = {"index": index, "rank": rank, "label": _label(state, action),
@@ -127,6 +129,7 @@ def forecast_menu(
         try:
             forecast = forecast_action(state, action, texts, context)
             row.update(compact_forecast(forecast))
+            forecasts[index] = (action, forecast)
         except Exception as error:  # one action must not cost the menu; only the exception class is kept
             row["status"] = ERROR
             row["error"] = type(error).__name__
@@ -136,7 +139,18 @@ def forecast_menu(
         rows.append({"index": index, "rank": rank, "label": _label(state, action),
                      "action": action_digest(action), "status": NOT_COMPUTED})
     computed = [r for r in rows if r["status"] not in (NOT_COMPUTED, ERROR)]
+    diag: dict[str, Any] = {}
+    try:
+        diagnosis = diagnose_menu(state, [(i, a, f) for i, (a, f) in forecasts.items()], texts=texts)
+        by_index = {r["index"]: r for r in rows}
+        for flag in diagnosis.flags:
+            by_index[flag.index].setdefault("flags", {})[flag.flag] = flag.against
+        diag = diagnosis.to_dict()
+        diag.pop("flags", None)        # the flags live on the action rows
+    except Exception as error:      # a diagnostic must never cost the forecasts; only the exception class is kept
+        diag = {"error": type(error).__name__}
     return {
+        **({"diag": diag} if diag else {}),
         "menu_size": len(menu),
         "computed": len(computed),
         "not_computed": sum(r["status"] == NOT_COMPUTED for r in rows),

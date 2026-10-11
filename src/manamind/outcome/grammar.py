@@ -48,6 +48,10 @@ _NUM = r"[\$#]?(?P<n>\d+)"
 
 _PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("DAMAGE", re.compile(rf"deal {_NUM} damage(?: to (?P<sel>{_SEL}))?")),
+    # One reviewed compound shape. "it" is the damaged target and nothing else; no free pronoun resolution exists,
+    # so "give it +N attack" elsewhere (a weapon, a minion that survived damage) stays an unparsed sentence.
+    ("DAMAGE_BUFF", re.compile(
+        rf"deal {_NUM} damage to (?P<sel>a minion|an enemy minion|a friendly minion) and give it \+(?P<a>\d+) attack")),
     ("HEAL", re.compile(rf"restore {_NUM} health(?: to (?P<sel>{_SEL}))?")),
     ("BUFF", re.compile(
         rf"give (?P<sel>{_SEL}) \+(?P<a>\d+)/\+(?P<h>\d+)(?P<kw>(?:(?:, and|,| and) (?:{_KW}))*)")),
@@ -150,6 +154,8 @@ def _effect(sentence: str) -> Clause | None:
         if kind in {"DAMAGE", "HEAL"}:
             chosen_any = Selector("CHOSEN", "CHARACTER", "ANY")
             return Clause(kind, sentence, _selector(groups.get("sel"), chosen_any), amount=number)
+        if kind == "DAMAGE_BUFF":
+            return Clause(kind, sentence, _selector(groups["sel"], None), amount=number, attack=int(groups["a"]))
         if kind == "BUFF":
             return Clause(kind, sentence, _selector(groups["sel"], None), attack=int(groups.get("a") or 0),
                           health=int(groups.get("h") or 0), keywords=_keywords(groups.get("kw")))

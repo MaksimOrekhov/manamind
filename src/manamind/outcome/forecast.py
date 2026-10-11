@@ -238,6 +238,9 @@ class _Run:
         if kind == "DAMAGE":
             self._damage(clause, targets, cause)
             return
+        if kind == "DAMAGE_BUFF":
+            self._damage_then_buff(clause, targets[0], cause)
+            return
         for target in targets:
             self._involve(target)
             if kind == "HEAL":
@@ -263,6 +266,22 @@ class _Run:
                         continue
                 world.destroy(target, cause)
                 self.classes.add("DEATH")
+
+    def _damage_then_buff(self, clause: Clause, target: Obj, cause: str) -> None:
+        """'Deal N damage to a minion and give it +A Attack': the damage resolves first, then the same minion is buffed.
+
+        A Divine Shield absorbs the damage and the minion keeps the buff; a minion the damage destroys is not buffed
+        (a dead minion has no Attack to show). When the damage is only a bound, survival is open and the Attack
+        change holds if the minion survives.
+        """
+        if not isinstance(target, Ent):
+            raise Unsupported("BUFF_ON_HERO")
+        self._damage(clause, [target], cause)
+        health = target.fields["health"]
+        if target.destroyed or (health is not None and health <= 0):
+            return
+        self.world.buff(target, clause.attack, 0, cause)
+        self.classes.add("BUFF")
 
     def _damage(self, clause: Clause, targets: list[Obj], cause: str) -> None:
         world = self.world
@@ -601,13 +620,16 @@ class _Run:
             world.unknown(UnknownKind.POSSIBLE_REACTION,
                           f"{entity.ref.label()}: its Deathrattle resolves after death", entity.ref,
                           tag="DEATHRATTLE")
+        # The Location being activated has just had its whole text run as the action; that text is not also an unread rule.
+        activating = entity is self.actor and self.action.get("type") == "ACTIVATE_LOCATION"
         self._card_reactions(entity.ref, entity.ref.card_id, mechanics, self_events,
-                             involved=entity in self.involved, covered_death=covered_death,
+                             involved=entity in self.involved, covered_death=covered_death, own_activation=activating,
                              enrage_possible="ENRAGED" in mechanics and (
                                  "DAMAGE_SELF" in self_events or (entity in self.involved and "HEAL" in self.classes)))
 
     def _card_reactions(self, ref: Ref, card_id: str, mechanics: set[str], self_events: set[str], *,
-                        involved: bool, covered_death: bool = False, enrage_possible: bool = False) -> None:
+                        involved: bool, covered_death: bool = False, enrage_possible: bool = False,
+                        own_activation: bool = False) -> None:
         """Triggers and static rules of one object in play that the forecast does not model."""
         world = self.world
         entry = self.texts.get(card_id)
@@ -631,6 +653,8 @@ class _Run:
                               ref, tag="BOARD_TRIGGER")
         aura = bool(mechanics & {"AURA", "SPELLPOWER", "ADJACENT_BUFF"})
         for sentence in statics:
+            if own_activation:
+                continue
             if aura and "DEATH_SELF" not in self_events and not involved:
                 # Minions already in play show the aura in their own numbers; a minion that ENTERS play is given
                 # printed numbers here and may be changed by it (real corpus: an enemy "All enemy minions have

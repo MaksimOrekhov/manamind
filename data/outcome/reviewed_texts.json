@@ -13,6 +13,24 @@
       "type": "HERO_POWER",
       "mechanics": [],
       "text": "Gain 2 Armor."
+    },
+    {
+      "id": "CAP_107t",
+      "type": "MINION",
+      "mechanics": [],
+      "attack": 1,
+      "health": 1,
+      "text": "At the end of turn, deal 1 damage to a random enemy.",
+      "provenance": "Cannoneer token of CAP_107 Cannonmaster ('Get a 1/1 Cannoneer that deals 1 damage to a random enemy at end of turn', pinned catalog). Logged: 155 board appearances are 1/1 with no keyword; TRIGGER blocks of the token deal 1 damage to a random enemy (CONSEQUENCE-DIAGNOSTICS-1 review of dcd4f7399bc6feb0). Hand Cannon / Captain Crowley additional shots are other cards' texts."
+    },
+    {
+      "id": "EDR_492t",
+      "type": "MINION",
+      "mechanics": ["RUSH"],
+      "attack": 1,
+      "health": 1,
+      "text": "<b>Rush</b>",
+      "provenance": "Duckling token of EDR_492 Mother Duck ('Summon three 1/1 Ducklings with Rush', pinned catalog). Logged: 38 of 40 board appearances are 1/1 with rush (the 2 with Attack 0 carry an outside modifier)."
     }
   ]
 }
