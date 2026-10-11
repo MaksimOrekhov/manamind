@@ -1,0 +1,287 @@
+{
+  "schema": "manamind.tactical_benchmark_review/1",
+  "status": "POST_HOC_DIAGNOSTICS",
+  "source_revision": "2a66108",
+  "comparison_revision": "96f0ec7",
+  "strength_claim": false,
+  "checkpoint_sha256": {
+    "frozen_v2": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "new_v2": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377"
+  },
+  "locked_test_sha256": "00cd2e2758f85b4a5ef3130993a850e7ae51d2b83d7d21fe0c4f4154dab8bc9f",
+  "inputs": {
+    "scripts\\generate_model_first_2c.py": "5582b9cdfb0934a676273ca3478ceb593c8579285f42dc57a8d18161feac7513",
+    "scripts\\evaluate_policy_baseline.py": "8956def26229ba9d1966b56ebff9723a2d2d9ad51bf16298818b431d964730d4",
+    "data\\outcome\\reviewed_texts.json": "476743a68c18ca2c82aa05d16f1edcd08b85d994b585bd7e701f3d0d543767e4",
+    "data\\cards\\standard_current_enUS.json": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "data\\processed_policy_real\\real_policy_retrain_1\\retrain_manifest.json": "9f612b196adf5caebbd4b624be9e44521161bc2ef1e3772e83a3acdcfe21a699"
+  },
+  "certainty_definition": "Optimal action from recorded facts; no missing fact defaults.",
+  "label_counts": {
+    "PROVEN": 0,
+    "HEURISTIC": 323,
+    "AMBIGUOUS": 77
+  },
+  "proven_optimal_action_metrics": {
+    "scenarios": 0,
+    "top1": null,
+    "reason": "NO_COMPLETE_CERTIFICATES"
+  },
+  "heuristic_metrics": {
+    "frozen_v2": {
+      "count": 323,
+      "top1": 0,
+      "top3": 304,
+      "mrr": 0.46171679197994986
+    },
+    "new_v2": {
+      "count": 323,
+      "top1": 182,
+      "top3": 298,
+      "mrr": 0.751061477222468
+    }
+  },
+  "heuristic_trade_metrics": {
+    "frozen_v2": {
+      "count": 287,
+      "top1": 0,
+      "top3": 268,
+      "mrr": 0.45749543719926994
+    },
+    "new_v2": {
+      "count": 287,
+      "top1": 160,
+      "top3": 266,
+      "mrr": 0.7504687240749959
+    }
+  },
+  "conditional_one_attack_lethal_metrics": {
+    "frozen_v2": {
+      "count": 36,
+      "top1": 0,
+      "top3": 36,
+      "mrr": 0.49537037037037035
+    },
+    "new_v2": {
+      "count": 36,
+      "top1": 22,
+      "top3": 32,
+      "mrr": 0.755787037037037
+    }
+  },
+  "ambiguous": {
+    "scenarios": 77,
+    "accuracy": null,
+    "reason": "NO_UNIQUE_CERTIFIED_GOLD"
+  },
+  "preferences_by_historical_category": {
+    "no_proven_gain": {
+      "frozen_v2": {
+        "END_TURN": 36
+      },
+      "new_v2": {
+        "MINION_ATTACK_MINION": 36
+      }
+    },
+    "lethal": {
+      "frozen_v2": {
+        "END_TURN": 36
+      },
+      "new_v2": {
+        "MINION_ATTACK_HERO": 22,
+        "MINION_ATTACK_MINION": 14
+      }
+    },
+    "favorable_trade": {
+      "frozen_v2": {
+        "END_TURN": 308,
+        "MINION_ATTACK_HERO": 20
+      },
+      "new_v2": {
+        "MINION_ATTACK_MINION": 306,
+        "MINION_ATTACK_HERO": 22
+      }
+    }
+  },
+  "counterfactual_diagnostics": {
+    "stats": {
+      "pair_count": 40,
+      "summary": {
+        "frozen_v2": {
+          "high": {
+            "scenarios": 40,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "low": {
+            "scenarios": 40,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 1.0
+        },
+        "new_v2": {
+          "high": {
+            "scenarios": 40,
+            "top1": 0.05,
+            "top1_count": 2
+          },
+          "low": {
+            "scenarios": 40,
+            "top1": 0.7,
+            "top1_count": 28
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 0.75
+        }
+      }
+    },
+    "position": {
+      "pair_count": 30,
+      "summary": {
+        "frozen_v2": {
+          "original": {
+            "scenarios": 30,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "permuted": {
+            "scenarios": 30,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 1.0
+        },
+        "new_v2": {
+          "original": {
+            "scenarios": 30,
+            "top1": 0.6666666666666666,
+            "top1_count": 20
+          },
+          "permuted": {
+            "scenarios": 30,
+            "top1": 0.4666666666666667,
+            "top1_count": 14
+          },
+          "pairs_both_correct": 8,
+          "same_semantic_choice_rate": 0.16666666666666666
+        }
+      }
+    },
+    "board": {
+      "pair_count": 20,
+      "summary": {
+        "frozen_v2": {
+          "large": {
+            "scenarios": 20,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "small": {
+            "scenarios": 20,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 1.0
+        },
+        "new_v2": {
+          "large": {
+            "scenarios": 20,
+            "top1": 0.65,
+            "top1_count": 13
+          },
+          "small": {
+            "scenarios": 20,
+            "top1": 0.65,
+            "top1_count": 13
+          },
+          "pairs_both_correct": 13,
+          "same_semantic_choice_rate": 1.0
+        }
+      }
+    },
+    "id": {
+      "pair_count": 20,
+      "summary": {
+        "frozen_v2": {
+          "known": {
+            "scenarios": 20,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "unknown": {
+            "scenarios": 20,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 0.0
+        },
+        "new_v2": {
+          "known": {
+            "scenarios": 20,
+            "top1": 0.0,
+            "top1_count": 0
+          },
+          "unknown": {
+            "scenarios": 20,
+            "top1": 0.7,
+            "top1_count": 14
+          },
+          "pairs_both_correct": 0,
+          "same_semantic_choice_rate": 0.1
+        }
+      }
+    }
+  },
+  "real_end_disagreement": {
+    "frozen": 23,
+    "new": 28,
+    "both": 19,
+    "added": 9,
+    "removed": 4,
+    "known_effect_is_not_global_optimality": true
+  },
+  "real_attack_source_counts": {
+    "frozen": {
+      "HERO": 1,
+      "MINION": 117
+    },
+    "new": {
+      "HERO": 2,
+      "MINION": 123
+    }
+  },
+  "split_action_counts": {
+    "train": {
+      "PLAY_CARD": 568,
+      "HERO_POWER": 114,
+      "ATTACK": 139,
+      "END_TURN": 306,
+      "ACTIVATE_LOCATION": 48
+    },
+    "validation": {
+      "END_TURN": 68,
+      "PLAY_CARD": 142,
+      "ATTACK": 26,
+      "ACTIVATE_LOCATION": 15,
+      "HERO_POWER": 30
+    },
+    "test": {
+      "PLAY_CARD": 289,
+      "END_TURN": 136,
+      "HERO_POWER": 58,
+      "ACTIVATE_LOCATION": 29,
+      "ATTACK": 106
+    }
+  },
+  "read_only_verification": {
+    "checkpoints_and_locked_test_hashes_preserved": true,
+    "synthetic_ranking_repeats": 2,
+    "real_top1_reproduced": 618,
+    "historical_synthetic_ranks_reproduced": 400
+  }
+}
