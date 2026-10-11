@@ -1,11 +1,11 @@
-"""Score the immediate-outcome forecaster against the logged next observation (ACTION-OUTCOME-1).
+"""Score the immediate-outcome forecaster against the logged next observation (ACTION-OUTCOME-1B).
 
 For every pair of adjacent labeled decisions of one SELF turn, the forecast is computed from the first
 state and the action the player chose; the second state is used only to score it. Training, model
 checkpoints and Power.log parsing are not involved: the input is the canonical policy dataset that
 DATA-CHECKPOINT-1 re-extracted from the raw logs.
 
-  python scripts/verify_action_outcomes.py --corpus <canonical dir> --out reports/action_outcome_1/real_log_verification.json
+  python scripts/verify_action_outcomes.py --corpus <canonical dir> --out reports/action_outcome_1b/real_log_verification.json
 """
 
 from __future__ import annotations
@@ -22,9 +22,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from manamind.outcome import ObservedContext, Status, TextSource, forecast_action  # noqa: E402
+from manamind.outcome import ObservedContext, Status, TextSource, Tier, forecast_action  # noqa: E402
+from manamind.outcome.observation import context_from_facts, load_facts  # noqa: E402
 from manamind.outcome.verify import (  # noqa: E402
-    PairResult, load_corpus, score_pair, successor_pairs, summarise_results,
+    PairResult, build_gain_associations, load_corpus, score_pair, successor_pairs, summarise_results,
 )
 
 CONTEXTS = {
@@ -42,13 +43,13 @@ def percentile(values: list[float], fraction: float) -> float:
 _OBSERVATION = {"HAND_KEYWORDS_UNOBSERVED", "HEALING_BONUS_UNOBSERVED", "HERO_SHIELD_UNOBSERVED",
                 "SANCTUM_UNOBSERVED", "COST_UNOBSERVED", "ATTACKS_USED_UNOBSERVED", "WEAPON_UNOBSERVED",
                 "OWN_SECRET_OR_QUEST", "BOARD_TEXT_MISSING", "OWN_TEXT_MISSING", "SPELL_DAMAGE_UNOBSERVED",
-                "CONDITION_UNOBSERVED"}
-_RULES = {"BOARD_STATIC_TEXT", "BOARD_TRIGGER", "DEATHRATTLE_OR_REBORN", "OWN_TEXT_UNPARSED", "OWN_TEXT_KEYWORD",
+                "CONDITION_UNOBSERVED", "REBORN_BASE_UNKNOWN"}
+_RULES = {"BOARD_STATIC_TEXT", "BOARD_TRIGGER", "DEATHRATTLE", "OWN_TEXT_UNPARSED", "OWN_TEXT_KEYWORD",
           "OWN_TEXT_RANDOM"}
 RESOLUTION_SCENARIOS = {
     "observation_gaps_closed": _OBSERVATION,
     "observation_gaps_closed_and_board_rules_understood": _OBSERVATION | {
-        "BOARD_STATIC_TEXT", "BOARD_TRIGGER", "DEATHRATTLE_OR_REBORN"},
+        "BOARD_STATIC_TEXT", "BOARD_TRIGGER", "DEATHRATTLE"},
     "everything_except_opponent_secrets": _OBSERVATION | _RULES,
 }
 
@@ -57,11 +58,13 @@ def blockers(result_forecast) -> set[str]:
     return {unknown.tag or f"UNTAGGED:{unknown.kind.value}" for unknown in result_forecast.unknowns}
 
 
-def blocker_analysis(pairs, texts: TextSource, context: ObservedContext) -> dict:
+def blocker_analysis(pairs, texts: TextSource, context: ObservedContext, facts: dict | None = None) -> dict:
     """What keeps forecasts from being EXACT, and how many would be if one blocker class were resolved."""
     sets = []
     for current, _ in pairs:
-        forecast = forecast_action(current.state, current.action, texts, context)
+        used = (context_from_facts(facts[current.decision_id], current.state)
+                if facts and current.decision_id in facts else context)
+        forecast = forecast_action(current.state, current.action, texts, used)
         if forecast.status is not Status.UNSUPPORTED:
             sets.append(blockers(forecast))
     present = Counter(tag for blocker_set in sets for tag in blocker_set)
@@ -98,7 +101,7 @@ def menu_scan(games, texts: TextSource) -> dict:
                 forecast = forecast_action(decision.state, action, texts)
                 totals[forecast.status.value] += 1
                 by_type[(action["type"], forecast.status.value)] += 1
-                if forecast.after_state is None:
+                if forecast.status is Status.UNSUPPORTED or forecast._candidate is None:
                     continue
                 if summarise(decision.state, forecast).note.startswith("direct effects only improve OPPONENT"):
                     gifts += 1
@@ -116,6 +119,33 @@ def menu_scan(games, texts: TextSource) -> dict:
         "decisions_offering_one": decisions_with_gift,
         "chosen_by_the_player": chosen_gifts,
     }
+
+
+ABLATION = (
+    ("nothing", ()),
+    ("sanctum", ("sanctum",)),
+    ("sanctum+healing", ("sanctum", "healing")),
+    ("sanctum+healing+hero_shield", ("sanctum", "healing", "hero_shield")),
+    ("sanctum+healing+hero_shield+hand_keywords", ("sanctum", "healing", "hero_shield", "hand_keywords")),
+    ("all five groups", ("sanctum", "healing", "hero_shield", "hand_keywords", "spell_damage")),
+    ("hand_keywords only", ("hand_keywords",)),
+    ("spell_damage only", ("spell_damage",)),
+    ("hero_shield only", ("hero_shield",)),
+    ("healing only", ("healing",)),
+)
+
+
+def ablation(pairs, texts: TextSource, facts: dict) -> list[dict]:
+    """How many forecasts reach each tier when only some observed-fact groups are available."""
+    rows = []
+    for name, groups in ABLATION:
+        tiers = Counter()
+        for current, _ in pairs:
+            fact = facts.get(current.decision_id)
+            context = context_from_facts(fact, current.state, frozenset(groups)) if fact else ObservedContext()
+            tiers[forecast_action(current.state, current.action, texts, context).tier.value] += 1
+        rows.append({"facts": name, "tiers": dict(tiers)})
+    return rows
 
 
 def timing(games, pairs, texts: TextSource) -> dict:
@@ -173,8 +203,10 @@ def main() -> int:
     parser.add_argument("--catalog", default=str(ROOT / "data" / "cards" / "standard_current_enUS.json"))
     parser.add_argument("--reviewed", default=str(ROOT / "data" / "outcome" / "reviewed_texts.json"))
     parser.add_argument("--supplement", nargs="*", default=[], help="lowest-priority card JSON files (tokens)")
-    parser.add_argument("--out", default=str(ROOT / "reports" / "action_outcome_1" / "real_log_verification.json"))
+    parser.add_argument("--out", default=str(ROOT / "reports" / "action_outcome_1b" / "real_log_verification.json"))
     parser.add_argument("--examples", type=int, default=12)
+    parser.add_argument("--facts", default="data/processed_observation_probe_1b/facts.jsonl",
+                        help="per-decision SELF facts from observation_probe_1b.py; adds the observed_facts run")
     args = parser.parse_args()
 
     corpus = Path(args.corpus)
@@ -192,32 +224,47 @@ def main() -> int:
         "text_sources": texts.fingerprints,
         "runs": {},
     }
-    for name, context in CONTEXTS.items():
-        results = [score_pair(current, following, texts, context) for current, following in pairs]
-        own_known = [r for r in results if r.own_effect_known]
-        exact = [r for r in results if r.status is Status.EXACT]
+    associations = build_gain_associations(pairs, texts)
+    runs: dict[str, object] = dict(CONTEXTS)
+    facts_path = Path(args.facts)
+    if not facts_path.exists():
+        facts_path = next((p / args.facts for p in ROOT.parents if (p / args.facts).exists()), facts_path)
+    if facts_path.exists():
+        runs["observed_facts"] = load_facts(facts_path)
+    for name, context in runs.items():
+        if name == "observed_facts":
+            results = [score_pair(current, following, texts,
+                                  context_from_facts(context[current.decision_id], current.state)
+                                  if current.decision_id in context else ObservedContext(), associations)
+                       for current, following in pairs]
+            section_context = ObservedContext()
+        else:
+            results = [score_pair(current, following, texts, context, associations) for current, following in pairs]
+            section_context = context
         section = summarise_results(results)
-        section["tiers"] = {
-            "EXACT": {"n": len(exact), "verdict": dict(Counter(r.verdict for r in exact)),
-                      "confirmed_paths": sum(len(r.confirmed) for r in exact),
-                      "contradicted_paths": sum(len(r.contradicted) for r in exact)},
-            "OWN_EFFECT_KNOWN (reactions of other objects still open)": {
-                "n": len(own_known), "verdict": dict(Counter(r.verdict for r in own_known)),
-                "confirmed_paths": sum(len(r.confirmed) for r in own_known),
-                "contradicted_paths": sum(len(r.contradicted) for r in own_known)},
-        }
-        section["blockers"] = blocker_analysis(pairs, texts, context)
+        section["blockers"] = blocker_analysis(pairs, texts, section_context, runs.get(name) if name == "observed_facts"
+                                               else None)
         section["jail_913"] = card_section(results, "JAIL_913")
-        section["contradiction_examples"] = [
-            {"decision": r.decision_id, "action": r.action_label, "status": r.status.value,
-             "own_effect_known": r.own_effect_known, "contradicted": {k: list(v) for k, v in r.contradicted.items()},
-             "open_unknowns": list(r.unknown_details[:4])}
-            for r in results if r.verdict == "CONTRADICTED"][: args.examples]
+        section["gain_associations"] = {
+            card: {"appearances": a.appearances, "signatures": {f"{k[0]}/{k[1]}": v for k, v in a.signatures.items()},
+                   "always_with_own_secret_object": a.always_with_own_secret_object}
+            for card, a in associations.items() if a.appearances >= 5}
+        # every discrepancy of the two reliable tiers, with its explanation: the list is the audit trail
+        section["discrepancies"] = [
+            {"decision": r.decision_id, "action": r.action_label, "tier": r.tier.value, "path": path,
+             "kind": kind, "values": list(pair) if pair else None,
+             "explanation": list(r.explanations.get(path, ("UNEXPLAINED", "", ""))),
+             "open_unknowns": list(r.unknown_tags)}
+            for r in results if r.tier in (Tier.EXACT, Tier.OWN_EFFECT_KNOWN)
+            for kind, bucket in (("contradicted", r.contradicted), ("missed", r.missed))
+            for path, pair in bucket.items()]
         section["exact_violations"] = [
             {"decision": r.decision_id, "action": r.action_label,
              "contradicted": {k: list(v) for k, v in r.contradicted.items()}}
-            for r in exact if r.verdict != "CONFIRMED"]
+            for r in results if r.tier is Tier.EXACT and r.verdict != "CONFIRMED"]
         report["runs"][name] = section
+    if "observed_facts" in runs:
+        report["fact_group_ablation"] = ablation(pairs, texts, runs["observed_facts"])
     report["menu_scan"] = menu_scan(games, texts)
     report["timing"] = timing(games, pairs, texts)
 
@@ -226,7 +273,7 @@ def main() -> int:
     out.write_text(json.dumps(report, indent=2, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
     for name, section in report["runs"].items():
         print(f"[{name}] pairs={section['pairs']} status={section['status']} tiers=" +
-              json.dumps({k: v['verdict'] for k, v in section['tiers'].items()}))
+              json.dumps({k: (v['n'], v['effect_claims']) for k, v in section['tiers'].items()}))
     print("timing:", json.dumps(report["timing"]))
     print(f"wrote {out}")
     return 0

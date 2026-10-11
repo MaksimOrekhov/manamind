@@ -22,6 +22,9 @@ class CardText:
     card_type: str
     mechanics: tuple[str, ...]
     source: str
+    attack: int | None = None          # printed (base) stats, from the card JSON; None for non-minions
+    health: int | None = None
+    spell_school: str | None = None
 
 
 class TextSource:
@@ -75,4 +78,11 @@ def _card_text(record: dict[str, Any], source: str) -> CardText:
         card_type=str(record.get("type") or "UNKNOWN_TYPE").upper(),
         mechanics=tuple(sorted({str(item).upper() for item in mechanics})),
         source=source,
+        attack=_optional_int(record.get("attack")),
+        health=_optional_int(record.get("health")),
+        spell_school=(str(record["spellSchool"]).upper() if record.get("spellSchool") else None),
     )
+
+
+def _optional_int(value: Any) -> int | None:
+    return value if isinstance(value, int) and not isinstance(value, bool) else None

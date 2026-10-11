@@ -23,6 +23,20 @@ class Status(str, Enum):
     UNSUPPORTED = "UNSUPPORTED"
 
 
+class Tier(str, Enum):
+    """How much of a forecast can be relied on locally, finer than ``Status`` (which is all-or-nothing)."""
+
+    EXACT = "EXACT"                          # nothing is open: ``exact_state()`` is available
+    OWN_EFFECT_KNOWN = "OWN_EFFECT_KNOWN"    # the action's own effect is fully computed; other objects may react
+    PARTIAL_LOCAL = "PARTIAL_LOCAL"          # some effect changes are computed, the action's own text is not understood
+    BOOKKEEPING_ONLY = "BOOKKEEPING_ONLY"    # only cost / hand / exhaustion are known, no effect at all
+    UNSUPPORTED = "UNSUPPORTED"
+
+
+class NotExactError(RuntimeError):
+    """A full predicted position was requested from a forecast that is not ``EXACT``."""
+
+
 class UnknownKind(str, Enum):
     UNPARSED_CLAUSE = "UNPARSED_CLAUSE"          # a text sentence outside the reviewed grammar
     TEXT_UNAVAILABLE = "TEXT_UNAVAILABLE"        # no rules text for a card whose behaviour matters
@@ -61,6 +75,7 @@ class Change:
     cause: str
     at_least: int | None = None
     at_most: int | None = None
+    role: str = "EFFECT"      # EFFECT: what the action does; BOOKKEEPING: its cost, hand and exhaustion bookkeeping
 
     @property
     def exact(self) -> bool:
@@ -110,6 +125,24 @@ class Unknown:
 
 
 @dataclass(frozen=True, slots=True)
+class PartialState:
+    """The exact local changes of a ``PARTIAL`` forecast, applied to the pre-action position.
+
+    This is deliberately **not** a ``GameState`` and has none of its attributes, so it cannot be handed to
+    the encoder or a value model by accident. Fields in ``undetermined`` still hold their pre-action value
+    here, and every unknown that could change the rest is in ``open_unknowns``.
+    """
+
+    undetermined: tuple[tuple[Ref, str], ...]
+    open_unknowns: tuple["Unknown", ...]
+    _base: GameState = field(repr=False, compare=False)
+
+    def diagnostic_state(self) -> GameState:
+        """The lower-bound position, for diagnostics only. Never a prediction of the real position."""
+        return self._base
+
+
+@dataclass(frozen=True, slots=True)
 class Forecast:
     action: dict[str, Any]
     label: str
@@ -120,9 +153,47 @@ class Forecast:
     assumptions: tuple[str, ...] = ()
     rules: tuple[str, ...] = ()
     unsupported_reason: str | None = None
-    # Exact changes applied to a copy of the pre-action state. Meaningful as a position only when
-    # ``status`` is EXACT; otherwise a lower bound that ignores every listed unknown.
-    after_state: GameState | None = field(default=None, compare=False, repr=False)
+    # Package-private: exact changes applied to a copy of the pre-action state. Read it only through
+    # ``exact_state()`` (EXACT) or ``partial_state()`` (PARTIAL).
+    _candidate: GameState | None = field(default=None, compare=False, repr=False)
+    _after_index: dict[tuple[str, str, int], int] = field(default_factory=dict, compare=False, repr=False)
+
+    def exact_state(self) -> GameState:
+        """The full predicted position. Raises ``NotExactError`` unless the forecast is ``EXACT``."""
+        if self.status is not Status.EXACT or self._candidate is None:
+            tags = sorted({u.tag or u.kind.value for u in self.unknowns})
+            raise NotExactError(f"{self.label}: status {self.status.value}; open: {tags or self.unsupported_reason}")
+        return self._candidate
+
+    def partial_state(self) -> PartialState | None:
+        """Exact local changes of a ``PARTIAL`` forecast; ``None`` when EXACT, UNSUPPORTED or not representable."""
+        if self.status is not Status.PARTIAL or self._candidate is None:
+            return None
+        return PartialState(
+            undetermined=tuple((c.ref, c.field) for c in self.changes if not c.exact),
+            open_unknowns=self.unknowns, _base=self._candidate)
+
+    @property
+    def tier(self) -> Tier:
+        if self.status is Status.UNSUPPORTED:
+            return Tier.UNSUPPORTED
+        if self.status is Status.EXACT:
+            return Tier.EXACT
+        if self.own_effect_known:
+            return Tier.OWN_EFFECT_KNOWN
+        if any(c.role == "EFFECT" for c in self.changes):
+            return Tier.PARTIAL_LOCAL
+        return Tier.BOOKKEEPING_ONLY
+
+    @property
+    def effect_changes(self) -> tuple[Change, ...]:
+        """Exact changes that are what the action does, without cost / hand / exhaustion bookkeeping."""
+        return tuple(c for c in self.changes if c.exact and c.role == "EFFECT")
+
+    @property
+    def bounded_changes(self) -> tuple[Change, ...]:
+        """Touched fields whose value is undetermined, with whatever bound is known."""
+        return tuple(c for c in self.changes if not c.exact)
 
     @property
     def own_effect_known(self) -> bool:
@@ -145,10 +216,12 @@ class Forecast:
         return {
             "label": self.label,
             "status": self.status.value,
+            "tier": self.tier.value,
             "unsupported_reason": self.unsupported_reason,
             "changes": [
                 {"target": c.ref.label(), "field": c.field, "before": c.before, "after": c.after,
-                 "delta": c.delta, "at_least": c.at_least, "at_most": c.at_most, "cause": c.cause}
+                 "delta": c.delta, "at_least": c.at_least, "at_most": c.at_most, "cause": c.cause,
+                 "role": c.role}
                 for c in self.changes
             ],
             "events": [{"kind": e.kind, "subject": e.subject.label() if e.subject else None,

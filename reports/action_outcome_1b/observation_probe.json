@@ -1,0 +1,76 @@
+{
+  "healing": {
+    "bonus_values": {
+      "0": 1597,
+      "2": 903,
+      "4": 568,
+      "6": 31
+    },
+    "decisions_spell_healing_doubled": 455,
+    "decisions_with_bonus": 1502
+  },
+  "hero_divine_shield": {
+    "decisions_with_shield": 3
+  },
+  "hero_power_heal_vs_formulas": {
+    "kept_without_any_matching_formula": 0,
+    "match_by_formula": {
+      "base_only": 10,
+      "doubled_base_only": 10,
+      "plus_bonus": 12,
+      "plus_bonus_then_doubled": 12
+    },
+    "n": 12,
+    "set_aside_secret_consumed": 0
+  },
+  "inputs": {
+    "decision_points": 3099,
+    "game_segments": 95,
+    "raw_log_files": 95,
+    "rejected": {
+      "DUPLICATE_MATCH": 32
+    },
+    "replayed_matches": 63
+  },
+  "minion_hand_keywords": {
+    "hand_tags_differ_from_printed": 18,
+    "hand_tags_equal_board_tags": 565,
+    "hand_tags_equal_printed_keywords": 550,
+    "identical_copies_with_different_tags": 0,
+    "plays": 568
+  },
+  "mismatches": [],
+  "sanctum_states": {
+    "ACTIVE": 68,
+    "INACTIVE": 3031
+  },
+  "spell_damage_doubling_flag": {
+    "decisions_doubled": 455,
+    "decisions_with_minion_spell_power": 0,
+    "decisions_with_player_current_spellpower": 0
+  },
+  "spell_damage_vs_formulas": {
+    "kept_without_any_matching_formula": 0,
+    "match_by_formula": {
+      "base_only": 44,
+      "doubled_base_only": 47,
+      "plus_current_minions": 44,
+      "plus_current_minions_doubled": 47,
+      "plus_player_current": 44,
+      "plus_player_current_doubled": 47
+    },
+    "n": 47,
+    "set_aside_secret_consumed": 11
+  },
+  "spell_heal_vs_formulas": {
+    "kept_without_any_matching_formula": 0,
+    "match_by_formula": {
+      "base_only": 5,
+      "doubled_base_only": 6,
+      "plus_bonus": 11,
+      "plus_bonus_then_doubled": 12
+    },
+    "n": 12,
+    "set_aside_secret_consumed": 0
+  }
+}

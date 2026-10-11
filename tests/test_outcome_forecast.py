@@ -19,7 +19,7 @@ from manamind.outcome import scenario as sc
 
 def _ctx(**kwargs) -> ObservedContext:
     """These positions are written by hand, so their Spell Damage is known."""
-    return ObservedContext(trust_spell_damage=True, **kwargs)
+    return ObservedContext(**{"trust_spell_damage": True, "spell_healing_doubled": False, **kwargs})
 
 CATALOG = Path(__file__).resolve().parents[1] / "data" / "cards" / "standard_current_enUS.json"
 
@@ -90,6 +90,13 @@ def _state(*, mine=(), theirs=(), hand=(), mana=10, opponent_kwargs=None, **self
         hand=tuple(hand))
 
 
+def _pos(forecast):
+    """The predicted position: the real one when EXACT, else the lower-bound diagnostic one."""
+    if forecast.status is Status.EXACT:
+        return forecast.exact_state()
+    return forecast.partial_state().diagnostic_state()
+
+
 def _cast(card_id, target=None, cost=3, index=0):
     return sc.play(card_id, index, "SPELL", cost, target)
 
@@ -118,9 +125,9 @@ def test_hold_them_off_buffs_the_enemy_minion_exactly():
     # nothing else of the opponent changes: the second minion and the hero are untouched
     assert not [c for c in forecast.changes if c.ref.side == "OPPONENT" and c.ref.position == 2]
     assert not [c for c in forecast.changes if c.ref.zone == "HERO"]
-    after = forecast.after_state.opponent.board
+    after = _pos(forecast).opponent.board
     assert (after[0].current_attack, after[0].current_health, after[0].max_health, after[0].lifesteal) == (11, 11, 11, True)
-    assert forecast.after_state.self_player.board[0].current_attack == 3      # SELF minion untouched
+    assert _pos(forecast).self_player.board[0].current_attack == 3      # SELF minion untouched
     summary = summarise(state, forecast)
     assert summary.deltas["OPPONENT"]["board_attack"] == 5 and summary.deltas["SELF"]["board_attack"] == 0
     assert "only improve OPPONENT-controlled" in summary.note
@@ -193,7 +200,7 @@ def test_plain_damage_and_lethal_damage():
     assert _change(hit, "OPPONENT", "health").after == 1 and hit.status is Status.EXACT
     _, kill = _damage("T_BOLT5", sc.minion("E1", 4, 4, 1))
     assert _change(kill, "OPPONENT", "present").after is False
-    assert kill.after_state.opponent.board == ()
+    assert _pos(kill).opponent.board == ()
     assert kill.status is Status.EXACT
 
 
@@ -260,8 +267,8 @@ def test_area_damage_hits_each_minion_with_its_own_protection():
     assert deaths == [("OPPONENT", 1), ("SELF", 1)]
     assert _change(forecast, "OPPONENT", "divine_shield").after is False
     assert _change(forecast, "OPPONENT", "health", position=3).after == 1
-    assert [e.card.card_id for e in forecast.after_state.opponent.board] == ["E2", "E3"]
-    assert [e.board_position for e in forecast.after_state.opponent.board] == [1, 2]
+    assert [e.card.card_id for e in _pos(forecast).opponent.board] == ["E2", "E3"]
+    assert [e.board_position for e in _pos(forecast).opponent.board] == [1, 2]
 
 
 def test_conditional_clause_follows_the_predicted_outcome():
@@ -309,7 +316,7 @@ def test_unobserved_healing_modifiers_give_a_lower_bound_not_a_number():
                          _ctx(healing_does_damage=False))
     change = _change(forecast, "SELF", "health")
     assert change.after is None and change.at_least == 3 and forecast.status is Status.PARTIAL
-    assert forecast.after_state.self_player.board[0].current_health == 3          # not invented
+    assert _pos(forecast).self_player.board[0].current_health == 3          # not invented
 
 
 def test_sanctum_state_unobserved_or_active_is_not_hidden():
@@ -331,13 +338,13 @@ def test_conditional_mass_destroy_uses_current_attack_of_both_sides():
     gone = sorted((c.ref.side, c.ref.position) for c in forecast.changes if c.field == "present"
                   and c.ref.zone == "BOARD")
     assert gone == [("OPPONENT", 1), ("SELF", 1)]
-    assert [e.card.card_id for e in forecast.after_state.self_player.board] == ["M2"]
+    assert [e.card.card_id for e in _pos(forecast).self_player.board] == ["M2"]
 
 
 def test_destroy_an_immune_minion_is_not_forecast():
     state = _state(theirs=[sc.minion("E1", 2, 2, 1, immune=True)], hand=[sc.hand_card("T_KILL", "SPELL", 3)])
     forecast = _forecast(state, _cast("T_KILL", sc.target_minion("OPPONENT", 1, "E1")))
-    assert forecast.status is Status.UNSUPPORTED and forecast.after_state is None
+    assert forecast.status is Status.UNSUPPORTED and forecast.partial_state() is None
 
 
 def test_armor_divine_shield_grant_and_temporary_mana():
@@ -379,7 +386,7 @@ def test_unsupported_actions_return_no_state():
                    sc.play("T_BOLT3", 5, "SPELL", 3), _cast("T_BOLT3", sc.target_minion("OPPONENT", 4, "E1"))):
         forecast = _forecast(state, action)
         assert forecast.status is Status.UNSUPPORTED and forecast.unsupported_reason
-        assert forecast.after_state is None and forecast.changes == ()
+        assert forecast.partial_state() is None and forecast.changes == ()
 
 
 def test_target_that_does_not_match_the_text_is_rejected():
@@ -515,10 +522,10 @@ def test_playing_a_minion_inserts_it_and_renumbers_the_board():
     forecast = _forecast(state, sc.play("T_TAUNT", 0, "MINION", 3, play_position=2),
                          _ctx(hand_keywords_match_card=True))
     assert forecast.status is Status.EXACT
-    board = forecast.after_state.self_player.board
+    board = _pos(forecast).self_player.board
     assert [(e.card.card_id, e.board_position) for e in board] == [("M1", 1), ("T_TAUNT", 2), ("M2", 3)]
     assert (board[1].current_attack, board[1].current_health, board[1].taunt, board[1].can_attack) == (3, 4, True, False)
-    assert forecast.after_state.self_player.available_mana == 2 and forecast.after_state.self_player.hand_size == 0
+    assert _pos(forecast).self_player.available_mana == 2 and _pos(forecast).self_player.hand_size == 0
 
 
 def test_rush_minion_can_attack_but_unknown_battlecry_is_not_invented():
@@ -526,9 +533,9 @@ def test_rush_minion_can_attack_but_unknown_battlecry_is_not_invented():
                          sc.hand_card("T_BC_DRAW", "MINION", 2, attack=2, health=2, mechanics=("BATTLECRY",))])
     vouched = _ctx(hand_keywords_match_card=True)
     rush = _forecast(state, sc.play("T_RUSH", 0, "MINION", 2, play_position=1), vouched)
-    assert rush.after_state.self_player.board[0].can_attack is True
+    assert _pos(rush).self_player.board[0].can_attack is True
     draw = _forecast(state, sc.play("T_BC_DRAW", 1, "MINION", 2, play_position=1), vouched)
-    assert draw.status is Status.PARTIAL and draw.after_state.self_player.board  # the body is still exact
+    assert draw.status is Status.PARTIAL and _pos(draw).self_player.board  # the body is still exact
 
 
 def test_battlecry_damage_is_not_boosted_by_spell_damage():
@@ -562,13 +569,13 @@ def test_location_activation_spends_durability_and_can_destroy_the_location():
     forecast = _forecast(state, action)
     assert _change(forecast, "OPPONENT", "health").after == 4
     assert _change(forecast, "SELF", "present", "LOCATION").after is False
-    assert forecast.after_state.self_player.locations == ()
+    assert _pos(forecast).self_player.locations == ()
 
 
 def test_after_state_is_a_valid_new_state_and_leaves_the_original_alone():
     state = _hold_state()
     forecast = _forecast(state, _cast("T_HOLD", sc.target_minion("OPPONENT", 1, "SIX"), 5))
-    after = forecast.after_state
+    after = _pos(forecast)
     assert after is not state and after.self_player.hand_size == 0 and after.self_hand == ()
     assert state.self_hand and state.opponent.board[0].current_attack == 6
 
@@ -619,7 +626,7 @@ def test_weapon_triggers_and_a_breaking_weapon_are_reported():
 # ----- Spell Damage is not observed by the importer ---------------------------------------------------------
 
 def _unobserved(state, action):
-    return forecast_action(state, action, TEXTS, ObservedContext(healing_does_damage=False))
+    return forecast_action(state, action, TEXTS, ObservedContext(healing_does_damage=False, spell_healing_doubled=False))
 
 
 def test_unobserved_spell_damage_turns_remaining_health_into_a_bound_but_keeps_lethal_and_shields_exact():
@@ -628,7 +635,7 @@ def test_unobserved_spell_damage_turns_remaining_health_into_a_bound_but_keeps_l
     health = _change(forecast, "OPPONENT", "health")
     assert forecast.status is Status.PARTIAL and health.after is None and health.at_most == 3
     assert any(u.kind is UnknownKind.MODIFIER_UNOBSERVED and "Spell Damage" in u.detail for u in forecast.unknowns)
-    assert forecast.after_state.opponent.board[0].current_health == 6              # not invented
+    assert _pos(forecast).opponent.board[0].current_health == 6              # not invented
     kill = _state(theirs=[sc.minion("E1", 2, 3, 1)], hand=[sc.hand_card("T_BOLT3", "SPELL", 3)])
     lethal = _unobserved(kill, _cast("T_BOLT3", sc.target_minion("OPPONENT", 1, "E1")))
     assert _change(lethal, "OPPONENT", "present").after is False                   # extra damage cannot save it
@@ -674,11 +681,11 @@ def test_playing_a_location_places_it_on_the_shared_board_without_running_its_ac
                    hand=[CardFeatures(card_id="T_PLACE", card_type="LOCATION", cost=2, current_cost=2, health=3)])
     forecast = forecast_action(state, sc.play("T_PLACE", 0, "LOCATION", 2, play_position=2), texts, _ctx())
     assert forecast.status is Status.EXACT
-    after = forecast.after_state.self_player
+    after = _pos(forecast).self_player
     assert [(p.card.card_id, p.board_position, p.current_health, p.on_cooldown) for p in after.locations] == [
         ("T_PLACE", 2, 3, False)]
     assert [(e.card.card_id, e.board_position) for e in after.board] == [("M1", 1), ("M2", 3)]
-    assert forecast.after_state.opponent.board[0].current_health == 5          # activation text did not run
+    assert _pos(forecast).opponent.board[0].current_health == 5          # activation text did not run
     assert _change(forecast, "SELF", "body", "LOCATION").after == "3 durability"
 
 
@@ -688,6 +695,6 @@ def test_a_full_board_has_no_after_state_but_keeps_the_exact_changes():
     state = _state(mine=full, hand=[CardFeatures(card_id="T_PLACE", card_type="LOCATION", cost=2, current_cost=2, health=3)])
     texts = TEXTS.extended([_body("T_PLACE", "", (), "LOCATION")])
     forecast = forecast_action(state, sc.play("T_PLACE", 0, "LOCATION", 2, play_position=8), texts, _ctx())
-    assert forecast.after_state is None
+    assert forecast.partial_state() is None
     assert any("no after-state" in note for note in forecast.assumptions)
     assert _change(forecast, "SELF", "available_mana", "PLAYER").after == 8

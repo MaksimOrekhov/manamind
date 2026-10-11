@@ -1,0 +1,253 @@
+{
+  "current_state_encoding_schema_version": 16,
+  "value_checkpoints": [
+    {
+      "path": "checkpoints/value_v1.pt",
+      "exists": true,
+      "loadable": false,
+      "reason": "Unsupported checkpoint format; this model uses an older feature schema. Retrain with the current code to create a compatible checkpoint.",
+      "stored_format_version": 1,
+      "stored_encoder_schema": null
+    },
+    {
+      "path": "checkpoints/value_v1_s2.pt",
+      "exists": true,
+      "loadable": false,
+      "reason": "Checkpoint state_encoding_schema_version does not match current encoder; retraining is required",
+      "stored_format_version": 2,
+      "stored_encoder_schema": 2
+    },
+    {
+      "path": "data/processed_archive_data0b_20261007/processed_real/pilot_splits/checkpoints/value_real_pilot.pt",
+      "exists": true,
+      "loadable": false,
+      "reason": "Checkpoint state_encoding_schema_version does not match current encoder; retraining is required",
+      "stored_format_version": 2,
+      "stored_encoder_schema": 2
+    },
+    {
+      "path": "data/processed_archive_data0b_20261007/processed_real/corrected_import/pilot_splits/checkpoints/value_real_corrected_v3.pt",
+      "exists": true,
+      "loadable": false,
+      "reason": "Checkpoint state_encoding_schema_version does not match current encoder; retraining is required",
+      "stored_format_version": 2,
+      "stored_encoder_schema": 3
+    },
+    {
+      "path": "data/processed_archive_data0b_20261007/processed_real/corrected_import/pilot_splits_19/checkpoints/value_real_19games_v3.pt",
+      "exists": true,
+      "loadable": false,
+      "reason": "Checkpoint state_encoding_schema_version does not match current encoder; retraining is required",
+      "stored_format_version": 2,
+      "stored_encoder_schema": 3
+    }
+  ],
+  "real_positions": {
+    "forecasts": {
+      "PARTIAL": 1880,
+      "EXACT": 101,
+      "UNSUPPORTED": 29
+    },
+    "exact_states_encoded": 101,
+    "exact_states_failed": 0,
+    "partial_forecasts_rejected_by_encoder": 1880,
+    "partial_forecasts_that_leaked": 0,
+    "partial_forecasts_with_undetermined_fields": 407
+  },
+  "controlled_feature_movement": [
+    {
+      "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #1 DEMO_ENEMY_6_6",
+      "global_feature_changes": {
+        "self_available_mana": -0.1945,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": true
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "PLAY_CARD JAIL_913 -> OPPONENT minion #2 DEMO_ENEMY_2_2",
+      "global_feature_changes": {
+        "self_available_mana": -0.1945,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": true
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "PLAY_CARD JAIL_913 -> SELF minion #1 DEMO_OWN_3_3",
+      "global_feature_changes": {
+        "self_available_mana": -0.1945,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": true
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": false
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "PLAY_CARD CORE_CS2_029 -> OPPONENT minion #1 DEMO_ENEMY_6_6",
+      "global_feature_changes": {
+        "self_available_mana": -0.1193,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 1,
+          "numeric_changed": true
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "PLAY_CARD CORE_CS2_029 -> OPPONENT hero hero",
+      "global_feature_changes": {
+        "self_available_mana": -0.1193,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312,
+        "opponent_hero_health": -0.0234
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": false
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "PLAY_CARD CORE_AT_055 -> SELF hero hero",
+      "global_feature_changes": {
+        "self_hero_health": 0.0198,
+        "self_available_mana": -0.0198,
+        "self_hand_size": -0.0312,
+        "self_known_hand_size": -0.0312
+      },
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": false
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 2,
+          "numeric_changed": true
+        }
+      }
+    },
+    {
+      "action": "ATTACK DEMO_OWN_3_3@1 -> OPPONENT minion #2 DEMO_ENEMY_2_2",
+      "global_feature_changes": {},
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": true
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 1,
+          "numeric_changed": true
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 3,
+          "numeric_changed": false
+        }
+      }
+    },
+    {
+      "action": "END_TURN",
+      "global_feature_changes": {},
+      "zones": {
+        "self_board": {
+          "entities_before": 1,
+          "entities_after": 1,
+          "numeric_changed": false
+        },
+        "opponent_board": {
+          "entities_before": 2,
+          "entities_after": 2,
+          "numeric_changed": false
+        },
+        "self_hand": {
+          "entities_before": 3,
+          "entities_after": 3,
+          "numeric_changed": false
+        }
+      }
+    }
+  ]
+}

@@ -10,7 +10,7 @@ from manamind.outcome.verify import (
     LoggedDecision, observe, score_pair, successor_pairs, summarise_results,
 )
 
-TRUSTED = ObservedContext(trust_spell_damage=True)
+TRUSTED = ObservedContext(trust_spell_damage=True, spell_healing_doubled=False)
 TEXTS = TextSource.from_records([
     {"id": "T_HOLD", "type": "SPELL", "mechanics": [], "text": "<b>Prepare</b>\nGive a minion +5/+5 and <b>Lifesteal</b>."},
     {"id": "T_NOVA", "type": "SPELL", "mechanics": [], "text": "Deal $2 damage to all minions."},

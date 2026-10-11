@@ -18,7 +18,7 @@ from manamind.domain.game_state import GameState
 from manamind.outcome.grammar import Clause, Selector, board_profile, parse_text, trigger_events
 from manamind.outcome.model import Forecast, Ref, Status, UnknownKind
 from manamind.outcome.texts import TextSource
-from manamind.outcome.world import Ent, ObservedContext, Obj, Unsupported, World
+from manamind.outcome.world import BODY_FLAGS, Ent, ObservedContext, Obj, Unsupported, World
 
 # Evidence behind each rule family, reported with every forecast that used it.
 RULE_EVIDENCE = {
@@ -36,9 +36,7 @@ RULE_EVIDENCE = {
                                  "as 'no extra change' on logged casts (reports/action_outcome_1)",
 }
 
-_BODY_FLAGS = {"TAUNT": "taunt", "DIVINE_SHIELD": "divine_shield", "RUSH": "rush", "CHARGE": "charge",
-               "WINDFURY": "windfury", "STEALTH": "stealth", "LIFESTEAL": "lifesteal",
-               "POISONOUS": "poisonous", "REBORN": "reborn"}
+_BODY_FLAGS = BODY_FLAGS
 
 
 def describe_action(state: GameState, action: dict[str, Any]) -> str:
@@ -80,7 +78,7 @@ class _Run:
     def __init__(self, state: GameState, action: dict[str, Any], texts: TextSource,
                  context: ObservedContext, label: str) -> None:
         self.state, self.action, self.texts, self.label = state, action, texts, label
-        self.world = World(state, context)
+        self.world = World(state, context, texts)
         self.classes: set[str] = set()
         self.involved: list[Ent] = []
         self.actor: Ent | None = None
@@ -121,7 +119,7 @@ class _Run:
             action=dict(self.action), label=self.label, status=status, changes=changes,
             events=tuple(world.events), unknowns=tuple(world.unknowns),
             assumptions=tuple(world.assumptions), rules=tuple(world.rules),
-            after_state=after_state)
+            _candidate=after_state, _after_index=dict(world.after_index))
 
     # ----- target and selector helpers -------------------------------------------------------
 
@@ -226,7 +224,7 @@ class _Run:
             return
         if kind == "MANA_TEMP":
             player = world.players["SELF"]
-            player.set("available_mana", player.fields["available_mana"] + clause.amount, cause)
+            player.set("available_mana", player.fields["available_mana"] + clause.amount, cause)  # an effect
             world.event("MANA_GAIN", player.ref, clause.amount, f"{cause}: +{clause.amount} Mana this turn")
             return
         assert clause.selector is not None
@@ -241,7 +239,8 @@ class _Run:
         for target in targets:
             self._involve(target)
             if kind == "HEAL":
-                world.heal(target, clause.amount, "SELF", cause)
+                world.heal(target, clause.amount, "SELF", cause, spell=self.damaging_source == "SPELL",
+                           unverified_double=bool(world.context.spell_healing_doubled))
                 self.classes.add("HEAL")
             elif kind in ("BUFF", "GRANT"):
                 if target.is_hero or not isinstance(target, Ent):
@@ -265,28 +264,40 @@ class _Run:
 
     def _damage(self, clause: Clause, targets: list[Obj], cause: str) -> None:
         world = self.world
-        bonus, unobserved = 0, False
+        context = world.context
+        bonus, factor, unobserved = 0, 1, False
         if self.damaging_source == "SPELL" and "$" in clause.text and not self.immune_to_spellpower:
-            if world.context.trust_spell_damage:
+            if context.spell_damage is not None:
+                bonus = context.spell_damage
+            elif context.trust_spell_damage:
                 bonus = world.spell_damage["SELF"]
             else:
                 unobserved = True
                 world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
                               "Spell Damage is not observed (a 0 in GameState may be a default); damage is a lower bound",
                               world.players["SELF"].ref, adds=False, tag="SPELL_DAMAGE_UNOBSERVED")
-        amount = clause.amount + bonus
+            doubled = context.spell_damage_doubled if context.spell_damage is not None else (
+                False if context.trust_spell_damage else None)
+            if not unobserved and doubled is None:
+                unobserved = True
+                world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
+                              "whether SELF's spell damage is doubled is not observed; damage is a lower bound",
+                              world.players["SELF"].ref, adds=False, tag="SPELL_DAMAGE_DOUBLING_UNOBSERVED")
+            elif doubled:
+                factor = 2
+        amount = (clause.amount + bonus) * factor
         lifesteal_side = "SELF" if self.lifesteal_spell else None
         dealt_total = []
         for target in targets:
             self._involve(target)
-            dealt_total.append(world.damage(target, amount, cause + (f" (+{bonus} Spell Damage)" if bonus else ""),
-                                            at_least=unobserved))
+            note = (f" (+{bonus} Spell Damage)" if bonus else "") + (" (doubled)" if factor == 2 else "")
+            dealt_total.append(world.damage(target, amount, cause + note, at_least=unobserved))
         self.classes.add("DAMAGE")
         if lifesteal_side:
             for dealt in dealt_total:
                 if dealt > 0:
                     world.heal(world.hero("SELF"), dealt, "SELF", "Lifesteal " + cause, lifesteal=True,
-                               at_least=unobserved)
+                               at_least=unobserved, unverified_double=bool(context.spell_healing_doubled))
                     self.classes.add("HEAL")
 
     def _destroy_highest(self, candidates: list[Obj], cause: str) -> None:
@@ -332,12 +343,12 @@ class _Run:
         if effective is None:
             self.world.unknown(UnknownKind.MODIFIER_UNOBSERVED, "the effective cost of the action is not observed",
                                player.ref, adds=False, tag="COST_UNOBSERVED")
-            player.mark_unknown("available_mana", "cost unknown")
+            player.mark_unknown("available_mana", "cost unknown", role="BOOKKEEPING")
             return
         remaining = player.fields["available_mana"] - effective
         if remaining < 0:
             raise Unsupported("COST_EXCEEDS_AVAILABLE_MANA")
-        player.set("available_mana", remaining, f"pays {effective} Mana")
+        player.set("available_mana", remaining, f"pays {effective} Mana", role="BOOKKEEPING")
         if effective:
             self.classes.add("MANA_SPENT")
             self.world.event("MANA_SPENT", player.ref, effective, f"pays {effective} Mana")
@@ -352,7 +363,7 @@ class _Run:
     def _leave_hand(self, index: int, card_id: str) -> None:
         player = self.world.players["SELF"]
         self.world.hand_removed.append(Ref("SELF", "HAND", index, card_id))
-        player.set("hand_size", player.fields["hand_size"] - 1, "card leaves hand")
+        player.set("hand_size", player.fields["hand_size"] - 1, "card leaves hand", role="BOOKKEEPING")
         self.world.note_rule("HAND_REMOVAL")
 
     def _play(self) -> None:
@@ -364,7 +375,12 @@ class _Run:
         self._spend_mana(self.action.get("card_cost"), card.effective_cost)
         self._leave_hand(index, card.card_id)
         entry = self.texts.get(card.card_id)
-        if card_type == "MINION" and not self.world.context.hand_keywords_match_card:
+        hand_keywords = None
+        if card_type == "MINION":
+            observed = self.world.context.hand_keywords
+            if observed is not None and index < len(observed):
+                hand_keywords = observed[index]
+        if card_type == "MINION" and hand_keywords is None and not self.world.context.hand_keywords_match_card:
             self.world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
                                "keyword enchantments on the hand instance are not observed; the keywords shown "
                                "come from the base card", Ref("SELF", "HAND", index, card.card_id), adds=False,
@@ -382,7 +398,7 @@ class _Run:
         if card_type == "LOCATION":
             self._place_location(card)
             return
-        self._summon(card, entry)
+        self._summon(card, entry, hand_keywords)
 
     def _place_location(self, card) -> None:
         """A played Location enters at the chosen position; its text is an activation effect, not run now."""
@@ -400,7 +416,7 @@ class _Run:
         world.event("SUMMON", place.ref, None, f"{card.card_id} enters play at position {position} with "
                                                f"{durability} durability")
 
-    def _summon(self, card, entry) -> None:
+    def _summon(self, card, entry, hand_keywords: frozenset[str] | None = None) -> None:
         world = self.world
         self.classes |= {"MINION_PLAYED", "SUMMON"}
         position = self.action.get("play_position")
@@ -413,6 +429,9 @@ class _Run:
                   "frozen": False, "silenced": False, "immune": False, "dormant": False,
                   "can_attack": "CHARGE" in mechanics or "RUSH" in mechanics}
         fields.update({flag: name in mechanics for name, flag in _BODY_FLAGS.items()})
+        if hand_keywords is not None:                  # the hand instance's own keywords, as observed
+            fields.update({flag: flag in hand_keywords for flag in _BODY_FLAGS.values()})
+            fields["can_attack"] = bool(hand_keywords & {"charge", "rush"})
         minion = Ent(Ref("SELF", "BOARD", position, card.card_id), fields, card, new=True)
         minion.causes["present"] = "played from hand"
         world.entities.append(minion)
@@ -432,7 +451,7 @@ class _Run:
         self.chosen = self._chosen_target()
         self._spend_mana(self.action.get("card_cost"), power.effective_cost)
         hero = self.world.hero("SELF")
-        hero.set("hero_power_ready", False, "hero power used")
+        hero.set("hero_power_ready", False, "hero power used", role="BOOKKEEPING")
         self.classes.add("HERO_POWER_USED")
         entry = self.texts.get(power.card_id)
         if entry is None:
@@ -447,9 +466,9 @@ class _Run:
         self.actor = place
         self.chosen = self._chosen_target()
         self.world.note_rule("LOCATION_ACTIVATION")
-        place.set("health", place.fields["health"] - 1, "activation uses 1 durability")
-        place.set("on_cooldown", True, "activation starts the cooldown")
-        place.set("can_activate", False, "activation starts the cooldown")
+        place.set("health", place.fields["health"] - 1, "activation uses 1 durability", role="BOOKKEEPING")
+        place.set("on_cooldown", True, "activation starts the cooldown", role="BOOKKEEPING")
+        place.set("can_activate", False, "activation starts the cooldown", role="BOOKKEEPING")
         self._involve(place)
         entry = self.texts.get(place.ref.card_id)
         if entry is None:
@@ -499,18 +518,19 @@ class _Run:
             if a_flags.get("stealth"):
                 attacker.set("stealth", False, "attacking removes Stealth")
             if a_flags.get("windfury"):
-                attacker.mark_unknown("can_attack", "Windfury: attacks already used are not observed")
+                attacker.mark_unknown("can_attack", "Windfury: attacks already used are not observed",
+                                      role="BOOKKEEPING")
                 world.unknown(UnknownKind.MODIFIER_UNOBSERVED, "Windfury attacker: remaining attacks not observed",
                               attacker.ref, adds=False, tag="ATTACKS_USED_UNOBSERVED")
             else:
-                attacker.set("can_attack", False, "the attack is spent")
+                attacker.set("can_attack", False, "the attack is spent", role="BOOKKEEPING")
         elif weapon is not None:
             durability = weapon.fields["durability"]
             if durability is None:
                 world.unknown(UnknownKind.MODIFIER_UNOBSERVED, "weapon durability not observed", weapon.ref,
                               tag="WEAPON_UNOBSERVED")
             else:
-                weapon.set("durability", durability - 1, "weapon loses 1 durability")
+                weapon.set("durability", durability - 1, "weapon loses 1 durability", role="BOOKKEEPING")
                 if durability - 1 <= 0:
                     attacker.mark_unknown("attack", "weapon breaks: remaining hero Attack not observed")
                     world.unknown(UnknownKind.MODIFIER_UNOBSERVED, "weapon breaks: hero Attack afterwards",
@@ -565,11 +585,11 @@ class _Run:
         mechanics = set(entity.card.mechanics) | (set(entry.mechanics) if entry else set())
         covered_death = False
         if "DEATH_SELF" in self_events and not entity.is_location and (
-                mechanics & {"DEATHRATTLE", "INVISIBLEDEATHRATTLE"} or entity.fields.get("reborn")):
+                mechanics & {"DEATHRATTLE", "INVISIBLEDEATHRATTLE"}):
             covered_death = True
             world.unknown(UnknownKind.POSSIBLE_REACTION,
-                          f"{entity.ref.label()}: Deathrattle/Reborn resolves after death", entity.ref,
-                          tag="DEATHRATTLE_OR_REBORN")
+                          f"{entity.ref.label()}: its Deathrattle resolves after death", entity.ref,
+                          tag="DEATHRATTLE")
         self._card_reactions(entity.ref, entity.ref.card_id, mechanics, self_events,
                              involved=entity in self.involved, covered_death=covered_death,
                              enrage_possible="ENRAGED" in mechanics and (

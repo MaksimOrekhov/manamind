@@ -12,7 +12,8 @@ from manamind.outcome import demo
 
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "data" / "cards" / "standard_current_enUS.json"
-SYNTHETIC = ObservedContext(healing_does_damage=False, hand_keywords_match_card=True, trust_spell_damage=True)
+SYNTHETIC = ObservedContext(healing_does_damage=False, hand_keywords_match_card=True, trust_spell_damage=True,
+                            spell_healing_doubled=False)
 
 
 def _forecasts(scenario: demo.Scenario):
@@ -26,10 +27,10 @@ def test_hold_them_off_scenario_alternatives_have_distinct_independent_outcomes(
     assert [f.status for f in forecasts] == [Status.EXACT] * len(scenario.actions)
     outcomes = [tuple(sorted((c.ref.label(), c.field, c.after) for c in f.changes)) for f in forecasts]
     assert len(set(outcomes)) == len(outcomes)                       # every alternative is visibly different
-    big = forecasts[0].after_state.opponent.board[0]
+    big = forecasts[0].exact_state().opponent.board[0]
     assert (big.current_attack, big.current_health, big.max_health, big.lifesteal) == (11, 11, 11, True)
     fireball_on_big = forecasts[3]
-    assert fireball_on_big.after_state.opponent.board[0].card.card_id == "DEMO_ENEMY_2_2"   # the 6/6 is gone
+    assert fireball_on_big.exact_state().opponent.board[0].card.card_id == "DEMO_ENEMY_2_2"   # the 6/6 is gone
     assert forecasts[7].changes == ()                                # END_TURN changes nothing directly
 
 

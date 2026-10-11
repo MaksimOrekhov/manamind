@@ -41,15 +41,28 @@ class ObservedContext:
     """
 
     healing_does_damage: bool | None = None
+    # Spell Damage: ``spell_damage`` is SELF's bonus and ``spell_damage_doubled`` whether SELF's spell damage is
+    # doubled (Power.log flag SPELLPOWER_DOUBLE). ``trust_spell_damage`` vouches that the value in GameState is
+    # real and that nothing doubles it.
+    spell_damage: int | None = None
+    spell_damage_doubled: bool | None = None
     trust_spell_damage: bool = False
+    # Healing: SELF's additive bonus (CURRENT_HEALING_POWER) and whether SELF's spell healing is doubled
+    # (SPELL_HEALING_DOUBLE); both only matter when GameState carries no healing_bonus.
+    healing_bonus: int | None = None
+    spell_healing_doubled: bool | None = None
+    self_hero_divine_shield: bool | None = None
+    opponent_hero_divine_shield: bool | None = None
+    # Keyword flags of each card in SELF's hand, aligned with ``GameState.self_hand`` (None: not observed).
+    hand_keywords: tuple[frozenset[str] | None, ...] | None = None
     hand_keywords_match_card: bool = False
     assume_no_hero_divine_shield: bool = False
     assume_zero_healing_bonus: bool = False
 
     @classmethod
     def assuming_common_defaults(cls) -> "ObservedContext":
-        return cls(healing_does_damage=False, trust_spell_damage=True, hand_keywords_match_card=True,
-                   assume_no_hero_divine_shield=True, assume_zero_healing_bonus=True)
+        return cls(healing_does_damage=False, trust_spell_damage=True, spell_healing_doubled=False,
+                   hand_keywords_match_card=True, assume_no_hero_divine_shield=True, assume_zero_healing_bonus=True)
 
 
 class Obj:
@@ -60,21 +73,27 @@ class Obj:
         self.fields = dict(fields)
         self.original = dict(fields)
         self.causes: dict[str, str] = {}
+        self.roles: dict[str, str] = {}
         self.unknown_fields: dict[str, tuple[str, int | None, int | None]] = {}
 
-    def set(self, name: str, value: Any, cause: str) -> None:
+    def set(self, name: str, value: Any, cause: str, role: str = "EFFECT") -> None:
         self.fields[name] = value
         self.causes[name] = cause
+        self.roles[name] = role
 
-    def mark_unknown(self, name: str, cause: str, at_least: int | None = None, at_most: int | None = None) -> None:
+    def mark_unknown(self, name: str, cause: str, at_least: int | None = None, at_most: int | None = None,
+                     role: str = "EFFECT") -> None:
         """The field was touched but its value is not determined; the bound, if any, is all that is known."""
         self.unknown_fields[name] = (cause, at_least, at_most)
+        self.roles[name] = role
 
     def changes(self) -> list[Change]:
-        found = [Change(self.ref, name, self.original[name], value, self.causes.get(name, "?"))
+        found = [Change(self.ref, name, self.original[name], value, self.causes.get(name, "?"),
+                        role=self.roles.get(name, "EFFECT"))
                  for name, value in self.fields.items()
                  if value != self.original[name] and name not in self.unknown_fields]
-        found += [Change(self.ref, name, self.original[name], None, cause, low, high)
+        found += [Change(self.ref, name, self.original[name], None, cause, low, high,
+                         role=self.roles.get(name, "EFFECT"))
                   for name, (cause, low, high) in self.unknown_fields.items()]
         return found
 
@@ -113,10 +132,17 @@ class HeroObj(Obj):
         return True
 
 
+# Keyword flags that a card's printed mechanics give back to a minion that is returned by Reborn.
+BODY_FLAGS = {"TAUNT": "taunt", "DIVINE_SHIELD": "divine_shield", "RUSH": "rush", "CHARGE": "charge",
+              "WINDFURY": "windfury", "STEALTH": "stealth", "LIFESTEAL": "lifesteal",
+              "POISONOUS": "poisonous", "REBORN": "reborn"}
+
+
 class World:
-    def __init__(self, state: GameState, context: ObservedContext) -> None:
+    def __init__(self, state: GameState, context: ObservedContext, texts: Any = None) -> None:
         self.state = state
         self.context = context
+        self.texts = texts
         self.events: list[Event] = []
         self.unknowns: list[Unknown] = []
         self.assumptions: list[str] = []
@@ -128,6 +154,8 @@ class World:
         self.healing_bonus: dict[str, int | None] = {}
         self.spell_damage: dict[str, int] = {}
         self.hand_removed: list[Ref] = []
+        # (side, zone, pre-action position) -> index in the same side's board / Location tuple of the result
+        self.after_index: dict[tuple[str, str, int], int] = {}
         self._flagged: set[tuple[str, str]] = set()
         for side, player in (("SELF", state.self_player), ("OPPONENT", state.opponent)):
             self._load_side(side, player)
@@ -135,7 +163,10 @@ class World:
     def _load_side(self, side: str, player: PlayerObservation) -> None:
         self.heroes[side] = HeroObj(Ref(side, "HERO", None, "HERO"), {
             "health": player.hero_health, "max_health": player.hero_max_health, "armor": player.armor,
-            "attack": player.hero_attack, "divine_shield": player.hero_divine_shield,
+            "attack": player.hero_attack,
+            "divine_shield": (player.hero_divine_shield if player.hero_divine_shield is not None
+                              else self.context.self_hero_divine_shield if side == "SELF"
+                              else self.context.opponent_hero_divine_shield),
             "hero_power_ready": player.hero_power_ready,
         })
         self.players[side] = Obj(Ref(side, "PLAYER", None, "PLAYER"), {
@@ -144,7 +175,8 @@ class World:
         weapon = player.weapon
         self.weapons[side] = None if weapon is None else Obj(
             Ref(side, "WEAPON", None, weapon.card_id), {"durability": weapon.effective_durability})
-        self.healing_bonus[side] = player.healing_bonus
+        self.healing_bonus[side] = (player.healing_bonus if player.healing_bonus is not None
+                                    else self.context.healing_bonus if side == "SELF" else None)
         self.spell_damage[side] = player.spell_damage
         for item in player.board:
             fields = {name: getattr(item, "current_" + name if name in ("attack", "health") else name)
@@ -254,8 +286,25 @@ class World:
         return dealt
 
     def heal(self, target: Obj, base: int, healer_side: str, cause: str, *, lifesteal: bool = False,
-             at_least: bool = False) -> None:
+             at_least: bool = False, spell: bool = False, unverified_double: bool = False) -> None:
+        """One healing packet. ``spell`` heals are doubled when SELF's spell healing is (verified in logs);
+        a non-spell heal under a doubling flag is only a lower bound, because that case has no sample yet."""
         self.note_rule("HEALING_PACKET")
+        factor = 1
+        if spell:
+            doubled = self.context.spell_healing_doubled
+            if doubled is None:
+                at_least = True
+                self.unknown(UnknownKind.MODIFIER_UNOBSERVED,
+                             "whether SELF's spell healing is doubled is not observed; healing is a lower bound",
+                             target.ref, adds=False, tag="HEALING_DOUBLING_UNOBSERVED")
+            elif doubled:
+                factor = 2
+        elif unverified_double:
+            at_least = True
+            self.unknown(UnknownKind.MODIFIER_UNOBSERVED,
+                         "spell healing is doubled and this heal is not a spell: the effect on it is unverified",
+                         target.ref, adds=False, tag="HEALING_DOUBLING_UNVERIFIED")
         if self.context.healing_does_damage is None:
             self.unknown(UnknownKind.MODIFIER_UNOBSERVED,
                          "healing-to-damage conversion (Ruby Sanctum) is not exposed by GameState", target.ref,
@@ -275,14 +324,15 @@ class World:
             target.mark_unknown("health", cause, at_least=target.fields["health"])
             self.event("HEAL", target.ref, None, f"{cause}: amount unknown (base {base})")
             return
-        restored = max(0, min(base + bonus, missing))
+        restored = max(0, min((base + bonus) * factor, missing))
         if at_least:                          # the healed amount comes from damage that may be larger
             target.mark_unknown("health", cause, at_least=target.fields["health"] + restored)
             self.event("HEAL", target.ref, None, f"{cause}: restores at least {restored}")
             return
         target.set("health", target.fields["health"] + restored, cause)
         self.event("HEAL", target.ref, restored,
-                   f"{cause}: restores {restored} (base {base}, bonus {bonus}, missing {missing})")
+                   f"{cause}: restores {restored} (base {base}, bonus {bonus}"
+                   f"{', doubled' if factor == 2 else ''}, missing {missing})")
 
     def buff(self, target: Ent, attack: int, health: int, cause: str) -> None:
         self.note_rule("STAT_CHANGE")
@@ -311,20 +361,65 @@ class World:
         self.event("DESTROY", target.ref, None, f"{cause}: destroyed")
 
     def settle(self) -> list[Ent]:
-        """Remove everything that died during the action; returns the casualties in board order."""
+        """Resolve deaths; returns the casualties in board order (a Reborn minion is a casualty that stays)."""
         casualties = []
         for entity in sorted(self.entities, key=lambda e: (e.side, e.sort_key)):
             if entity.dead:
                 continue
             health = entity.fields["health"]
             if entity.destroyed or (health is not None and health <= 0):
-                entity.dead = True
                 casualties.append(entity)
                 self.event("DEATH", entity.ref, None, f"{entity.ref.label()} dies")
+                if entity.fields.get("reborn") and not entity.is_location:
+                    self._revive(entity)
+                else:
+                    entity.dead = True
         for side, hero in self.heroes.items():
             if hero.fields["health"] <= 0 < hero.original["health"]:
                 self.event("HERO_DEATH", hero.ref, None, f"{side} hero reaches 0 Health")
         return casualties
+
+    def _revive(self, entity: Ent) -> None:
+        """Reborn: the minion returns in place with 1 Health, without Reborn and without its enchantments.
+
+        Printed attack, Health and keywords come back only from a card JSON that carries them. A token that
+        no JSON describes keeps health 1 and ``reborn`` False, and everything else is left undetermined.
+        (Logged: 14 of 14 returns with a catalog card matched; the observed card features are no substitute,
+        because for tokens they are current values, not printed ones.)
+        """
+        cause = "Reborn: returns with 1 Health"
+        self.note_rule("REBORN")
+        entity.destroyed = False
+        entity.unknown_fields.pop("health", None)
+        entity.set("health", 1, cause)
+        entity.set("reborn", False, cause)
+        for name in ("frozen", "silenced", "immune", "dormant"):
+            entity.set(name, False, cause)
+        entry = self.texts.get(entity.ref.card_id) if self.texts is not None else None
+        base_attack = entry.attack if entry else None
+        base_health = entry.health if entry else None
+        flags = [flag for flag in BODY_FLAGS.values() if flag != "reborn"]
+        if base_attack is None or base_health is None:
+            for name in ("attack", "max_health", *flags):
+                entity.mark_unknown(name, "Reborn: printed stats and keywords are not known")
+            entity.set("can_attack", False, cause, role="BOOKKEEPING")
+            self.unknown(UnknownKind.MODIFIER_UNOBSERVED,
+                         f"{entity.ref.label()}: returns by Reborn but its printed stats are not in any card JSON",
+                         entity.ref, adds=False, tag="REBORN_BASE_UNKNOWN")
+            self.event("REBORN", entity.ref, 1, f"{entity.ref.label()} returns with 1 Health (base unknown)")
+            return
+        mechanics = set(entity.card.mechanics) | set(entry.mechanics)
+        entity.set("attack", base_attack, cause)
+        entity.set("max_health", base_health, cause)
+        for mechanic, flag in BODY_FLAGS.items():
+            if flag != "reborn":
+                entity.set(flag, mechanic in mechanics, cause)
+        if mechanics & {"RUSH", "CHARGE"}:
+            entity.mark_unknown("can_attack", "Reborn: whether a returned Rush/Charge minion can attack",
+                                role="BOOKKEEPING")
+        else:
+            entity.set("can_attack", False, cause, role="BOOKKEEPING")
+        self.event("REBORN", entity.ref, 1, f"{entity.ref.label()} returns as {base_attack}/1 (max {base_health})")
 
     # ----- results ----------------------------------------------------------------------------
 
@@ -347,7 +442,8 @@ class World:
             found += entity.changes()
             if entity.dead:
                 found.append(Change(entity.ref, "present", True, False, "death"))
-        found += [Change(ref, "present", True, False, "card leaves hand") for ref in self.hand_removed]
+        found += [Change(ref, "present", True, False, "card leaves hand", role="BOOKKEEPING")
+                  for ref in self.hand_removed]
         return found
 
     def to_game_state(self) -> GameState:
@@ -356,7 +452,10 @@ class World:
             alive = sorted((e for e in self.entities if e.side == side and not e.dead), key=lambda e: e.sort_key)
             board, locations = [], []
             for position, entity in enumerate(alive, start=1):
-                (locations if entity.is_location else board).append(self._rebuilt(entity, position))
+                target = locations if entity.is_location else board
+                if not entity.new:
+                    self.after_index[(side, entity.ref.zone, entity.ref.position)] = len(target)
+                target.append(self._rebuilt(entity, position))
             hero, mana = self.heroes[side].fields, self.players[side].fields
             weapon = self.weapons[side]
             sides[side] = replace(

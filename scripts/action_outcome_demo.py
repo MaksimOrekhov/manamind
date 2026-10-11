@@ -92,7 +92,7 @@ def main() -> int:
         demo_texts = demo.demo_texts(texts)
         # synthetic positions are fully specified: no Ruby Sanctum, and hand cards are the base cards
         scenario_context = ObservedContext(healing_does_damage=False, hand_keywords_match_card=True,
-                                           trust_spell_damage=True)
+                                           trust_spell_damage=True, spell_healing_doubled=False)
         for scenario in chosen:
             output.append(show(scenario.title, scenario.state, scenario.actions, demo_texts,
                                context if args.assume_defaults else scenario_context, args.json,

@@ -66,7 +66,7 @@ class Summary:
 
 
 def summarise(state: GameState, forecast: Forecast) -> Summary:
-    if forecast.after_state is None:
+    if forecast._candidate is None:
         return Summary(forecast.label, forecast.status, {}, note=f"unsupported: {forecast.unsupported_reason}")
     improves: dict[str, list[str]] = {"SELF": [], "OPPONENT": []}
     harms: dict[str, list[str]] = {"SELF": [], "OPPONENT": []}
@@ -80,7 +80,7 @@ def summarise(state: GameState, forecast: Forecast) -> Summary:
             improves[change.ref.side].append(change.describe())
         elif direction < 0:
             harms[change.ref.side].append(change.describe())
-    deltas = metric_deltas(state, forecast.after_state)
+    deltas = metric_deltas(state, forecast._candidate)
     note = ""
     if improves["OPPONENT"] and not improves["SELF"] and not harms["OPPONENT"]:
         note = ("direct effects only improve OPPONENT-controlled entities; SELF's direct change is the cost "

@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from manamind.encoding.state_encoder import GLOBAL_FEATURE_NAMES, STATE_ENCODING_SCHEMA_VERSION  # noqa: E402
-from manamind.outcome import ObservedContext, Status, TextSource, forecast_action  # noqa: E402
+from manamind.outcome import NotExactError, ObservedContext, Status, TextSource, forecast_action  # noqa: E402
 from manamind.outcome import demo  # noqa: E402
 from manamind.outcome.verify import load_corpus  # noqa: E402
 from manamind.training.checkpoint import load_checkpoint  # noqa: E402
@@ -67,7 +67,7 @@ def main() -> int:
         "data/processed_archive_data0b_20261007/processed_real/corrected_import/pilot_splits/checkpoints/value_real_corrected_v3.pt",
         "data/processed_archive_data0b_20261007/processed_real/corrected_import/pilot_splits_19/checkpoints/value_real_19games_v3.pt"])
     parser.add_argument("--supplement", nargs="*", default=[])
-    parser.add_argument("--out", default=str(ROOT / "reports" / "action_outcome_1" / "value_probe.json"))
+    parser.add_argument("--out", default=str(ROOT / "reports" / "action_outcome_1b" / "value_probe.json"))
     args = parser.parse_args()
 
     _, encoder, _ = load_policy_checkpoint(locate(args.policy))
@@ -76,36 +76,52 @@ def main() -> int:
     report: dict = {"current_state_encoding_schema_version": STATE_ENCODING_SCHEMA_VERSION,
                     "value_checkpoints": value_checkpoints(args.value_checkpoint)}
 
-    # (2) real positions: does every forecastable after-state encode?
+    # (2) real positions: only EXACT forecasts yield a position; a PARTIAL one must not reach the encoder
     games = load_corpus(locate(args.corpus))
-    status, encoded, failed, stale_forecasts = Counter(), 0, 0, 0
+    status, encoded, failed = Counter(), 0, 0
+    partial_blocked, partial_leaked, undetermined = 0, 0, 0
     for items in games.values():
         for decision in items:
             forecast = forecast_action(decision.state, decision.action, texts)
             status[forecast.status.value] += 1
-            if forecast.after_state is None:
+            if forecast.status is Status.EXACT:
+                try:
+                    encoder.encode(forecast.exact_state())
+                    encoded += 1
+                except Exception:                            # noqa: BLE001
+                    failed += 1
                 continue
-            stale_forecasts += any(not change.exact for change in forecast.changes)
+            partial = forecast.partial_state()
+            if partial is None:
+                continue
+            undetermined += bool(partial.undetermined)
             try:
-                encoder.encode(forecast.after_state)
-                encoded += 1
-            except Exception:                                # noqa: BLE001
-                failed += 1
-    report["real_positions"] = {"forecasts": dict(status), "after_states_encoded": encoded,
-                                "after_states_failed": failed,
-                                "forecasts_with_touched_but_unknown_fields": stale_forecasts}
+                encoder.encode(partial)                      # type: ignore[arg-type]
+                partial_leaked += 1
+            except (AttributeError, TypeError):
+                partial_blocked += 1
+            try:
+                forecast.exact_state()
+                partial_leaked += 1
+            except NotExactError:
+                pass
+    report["real_positions"] = {
+        "forecasts": dict(status), "exact_states_encoded": encoded, "exact_states_failed": failed,
+        "partial_forecasts_rejected_by_encoder": partial_blocked, "partial_forecasts_that_leaked": partial_leaked,
+        "partial_forecasts_with_undetermined_fields": undetermined}
 
     # (3) which encoded features does a controlled forecast move?
     scenario = demo.hold_them_off()
     demo_texts = demo.demo_texts(texts)
-    context = ObservedContext(healing_does_damage=False, hand_keywords_match_card=True)
+    context = ObservedContext(healing_does_damage=False, hand_keywords_match_card=True, trust_spell_damage=True,
+                              spell_healing_doubled=False)
     before = encoder.encode(scenario.state)
     moves = []
     for action in scenario.actions:
         forecast = forecast_action(scenario.state, action, demo_texts, context)
-        if forecast.after_state is None or forecast.status is not Status.EXACT:
+        if forecast.status is not Status.EXACT:
             continue
-        after = encoder.encode(forecast.after_state)
+        after = encoder.encode(forecast.exact_state())
         global_delta = {name: round(float(a - b), 4) for name, a, b in zip(
             GLOBAL_FEATURE_NAMES, after.global_features, before.global_features, strict=True) if a != b}
         zones = {}
