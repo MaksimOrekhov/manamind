@@ -16,8 +16,9 @@ from manamind.training.tactical_certificates import certify, sequence_firsts, se
 from manamind.training.tactical_learning import Stream, encode_rows, labels, real_parts
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]/"scripts"))
-from prepare_tactical_learning import fixture, menu, semantic_fingerprint  # noqa: E402
+from prepare_tactical_learning import fixture, menu, semantic_fingerprint, vanilla_pool  # noqa: E402
 import evaluate_tactical_learning as evaluator  # noqa: E402
+import train_tactical_learning as experiment_trainer  # noqa: E402
 import manamind.training.tactical_learning as learning  # noqa: E402
 
 
@@ -66,6 +67,27 @@ def test_sequence_bound_includes_hero_and_rejects_frozen_sources(encoder):
     frozen = replace(state, self_player=replace(state.self_player, board=(replace(source, frozen=True),)))
     with pytest.raises(ValueError, match="ready and alive"):
         sequence_firsts(frozen, menu(frozen))
+
+
+def test_empty_mechanics_does_not_imply_empty_card_text(encoder):
+    base = {"type": "MINION", "attack": 2, "health": 3, "cost": 2, "mechanics": []}
+    records = [{**base, "id": "PLAIN_0", "text": "This minion takes double damage from all sources."},
+               {**base, "id": "PLAIN_1", "text": ""}]
+    assert [c.card_id for c in vanilla_pool(encoder, records)] == ["PLAIN_1"]
+    with pytest.raises(ValueError, match="No verified vanilla"):
+        vanilla_pool(encoder, records[:1])
+
+
+def test_invalidated_tactics_rejected_before_loading_or_training(tmp_path, monkeypatch):
+    dataset = tmp_path/"dataset"
+    dataset.mkdir()
+    (dataset/"INVALIDATED.json").write_text("{}")
+    def forbidden(*args, **kwargs):
+        pytest.fail("Checkpoint loaded for invalidated dataset")
+    monkeypatch.setattr(experiment_trainer, "load_policy_checkpoint", forbidden)
+    with pytest.raises(ValueError, match="explicitly invalidated"):
+        experiment_trainer.run(dataset, tmp_path/"output")
+    assert not (tmp_path/"output").exists()
 
 
 def test_unknown_control_has_no_gold(encoder):

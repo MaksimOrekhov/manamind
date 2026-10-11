@@ -76,18 +76,42 @@ def menu(state):
     return actions
 
 
-def fixture(split, family, n, encoder, *, variant=0):
+def vanilla_pool(encoder, records):
+    """Known IDs require actual empty text AND mechanics, with matching pinned base stats."""
+    raw = {c["id"]: c for c in records}
+    result = []
+    for entry in encoder.catalog.to_dict():
+        card = encoder.catalog.get(entry["card_id"])
+        actual = raw.get(card.card_id)
+        if (actual is not None and card.card_type == "MINION" and not card.mechanics
+                and not actual.get("mechanics") and not (actual.get("text") or "").strip()
+                and actual.get("type") == "MINION" and card.card_id != "Core_CS2_200"
+                and card.attack is not None and card.health is not None
+                and (actual.get("attack"), actual.get("health"), actual.get("cost")) ==
+                    (card.attack, card.health, card.cost)):
+            result.append(card)
+    if not result:
+        raise ValueError("No verified vanilla cards in pinned checkpoint/source intersection")
+    return result
+
+
+def fixture(split, family, n, encoder, *, variant=0, plain_cards=None):
     rng = random.Random(int(identity([split, family, n, variant])[:12], 16))
     plain = [encoder.catalog.get(c["card_id"]) for c in encoder.catalog.to_dict()]
     plain = [c for c in plain if c.card_type == "MINION" and not c.mechanics
              and c.attack is not None and c.health is not None and c.card_id != "Core_CS2_200"]
+    if plain_cards is not None:
+        plain = list(plain_cards)
     rng.shuffle(plain)
     records = []
 
     def entity(pos, a, h, **flags):
         base = plain[len(records) % len(plain)]
         # IDs may be known or aliases; full base metadata stays identical.
-        card = base if rng.random() < 0.5 or split == "control" else CardFeatures(
+        use_known = rng.random() < 0.5 or split == "control"
+        # Additional bodies are declared synthetic vanilla aliases, never ambiguous duplicate handles.
+        use_known = use_known and base.card_id not in {r["id"] for r in records}
+        card = base if use_known else CardFeatures(
             **{**asdict(base), "card_id": f"TL_{split}_{family}_{n}_{len(records)}"})
         records.append({"id": card.card_id, "text": "", "type": "MINION", "mechanics": [],
                         "attack": card.attack, "health": card.health})
@@ -225,6 +249,10 @@ def prepare(output, config):
     if sha(INITIAL) != INITIAL_SHA:
         raise ValueError("Initial checkpoint changed")
     _, encoder, _ = load_policy_checkpoint(INITIAL)
+    pinned = ROOT/"data/cards/standard_current_enUS.json"
+    raw = json.loads(pinned.read_text(encoding="utf-8"))
+    records = raw["cards"] if isinstance(raw, dict) else raw
+    plain_cards = vanilla_pool(encoder, records)
     output.mkdir(parents=True, exist_ok=False)
     recipes = {"train": ["armor_finish", "shield_finish", "taunt_finish", "poison", "poison_taunt",
                           "immune", "self_damage", "spell_finish"],
@@ -233,7 +261,7 @@ def prepare(output, config):
                             "heuristic_trade", "ambiguous_face"]}
     groups = {}
     for split, families in recipes.items():
-        groups[split] = [fixture(split, family, n, encoder) for family in families
+        groups[split] = [fixture(split, family, n, encoder, plain_cards=plain_cards) for family in families
                          for n in range(16 if split == "train" else
                                         4 if family in ("two_self_damage", "spell_side") else 8)]
     # Current-Health intervention: preserve every other value including max Health.
@@ -311,6 +339,8 @@ def prepare(output, config):
                 "recipes": recipes, "counts": {k: len(v) for k, v in groups.items()},
                 "files": {k: sha(output/f"{k}.jsonl") for k in groups}, "config": config,
                 "config_sha256": identity(config), "control_opened": False,
+                "known_vanilla_text_source_sha256": sha(pinned),
+                "verified_vanilla_ids": [c.card_id for c in plain_cards],
                 "source_sha256": {p: sha(ROOT/p) for p in ["scripts/prepare_tactical_learning.py",
                     "src/manamind/training/tactical_certificates.py"]},
                 "old_overlap_files": {str(p.relative_to(ROOT)): sha(p) for p in old_files},

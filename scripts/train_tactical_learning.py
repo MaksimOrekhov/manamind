@@ -19,6 +19,8 @@ from prepare_tactical_learning import INITIAL, INITIAL_SHA, ROOT, sha, write
 
 
 def run(dataset, output):
+    if (dataset/"INVALIDATED.json").exists():
+        raise ValueError("Tactical dataset explicitly invalidated; no training permitted")
     manifest = json.loads((dataset/"manifest.json").read_text())
     cfg = manifest["config"]
     if (sha(INITIAL) != INITIAL_SHA or identity(cfg) != manifest["config_sha256"]
