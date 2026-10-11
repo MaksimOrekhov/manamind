@@ -1,0 +1,2155 @@
+{
+  "cases": [
+    {
+      "assessments": {
+        "player": {
+          "amount": 0,
+          "outcome": "SELF_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "028c35357a558fd0",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_VALUES_TIED",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "0b11df1ff52384b1",
+      "flagged_entities": [
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_104",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 5,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_107t",
+        "TIME_005t3"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        }
+      },
+      "case_id": "0efabc494fa513c9",
+      "flagged_entities": [
+        {
+          "card_id": "HERO_09c",
+          "kind": "HERO",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 0,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_802t",
+        "TIME_890t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "1f3c3a3b4067ef55",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "25924ca4ed20527b",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": false,
+      "unknown_public_text": [
+        "FP1_011",
+        "JAIL_877t",
+        "TIME_890t",
+        "TIME_890t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "2c76e837e6177143",
+      "flagged_entities": [
+        {
+          "card_id": "END_008",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CATA_305",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 6,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "3312ea8d87f5ad97",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "36cf84c1a751a6bd",
+      "flagged_entities": [
+        {
+          "card_id": "CORE_EDR_003",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "HERO_11bpt",
+        "RLK_061t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        }
+      },
+      "case_id": "4246dcccf61c8952",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_258",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "TIME_700t",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 2,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "CORE_ICC_038",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 4,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_101t7",
+        "TIME_700t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 4,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 4,
+          "outcome": "ENEMY_HEAL",
+          "reasons": [],
+          "value": "HARM"
+        }
+      },
+      "case_id": "442a6ccee610064a",
+      "flagged_entities": [
+        {
+          "card_id": "CATA_139",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "JAIL_875",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "48bd7a93d9126d94",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4931b09534aa00e1",
+      "flagged_entities": [
+        {
+          "card_id": "TLC_224",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "498279eac2cb54bd",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4a723f55f8a2d05f",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_033",
+        "HERO_11bpt",
+        "TLC_443t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4ad622c0fc89be68",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_005t7"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4adacd3a82ed6ab5",
+      "flagged_entities": [
+        {
+          "card_id": "CORE_ICC_210",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TRL_526"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4bcdb2680dd8c1ff",
+      "flagged_entities": [
+        {
+          "card_id": "JAIL_443",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "JAIL_443",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "CORE_EX1_509",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 5,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4cfa2fe7a67b4dc1",
+      "flagged_entities": [
+        {
+          "card_id": "TLC_522",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "STEALTH"
+          ],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_082"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 1,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "4defd6a5a13e81b1",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4e0acd6fc1890a4f",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_800",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 3,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "4fd468e2d29a2eb3",
+      "flagged_entities": [
+        {
+          "card_id": "END_029",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "5488f90aae558cd8",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_890t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 1,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "54d3c0ce59ae6a7e",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "5e9120875c40519d",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "5f1587e9776d2d5c",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_005t4"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "6917f698a7e1b339",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "6a39eb1eab561471",
+      "flagged_entities": [
+        {
+          "card_id": "JAIL_443",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "JAIL_443",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "CORE_EX1_509",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "7424e1a0d339a400",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_462",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [
+            "ELUSIVE"
+          ],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "7554827e4c9cc120",
+      "flagged_entities": [
+        {
+          "card_id": "CAP_103",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_713t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "76453ae55bb1016d",
+      "flagged_entities": [
+        {
+          "card_id": "CORE_ICC_210",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "7a2e318dbbcb01a0",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "7ab8a1d947eba056",
+      "flagged_entities": [
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "RLK_061t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "7fcd2e4cf0551f8e",
+      "flagged_entities": [
+        {
+          "card_id": "CATA_898",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "END_033",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "ELUSIVE"
+          ],
+          "position": 3,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "EDR_842",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "EDR_416",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "82022e9efb70b201",
+      "flagged_entities": [
+        {
+          "card_id": "JAIL_880",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 6,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "JAIL_730",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "TIME_872",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "ELUSIVE"
+          ],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "DINO_136t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "82ad59ef029353b0",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "FP1_011",
+        "JAIL_877t",
+        "TIME_890t",
+        "TIME_890t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        }
+      },
+      "case_id": "83e9144a6f6061b1",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_101t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "8655016d41cdb7b4",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_462",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [
+            "ELUSIVE"
+          ],
+          "position": 3,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "UNG_999t2t1"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        }
+      },
+      "case_id": "881532775b06561a",
+      "flagged_entities": [
+        {
+          "card_id": "WON_146",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DORMANT"
+          ],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "WON_146"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "9a6ebca576f6711c",
+      "flagged_entities": [
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "RLK_061t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 0,
+          "outcome": "SELF_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "9b74fa9db88a4f9c",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_VALUES_TIED",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "9e4321001bb517db",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_462",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [
+            "ELUSIVE"
+          ],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "UNG_999t2t1"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "9f1707f6cfed28fb",
+      "flagged_entities": [
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_103",
+          "kind": "WEAPON",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 0,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_107t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "9faee2320a51ad66",
+      "flagged_entities": [
+        {
+          "card_id": "HERO_09c",
+          "kind": "HERO",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 0,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_802t",
+        "TIME_890t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "a8310a66ff739b7f",
+      "flagged_entities": [
+        {
+          "card_id": "CAP_104",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 5,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 0,
+          "outcome": "SELF_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "aabd5fc5bf26ff11",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_VALUES_TIED",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "aba125fbf99e2126",
+      "flagged_entities": [
+        {
+          "card_id": "JAIL_850",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "CORE_UNG_809",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DORMANT"
+          ],
+          "position": 5,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": false,
+      "unknown_public_text": [
+        "CS2_101t8"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "ac03be6597098723",
+      "flagged_entities": [
+        {
+          "card_id": "CORE_EDR_003",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "ac3f298229268b6a",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "ae438b8d68ef77a2",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_101t8",
+        "UNG_809t1"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "ae9048d5e36f19dd",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "STATE_DIVINE_SHIELD",
+            "MODIFIER_DIVINE_SHIELD"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 2,
+          "outcome": "ENEMY_DAMAGE",
+          "reasons": [],
+          "value": "GAIN"
+        }
+      },
+      "case_id": "af0e6b752d96fb29",
+      "flagged_entities": [
+        {
+          "card_id": "EDR_800",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "ACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "b1ccdd2c8027f48d",
+      "flagged_entities": [
+        {
+          "card_id": "CATA_216",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 1,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "b7e5e81df92edab7",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "FP1_011",
+        "JAIL_877t",
+        "TIME_890t",
+        "TIME_890t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "b89d35e0a2eb1e07",
+      "flagged_entities": [
+        {
+          "card_id": "DINO_401",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "bbe8ba5083246cb6",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_101t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "bf617d4b7ede4d9f",
+      "flagged_entities": [
+        {
+          "card_id": "TLC_522",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "STEALTH"
+          ],
+          "position": 1,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_082"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 0,
+          "outcome": "SELF_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "c0fe64bd2414cad9",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_VALUES_TIED",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "c7d086c1a0d65607",
+      "flagged_entities": [
+        {
+          "card_id": "CORE_EDR_003",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "SELF"
+        },
+        {
+          "card_id": "EDR_816",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CATA_210",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "SELF"
+        },
+        {
+          "card_id": "RLK_061",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 6,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "RLK_061t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "c8d8e37f8d89d3d7",
+      "flagged_entities": [
+        {
+          "card_id": "HERO_09c",
+          "kind": "HERO",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 0,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_890t",
+        "TIME_890t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "caf349929d6bb380",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_005t3"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "cf26210eff5ce49e",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": false,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "cf7519f02fb5f97a",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_802t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "d0d1b380ac01789d",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "d54838ff3604ce54",
+      "flagged_entities": [
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_104",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 4,
+          "side": "SELF"
+        },
+        {
+          "card_id": "CAP_107t",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 5,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_107t",
+        "TIME_005t3"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "d757f88c8db6e112",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": false,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 2,
+          "outcome": "SELF_HEAL",
+          "reasons": [],
+          "value": "GAIN"
+        },
+        "prediction": {
+          "amount": 0,
+          "outcome": "ENEMY_NO_EFFECT",
+          "reasons": [],
+          "value": "NEUTRAL"
+        }
+      },
+      "case_id": "da78e1a6e53e16d5",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": {
+          "amount": 5,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        },
+        "prediction": {
+          "amount": 5,
+          "outcome": "ABSTAIN",
+          "reasons": [
+            "PUBLIC_TEXT_UNKNOWN"
+          ],
+          "value": "UNRESOLVED"
+        }
+      },
+      "case_id": "e1c86bf28c479285",
+      "flagged_entities": [
+        {
+          "card_id": "JAIL_407",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 1,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "CATA_565t",
+          "kind": "MINION",
+          "markers": [
+            "AURA"
+          ],
+          "modifiers": [],
+          "position": 3,
+          "side": "OPPONENT"
+        },
+        {
+          "card_id": "END_026",
+          "kind": "MINION",
+          "markers": [
+            "TRIGGER_VISUAL"
+          ],
+          "modifiers": [],
+          "position": 2,
+          "side": "SELF"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "EXISTING_RULES_ABSTAIN",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CATA_565t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "e7fcb627454af78d",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "FP1_011",
+        "JAIL_877t",
+        "TIME_890t",
+        "TIME_890t2"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "ea28e1431665ff05",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CAP_802t",
+        "TIME_890t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "f17c9721b3401480",
+      "flagged_entities": [
+        {
+          "card_id": "TLC_251",
+          "kind": "MINION",
+          "markers": [],
+          "modifiers": [
+            "DIVINE_SHIELD"
+          ],
+          "position": 3,
+          "side": "OPPONENT"
+        }
+      ],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_101t5"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "f24ddd60f06c9f18",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": false,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "f57bbe0b3b4c922b",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "f6511104d5363b73",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "f931383be6fcad23",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "CS2_033",
+        "RLK_008t"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "fc0a2801ef4ad5e7",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TLC_817t5"
+      ],
+      "window_complete": true
+    },
+    {
+      "assessments": {
+        "player": null,
+        "prediction": null
+      },
+      "case_id": "fc98ed30a10c8333",
+      "flagged_entities": [],
+      "healing_does_damage": "INACTIVE",
+      "pair_status": "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES",
+      "rewrite_public_text": [],
+      "self_modifiers": [],
+      "target_only_cohort": true,
+      "unknown_public_text": [
+        "TIME_890t"
+      ],
+      "window_complete": true
+    }
+  ],
+  "diagnostics_sha256": "f561e31b853840fdfbba743b7dcb884788e7dd06026c58ec0eecc0df9399b045",
+  "healing_states": {
+    "ACTIVE": 46,
+    "INACTIVE": 1964
+  },
+  "pair_status": {
+    "EXISTING_RULES_ABSTAIN": 6,
+    "EXISTING_RULE_LOCAL_PREFERENCE_FOR_PLAYER_TARGET": 6,
+    "EXISTING_RULE_VALUES_TIED": 4,
+    "NOT_SUPPORTED_BY_EXISTING_HEAL_RULES": 55
+  },
+  "raw_content_identity": "2d2d995b9c0f5b82fb22f0b8a5353044e3889475a6867061d395c149b2cf006c",
+  "reference_commit": "600319b6b488eb0be32033d24bc375c27ae54bf9",
+  "replay": {
+    "game_segments": 93,
+    "raw_log_files": 93,
+    "rejected": {
+      "DUPLICATE_MATCH": 31
+    },
+    "replayed_matches": 62
+  }
+}
