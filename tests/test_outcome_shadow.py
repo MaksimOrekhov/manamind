@@ -836,3 +836,32 @@ def test_a_gift_exactly_at_rank_three_is_inside_the_top_three(monkeypatch, tmp_p
     monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
     gifts = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)["opponent_only_improvement"]
     assert gifts["gift_inside_policy_top3"] == 1 and "policy_top1_is_one" not in gifts
+
+
+@pytest.mark.parametrize("texts_fail", [False, True])
+def test_the_launcher_wires_the_shadow_only_on_request_and_survives_missing_texts(tmp_path, monkeypatch, capsys, texts_fail):
+    constructed = []
+    original = run_manamind.UnifiedRuntime
+
+    class Spy(original):
+        def __init__(self, *args, **kwargs):
+            constructed.append(kwargs.get("outcome_shadow"))
+            super().__init__(*args, **kwargs)
+
+    def stop(_):
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr(run_manamind, "UnifiedRuntime", Spy)
+    monkeypatch.setattr(run_manamind.time, "sleep", stop)
+    if texts_fail:
+        monkeypatch.setattr(run_manamind, "load_texts", lambda root: (_ for _ in ()).throw(FileNotFoundError("private path")))
+    base = ["--logs-root", str(tmp_path / "Logs"), "--data-root", str(tmp_path / "data"),
+            "--checkpoint", str(tmp_path / "missing.pt")]
+    assert run_manamind.main(base) == 0
+    assert constructed == [None]
+    assert run_manamind.main([*base, "--outcome-shadow"]) == 0
+    printed = capsys.readouterr().out
+    if texts_fail:
+        assert constructed[1] is None and "outcome shadow warning: FileNotFoundError" in printed and "private" not in printed
+    else:
+        assert isinstance(constructed[1], OutcomeShadow) and "outcome shadow: no decisions" in printed
