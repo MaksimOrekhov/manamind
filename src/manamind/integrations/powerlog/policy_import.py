@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import re
 from collections import Counter
+from collections.abc import Callable
 
 from hearthstone.enums import GameTag, PlayState
 from hslog.player import coerce_to_entity_id
@@ -13,6 +14,7 @@ from manamind.live.session import LiveSession
 from manamind.live.snapshot import Snapshot
 from manamind.live.visibility import has_named_option
 
+from .observed_facts import ObservedFacts
 from .policy_actions import ActionMappingError, map_actions
 
 OPTIONS = re.compile(r"^[DWE] \S+ GameState\.DebugPrintOptions\(\) -\s*(.*)$")
@@ -29,8 +31,12 @@ class PolicyImportError(ValueError):
         self.reason = reason
 
 
-def extract_match(lines: list[str], catalog: CardCatalog) -> tuple[list[dict], dict]:
+def extract_match(lines: list[str], catalog: CardCatalog,
+                  observer: Callable[[str, ObservedFacts | None], None] | None = None) -> tuple[list[dict], dict]:
     """Take complete options at their line boundary, before SendOption mutates state.
+
+    ``observer(decision_id, facts)`` is called for every labeled decision with the SELF facts read in the same live
+    pass (OBSERVATION-EXT-1a); it changes neither the rows nor the summary.
 
     Offline message completeness comes from the next line, not an invented idle delay.
     The real client task-list gate must still be settled. Any intervening GameState
@@ -132,6 +138,8 @@ def extract_match(lines: list[str], catalog: CardCatalog) -> tuple[list[dict], d
                                        "state_hash": snapshot.state_hash},
                     })
                     handled.add(identifier)
+                    if observer is not None:
+                        observer(f"{info.start_key}:{identifier}", snapshot.observed)
                     kind = mapped.actions[chosen]["type"]
                     if kind != "END_TURN":
                         selected = [o for o in packet.options if o.id == int(send.group(1))]

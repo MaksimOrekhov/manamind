@@ -18,6 +18,7 @@ from manamind.integrations.powerlog.lines import (
     TURN_RE,
     game_key_from_header,
 )
+from manamind.integrations.powerlog.observed_facts import extract_observed_facts
 from manamind.integrations.powerlog.visible_state import infer_local_player_id
 
 from .gate import DUMP_RE, END_RE, SettleGate
@@ -391,6 +392,11 @@ class LiveSession:
             self._untrusted(game, Reason.INVARIANT)
             return
 
+        try:
+            observed = extract_observed_facts(board, self_id, game.reducer.history, self.catalog)
+        except Exception:  # a side channel must never cost a decision; no facts means every fact is unknown
+            observed = None
+
         state_dict = state_to_dict(state)
         seq = self._seq.get(game.game_key, 0) + 1
         self._seq[game.game_key] = seq
@@ -411,6 +417,7 @@ class LiveSession:
             decision=decision,
             state_hash=state_hash(state_dict),
             source={"line_in_game": pending.line_in_game},
+            observed=observed,
         )
         self.current_snapshot = snapshot
         self._events.append(snapshot)

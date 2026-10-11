@@ -23,6 +23,7 @@ from hslog.export import EntityTreeExporter
 from hslog.packets import Block, Options, SubSpell
 
 from manamind.integrations.powerlog.exporter import CompatibleEntityTreeExporter
+from manamind.integrations.powerlog.observed_facts import ObservationHistory
 
 from .trust import Reason
 
@@ -43,7 +44,14 @@ class PacketExporter(CompatibleEntityTreeExporter):
     and without the optional ``hearthstone_data`` package that lookup downloads the database
     from the web (seconds, and a network call inside live parsing). The bridge never reads
     ``initial_card_id``, so it is set up front and the lookup is skipped.
+
+    It also records how much of the game's history this entity table has seen (``created_turn``: the TURN the
+    CREATE_GAME header already carried, 0 for a game followed from its start; ``resets``: GAME_RESET rewinds
+    applied). ``observed_facts`` turns that into the rule for reading an unset tag.
     """
+
+    created_turn: int | None = None
+    resets: int = 0
 
     def _skip_card_database(self, packet) -> None:
         if not dict(packet.tags).get(GameTag.TRANSFORMED_FROM_CARD):
@@ -60,8 +68,15 @@ class PacketExporter(CompatibleEntityTreeExporter):
         self._skip_card_database(packet)
         return super().handle_change_entity(packet)
 
+    def handle_create_game(self, packet):
+        game = super().handle_create_game(packet)
+        turn = dict(packet.tags).get(GameTag.TURN)
+        self.created_turn = turn if isinstance(turn, int) else 0
+        return game
+
     def handle_block(self, packet) -> None:
         if packet.type == BlockType.GAME_RESET:
+            self.resets += 1
             self.game.reset()
 
     def handle_sub_spell(self, packet) -> None:
@@ -141,3 +156,11 @@ class GameReducer:
     @property
     def game(self):
         return self.exporter.game if self.exporter is not None else None
+
+    @property
+    def history(self) -> ObservationHistory:
+        """How much of the game the applied packets cover (see ``observed_facts``)."""
+        exporter = self.exporter
+        if exporter is None:
+            return ObservationHistory(None, 0)
+        return ObservationHistory(exporter.created_turn, exporter.resets)

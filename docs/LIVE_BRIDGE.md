@@ -128,6 +128,15 @@ The hand is in on-screen (zone position) order. SELF health/armor/mana/overload/
 board and the opponent's health/armor/weapon/board are filled; `weapon.current_durability` uses the
 same `HEALTH - DAMAGE` rule as the importer.
 
+The in-memory `Snapshot` also carries `observed` (OBSERVATION-EXT-1a): SELF facts that `GameState`
+does not hold (hand-instance keywords, both heroes' Divine Shield, Ruby Sanctum, healing and Spell
+Damage modifiers), read from the same entity table at the same moment. It is **not** part of `to_dict()`,
+the JSON, `state` or `state_hash`, and it is excluded from snapshot equality. An unset tag counts as 0
+only when the section was followed from turn 0 without a `GAME_RESET`; a reconnect dump keeps logged
+values only and a rewind makes every fact unknown. Reader contract and checks:
+[reports/observation_ext_1a](../reports/observation_ext_1a/README.md). No recommendation or overlay code
+reads it.
+
 ## Privacy boundary
 
 Allowlist by (controller, zone, card type), default deny, applied after the reducer.

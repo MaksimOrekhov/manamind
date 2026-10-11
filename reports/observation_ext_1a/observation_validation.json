@@ -1,0 +1,764 @@
+{
+  "extraction_ms": {
+    "max": 0.7079,
+    "mean": 0.0693,
+    "n": 3099,
+    "p50": 0.063,
+    "p95": 0.1171
+  },
+  "facts_values": {
+    "healing_bonus": {
+      "0": 1499,
+      "2": 793,
+      "4": 510,
+      "6": 31,
+      "None": 266
+    },
+    "spell_damage_doubled": {
+      "False": 2406,
+      "None": 266,
+      "True": 427
+    },
+    "spell_damage_status": {
+      "NONE_SEEN": 2833,
+      "UNKNOWN": 266
+    },
+    "spell_healing_doubled": {
+      "False": 2406,
+      "None": 266,
+      "True": 427
+    },
+    "unknown_reasons": {
+      "all_healing_doubled:HISTORY_RESET": 266,
+      "hand_keywords:HISTORY_RESET": 266,
+      "healing_bonus:HISTORY_RESET": 266,
+      "healing_does_damage:HISTORY_RESET": 266,
+      "opponent_hero_divine_shield:HISTORY_RESET": 266,
+      "self_hero_divine_shield:HISTORY_RESET": 266,
+      "spell_damage:HISTORY_RESET": 266,
+      "spell_damage_doubled:HISTORY_RESET": 266,
+      "spell_healing_doubled:HISTORY_RESET": 266
+    }
+  },
+  "hand_keywords": {
+    "known_equal_to_board_after_play": 518,
+    "known_fact_differs_from_printed": 15,
+    "known_fact_differs_from_printed_and_equals_board": 15,
+    "known_identical_copies_with_different_keywords": 0,
+    "known_plays_with_identical_copies_in_hand": 27,
+    "known_unequal": [
+      {
+        "attached_enchantments": [
+          {
+            "creator": "CATA_898",
+            "creator_side": "OPPONENT",
+            "enchantment": "CATA_898e"
+          }
+        ],
+        "board_keywords": [
+          "taunt"
+        ],
+        "card": "CAP_107",
+        "copies_differ": false,
+        "copies_in_hand": 1,
+        "decision": "74eb68997fe9124b92d3e8a309b3ee35373c3c85b931699c5d04b1936a03376d:15",
+        "equal": false,
+        "extra_on_board": [
+          "taunt"
+        ],
+        "fact_card_matches": true,
+        "fact_keywords": [],
+        "fact_known": true,
+        "kind": "minion_keywords",
+        "missing_on_board": [],
+        "printed": []
+      },
+      {
+        "attached_enchantments": [
+          {
+            "creator": "CATA_898",
+            "creator_side": "OPPONENT",
+            "enchantment": "CATA_898e"
+          }
+        ],
+        "board_keywords": [
+          "taunt"
+        ],
+        "card": "CAP_107t",
+        "copies_differ": false,
+        "copies_in_hand": 1,
+        "decision": "74eb68997fe9124b92d3e8a309b3ee35373c3c85b931699c5d04b1936a03376d:16",
+        "equal": false,
+        "extra_on_board": [
+          "taunt"
+        ],
+        "fact_card_matches": true,
+        "fact_keywords": [],
+        "fact_known": true,
+        "kind": "minion_keywords",
+        "missing_on_board": [],
+        "printed": []
+      },
+      {
+        "attached_enchantments": [
+          {
+            "creator": "END_032",
+            "creator_side": "SELF",
+            "enchantment": "END_032e"
+          }
+        ],
+        "board_keywords": [
+          "rush",
+          "windfury"
+        ],
+        "card": "END_032",
+        "copies_differ": false,
+        "copies_in_hand": 1,
+        "decision": "902cbdbb793e2a4b80fd0513e1f5c74086174af05064c7d1e38ff53b2c823716:85",
+        "equal": false,
+        "extra_on_board": [
+          "windfury"
+        ],
+        "fact_card_matches": true,
+        "fact_keywords": [
+          "rush"
+        ],
+        "fact_known": true,
+        "kind": "minion_keywords",
+        "missing_on_board": [],
+        "printed": [
+          "rush"
+        ]
+      }
+    ],
+    "minion_plays": 568,
+    "plays_with_known_fact": 521,
+    "plays_with_unknown_fact": 47
+  },
+  "hero_power_heal": {
+    "match_by_formula": {
+      "(base+bonus)*f": 12,
+      "base*f": 10,
+      "base*f+bonus": 12,
+      "base+bonus": 12
+    },
+    "measurements": 12,
+    "order_discriminating_matching_by_formula": {
+      "(base+bonus)*f": 0,
+      "base*f": 0,
+      "base*f+bonus": 0,
+      "base+bonus": 0
+    },
+    "order_discriminating_measurements": 0,
+    "set_aside_secret_consumed": 0,
+    "with_doubling": 0,
+    "with_nonzero_bonus": 2,
+    "without_any_matching_formula": []
+  },
+  "hero_shield": {
+    "attacks_on_a_hero": 679,
+    "by_fact": {
+      "(False, False)": 590,
+      "(None, False)": 87,
+      "(True, True)": 2
+    },
+    "decisions_with_opponent_shield": 28,
+    "decisions_with_self_shield": 3,
+    "excluded_attacks_whose_text_replaces_hero_damage": 4,
+    "fact_false_and_absorbed": 0,
+    "fact_false_but_absorbed_rows": [],
+    "fact_true_and_absorbed": 2,
+    "fact_true_and_not_absorbed": 0,
+    "fact_unknown": 87
+  },
+  "inputs": {
+    "coverage": {
+      "COMPLETE": 2833,
+      "RESET": 266
+    },
+    "decision_points": 3099,
+    "matches_replayed": 63,
+    "rejected": {
+      "DUPLICATE_MATCH": 32
+    }
+  },
+  "live_session_vs_options_time": {
+    "different": [],
+    "identical": 2034,
+    "live_decisions": 2034,
+    "shared_with_replay": 2034
+  },
+  "sanctum": {
+    "active_heal_order_check": {
+      "discriminating": 15,
+      "discriminating_matching_(base+bonus)*f": 14,
+      "discriminating_matching_base*f+bonus": 0,
+      "measured": 39,
+      "same_by_both_orders": 24,
+      "same_by_both_orders_and_matching": 14
+    },
+    "fact_values": {
+      "False": 2772,
+      "None": 266,
+      "True": 61
+    },
+    "flag_x_effect_over_all_decisions": {
+      "flag=0 effect=False": 825,
+      "flag=1 effect=True": 68,
+      "flag=None effect=False": 2206
+    },
+    "heals_measured_while_active": [
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "04bcfec3b8253e4d4c2a71db554fc20d1645763ac8642c9e8a69423b2d738c46:155",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "0830f1deb607ceca1a21168dad8a0b248250b452fa91045e7b7d3761abbe4853:130",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -14,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "0a03f66a7cd6d2f2b55822e673b53e061a0d718baa683a7d0d8169e92bfeca6e:190",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "1e748178871fafc2b9b6024316b0aee9303b821b822451037a236a896db87348:75",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -5,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "1e748178871fafc2b9b6024316b0aee9303b821b822451037a236a896db87348:109",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "20592047e515f166896b6adf04e349f5a7661c187a62c63d84984f390c262def:43",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "20592047e515f166896b6adf04e349f5a7661c187a62c63d84984f390c262def:77",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "219302142511e67470100ba5cd8111e037ccaf247b4f56bd9f70cf4bcdb8de85:96",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "4c79f725af0a55532ec58222317b957685a16e31d3db1afb984c7005c7e33fa6:82",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "5090e9097fd8cabaa29693ecb06d340a87dbce47ad63f2bc0c0c2c423137b51f:93",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 4,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "5090e9097fd8cabaa29693ecb06d340a87dbce47ad63f2bc0c0c2c423137b51f:118",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "5090e9097fd8cabaa29693ecb06d340a87dbce47ad63f2bc0c0c2c423137b51f:186",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 6,
+        "card": "CORE_AT_055",
+        "decision": "5090e9097fd8cabaa29693ecb06d340a87dbce47ad63f2bc0c0c2c423137b51f:217",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -22,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "5109ae3ab1e82001659586be2ab205f3686c3bb0730d1025268ce22d1dbbba95:107",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "5d8eecd5c74fd593f219400fb6b6a455dafc9dd395a47fecc77a3c4a1bb0e9f7:186",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "5d8eecd5c74fd593f219400fb6b6a455dafc9dd395a47fecc77a3c4a1bb0e9f7:188",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "6d85061f2a201a7a70958e0275277153614a9bda3378aaa46086d841c48b603e:106",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -14,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "87f993192e04df1b1332476460155becab8cb3cc5a7f4e6995e64f7e8892633d:102",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -14,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "902cbdbb793e2a4b80fd0513e1f5c74086174af05064c7d1e38ff53b2c823716:50",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "902cbdbb793e2a4b80fd0513e1f5c74086174af05064c7d1e38ff53b2c823716:150",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "953d8e159570ecafea551df0b57598c9f5e4f6762c40178adc4a9d1826534551:83",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -9,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:132",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -8,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "a111983d6bc3a8b5e97dea44df29f261ea86df87dc05d8b43005aeb68f9527fa:196",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 2,
+        "bonus": 0,
+        "card": "HERO_09dbp",
+        "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:19",
+        "f": 1,
+        "kind": "hero_power_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:54",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "c28bb4e4bfc9c86701c7ce13f15932d90c7efda5fe78794dcf9d2b5c965df1f1:107",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -9,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "e38c2893b0a1c15e5db26c7a02743a45eba33f3903b7618fb019b205c28d092a:41",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -9,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "ec2e1289dee0ee877f413095b73c26103dbb3ec9a5b949e4150eba69746a16e7:73",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "ef251dbeec9777a1355d078a4a76e267e7d1e8cab98b1bbc53a3874e24890920:106",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -14,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 2,
+        "card": "CORE_AT_055",
+        "decision": "42f68f4aaaa2987e1eeb77dd520e348bbe6c2208b2d497b822747d5143167c24:51",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -7,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "6414350e7ec3ff88b7e2c8838c3517f849228ba35c234051c9ccef3e7361fcdf:86",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "b8ca2e8436f9d3c74676450f4c236fc40db6681fc2545607b3d308bca511b065:80",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -9,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "7194faf455370e5b086c1df0931a0252717f33fd9b9696b35020a879927754ed:67",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -5,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "ae4714bd3ad7982ee9e7d80c454869a4a8e91a53a4ff083c901c4fe6339ef5c0:70",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -5,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "69e31cd4ed404a5baadf152ecf0a19173d8daf776a008cb2e4789045eb406272:34",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "c3412229e5754738b387b94cf6f1a089ad485441be7bb6fc2f31240447efc266:183",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 4,
+        "card": "CORE_AT_055",
+        "decision": "c3412229e5754738b387b94cf6f1a089ad485441be7bb6fc2f31240447efc266:185",
+        "f": 2,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -18,
+        "order_discriminates": true,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "f13c37f2658c6a8885b89f581626fc23f4d0e45608d52813486d01515a3cf152:37",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": -5,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      },
+      {
+        "base": 5,
+        "bonus": 0,
+        "card": "CORE_AT_055",
+        "decision": "ac2c1dab52463e8d310b38fd78379ff4dcb85b55a951ebbd89f8cc2874b00ec5:7",
+        "f": 1,
+        "kind": "spell_heal",
+        "matching": [],
+        "observed": 0,
+        "order_discriminates": false,
+        "sanctum": true,
+        "secret_consumed": false
+      }
+    ]
+  },
+  "spell_damage": {
+    "match_by_formula": {
+      "(n+bonus)*f": 41,
+      "n*f+bonus": 41
+    },
+    "measurements": 41,
+    "order_discriminating_matching_by_formula": {
+      "(n+bonus)*f": 0,
+      "n*f+bonus": 0
+    },
+    "order_discriminating_measurements": 0,
+    "set_aside_secret_consumed": 11,
+    "with_doubling": 3,
+    "with_nonzero_bonus": 0,
+    "without_any_matching_formula": []
+  },
+  "spell_damage_channel": {
+    "aggregate_differs_from_minion_sum": [],
+    "aggregate_equals_minion_sum": 6198,
+    "points": 6198,
+    "points_with_nonzero_spell_damage": {
+      "OPPONENT": 40
+    }
+  },
+  "spell_heal": {
+    "match_by_formula": {
+      "(base+bonus)*f": 9,
+      "base*f": 5,
+      "base*f+bonus": 9,
+      "base+bonus": 8
+    },
+    "measurements": 9,
+    "order_discriminating_matching_by_formula": {
+      "(base+bonus)*f": 0,
+      "base*f": 0,
+      "base*f+bonus": 0,
+      "base+bonus": 0
+    },
+    "order_discriminating_measurements": 0,
+    "set_aside_secret_consumed": 0,
+    "with_doubling": 1,
+    "with_nonzero_bonus": 4,
+    "without_any_matching_formula": []
+  }
+}

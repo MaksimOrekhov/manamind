@@ -1,0 +1,27 @@
+{
+  "catalog": "standard_current_enUS.json",
+  "coverage": {
+    "COMPLETE": 2034
+  },
+  "decision_ids_sha256": "be5960972fa11345521b9f16bc9bd7031958df4dafcb455fae224f0ae793fb55",
+  "decision_skip_reasons": {
+    "AMBIGUOUS_SELECTION": 294,
+    "CHOICE_UNRESOLVED": 4,
+    "OPTIONS_SUPERSEDED": 162,
+    "TARGET_UNRESOLVED": 3,
+    "UNSUPPORTED_DECISION_KIND": 1
+  },
+  "facts_missing": 0,
+  "game_skips": {
+    "DUPLICATE_MATCH": 32,
+    "GAME_RESET": 9
+  },
+  "labeled_decisions": 2034,
+  "matches_imported": 54,
+  "raw_log_files": 95,
+  "schema": 1,
+  "state_hash_vs_corpus": {
+    "not_in_corpus": 24,
+    "same": 2010
+  }
+}

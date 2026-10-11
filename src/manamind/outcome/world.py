@@ -47,6 +47,9 @@ class ObservedContext:
     spell_damage: int | None = None
     spell_damage_doubled: bool | None = None
     trust_spell_damage: bool = False
+    # A Spell Damage source was seen but its size and its order with the doubling are unverified (no sample in any log):
+    # damage stays a lower bound, reported as SPELL_DAMAGE_UNVERIFIED instead of SPELL_DAMAGE_UNOBSERVED.
+    spell_damage_unverified: bool = False
     # Healing: SELF's additive bonus (CURRENT_HEALING_POWER) and whether SELF's spell healing is doubled
     # (SPELL_HEALING_DOUBLE); both only matter when GameState carries no healing_bonus.
     healing_bonus: int | None = None

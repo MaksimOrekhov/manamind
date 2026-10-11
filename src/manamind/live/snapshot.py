@@ -4,9 +4,10 @@ from __future__ import annotations
 
 import hashlib
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 
 from manamind.domain.game_state import GameState
+from manamind.integrations.powerlog.observed_facts import ObservedFacts
 
 from . import SNAPSHOT_SCHEMA
 
@@ -51,6 +52,9 @@ class Snapshot:
     decision: dict
     state_hash: str
     source: dict
+    # Side channel for ``manamind.outcome`` (OBSERVATION-EXT-1a): never serialized, never part of ``state`` or
+    # ``state_hash``, never compared. None = could not be read (every fact unknown).
+    observed: ObservedFacts | None = field(default=None, compare=False, repr=False)
 
     def to_dict(self) -> dict:
         return {

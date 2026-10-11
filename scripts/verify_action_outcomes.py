@@ -5,7 +5,7 @@ state and the action the player chose; the second state is used only to score it
 checkpoints and Power.log parsing are not involved: the input is the canonical policy dataset that
 DATA-CHECKPOINT-1 re-extracted from the raw logs.
 
-  python scripts/verify_action_outcomes.py --corpus <canonical dir> --out reports/action_outcome_1b/real_log_verification.json
+  python scripts/verify_action_outcomes.py --corpus <canonical dir> --out reports/observation_ext_1a/real_log_verification.json
 """
 
 from __future__ import annotations
@@ -23,9 +23,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from manamind.outcome import ObservedContext, Status, TextSource, Tier, forecast_action  # noqa: E402
-from manamind.outcome.observation import context_from_facts, load_facts  # noqa: E402
+from manamind.integrations.powerlog.observed_facts import ObservedFacts  # noqa: E402
+from manamind.outcome.observation import context_from_facts, context_from_observed, load_facts  # noqa: E402
 from manamind.outcome.verify import (  # noqa: E402
-    PairResult, build_gain_associations, load_corpus, score_pair, successor_pairs, summarise_results,
+    PairResult, build_gain_associations, load_corpus, role_of, score_pair, successor_pairs, summarise_results,
 )
 
 CONTEXTS = {
@@ -58,12 +59,11 @@ def blockers(result_forecast) -> set[str]:
     return {unknown.tag or f"UNTAGGED:{unknown.kind.value}" for unknown in result_forecast.unknowns}
 
 
-def blocker_analysis(pairs, texts: TextSource, context: ObservedContext, facts: dict | None = None) -> dict:
+def blocker_analysis(pairs, texts: TextSource, context: ObservedContext, make=None) -> dict:
     """What keeps forecasts from being EXACT, and how many would be if one blocker class were resolved."""
     sets = []
     for current, _ in pairs:
-        used = (context_from_facts(facts[current.decision_id], current.state)
-                if facts and current.decision_id in facts else context)
+        used = make(current) if make is not None else context
         forecast = forecast_action(current.state, current.action, texts, used)
         if forecast.status is not Status.UNSUPPORTED:
             sets.append(blockers(forecast))
@@ -135,17 +135,56 @@ ABLATION = (
 )
 
 
-def ablation(pairs, texts: TextSource, facts: dict) -> list[dict]:
-    """How many forecasts reach each tier when only some observed-fact groups are available."""
+def ablation(pairs, texts: TextSource, make_for_groups, associations=None) -> list[dict]:
+    """How many forecasts reach each tier when only some observed-fact groups are available.
+
+    With ``associations`` the pairs are also scored against the next observation, so each row shows which group adds
+    confirmed effect claims and which adds contradicted ones.
+    """
     rows = []
     for name, groups in ABLATION:
-        tiers = Counter()
-        for current, _ in pairs:
-            fact = facts.get(current.decision_id)
-            context = context_from_facts(fact, current.state, frozenset(groups)) if fact else ObservedContext()
-            tiers[forecast_action(current.state, current.action, texts, context).tier.value] += 1
-        rows.append({"facts": name, "tiers": dict(tiers)})
+        make = make_for_groups(frozenset(groups))
+        if associations is None:
+            tiers = Counter(forecast_action(current.state, current.action, texts, make(current)).tier.value
+                            for current, _ in pairs)
+            rows.append({"facts": name, "tiers": dict(tiers)})
+            continue
+        results = [score_pair(current, following, texts, make(current), associations) for current, following in pairs]
+        section = summarise_results(results)["tiers"]
+        rows.append({"facts": name, "tiers": {tier: data["n"] for tier, data in section.items()},
+                     "effect_claims": {tier: data["effect_claims"] for tier, data in section.items()
+                                       if tier in ("EXACT", "OWN_EFFECT_KNOWN")}})
     return rows
+
+
+def effect_delta(before: list[PairResult], after: list[PairResult]) -> dict:
+    """What the extra facts changed in the claims about EFFECT paths, judged against the next logged observation.
+
+    ``changed_value_confirmed``: the claim existed before and after with different values and the new one was
+    confirmed, i.e. the fact corrected a number, it did not only remove a warning.
+    """
+    counts: Counter = Counter()
+    for old, new in zip(before, after, strict=True):
+        for path, value in new.confirmed.items():
+            if role_of(path) != "EFFECT":
+                continue
+            if path in old.confirmed:
+                counts["changed_value_confirmed" if old.confirmed[path] != value else "unchanged_confirmed"] += 1
+            elif path in old.contradicted:
+                counts["fixed_contradiction"] += 1
+            else:
+                counts["newly_confirmed"] += 1
+        for path in new.contradicted:
+            if role_of(path) != "EFFECT" or path in old.contradicted:
+                continue
+            counts["regressed_confirmed_to_contradicted" if path in old.confirmed else "newly_contradicted_claim"] += 1
+        for path in old.contradicted:
+            if role_of(path) == "EFFECT" and path not in new.contradicted and path not in new.confirmed:
+                counts["contradiction_removed_without_claim"] += 1
+        for path in old.confirmed:
+            if role_of(path) == "EFFECT" and path not in new.confirmed and path not in new.contradicted:
+                counts["confirmed_claim_withdrawn"] += 1
+    return dict(sorted(counts.items()))
 
 
 def timing(games, pairs, texts: TextSource) -> dict:
@@ -203,10 +242,14 @@ def main() -> int:
     parser.add_argument("--catalog", default=str(ROOT / "data" / "cards" / "standard_current_enUS.json"))
     parser.add_argument("--reviewed", default=str(ROOT / "data" / "outcome" / "reviewed_texts.json"))
     parser.add_argument("--supplement", nargs="*", default=[], help="lowest-priority card JSON files (tokens)")
-    parser.add_argument("--out", default=str(ROOT / "reports" / "action_outcome_1b" / "real_log_verification.json"))
+    parser.add_argument("--out", default=str(ROOT / "reports" / "observation_ext_1a" / "real_log_verification.json"))
     parser.add_argument("--examples", type=int, default=12)
     parser.add_argument("--facts", default="data/processed_observation_probe_1b/facts.jsonl",
-                        help="per-decision SELF facts from observation_probe_1b.py; adds the observed_facts run")
+                        help="per-decision SELF facts from observation_probe_1b.py; adds the observed_facts_1b run")
+    parser.add_argument("--discrepancies-for", nargs="*", default=["observed_ext_1a"],
+                        help="runs whose full discrepancy list is stored (the file stays reviewable)")
+    parser.add_argument("--observed-facts", default="data/processed_observation_ext_1a/observed_facts.jsonl",
+                        help="facts re-extracted by extract_observed_facts.py; adds the observed_ext_1a run")
     args = parser.parse_args()
 
     corpus = Path(args.corpus)
@@ -225,46 +268,73 @@ def main() -> int:
         "runs": {},
     }
     associations = build_gain_associations(pairs, texts)
-    runs: dict[str, object] = dict(CONTEXTS)
-    facts_path = Path(args.facts)
-    if not facts_path.exists():
-        facts_path = next((p / args.facts for p in ROOT.parents if (p / args.facts).exists()), facts_path)
-    if facts_path.exists():
-        runs["observed_facts"] = load_facts(facts_path)
-    for name, context in runs.items():
-        if name == "observed_facts":
-            results = [score_pair(current, following, texts,
-                                  context_from_facts(context[current.decision_id], current.state)
-                                  if current.decision_id in context else ObservedContext(), associations)
-                       for current, following in pairs]
-            section_context = ObservedContext()
-        else:
-            results = [score_pair(current, following, texts, context, associations) for current, following in pairs]
-            section_context = context
+
+    def locate(path: str) -> Path:
+        found = Path(path)
+        return found if found.exists() else next((p / path for p in ROOT.parents if (p / path).exists()), found)
+
+    # name -> function(decision) -> ObservedContext; the facts are read from the decision's own entry only
+    makers: dict[str, object] = {name: (lambda current, c=context: c) for name, context in CONTEXTS.items()}
+    group_makers = {}
+    legacy_path = locate(args.facts)
+    if legacy_path.exists():
+        legacy = load_facts(legacy_path)
+        makers["observed_facts_1b"] = lambda current: (
+            context_from_facts(legacy[current.decision_id], current.state)
+            if current.decision_id in legacy else ObservedContext())
+        group_makers["observed_facts_1b"] = lambda groups: (lambda current: (
+            context_from_facts(legacy[current.decision_id], current.state, groups)
+            if current.decision_id in legacy else ObservedContext()))
+    ext_path = locate(args.observed_facts)
+    if ext_path.exists():
+        extracted = {}
+        for line in ext_path.read_text(encoding="utf-8").splitlines():
+            row = json.loads(line)
+            extracted[row["decision_id"]] = ObservedFacts.from_dict(row["facts"]) if row["facts"] else None
+        report["observed_ext_1a_input"] = {
+            "rows": len(extracted), "sha256": hashlib.sha256(ext_path.read_bytes()).hexdigest()}
+        makers["observed_ext_1a"] = lambda current: context_from_observed(
+            extracted.get(current.decision_id), current.state)
+        group_makers["observed_ext_1a"] = lambda groups: (lambda current: context_from_observed(
+            extracted.get(current.decision_id), current.state, groups))
+    all_results: dict[str, list[PairResult]] = {}
+    for name, make in makers.items():
+        results = [score_pair(current, following, texts, make(current), associations) for current, following in pairs]
+        all_results[name] = results
         section = summarise_results(results)
-        section["blockers"] = blocker_analysis(pairs, texts, section_context, runs.get(name) if name == "observed_facts"
-                                               else None)
+        section["blockers"] = blocker_analysis(pairs, texts, ObservedContext(), make)
         section["jail_913"] = card_section(results, "JAIL_913")
-        section["gain_associations"] = {
-            card: {"appearances": a.appearances, "signatures": {f"{k[0]}/{k[1]}": v for k, v in a.signatures.items()},
-                   "always_with_own_secret_object": a.always_with_own_secret_object}
-            for card, a in associations.items() if a.appearances >= 5}
-        # every discrepancy of the two reliable tiers, with its explanation: the list is the audit trail
-        section["discrepancies"] = [
-            {"decision": r.decision_id, "action": r.action_label, "tier": r.tier.value, "path": path,
-             "kind": kind, "values": list(pair) if pair else None,
-             "explanation": list(r.explanations.get(path, ("UNEXPLAINED", "", ""))),
-             "open_unknowns": list(r.unknown_tags)}
-            for r in results if r.tier in (Tier.EXACT, Tier.OWN_EFFECT_KNOWN)
-            for kind, bucket in (("contradicted", r.contradicted), ("missed", r.missed))
-            for path, pair in bucket.items()]
+        if name in args.discrepancies_for:
+            section["gain_associations"] = {
+                card: {"appearances": a.appearances,
+                       "signatures": {f"{k[0]}/{k[1]}": v for k, v in a.signatures.items()},
+                       "always_with_own_secret_object": a.always_with_own_secret_object}
+                for card, a in associations.items() if a.appearances >= 5}
+            # every discrepancy of the two reliable tiers, with its explanation: the list is the audit trail
+            section["discrepancies"] = [
+                {"decision": r.decision_id, "action": r.action_label, "tier": r.tier.value, "path": path,
+                 "kind": kind, "values": list(pair) if pair else None,
+                 "explanation": list(r.explanations.get(path, ("UNEXPLAINED", "", ""))),
+                 "open_unknowns": list(r.unknown_tags)}
+                for r in results if r.tier in (Tier.EXACT, Tier.OWN_EFFECT_KNOWN)
+                for kind, bucket in (("contradicted", r.contradicted), ("missed", r.missed))
+                for path, pair in bucket.items()]
+        else:
+            section["gain_associations"] = section["discrepancies"] = "omitted: stored for " + ", ".join(
+                args.discrepancies_for)
         section["exact_violations"] = [
             {"decision": r.decision_id, "action": r.action_label,
              "contradicted": {k: list(v) for k, v in r.contradicted.items()}}
             for r in results if r.tier is Tier.EXACT and r.verdict != "CONFIRMED"]
         report["runs"][name] = section
-    if "observed_facts" in runs:
-        report["fact_group_ablation"] = ablation(pairs, texts, runs["observed_facts"])
+    for after_name in ("observed_facts_1b", "observed_ext_1a"):
+        if after_name in all_results:
+            report.setdefault("effect_delta", {})[after_name] = {
+                f"vs_{before_name}": effect_delta(all_results[before_name], all_results[after_name])
+                for before_name in ("observed_only", "assumed_defaults")}
+    for name, make_for_groups in group_makers.items():
+        report.setdefault("fact_group_ablation", {})[name] = ablation(
+            pairs, texts, make_for_groups, associations if name == "observed_ext_1a" else None)
     report["menu_scan"] = menu_scan(games, texts)
     report["timing"] = timing(games, pairs, texts)
 

@@ -1,9 +1,11 @@
 """Turn separately observed SELF facts into an ``ObservedContext`` (the side channel the forecaster reads).
 
-The facts come from replaying a raw Power.log up to a decision point (``scripts/observation_probe_1b.py``);
-nothing here touches ``GameState``, the encoder or any checkpoint. Only facts the player could see are used:
-SELF's player tags, SELF's hero, SELF's minions and SELF's own hand. A fact that disagrees with the state it is
-paired with (a hand whose card IDs differ, for instance) is dropped instead of being trusted.
+``context_from_observed`` is the production path (OBSERVATION-EXT-1a): ``ObservedFacts`` are read from the live
+entity table at the decision point (``manamind.integrations.powerlog.observed_facts``, attached to the LIVE
+``Snapshot``). ``context_from_facts`` is the older ACTION-OUTCOME-1B path over the offline probe's JSON rows; it is
+kept so that report can be reproduced. Nothing here touches ``GameState``, the encoder or any checkpoint. A fact that
+disagrees with the state it is paired with (a hand whose card IDs differ, for instance) is dropped instead of being
+trusted.
 """
 
 from __future__ import annotations
@@ -13,6 +15,9 @@ from pathlib import Path
 from typing import Any
 
 from manamind.domain.game_state import GameState
+from manamind.integrations.powerlog.observed_facts import (
+    SPELL_DAMAGE_NONE_SEEN, SPELL_DAMAGE_PRESENT, ObservedFacts,
+)
 from manamind.outcome.world import ObservedContext
 
 
@@ -43,6 +48,46 @@ def context_from_facts(fact: dict[str, Any], state: GameState,
     values = {name: (getattr(full, name) if group in groups else getattr(unset, name))
               for group, names in pick.items() for name in names}
     return ObservedContext(**values)
+
+
+def context_from_observed(facts: ObservedFacts | None, state: GameState,
+                          groups: frozenset[str] | set[str] = frozenset(FACT_GROUPS)) -> ObservedContext:
+    """The forecaster's context from live-read facts; ``None`` (facts unreadable) is an all-unknown context.
+
+    Spell Damage: only "no Spell Damage source seen over a fully observed history" is usable as the number 0. A source
+    that was seen (size and order with doubling unverified, no log has one for SELF) leaves the damage a lower bound.
+    Healing doubling is the union of the spell-only and the all-healing flags; it is unknown unless one is true or both
+    are false.
+    """
+    if facts is None:
+        return ObservedContext()
+    values: dict = {}
+    if "sanctum" in groups:
+        values["healing_does_damage"] = facts.healing_does_damage
+    if "healing" in groups:
+        flags = (facts.spell_healing_doubled, facts.all_healing_doubled)
+        values["healing_bonus"] = facts.healing_bonus
+        values["spell_healing_doubled"] = (True if True in flags else False if flags == (False, False) else None)
+    if "hero_shield" in groups:
+        values["self_hero_divine_shield"] = facts.self_hero_divine_shield
+        values["opponent_hero_divine_shield"] = facts.opponent_hero_divine_shield
+    if "hand_keywords" in groups:
+        values["hand_keywords"] = _hand_keywords(facts, state)
+    if "spell_damage" in groups:
+        values["spell_damage_doubled"] = facts.spell_damage_doubled
+        if facts.spell_damage_status == SPELL_DAMAGE_NONE_SEEN:
+            values["spell_damage"] = 0
+        elif facts.spell_damage_status == SPELL_DAMAGE_PRESENT:
+            values["spell_damage_unverified"] = True
+    return ObservedContext(**values)
+
+
+def _hand_keywords(facts: ObservedFacts, state: GameState) -> tuple[frozenset[str] | None, ...] | None:
+    """Per hand position (so identical copies stay separate); a position whose card differs is dropped."""
+    if len(facts.hand) != len(state.self_hand):
+        return None
+    return tuple(frozenset(fact.keywords) if fact.keywords is not None and fact.card_id == card.card_id else None
+                 for fact, card in zip(facts.hand, state.self_hand, strict=True))
 
 
 def _context_from_facts(fact: dict[str, Any], state: GameState) -> ObservedContext:

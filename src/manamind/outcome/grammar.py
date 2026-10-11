@@ -249,6 +249,20 @@ def board_profile(text: str) -> tuple[tuple[str, ...], tuple[str, ...]]:
     return tuple(triggers), tuple(statics)
 
 
+_BODY_WORDS = re.compile(
+    r"\b(minions?|characters?|attack|health|taunt|rush|charge|divine shield|windfury|stealth|lifesteal|poisonous|"
+    r"reborn|immune|elusive|frozen|dormant|silence[ds]?|can't|cannot)\b|[+-]\d", re.IGNORECASE)
+
+
+def affects_minion_body(sentence: str) -> bool:
+    """Could this static sentence change the Attack, Health or keywords of a minion that enters play?
+
+    Words about stats, keywords or minions say yes. A sentence about cost, Hero Powers, Corpses or other resources
+    cannot change the body, and flagging it would only hide the real cases.
+    """
+    return bool(_BODY_WORDS.search(sentence))
+
+
 def trigger_events(sentence: str) -> frozenset[str]:
     """Event classes that can fire one trigger sentence; ``ANY`` when the condition is unreadable."""
     lowered = sentence.lower()

@@ -15,7 +15,9 @@ from collections.abc import Sequence
 from typing import Any
 
 from manamind.domain.game_state import GameState
-from manamind.outcome.grammar import Clause, Selector, board_profile, parse_text, trigger_events
+from manamind.outcome.grammar import (
+    Clause, Selector, affects_minion_body, board_profile, parse_text, trigger_events,
+)
 from manamind.outcome.model import Forecast, Ref, Status, UnknownKind
 from manamind.outcome.texts import TextSource
 from manamind.outcome.world import BODY_FLAGS, Ent, ObservedContext, Obj, Unsupported, World
@@ -271,6 +273,12 @@ class _Run:
                 bonus = context.spell_damage
             elif context.trust_spell_damage:
                 bonus = world.spell_damage["SELF"]
+            elif context.spell_damage_unverified:
+                unobserved = True
+                world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
+                              "SELF has a Spell Damage source whose size and order with doubling are unverified; "
+                              "damage is a lower bound", world.players["SELF"].ref, adds=False,
+                              tag="SPELL_DAMAGE_UNVERIFIED")
             else:
                 unobserved = True
                 world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
@@ -278,7 +286,10 @@ class _Run:
                               world.players["SELF"].ref, adds=False, tag="SPELL_DAMAGE_UNOBSERVED")
             doubled = context.spell_damage_doubled if context.spell_damage is not None else (
                 False if context.trust_spell_damage else None)
-            if not unobserved and doubled is None:
+            if unobserved:
+                if context.spell_damage_doubled:        # (n + bonus) * 2 >= 2n whatever the bonus is
+                    factor = 2
+            elif doubled is None:
                 unobserved = True
                 world.unknown(UnknownKind.MODIFIER_UNOBSERVED,
                               "whether SELF's spell damage is doubled is not observed; damage is a lower bound",
@@ -621,6 +632,14 @@ class _Run:
         aura = bool(mechanics & {"AURA", "SPELLPOWER", "ADJACENT_BUFF"})
         for sentence in statics:
             if aura and "DEATH_SELF" not in self_events and not involved:
+                # Minions already in play show the aura in their own numbers; a minion that ENTERS play is given
+                # printed numbers here and may be changed by it (real corpus: an enemy "All enemy minions have
+                # Taunt" gave Taunt to two minions as they were played).
+                if ("SUMMON" in self.classes and mechanics & {"AURA", "ADJACENT_BUFF"}
+                        and affects_minion_body(sentence)):
+                    world.unknown(UnknownKind.POSSIBLE_REACTION,
+                                  f"{ref.label()}: aura '{sentence}' may change the minion entering play", ref,
+                                  tag="AURA_ON_SUMMON")
                 continue
             # a Location's text is its activation effect: it may be pending from an earlier activation
             what = "Location effect" if ref.zone == "LOCATION" else "static rule"

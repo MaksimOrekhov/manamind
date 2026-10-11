@@ -92,6 +92,7 @@ Use Python 3.12 or newer as specified by `pyproject.toml`. No Git submodules and
 | `scripts/action_outcome_demo.py` | ACTION-OUTCOME-1: print forecasts of several actions from one position (controlled scenarios or a logged menu), no game needed |
 | `scripts/verify_action_outcomes.py`, `scripts/action_outcome_value_probe.py` | ACTION-OUTCOME-1: score forecasts against logged next observations; read-only ValueNetwork compatibility probe (no training) |
 | `scripts/observation_probe_1b.py` | ACTION-OUTCOME-1B: read-only raw-log probe of which missing SELF facts can be recovered and whether they predict outcomes |
+| `scripts/extract_observed_facts.py`, `scripts/validate_observed_facts.py` | OBSERVATION-EXT-1a: re-extract the SELF facts `LiveSession` attaches to each decision (hand keywords, hero Divine Shield, Sanctum, healing and Spell Damage modifiers) and check them against what the logs show next; no training |
 | `configs/value_v1.yaml` | Value-model/training defaults |
 | `configs/standard_profile.json` | Pinned Standard catalog inputs (and a pointer to a frozen historical registry) |
 
