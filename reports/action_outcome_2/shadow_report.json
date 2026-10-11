@@ -1,0 +1,1018 @@
+{
+ "against_recordings": {
+  "alternatives": {
+   "alternatives_no_observed_outcome": 18920
+  },
+  "chosen_action": {
+   "decisions": 1634,
+   "imitation_top1": 794,
+   "imitation_top3": 1132,
+   "note": "agreement with the Policy ranks is imitation of the player, not evidence that either was best",
+   "policy_rank": {
+    "1": 794,
+    "10": 36,
+    "11": 23,
+    "12": 16,
+    "13": 9,
+    "14": 14,
+    "15": 13,
+    "16": 7,
+    "17": 2,
+    "18": 1,
+    "2": 212,
+    "20": 4,
+    "21": 1,
+    "22": 6,
+    "23": 4,
+    "24": 4,
+    "25": 2,
+    "26": 4,
+    "27": 4,
+    "3": 126,
+    "31": 4,
+    "32": 1,
+    "33": 1,
+    "38": 1,
+    "4": 101,
+    "5": 82,
+    "6": 52,
+    "7": 39,
+    "8": 31,
+    "9": 40
+   },
+   "status": {
+    "EXACT": 81,
+    "PARTIAL": 1504,
+    "UNSUPPORTED": 49
+   },
+   "unscorable": {
+    "NO_OBSERVATION_AFTER_ACTION": 517
+   }
+  },
+  "discrepancies": {
+   "contradicted_by_explanation": {
+    "COMPARISON_LIMIT": 3,
+    "CONFIRMED_REACTION": 1,
+    "CONSISTENT_UNCONFIRMED": 6,
+    "DECLARED_GAP": 158,
+    "OBSERVATION_GAP": 14,
+    "UNEXPLAINED": 1
+   },
+   "contradicted_claims": {
+    "observation_or_comparison_limit": 17,
+    "unexplained": 1,
+    "unknown_reaction_or_declared_gap": 165
+   },
+   "missed_by_explanation": {
+    "CONFIRMED_REACTION": 23,
+    "CONSISTENT_UNCONFIRMED": 72,
+    "DECLARED_GAP": 812,
+    "OBSERVATION_GAP": 38,
+    "UNEXPLAINED": 27
+   },
+   "missed_changes": {
+    "observation_or_comparison_limit": 38,
+    "unexplained": 27,
+    "unknown_reaction_or_declared_gap": 907
+   },
+   "unexplained_examples": [
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t4].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t4].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 EDR_472",
+     "decision": "0a03f66a:139",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t4].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_SW_068 (position 4)",
+     "decision": "65217195:162",
+     "kind": "missed",
+     "path": "SELF.board.new[CORE_SW_068].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_SW_068 (position 4)",
+     "decision": "65217195:162",
+     "kind": "missed",
+     "path": "SELF.board.new[CORE_SW_068].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_SW_068 (position 4)",
+     "decision": "65217195:162",
+     "kind": "missed",
+     "path": "SELF.board.new[CORE_SW_068].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "ATTACK TLC_817t5@4 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "902cbdbb:125",
+     "kind": "missed",
+     "path": "OPPONENT.hero.health",
+     "tier": "PARTIAL_LOCAL",
+     "values": [
+      40,
+      35
+     ]
+    },
+    {
+     "action": "ATTACK TLC_817t5@4 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "902cbdbb:125",
+     "kind": "missed",
+     "path": "SELF.hero.divine_shield",
+     "tier": "PARTIAL_LOCAL",
+     "values": [
+      true,
+      false
+     ]
+    },
+    {
+     "action": "ATTACK FIR_777@6 -> OPPONENT minion #2 TLC_817t5",
+     "decision": "902cbdbb:126",
+     "kind": "missed",
+     "path": "OPPONENT.hero.health",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      35,
+      30
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #2 TIME_427",
+     "decision": "a111983d:106",
+     "kind": "missed",
+     "path": "SELF.board[0:TIME_427].can_attack",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "a111983d:139",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "a111983d:139",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t3].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "ATTACK EDR_494@3 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:164",
+     "kind": "contradicted",
+     "path": "SELF.board[2:EDR_494].current_health",
+     "tier": "PARTIAL_LOCAL",
+     "values": [
+      6,
+      1
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.board[2:EDR_494].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.hand.new[CATA_216].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.hand_size",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      3,
+      4
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.board[2:EDR_494].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      false,
+      true
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.hand.new[CATA_216].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "ATTACK TLC_600@2 -> OPPONENT minion #1 TLC_817t5",
+     "decision": "a111983d:165",
+     "kind": "missed",
+     "path": "SELF.hand_size",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      3,
+      4
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "c28bb4e4:86",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "c28bb4e4:86",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t3].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "c28bb4e4:86",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD CORE_EX1_197",
+     "decision": "c28bb4e4:86",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t3].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #1 TIME_890",
+     "decision": "c70dbc98:100",
+     "kind": "missed",
+     "path": "SELF.hand.new[TLC_817t5].present",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    },
+    {
+     "action": "PLAY_CARD JAIL_913 -> SELF minion #1 TIME_890",
+     "decision": "c70dbc98:100",
+     "kind": "missed",
+     "path": "SELF.hand[TLC_817t4].gone",
+     "tier": "OWN_EFFECT_KNOWN",
+     "values": [
+      0,
+      1
+     ]
+    }
+   ]
+  },
+  "exact_forecasts_contradicted": 0,
+  "joined_to_recording": 1634,
+  "not_joined": {
+   "DECISION_NOT_LABELED": 4,
+   "IMPORT_GAME_RESET": 364
+  },
+  "opponent_only_improvement": {
+   "decisions": 1634,
+   "decisions_offering_one": 519,
+   "gift_inside_policy_top3": 88,
+   "policy_top1_gift_replacement_is_players_choice": 2,
+   "policy_top1_gift_same_card_alternative_exists": 8,
+   "policy_top1_gift_same_card_alternative_is_players_choice": 1,
+   "policy_top1_gift_taken_by_player": 0,
+   "policy_top1_gift_with_non_gift_in_top3": 14,
+   "policy_top1_is_one": 14,
+   "taken_by_player": 0,
+   "without_gifts_players_choice_enters_top1": 2,
+   "without_gifts_players_choice_enters_top3": 6
+  },
+  "policy_top1_gift_actions": {
+   "PLAY_CARD CAP_801 -> OPPONENT minion #2 TLC_250": 1,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #1 EDR_456": 3,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #1 JAIL_912": 1,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #2 CAP_802t": 4,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #2 CAP_803": 2,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #2 JAIL_998": 1,
+   "PLAY_CARD JAIL_913 -> OPPONENT minion #5 CATA_897": 2
+  },
+  "reproduction": {
+   "action_digest_match": 20554,
+   "action_digest_mismatch": 0,
+   "context_reproduced": 1634,
+   "menu_identical": 1634
+  },
+  "scored": {
+   "by_family": {
+    "ACTIVATE_LOCATION": {
+     "bookkeeping_claims": {
+      "confirmed": 113,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 113,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "n": 60,
+     "status": {
+      "PARTIAL": 60
+     },
+     "tier": {
+      "BOOKKEEPING_ONLY": 53,
+      "PARTIAL_LOCAL": 7
+     },
+     "verdict": {
+      "CONFIRMED": 37,
+      "INCOMPLETE": 23
+     }
+    },
+    "ATTACK": {
+     "bookkeeping_claims": {
+      "confirmed": 88,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 325,
+      "contradicted": 3
+     },
+     "effect_claims": {
+      "confirmed": 237,
+      "contradicted": 3
+     },
+     "n": 141,
+     "status": {
+      "EXACT": 3,
+      "PARTIAL": 138
+     },
+     "tier": {
+      "EXACT": 3,
+      "OWN_EFFECT_KNOWN": 125,
+      "PARTIAL_LOCAL": 13
+     },
+     "verdict": {
+      "CONFIRMED": 108,
+      "CONTRADICTED": 3,
+      "INCOMPLETE": 30
+     }
+    },
+    "HERO_POWER": {
+     "bookkeeping_claims": {
+      "confirmed": 284,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 292,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 8,
+      "contradicted": 0
+     },
+     "n": 142,
+     "status": {
+      "PARTIAL": 142
+     },
+     "tier": {
+      "BOOKKEEPING_ONLY": 134,
+      "OWN_EFFECT_KNOWN": 8
+     },
+     "verdict": {
+      "CONFIRMED": 9,
+      "INCOMPLETE": 133
+     }
+    },
+    "PLAY_CARD/LOCATION": {
+     "bookkeeping_claims": {
+      "confirmed": 300,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 300,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "n": 53,
+     "status": {
+      "EXACT": 4,
+      "PARTIAL": 48,
+      "UNSUPPORTED": 1
+     },
+     "tier": {
+      "EXACT": 4,
+      "OWN_EFFECT_KNOWN": 48,
+      "UNSUPPORTED": 1
+     },
+     "verdict": {
+      "CONFIRMED": 50,
+      "INCOMPLETE": 2,
+      "UNSUPPORTED": 1
+     }
+    },
+    "PLAY_CARD/MINION": {
+     "bookkeeping_claims": {
+      "confirmed": 1197,
+      "contradicted": 23
+     },
+     "claims": {
+      "confirmed": 6263,
+      "contradicted": 62
+     },
+     "effect_claims": {
+      "confirmed": 5066,
+      "contradicted": 39
+     },
+     "n": 321,
+     "status": {
+      "EXACT": 10,
+      "PARTIAL": 310,
+      "UNSUPPORTED": 1
+     },
+     "tier": {
+      "EXACT": 10,
+      "OWN_EFFECT_KNOWN": 45,
+      "PARTIAL_LOCAL": 265,
+      "UNSUPPORTED": 1
+     },
+     "verdict": {
+      "CONFIRMED": 188,
+      "CONTRADICTED": 40,
+      "INCOMPLETE": 92,
+      "UNSUPPORTED": 1
+     }
+    },
+    "PLAY_CARD/SPELL": {
+     "bookkeeping_claims": {
+      "confirmed": 950,
+      "contradicted": 96
+     },
+     "claims": {
+      "confirmed": 1458,
+      "contradicted": 118
+     },
+     "effect_claims": {
+      "confirmed": 508,
+      "contradicted": 22
+     },
+     "n": 380,
+     "status": {
+      "PARTIAL": 359,
+      "UNSUPPORTED": 21
+     },
+     "tier": {
+      "BOOKKEEPING_ONLY": 155,
+      "OWN_EFFECT_KNOWN": 111,
+      "PARTIAL_LOCAL": 93,
+      "UNSUPPORTED": 21
+     },
+     "verdict": {
+      "CONFIRMED": 161,
+      "CONTRADICTED": 96,
+      "INCOMPLETE": 102,
+      "UNSUPPORTED": 21
+     }
+    },
+    "PLAY_CARD/WEAPON": {
+     "bookkeeping_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "n": 20,
+     "status": {
+      "UNSUPPORTED": 20
+     },
+     "tier": {
+      "UNSUPPORTED": 20
+     },
+     "verdict": {
+      "UNSUPPORTED": 20
+     }
+    }
+   },
+   "claims": {
+    "confirmed": 8751,
+    "contradicted": 183
+   },
+   "contradictions_by_explanation": {
+    "COMPARISON_LIMIT": 3,
+    "CONFIRMED_REACTION": 1,
+    "CONSISTENT_UNCONFIRMED": 6,
+    "DECLARED_GAP": 158,
+    "OBSERVATION_GAP": 14,
+    "UNEXPLAINED": 1
+   },
+   "missed_by_explanation": {
+    "CONFIRMED_REACTION": 23,
+    "CONSISTENT_UNCONFIRMED": 72,
+    "DECLARED_GAP": 812,
+    "OBSERVATION_GAP": 38,
+    "UNEXPLAINED": 27
+   },
+   "missed_paths": 972,
+   "pairs": 1117,
+   "status": {
+    "EXACT": 17,
+    "PARTIAL": 1057,
+    "UNSUPPORTED": 43
+   },
+   "tiers": {
+    "BOOKKEEPING_ONLY": {
+     "bookkeeping_claims": {
+      "confirmed": 741,
+      "contradicted": 84
+     },
+     "claims": {
+      "confirmed": 741,
+      "contradicted": 84
+     },
+     "effect_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "n": 342,
+     "verdict": {
+      "CONFIRMED": 45,
+      "CONTRADICTED": 74,
+      "INCOMPLETE": 223
+     }
+    },
+    "EXACT": {
+     "bookkeeping_claims": {
+      "confirmed": 67,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 230,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 163,
+      "contradicted": 0
+     },
+     "n": 17,
+     "verdict": {
+      "CONFIRMED": 17
+     }
+    },
+    "OWN_EFFECT_KNOWN": {
+     "bookkeeping_claims": {
+      "confirmed": 852,
+      "contradicted": 6
+     },
+     "claims": {
+      "confirmed": 2166,
+      "contradicted": 15
+     },
+     "effect_claims": {
+      "confirmed": 1314,
+      "contradicted": 9
+     },
+     "n": 337,
+     "verdict": {
+      "CONFIRMED": 270,
+      "CONTRADICTED": 13,
+      "INCOMPLETE": 54
+     }
+    },
+    "PARTIAL_LOCAL": {
+     "bookkeeping_claims": {
+      "confirmed": 1272,
+      "contradicted": 29
+     },
+     "claims": {
+      "confirmed": 5614,
+      "contradicted": 84
+     },
+     "effect_claims": {
+      "confirmed": 4342,
+      "contradicted": 55
+     },
+     "n": 378,
+     "verdict": {
+      "CONFIRMED": 221,
+      "CONTRADICTED": 52,
+      "INCOMPLETE": 105
+     }
+    },
+    "UNSUPPORTED": {
+     "bookkeeping_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "effect_claims": {
+      "confirmed": 0,
+      "contradicted": 0
+     },
+     "n": 43,
+     "verdict": {
+      "UNSUPPORTED": 43
+     }
+    }
+   },
+   "unknown_kinds": {
+    "HIDDEN_SECRET": 384,
+    "KEYWORD_UNDEFINED": 36,
+    "MODIFIER_UNOBSERVED": 30,
+    "POSSIBLE_REACTION": 984,
+    "RANDOM_OUTCOME": 72,
+    "TEXT_UNAVAILABLE": 566,
+    "UNPARSED_CLAUSE": 451
+   },
+   "unsupported_reasons": {
+    "COST_EXCEEDS_AVAILABLE_MANA": 2,
+    "HEALING_DOES_DAMAGE_ACTIVE": 20,
+    "NO_TARGET_FOR_CHOSEN_CLAUSE": 1,
+    "PLAY_WEAPON_NOT_MODELLED": 20
+   },
+   "verdict_by_status": {
+    "EXACT": {
+     "CONFIRMED": 17
+    },
+    "PARTIAL": {
+     "CONFIRMED": 536,
+     "CONTRADICTED": 139,
+     "INCOMPLETE": 382
+    },
+    "UNSUPPORTED": {
+     "UNSUPPORTED": 43
+    }
+   }
+  },
+  "scored_pairs": 1117,
+  "shadow_decisions": 2002
+ },
+ "coverage": {
+  "action_errors": 0,
+  "action_forecast_us": {
+   "max": 97904.0,
+   "median": 250.0,
+   "n": 24706,
+   "p95": 460.0
+  },
+  "actions_slower_than_20ms": 4,
+  "all_computed_actions": {
+   "actions": 24706,
+   "own_effect_known": 14048,
+   "partial_own_effect_known": 13697,
+   "partial_with_exact_effect": 14747,
+   "status": {
+    "EXACT": 351,
+    "PARTIAL": 24026,
+    "UNSUPPORTED": 329
+   },
+   "tier": {
+    "BOOKKEEPING_ONLY": 4116,
+    "EXACT": 351,
+    "OWN_EFFECT_KNOWN": 13697,
+    "PARTIAL_LOCAL": 6213,
+    "UNSUPPORTED": 329
+   },
+   "with_exact_effect": 14863
+  },
+  "by_action_type": {
+   "ACTIVATE_LOCATION": {
+    "actions": 1549,
+    "own_effect_known": 0,
+    "partial_own_effect_known": 0,
+    "partial_with_exact_effect": 226,
+    "status": {
+     "PARTIAL": 1549
+    },
+    "tier": {
+     "BOOKKEEPING_ONLY": 1323,
+     "PARTIAL_LOCAL": 226
+    },
+    "with_exact_effect": 226
+   },
+   "ATTACK": {
+    "actions": 3065,
+    "own_effect_known": 2101,
+    "partial_own_effect_known": 2078,
+    "partial_with_exact_effect": 2989,
+    "status": {
+     "EXACT": 23,
+     "PARTIAL": 3042
+    },
+    "tier": {
+     "EXACT": 23,
+     "OWN_EFFECT_KNOWN": 2078,
+     "PARTIAL_LOCAL": 964
+    },
+    "with_exact_effect": 3012
+   },
+   "END_TURN": {
+    "actions": 2002,
+    "own_effect_known": 2002,
+    "partial_own_effect_known": 1784,
+    "partial_with_exact_effect": 0,
+    "status": {
+     "EXACT": 218,
+     "PARTIAL": 1784
+    },
+    "tier": {
+     "EXACT": 218,
+     "OWN_EFFECT_KNOWN": 1784
+    },
+    "with_exact_effect": 0
+   },
+   "HERO_POWER": {
+    "actions": 1296,
+    "own_effect_known": 35,
+    "partial_own_effect_known": 35,
+    "partial_with_exact_effect": 35,
+    "status": {
+     "PARTIAL": 1296
+    },
+    "tier": {
+     "BOOKKEEPING_ONLY": 1261,
+     "OWN_EFFECT_KNOWN": 35
+    },
+    "with_exact_effect": 35
+   },
+   "PLAY_CARD": {
+    "actions": 16794,
+    "own_effect_known": 9910,
+    "partial_own_effect_known": 9800,
+    "partial_with_exact_effect": 11497,
+    "status": {
+     "EXACT": 110,
+     "PARTIAL": 16355,
+     "UNSUPPORTED": 329
+    },
+    "tier": {
+     "BOOKKEEPING_ONLY": 1532,
+     "EXACT": 110,
+     "OWN_EFFECT_KNOWN": 9800,
+     "PARTIAL_LOCAL": 5023,
+     "UNSUPPORTED": 329
+    },
+    "with_exact_effect": 11590
+   }
+  },
+  "context_failed": 0,
+  "coverage_context": {
+   "COMPLETE": 1901,
+   "RESET": 101
+  },
+  "decision_forecast_ms": {
+   "max": 100.296,
+   "median": 2.372,
+   "n": 2002,
+   "p95": 11.046
+  },
+  "decisions": 2002,
+  "decisions_with_a_useful_known_effect": 1518,
+  "decisions_with_error_only": 0,
+  "decisions_with_record": 2002,
+  "error_reasons": {},
+  "excluding_end_turn": {
+   "actions": 22704,
+   "own_effect_known": 12046,
+   "partial_own_effect_known": 11913,
+   "partial_with_exact_effect": 14747,
+   "status": {
+    "EXACT": 133,
+    "PARTIAL": 22242,
+    "UNSUPPORTED": 329
+   },
+   "tier": {
+    "BOOKKEEPING_ONLY": 4116,
+    "EXACT": 133,
+    "OWN_EFFECT_KNOWN": 11913,
+    "PARTIAL_LOCAL": 6213,
+    "UNSUPPORTED": 329
+   },
+   "with_exact_effect": 14863
+  },
+  "incomplete_decisions": 0,
+  "invalidation_reasons": {
+   "DECISION_CHANGED": 267,
+   "GAME_OVER": 1,
+   "TRUST_LOST:SYNCING:AWAITING_DECISION": 1734
+  },
+  "invariant_violations": {},
+  "menu_actions": 24706,
+  "menu_size": {
+   "max": 82.0,
+   "median": 11.0,
+   "n": 2002,
+   "p95": 31.0
+  },
+  "never_invalidated": 0,
+  "not_computed": 0,
+  "partial_blockers": {
+   "HIDDEN_SECRET:OPPONENT_SECRET": 9038,
+   "KEYWORD_UNDEFINED:OWN_TEXT_KEYWORD": 607,
+   "MODIFIER_UNOBSERVED:ATTACKS_USED_UNOBSERVED": 5,
+   "MODIFIER_UNOBSERVED:CONDITION_UNOBSERVED": 34,
+   "MODIFIER_UNOBSERVED:COST_UNOBSERVED": 375,
+   "MODIFIER_UNOBSERVED:HAND_KEYWORDS_UNOBSERVED": 148,
+   "MODIFIER_UNOBSERVED:HEALING_BONUS_UNOBSERVED": 466,
+   "MODIFIER_UNOBSERVED:HEALING_DOUBLING_UNOBSERVED": 242,
+   "MODIFIER_UNOBSERVED:HEALING_DOUBLING_UNVERIFIED": 362,
+   "MODIFIER_UNOBSERVED:HERO_SHIELD_UNOBSERVED": 140,
+   "MODIFIER_UNOBSERVED:REBORN_BASE_UNKNOWN": 29,
+   "MODIFIER_UNOBSERVED:SANCTUM_UNOBSERVED": 350,
+   "MODIFIER_UNOBSERVED:SPELL_DAMAGE_UNOBSERVED": 204,
+   "MODIFIER_UNOBSERVED:WEAPON_UNOBSERVED": 328,
+   "POSSIBLE_REACTION:AURA_ON_SUMMON": 35,
+   "POSSIBLE_REACTION:BOARD_STATIC_TEXT": 20391,
+   "POSSIBLE_REACTION:BOARD_TRIGGER": 3177,
+   "POSSIBLE_REACTION:DEATHRATTLE": 715,
+   "POSSIBLE_REACTION:OWN_SECRET_OR_QUEST": 14691,
+   "RANDOM_OUTCOME:OWN_TEXT_RANDOM": 572,
+   "TEXT_UNAVAILABLE:BOARD_TEXT_MISSING": 12452,
+   "TEXT_UNAVAILABLE:OWN_TEXT_MISSING": 2416,
+   "UNPARSED_CLAUSE:OWN_TEXT_UNPARSED": 5774
+  },
+  "unsupported_reasons": {
+   "BUFF_ON_HERO": 4,
+   "COST_EXCEEDS_AVAILABLE_MANA": 23,
+   "HEALING_DOES_DAMAGE_ACTIVE": 199,
+   "NO_TARGET_FOR_CHOSEN_CLAUSE": 2,
+   "PLAY_WEAPON_NOT_MODELLED": 101
+  }
+ },
+ "gates": {
+  "exact_forecasts_contradicted": 0,
+  "forecast_digest_mismatches": 0,
+  "invariant_violations": 0,
+  "pass": true,
+  "unreadable_lines": 0
+ },
+ "inputs": {
+  "rows": 4004,
+  "shadow_files": [
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl",
+   "outcome_shadow.jsonl"
+  ],
+  "unreadable_lines": 0
+ }
+}

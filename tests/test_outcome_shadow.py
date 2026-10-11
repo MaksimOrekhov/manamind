@@ -691,3 +691,148 @@ def test_trust_changes_end_a_shadow_exactly_as_they_end_the_recommendation(tmp_p
     assert [r["decision_id"] for r in rows] == [first["decision_id"]]       # an untrusted decision is never shadowed
     if ending == "unknown_entity":
         assert any(line.startswith("status: UNTRUSTED") for line in shadowed.emitted)
+
+
+def test_unreadable_facts_mean_unknown_facts_not_a_lost_shadow(tmp_path, recommender, texts, monkeypatch):
+    scorer, _ = recommender
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("private")
+
+    monkeypatch.setattr("manamind.outcome.live_shadow.context_from_observed", boom)
+    run = replay.run_runtime(record_log(tmp_path, LiveLog().create_game().mulligan().self_decision(1).lines),
+                             scorer, texts, tmp_path / "on", shadow=True)
+    row = next(r for r in run.shadow_rows if r["event"] == "OUTCOME_SHADOW")
+    assert row["context_failed"] is True and row["context"] == {} and row["complete"]
+    assert "private" not in json.dumps(run.shadow_rows)
+
+
+def test_the_session_summary_counts_what_was_recorded(tmp_path, recommender, texts):
+    scorer, _ = recommender
+    log = two_decision_log()
+    split = next(i for i, line in enumerate(log.lines) if "SendOption" in line)
+    run = replay.run_runtime(record_log(tmp_path, log.lines, pause_at=split), scorer, texts, tmp_path / "on", shadow=True)
+    n = run.scored
+    assert n >= 1
+    assert run.shadow_summary.startswith(f"outcome shadow: {n}/{n} decisions recorded, 0 failed, 0 incomplete, 0 journal failures; forecast ")
+
+
+def test_unexplained_discrepancies_are_listed_and_bucketed_by_what_is_known():
+    from manamind.outcome.shadow_analysis import _discrepancy_buckets, _unexplained_examples
+
+    result = SimpleNamespace(
+        decision_id="abcdefghij:7", action_label="PLAY_CARD X", tier=SimpleNamespace(value="OWN_EFFECT_KNOWN"),
+        contradicted={"p.a": (1, 2), "p.b": (3, 4)}, missed={"p.c": (0, 1), "p.d": (0, 1), "p.e": (0, 1), "p.f": (0, 1)},
+        explanations={"p.a": ("DECLARED_GAP", "x", ""), "p.b": ("UNEXPLAINED", "", ""), "p.c": ("CONFIRMED_REACTION", "", ""),
+                      "p.d": ("OBSERVATION_GAP", "", ""), "p.e": ("COMPARISON_LIMIT", "", "")})   # p.f has no explanation
+    assert [(e["kind"], e["path"], e["decision"]) for e in _unexplained_examples([result])] == [
+        ("contradicted", "p.b", "abcdefgh:7"), ("missed", "p.f", "abcdefgh:7")]
+    assert len(_unexplained_examples([result] * 30, limit=5)) == 5
+    buckets = _discrepancy_buckets([result])
+    assert buckets["contradicted_claims"] == {"unknown_reaction_or_declared_gap": 1, "observation_or_comparison_limit": 0,
+                                              "unexplained": 1}
+    assert buckets["missed_changes"] == {"unknown_reaction_or_declared_gap": 1, "observation_or_comparison_limit": 2,
+                                         "unexplained": 1}
+
+
+def test_bookkeeping_is_counted_not_listed():
+    state, actions = _position()
+    rows = {r["index"]: r for r in forecast_menu(state, _menu(actions), TEXTS, TRUSTED)["actions"]}
+    assert rows[0]["bookkeeping"] == 0 and rows[1]["bookkeeping"] >= 2           # END_TURN pays nothing, a spell pays mana and hand
+    assert all("BOOKKEEPING" not in json.dumps(r["effects"]) for r in rows.values())
+
+
+def test_a_spent_budget_is_visible_in_the_session_summary_and_the_row(tmp_path, recommender, texts):
+    scorer, _ = recommender
+    directory = record_log(tmp_path, LiveLog().create_game().mulligan().self_decision(1).lines)
+    run = replay.run_runtime(directory, scorer, texts, tmp_path / "on", shadow=True, budget_ms=-1.0)
+    row = next(r for r in run.shadow_rows if r["event"] == "OUTCOME_SHADOW")
+    assert row["complete"] is False and row["computed"] == 0 and row["not_computed"] == row["menu_size"]
+    assert "1 incomplete" in run.shadow_summary
+
+
+def test_facts_that_could_not_be_read_are_recorded_as_such(tmp_path, recommender, texts, monkeypatch):
+    scorer, _ = recommender
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("private")
+
+    monkeypatch.setattr("manamind.live.session.extract_observed_facts", boom)
+    run = replay.run_runtime(record_log(tmp_path, LiveLog().create_game().mulligan().self_decision(1).lines),
+                             scorer, texts, tmp_path / "on", shadow=True)
+    row = next(r for r in run.shadow_rows if r["event"] == "OUTCOME_SHADOW")
+    assert row["coverage"] == "NONE" and row["context"] == {}
+
+
+def _coverage_row(actions):
+    return {"event": "OUTCOME_SHADOW", "decision_id": "d", "schema": shadow_module.SHADOW_SCHEMA, "menu_size": len(actions),
+            "computed": len(actions), "not_computed": 0, "errors": 0, "complete": True, "elapsed_ms": 1.0, "coverage": "COMPLETE",
+            "actions": [{"index": i, "rank": i + 1, "label": label, "action": f"a{i}", "digest": "d", "us": 5, **rest}
+                        for i, (label, rest) in enumerate(actions)]}
+
+
+def test_coverage_separates_a_known_effect_from_exact_effects_inside_a_partial_forecast():
+    partial = {"status": "PARTIAL", "unknowns": ["POSSIBLE_REACTION:BOARD_TRIGGER"], "bounds": [], "reason": None}
+    row = _coverage_row([
+        ("PLAY_CARD A", {**partial, "tier": "OWN_EFFECT_KNOWN", "own": 1, "effects": []}),
+        ("PLAY_CARD A2", {**partial, "tier": "OWN_EFFECT_KNOWN", "own": 1, "effects": []}),
+        ("PLAY_CARD B", {**partial, "tier": "PARTIAL_LOCAL", "own": 0, "effects": [["OPPONENT hero", "health", 30, 27]]}),
+        ("END_TURN", {"status": "EXACT", "unknowns": [], "tier": "EXACT", "own": 1, "effects": []})])
+    summary = coverage_summary(group_decisions([row]))
+    played = summary["excluding_end_turn"]
+    assert (played["with_exact_effect"], played["partial_with_exact_effect"]) == (1, 1)
+    assert (played["own_effect_known"], played["partial_own_effect_known"]) == (2, 2)
+    assert summary["decisions_with_a_useful_known_effect"] == 0              # no action has both a known own effect and an effect
+
+
+def test_actions_that_were_not_computed_are_skipped_not_reproduced(monkeypatch, tmp_path):
+    state, actions = _position()
+    game = _labeled(state, actions, state, chosen=0)
+    ticks = iter(range(0, 10**12, 400_000_000))
+    record = forecast_menu(state, _menu(actions), TEXTS, ObservedContext(), budget_ms=500, clock=lambda: next(ticks))
+    assert record["not_computed"] > 0 and record["computed"] > 0
+    row = {"event": "OUTCOME_SHADOW", "decision_id": f"{'g' * 64}:1:1:{'s' * 64}", "match_id": "g" * 64, "options_id": 1,
+           "seq": 1, "state_hash": "s" * 64, "schema": shadow_module.SHADOW_SCHEMA, "coverage": "COMPLETE", "context": {}, **record}
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    report = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, TEXTS)
+    assert report["reproduction"]["action_digest_match"] == record["computed"]
+    assert report["reproduction"]["action_digest_mismatch"] == 0
+
+
+def test_a_gift_at_rank_three_counts_as_inside_the_top_three_and_a_missing_top3_alternative_is_visible(monkeypatch, tmp_path):
+    texts = TextSource.from_records([
+        {"id": "T_HEAL", "type": "SPELL", "mechanics": [], "text": "Restore #4 Health."},
+        {"id": "A", "type": "MINION", "mechanics": [], "text": ""}, {"id": "B", "type": "MINION", "mechanics": [], "text": ""}])
+    ctx = ObservedContext(healing_does_damage=False, healing_bonus=0, spell_healing_doubled=False)
+    state = sc.position(self_side=sc.side(mana=5, board=(sc.minion("B", 2, 2, 1),)),
+                        opponent=sc.side(board=(sc.minion("A", 3, 5, 1, max_health=7), sc.minion("A", 3, 5, 2, max_health=7),
+                                                sc.minion("A", 3, 5, 3, max_health=7))),
+                        hand=(sc.hand_card("T_HEAL", "SPELL", 1),))
+    heals = [sc.play("T_HEAL", 0, "SPELL", 1, sc.target_minion("OPPONENT", n, "A")) for n in (1, 2, 3)]
+    game = _labeled(state, [*heals, sc.end_turn()], state, chosen=3)
+    row = _rows_for(state, [*heals, sc.end_turn()], context=ctx)
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
+    gifts = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)["opponent_only_improvement"]
+    assert gifts["gift_inside_policy_top3"] == 1 and gifts["policy_top1_is_one"] == 1
+    assert gifts["policy_top1_gift_with_non_gift_in_top3"] == 0              # the only non-gift sits at rank 4
+    assert gifts["policy_top1_gift_replacement_is_players_choice"] == 1
+    assert gifts["without_gifts_players_choice_enters_top1"] == 1
+
+
+def test_a_gift_exactly_at_rank_three_is_inside_the_top_three(monkeypatch, tmp_path):
+    texts = TextSource.from_records([
+        {"id": "T_HEAL", "type": "SPELL", "mechanics": [], "text": "Restore #4 Health."},
+        {"id": "A", "type": "MINION", "mechanics": [], "text": ""}, {"id": "B", "type": "MINION", "mechanics": [], "text": ""}])
+    ctx = ObservedContext(healing_does_damage=False, healing_bonus=0, spell_healing_doubled=False)
+    state = sc.position(self_side=sc.side(mana=5, board=(sc.minion("B", 2, 2, 1),)),
+                        opponent=sc.side(board=(sc.minion("A", 3, 5, 1, max_health=7),)),
+                        hand=(sc.hand_card("T_HEAL", "SPELL", 1),))
+    actions = [sc.end_turn(), sc.attack(1, "B", sc.target_minion("OPPONENT", 1, "A")),
+               sc.play("T_HEAL", 0, "SPELL", 1, sc.target_minion("OPPONENT", 1, "A"))]
+    game = _labeled(state, actions, state, chosen=0)
+    row = _rows_for(state, actions, context=ctx)
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
+    gifts = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)["opponent_only_improvement"]
+    assert gifts["gift_inside_policy_top3"] == 1 and "policy_top1_is_one" not in gifts

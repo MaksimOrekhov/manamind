@@ -1,0 +1,492 @@
+{
+ "branch": {
+  "Hearthstone_2026_10_06_22_20_23/219302142511e674": {
+   "rankings_sha256": "1e6da57ad63d89d203b98c1d36d076b57f000f4547fc921437fe005e1be41759",
+   "scored": 40,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 22
+   },
+   "snapshots": 62
+  },
+  "Hearthstone_2026_10_07_20_03_00/04bcfec3b8253e4d": {
+   "rankings_sha256": "0a343dd36fca80111f3d85fdd71f9270d809c6b62331f52b0f20d50bc533cb7b",
+   "scored": 86,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 17
+   },
+   "snapshots": 103
+  },
+  "Hearthstone_2026_10_07_20_03_00/0a03f66a7cd6d2f2": {
+   "rankings_sha256": "55b5a68d3d1e46e7ce931064b1698e1d2a5ad7074b9834a480ffec012f7090b5",
+   "scored": 131,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 10
+   },
+   "snapshots": 141
+  },
+  "Hearthstone_2026_10_07_20_03_00/1e748178871fafc2": {
+   "rankings_sha256": "f21a100df1486ed17623b4c9599345a181185b2305659fb83e219b404816b2ec",
+   "scored": 62,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 7
+   },
+   "snapshots": 69
+  },
+  "Hearthstone_2026_10_07_20_03_00/4c79f725af0a5553": {
+   "rankings_sha256": "d48fdc78e381fe092a90edfc8a2f4b7e9584a2e8e372e81517c58a8f932017db",
+   "scored": 24,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 23
+   },
+   "snapshots": 47
+  },
+  "Hearthstone_2026_10_07_20_03_00/5090e9097fd8caba": {
+   "rankings_sha256": "be3d51866ad8b302640904e6ee14086695a55d82ab2a97af6383f5413e81afba",
+   "scored": 137,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 7
+   },
+   "snapshots": 144
+  },
+  "Hearthstone_2026_10_07_20_03_00/74eb68997fe9124b": {
+   "rankings_sha256": "3ef17a58557c672e3e9d6536a3ff635bcf788c5697973fa4627eddfe41ff138e",
+   "scored": 17,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4
+   },
+   "snapshots": 21
+  },
+  "Hearthstone_2026_10_07_20_03_00/99e6a7ebe8fa2cce": {
+   "rankings_sha256": "d66fb62bdcbcae4b8667d50c8655d2674339d89cd84449c157e4ebac1b095aad",
+   "scored": 52,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 11
+   },
+   "snapshots": 63
+  },
+  "Hearthstone_2026_10_07_20_03_00/9e95e42be7cc1365": {
+   "rankings_sha256": "42c7a7137de9bfa5fe1ada81f0c47321bc56219124f54c804982d91d668651bd",
+   "scored": 30,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 21
+   },
+   "snapshots": 51
+  },
+  "Hearthstone_2026_10_07_20_03_00/c70dbc985f55d900": {
+   "rankings_sha256": "450e8e694f03f666db1b8ab4b7fb64c662323adde2ea5a4bd97daeea28bfeb13",
+   "scored": 56,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 10
+   },
+   "snapshots": 66
+  },
+  "Hearthstone_2026_10_07_20_03_00/ec2e1289dee0ee87": {
+   "rankings_sha256": "5094349f790357c6a8cbcb471503b02592777a25da833d39c167687da06508f0",
+   "scored": 51,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 1
+   },
+   "snapshots": 52
+  },
+  "Hearthstone_2026_10_07_20_03_00/ef251dbeec9777a1": {
+   "rankings_sha256": "f0bc8e7fc57cd18035315902794a116348cfbafd9429793ca1cf86eb74146c23",
+   "scored": 45,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 23
+   },
+   "snapshots": 68
+  },
+  "Hearthstone_2026_10_10_16_15_33/20592047e515f166": {
+   "rankings_sha256": "ab017caca290cb4fd1f10e521de587f4a6b616bcbb8975558b6f4718a65c5e7c",
+   "scored": 49,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 8
+   },
+   "snapshots": 57
+  },
+  "Hearthstone_2026_10_10_17_32_50/c28bb4e4bfc9c867": {
+   "rankings_sha256": "538b62b6c124b9168ba7d0798e2460200add7672e4ad8c9ec4f3385654cc5f94",
+   "scored": 77,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4
+   },
+   "snapshots": 81
+  },
+  "Hearthstone_2026_10_10_18_19_26/5109ae3ab1e82001": {
+   "rankings_sha256": "59086e37669d019ec351a5fd4fa8ae7fb6281935a77994f01c7097722b33f29b",
+   "scored": 169,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 18
+   },
+   "snapshots": 187
+  },
+  "Hearthstone_2026_10_10_18_19_26/80623afa4f1f8fc8": {
+   "rankings_sha256": "4a21b57f0e481027ee3481b2c1b7ad99bbe04ea04eb74a77bed18cbae7ca191f",
+   "scored": 58,
+   "skips": {},
+   "snapshots": 58
+  },
+  "Hearthstone_2026_10_10_19_39_29/27cab5ab1f67157e": {
+   "rankings_sha256": "578c7978567f3d4152ad3402d43d5c94b88ee752a2a061b22aef115d64712d17",
+   "scored": 25,
+   "skips": {},
+   "snapshots": 25
+  },
+  "Hearthstone_2026_10_10_19_39_29/3d97029667f9992e": {
+   "rankings_sha256": "521495331a4352816213a6bdea4a436861496e12bfe030bb176fa4e30e8f96a0",
+   "scored": 41,
+   "skips": {},
+   "snapshots": 41
+  },
+  "Hearthstone_2026_10_10_19_39_29/40982cb88d5f22c2": {
+   "rankings_sha256": "e4d37c1a3535f5381ffdde201f0cf4b0a1bccd5eff96cde8934de0ca59243891",
+   "scored": 51,
+   "skips": {},
+   "snapshots": 51
+  },
+  "Hearthstone_2026_10_10_19_39_29/40b7c040076ab394": {
+   "rankings_sha256": "b4c444bb59a2fa078b41e94d9ee4096a9547d5d5b2b43d94ba32e0fe78ab2a01",
+   "scored": 30,
+   "skips": {},
+   "snapshots": 30
+  },
+  "Hearthstone_2026_10_10_19_39_29/55cdf9c563601c94": {
+   "rankings_sha256": "9ec277e070ea77d27125d6457b19fcde59dbc50e92880d6464fec7e1dd6c591d",
+   "scored": 21,
+   "skips": {},
+   "snapshots": 21
+  },
+  "Hearthstone_2026_10_10_19_39_29/65217195509faf4e": {
+   "rankings_sha256": "4dc2104afcd7d2eede620556d6fd09ef106d1669f0753356633fd8682c1692b7",
+   "scored": 95,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 1
+   },
+   "snapshots": 96
+  },
+  "Hearthstone_2026_10_10_19_39_29/6a19441ebaa78ea8": {
+   "rankings_sha256": "3dc42024de02bff2f51ebebfa01a6239ebc2f3b32eec9beed03f6c185ad3a38f",
+   "scored": 31,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 2,
+    "CHOICE_UNRESOLVED": 1
+   },
+   "snapshots": 34
+  },
+  "Hearthstone_2026_10_10_19_39_29/6d85061f2a201a7a": {
+   "rankings_sha256": "994934100d2f04db77aa235374b2a01d178164689d5a6da4781fcb473be70036",
+   "scored": 78,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 8
+   },
+   "snapshots": 86
+  },
+  "Hearthstone_2026_10_10_19_39_29/87f993192e04df1b": {
+   "rankings_sha256": "091748aa03bded3da4b9833f921527f74951b70fb4bbb17193c2d1e163156e39",
+   "scored": 47,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 13
+   },
+   "snapshots": 60
+  },
+  "Hearthstone_2026_10_10_19_39_29/902cbdbb793e2a4b": {
+   "rankings_sha256": "8a27712c35dde9e37ec31b64b3f0726948d003cb075d7f01c904cf2ab89bf2c0",
+   "scored": 105,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 12
+   },
+   "snapshots": 117
+  },
+  "Hearthstone_2026_10_10_19_39_29/a111983d6bc3a8b5": {
+   "rankings_sha256": "356391f3d02eb5ad58144511a4f65ecb7502fadb00e9967c66f80e6a2da61d35",
+   "scored": 112,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4,
+    "CHOICE_UNRESOLVED": 1
+   },
+   "snapshots": 117
+  },
+  "Hearthstone_2026_10_10_19_39_29/dff3a688570d8fc7": {
+   "rankings_sha256": "1eabc8c73a0b31b61050a55c2c07e4187b4ecc00c8d081e925dc29eae5fe4b15",
+   "scored": 16,
+   "skips": {},
+   "snapshots": 16
+  },
+  "Hearthstone_2026_10_10_19_39_29/e57640e6f865068e": {
+   "rankings_sha256": "d9579562fef27e9b8839483057751333b444284b63451ec1465efaf25755dee3",
+   "scored": 42,
+   "skips": {},
+   "snapshots": 42
+  },
+  "Hearthstone_2026_10_10_19_39_29/efe4b3ceccf73f90": {
+   "rankings_sha256": "ffa0ca13e3eb1c5653a5e72c41c272ae0c7b08b620177ac9729cba4370d4e5bf",
+   "scored": 59,
+   "skips": {
+    "TARGET_UNRESOLVED": 7
+   },
+   "snapshots": 66
+  },
+  "Hearthstone_2026_10_10_19_39_29/fdeeb84e940063ad": {
+   "rankings_sha256": "e3253e5aeaa6c3fa1593b4e9785807cd8fb02df900a7313e0a24b0430957f5af",
+   "scored": 33,
+   "skips": {},
+   "snapshots": 33
+  },
+  "Hearthstone_2026_10_11_10_28_56/0830f1deb607ceca": {
+   "rankings_sha256": "337824dc42fc0f65b465faeeae8b9d6291926e50d755c2d135fe464a0ddabdb4",
+   "scored": 132,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 22
+   },
+   "snapshots": 154
+  }
+ },
+ "identical": true,
+ "main": {
+  "Hearthstone_2026_10_06_22_20_23/219302142511e674": {
+   "rankings_sha256": "1e6da57ad63d89d203b98c1d36d076b57f000f4547fc921437fe005e1be41759",
+   "scored": 40,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 22
+   },
+   "snapshots": 62
+  },
+  "Hearthstone_2026_10_07_20_03_00/04bcfec3b8253e4d": {
+   "rankings_sha256": "0a343dd36fca80111f3d85fdd71f9270d809c6b62331f52b0f20d50bc533cb7b",
+   "scored": 86,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 17
+   },
+   "snapshots": 103
+  },
+  "Hearthstone_2026_10_07_20_03_00/0a03f66a7cd6d2f2": {
+   "rankings_sha256": "55b5a68d3d1e46e7ce931064b1698e1d2a5ad7074b9834a480ffec012f7090b5",
+   "scored": 131,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 10
+   },
+   "snapshots": 141
+  },
+  "Hearthstone_2026_10_07_20_03_00/1e748178871fafc2": {
+   "rankings_sha256": "f21a100df1486ed17623b4c9599345a181185b2305659fb83e219b404816b2ec",
+   "scored": 62,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 7
+   },
+   "snapshots": 69
+  },
+  "Hearthstone_2026_10_07_20_03_00/4c79f725af0a5553": {
+   "rankings_sha256": "d48fdc78e381fe092a90edfc8a2f4b7e9584a2e8e372e81517c58a8f932017db",
+   "scored": 24,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 23
+   },
+   "snapshots": 47
+  },
+  "Hearthstone_2026_10_07_20_03_00/5090e9097fd8caba": {
+   "rankings_sha256": "be3d51866ad8b302640904e6ee14086695a55d82ab2a97af6383f5413e81afba",
+   "scored": 137,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 7
+   },
+   "snapshots": 144
+  },
+  "Hearthstone_2026_10_07_20_03_00/74eb68997fe9124b": {
+   "rankings_sha256": "3ef17a58557c672e3e9d6536a3ff635bcf788c5697973fa4627eddfe41ff138e",
+   "scored": 17,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4
+   },
+   "snapshots": 21
+  },
+  "Hearthstone_2026_10_07_20_03_00/99e6a7ebe8fa2cce": {
+   "rankings_sha256": "d66fb62bdcbcae4b8667d50c8655d2674339d89cd84449c157e4ebac1b095aad",
+   "scored": 52,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 11
+   },
+   "snapshots": 63
+  },
+  "Hearthstone_2026_10_07_20_03_00/9e95e42be7cc1365": {
+   "rankings_sha256": "42c7a7137de9bfa5fe1ada81f0c47321bc56219124f54c804982d91d668651bd",
+   "scored": 30,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 21
+   },
+   "snapshots": 51
+  },
+  "Hearthstone_2026_10_07_20_03_00/c70dbc985f55d900": {
+   "rankings_sha256": "450e8e694f03f666db1b8ab4b7fb64c662323adde2ea5a4bd97daeea28bfeb13",
+   "scored": 56,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 10
+   },
+   "snapshots": 66
+  },
+  "Hearthstone_2026_10_07_20_03_00/ec2e1289dee0ee87": {
+   "rankings_sha256": "5094349f790357c6a8cbcb471503b02592777a25da833d39c167687da06508f0",
+   "scored": 51,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 1
+   },
+   "snapshots": 52
+  },
+  "Hearthstone_2026_10_07_20_03_00/ef251dbeec9777a1": {
+   "rankings_sha256": "f0bc8e7fc57cd18035315902794a116348cfbafd9429793ca1cf86eb74146c23",
+   "scored": 45,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 23
+   },
+   "snapshots": 68
+  },
+  "Hearthstone_2026_10_10_16_15_33/20592047e515f166": {
+   "rankings_sha256": "ab017caca290cb4fd1f10e521de587f4a6b616bcbb8975558b6f4718a65c5e7c",
+   "scored": 49,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 8
+   },
+   "snapshots": 57
+  },
+  "Hearthstone_2026_10_10_17_32_50/c28bb4e4bfc9c867": {
+   "rankings_sha256": "538b62b6c124b9168ba7d0798e2460200add7672e4ad8c9ec4f3385654cc5f94",
+   "scored": 77,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4
+   },
+   "snapshots": 81
+  },
+  "Hearthstone_2026_10_10_18_19_26/5109ae3ab1e82001": {
+   "rankings_sha256": "59086e37669d019ec351a5fd4fa8ae7fb6281935a77994f01c7097722b33f29b",
+   "scored": 169,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 18
+   },
+   "snapshots": 187
+  },
+  "Hearthstone_2026_10_10_18_19_26/80623afa4f1f8fc8": {
+   "rankings_sha256": "4a21b57f0e481027ee3481b2c1b7ad99bbe04ea04eb74a77bed18cbae7ca191f",
+   "scored": 58,
+   "skips": {},
+   "snapshots": 58
+  },
+  "Hearthstone_2026_10_10_19_39_29/27cab5ab1f67157e": {
+   "rankings_sha256": "578c7978567f3d4152ad3402d43d5c94b88ee752a2a061b22aef115d64712d17",
+   "scored": 25,
+   "skips": {},
+   "snapshots": 25
+  },
+  "Hearthstone_2026_10_10_19_39_29/3d97029667f9992e": {
+   "rankings_sha256": "521495331a4352816213a6bdea4a436861496e12bfe030bb176fa4e30e8f96a0",
+   "scored": 41,
+   "skips": {},
+   "snapshots": 41
+  },
+  "Hearthstone_2026_10_10_19_39_29/40982cb88d5f22c2": {
+   "rankings_sha256": "e4d37c1a3535f5381ffdde201f0cf4b0a1bccd5eff96cde8934de0ca59243891",
+   "scored": 51,
+   "skips": {},
+   "snapshots": 51
+  },
+  "Hearthstone_2026_10_10_19_39_29/40b7c040076ab394": {
+   "rankings_sha256": "b4c444bb59a2fa078b41e94d9ee4096a9547d5d5b2b43d94ba32e0fe78ab2a01",
+   "scored": 30,
+   "skips": {},
+   "snapshots": 30
+  },
+  "Hearthstone_2026_10_10_19_39_29/55cdf9c563601c94": {
+   "rankings_sha256": "9ec277e070ea77d27125d6457b19fcde59dbc50e92880d6464fec7e1dd6c591d",
+   "scored": 21,
+   "skips": {},
+   "snapshots": 21
+  },
+  "Hearthstone_2026_10_10_19_39_29/65217195509faf4e": {
+   "rankings_sha256": "4dc2104afcd7d2eede620556d6fd09ef106d1669f0753356633fd8682c1692b7",
+   "scored": 95,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 1
+   },
+   "snapshots": 96
+  },
+  "Hearthstone_2026_10_10_19_39_29/6a19441ebaa78ea8": {
+   "rankings_sha256": "3dc42024de02bff2f51ebebfa01a6239ebc2f3b32eec9beed03f6c185ad3a38f",
+   "scored": 31,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 2,
+    "CHOICE_UNRESOLVED": 1
+   },
+   "snapshots": 34
+  },
+  "Hearthstone_2026_10_10_19_39_29/6d85061f2a201a7a": {
+   "rankings_sha256": "994934100d2f04db77aa235374b2a01d178164689d5a6da4781fcb473be70036",
+   "scored": 78,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 8
+   },
+   "snapshots": 86
+  },
+  "Hearthstone_2026_10_10_19_39_29/87f993192e04df1b": {
+   "rankings_sha256": "091748aa03bded3da4b9833f921527f74951b70fb4bbb17193c2d1e163156e39",
+   "scored": 47,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 13
+   },
+   "snapshots": 60
+  },
+  "Hearthstone_2026_10_10_19_39_29/902cbdbb793e2a4b": {
+   "rankings_sha256": "8a27712c35dde9e37ec31b64b3f0726948d003cb075d7f01c904cf2ab89bf2c0",
+   "scored": 105,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 12
+   },
+   "snapshots": 117
+  },
+  "Hearthstone_2026_10_10_19_39_29/a111983d6bc3a8b5": {
+   "rankings_sha256": "356391f3d02eb5ad58144511a4f65ecb7502fadb00e9967c66f80e6a2da61d35",
+   "scored": 112,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 4,
+    "CHOICE_UNRESOLVED": 1
+   },
+   "snapshots": 117
+  },
+  "Hearthstone_2026_10_10_19_39_29/dff3a688570d8fc7": {
+   "rankings_sha256": "1eabc8c73a0b31b61050a55c2c07e4187b4ecc00c8d081e925dc29eae5fe4b15",
+   "scored": 16,
+   "skips": {},
+   "snapshots": 16
+  },
+  "Hearthstone_2026_10_10_19_39_29/e57640e6f865068e": {
+   "rankings_sha256": "d9579562fef27e9b8839483057751333b444284b63451ec1465efaf25755dee3",
+   "scored": 42,
+   "skips": {},
+   "snapshots": 42
+  },
+  "Hearthstone_2026_10_10_19_39_29/efe4b3ceccf73f90": {
+   "rankings_sha256": "ffa0ca13e3eb1c5653a5e72c41c272ae0c7b08b620177ac9729cba4370d4e5bf",
+   "scored": 59,
+   "skips": {
+    "TARGET_UNRESOLVED": 7
+   },
+   "snapshots": 66
+  },
+  "Hearthstone_2026_10_10_19_39_29/fdeeb84e940063ad": {
+   "rankings_sha256": "e3253e5aeaa6c3fa1593b4e9785807cd8fb02df900a7313e0a24b0430957f5af",
+   "scored": 33,
+   "skips": {},
+   "snapshots": 33
+  },
+  "Hearthstone_2026_10_11_10_28_56/0830f1deb607ceca": {
+   "rankings_sha256": "337824dc42fc0f65b465faeeae8b9d6291926e50d755c2d135fe464a0ddabdb4",
+   "scored": 132,
+   "skips": {
+    "AMBIGUOUS_SELECTION": 22
+   },
+   "snapshots": 154
+  }
+ },
+ "main_commit": "a5e0c98",
+ "recordings": 32,
+ "scored": 2002,
+ "snapshots": 2259,
+ "what": "Policy v2 rankings (identity, menu index, score) and state hashes per recording, replayed with scripts/replay_live_recommendations.py::replay_once on the unmodified main (a5e0c98) and on this branch"
+}
