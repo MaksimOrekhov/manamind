@@ -2,13 +2,38 @@
   "blind_html_has_no_scores_or_player_choice": true,
   "browser_smoke": {
     "browser_pair_sha_matches_python": true,
-    "end_to_end_reveal_import_download": "not claimed",
-    "feedback_filechooser": "not completed: browser session expired",
+    "browser": "Microsoft Edge 155.0.4283.45 on Windows",
+    "launch": "direct file:// URL in an isolated temporary profile",
+    "temporary_reviewer_codes": [
+      "E2E-SMOKE-20261011",
+      "E2E-FILEINPUT-20261011"
+    ],
     "initial_form_empty": true,
     "rendered": true,
     "reveal_initially_disabled": true,
-    "technical_abstention_saved": true,
-    "temporary_localhost_server_stopped": true
+    "saved_results": [
+      "A",
+      "B",
+      "INSUFFICIENT"
+    ],
+    "localstorage_survives_reload": true,
+    "export_import_preserves_initial_sha_and_explanation": true,
+    "bad_pack_digest_rejected_without_data_loss": true,
+    "bad_pair_digest_rejected_without_data_loss": true,
+    "malformed_json_rejected_without_data_loss": true,
+    "recovery_after_reload": true,
+    "feedback_file_input_before_label_keeps_reveal_disabled": true,
+    "feedback_reveal_after_initial_label": true,
+    "correction_preserves_initial_and_appends_revision": true,
+    "correction_export_validated": {
+      "strict_preferences": 2,
+      "equivalences": 0,
+      "abstentions": 1,
+      "unlabelled": 37,
+      "ready_for_training": false
+    },
+    "temporary_profile_and_exports": "ignored data/processed_real_action_preferences_1/e2e_profile_1/",
+    "real_pack_modified": false
   },
   "empty_manual_export_validation": {
     "preferences": 0,
