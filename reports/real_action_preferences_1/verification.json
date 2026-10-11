@@ -35,6 +35,49 @@
     "temporary_profile_and_exports": "ignored data/processed_real_action_preferences_1/e2e_profile_1/",
     "real_pack_modified": false
   },
+  "ux_e2e": {
+    "browser": "Microsoft Edge 155.0.4283.45 on Windows",
+    "opened_directly_as": "file://",
+    "profile": "separate temporary Edge profile",
+    "artifact": "data/processed_real_action_preferences_1/final/review_ux.html",
+    "temporary_reviewer": "E2E-UX-20261011",
+    "pack_sha256_before_and_after": "e8b92ade254126d893331e7762a76c569917ed388c0e494b0b46d0d7d042f03c",
+    "board_and_hand_rendered": true,
+    "internal_names_hidden_in_primary_view": true,
+    "draft_survives_reload": true,
+    "saved_initial_results": [
+      "A",
+      "B",
+      "INSUFFICIENT",
+      "EQUIVALENT",
+      "EQUIVALENT"
+    ],
+    "standard_labels_use_expert_strategic_defaults": true,
+    "insufficient_uses_insufficient_basis": true,
+    "verified_mechanics_mode_accepted": true,
+    "feedback_locked_until_initial_saved": true,
+    "revision_preserves_initial_and_pair_sha": true,
+    "export_import_restores_reasons_and_revisions": true,
+    "invalid_pack_and_pair_digests_rejected_without_loss": true,
+    "malformed_json_rejected_without_loss": true,
+    "reload_recovers_imported_records": true,
+    "validator": {
+      "strict_preferences": 2,
+      "equivalences": 2,
+      "abstentions": 1,
+      "unlabelled": 35,
+      "ready_for_training": false
+    },
+    "mobile_width_390": {
+      "document_width": 390,
+      "move_cards_single_column": true,
+      "choice_columns": 2,
+      "horizontal_overflow": false
+    },
+    "browser_exceptions": 0,
+    "private_test_artifacts": "ignored data/processed_real_action_preferences_1/e2e_ux_1/",
+    "original_40_situations_unchanged": true
+  },
   "empty_manual_export_validation": {
     "preferences": 0,
     "ready_for_training": false,
@@ -53,7 +96,7 @@
   "real_game_labels": 0,
   "ruff": "src scripts tests passed",
   "source_hashes": {
-    "scripts/action_preferences.html": "eb54471fc0aaf730f0045659a285c9f6750c7b5c476a75d174bdc2bc232911ac",
+    "scripts/action_preferences.html": "f6c42afb01921043cb404182e0afc33d81fdb490738bf4df33ba0212d13e8e13",
     "scripts/prepare_real_action_preferences.py": "82c62aacf7989cc5d520db3d0237bf9ef9b150e9394689940e966d803575cd55",
     "scripts/validate_action_preferences.py": "0fbdd4912c75093e9699c2ec5093fd8aa52535cecebbf5b815bf9e3ad31e36f3",
     "src/manamind/training/action_preferences.py": "5fc59ad1573386641490606992aa0e7acf8c566115535c7323e74c22d44d141f",
