@@ -51,6 +51,13 @@ do not import `manamind.outcome` (a test enforces it); only `scripts/run_manamin
 | `OUTCOME_SHADOW_ERROR` | the shadow of that decision could not be produced: stable reason code only |
 | `OUTCOME_SHADOW_INVALIDATION` | the decision stopped being current (same reasons as `INVALIDATION`); its forecasts are history, not advice |
 
+CONSEQUENCE-DIAGNOSTICS-1 adds journal-only diagnostics to the same row: an action may carry
+`flags: {"SIDE_MISDIRECTION": <menu index of the dominating alternative>, "SELF_HARM": null}`, and the row a `diag` block with
+`blocked` (a flag would have fired but for a stated reason) and `insufficient` (candidates whose forecast cannot support a claim)
+counters. They describe exact direct effects only, are never shown, never rank anything and abstain on any visible way the effect
+could pay off. Rows also record `forecaster_rev`; the analyzer compares forecast digests only between rows and code of the same
+revision. Report: [reports/consequence_diagnostics_1/README.md](../reports/consequence_diagnostics_1/README.md).
+
 The pre-action state is not copied: it is in the LIVE recording, and the digests let `scripts/outcome_shadow_report.py`
 prove that it recomputed the same forecast from that recording. A decision is capped at `--outcome-shadow-budget-ms`
 (default 250 ms; actions left over are `NOT_COMPUTED`, never invented), a file at 64 MiB (it is renamed with a UTC stamp

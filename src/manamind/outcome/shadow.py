@@ -23,6 +23,11 @@ from manamind.outcome.texts import TextSource
 from manamind.outcome.world import ObservedContext
 
 SHADOW_SCHEMA = "manamind.outcome_shadow/1"
+# Bump when the forecaster's behaviour changes (grammar, reactions, texts semantics): rows record the revision they
+# were made with, and the analyzer only compares forecast digests between rows and code of the same revision.
+# 1 = ACTION-OUTCOME-2 (rows without the field); 2 = CONSEQUENCE-DIAGNOSTICS-1 (compound damage+buff shape,
+# the activating Location's own text no longer counts as an unread rule).
+FORECASTER_REVISION = 2
 MAX_EFFECTS_PER_ACTION = 24      # a larger ledger is cut; ``effects_more`` says by how much, the digest still covers all
 MAX_MENU = 160                    # a menu this large is cut in Policy rank order; the rest is NOT_COMPUTED
 DEFAULT_BUDGET_MS = 250.0         # wall clock for one decision; exceeded -> the remaining actions are NOT_COMPUTED

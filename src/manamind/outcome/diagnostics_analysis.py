@@ -33,10 +33,10 @@ RELAXATIONS: dict[str, frozenset[str]] = {
     "ignore OWN_SECRET_OR_QUEST": frozenset({"OWN_SECRET_OR_QUEST"}),
     "ignore OWN_SECRET_OR_QUEST, BOARD_TRIGGER": frozenset({"OWN_SECRET_OR_QUEST", "BOARD_TRIGGER"}),
     "ignore all text/trigger abstentions": frozenset({"OWN_SECRET_OR_QUEST", "BOARD_TRIGGER", "BOARD_STATIC_TEXT",
-                                                      "BOARD_TEXT_MISSING", "OWN_TEXT_MISSING", "AURA_ON_BOARD"}),
+                                                      "BOARD_TEXT_MISSING", "OWN_TEXT_MISSING", "AURA_ON_BOARD", "DELAYED_DAMAGE_TRIGGER"}),
     "ignore everything incl. Deathrattle": frozenset({"OWN_SECRET_OR_QUEST", "BOARD_TRIGGER", "BOARD_STATIC_TEXT",
                                                       "BOARD_TEXT_MISSING", "OWN_TEXT_MISSING", "DEATHRATTLE_POSSIBLE",
-                                                      "AURA_ON_SUMMON", "AURA_ON_BOARD"}),
+                                                      "AURA_ON_SUMMON", "AURA_ON_BOARD", "DELAYED_DAMAGE_TRIGGER"}),
 }
 
 
@@ -108,7 +108,7 @@ def census(shadow_rows: Iterable[dict[str, Any]], recordings: dict[str, list[Pat
                                            "action": describe_action(state, action), "rank": ranking})
                 if flag.against is not None and info[flag.against][2] == chosen:
                     decisions[f"{flag.flag} took_dominator"].add((game_key, number))
-                key = (game_key, number, describe_action(state, action).split(" (position")[0])
+                key = (game_key, number, flag.flag, describe_action(state, action).split(" (position")[0])
                 if ranking <= 3 and len(shown) < examples and key not in seen_examples:
                     seen_examples.add(key)
                     against = None if flag.against is None else describe_action(state, info[flag.against][0])

@@ -31,6 +31,7 @@ TEXTS = TextSource.from_records([
     {"id": "WATCHER", "type": "MINION", "mechanics": [], "text": "Whenever a friendly minion dies, draw a card."},
     {"id": "AURA", "type": "MINION", "mechanics": ["AURA"], "text": "Your other minions have +1 Attack."},
     {"id": "DR", "type": "MINION", "mechanics": ["DEATHRATTLE"], "text": "Deathrattle: Draw a card."},
+    {"id": "PINGER", "type": "MINION", "mechanics": [], "text": "At the end of turn, deal 1 damage to a random enemy."},
     {"id": "FRENZY", "type": "MINION", "mechanics": [], "text": "Frenzy: Gain +2 Attack."},
     *({"id": card, "type": "MINION", "mechanics": [], "text": ""} for card in ("A", "B", "C", "TOKEN"))])
 
@@ -311,3 +312,61 @@ def test_a_hit_on_a_one_health_enemy_that_dies_is_progress_and_a_hit_that_only_b
     actions = [activate(sc.target_minion("OPPONENT", 1, "B")), activate(sc.target_minion("OPPONENT", 2, "C"))]
     flags, _ = flags_of(state, actions)
     assert flags == {(1, SELF_HARM): None}      # +2 Attack for the enemy against 1 damage: strictly worse for SELF
+
+
+def test_a_hit_that_only_feeds_an_enemy_abstains_while_a_friendly_end_of_turn_ping_could_finish_it():
+    state = with_location(own=(sc.minion("PINGER", 1, 1, 1),), enemy=(sc.minion("B", 3, 2, 1),))
+    actions = [activate(sc.target_minion("OPPONENT", 1, "B"))]
+    flags, result = flags_of(state, actions)
+    assert flags == {} and (SELF_HARM, "DELAYED_DAMAGE_TRIGGER") in result.blocked
+    # without the pinger the same hit is flagged
+    bare = with_location(own=(sc.minion("A", 1, 1, 1),), enemy=(sc.minion("B", 3, 2, 1),))
+    flags, _ = flags_of(bare, actions)
+    assert flags == {(0, SELF_HARM): None}
+
+
+def test_a_reaction_shared_by_both_uses_does_not_block_a_misdirection_but_a_target_specific_one_does():
+    # SELF holds a Secret/Quest: the forecast of BOTH uses carries the same open reaction, so it cannot tell them apart
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 2, 2, 1),), secret_count=1),
+                        opponent=sc.side(board=(sc.minion("B", 2, 2, 1),)), hand=(sc.hand_card("BUFFER", "SPELL", 2),))
+    actions = [sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("OPPONENT", 1, "B")),
+               sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("SELF", 1, "A"))]
+    flags, result = flags_of(state, actions)
+    assert flags[(0, SIDE_MISDIRECTION)] == 1 and not any(f == SIDE_MISDIRECTION for f, _ in result.blocked)
+    # a Deathrattle on the enemy minion hit is specific to that use and blocks the conclusion
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 2, 2, 1),)),
+                        opponent=sc.side(board=(sc.minion("DR", 2, 1, 1, mechanics=("DEATHRATTLE",)),)),
+                        hand=(sc.hand_card("POKE", "SPELL", 1),))
+    actions = [sc.play("POKE", 0, "SPELL", 1, sc.target_minion("OPPONENT", 1, "DR")),
+               sc.play("POKE", 0, "SPELL", 1, sc.target_minion("SELF", 1, "A"))]
+    flags, _ = flags_of(state, actions)
+    assert (0, SIDE_MISDIRECTION) not in flags
+
+
+def test_the_census_counts_flags_by_policy_rank_and_never_by_agreement(monkeypatch, tmp_path):
+    from manamind.outcome.diagnostics_analysis import census
+    from manamind.outcome.shadow import FORECASTER_REVISION, action_digest
+    from manamind.outcome.shadow_analysis import LabeledGame
+    from manamind.outcome.verify import LoggedDecision
+
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 2, 2, 1),), hero_health=20),
+                        opponent=sc.side(board=(sc.minion("B", 2, 2, 1),)), hand=(sc.hand_card("BUFFER", "SPELL", 2),))
+    actions = [sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("OPPONENT", 1, "B")),
+               sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("SELF", 1, "A")), sc.end_turn()]
+    record = forecast_menu(state, [(i, i + 1, a) for i, a in enumerate(actions)], TEXTS, ObservedContext())
+    row = {"event": "OUTCOME_SHADOW", "match_id": "g" * 64, "options_id": 1, "state_hash": "s" * 64,
+           "forecaster_rev": FORECASTER_REVISION, **record}
+    logged = LoggedDecision("g", 1, "g:1", state, actions[1], tuple(actions))
+    game = LabeledGame({1: logged}, {1: None}, {1: "s" * 64}, [])
+    monkeypatch.setattr("manamind.outcome.diagnostics_analysis.label_recording",
+                        lambda directory, catalog: ({"g" * 64: game}, None))
+    report = census([row], {("g" * 64)[:16]: [tmp_path]}, None, TEXTS)
+    side = report[SIDE_MISDIRECTION]
+    assert (report["games"], report["decisions"]) == (1, 1)
+    assert side["actions"] == {"top1": 1, "top3": 0, "rest": 0}
+    assert side["distinct_decisions_with_flag_in_top3"] == 1 and side["chosen_by_player"] == 0
+    assert side["decisions_where_player_took_the_dominating_alternative"] == 1      # reported, never a verdict
+    assert report["sensitivity"]["strict (production) | SIDE_MISDIRECTION"]["top1_decisions"] == 1
+    example = next(e for e in report["examples_top3"] if e["flag"] == SIDE_MISDIRECTION)
+    assert example["against"].endswith("SELF minion #1 A")
+    assert action_digest(actions[1]) in {a["action"] for a in record["actions"]}

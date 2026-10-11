@@ -35,7 +35,8 @@ from manamind.outcome.forecast import forecast_action
 from manamind.outcome.model import Forecast, Status
 from manamind.outcome.observation import context_from_observed
 from manamind.outcome.shadow import (
-    ERROR, NOT_COMPUTED, SHADOW_SCHEMA, action_digest, context_to_dict, forecast_digest,
+    ERROR, FORECASTER_REVISION, NOT_COMPUTED, SHADOW_SCHEMA, action_digest, context_to_dict, digest as canonical_digest,
+    forecast_digest,
 )
 from manamind.outcome.texts import TextSource
 from manamind.outcome.verify import (
@@ -289,7 +290,7 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
         else:
             matched.append((row, hit[0], hit[1]))
 
-    digests = {"digest_match": 0, "digest_mismatch": 0}
+    digests = {"digest_match": 0, "digest_mismatch": 0, "digest_not_comparable_older_forecaster_or_texts": 0}
     checks: Counter = Counter()
     chosen_status: Counter = Counter()
     chosen_by_rank: Counter = Counter()
@@ -309,10 +310,16 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
         checks["menu_identical" if set(legal) == set(by_digest) else "menu_mismatch"] += 1
         reproduced = True
         forecasts = {}
+        # Digests are comparable only with the same forecaster revision and the same texts; otherwise they differ by design.
+        comparable = (row.get("forecaster_rev", 1) == FORECASTER_REVISION
+                      and (not texts.fingerprints or row.get("texts_sha256") == canonical_digest(texts.fingerprints)))
         for digest_key, record in by_digest.items():
             if record["status"] in (NOT_COMPUTED, ERROR) or digest_key not in legal:
                 continue
             forecasts[digest_key] = forecast_action(state, legal[digest_key], texts, context)
+            if not comparable:
+                digests["digest_not_comparable_older_forecaster_or_texts"] += 1
+                continue
             same = forecast_digest(forecasts[digest_key]) == record["digest"]
             digests["digest_match" if same else "digest_mismatch"] += 1
             if digest_key == action_digest(logged.action):

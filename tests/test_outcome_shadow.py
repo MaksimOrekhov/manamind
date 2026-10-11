@@ -389,7 +389,8 @@ def _rows_for(state, actions, *, game="g" * 64, number=1, context=TRUSTED, state
     record = forecast_menu(state, _menu(actions), TEXTS, context)
     decision = f"{game}:1:{number}:{state_hash}"
     return {"event": "OUTCOME_SHADOW", "decision_id": decision, "match_id": game, "options_id": number, "seq": 1,
-            "state_hash": state_hash, "schema": shadow_module.SHADOW_SCHEMA, "coverage": "COMPLETE",
+            "state_hash": state_hash, "forecaster_rev": shadow_module.FORECASTER_REVISION,
+            "schema": shadow_module.SHADOW_SCHEMA, "coverage": "COMPLETE",
             "context": context_to_dict(context), **record}
 
 
@@ -792,7 +793,8 @@ def test_actions_that_were_not_computed_are_skipped_not_reproduced(monkeypatch, 
     record = forecast_menu(state, _menu(actions), TEXTS, ObservedContext(), budget_ms=500, clock=lambda: next(ticks))
     assert record["not_computed"] > 0 and record["computed"] > 0
     row = {"event": "OUTCOME_SHADOW", "decision_id": f"{'g' * 64}:1:1:{'s' * 64}", "match_id": "g" * 64, "options_id": 1,
-           "seq": 1, "state_hash": "s" * 64, "schema": shadow_module.SHADOW_SCHEMA, "coverage": "COMPLETE", "context": {}, **record}
+           "seq": 1, "state_hash": "s" * 64, "forecaster_rev": shadow_module.FORECASTER_REVISION,
+           "schema": shadow_module.SHADOW_SCHEMA, "coverage": "COMPLETE", "context": {}, **record}
     monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
     report = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, TEXTS)
     assert report["reproduction"]["action_digest_match"] == record["computed"]
@@ -865,3 +867,15 @@ def test_the_launcher_wires_the_shadow_only_on_request_and_survives_missing_text
         assert constructed[1] is None and "outcome shadow warning: FileNotFoundError" in printed and "private" not in printed
     else:
         assert isinstance(constructed[1], OutcomeShadow) and "outcome shadow: no decisions" in printed
+
+
+def test_rows_from_an_older_forecaster_revision_are_not_digest_compared(monkeypatch, tmp_path):
+    state, actions = _position()
+    game = _labeled(state, actions, state, chosen=0)
+    row = _rows_for(state, actions, context=ObservedContext())
+    row.pop("forecaster_rev")                         # what every row recorded before CONSEQUENCE-DIAGNOSTICS-1 looks like
+    next(a for a in row["actions"] if a["index"] == 1)["digest"] = "0" * 64
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    report = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, TEXTS)
+    assert report["reproduction"]["action_digest_mismatch"] == 0
+    assert report["reproduction"]["action_digest_not_comparable_older_forecaster_or_texts"] == len(actions)

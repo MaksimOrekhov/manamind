@@ -26,7 +26,7 @@ from manamind.live.recommendation import Recommendation
 from manamind.live.snapshot import Snapshot
 from manamind.outcome.observation import context_from_observed
 from manamind.outcome.shadow import (
-    DEFAULT_BUDGET_MS, ERROR, NOT_COMPUTED, SHADOW_SCHEMA, context_to_dict, digest, forecast_menu,
+    DEFAULT_BUDGET_MS, ERROR, FORECASTER_REVISION, NOT_COMPUTED, SHADOW_SCHEMA, context_to_dict, digest, forecast_menu,
 )
 from manamind.outcome.texts import TextSource
 from manamind.outcome.world import ObservedContext
@@ -98,7 +98,7 @@ class OutcomeShadow:
         except Exception:
             raise ShadowFailed("FORECAST_FAILED") from None
         coverage = snapshot.observed.coverage if snapshot.observed is not None else "NONE"
-        return {"schema": SHADOW_SCHEMA, "texts_sha256": self._texts_sha256, "coverage": coverage,
+        return {"schema": SHADOW_SCHEMA, "forecaster_rev": FORECASTER_REVISION, "texts_sha256": self._texts_sha256, "coverage": coverage,
                 "context": context_to_dict(context), **({"context_failed": True} if context_failed else {}),
                 **record}
 

@@ -28,6 +28,7 @@ from typing import Any
 
 from manamind.outcome.compare import side_metrics
 from manamind.domain.game_state import GameState
+from manamind.outcome.grammar import board_profile
 from manamind.outcome.model import Forecast, Status
 from manamind.outcome.texts import TextSource
 
@@ -148,6 +149,21 @@ def _aura_on_board(state: GameState, texts: TextSource | None) -> bool:
     return False
 
 
+def _delayed_damage_trigger(state: GameState, texts: TextSource | None) -> bool:
+    """A friendly minion with a trigger that deals damage later (an end-of-turn ping, a 'fire' on attack).
+
+    Such a trigger can finish what a harmless-looking hit started, so an action that only leaves the opponent's
+    minion slightly changed (more Attack, a little less Health) is not called harm while one is on the board.
+    """
+    if texts is None:
+        return False
+    for entity in state.self_player.board:
+        entry = texts.get(entity.card.card_id)
+        if entry is not None and any("damage" in sentence.lower() for sentence in board_profile(entry.text)[0]):
+            return True
+    return False
+
+
 def diagnose_menu(state: GameState, items: Sequence[tuple[int, dict[str, Any], Forecast]], *,
                   texts: TextSource | None = None, ignore: frozenset[str] = frozenset()) -> MenuDiagnosis:
     """``items`` are ``(menu index, action, forecast)`` for every action of one decision (any order).
@@ -162,6 +178,7 @@ def diagnose_menu(state: GameState, items: Sequence[tuple[int, dict[str, Any], F
         if action.get("type") not in _SKIP_TYPES:
             by_group.setdefault(_group(action), []).append(index)
     auras = _aura_on_board(state, texts) and "AURA_ON_BOARD" not in ignore
+    pingers = _delayed_damage_trigger(state, texts) and "DELAYED_DAMAGE_TRIGGER" not in ignore
     actions = {index: action for index, action, _ in items}
     forecasts = {index: forecast for index, _, forecast in items}
 
@@ -176,6 +193,8 @@ def diagnose_menu(state: GameState, items: Sequence[tuple[int, dict[str, Any], F
             result.insufficient_at.append((index, SELF_HARM))
         elif all(v <= 0 for v in vector) and any(v < 0 for v in vector):
             blockers = _blockers(forecast, SELF_HARM, ignore) + (["AURA_ON_BOARD"] if auras else [])
+            if pingers and (vector[0] < 0 or vector[1] < 0):          # the opponent comes out ahead: a ping could finish it
+                blockers.append("DELAYED_DAMAGE_TRIGGER")
             if blockers:
                 for reason in blockers:
                     result.blocked[(SELF_HARM, reason)] += 1
