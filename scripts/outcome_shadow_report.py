@@ -40,10 +40,22 @@ def main(argv: list[str] | None = None) -> int:
     if args.recordings_root is not None:
         report["against_recordings"] = verify_recordings(
             decisions, find_recordings(args.recordings_root), CardCatalog.from_json(args.cards), load_texts(ROOT))
+    gates = {
+        "invariant_violations": sum(report["coverage"]["invariant_violations"].values()),
+        "unreadable_lines": bad_lines,
+        "forecast_digest_mismatches": 0,
+        "exact_forecasts_contradicted": 0,
+    }
+    if "against_recordings" in report:
+        verified = report["against_recordings"]
+        gates["forecast_digest_mismatches"] = verified["reproduction"].get("action_digest_mismatch", 0)
+        gates["exact_forecasts_contradicted"] = verified["exact_forecasts_contradicted"]
+    gates["pass"] = not any(value for name, value in gates.items())
+    report["gates"] = gates
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=1, sort_keys=True), encoding="utf-8", newline="\n")
-    print(f"wrote {args.out.name}: {len(decisions)} decisions")
-    return 0
+    print(f"wrote {args.out.name}: {len(decisions)} decisions; gates {'PASS' if gates['pass'] else 'FAIL'} {gates}")
+    return 0 if gates["pass"] else 1
 
 
 if __name__ == "__main__":

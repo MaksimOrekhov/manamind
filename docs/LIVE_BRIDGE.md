@@ -34,6 +34,36 @@ decision identity, state/checkpoint hashes and invalidation events. The journal 
 names or hidden opponent cards. Actual player action linkage stays `UNKNOWN` unless decision identity
 can be proven.
 
+### Outcome shadow (`--outcome-shadow`, optional, off by default)
+
+ACTION-OUTCOME-2. Next to the Policy ranking the runtime can forecast the immediate consequences of **every** legal
+action of a displayed decision with `manamind.outcome` and write them to
+`data/raw/live/prediction_journal.outcome_shadow.jsonl`. It is a read-only consumer of what the Policy path already
+trusted (the same `Snapshot`, its `observed` SELF facts, and the same legal menu in Policy rank order): the displayed
+Top-3, the overlay, the `RECOMMENDATION` journal rows, state hashes and the checkpoint are unchanged, the forecast runs
+only after the recommendation was displayed and journaled, and a failure ends in a stable code in the shadow journal,
+never in the Policy path. Forecasts are never shown and never rank anything. `manamind.live`, the overlay and `apps`
+do not import `manamind.outcome` (a test enforces it); only `scripts/run_manamind.py` wires the two.
+
+| Row | Content |
+|---|---|
+| `OUTCOME_SHADOW` | `match_id`, `seq`, `options_id`, `state_hash`, `decision_id`; observed-fact context and history coverage; per action: menu index, Policy rank, label, action digest, `status` (`EXACT` / `PARTIAL` / `UNSUPPORTED` / `NOT_COMPUTED` / `ERROR`), `tier`, exact local effects, bounded values, stable unknown tags, forecast digest, microseconds |
+| `OUTCOME_SHADOW_ERROR` | the shadow of that decision could not be produced: stable reason code only |
+| `OUTCOME_SHADOW_INVALIDATION` | the decision stopped being current (same reasons as `INVALIDATION`); its forecasts are history, not advice |
+
+The pre-action state is not copied: it is in the LIVE recording, and the digests let `scripts/outcome_shadow_report.py`
+prove that it recomputed the same forecast from that recording. A decision is capped at `--outcome-shadow-budget-ms`
+(default 250 ms; actions left over are `NOT_COMPUTED`, never invented), a file at 64 MiB (it is renamed with a UTC stamp
+and a new file starts; nothing is deleted).
+
+```bash
+python scripts/run_manamind.py --ui --outcome-shadow
+python scripts/outcome_shadow_report.py --shadow data/raw/live/prediction_journal.outcome_shadow*.jsonl --recordings-root data/raw/live --out reports/<new dir>/shadow_report.json
+python scripts/outcome_shadow_replay.py <recording dir> ... --out-dir <new dir> --report-json <new file>
+```
+
+Report: [reports/action_outcome_2/README.md](../reports/action_outcome_2/README.md).
+
 The command below is the standalone state inspector, without policy ranking or collection:
 
 ```bash
@@ -51,6 +81,7 @@ The folder can also come from `MANAMIND_HEARTHSTONE_LOGS`; nothing is hard-coded
 | `--cards FILE` | card catalog, default `data/cards/standard_current_enUS.json` |
 | `--ui` | show the Windows always-on-top panel; without it retain the console runner |
 | `--overlay` | optional Vue / WebView2 desktop overlay; structured LIVE DTO, official RU/EN names; mutually exclusive with `--ui` |
+| `--outcome-shadow`, `--outcome-shadow-budget-ms N` | `run_manamind.py` only: optional read-only consequence forecast of the whole menu, journal only (see Outcome shadow); default off, budget 250 |
 
 The tool only ever opens `Power.log` for reading (for the length of one poll), never writes,
 renames or deletes anything under `Logs`, and never touches `log.config`. Hearthstone must have

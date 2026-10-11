@@ -192,12 +192,14 @@ def coverage_summary(decisions: dict[str, ShadowDecision]) -> dict[str, Any]:
         "decisions_with_a_useful_known_effect": decisions_useful,
         "coverage_context": dict(Counter(row.get("coverage", "?") for row in rows)),
         "context_failed": sum(bool(row.get("context_failed")) for row in rows),
-        "invalidation_reasons": dict(Counter(
-            d.invalidations[0].split(":", 1)[0] for d in decisions.values() if d.invalidations)),
+        # Full stable reasons. ``TRUST_LOST:SYNCING:AWAITING_DECISION`` is the ordinary end of a decision (the player acted
+        # and new options are awaited); the journal has always spelled any non-READY status this way.
+        "invalidation_reasons": dict(Counter(d.invalidations[0] for d in decisions.values() if d.invalidations)),
         "never_invalidated": sum(d.row is not None and not d.invalidations for d in decisions.values()),
         "menu_size": _percentiles([float(n) for n in menu_sizes]),
         "decision_forecast_ms": _percentiles([row["elapsed_ms"] for row in rows]),
         "action_forecast_us": _percentiles([float(a["us"]) for _, a in computed if "us" in a]),
+        "actions_slower_than_20ms": sum(a.get("us", 0) > 20_000 for _, a in computed),
         "invariant_violations": dict(Counter(p for row in rows for p in invariant_violations(row))),
     }
 
@@ -297,6 +299,7 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
     associations = build_gain_associations(all_pairs, texts) if all_pairs else {}
     alternatives = Counter()
     gifts: Counter = Counter()
+    gift_cards: Counter = Counter()
     for row, game, logged in matched:
         state = logged.state
         context = context_from_observed(game.facts.get(logged.number), state)
@@ -314,7 +317,7 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
             digests["digest_match" if same else "digest_mismatch"] += 1
             if digest_key == action_digest(logged.action):
                 reproduced = same
-        _count_gifts(gifts, state, row, forecasts, action_digest(logged.action))
+        _count_gifts(gifts, gift_cards, state, row, forecasts, action_digest(logged.action))
         chosen = by_digest.get(action_digest(logged.action))
         if chosen is None:
             chosen_unscorable["CHOSEN_NOT_IN_RECORDED_MENU"] += 1
@@ -335,6 +338,7 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
                 pair_results.append(result)
     summary = summarise_results(pair_results) if pair_results else {}
     discrepancy = _discrepancy_buckets(pair_results)
+    discrepancy["unexplained_examples"] = _unexplained_examples(pair_results)
     top1 = chosen_by_rank.get(1, 0)
     total_rank = sum(chosen_by_rank.values())
     return {
@@ -353,6 +357,7 @@ def verify_recordings(decisions: dict[str, ShadowDecision], recordings: dict[str
         },
         "alternatives": dict(alternatives),
         "opponent_only_improvement": dict(gifts),
+        "policy_top1_gift_actions": dict(gift_cards.most_common()),
         "scored_pairs": len(pair_results),
         "scored": summary,
         "discrepancies": discrepancy,
@@ -367,8 +372,8 @@ def _is_gift(state: GameState, forecast: Forecast) -> bool:
             and summarise(state, forecast).note.startswith("direct effects only improve OPPONENT"))
 
 
-def _count_gifts(counter: Counter, state: GameState, row: dict[str, Any], forecasts: dict[str, Forecast],
-                 taken: str) -> None:
+def _count_gifts(counter: Counter, cards: Counter, state: GameState, row: dict[str, Any],
+                 forecasts: dict[str, Forecast], taken: str) -> None:
     """Descriptive counts for the 'gift' pattern; a gift is a bookkeeping fact about direct effects, not a verdict."""
     gift_digests = {key for key, forecast in forecasts.items() if _is_gift(state, forecast)}
     counter["decisions"] += 1
@@ -376,13 +381,42 @@ def _count_gifts(counter: Counter, state: GameState, row: dict[str, Any], foreca
         return
     top = min(row["actions"], key=lambda a: a["rank"])["action"]
     counter["decisions_offering_one"] += 1
+    rank_of = {a["action"]: a["rank"] for a in row["actions"]}
+    counter["gift_inside_policy_top3"] += any(rank_of[g] <= 3 for g in gift_digests)
+    if taken not in gift_digests and taken in rank_of:
+        # what dropping gifts from the ranking would do to where the player's own choice stands (imitation only)
+        moved = rank_of[taken] - sum(rank_of[g] < rank_of[taken] for g in gift_digests)
+        counter["without_gifts_players_choice_enters_top1"] += rank_of[taken] > 1 and moved == 1
+        counter["without_gifts_players_choice_enters_top3"] += rank_of[taken] > 3 and moved <= 3
     counter["taken_by_player"] += taken in gift_digests
     if top in gift_digests:
         counter["policy_top1_is_one"] += 1
+        cards[next(a["label"] for a in row["actions"] if a["action"] == top)] += 1
         counter["policy_top1_gift_taken_by_player"] += top == taken
-        counter["policy_top1_gift_with_non_gift_in_top3"] += any(
-            a["action"] not in gift_digests and a["rank"] <= 3 and a["status"] not in (NOT_COMPUTED, ERROR)
-            for a in row["actions"])
+        usable = [a for a in row["actions"] if a["action"] not in gift_digests and a["status"] not in (NOT_COMPUTED, ERROR)]
+        counter["policy_top1_gift_with_non_gift_in_top3"] += any(a["rank"] <= 3 for a in usable)
+        # the action a veto would show instead: the best-ranked action that is not a gift
+        replacement = min(usable, key=lambda a: a["rank"])["action"] if usable else None
+        counter["policy_top1_gift_replacement_is_players_choice"] += replacement == taken
+        # narrower: the same card aimed elsewhere (a target-side correction rather than a different play)
+        card = " ".join(next(a["label"] for a in row["actions"] if a["action"] == top).split(" ")[:2])
+        same_card = [a for a in usable if " ".join(a["label"].split(" ")[:2]) == card]
+        counter["policy_top1_gift_same_card_alternative_exists"] += bool(same_card)
+        counter["policy_top1_gift_same_card_alternative_is_players_choice"] += (
+            bool(same_card) and min(same_card, key=lambda a: a["rank"])["action"] == taken)
+
+
+def _unexplained_examples(results: list, limit: int = 40) -> list[dict[str, Any]]:
+    """Every discrepancy with no known cause (up to ``limit``): the action, the path and the two values, no free text."""
+    found = []
+    for result in results:
+        for kind, paths in (("contradicted", result.contradicted), ("missed", result.missed)):
+            for path, values in sorted(paths.items()):
+                if result.explanations.get(path, ("UNEXPLAINED",))[0] == "UNEXPLAINED":
+                    game, _, number = result.decision_id.rpartition(":")
+                    found.append({"decision": f"{game[:8]}:{number}", "action": result.action_label,
+                                  "tier": result.tier.value, "kind": kind, "path": path, "values": list(values)})
+    return found[:limit]
 
 
 def _discrepancy_buckets(results: list) -> dict[str, Any]:

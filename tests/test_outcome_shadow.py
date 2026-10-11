@@ -406,6 +406,7 @@ def test_coverage_separates_end_turn_and_counts_exact_effects_inside_partial_for
     assert everything["actions"] == without_end["actions"] + 1
     assert everything["status"]["EXACT"] == without_end["status"].get("EXACT", 0) + 1       # END_TURN is the free one
     assert summary["invariant_violations"] == {} and summary["invalidation_reasons"] == {"DECISION_CHANGED": 1}
+    assert summary["actions_slower_than_20ms"] == 0
     partial = [a for a in rows[0]["actions"] if a["status"] == "PARTIAL"]
     assert without_end["partial_with_exact_effect"] == sum(bool(a["effects"]) for a in partial)
     assert without_end["with_exact_effect"] >= without_end["partial_with_exact_effect"]
@@ -544,9 +545,15 @@ def test_the_shadow_runs_only_after_the_recommendation_is_displayed_and_journale
 
 @pytest.mark.parametrize("known,chosen,expected,heal_text", [
     (True, 1, {"decisions": 1, "decisions_offering_one": 1, "taken_by_player": 0, "policy_top1_is_one": 1,
-               "policy_top1_gift_taken_by_player": 0, "policy_top1_gift_with_non_gift_in_top3": 1}, "Restore #4 Health."),
+               "policy_top1_gift_taken_by_player": 0, "policy_top1_gift_with_non_gift_in_top3": 1,
+               "policy_top1_gift_replacement_is_players_choice": 1,
+               "policy_top1_gift_same_card_alternative_exists": 0,
+               "policy_top1_gift_same_card_alternative_is_players_choice": 0}, "Restore #4 Health."),
     (True, 0, {"decisions": 1, "decisions_offering_one": 1, "taken_by_player": 1, "policy_top1_is_one": 1,
-               "policy_top1_gift_taken_by_player": 1, "policy_top1_gift_with_non_gift_in_top3": 1}, "Restore #4 Health."),
+               "policy_top1_gift_taken_by_player": 1, "policy_top1_gift_with_non_gift_in_top3": 1,
+               "policy_top1_gift_replacement_is_players_choice": 0,
+               "policy_top1_gift_same_card_alternative_exists": 0,
+               "policy_top1_gift_same_card_alternative_is_players_choice": 0}, "Restore #4 Health."),
     (False, 1, {"decisions": 1}, "Restore #4 Health."),   # Ruby Sanctum unobserved: the heal may be damage, no known gift
     (True, 1, {"decisions": 1}, "Restore #4 Health. Summon a plant that dreams of electric sheep."),  # own text not understood
 ])
@@ -567,4 +574,120 @@ def test_gifts_are_counted_as_a_bookkeeping_pattern(monkeypatch, tmp_path, known
     monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
     monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
     report = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)
-    assert report["opponent_only_improvement"] == expected
+    gifts = report["opponent_only_improvement"]
+    assert {k: v for k, v in gifts.items() if k in expected} == expected
+    assert set(gifts) - set(expected) <= {"gift_inside_policy_top3", "without_gifts_players_choice_enters_top1",
+                                          "without_gifts_players_choice_enters_top3"}
+    assert sum(report["policy_top1_gift_actions"].values()) == expected.get("policy_top1_is_one", 0)
+
+
+def test_report_cli_passes_on_a_clean_journal_fails_on_a_forged_one_and_never_overwrites(tmp_path, recommender, texts, capsys):
+    import outcome_shadow_report as cli
+
+    scorer, _ = recommender
+    lines = policy_log().lines
+    split = next(i for i, line in enumerate(lines) if "SendOption" in line)
+    directory = record_log(tmp_path, lines, pause_at=split)
+    run = replay.run_runtime(directory, scorer, texts, tmp_path / "on", shadow=True)
+    clean = tmp_path / "clean.jsonl"
+    clean.write_text("".join(json.dumps(r) + "\n" for r in run.shadow_rows), encoding="utf-8")
+    out = tmp_path / "out" / "report.json"
+    argv = ["--shadow", str(clean), "--recordings-root", str(directory.parent.parent), "--out", str(out)]
+    assert cli.main(argv) == 0
+    report = json.loads(out.read_text(encoding="utf-8"))
+    assert report["gates"]["pass"] and report["against_recordings"]["joined_to_recording"] == 1
+    with pytest.raises(SystemExit):
+        cli.main(argv)                                             # an existing report is never overwritten
+    forged = [json.loads(json.dumps(r)) for r in run.shadow_rows]
+    row = next(r for r in forged if r["event"] == "OUTCOME_SHADOW")
+    partial = next((a for a in row["actions"] if a["status"] == "PARTIAL"), row["actions"][0])
+    partial.update(status="EXACT", tier="EXACT", unknowns=["POSSIBLE_REACTION:BOARD_TRIGGER"])
+    bad = tmp_path / "bad.jsonl"
+    bad.write_text("".join(json.dumps(r) + "\n" for r in forged), encoding="utf-8")
+    assert cli.main(["--shadow", str(bad), "--out", str(tmp_path / "out" / "bad.json")]) == 1
+    assert json.loads((tmp_path / "out" / "bad.json").read_text(encoding="utf-8"))["gates"]["invariant_violations"] >= 1
+    capsys.readouterr()
+
+
+def test_a_target_side_correction_is_counted_when_the_same_card_has_a_better_aim(monkeypatch, tmp_path):
+    texts = TextSource.from_records([
+        {"id": "T_HEAL", "type": "SPELL", "mechanics": [], "text": "Restore #4 Health."},
+        {"id": "A", "type": "MINION", "mechanics": [], "text": ""}, {"id": "B", "type": "MINION", "mechanics": [], "text": ""}])
+    ctx = ObservedContext(healing_does_damage=False, healing_bonus=0, spell_healing_doubled=False)
+    state = sc.position(self_side=sc.side(mana=5, board=(sc.minion("B", 2, 1, 1, max_health=4),)),
+                        opponent=sc.side(board=(sc.minion("A", 3, 5, 1, max_health=7),)),
+                        hand=(sc.hand_card("T_HEAL", "SPELL", 1),))
+    actions = [sc.play("T_HEAL", 0, "SPELL", 1, sc.target_minion("OPPONENT", 1, "A")),
+               sc.play("T_HEAL", 0, "SPELL", 1, sc.target_minion("SELF", 1, "B")), sc.end_turn()]
+    game = _labeled(state, actions, state, chosen=1)
+    row = _rows_for(state, actions, context=ctx)
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
+    report = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)
+    gifts = report["opponent_only_improvement"]
+    assert gifts["policy_top1_is_one"] == 1 and gifts["taken_by_player"] == 0
+    assert gifts["policy_top1_gift_same_card_alternative_exists"] == 1
+    assert gifts["policy_top1_gift_same_card_alternative_is_players_choice"] == 1
+    assert gifts["gift_inside_policy_top3"] == 1
+    assert gifts["without_gifts_players_choice_enters_top1"] == 1      # rank 2 behind the gift becomes rank 1
+    assert gifts["without_gifts_players_choice_enters_top3"] == 0      # it was in the Top-3 already
+    assert report["policy_top1_gift_actions"] == {"PLAY_CARD T_HEAL -> OPPONENT minion #1 A": 1}
+
+
+def test_dropping_gifts_moves_the_players_choice_up_the_ranking(monkeypatch, tmp_path):
+    texts = TextSource.from_records([
+        {"id": "T_HEAL", "type": "SPELL", "mechanics": [], "text": "Restore #4 Health."},
+        {"id": "A", "type": "MINION", "mechanics": [], "text": ""}, {"id": "B", "type": "MINION", "mechanics": [], "text": ""}])
+    ctx = ObservedContext(healing_does_damage=False, healing_bonus=0, spell_healing_doubled=False)
+    state = sc.position(self_side=sc.side(mana=5, board=(sc.minion("B", 2, 2, 1),)),
+                        opponent=sc.side(board=(sc.minion("A", 3, 5, 1, max_health=7),)),
+                        hand=(sc.hand_card("T_HEAL", "SPELL", 1),))
+    actions = [sc.play("T_HEAL", 0, "SPELL", 1, sc.target_minion("OPPONENT", 1, "A")), sc.end_turn(),
+               sc.attack(1, "B", sc.target_minion("OPPONENT", 1, "A")),
+               sc.attack(1, "B", sc.target_minion("OPPONENT", 1, "A")) | {"source_board_position": 2}]
+    game = _labeled(state, actions, state, chosen=3)                  # the player's choice sits at Policy rank 4
+    row = _rows_for(state, actions, context=ctx)
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.label_recording", lambda directory, catalog: ({"g" * 64: game}, None))
+    monkeypatch.setattr("manamind.outcome.shadow_analysis.context_from_observed", lambda facts, state: ctx)
+    gifts = verify_recordings(group_decisions([row]), {("g" * 64)[:16]: [tmp_path]}, CATALOG, texts)["opponent_only_improvement"]
+    assert gifts["gift_inside_policy_top3"] == 1
+    assert gifts["without_gifts_players_choice_enters_top3"] == 1 and gifts["without_gifts_players_choice_enters_top1"] == 0
+
+
+@pytest.mark.parametrize("ending,reason_prefix", [
+    ("unknown_entity", "TRUST_LOST:SYNCING:AWAITING_DECISION"),
+    ("game_reset", "TRUST_LOST:SYNCING:GAME_RESET"),
+    ("game_over", "GAME_OVER"),
+    ("next_options", "TRUST_LOST:SYNCING:AWAITING_DECISION"),
+])
+def test_trust_changes_end_a_shadow_exactly_as_they_end_the_recommendation(tmp_path, recommender, texts, ending, reason_prefix):
+    scorer, _ = recommender
+    log = LiveLog().create_game().mulligan().self_decision(1)
+    split = len(log.lines)
+    if ending == "unknown_entity":
+        log.send_option(1)
+        log.begin_turn(2)
+        log.lines.append("D 20:30:00.0000000 GameState.DebugPrintPower() - TAG_CHANGE Entity=999 tag=ZONE value=HAND")
+        log.options()
+    elif ending == "game_reset":
+        log.batch(["BLOCK_START BlockType=GAME_RESET Entity=GameEntity EffectCardId= EffectIndex=0 Target=0 SubOption=-1",
+                   "BLOCK_END"]).finish_list()
+    elif ending == "game_over":
+        log.complete()
+    else:
+        log.send_option(1)
+        log.begin_turn(2)
+        log.options()
+    directory = record_log(tmp_path, log.lines, pause_at=split)
+    plain = replay.run_runtime(directory, scorer, texts, tmp_path / "off", shadow=False)
+    shadowed = replay.run_runtime(directory, scorer, texts, tmp_path / "on", shadow=True)
+    assert all(v for k, v in replay.compare_runs(directory, plain, shadowed).items()
+               if isinstance(v, bool) and not k.startswith("info_"))
+    first = next(r for r in shadowed.journal if r["event"] == "INVALIDATION")
+    assert first["reason"].startswith(reason_prefix)
+    stopped = [r for r in shadowed.shadow_rows if r["event"] == "OUTCOME_SHADOW_INVALIDATION"][0]
+    assert stopped["decision_id"] == first["decision_id"] and stopped["reason"] == first["reason"]
+    rows = [r for r in shadowed.shadow_rows if r["event"] == "OUTCOME_SHADOW"]
+    assert [r["decision_id"] for r in rows] == [first["decision_id"]]       # an untrusted decision is never shadowed
+    if ending == "unknown_entity":
+        assert any(line.startswith("status: UNTRUSTED") for line in shadowed.emitted)
