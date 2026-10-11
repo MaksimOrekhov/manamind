@@ -1,0 +1,30 @@
+{
+  "coverage": 0.95,
+  "intervals": {
+    "B_minus_A": {
+      "CE": [
+        -0.023483330389964075,
+        0.011763112574088864
+      ],
+      "Top1": [
+        -0.0380952380952381,
+        0.005747126436781609
+      ]
+    },
+    "B_minus_initial": {
+      "CE": [
+        -0.011440368998756808,
+        0.05769394037751812
+      ],
+      "Top1": [
+        -0.03900709219858156,
+        0.03
+      ]
+    }
+  },
+  "limitation": "Only seven reused validation matches; not an independent real test",
+  "method": "paired whole-match percentile bootstrap; decision-weighted metrics",
+  "resamples": 10000,
+  "seed": 42,
+  "validation_matches": 7
+}

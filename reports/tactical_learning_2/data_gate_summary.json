@@ -1,0 +1,23 @@
+{
+  "all_passed": true,
+  "checks": [
+    "pinned known texts/types/base stats/mechanics",
+    "declared synthetic IDs",
+    "complete legal menu",
+    "observed Spell Damage consistency",
+    "independent arithmetic vs exact Outcome",
+    "bounded integer winning prefixes vs independent Outcome attack replay",
+    "encoding contract",
+    "cross-split and old-control normalized-content overlap"
+  ],
+  "data_gate_sha256": "9c7e1c496196283fe4393a8cf1092dbaa99e39dd82ac234082ec9424b62be101",
+  "goals": {
+    "AMBIGUOUS": 8,
+    "DEAL_ENEMY_DAMAGE": 48,
+    "PURE_SELF_HARM": 40,
+    "REMOVE_AND_SURVIVE": 96,
+    "WIN_BY_ATTACKS": 48,
+    "WIN_NOW": 44
+  },
+  "rows": 284
+}

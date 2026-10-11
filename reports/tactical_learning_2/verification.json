@@ -1,0 +1,14 @@
+{
+  "ruff_src_scripts_tests": "PASS",
+  "offline_pinned_regeneration": {"outputs": 2, "diff": "clean"},
+  "focused_tactical_tests": {"passed": 61},
+  "working_tree_full_tests": {"passed": 962, "skipped": 1, "deselected_training": 4, "failed": 1, "failure": "Existing untracked vendor/RosettaStone violates migration guard"},
+  "clean_source_first_full_tests": {"passed": 963, "skipped": 1, "deselected_training": 4, "failed": 1, "failure": "Existing Outcome journal rotation timing test; isolated retry PASS"},
+  "clean_source_repeat_full_tests": {"passed": 964, "skipped": 1, "deselected_training": 4, "failed": 0},
+  "source_and_input_seals": "PASS",
+  "checkpoint_reload_exact_logits": "PASS",
+  "public_json_private_identifiers_states_logits_scan": "PASS",
+  "new_training_runs": 2,
+  "post_control_fits": 0,
+  "production_changes": false
+}

@@ -1,0 +1,202 @@
+{
+  "A": [
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_0",
+      "logit_delta_range": 0.0081864595413208,
+      "max_logit_change": 0.00478208065032959
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_2",
+      "logit_delta_range": 0.007659912109375,
+      "max_logit_change": 0.0043849945068359375
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_4",
+      "logit_delta_range": 0.009245514869689941,
+      "max_logit_change": 0.005380034446716309
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_6",
+      "logit_delta_range": 0.008267760276794434,
+      "max_logit_change": 0.00465548038482666
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_0",
+      "logit_delta_range": 0.0463026762008667,
+      "max_logit_change": 0.02362954616546631
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_2",
+      "logit_delta_range": 0.04661965370178223,
+      "max_logit_change": 0.0238039493560791
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_4",
+      "logit_delta_range": 0.044973134994506836,
+      "max_logit_change": 0.023401975631713867
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_6",
+      "logit_delta_range": 0.05195212364196777,
+      "max_logit_change": 0.026496410369873047
+    }
+  ],
+  "B": [
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_0",
+      "logit_delta_range": 0.01742100715637207,
+      "max_logit_change": 0.009721517562866211
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_2",
+      "logit_delta_range": 0.01524662971496582,
+      "max_logit_change": 0.008523106575012207
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_4",
+      "logit_delta_range": 0.019730567932128906,
+      "max_logit_change": 0.010984539985656738
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_6",
+      "logit_delta_range": 0.016986370086669922,
+      "max_logit_change": 0.009514927864074707
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_0",
+      "logit_delta_range": 0.04368126392364502,
+      "max_logit_change": 0.021892428398132324
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_2",
+      "logit_delta_range": 0.044002413749694824,
+      "max_logit_change": 0.02205789089202881
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_4",
+      "logit_delta_range": 0.04382205009460449,
+      "max_logit_change": 0.022519230842590332
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_6",
+      "logit_delta_range": 0.048895955085754395,
+      "max_logit_change": 0.024472475051879883
+    }
+  ],
+  "frozen": [
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_0",
+      "logit_delta_range": 0.03305619955062866,
+      "max_logit_change": 0.017040133476257324
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_2",
+      "logit_delta_range": 0.031968191266059875,
+      "max_logit_change": 0.01614983379840851
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_4",
+      "logit_delta_range": 0.033512234687805176,
+      "max_logit_change": 0.017273426055908203
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_6",
+      "logit_delta_range": 0.032331809401512146,
+      "max_logit_change": 0.016333147883415222
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_0",
+      "logit_delta_range": 0.019297689199447632,
+      "max_logit_change": 0.009725719690322876
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_2",
+      "logit_delta_range": 0.019524015486240387,
+      "max_logit_change": 0.009842075407505035
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_4",
+      "logit_delta_range": 0.019944071769714355,
+      "max_logit_change": 0.010004520416259766
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_6",
+      "logit_delta_range": 0.02144487202167511,
+      "max_logit_change": 0.010840073227882385
+    }
+  ],
+  "initial": [
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_0",
+      "logit_delta_range": 0.009748578071594238,
+      "max_logit_change": 0.0054168701171875
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_2",
+      "logit_delta_range": 0.009250283241271973,
+      "max_logit_change": 0.004739880561828613
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_4",
+      "logit_delta_range": 0.011026859283447266,
+      "max_logit_change": 0.006107211112976074
+    },
+    {
+      "field": "current_health",
+      "id": "tl2_control_health_6",
+      "logit_delta_range": 0.01028132438659668,
+      "max_logit_change": 0.0052874088287353516
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_0",
+      "logit_delta_range": 0.03525114059448242,
+      "max_logit_change": 0.017954587936401367
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_2",
+      "logit_delta_range": 0.035572171211242676,
+      "max_logit_change": 0.018116354942321777
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_4",
+      "logit_delta_range": 0.03493213653564453,
+      "max_logit_change": 0.01796269416809082
+    },
+    {
+      "field": "current_attack",
+      "id": "tl2_control_attack_6",
+      "logit_delta_range": 0.04029536247253418,
+      "max_logit_change": 0.02046370506286621
+    }
+  ]
+}

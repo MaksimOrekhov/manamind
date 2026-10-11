@@ -1,0 +1,15 @@
+{
+  "control_opened_sha256": "68b6173c21f9ee19afacd034960b4427a9ff2e800eb12557167f4fdfb2a37dfe",
+  "data_manifest_sha256": "35693b3a1d8b1892334842f95ed87484f9b53a9445f73ae9470d91bd14b8ed65",
+  "private_prediction_sha256": {
+    "A": "22a03e4d041c6d71f8f3c09dd5f8b8ba2e19f568eb9359725c1892f631e2aa57",
+    "B": "dd4c27403eb5b7ad2ba8e49d682ee3036040cb3c2d79e537065c466a4798692b",
+    "frozen": "718172e9f21b88efa586b3f8bede2ef52c13568354413d948b287a65e83b2843",
+    "initial": "e2f960daa4e1af47f761e961133bca91044a4c8f3baaf0534fb4b4224621d1d3"
+  },
+  "public_source_sha256": {
+    "scripts/evaluate_tactical_learning_2.py": "c31dcb0f484ad789edecdd98c30bb8463345927fc08fd0aa18ba36f205db339b",
+    "scripts/report_tactical_learning_2.py": "8cad8c3e5615d9dfc24f3e9b67e309b64453d9c603e9743d3d1704e533062a14",
+    "tests/test_tactical_learning_2.py": "05a6f6e302b081db9c92c4be35e8d5a052aa2c0d0441e4232545c29a27cfdc4f"
+  }
+}

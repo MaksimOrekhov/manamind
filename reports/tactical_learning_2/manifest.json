@@ -1,0 +1,87 @@
+{
+  "config": {
+    "batch_size": 32,
+    "device": "cuda",
+    "gates": {
+      "maximum_Warrior_top1_drop": 0.05,
+      "maximum_new_certified_errors": 0,
+      "maximum_real_CE_increase": 0.05,
+      "maximum_real_top1_drop": 0.03,
+      "minimum_certified_base_gain": 4,
+      "minimum_stats_pair_gain_over_A": 2,
+      "minimum_stats_pairs_both_correct_and_changed": 3
+    },
+    "gradient_clip": 1.0,
+    "learning_rate": 0.0001,
+    "max_epochs": 12,
+    "patience": 4,
+    "real_selection_CE_tolerance": 0.03,
+    "real_selection_top1_tolerance": 0.03,
+    "seconds_per_candidate": 600,
+    "seed": 42,
+    "selection": "minimum tactical validation set CE among epochs with real validation CE <= initial+0.03 and top1 >= initial-0.03; fallback minimum real CE flagged; common patience stop",
+    "steps_per_epoch": 50,
+    "tactical_counts_cycle": [
+      6,
+      6,
+      6,
+      7,
+      7
+    ],
+    "weight_decay": 0.001
+  },
+  "config_sha256": "8dbc8553e7bad012fafff6827fcecc2d2a584587aeae12f0183280f9331758c7",
+  "counts": {
+    "control": 60,
+    "train": 192,
+    "validation": 32
+  },
+  "data_gate_passed": true,
+  "files": {
+    "control": "6dbf816266f29fb4e517c78251fd4ceaaae137b2b2b7231b6f7e5dc85a3e186f",
+    "train": "4f24a2b176a1b9fdf190dba398cf3604ff07b0628292586fecb1fbd4f11d6219",
+    "validation": "347a78a941c86a5915aa6278cbf91b2ab7f71dfc7355ac6998635dc716d3dc51"
+  },
+  "initial_sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
+  "normalized_unique": {
+    "control": 28,
+    "train": 66,
+    "validation": 18
+  },
+  "old_control_overlap": 0,
+  "pinned_catalog_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "recipes": {
+    "control": [
+      "one_finish",
+      "multi_finish",
+      "health",
+      "attack",
+      "target",
+      "harm",
+      "ambiguous"
+    ],
+    "train": [
+      "one_finish",
+      "multi_finish",
+      "health",
+      "attack",
+      "target",
+      "harm"
+    ],
+    "validation": [
+      "multi_finish",
+      "health",
+      "attack",
+      "target"
+    ]
+  },
+  "schema": "manamind.tactical_learning/2",
+  "source_sha256": {
+    "scripts/prepare_tactical_learning_2.py": "9ba441915b8354640a09aafa72f046323009fbf1f6815296f51ed00d6429d492",
+    "src/manamind/training/tactical_learning_2_gate.py": "2bf93500f38e42a5c3fc29ed6f120f737c80bfdb78db59659cadd79d06a2be67"
+  },
+  "vanilla_ids": [
+    "TIME_053",
+    "TLC_248"
+  ]
+}
