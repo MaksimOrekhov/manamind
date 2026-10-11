@@ -5,6 +5,7 @@ export interface Recommendation {
   action: Record<string, string | number | boolean | null>
   logit: number
   view: Record<Language, Instruction>
+  risk_warning?: Partial<Record<Language, string>>
 }
 export type Status = 'DISCONNECTED' | 'WAITING_FOR_GAME' | 'SYNCING' | 'READY' | 'UNTRUSTED' | 'GAME_OVER' | 'THINKING' | 'UNAVAILABLE'
 export interface Preferences { language: Language; opacity: number; collapsed: boolean }

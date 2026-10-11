@@ -10,7 +10,7 @@ from datetime import datetime, timezone
 
 from manamind.domain.policy_action import ACTION_FIELDS
 
-from .instructions import instruction
+from .instructions import enemy_benefit_warning, instruction
 from .localization import CardNames
 from .recommendation import Recommendation
 from .snapshot import Snapshot
@@ -80,9 +80,15 @@ class OverlayFeed:
                 rows = []
                 for rank, item in enumerate(result.ranked, 1):
                     action = {k: v for k, v in item.action.items() if k in ACTION_FIELDS}
-                    rows.append({"rank": rank, "action": action, "logit": item.score,
-                                 "view": {lang: instruction(action, snap.state, self._names, lang)
-                                          for lang in ("ru", "en")}})
+                    row = {"rank": rank, "action": action, "logit": item.score,
+                           "view": {lang: instruction(action, snap.state, self._names, lang)
+                                    for lang in ("ru", "en")}}
+                    if rank == 1:
+                        warning = {lang: enemy_benefit_warning(action, snap.state, self._names, lang)
+                                   for lang in ("ru", "en")}
+                        if any(warning.values()):
+                            row["risk_warning"] = warning
+                    rows.append(row)
                 self._frame.update(status="READY", turn=result.turn, recommendations=rows,
                                    generated_at=datetime.now(timezone.utc).isoformat())
 

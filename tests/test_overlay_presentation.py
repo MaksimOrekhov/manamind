@@ -9,7 +9,7 @@ from types import SimpleNamespace
 import pytest
 
 from manamind.live.desktop import DesktopApi, inline_app, preferences, window_geometry
-from manamind.live.instructions import board_slots, instruction
+from manamind.live.instructions import board_slots, enemy_benefit_warning, instruction
 from manamind.live.localization import CardNames
 from manamind.live.panel import describe_action
 from manamind.live.presentation import OverlayFeed, PresentationEvent
@@ -17,7 +17,8 @@ from manamind.live.recommendation import RankedAction, Recommendation
 from manamind.live.trust import LiveStatus, StatusEvent
 
 ROOT = Path(__file__).parents[1]
-NAMES = CardNames({"A": {"ruRU": "Копия", "enUS": "Copy"}, "L": {"ruRU": "Локация"}})
+NAMES = CardNames({"A": {"ruRU": "Копия", "enUS": "Copy"}, "L": {"ruRU": "Локация"}},
+                  {"JAIL_913": "<b>Prepare</b>\nGive a minion +5/+5 and <b>Lifesteal</b>."})
 
 
 def state():
@@ -46,6 +47,75 @@ def recommendation():
     return snap, result
 
 
+def _enemy_6_6_state():
+    return {"self_hand": [{"card_id": "JAIL_913"}],
+            "self_player": {"hand_size": 1, "board": [], "locations": [], "active_effects": []},
+            "opponent": {"board": [{"card": {"card_id": "JAIL_912"}, "board_position": 1,
+                                      "current_attack": 6, "current_health": 6, "max_health": 6,
+                                      "divine_shield": False, "lifesteal": False}], "locations": []}}
+
+
+def test_jail_913_enemy_6_6_top1_gets_localized_caution_without_reranking():
+    state_value = _enemy_6_6_state()
+    # Spell-cast objectives/combo plans may make an enemy buff intentional; retain ranking.
+    state_value["self_player"]["active_effects"] = [{"card_id": "QUEST_001"}]
+    play = {"type": "PLAY_CARD", "card_id": "JAIL_913", "source_card_id": "JAIL_913",
+            "source_kind": "SPELL", "target_kind": "MINION", "target_side": "OPPONENT",
+            "target_card_id": "JAIL_912", "target_board_position": 1,
+            "target_attack": 6, "target_health": 6, "hand_index": 0, "play_position": 0}
+    snap = SimpleNamespace(game_key="private_game_key", seq=78, decision={"options_id": 91},
+                           state_hash="hash", status="READY", active_player="SELF", state=state_value)
+    result = Recommendation((snap.game_key, 78, 91, "hash"), 25, 4,
+                            (RankedAction(1, 3.0, play),
+                             RankedAction(0, 2.0, {"type": "END_TURN", "play_position": 0})), 1.0)
+    feed = OverlayFeed(NAMES)
+    feed.publish(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
+    rows = feed.read()["recommendations"]
+    assert [row["action"]["type"] for row in rows] == ["PLAY_CARD", "END_TURN"]
+    assert "может увеличить характеристики" in rows[0]["risk_warning"]["ru"]
+    assert "Похищение жизни" in rows[0]["risk_warning"]["ru"]
+    assert "part of a combo" in rows[0]["risk_warning"]["en"]
+    assert "risk_warning" not in rows[1]
+
+
+def test_enemy_benefit_warning_is_fail_closed_and_does_not_assume_intent():
+    play = {"type": "PLAY_CARD", "card_id": "JAIL_913", "source_card_id": "JAIL_913",
+            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "JAIL_912",
+            "target_board_position": 1, "target_attack": 6, "target_health": 6}
+    state_value = _enemy_6_6_state()
+    # A visible objective can make casting a spell intentional; this display-only warning
+    # remains advisory and must leave the Policy ranking untouched.
+    state_value["self_player"]["active_effects"] = [{"card_id": "QUEST_001"}]
+    assert enemy_benefit_warning(play, state_value, NAMES, "ru")
+    assert not enemy_benefit_warning({**play, "target_side": "SELF"}, state_value, NAMES, "ru")
+    assert not enemy_benefit_warning({**play, "target_board_position": 2}, state_value, NAMES, "ru")
+    assert not enemy_benefit_warning({**play, "target_card_id": "OTHER"}, state_value, NAMES, "ru")
+    unknown = CardNames({"JAIL_913": {"enUS": "Hold Them Off!"}})
+    assert not enemy_benefit_warning(play, state_value, unknown, "ru")
+
+
+def test_benefit_classifier_covers_only_clear_direct_effects():
+    state_value = _enemy_6_6_state()
+    play = {"type": "HERO_POWER", "card_id": "TEST", "source_card_id": "TEST",
+            "target_kind": "MINION", "target_side": "OPPONENT", "target_card_id": "JAIL_912",
+            "target_board_position": 1, "target_attack": 6, "target_health": 6}
+    for text, category in [("Give a minion Divine Shield.", "Божественный щит"),
+                           ("Give a minion Lifesteal.", "Похищение жизни")]:
+        names = CardNames(texts={"TEST": text})
+        assert category in enemy_benefit_warning(play, state_value, names, "ru")
+    full_health = dict(state_value)
+    full_health["opponent"] = {**state_value["opponent"], "board": [
+        {**state_value["opponent"]["board"][0], "current_health": 6, "max_health": 6}]}
+    heal_names = CardNames(texts={"TEST": "Restore 3 Health to a minion."})
+    assert not enemy_benefit_warning(play, full_health, heal_names, "ru")
+    injured = dict(state_value)
+    injured["opponent"] = {**state_value["opponent"], "board": [
+        {**state_value["opponent"]["board"][0], "current_health": 2}] }
+    assert "вылечить" in enemy_benefit_warning({**play, "target_health": 2}, injured, heal_names, "ru")
+    assert not enemy_benefit_warning(play, state_value, CardNames(texts={"TEST": "Deal 3 damage to a minion."}), "ru")
+    assert not enemy_benefit_warning({**play, "type": "ATTACK"}, state_value, NAMES, "ru")
+
+
 def test_official_names_fallbacks_and_tokens():
     names = CardNames.load(ROOT / "data/localization/card_names_253932.json")
     assert names.get("CS2_029") == "Огненный шар"
@@ -54,6 +124,9 @@ def test_official_names_fallbacks_and_tokens():
     assert names.get("CS2_101t") != "CS2_101t"  # token
     assert CardNames({"A": {"enUS": "Copy"}}).get("A") == "Copy"
     assert names.get("NEW_PATCH_UNKNOWN") == "NEW_PATCH_UNKNOWN"
+    catalog_names = CardNames.load(ROOT / "data/localization/card_names_253932.json",
+                                   ROOT / "data/cards/standard_current_enUS.json")
+    assert "Give a minion +5/+5" in catalog_names.text("JAIL_913")
 
 
 def test_same_cards_distinguished_by_current_stats_side_and_shared_slots():

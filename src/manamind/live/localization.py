@@ -6,17 +6,21 @@ from pathlib import Path
 
 
 class CardNames:
-    def __init__(self, names: dict | None = None) -> None:
+    def __init__(self, names: dict | None = None, texts: dict[str, str] | None = None) -> None:
         self.names = names or {}
+        self.texts = texts or {}
 
     @classmethod
     def load(cls, path: Path, fallback: Path | None = None) -> CardNames:
         names = {}
+        texts = {}
         if fallback is not None:
             try:
                 payload = json.loads(fallback.read_text(encoding="utf-8-sig"))
                 records = payload.get("cards", []) if isinstance(payload, dict) else payload
                 names = {r["id"]: {"enUS": r["name"]} for r in records if r.get("name")}
+                texts = {r["id"]: r["text"] for r in records
+                         if r.get("id") and isinstance(r.get("text"), str) and r["text"]}
             except (OSError, ValueError, KeyError, TypeError):
                 pass
         try:
@@ -27,7 +31,10 @@ class CardNames:
                 names[card_id] = {**names.get(card_id, {}), **localized}
         except (OSError, ValueError, KeyError, TypeError):
             pass
-        return cls(names)
+        return cls(names, texts)
+
+    def text(self, card_id: str | None) -> str:
+        return self.texts.get(card_id, "") if card_id else ""
 
     def get(self, card_id: str | None, language: str = "ru") -> str:
         if not card_id:

@@ -8,6 +8,7 @@ import type { Frame } from '../src/overlay/types'
 const ready = (): Frame => ({ ...emptyFrame(), session: 'session', revision: 3, status: 'READY', turn: 7,
   generated_at: '2026-10-11T10:20:30Z', recommendations: [1,2,3].map(rank => ({rank, logit: 7.5 - rank,
     action: { type: 'PLAY_CARD', hand_index: 3, target_side: 'OPPONENT', card_id: 'TECHNICAL_CARD_ID' },
+    ...(rank === 1 ? { risk_warning: { ru: 'Внимание: действие может усилить существо противника.', en: 'Warning: this action may help an enemy minion.' } } : {}),
     view: { ru: { verb: 'РАЗЫГРАТЬ', source: 'ИЗ РУКИ: Быстрое исцеление · 4-я карта слева', target: 'ГЕРОЙ ПРОТИВНИКА', placement: '', warning: '' },
       en: { verb: 'PLAY', source: 'FROM HAND: Flash Heal · card 4 from left', target: 'ENEMY HERO', placement: '', warning: '' } } })) })
 
@@ -19,6 +20,8 @@ describe('real overlay DTO presentation', () => {
     expect(panel.find('.item__source').text()).toContain('4-я карта слева')
     expect(panel.find('.item__target').text()).toContain('ГЕРОЙ ПРОТИВНИКА')
     expect(panel.find('.item__source').text()).not.toContain('TECHNICAL_CARD_ID')
+    expect(panel.findAll('.item__risk-warning')).toHaveLength(1)
+    expect(panel.find('.item__risk-warning').text()).toContain('усилить существо противника')
     expect(panel.find('details').text()).toContain('не вероятность победы')
     expect(panel.text()).not.toContain('EXACT')
   })
@@ -27,6 +30,7 @@ describe('real overlay DTO presentation', () => {
     await panel.setProps({language:'en'})
     expect(panel.find('.item__source').text()).toContain('Flash Heal')
     expect(panel.find('.item__target').text()).toContain('ENEMY HERO')
+    expect(panel.find('.item__risk-warning').text()).toContain('may help an enemy minion')
   })
   for (const status of ['SYNCING','UNTRUSTED','GAME_OVER','DISCONNECTED','THINKING','UNAVAILABLE'] as const) {
     it(`clears all advice in ${status}, even if the payload carries an old list`,()=>{

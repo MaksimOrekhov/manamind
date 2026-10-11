@@ -1,10 +1,13 @@
-"""Action → source → target, using only the matching visible LIVE snapshot.
+"""Action → source → target from the matching visible LIVE snapshot.
 
 Zone positions count board slots (minions AND Locations). Missing/inconsistent
-coordinates are omitted; a duplicate that cannot be identified is labelled unsafe.
-No card effects, strategy or predicted outcomes are interpreted here.
+coordinates are omitted; ambiguous coordinates stay unsafe. A separate narrow
+text check can warn about direct positive effects on enemy minions; it never
+changes Policy order or predicts strategy/outcomes.
 """
 from __future__ import annotations
+
+import re
 
 from .localization import CardNames
 
@@ -118,3 +121,83 @@ def instruction(action: dict, state: dict | None, names: CardNames, language: st
             result["target"] = "Цель не подтверждена" if ru else "Target unverified"
             result["warning"] = result["target"]
     return result
+
+
+_EFFECT_TEXT = re.compile(
+    r"^give (?:a |your |a friendly )?minion (?:\+\d+(?:/\+\d+| attack| health)|divine shield|lifesteal)\b"
+    r"|^restore \d+ health to (?:a |your |a friendly )?minion\b",
+    re.IGNORECASE,
+)
+_HTML = re.compile(r"<[^>]*>")
+_NEGATIVE_IN_SAME_SENTENCE = re.compile(
+    r"\b(?:deal \d+ damage|destroy|silence|transform|return|remove|reduce)\b", re.IGNORECASE
+)
+
+
+def _positive_target_effects(text: str) -> tuple[str, ...]:
+    """Recognize only explicit, direct positive minion text; unknown prose stays unclassified."""
+    effects = set()
+    plain = _HTML.sub("", text)
+    for sentence in re.split(r"(?<=[.!?])\s+|\n+", plain):
+        sentence = sentence.strip()
+        if _EFFECT_TEXT.search(sentence) is None or _NEGATIVE_IN_SAME_SENTENCE.search(sentence):
+            continue
+        lowered = sentence.lower()
+        if lowered.startswith("restore "):
+            effects.add("heal")
+        if re.match(r"^give (?:a |your |a friendly )?minion \+\d+", lowered):
+            effects.add("stats")
+        if "divine shield" in lowered:
+            effects.add("shield")
+        if "lifesteal" in lowered:
+            effects.add("lifesteal")
+    return tuple(effect for effect in ("stats", "shield", "lifesteal", "heal") if effect in effects)
+
+
+def enemy_benefit_warning(action: dict, state: dict, names: CardNames, language: str) -> str:
+    """Warn on a verified, explicit minion benefit; never changes action ranking."""
+    if action.get("type") not in {"PLAY_CARD", "HERO_POWER", "ACTIVATE_LOCATION"}:
+        return ""
+    if action.get("target_side") != "OPPONENT" or action.get("target_kind") != "MINION":
+        return ""
+    position = action.get("target_board_position")
+    slots = board_slots(state, "OPPONENT")
+    if slots is None or type(position) is not int or not 1 <= position <= len(slots):
+        return ""
+    target = slots[position - 1]
+    if target.get("card", {}).get("card_id") != action.get("target_card_id"):
+        return ""
+    for field, current_field in (("target_attack", "current_attack"), ("target_health", "current_health")):
+        observed = action.get(field)
+        current = target.get(current_field)
+        if type(observed) is int and type(current) is int and observed != current:
+            return ""
+    effects = _positive_target_effects(names.text(action.get("source_card_id") or action.get("card_id")))
+    if not effects:
+        return ""
+    effects = tuple(effect for effect in effects
+                    if not (effect == "shield" and target.get("divine_shield") is True)
+                    and not (effect == "lifesteal" and target.get("lifesteal") is True))
+    if "heal" in effects:
+        health, maximum = target.get("current_health"), target.get("max_health")
+        if type(health) is not int or type(maximum) is not int or health >= maximum:
+            effects = tuple(effect for effect in effects if effect != "heal")
+    if not effects:
+        return ""
+    if language == "ru":
+        details = {
+            "stats": "может увеличить характеристики существа противника",
+            "shield": "может дать существу противника Божественный щит",
+            "lifesteal": "может дать существу противника Похищение жизни",
+            "heal": "может вылечить существо противника",
+        }
+        reason = "; ".join(details[effect] for effect in effects)
+        return f"Внимание: действие {reason}. Возможно, это часть комбинации — проверь цель."
+    details = {
+        "stats": "may increase an enemy minion's stats",
+        "shield": "may give an enemy minion Divine Shield",
+        "lifesteal": "may give an enemy minion Lifesteal",
+        "heal": "may heal an enemy minion",
+    }
+    reason = "; ".join(details[effect] for effect in effects)
+    return f"Warning: this action {reason}. It may be part of a combo; check the target."

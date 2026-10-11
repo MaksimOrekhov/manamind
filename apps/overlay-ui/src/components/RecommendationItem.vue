@@ -4,6 +4,7 @@ import { words } from '../i18n/messages'
 import type { Language, Recommendation } from '../overlay/types'
 const props = defineProps<{ rec: Recommendation; language: Language }>()
 const view = computed(() => props.rec.view[props.language])
+const riskWarning = computed(() => props.rec.risk_warning?.[props.language] ?? '')
 </script>
 <template>
   <li class="item" :class="{ 'item--top': rec.rank === 1 }">
@@ -11,6 +12,7 @@ const view = computed(() => props.rec.view[props.language])
     <div v-if="view.source" class="item__source">{{ view.source }}</div>
     <div v-if="view.target" class="item__target"><span aria-hidden="true">↓</span>{{ view.target }}</div>
     <div v-if="view.placement" class="item__placement">{{ view.placement }}</div>
+    <p v-if="rec.rank === 1 && riskWarning" class="item__risk-warning">{{ riskWarning }}</p>
     <p v-if="view.warning" class="item__warning">{{ view.warning }}</p>
     <details>
       <summary>{{ words[language].details }}</summary>
@@ -29,7 +31,8 @@ const view = computed(() => props.rec.view[props.language])
 .item--top .item__source,.item--top .item__target { font-size:16px; font-weight:600; }
 .item__target span { display:block; color:var(--c-accent); font-size:18px; line-height:1; margin:7px 0; }
 .item__placement { color:var(--c-text-dim); }
-.item__warning { color:#ffd58b; font-size:12px; }
+.item__warning,.item__risk-warning { color:#ffd58b; font-size:12px; }
+.item__risk-warning { font-weight:700; padding:8px; border:1px solid #80653d; border-radius:7px; background:#32291d; }
 details { font-size:11px; color:var(--c-muted); margin-top:8px; }
 summary { cursor:pointer; }
 pre { white-space:pre-wrap; overflow-wrap:anywhere; }
