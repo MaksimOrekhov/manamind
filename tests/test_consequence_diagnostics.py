@@ -370,3 +370,72 @@ def test_the_census_counts_flags_by_policy_rank_and_never_by_agreement(monkeypat
     example = next(e for e in report["examples_top3"] if e["flag"] == SIDE_MISDIRECTION)
     assert example["against"].endswith("SELF minion #1 A")
     assert action_digest(actions[1]) in {a["action"] for a in record["actions"]}
+
+
+def test_a_mixed_outcome_is_not_harm():
+    # the sweep costs SELF Health but pops one enemy Divine Shield: one component improves, so no SELF_HARM
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 5, 5, 1),)),
+                        opponent=sc.side(board=(sc.minion("B", 6, 6, 1, divine_shield=True),)),
+                        hand=(sc.hand_card("SWEEP", "SPELL", 1),))
+    flags, _ = flags_of(state, [sc.play("SWEEP", 0, "SPELL", 1)])
+    assert flags == {}
+
+
+def test_popping_ones_own_divine_shield_for_nothing_is_self_harm():
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 5, 5, 1, divine_shield=True),)), opponent=sc.side(board=()),
+                        hand=(sc.hand_card("POKE", "SPELL", 1),))
+    flags, _ = flags_of(state, [sc.play("POKE", 0, "SPELL", 1, sc.target_minion("SELF", 1, "A"))])
+    assert flags == {(0, SELF_HARM): None}
+
+
+def test_an_own_text_the_grammar_cannot_read_leaves_the_harm_open():
+    texts = TEXTS.extended([{"id": "HALF", "type": "SPELL", "mechanics": [],
+                             "text": "Deal $1 damage to a minion. Summon a plant that dreams of electric sheep."}])
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 5, 5, 1),)), opponent=sc.side(board=()),
+                        hand=(sc.hand_card("HALF", "SPELL", 1),))
+    flags, result = flags_of(state, [sc.play("HALF", 0, "SPELL", 1, sc.target_minion("SELF", 1, "A"))], texts=texts)
+    assert flags == {} and result.insufficient[SELF_HARM] == 1
+
+
+def test_a_target_specific_trigger_on_the_better_use_blocks_the_conclusion():
+    # the dominating own-side use hits a minion with a Frenzy: only that use carries the open reaction
+    state = sc.position(self_side=sc.side(board=(sc.minion("FRENZY", 2, 4, 1),)),
+                        opponent=sc.side(board=(sc.minion("B", 2, 4, 1),)), hand=(sc.hand_card("COMBO", "SPELL", 1),))
+    actions = [sc.play("COMBO", 0, "SPELL", 1, sc.target_minion("OPPONENT", 1, "B")),
+               sc.play("COMBO", 0, "SPELL", 1, sc.target_minion("SELF", 1, "FRENZY"))]
+    texts = COMPOUND.extended([{"id": "FRENZY", "type": "MINION", "mechanics": [], "text": "Frenzy: Gain +2 Attack."}])
+    flags, result = flags_of(state, actions, texts=texts)
+    assert (0, SIDE_MISDIRECTION) not in flags
+    assert (SIDE_MISDIRECTION, "ALTERNATIVE_BOARD_TRIGGER") in result.blocked
+
+
+def test_the_reported_alternative_is_the_first_dominating_one():
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 2, 2, 1), sc.minion("C", 2, 2, 2))),
+                        opponent=sc.side(board=(sc.minion("B", 2, 2, 1),)), hand=(sc.hand_card("BUFFER", "SPELL", 2),))
+    actions = [sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("OPPONENT", 1, "B")),
+               sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("SELF", 1, "A")),
+               sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("SELF", 2, "C"))]
+    flags, _ = flags_of(state, actions)
+    assert flags[(0, SIDE_MISDIRECTION)] == 1
+
+
+def test_the_census_counts_a_flagged_action_the_player_took(monkeypatch, tmp_path):
+    from manamind.outcome.diagnostics_analysis import census
+    from manamind.outcome.shadow import FORECASTER_REVISION
+    from manamind.outcome.shadow_analysis import LabeledGame
+    from manamind.outcome.verify import LoggedDecision
+
+    state = sc.position(self_side=sc.side(board=(sc.minion("A", 2, 2, 1),), hero_health=20),
+                        opponent=sc.side(board=(sc.minion("B", 2, 2, 1),)), hand=(sc.hand_card("BUFFER", "SPELL", 2),))
+    actions = [sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("OPPONENT", 1, "B")),
+               sc.play("BUFFER", 0, "SPELL", 2, sc.target_minion("SELF", 1, "A")), sc.end_turn()]
+    record = forecast_menu(state, [(i, i + 1, a) for i, a in enumerate(actions)], TEXTS, ObservedContext())
+    row = {"event": "OUTCOME_SHADOW", "match_id": "g" * 64, "options_id": 1, "state_hash": "s" * 64,
+           "forecaster_rev": FORECASTER_REVISION, **record}
+    game = LabeledGame({1: LoggedDecision("g", 1, "g:1", state, actions[0], tuple(actions))}, {1: None}, {1: "s" * 64}, [])
+    monkeypatch.setattr("manamind.outcome.diagnostics_analysis.label_recording",
+                        lambda directory, catalog: ({"g" * 64: game}, None))
+    report = census([row], {("g" * 64)[:16]: [tmp_path]}, None, TEXTS)
+    assert report[SIDE_MISDIRECTION]["chosen_by_player"] == 1 and report[SELF_HARM]["chosen_by_player"] == 1
+    assert [c["flag"] for c in report["chosen_flagged"]] == [SIDE_MISDIRECTION, SELF_HARM] or \
+        {c["flag"] for c in report["chosen_flagged"]} == {SIDE_MISDIRECTION, SELF_HARM}
