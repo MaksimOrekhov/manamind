@@ -1,0 +1,57 @@
+{
+  "actual_preference_labels": 0,
+  "candidate_categories": {
+    "attack_or_end": 1607,
+    "face_or_trade": 619,
+    "identity_suspicion": 16,
+    "kill_survive_contrast": 20,
+    "same_target_attackers": 424,
+    "spell_target": 11453
+  },
+  "candidate_matches": 39,
+  "candidate_mechanical_directional": 10,
+  "candidate_mechanical_pairs": 24,
+  "candidate_mechanical_states": 5,
+  "candidate_pairs": 14103,
+  "candidate_states": 1020,
+  "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+  "deck_identity": "UNKNOWN: canonical visible-state rows have no verified deck list",
+  "expert_or_insufficient_required": 35,
+  "fits": 0,
+  "input_files_unchanged": true,
+  "manifest_sha256": "9f612b196adf5caebbd4b624be9e44521161bc2ef1e3772e83a3acdcfe21a699",
+  "match_multiplicities": {
+    "1": 10,
+    "2": 15
+  },
+  "max_states_per_match": 2,
+  "mechanical_directional_eligible": 2,
+  "mechanical_review_eligible": 5,
+  "pack_sha256": "e8b92ade254126d893331e7762a76c569917ed388c0e494b0b46d0d7d042f03c",
+  "pair_action_types": {
+    "ATTACK/ATTACK": 25,
+    "ATTACK/END_TURN": 7,
+    "PLAY_CARD/PLAY_CARD": 8
+  },
+  "real_test_read": false,
+  "selected_categories": {
+    "attack_or_end": 7,
+    "face_or_trade": 8,
+    "identity_suspicion": 2,
+    "kill_survive_contrast": 4,
+    "same_target_attackers": 17,
+    "spell_target": 8
+  },
+  "selected_classes": {
+    "DEATHKNIGHT": 2,
+    "PRIEST": 32,
+    "WARRIOR": 6
+  },
+  "selected_matches": 25,
+  "selected_parts": {
+    "train": 32,
+    "validation": 8
+  },
+  "selected_states": 40,
+  "unique_states": 40
+}

@@ -1,0 +1,37 @@
+{
+  "blind_html_has_no_scores_or_player_choice": true,
+  "browser_smoke": {
+    "browser_pair_sha_matches_python": true,
+    "end_to_end_reveal_import_download": "not claimed",
+    "feedback_filechooser": "not completed: browser session expired",
+    "initial_form_empty": true,
+    "rendered": true,
+    "reveal_initially_disabled": true,
+    "technical_abstention_saved": true,
+    "temporary_localhost_server_stopped": true
+  },
+  "empty_manual_export_validation": {
+    "preferences": 0,
+    "ready_for_training": false,
+    "unlabelled": 40
+  },
+  "focused_tests": 37,
+  "full_tests": {
+    "deselected_training_tests": 4,
+    "failed": 1,
+    "known_failure": "test_no_submodules_or_vendored_engine: pre-existing untracked vendor/RosettaStone",
+    "passed": 1013,
+    "skipped": 1
+  },
+  "input_seals_unchanged": true,
+  "pinned_outputs_reproduced": 2,
+  "real_game_labels": 0,
+  "ruff": "src scripts tests passed",
+  "source_hashes": {
+    "scripts/action_preferences.html": "eb54471fc0aaf730f0045659a285c9f6750c7b5c476a75d174bdc2bc232911ac",
+    "scripts/prepare_real_action_preferences.py": "82c62aacf7989cc5d520db3d0237bf9ef9b150e9394689940e966d803575cd55",
+    "scripts/validate_action_preferences.py": "0fbdd4912c75093e9699c2ec5093fd8aa52535cecebbf5b815bf9e3ad31e36f3",
+    "src/manamind/training/action_preferences.py": "5fc59ad1573386641490606992aa0e7acf8c566115535c7323e74c22d44d141f",
+    "tests/test_action_preferences.py": "35da5ec7d500ae6b1fa4bb5601ff21a5060a5fed729acba2d5d07e8cead6d04e"
+  }
+}
