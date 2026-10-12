@@ -18,7 +18,8 @@ sys.path.insert(0, str(ROOT / "src"))
 _REQUIRED_CHECKS = (
     "app_mounted", "ru_source_target", "warning_ru", "en_switch", "warning_en",
     "collapsed_height_ok", "native_opacity_ok", "native_topmost", "native_borderless",
-    "restored_height_ok", "game_over_clears_advice", "no_http_server",
+    "restored_height_ok", "feedback_button_visible", "feedback_saved_once",
+    "feedback_resets_on_new_decision", "game_over_clears_advice", "no_http_server",
 )
 
 
@@ -40,7 +41,9 @@ def main() -> None:
 
     feed = OverlayFeed(CardNames.load(ROOT / "data/localization/card_names_253932.json",
                                        ROOT / "data/cards/standard_current_enUS.json"))
-    api = DesktopApi(feed, args.output.parent / "smoke_preferences.json")
+    feedback_calls = []
+    api = DesktopApi(feed, args.output.parent / "smoke_preferences.json",
+                     flag_current=lambda: feedback_calls.append(True) is None)
     api.set_preferences({"language": "ru", "collapsed": False, "opacity": .92})
     window = webview.create_window("ManaMind host smoke", html=inline_app(ROOT / "apps/overlay-ui/dist"),
                                    js_api=api, on_top=True, frameless=True, easy_drag=False,
@@ -101,6 +104,20 @@ def main() -> None:
             time.sleep(.2)
             result["restored_height"] = int(window.height)
             result["restored_height_ok"] = result["restored_height"] > 56
+            flag = window.evaluate_js("document.querySelector('.feedback-flag')")
+            result["feedback_button_visible"] = bool(flag)
+            window.evaluate_js("document.querySelector('.feedback-flag').click()")
+            time.sleep(.3)
+            flagged_text = window.evaluate_js("document.querySelector('.feedback-flag').innerText")
+            result["feedback_saved_once"] = (
+                ("Отмечено" in flagged_text or "Saved for review" in flagged_text)
+                and window.evaluate_js("document.querySelector('.feedback-flag').disabled")
+                and len(feedback_calls) == 1
+            )
+            feed.publish(PresentationEvent("recommendation", snapshot=snap, recommendation=ranked))
+            time.sleep(.3)
+            result["feedback_resets_on_new_decision"] = not window.evaluate_js(
+                "document.querySelector('.feedback-flag').disabled")
             feed.publish(PresentationEvent("status", status="GAME_OVER"))
             time.sleep(.4)
             result["game_over_clears_advice"] = window.evaluate_js("document.querySelectorAll('.item').length") == 0

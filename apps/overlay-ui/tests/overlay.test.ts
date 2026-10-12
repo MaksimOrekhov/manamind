@@ -52,7 +52,7 @@ describe('real overlay DTO presentation', () => {
     const getFrame = vi.fn().mockResolvedValueOnce(ready())
       .mockImplementationOnce(() => new Promise<Frame>(resolve => { resolveOld = resolve }))
       .mockResolvedValue({...emptyFrame(),session:'session',revision:4,status:'SYNCING'})
-    window.pywebview = {api:{get_frame:getFrame,set_preferences:vi.fn(),close:vi.fn()}}
+    window.pywebview = {api:{get_frame:getFrame,set_preferences:vi.fn(),flag_suspicious:vi.fn().mockResolvedValue({status:'SAVED'}),close:vi.fn()}}
     const app=mount(App)
     await flushPromises()
     expect(app.findAll('.item')).toHaveLength(3)
@@ -66,5 +66,29 @@ describe('real overlay DTO presentation', () => {
   it('keeps a missing checkpoint warning while the log is disconnected',()=>{
     const panel=mount(OverlayPanel,{props:{frame:{...emptyFrame(),policy_available:false},language:'ru'}})
     expect(panel.find('.policy-error').text()).toContain('Policy не загрузилась')
+  })
+  it('marks the currently displayed decision once and clears the mark when it changes', async()=>{
+    const flag = vi.fn().mockResolvedValue({status:'SAVED'})
+    window.pywebview = {api:{get_frame:vi.fn(),set_preferences:vi.fn(),flag_suspicious:flag,close:vi.fn()}}
+    const panel=mount(OverlayPanel,{props:{frame:ready(),language:'ru'}})
+    expect(panel.get('.feedback-flag').text()).toContain('кажется сомнительной')
+    await panel.get('.feedback-flag').trigger('click')
+    await flushPromises()
+    expect(flag).toHaveBeenCalledWith({session:'session',revision:3})
+    expect(panel.get('.feedback-flag').text()).toContain('Отмечено')
+    expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(true)
+    await panel.setProps({frame:{...ready(),revision:4}})
+    expect(panel.get('.feedback-flag').text()).toContain('кажется сомнительной')
+    expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(false)
+    panel.unmount(); delete window.pywebview
+  })
+  it('explains when a click raced with a changed LIVE decision', async()=>{
+    window.pywebview = {api:{get_frame:vi.fn(),set_preferences:vi.fn(),
+      flag_suspicious:vi.fn().mockResolvedValue({status:'STALE'}),close:vi.fn()}}
+    const panel=mount(OverlayPanel,{props:{frame:ready(),language:'ru'}})
+    await panel.get('.feedback-flag').trigger('click')
+    await flushPromises()
+    expect(panel.find('.feedback-message').text()).toContain('Решение уже изменилось')
+    panel.unmount(); delete window.pywebview
   })
 })

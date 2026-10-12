@@ -18,6 +18,7 @@ export interface Frame {
 export interface DesktopApi {
   get_frame(): Promise<Frame>
   set_preferences(value: Preferences): Promise<Preferences>
+  flag_suspicious(value: { session: string; revision: number }): Promise<{ status: 'SAVED' | 'STALE' | 'UNAVAILABLE' }>
   close(): Promise<void>
 }
 declare global { interface Window { pywebview?: { api: DesktopApi } } }

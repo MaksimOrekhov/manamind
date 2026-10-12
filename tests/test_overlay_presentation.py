@@ -13,6 +13,7 @@ from manamind.live.instructions import board_slots, enemy_benefit_warning, instr
 from manamind.live.localization import CardNames
 from manamind.live.panel import describe_action
 from manamind.live.presentation import OverlayFeed, PresentationEvent
+from manamind.live.prediction_journal import PredictionJournal
 from manamind.live.recommendation import RankedAction, Recommendation
 from manamind.live.trust import LiveStatus, StatusEvent
 
@@ -224,6 +225,41 @@ def test_preferences_only_control_presentation_and_recover_offscreen(tmp_path):
     geometry = window_geometry(preferences({"x": 9999, "y": -9999}),
                                [SimpleNamespace(x=0, y=0, width=1280, height=720)])
     assert 0 <= geometry["x"] <= 860 and 0 <= geometry["y"] <= 80
+
+
+def test_desktop_api_accepts_only_current_ready_feedback_frame():
+    snap, result = recommendation()
+    feed = OverlayFeed(NAMES)
+    feed.publish(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
+    calls = []
+    api = DesktopApi(feed, Path("unused.json"), flag_current=lambda: calls.append(True) or True)
+    frame = api.get_frame()
+    assert api.flag_suspicious({"session": "wrong", "revision": frame["revision"]}) == {"status": "STALE"}
+    assert api.flag_suspicious({"session": frame["session"], "revision": frame["revision"]}) == {"status": "SAVED"}
+    assert calls == [True]
+    feed.publish(PresentationEvent("invalidated"))
+    assert api.flag_suspicious({"session": frame["session"], "revision": frame["revision"]}) == {"status": "STALE"}
+    assert calls == [True]
+
+
+def test_suspicion_flag_is_unassessed_and_keeps_full_menu_in_separate_local_file(tmp_path):
+    snap, result = recommendation()
+    clean_ranked = tuple(replace(item, action={k: v for k, v in item.action.items() if k != "player_name"})
+                         for item in result.ranked)
+    result = replace(result, ranked=clean_ranked, menu=clean_ranked)
+    journal = PredictionJournal(tmp_path / "prediction_journal.jsonl")
+    journal.recommendation(snap, result, "a" * 64)
+    journal.suspicious(snap, result, "a" * 64)
+    row = json.loads(journal.feedback_path.read_text(encoding="utf-8"))
+    assert row["event"] == "SUSPECTED_RECOMMENDATION"
+    assert row["assessment"] == "UNASSESSED"
+    assert row["decision_id"].endswith(":4:8:hash")
+    assert row["checkpoint_sha256"] == "a" * 64
+    assert len(row["legal_menu"]) == 2
+    assert [item["action"] for item in row["top3"]] == [item.action for item in result.ranked]
+    assert all(len(item["action_sha256"]) == 64 for item in row["legal_menu"])
+    assert "state" not in row and "PRIVATE_NAME" not in json.dumps(row)
+    assert "PRIVATE_NAME" not in journal.path.read_text(encoding="utf-8")
 
 
 def test_bundle_inlined_without_a_server_and_no_path_escape(tmp_path):

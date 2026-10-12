@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
 from .recommendation import Recommendation
-from .snapshot import Snapshot
+from .snapshot import Snapshot, canonical_json
 
 
 def _utc_now() -> str:
@@ -31,8 +32,10 @@ class PredictionJournal:
     """
 
     def __init__(self, path: Path, *, shadow_path: Path | None = None,
-                 shadow_max_bytes: int = SHADOW_MAX_BYTES) -> None:
+                 shadow_max_bytes: int = SHADOW_MAX_BYTES, feedback_path: Path | None = None) -> None:
         self.path = Path(path)
+        self.feedback_path = (Path(feedback_path) if feedback_path is not None
+                              else self.path.with_name("decision_feedback.jsonl"))
         self.shadow_path = (Path(shadow_path) if shadow_path is not None
                             else self.path.with_name(f"{self.path.stem}.outcome_shadow.jsonl"))
         self.shadow_max_bytes = shadow_max_bytes
@@ -58,6 +61,31 @@ class PredictionJournal:
             "recommended_at_utc": _utc_now(),
             "observed_action": {"status": "UNKNOWN"},
         })
+
+    def suspicious(self, snapshot: Snapshot, recommendation: Recommendation,
+                   checkpoint_sha256: str) -> None:
+        """Record an unassessed user flag and the exact legal menu; never a preference label."""
+        if (recommendation.identity != (snapshot.game_key, snapshot.seq,
+                                        snapshot.decision.get("options_id"), snapshot.state_hash)
+                or not recommendation.menu):
+            raise ValueError("Feedback must reference the displayed complete recommendation")
+        menu = [{"menu_index": item.index, "policy_rank": rank, "action": dict(item.action),
+                 "action_sha256": hashlib.sha256(canonical_json(item.action).encode("utf-8")).hexdigest()}
+                for rank, item in enumerate(recommendation.menu, 1)]
+        top3 = [{"rank": rank, "action": dict(item.action)}
+                for rank, item in enumerate(recommendation.ranked, 1)]
+        self._append({
+            "schema": "manamind.live_feedback/1",
+            "event": "SUSPECTED_RECOMMENDATION",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "checkpoint_sha256": checkpoint_sha256,
+            "flagged_at_utc": _utc_now(),
+            "assessment": "UNASSESSED",
+            "top3": top3,
+            "legal_menu": menu,
+        }, self.feedback_path)
 
     def invalidation(self, snapshot: Snapshot, reason: str) -> None:
         self._append({

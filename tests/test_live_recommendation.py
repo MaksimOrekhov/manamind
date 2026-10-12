@@ -26,6 +26,9 @@ from manamind.live.recommendation import (  # noqa: E402
 )
 from manamind.live.panel import OverlayPanel, describe_action, load_card_names  # noqa: E402
 from manamind.live.prediction_journal import PredictionJournal  # noqa: E402
+from manamind.live.localization import CardNames  # noqa: E402
+from manamind.live.presentation import OverlayFeed  # noqa: E402
+from manamind.live.desktop import DesktopApi  # noqa: E402
 from manamind.live.runner import LiveRunner  # noqa: E402
 from manamind.live.session import LiveSession  # noqa: E402
 from manamind.live.trust import LiveStatus  # noqa: E402
@@ -472,6 +475,62 @@ def test_offline_recording_replay_keeps_rankings_and_hashes(tmp_path, recommende
     assert result["recorded_hashes_match"] and result["ranking_replay_identical"]
     assert result["scored"] == 1
     assert result["latency_ms"]["p99"] >= 0
+
+
+def test_live_suspicion_feedback_roundtrips_through_real_recording_replay(tmp_path, recommender):
+    scorer, _ = recommender
+    logs, data = tmp_path / "Logs", tmp_path / "data"
+    power = write(logs / "Power.log", [""], newline=False)
+    clock = Clock()
+    recorder = Recorder(data / "raw/live", catalog_path=CARDS)
+    live = LiveRunner(logs, LiveSession(CATALOG), recorder, clock=clock)
+    journal = PredictionJournal(data / "raw/live/prediction_journal.jsonl")
+    feed = OverlayFeed(CardNames.load(ROOT / "data/localization/card_names_253932.json", CARDS))
+    runtime = run_manamind.UnifiedRuntime(live, DummyCollector(), scorer, emit=lambda _: None,
+                                          collector_seconds=3600, journal=journal, on_event=feed.publish)
+    log = LiveLog().create_game().mulligan().self_decision(1)
+    append(power, "\n".join(log.lines) + "\n")
+    for _ in range(8):
+        runtime.step(clock.now)
+        clock.advance(0.05)
+    frame = feed.read()
+    assert frame["status"] == "READY" and runtime.active_snapshot is live.session.current_snapshot
+    api = DesktopApi(feed, tmp_path / "overlay_preferences.json", flag_current=runtime.flag_active_recommendation)
+    assert api.flag_suspicious({"session": frame["session"], "revision": frame["revision"]}) == {"status": "SAVED"}
+    assert api.flag_suspicious({"session": frame["session"], "revision": frame["revision"]}) == {"status": "SAVED"}
+    assert len(journal.feedback_path.read_text(encoding="utf-8").splitlines()) == 1
+
+    log.lines.clear()
+    log.send_option(1)
+    append(power, "\n".join(log.lines) + "\n")
+    runtime.step(clock.now)
+    assert api.flag_suspicious({"session": frame["session"], "revision": frame["revision"]}) == {"status": "STALE"}
+
+    log.lines.clear()
+    log.complete()
+    append(power, "\n".join(log.lines) + "\n")
+    runtime.step(clock.now + 0.1)
+    runtime.finish()
+
+    import review_live_feedback as review_feedback
+    feedback_rows = review_feedback.read_rows(journal.feedback_path)
+    prediction_rows = review_feedback.read_rows(journal.path)
+    contexts = review_feedback.load_contexts(feedback_rows, prediction_rows, data / "raw/live", CATALOG)
+    assert len(contexts) == 1
+    decision, (flag, context) = next(iter(contexts.items()))
+    assert context["snapshot"]["state_hash"] == flag["state_hash"]
+    assert context["recording"].endswith(decision.split(":", 1)[0][:16])
+    first_menu_number = flag["legal_menu"][0]["menu_index"] + 1
+    answers = iter(["2", str(first_menu_number), "Предпочту разыграть другое действие."])
+    review_feedback.review(contexts, journal.feedback_path,
+                           CardNames.load(ROOT / "data/localization/card_names_253932.json", CARDS),
+                           input_fn=lambda _: next(answers))
+    reviewed = review_feedback.read_rows(journal.feedback_path)
+    assessment = next(row for row in reviewed if row["event"] == "ASSESSMENT")
+    assert assessment["assessment"] == "EXPERT_PREFERENCE"
+    assert assessment["preferred_action"]["menu_index"] == first_menu_number - 1
+    reopened = review_feedback.load_contexts(reviewed, prediction_rows, data / "raw/live", CATALOG)
+    assert reopened == {}
 
 
 @pytest.mark.parametrize("policy_fails", [False, True])

@@ -5,6 +5,7 @@ import json
 import re
 import sys
 import threading
+from collections.abc import Callable
 from pathlib import Path
 
 from .localization import CardNames
@@ -57,9 +58,11 @@ def window_geometry(settings: dict, screens) -> dict:
 
 
 class DesktopApi:
-    """Only these three methods are exposed to the bundled, offline UI."""
-    def __init__(self, feed: OverlayFeed, settings_path: Path) -> None:
+    """Only local presentation settings and the current-decision flag are exposed to the UI."""
+    def __init__(self, feed: OverlayFeed, settings_path: Path,
+                 flag_current: Callable[[], bool] | None = None) -> None:
         self._feed, self._path = feed, settings_path
+        self._flag_current = flag_current
         self._window = None
         self._lock = threading.RLock()
         try:
@@ -82,6 +85,18 @@ class DesktopApi:
         # WinForms resize events run on another thread; never Invoke while holding the lock.
         self._apply()
         return result
+
+    def flag_suspicious(self, payload: dict) -> dict:
+        """Reject stale UI frames before asking the runtime to revalidate the live decision."""
+        if not isinstance(payload, dict) or type(payload.get("revision")) is not int:
+            return {"status": "STALE"}
+        frame = self._feed.read()
+        if (payload.get("session") != frame["session"] or payload["revision"] != frame["revision"]
+                or frame["status"] != "READY"):
+            return {"status": "STALE"}
+        if self._flag_current is None:
+            return {"status": "UNAVAILABLE"}
+        return {"status": "SAVED" if self._flag_current() else "STALE"}
 
     def close(self) -> None:
         self._feed.publish(PresentationEvent("status", status="DISCONNECTED", reason="APP_STOP"))
@@ -127,7 +142,8 @@ def launch_desktop(runtime, root: Path, cards_path: Path, poll_ms: int = 50) -> 
     html = inline_app(root / "apps/overlay-ui/dist")
     names = CardNames.load(root / "data/localization/card_names_253932.json", cards_path)
     feed = OverlayFeed(names, policy_available=runtime.recommender is not None)
-    api = DesktopApi(feed, runtime.collector.raw_output.parent / "overlay_preferences.json")
+    api = DesktopApi(feed, runtime.collector.raw_output.parent / "overlay_preferences.json",
+                     flag_current=runtime.flag_active_recommendation)
     # The settings file contains window coordinates/language only; no game data.
     window = webview.create_window("ManaMind · Policy v2", html=html, js_api=api, on_top=True,
                                    frameless=True, easy_drag=False, min_size=(340, 56),

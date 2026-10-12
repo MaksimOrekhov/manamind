@@ -34,6 +34,21 @@ decision identity, state/checkpoint hashes and invalidation events. The journal 
 names or hidden opponent cards. Actual player action linkage stays `UNKNOWN` unless decision identity
 can be proven.
 
+The optional Vue/WebView2 overlay adds one button under Top-3: «Рекомендация кажется
+сомнительной». It is available only for the displayed READY decision and sends just the
+overlay session/revision to the local Python bridge. The runtime rechecks the exact active
+snapshot under a lock; a changed turn, stale frame or replacement app session cannot flag an
+old recommendation. Repeated calls for the same active decision are idempotent.
+
+An accepted flag is appended to the separate, ignored
+`data/raw/live/decision_feedback.jsonl`. It joins to the prediction journal and replay by match,
+decision and state hash, and carries the checkpoint SHA, Top-3 and full legal menu with per-action
+digests. It does not copy the game state, store hidden cards, or infer a preference from the click.
+After a match, run `python scripts/review_live_feedback.py` to verify and restore context from the
+local replay, then record an expert preference, explanation or unverified mechanical-error claim.
+Only an explicit post-game assessment can record those; a mechanical claim remains pending
+independent verification. The reviewer does not train or change Policy.
+
 ### Outcome shadow (`--outcome-shadow`, optional, off by default)
 
 ACTION-OUTCOME-2. Next to the Policy ranking the runtime can forecast the immediate consequences of **every** legal

@@ -6,6 +6,7 @@ import logging
 import os
 import sys
 import time
+import threading
 import warnings
 from collections.abc import Callable
 from pathlib import Path
@@ -57,6 +58,10 @@ class UnifiedRuntime:
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
         self.active_snapshot = None
+        self.active_recommendation = None
+        self.active_journaled = False
+        self.active_feedback_saved = False
+        self._decision_lock = threading.RLock()
         self.attempted_identity: tuple | None = None
         self.live_failed = False
         self.latencies_ms: list[float] = []
@@ -67,21 +72,44 @@ class UnifiedRuntime:
             self.on_event(event)
 
     def _invalidate(self, reason: str = "DECISION_CHANGED") -> None:
-        if self.active_identity is not None:
+        with self._decision_lock:
+            active_identity = self.active_identity
+            snapshot = self.active_snapshot
+            self.active_identity = None
+            self.active_snapshot = None
+            self.active_recommendation = None
+            self.active_journaled = False
+            self.active_feedback_saved = False
+        if active_identity is not None:
             if self.journal is not None:
                 # Keep the exact displayed snapshot; the session may already have cleared it.
-                snapshot = self.active_snapshot
                 if snapshot is not None:
                     try:
                         self.journal.invalidation(snapshot, reason)
                     except OSError as error:
                         self.emit(f"prediction journal warning: {type(error).__name__}")
             self._shadow_invalidated(reason)
-            self.emit(f"recommendation #{self.active_identity[1]} invalidated")
-            self.active_identity = None
-            self.active_snapshot = None
+            self.emit(f"recommendation #{active_identity[1]} invalidated")
         status = self.live.session.status.value
         self._present(PresentationEvent("invalidated", status=status if status != "READY" else "SYNCING", reason=reason))
+
+    def flag_active_recommendation(self) -> bool:
+        """Capture only the exact still-current recommendation; no label is inferred."""
+        with self._decision_lock:
+            snapshot, recommendation = self.active_snapshot, self.active_recommendation
+            if (not self.active_journaled or snapshot is None or recommendation is None or self.journal is None
+                    or self.live.session.current_snapshot is not snapshot
+                    or self.live.session.status is not LiveStatus.READY
+                    or recommendation.identity != self.active_identity):
+                return False
+            if self.active_feedback_saved:
+                return True
+            try:
+                self.journal.suspicious(snapshot, recommendation, self.recommender.checkpoint_sha256)
+            except (OSError, ValueError):
+                return False
+            self.active_feedback_saved = True
+            return True
 
     def _shadow_invalidated(self, reason: str) -> None:
         snapshot, self.shadow_snapshot = self.shadow_snapshot, None
@@ -164,13 +192,19 @@ class UnifiedRuntime:
                         self._events(self.live.step())
                         if self.live.session.current_snapshot is snap and self.live.session.status is LiveStatus.READY:
                             self.emit(render_recommendation(result))
-                            self.active_identity = result.identity
-                            self.active_snapshot = snap
+                            journaled = False
                             if self.journal is not None:
                                 try:
                                     self.journal.recommendation(snap, result, self.recommender.checkpoint_sha256)
+                                    journaled = True
                                 except OSError as error:
                                     self.emit(f"prediction journal warning: {type(error).__name__}")
+                            with self._decision_lock:
+                                self.active_identity = result.identity
+                                self.active_snapshot = snap
+                                self.active_recommendation = result
+                                self.active_journaled = journaled
+                                self.active_feedback_saved = False
                             if self.on_recommendation is not None:
                                 self.on_recommendation(result)
                             self._present(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
