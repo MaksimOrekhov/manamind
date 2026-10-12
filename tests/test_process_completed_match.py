@@ -139,15 +139,17 @@ def test_expected_policy_rejection_is_skipped_not_a_failure(env: Env, tmp_path: 
     env.collector().scan_once()
     raw = next(env.raw.glob("*.log"))
     lines = raw.read_text(encoding="utf-8").splitlines()
-    reset = lines[-2].split("GameState")[0] + "GameState.DebugPrintPower() - BLOCK_START BlockType=GAME_RESET Entity=1"
+    # An unfinished match is an expected, match-level Policy rejection.
     reset_dir = tmp_path / "reset"
     reset_dir.mkdir()
-    (reset_dir / "match.log").write_text("\n".join(lines[:-1] + [reset] + lines[-1:]) + "\n", encoding="utf-8")
+    unfinished = [line for line in lines if "tag=STATE value=COMPLETE" not in line]
+    assert len(unfinished) < len(lines)
+    (reset_dir / "match.log").write_text("\n".join(unfinished) + "\n", encoding="utf-8")
 
     results = pcm.process_completed_match(
         reset_dir / "match.log", pcm.Outputs(tmp_path / "v", tmp_path / "p", tmp_path / "e"), CATALOG)
     assert results["policy"].status == pcm.SKIPPED
-    assert results["policy"].detail["game_skip_reasons"] == {"GAME_RESET": 1}
+    assert results["policy"].detail["game_skip_reasons"] == {"INCOMPLETE": 1}
     assert not list((tmp_path / "p").glob("*.jsonl"))
 
     # The backfill CLI treats it as a correct outcome, not an error.
@@ -156,6 +158,19 @@ def test_expected_policy_rejection_is_skipped_not_a_failure(env: Env, tmp_path: 
                                       "--evidence-output", str(tmp_path / "e2")])
     pcm.main()
     assert json.loads(capsys.readouterr().out)["processors"]["policy"]["SKIPPED"] == 1
+
+
+def test_a_malformed_game_reset_fails_closed_without_writing_rows(env: Env, tmp_path: Path):
+    # Well-formed resets are importable (tests/test_policy_game_reset.py); a truncated block is a parse error.
+    env.collector().scan_once()
+    raw = next(env.raw.glob("*.log"))
+    lines = raw.read_text(encoding="utf-8").splitlines()
+    reset = lines[-2].split("GameState")[0] + "GameState.DebugPrintPower() - BLOCK_START BlockType=GAME_RESET Entity=1"
+    (tmp_path / "match.log").write_text("\n".join(lines[:-1] + [reset] + lines[-1:]) + "\n", encoding="utf-8")
+    results = pcm.process_completed_match(
+        tmp_path / "match.log", pcm.Outputs(tmp_path / "v", tmp_path / "p", tmp_path / "e"), CATALOG)
+    assert results["policy"].detail["game_skip_reasons"] == {"PARSE_ERROR": 1}
+    assert not list((tmp_path / "p").glob("*.jsonl"))
 
 
 def test_collector_logs_policy_skip_without_counting_a_failure(env: Env, monkeypatch):

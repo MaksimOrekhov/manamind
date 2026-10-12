@@ -153,6 +153,13 @@ class GameReducer:
                     raise ReducerError(Reason.PARSE_ERROR) from None
                 self._cursor += 1
 
+    def applied_packets(self):
+        """The packets already applied to the entity table, in application order (read-only view)."""
+        tree = self.tree
+        if tree is None:
+            return iter(())
+        return itertools.islice(preorder(tree.packets), self._cursor)
+
     @property
     def game(self):
         return self.exporter.game if self.exporter is not None else None

@@ -14,6 +14,7 @@ from manamind.live.session import LiveSession
 from manamind.live.snapshot import Snapshot
 from manamind.live.visibility import has_named_option
 
+from .game_reset import STALE_REASON, stale_state_entities
 from .observed_facts import ObservedFacts
 from .policy_actions import ActionMappingError, map_actions
 
@@ -49,8 +50,8 @@ def extract_match(lines: list[str], catalog: CardCatalog,
         raise PolicyImportError("MID_GAME_START")
     if info.complete_index is None:
         raise PolicyImportError("INCOMPLETE")
-    if any("BLOCK_START BlockType=GAME_RESET" in line for line in lines):
-        raise PolicyImportError("GAME_RESET")
+    # A GAME_RESET (Rewind) no longer rejects the match: decisions after it are kept only when every entity the
+    # visible state is built from was fully re-sent since the reset (see ``game_reset``); the rest are skipped.
     session = LiveSession(catalog)
     examples, skipped, observed = [], [], set()
     candidate = None
@@ -74,6 +75,13 @@ def extract_match(lines: list[str], catalog: CardCatalog,
                 continue
             identifier = snapshot.decision["options_id"]
             observed.add(identifier)
+            try:
+                stale = stale_state_entities(session.game.reducer)
+            except Exception:
+                stale = {-1}                       # the check itself failed: do not trust the state
+            if stale:
+                skip(identifier, STALE_REASON)
+                continue
             try:
                 from manamind.domain.serialization import game_state_from_dict
                 state = game_state_from_dict(snapshot.state)
