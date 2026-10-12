@@ -90,7 +90,7 @@ Report: [reports/action_outcome_2/README.md](../reports/action_outcome_2/README.
 
 STRATEGIC-SCORER-1. An experimental, Policy-independent ranking of the same displayed menu: `manamind.strategy`
 forecasts every legal action with `manamind.outcome`, values the resulting visible position with a hand-written,
-versioned evaluation (`strategic-scorer-1/params-v1`) and writes its own Top-3 with score parts (`confirmed`, `risk`,
+versioned evaluation (the current `PARAMS_VERSION`, `strategic-scorer-1/params-v3`, recorded in every row) and writes its own Top-3 with score parts (`confirmed`, `risk`,
 `plan`, `unknown_estimate`), factors and an uncertainty level to `data/raw/live/prediction_journal.strategy_shadow.jsonl`
 (`STRATEGY_SHADOW`, `STRATEGY_SHADOW_ERROR`, `STRATEGY_SHADOW_INVALIDATION`; same rotation as the outcome shadow). It
 takes the menu in menu order and never reads Policy scores; it runs after the Policy recommendation was displayed and

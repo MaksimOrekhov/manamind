@@ -12,8 +12,9 @@ Every term is named so that a score can be explained, and the terms fall into fo
 * ``potential`` - what SELF can still do this turn with the remaining Mana and ready attackers, an estimate;
 * ``terminal``  - a hero at 0 effective Health.
 
-``PARAMS`` was written from public game knowledge before the scorer was run on any recorded decision; it is versioned
-and must not be tuned on the evaluation sets. Changing it is a new version, not a fix.
+``PARAMS`` coefficients were written from public game knowledge before the scorer was run on any recorded decision and
+have not changed since; v2 and v3 changed only how unknown effects are counted (see ``PARAMS_VERSION``). The version is
+recorded with every result and must not be tuned on the evaluation sets. Any change is a new version, not a fix.
 """
 
 from __future__ import annotations

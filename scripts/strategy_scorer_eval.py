@@ -1,4 +1,5 @@
-"""STRATEGIC-SCORER-1 offline evaluation. Parameters were frozen (commit ee55494) before this script was first run.
+"""STRATEGIC-SCORER-1 offline evaluation. params-v1 was frozen (commit ee55494) before this script was first run; the
+current ``PARAMS_VERSION`` is recorded in the output (reports/strategic_scorer_1/results_params_v*.json).
 
 Three separate questions, never merged into one number:
 
@@ -10,8 +11,8 @@ Three separate questions, never merged into one number:
    ranking - agreement, disagreements, action-type mix, uncertainty, latency - plus the decisions the player flagged.
    The human action is reported for description only; it is not a correct answer.
 
-  python scripts/strategy_scorer_eval.py --out reports/strategic_scorer_1/results.json \
-      --private-out data/raw/live/strategy_scorer_1/decisions.jsonl
+  python scripts/strategy_scorer_eval.py --out reports/<new dir>/results.json \
+      --private-out data/raw/live/<new dir>/decisions.jsonl     (existing files are never overwritten)
 """
 from __future__ import annotations
 
