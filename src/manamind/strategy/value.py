@@ -27,7 +27,10 @@ from manamind.domain.game_state import GameState, PlayerObservation
 from manamind.outcome.grammar import parse_text
 from manamind.outcome.texts import TextSource
 
-PARAMS_VERSION = "strategic-scorer-1/params-v1"
+# v1 (frozen at ee55494, evaluated in reports/strategic_scorer_1/results_params_v1.json).
+# v2: structural fixes found by that evaluation, coefficients unchanged - Location charges are a stored resource like
+# a card in hand (an activation is no longer free value), and a card whose cost is not observed is assumed plan-neutral.
+PARAMS_VERSION = "strategic-scorer-1/params-v2"
 
 
 @dataclass(frozen=True, slots=True)
@@ -158,6 +161,11 @@ def weapon_value(weapon: CardFeatures | None, p: Params = PARAMS) -> float:
     return p.weapon * max(0, attack) * max(0, durability)
 
 
+def location_value(place, p: Params = PARAMS) -> float:
+    """A Location stores activations the way a hand stores cards: each charge is worth the hand share of one use."""
+    return p.hand_fraction * p.location_activation * max(0, place.current_health)
+
+
 # ----- next-turn risk ---------------------------------------------------------------------------------------------
 
 def _attackers(player: PlayerObservation) -> list[int]:
@@ -220,6 +228,7 @@ class Breakdown:
 TERM_KIND = {
     "board_self": "static", "board_opponent": "static", "hero_self": "static", "hero_opponent": "static",
     "weapon_self": "static", "weapon_opponent": "static", "hand_self": "static", "hand_opponent": "static",
+    "locations_self": "static", "locations_opponent": "static",
     "win": "terminal", "loss": "terminal",
     "threat": "risk", "lethal_risk": "risk", "pressure": "risk",
     "mana_potential": "potential", "attack_potential": "potential",
@@ -239,6 +248,8 @@ def position_value(state: GameState, texts: TextSource, *, turn_open: bool, p: P
         ("weapon_opponent", -weapon_value(opponent.weapon, p)),
         ("hand_self", sum(hand_value(card, texts, p) for card in state.self_hand)),
         ("hand_opponent", -p.opponent_card * opponent.hand_size),
+        ("locations_self", sum(location_value(place, p) for place in me.locations)),
+        ("locations_opponent", -sum(location_value(place, p) for place in opponent.locations)),
         ("win", p.win if theirs <= 0 else 0.0),
         ("loss", -p.win if mine <= 0 else 0.0),
     ]
@@ -262,8 +273,9 @@ def mana_potential(state: GameState, texts: TextSource, p: Params = PARAMS) -> f
     """Best surplus SELF can still expect this turn from the cards it can afford (0/1 knapsack over Mana).
 
     Playing a card is expected to turn its hand value into its play value, so each affordable card offers
-    ``(1 - hand_fraction) * expected play value``. A ready Hero Power offers ``hero_power``. Minions need a free
-    board slot. Estimates only: no card text is executed here.
+    ``(1 - hand_fraction) * expected play value``. A ready Hero Power offers ``hero_power``, a ready Location
+    ``(1 - hand_fraction) * location_activation``. Minions need a free board slot. Cards whose cost is not observed
+    are left out (their affordability is unknown). Estimates only: no card text is executed here.
     """
     me = state.self_player
     mana = me.available_mana
@@ -277,6 +289,9 @@ def mana_potential(state: GameState, texts: TextSource, p: Params = PARAMS) -> f
         if needs_slot and room <= 0:
             continue
         items.append((max(0, cost), (1.0 - p.hand_fraction) * expected_play_value(card, texts, p), needs_slot))
+    for place in me.locations:
+        if place.current_health > 0 and not place.on_cooldown and place.can_activate is not False:
+            items.append((0, (1.0 - p.hand_fraction) * p.location_activation, False))
     power = me.hero_power
     if me.hero_power_ready is True and power is not None:
         cost = power.effective_cost
@@ -342,5 +357,6 @@ def attack_potential(state: GameState, p: Params = PARAMS) -> float:
 __all__ = [
     "PARAMS", "PARAMS_VERSION", "Breakdown", "Params", "TERM_KIND", "attack_potential", "body_value", "card_prior",
     "effective_health", "expected_play_value", "face_damage_through_taunts", "hand_value", "health_value",
+    "location_value",
     "mana_potential", "minion_value", "position_value", "weapon_value",
 ]

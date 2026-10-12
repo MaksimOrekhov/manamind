@@ -11,8 +11,10 @@ The score of an action is split into parts that must not be confused:
 * ``risk``              - change of a rough look at the visible attackers of both sides for the next turns;
 * ``plan``              - change of what SELF can still do this turn (Mana and ready attackers), an estimate;
 * ``unknown_estimate``  - for an action whose own text the forecaster cannot read, the value a fair card of that
-                          cost would add beyond what was computed. An estimate that unsupported effects are not
-                          worthless; it is never presented as a mechanical consequence.
+                          cost would add beyond what was computed (plan-neutral: an unread card is neither free value
+                          nor worthless); and, when a hero's Divine Shield is not observed, the value of the damage
+                          the forecaster computes under its own "no hero Divine Shield" assumption. Estimates, never
+                          presented as mechanical consequences.
 
 ``uncertainty`` says how much the score could move because of what is not known (unread own text, possible
 reactions, hidden Secrets, unobserved modifiers). Nothing here reads a Policy score, a human choice or hidden
@@ -36,6 +38,8 @@ from manamind.strategy.value import (
     PARAMS, PARAMS_VERSION, Breakdown, Params, expected_play_value, hand_value, health_value, minion_value,
     position_value,
 )
+
+HERO_SHIELD_TAG = "HERO_SHIELD_UNOBSERVED"
 
 SCORER_VERSION = "strategic-scorer-1"
 DEFAULT_BUDGET_MS = 400.0
@@ -151,7 +155,11 @@ def _expected_effect(state: GameState, action: dict[str, Any], texts: TextSource
     if kind == "PLAY_CARD":
         index = action.get("hand_index")
         if index is not None and 0 <= index < len(state.self_hand):
-            return expected_play_value(state.self_hand[index], texts, p)
+            card = state.self_hand[index]
+            if card.effective_cost is None:
+                # not in the turn plan (affordability unknown): assume it is worth exactly what it was worth in hand
+                return hand_value(card, texts, p)
+            return expected_play_value(card, texts, p)
         return None
     if kind == "HERO_POWER":
         return p.hero_power
@@ -188,13 +196,14 @@ _TERM_LABELS = {
     "board_self": "SELF_BOARD", "board_opponent": "ENEMY_BOARD", "hero_self": "SELF_HEALTH",
     "hero_opponent": "ENEMY_HEALTH", "weapon_self": "SELF_WEAPON", "weapon_opponent": "ENEMY_WEAPON",
     "hand_self": "SELF_HAND", "hand_opponent": "ENEMY_HAND", "win": "LETHAL", "loss": "SELF_DEATH",
+    "locations_self": "SELF_LOCATIONS", "locations_opponent": "ENEMY_LOCATIONS",
     "threat": "INCOMING_THREAT", "lethal_risk": "LETHAL_RISK", "pressure": "PRESSURE",
     "mana_potential": "MANA_PLAN", "attack_potential": "ATTACK_PLAN",
 }
 
 
 def _factors(before: Breakdown, after: Breakdown, forecast: Forecast | None, residual: float,
-             bound: float) -> tuple[tuple[str, float, str], ...]:
+             bound: float, shield: float = 0.0) -> tuple[tuple[str, float, str], ...]:
     found: list[tuple[str, float, str]] = []
     names = [name for name, _ in after.terms] + [n for n, _ in before.terms if n not in dict(after.terms)]
     for name in dict.fromkeys(names):
@@ -209,30 +218,41 @@ def _factors(before: Breakdown, after: Breakdown, forecast: Forecast | None, res
         found.append(("UNREAD_EFFECT_ESTIMATE", residual, "fair-card estimate for text the forecaster cannot read"))
     if bound:
         found.append(("BOUNDED_EFFECT", bound, "guaranteed part of an effect whose size is only bounded"))
+    if shield:
+        found.append(("HERO_SHIELD_ASSUMED_DOWN", shield, "hero Divine Shield not observed; damage valued as if down"))
     found.sort(key=lambda item: (-abs(item[1]), item[0], item[2]))
     return tuple(found[:8])
 
 
 # ----- scoring ----------------------------------------------------------------------------------------------------
 
+def _forecast_position(state: GameState, forecast: Forecast | None, p: Params) -> tuple[GameState | None, float]:
+    """The position a forecast leads to (exact, or the PARTIAL lower bound) and the value of its known bounds."""
+    if forecast is not None and forecast.status is Status.EXACT:
+        return forecast.exact_state(), 0.0
+    if forecast is not None and forecast.status is Status.PARTIAL:
+        partial = forecast.partial_state()
+        if partial is None:
+            return None, 0.0
+        return partial.diagnostic_state(), sum(_bound_correction(state, c, p) for c in forecast.bounded_changes)
+    return None, 0.0
+
+
 def score_action(state: GameState, index: int, action: dict[str, Any], forecast: Forecast | None,
                  before: Breakdown, texts: TextSource, *, status_override: str | None = None,
-                 p: Params = PARAMS) -> ActionScore:
-    """Score one action from its forecast (``None`` when it was not computed or failed)."""
+                 assumed: Forecast | None = None, p: Params = PARAMS) -> ActionScore:
+    """Score one action from its forecast (``None`` when it was not computed or failed).
+
+    ``assumed`` is the same action forecast under the forecaster's "no hero Divine Shield" assumption, given only
+    when the real forecast left a hero's Health open for that reason; its extra value is an estimate.
+    """
     label = _label(state, action)
     kind = action.get("type")
     turn_open = kind != "END_TURN"
     tags: list[str] = []
-    bound = 0.0
     own_unknown = False
-    after_state: GameState | None = None
     status = status_override or (forecast.status.value if forecast is not None else ERROR)
-    if forecast is not None and forecast.status is Status.EXACT:
-        after_state = forecast.exact_state()
-    elif forecast is not None and forecast.status is Status.PARTIAL:
-        partial = forecast.partial_state()
-        after_state = partial.diagnostic_state() if partial is not None else None
-        bound = sum(_bound_correction(state, change, p) for change in forecast.bounded_changes)
+    after_state, bound = _forecast_position(state, forecast, p)
     if forecast is not None:
         tags = sorted({_tag(u) for u in forecast.unknowns})
         own_unknown = any(tag in OWN_EFFECT_TAGS for tag in tags)
@@ -252,25 +272,34 @@ def score_action(state: GameState, index: int, action: dict[str, Any], forecast:
     if own_unknown:
         expected = _expected_effect(state, action, texts, p)
         if expected is not None:
-            hand_change = after.get("hand_self") - before.get("hand_self")
-            modelled = confirmed - hand_change
+            # stored resources (cards, Location charges) are bookkeeping, not what the effect did
+            stored = (after.get("hand_self") - before.get("hand_self")
+                      + after.get("locations_self") - before.get("locations_self"))
+            modelled = confirmed - stored
             residual = max(0.0, expected - modelled)
-    magnitude = residual
+    shield = 0.0
+    if assumed is not None:
+        assumed_state, assumed_bound = _forecast_position(state, assumed, p)
+        if assumed_state is not None:
+            shield = max(0.0, (position_value(assumed_state, texts, turn_open=turn_open, p=p).total + assumed_bound)
+                         - (after.total + bound))
+    residual_total = residual + shield
+    magnitude = residual_total
     reactions = sum(1 for tag in tags if tag in REACTION_TAGS)
     modifiers = sum(1 for tag in tags if tag not in REACTION_TAGS | SECRET_TAGS | OWN_EFFECT_TAGS
                     and not tag.startswith("NOT_FORECAST"))
     magnitude += 1.0 * reactions + 0.5 * modifiers + (3.0 if any(t in SECRET_TAGS for t in tags) else 0.0)
-    if status in (Status.UNSUPPORTED.value, ERROR, NOT_COMPUTED) or residual >= 3.0 or magnitude > 5.0:
+    if status in (Status.UNSUPPORTED.value, ERROR, NOT_COMPUTED) or residual_total >= 3.0 or magnitude > 5.0:
         level = "HIGH"
     elif status == Status.EXACT.value or magnitude <= 1.0:
         level = "LOW"
     else:
         level = "MEDIUM"
-    score = confirmed + risk + plan + residual
+    score = confirmed + risk + plan + residual_total
     return ActionScore(
         index=index, action=dict(action), label=label, status=status, score=score, confirmed=confirmed, risk=risk,
-        plan=plan, unknown_estimate=residual, uncertainty=Uncertainty(level, magnitude, tuple(tags)),
-        factors=_factors(before, after, forecast, residual, bound), group=_group_key(action))
+        plan=plan, unknown_estimate=residual_total, uncertainty=Uncertainty(level, magnitude, tuple(tags)),
+        factors=_factors(before, after, forecast, residual, bound, shield), group=_group_key(action))
 
 
 def score_menu(state: GameState, actions: Sequence[dict[str, Any]], texts: TextSource,
@@ -296,7 +325,15 @@ def score_menu(state: GameState, actions: Sequence[dict[str, Any]], texts: TextS
             scored.append(score_action(state, index, action, None, before, texts, status_override=ERROR, p=p))
             continue
         computed += 1
-        scored.append(score_action(state, index, action, forecast, before, texts, p=p))
+        assumed = None
+        shield_known_up = state.self_player.hero_divine_shield is True or state.opponent.hero_divine_shield is True
+        if (not shield_known_up and not context.assume_no_hero_divine_shield
+                and any(u.tag == HERO_SHIELD_TAG for u in forecast.unknowns)):
+            try:
+                assumed = forecast_action(state, action, texts, replace(context, assume_no_hero_divine_shield=True))
+            except Exception:                   # the estimate is optional; the real forecast still stands
+                assumed = None
+        scored.append(score_action(state, index, action, forecast, before, texts, assumed=assumed, p=p))
     ranking = tuple(a.index for a in sorted(scored, key=lambda a: (-round(a.score, 6), a.index)))
     by_index = {a.index: a for a in scored}
     groups: list[list[int]] = []

@@ -424,3 +424,43 @@ def test_a_large_menu_is_scored_quickly(texts):
     result = score_menu(state, actions, texts, budget_ms=10_000)
     assert result.computed == len(actions) == 57
     assert time.perf_counter() - started < 5.0       # generous for CI; the measured LIVE numbers are in the report
+
+
+# ----- params-v2 structural fixes ----------------------------------------------------------------------------------
+
+
+def test_an_unread_location_activation_is_plan_neutral_not_free_value():
+    from manamind.domain.card import CardFeatures
+    from manamind.domain.entity import LocationEntity
+    texts = TEXTS.extended([{"id": "T_LOC", "type": "LOCATION", "mechanics": [],
+                             "text": "Do something nobody has written a rule for."}])
+    place = LocationEntity(card=CardFeatures(card_id="T_LOC", card_type="LOCATION", cost=2), current_health=3,
+                           max_health=3, board_position=1, on_cooldown=False, can_activate=True)
+    state = sc.position(self_side=sc.side(mana=0, locations=(place,)), opponent=sc.side())
+    use = {"type": "ACTIVATE_LOCATION", "card_id": "T_LOC", "source_card_id": "T_LOC", "source_kind": "LOCATION",
+           "source_board_position": 1, "play_position": 0}
+    result, _ = ranked(state, [sc.end_turn(), use], texts=texts)
+    activation, passing = result.actions[1], result.actions[0]
+    assert activation.score == pytest.approx(0.0)              # a charge spent for an estimated fair use
+    assert passing.score < activation.score                    # an unused ready Location is a small waste
+
+
+def test_a_card_whose_cost_is_not_observed_is_not_free_value():
+    card = replace(sc.hand_card("T_ODD", "SPELL", None), cost=None, current_cost=None)
+    state = sc.position(self_side=sc.side(mana=3), opponent=sc.side(), hand=(card,))
+    result, _ = ranked(state, [sc.end_turn(), sc.play("T_ODD", 0, "SPELL", None)])
+    assert result.actions[1].score == pytest.approx(0.0, abs=1e-9)
+
+
+def test_an_unobserved_hero_shield_does_not_hide_lethal_but_marks_it_as_an_estimate():
+    state = sc.position(self_side=sc.side(board=(sc.minion("B", 3, 3, 1, can_attack=True),)),
+                        opponent=sc.side(hero_health=2, hero_divine_shield=None, board=(sc.minion("A", 4, 4, 1),)))
+    actions = [sc.end_turn(), sc.attack(1, "B", sc.target_minion("OPPONENT", 1, "A")),
+               sc.attack(1, "B", sc.target_hero("OPPONENT"))]
+    unknown, order = ranked(state, actions, context=ObservedContext())
+    face = unknown.actions[2]
+    assert order[0].index == 2 and face.unknown_estimate >= PARAMS.win and face.uncertainty.level == "HIGH"
+    assert any(code == "HERO_SHIELD_ASSUMED_DOWN" for code, _, _ in face.factors)
+    known, order = ranked(state, actions, context=KNOWN)
+    assert order[0].index == 2 and known.actions[2].unknown_estimate == 0
+    assert known.actions[2].confirmed >= PARAMS.win

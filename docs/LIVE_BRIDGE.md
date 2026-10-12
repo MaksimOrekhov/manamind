@@ -86,6 +86,23 @@ python scripts/outcome_shadow_replay.py <recording dir> ... --out-dir <new dir> 
 
 Report: [reports/action_outcome_2/README.md](../reports/action_outcome_2/README.md).
 
+### Strategy shadow (`--strategy-shadow`, optional, off by default)
+
+STRATEGIC-SCORER-1. An experimental, Policy-independent ranking of the same displayed menu: `manamind.strategy`
+forecasts every legal action with `manamind.outcome`, values the resulting visible position with a hand-written,
+versioned evaluation (`strategic-scorer-1/params-v1`) and writes its own Top-3 with score parts (`confirmed`, `risk`,
+`plan`, `unknown_estimate`), factors and an uncertainty level to `data/raw/live/prediction_journal.strategy_shadow.jsonl`
+(`STRATEGY_SHADOW`, `STRATEGY_SHADOW_ERROR`, `STRATEGY_SHADOW_INVALIDATION`; same rotation as the outcome shadow). It
+takes the menu in menu order and never reads Policy scores; it runs after the Policy recommendation was displayed and
+journaled; the displayed Top-3, overlay and `RECOMMENDATION` rows are unchanged; failures end in a stable code in its
+own file. `manamind.live`, the overlay and `apps` do not import `manamind.strategy` (a test enforces it). It is not
+shown to the player and no claim of playing strength is attached. Report:
+[reports/strategic_scorer_1/README.md](../reports/strategic_scorer_1/README.md).
+
+```bash
+python scripts/run_manamind.py --ui --strategy-shadow
+```
+
 The command below is the standalone state inspector, without policy ranking or collection:
 
 ```bash
@@ -104,6 +121,7 @@ The folder can also come from `MANAMIND_HEARTHSTONE_LOGS`; nothing is hard-coded
 | `--ui` | show the Windows always-on-top panel; without it retain the console runner |
 | `--overlay` | optional Vue / WebView2 desktop overlay; structured LIVE DTO, official RU/EN names; mutually exclusive with `--ui` |
 | `--outcome-shadow`, `--outcome-shadow-budget-ms N` | `run_manamind.py` only: optional read-only consequence forecast of the whole menu, journal only (see Outcome shadow); default off, budget 250 |
+| `--strategy-shadow`, `--strategy-shadow-budget-ms N` | `run_manamind.py` only: optional independent Strategic Scorer ranking of the whole menu, journal only (see Strategy shadow); default off, budget 250 |
 
 The tool only ever opens `Power.log` for reading (for the length of one poll), never writes,
 renames or deletes anything under `Logs`, and never touches `log.config`. Hearthstone must have
