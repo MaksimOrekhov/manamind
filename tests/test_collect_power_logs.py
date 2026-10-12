@@ -110,15 +110,20 @@ def test_transient_parse_failure_does_not_crash_and_is_retried(env: Env, monkeyp
 
     def flaky(*args, **kwargs):
         calls["n"] += 1
-        if calls["n"] == 1:
+        if calls["n"] <= 12:
             raise RuntimeError(f"boom {SECRET_NAME}")
         return real_import(*args, **kwargs)
 
     monkeypatch.setattr(pcm, "import_power_log", flaky)
     collector = env.collector()
-    collector.scan_once()
-    assert collector.stats.parse_failures == 1 and env.outputs() == []
+    for _ in range(12):
+        collector.scan_once()
+    assert collector.stats.parse_failures == 12 and env.outputs() == []
     assert not list((env.raw / ".pending").glob("*"))  # no half-written leftovers
+    warnings = [line for line in env.messages if "collection warning:" in line]
+    retries = [line for line in env.messages if "collection retry:" in line]
+    assert len(warnings) == len(retries) == 1
+    assert "attempt=12" in retries[0]
 
     collector.scan_once()
     assert collector.stats.matches_imported == 1
@@ -140,8 +145,9 @@ def test_unreadable_file_does_not_stop_the_collector(env: Env, monkeypatch):
     assert collector.stats.matches_imported == 1
 
 
-def test_permanent_parser_rejection_is_cached_until_source_changes_then_next_match_imports(env: Env):
-    malformed = build_game(seed=61)
+def test_permanent_parser_rejection_is_cached_by_segment_until_repaired(env: Env):
+    valid_first_match = build_game(seed=61)
+    malformed = list(valid_first_match)
     event_index = next(i for i, line in enumerate(malformed) if " - BLOCK_START " in line)
     prefix = malformed[event_index].split(" - ", 1)[0]
     malformed[event_index] = f"{prefix} - BLOCK_START BlockType=ATTACK Entity=UNKNOWN"
@@ -161,15 +167,32 @@ def test_permanent_parser_rejection_is_cached_until_source_changes_then_next_mat
     assert collector.stats.parse_failures == 1
     assert len([line for line in env.messages if "collection warning:" in line]) == 1
 
-    path.write_text(to_text(malformed, build_game(seed=62, variant=1)), encoding="utf-8")
-    collector.scan_once()  # source change retries old failure and imports the next valid match
-    assert collector.stats.parse_failures == 2
+    next_match = build_game(seed=62, variant=1)
+    cut = next(i for i, line in enumerate(next_match) if "tag=PLAYSTATE" in line)
+    path.write_text(to_text(malformed, next_match[:cut]), encoding="utf-8")
+    collector.scan_once()  # appending another game's start must not reparse the bad segment
+    assert collector.stats.parse_failures == 1
+    assert collector.stats.matches_imported == 0
+    assert len([line for line in env.messages if "collection warning:" in line]) == 1
+
+    path.write_text(to_text(malformed, next_match), encoding="utf-8")
+    collector.scan_once()  # the next completed match is still imported
+    assert collector.stats.parse_failures == 1
     assert collector.stats.matches_imported == 1
     assert len(env.outputs()) == 1
-    assert any("collection retry:" in line and "attempt=2" in line for line in env.messages)
     collector.scan_once()
-    assert collector.stats.parse_failures == 2
+    assert collector.stats.parse_failures == 1
     assert collector.stats.matches_imported == 1
+    assert len([line for line in env.messages if "collection warning:" in line]) == 1
+
+    malformed[event_index] = valid_first_match[event_index]
+    path.write_text(to_text(malformed, next_match), encoding="utf-8")
+    collector.scan_once()  # repairing the segment changes its digest and retries it
+    assert collector.stats.parse_failures == 1
+    assert collector.stats.matches_imported == 2
+    assert len(env.outputs()) == 2
+    collector.scan_once()
+    assert collector.stats.matches_imported == 2
 
 
 def test_non_standard_match_is_skipped(env: Env):

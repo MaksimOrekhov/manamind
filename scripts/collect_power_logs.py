@@ -29,6 +29,7 @@ Known limits are listed in docs/REAL_MATCH_DATA.md.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -166,6 +167,13 @@ def _mtime(path: Path) -> int:
         return 0
 
 
+def _completed_segment_fingerprint(info: SegmentInfo) -> str:
+    """Hash exactly the completed segment body passed to audit_log, without exposing it."""
+    assert info.complete_index is not None
+    body = "\n".join(info.lines[: info.complete_index + 1]) + "\n"
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+
+
 class Collector:
     def __init__(
         self,
@@ -200,7 +208,7 @@ class Collector:
         self._signatures: dict[Path, tuple[int, int]] = {}
         self._announced: set[str] = set()
         self._failure_announced: dict[tuple[str, str, str, str], tuple[int, tuple[int, int] | None]] = {}
-        self._permanent_failure_signatures: dict[tuple[Path, str], tuple[int, int]] = {}
+        self._permanent_failure_fingerprints: dict[tuple[Path, str], str] = {}
         self._duplicate_seen: set[str] = set()
         self.failure_diagnostics = True
         self._active_stage = "FILE_DISCOVERY"
@@ -279,12 +287,18 @@ class Collector:
             if info.start_key in self._known:
                 self._note_known(info.start_key)
                 continue
-            if self._permanent_failure_signatures.get((path, info.start_key)) == signature:
-                continue  # deterministic parser rejection; retry only after this source file changes
+            segment_fingerprint = (
+                _completed_segment_fingerprint(info) if info.complete_index is not None else None
+            )
+            if (segment_fingerprint is not None
+                    and self._permanent_failure_fingerprints.get((path, info.start_key))
+                    == segment_fingerprint):
+                continue  # deterministic parser rejection; retry only if this segment changes
             self._last_failure_retryable = True
             self._active_stage = "PROCESS_SEGMENT"
             if self._process(info, path=path, segment_index=segment_index,
-                             file_signature=signature) == PARSE_FAILED:
+                             file_signature=signature,
+                             segment_fingerprint=segment_fingerprint) == PARSE_FAILED:
                 failed = True
                 retryable_failed |= self._last_failure_retryable
         if not failed or not retryable_failed:
@@ -298,7 +312,7 @@ class Collector:
     # -- one game ------------------------------------------------------------
 
     def _process(self, info: SegmentInfo, *, path: Path, segment_index: int,
-                 file_signature: tuple[int, int]) -> str:
+                 file_signature: tuple[int, int], segment_fingerprint: str | None) -> str:
         key = info.start_key
         assert key is not None
         phase = "PENDING_SLICE_WRITE"
@@ -346,7 +360,8 @@ class Collector:
             retryable = not (phase == "AUDIT_LOG" and isinstance(error, ParsingError))
             self._last_failure_retryable = retryable
             if not retryable:
-                self._permanent_failure_signatures[(path, key)] = file_signature
+                assert segment_fingerprint is not None
+                self._permanent_failure_fingerprints[(path, key)] = segment_fingerprint
             self._report_failure(path, error, stage=phase, retryable=retryable,
                                  match_key=key, segment_index=segment_index,
                                  signature=file_signature)
