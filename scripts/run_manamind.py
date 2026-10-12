@@ -26,7 +26,7 @@ from manamind.live.runner import LiveRunner
 from manamind.live.session import LiveSession
 from manamind.live.trust import LiveStatus, StatusEvent
 
-from collect_power_logs import Collector
+from collect_power_logs import Collector, safe_failure_code
 
 DEFAULT_LOGS_ROOT = Path("D:/Games/Hearthstone/Logs")  # CLI-only local default; override via flag/env.
 POLICY_V2_CHECKPOINT = ROOT / "data/processed_policy_ml2a/seed42_v2/policy.pt"
@@ -66,6 +66,15 @@ class UnifiedRuntime:
         self.live_failed = False
         self.latencies_ms: list[float] = []
         self.decisions_scored = 0
+        self._collection_warning_attempts: dict[tuple[str, str], int] = {}
+
+    def _collection_warning(self, stage: str, error: Exception) -> None:
+        code = safe_failure_code(error)
+        key = (stage, code)
+        attempts = self._collection_warning_attempts.get(key, 0) + 1
+        self._collection_warning_attempts[key] = attempts
+        if attempts == 1 or attempts % 12 == 0:
+            self.emit(f"collection warning: stage={stage} code={code} attempt={attempts}; will retry")
 
     def _present(self, event: PresentationEvent) -> None:
         if self.on_event is not None:
@@ -238,10 +247,11 @@ class UnifiedRuntime:
             try:
                 failures_before = self.collector.stats.parse_failures
                 self.collector.scan_once()
-                if self.collector.stats.parse_failures > failures_before:
-                    self.emit("collection warning: failed scan or import; will retry")
+                if (self.collector.stats.parse_failures > failures_before
+                        and not getattr(self.collector, "failure_diagnostics", False)):
+                    self._collection_warning("SCAN", RuntimeError("collector reported a failure"))
             except Exception as error:
-                self.emit(f"collection warning: {type(error).__name__}; will retry")
+                self._collection_warning("SCAN", error)
 
     def finish(self) -> None:
         self._invalidate("APP_STOP")

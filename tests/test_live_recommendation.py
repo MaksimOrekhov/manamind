@@ -234,6 +234,22 @@ class DummyCollector:
         pass
 
 
+def test_collection_warnings_throttle_identical_errors_and_report_a_new_cause():
+    printed = []
+    runtime = object.__new__(run_manamind.UnifiedRuntime)
+    runtime.emit = printed.append
+    runtime._collection_warning_attempts = {}
+    for _ in range(13):
+        runtime._collection_warning("SCAN", OSError("private source path"))
+    runtime._collection_warning("SCAN", PermissionError("private source path"))
+
+    assert len(printed) == 3  # first error, periodic retry status, and a new safe cause code
+    assert "stage=SCAN code=FILE_IO_ERROR attempt=1" in printed[0]
+    assert "attempt=12" in printed[1]
+    assert "code=FILE_ACCESS_DENIED" in printed[2]
+    assert all("private source path" not in line for line in printed)
+
+
 def test_unified_startup_no_history_new_game_recorder_invalidation_and_lane_failure(tmp_path, recommender):
     scorer, _ = recommender
     logs = tmp_path / "Logs"

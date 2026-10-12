@@ -140,6 +140,38 @@ def test_unreadable_file_does_not_stop_the_collector(env: Env, monkeypatch):
     assert collector.stats.matches_imported == 1
 
 
+def test_permanent_parser_rejection_is_cached_until_source_changes_then_next_match_imports(env: Env):
+    malformed = build_game(seed=61)
+    event_index = next(i for i, line in enumerate(malformed) if " - BLOCK_START " in line)
+    prefix = malformed[event_index].split(" - ", 1)[0]
+    malformed[event_index] = f"{prefix} - BLOCK_START BlockType=ATTACK Entity=UNKNOWN"
+    path = env.write("Power.log", to_text(malformed))
+    collector = env.collector()
+
+    collector.scan_once()
+    assert collector.stats.parse_failures == 1
+    first_warning = [line for line in env.messages if "collection warning:" in line]
+    assert len(first_warning) == 1
+    assert "stage=AUDIT_LOG" in first_warning[0]
+    assert "code=POWERLOG_RECORD_REJECTED" in first_warning[0]
+    assert "segment=1" in first_warning[0]
+    assert SECRET_NAME not in "\n".join(env.messages)
+
+    collector.scan_once()  # unchanged completed segment: no repeated scan or warning
+    assert collector.stats.parse_failures == 1
+    assert len([line for line in env.messages if "collection warning:" in line]) == 1
+
+    path.write_text(to_text(malformed, build_game(seed=62, variant=1)), encoding="utf-8")
+    collector.scan_once()  # source change retries old failure and imports the next valid match
+    assert collector.stats.parse_failures == 2
+    assert collector.stats.matches_imported == 1
+    assert len(env.outputs()) == 1
+    assert any("collection retry:" in line and "attempt=2" in line for line in env.messages)
+    collector.scan_once()
+    assert collector.stats.parse_failures == 2
+    assert collector.stats.matches_imported == 1
+
+
 def test_non_standard_match_is_skipped(env: Env):
     env.write("Power.log", to_text(build_game(seed=7, format_type="FT_WILD")))
     collector = env.collector()

@@ -40,6 +40,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 from typing import Callable
+from hslog.exceptions import ParsingError
 
 from manamind.integrations.powerlog.lines import (  # noqa: F401  (re-exported for callers/tests)
     COMPLETE_RE as _COMPLETE_RE,
@@ -110,6 +111,21 @@ class Stats:
     @property
     def skipped_total(self) -> int:
         return sum(self.skipped.values())
+
+
+def safe_failure_code(error: Exception) -> str:
+    """Map collector exceptions to stable codes without exposing log text or paths."""
+    if isinstance(error, PermissionError):
+        return "FILE_ACCESS_DENIED"
+    if isinstance(error, FileNotFoundError):
+        return "FILE_NOT_FOUND"
+    if isinstance(error, OSError):
+        return "FILE_IO_ERROR"
+    if isinstance(error, ParsingError):
+        return "POWERLOG_RECORD_REJECTED"
+    if isinstance(error, (ValueError, TypeError, KeyError)):
+        return "INVALID_PARSED_DATA"
+    return "PROCESSING_ERROR"
 
 
 def classify_metadata(info: SegmentInfo) -> str | None:
@@ -183,8 +199,16 @@ class Collector:
         self._known: dict[str, str] = self._load_state()
         self._signatures: dict[Path, tuple[int, int]] = {}
         self._announced: set[str] = set()
-        self._failure_announced: set[str] = set()
+        self._failure_announced: dict[tuple[str, str, str, str], tuple[int, tuple[int, int] | None]] = {}
+        self._permanent_failure_signatures: dict[tuple[Path, str], tuple[int, int]] = {}
         self._duplicate_seen: set[str] = set()
+        self.failure_diagnostics = True
+        self._active_stage = "FILE_DISCOVERY"
+        self._active_path: Path | None = None
+        self._active_signature: tuple[int, int] | None = None
+        self._active_match_key: str | None = None
+        self._active_segment_index: int | None = None
+        self._last_failure_retryable = True
 
     # -- state ---------------------------------------------------------------
 
@@ -210,32 +234,60 @@ class Collector:
     # -- scanning ------------------------------------------------------------
 
     def scan_once(self) -> None:
-        for path in candidate_files(self.logs_root, self.max_sessions):
+        try:
+            paths = candidate_files(self.logs_root, self.max_sessions)
+        except Exception as error:  # keep the continuous collector alive, but report a safe cause
+            self.stats.parse_failures += 1
+            self._report_failure(self.logs_root, error, stage="FILE_DISCOVERY", retryable=True)
+            return
+        for path in paths:
+            self._active_path = path
+            self._active_stage = "FILE_STAT"
+            self._active_signature = None
+            self._active_match_key = None
+            self._active_segment_index = None
             try:
                 self._scan_file(path)
-            except Exception:  # never let one file stop a long-running collector
+            except Exception as error:  # never let one file stop a long-running collector
                 self.stats.parse_failures += 1
                 self._signatures.pop(path, None)
+                self._report_failure(path, error, stage=self._active_stage, retryable=True,
+                                     match_key=self._active_match_key,
+                                     segment_index=self._active_segment_index,
+                                     signature=self._active_signature)
 
     def _scan_file(self, path: Path) -> None:
         stat = path.stat()
         signature = (stat.st_size, stat.st_mtime_ns)
+        self._active_signature = signature
         if self._signatures.get(path) == signature:
             return
         self.stats.files_seen.add(str(path))
+        self._active_stage = "FILE_READ"
         lines = read_complete_lines(path)
         failed = False
-        for section in split_games(lines):
+        retryable_failed = False
+        self._active_stage = "SPLIT_GAMES"
+        for segment_index, section in enumerate(split_games(lines), 1):
+            self._active_stage = "SEGMENT_INSPECT"
+            self._active_segment_index = segment_index
             info = inspect_segment(section)
             if info.start_key is None:
                 continue  # CREATE_GAME header still being written
+            self._active_match_key = info.start_key
             self.stats.games_seen.add(info.start_key)
             if info.start_key in self._known:
                 self._note_known(info.start_key)
                 continue
-            if self._process(info) == PARSE_FAILED:
+            if self._permanent_failure_signatures.get((path, info.start_key)) == signature:
+                continue  # deterministic parser rejection; retry only after this source file changes
+            self._last_failure_retryable = True
+            self._active_stage = "PROCESS_SEGMENT"
+            if self._process(info, path=path, segment_index=segment_index,
+                             file_signature=signature) == PARSE_FAILED:
                 failed = True
-        if not failed:
+                retryable_failed |= self._last_failure_retryable
+        if not failed or not retryable_failed:
             self._signatures[path] = signature
 
     def _note_known(self, key: str) -> None:
@@ -245,9 +297,11 @@ class Collector:
 
     # -- one game ------------------------------------------------------------
 
-    def _process(self, info: SegmentInfo) -> str:
+    def _process(self, info: SegmentInfo, *, path: Path, segment_index: int,
+                 file_signature: tuple[int, int]) -> str:
         key = info.start_key
         assert key is not None
+        phase = "PENDING_SLICE_WRITE"
         # Authoritative completion gates every final decision. While a section is
         # still growing, its mode lines may simply not have been written yet, so
         # nothing about it may be persisted as terminal.
@@ -265,6 +319,7 @@ class Collector:
         try:
             body = "\n".join(info.lines[: info.complete_index + 1]) + "\n"
             slice_path.write_text(body, encoding="utf-8", newline="\n")
+            phase = "AUDIT_LOG"
             audit = audit_log(slice_path)
             if not audit.get("eligible_for_capture"):
                 reason = str(audit.get("reason", ""))
@@ -272,17 +327,29 @@ class Collector:
                 disagree = "Ranked" in reason or "Standard" in reason or "exactly one" in reason
                 return self._finish(key, SKIPPED_METADATA_AMBIGUOUS if disagree else SKIPPED_INCOMPLETE)
             # The raw match is persisted before any derived dataset is attempted.
+            phase = "RAW_SLICE_PERSIST"
             os.replace(slice_path, raw_path)
+            phase = "POST_GAME_PROCESSORS"
             results = process_completed_match(
                 raw_path, self.outputs, self.catalog_path)
             value = results["value"]
             self._report_derived(results)
             if value.status == FAILED:
+                self._report_failure(path, RuntimeError("value processor failed"), stage="VALUE_IMPORT",
+                                     retryable=True, match_key=key, segment_index=segment_index,
+                                     signature=file_signature)
                 return self._finish(key, PARSE_FAILED)  # raw kept; Value is retried next poll
             if value.status == DUPLICATE:
                 return self._finish(key, SKIPPED_ALREADY_IMPORTED)
             return self._finish(key, IMPORTED, value.detail)
-        except Exception:  # privacy: report the status only, never the exception text
+        except Exception as error:  # privacy: report a stable code, never the exception text
+            retryable = not (phase == "AUDIT_LOG" and isinstance(error, ParsingError))
+            self._last_failure_retryable = retryable
+            if not retryable:
+                self._permanent_failure_signatures[(path, key)] = file_signature
+            self._report_failure(path, error, stage=phase, retryable=retryable,
+                                 match_key=key, segment_index=segment_index,
+                                 signature=file_signature)
             return self._finish(key, PARSE_FAILED)
         finally:
             try:
@@ -317,9 +384,6 @@ class Collector:
     def _finish(self, key: str, status: str, result: dict | None = None) -> str:
         if status == PARSE_FAILED:
             self.stats.parse_failures += 1
-            if key not in self._failure_announced:
-                self._failure_announced.add(key)
-                self.emit(f"[{_now()}] could not process a match yet; will retry")
             return status
         if status == SKIPPED_INCOMPLETE:
             if key not in self._announced:
@@ -348,6 +412,31 @@ class Collector:
             f"{self.stats.skipped_total} skipped"
         )
         return status
+
+    def _report_failure(self, path: Path, error: Exception, *, stage: str,
+                        retryable: bool, match_key: str | None = None,
+                        segment_index: int | None = None,
+                        signature: tuple[int, int] | None = None) -> None:
+        code = safe_failure_code(error)
+        identity = (str(path), match_key or "", stage, code)
+        previous = self._failure_announced.get(identity)
+        attempts = previous[0] + 1 if previous else 1
+        source_changed = previous is not None and signature is not None and previous[1] != signature
+        # Keep real retry activity visible without repeating the same five-second warning forever.
+        announce = previous is None or source_changed or (retryable and attempts % 12 == 0)
+        self._failure_announced[identity] = (attempts, signature)
+        if not announce:
+            return
+        kind = "collection warning" if previous is None else "collection retry"
+        fields = [f"stage={stage}", f"code={code}", f"file={path.name}"]
+        if match_key:
+            fields.append(f"match={match_key[:12]}")
+        if segment_index is not None:
+            fields.append(f"segment={segment_index}")
+        if previous is not None:
+            fields.append(f"attempt={attempts}")
+        fields.append("retry=next-scan" if retryable else "retry=on-source-change")
+        self.emit(f"[{_now()}] {kind}: {' '.join(fields)}")
 
     # -- loop ----------------------------------------------------------------
 
