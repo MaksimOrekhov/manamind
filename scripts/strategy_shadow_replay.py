@@ -8,7 +8,6 @@ RECOMMENDATION / INVALIDATION rows, number of scored decisions) must be identica
 import json
 import sys
 import tempfile
-import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]

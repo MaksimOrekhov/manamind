@@ -480,3 +480,11 @@ def test_a_big_body_with_unread_text_is_a_fair_card_not_a_free_giant():
     assert sleeper.confirmed + sleeper.unknown_estimate == pytest.approx(
         PARAMS.card_base + 3 * PARAMS.card_per_mana - PARAMS.hand_fraction * (PARAMS.card_base + 3 * PARAMS.card_per_mana))
     assert sleeper.uncertainty.level != "LOW" and "OWN_TEXT_UNPARSED" in sleeper.uncertainty.tags
+
+
+def test_a_lethal_under_an_opponent_secret_is_never_low_and_keeps_the_tag():
+    state = sc.position(self_side=sc.side(board=(sc.minion("B", 3, 3, 1, can_attack=True),)),
+                        opponent=sc.side(hero_health=2, secret_count=1))
+    _, order = ranked(state, [sc.end_turn(), sc.attack(1, "B", sc.target_hero("OPPONENT"))])
+    face = order[0]
+    assert face.index == 1 and face.uncertainty.level != "LOW" and "OPPONENT_SECRET" in face.uncertainty.tags

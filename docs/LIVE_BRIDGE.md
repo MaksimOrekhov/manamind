@@ -96,7 +96,10 @@ versioned evaluation (`strategic-scorer-1/params-v1`) and writes its own Top-3 w
 takes the menu in menu order and never reads Policy scores; it runs after the Policy recommendation was displayed and
 journaled; the displayed Top-3, overlay and `RECOMMENDATION` rows are unchanged; failures end in a stable code in its
 own file. `manamind.live`, the overlay and `apps` do not import `manamind.strategy` (a test enforces it). It is not
-shown to the player and no claim of playing strength is attached. Report:
+shown to the player and no claim of playing strength is attached. `confirmed` means computed from visible values by the
+reviewed rules, not guaranteed: a lethal recorded while `OPPONENT_SECRET` (or another possible reaction) is open may be
+prevented; it is never LOW (at least MEDIUM) and keeps the `OPPONENT_SECRET` tag. `risk` is a rough estimate of the opponent's next turn from its visible board
+only (no hand, Charge, removal or Secrets), never a mechanically confirmed consequence. Report:
 [reports/strategic_scorer_1/README.md](../reports/strategic_scorer_1/README.md).
 
 ```bash
