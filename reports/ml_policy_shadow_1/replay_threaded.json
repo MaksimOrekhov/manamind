@@ -1,0 +1,488 @@
+{
+ "faults": {
+  "journal_unwritable": {
+   "decision_step_ms": {
+    "max": 7.701,
+    "n": 77,
+    "p50": 4.508,
+    "p95": 6.546
+   },
+   "entries": {
+    "journal_failures||": 77
+   },
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {}
+  },
+  "retrained_raises": {
+   "decision_step_ms": {
+    "max": 178.096,
+    "n": 77,
+    "p50": 4.526,
+    "p95": 6.754
+   },
+   "entries": {
+    "policy_v2|OK|None": 77,
+    "policy_v3|OK|None": 77,
+    "retrained_v2|ERROR|INFERENCE_FAILED": 77
+   },
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {
+    "MODEL_SHADOW": 77,
+    "MODEL_SHADOW_INVALIDATION": 77
+   }
+  },
+  "v3_nan": {
+   "decision_step_ms": {
+    "max": 7.495,
+    "n": 77,
+    "p50": 4.753,
+    "p95": 6.751
+   },
+   "entries": {
+    "policy_v2|OK|None": 77,
+    "policy_v3|ERROR|INVALID_MODEL_OUTPUT": 77,
+    "retrained_v2|OK|None": 77
+   },
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {
+    "MODEL_SHADOW": 77,
+    "MODEL_SHADOW_INVALIDATION": 77
+   }
+  },
+  "v3_slow_400ms": {
+   "decision_step_ms": {
+    "max": 175.366,
+    "n": 77,
+    "p50": 4.537,
+    "p95": 6.536
+   },
+   "entries": {},
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {
+    "MODEL_SHADOW_DISCARDED": 77
+   }
+  }
+ },
+ "models": {
+  "policy_v3": {
+   "parameters": 187681,
+   "schema": "manamind.real_policy/3",
+   "sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82"
+  },
+  "retrained_v2": {
+   "parameters": 103713,
+   "schema": "manamind.real_policy/2",
+   "sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3"
+  }
+ },
+ "modes": {
+  "sync": {
+   "audit": {
+    "inputs_checked_against_training_encoding": 1390,
+    "inputs_mismatched": 0,
+    "problems": {
+     "duplicate_decision_rows": 0
+    }
+   },
+   "decision_step_ms": {
+    "plain": {
+     "max": 173.638,
+     "n": 698,
+     "p50": 4.104,
+     "p95": 6.831
+    },
+    "with_shadow": {
+     "max": 177.647,
+     "n": 698,
+     "p50": 10.235,
+     "p95": 14.955
+    }
+   },
+   "decisions": 698,
+   "events": {
+    "MODEL_SHADOW": 698,
+    "MODEL_SHADOW_INVALIDATION": 698
+   },
+   "model_inference_ms": {
+    "policy_v2": {
+     "1-5": {
+      "max": 2.082,
+      "n": 188,
+      "p50": 1.259,
+      "p95": 1.711
+     },
+     "11-20": {
+      "max": 3.041,
+      "n": 243,
+      "p50": 1.692,
+      "p95": 2.353
+     },
+     "21-40": {
+      "max": 3.7,
+      "n": 96,
+      "p50": 2.037,
+      "p95": 2.967
+     },
+     "41+": {
+      "max": 2.782,
+      "n": 1,
+      "p50": 2.782,
+      "p95": 2.782
+     },
+     "6-10": {
+      "max": 2.361,
+      "n": 170,
+      "p50": 1.496,
+      "p95": 2.018
+     },
+     "all": {
+      "max": 3.7,
+      "n": 698,
+      "p50": 1.583,
+      "p95": 2.354
+     }
+    },
+    "policy_v3": {
+     "1-5": {
+      "max": 2.634,
+      "n": 188,
+      "p50": 1.667,
+      "p95": 2.218
+     },
+     "11-20": {
+      "max": 169.438,
+      "n": 243,
+      "p50": 2.113,
+      "p95": 2.921
+     },
+     "21-40": {
+      "max": 4.599,
+      "n": 96,
+      "p50": 2.433,
+      "p95": 3.557
+     },
+     "41+": {
+      "max": 3.245,
+      "n": 1,
+      "p50": 3.245,
+      "p95": 3.245
+     },
+     "6-10": {
+      "max": 2.829,
+      "n": 170,
+      "p50": 1.907,
+      "p95": 2.53
+     },
+     "all": {
+      "max": 169.438,
+      "n": 698,
+      "p50": 2.016,
+      "p95": 2.881
+     }
+    },
+    "retrained_v2": {
+     "1-5": {
+      "max": 2.208,
+      "n": 188,
+      "p50": 1.218,
+      "p95": 1.712
+     },
+     "11-20": {
+      "max": 2.652,
+      "n": 243,
+      "p50": 1.657,
+      "p95": 2.363
+     },
+     "21-40": {
+      "max": 3.922,
+      "n": 96,
+      "p50": 1.986,
+      "p95": 2.792
+     },
+     "41+": {
+      "max": 2.663,
+      "n": 1,
+      "p50": 2.663,
+      "p95": 2.663
+     },
+     "6-10": {
+      "max": 2.419,
+      "n": 170,
+      "p50": 1.456,
+      "p95": 1.984
+     },
+     "all": {
+      "max": 3.922,
+      "n": 698,
+      "p50": 1.546,
+      "p95": 2.361
+     }
+    }
+   },
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "policy_latency_ms": {
+    "plain": {
+     "max": 169.805,
+     "n": 698,
+     "p50": 2.08,
+     "p95": 3.393
+    },
+    "with_shadow": {
+     "max": 4.243,
+     "n": 698,
+     "p50": 2.093,
+     "p95": 3.171
+    }
+   }
+  },
+  "threaded_paced": {
+   "audit": {
+    "inputs_checked_against_training_encoding": 1390,
+    "inputs_mismatched": 0,
+    "problems": {
+     "duplicate_decision_rows": 0
+    }
+   },
+   "decision_step_ms": {
+    "plain": {
+     "max": 80.861,
+     "n": 698,
+     "p50": 4.105,
+     "p95": 6.512
+    },
+    "with_shadow": {
+     "max": 72.985,
+     "n": 698,
+     "p50": 5.5,
+     "p95": 8.161
+    }
+   },
+   "decisions": 698,
+   "events": {
+    "MODEL_SHADOW": 698,
+    "MODEL_SHADOW_INVALIDATION": 698
+   },
+   "model_inference_ms": {
+    "policy_v2": {
+     "1-5": {
+      "max": 2.402,
+      "n": 188,
+      "p50": 1.655,
+      "p95": 2.175
+     },
+     "11-20": {
+      "max": 3.097,
+      "n": 243,
+      "p50": 2.206,
+      "p95": 2.766
+     },
+     "21-40": {
+      "max": 3.99,
+      "n": 96,
+      "p50": 2.722,
+      "p95": 3.554
+     },
+     "41+": {
+      "max": 4.049,
+      "n": 1,
+      "p50": 4.049,
+      "p95": 4.049
+     },
+     "6-10": {
+      "max": 2.982,
+      "n": 170,
+      "p50": 1.878,
+      "p95": 2.352
+     },
+     "all": {
+      "max": 4.049,
+      "n": 698,
+      "p50": 2.013,
+      "p95": 2.899
+     }
+    },
+    "policy_v3": {
+     "1-5": {
+      "max": 3.111,
+      "n": 188,
+      "p50": 2.205,
+      "p95": 2.718
+     },
+     "11-20": {
+      "max": 4.092,
+      "n": 243,
+      "p50": 2.818,
+      "p95": 3.368
+     },
+     "21-40": {
+      "max": 4.513,
+      "n": 96,
+      "p50": 3.399,
+      "p95": 4.096
+     },
+     "41+": {
+      "max": 4.864,
+      "n": 1,
+      "p50": 4.864,
+      "p95": 4.864
+     },
+     "6-10": {
+      "max": 4.888,
+      "n": 170,
+      "p50": 2.459,
+      "p95": 2.999
+     },
+     "all": {
+      "max": 4.888,
+      "n": 698,
+      "p50": 2.602,
+      "p95": 3.553
+     }
+    },
+    "retrained_v2": {
+     "1-5": {
+      "max": 2.307,
+      "n": 188,
+      "p50": 1.615,
+      "p95": 2.07
+     },
+     "11-20": {
+      "max": 3.175,
+      "n": 243,
+      "p50": 2.171,
+      "p95": 2.595
+     },
+     "21-40": {
+      "max": 3.943,
+      "n": 96,
+      "p50": 2.712,
+      "p95": 3.417
+     },
+     "41+": {
+      "max": 4.044,
+      "n": 1,
+      "p50": 4.044,
+      "p95": 4.044
+     },
+     "6-10": {
+      "max": 2.76,
+      "n": 170,
+      "p50": 1.831,
+      "p95": 2.259
+     },
+     "all": {
+      "max": 4.044,
+      "n": 698,
+      "p50": 1.985,
+      "p95": 2.846
+     }
+    }
+   },
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "policy_latency_ms": {
+    "plain": {
+     "max": 4.38,
+     "n": 698,
+     "p50": 2.082,
+     "p95": 3.211
+    },
+    "with_shadow": {
+     "max": 5.582,
+     "n": 698,
+     "p50": 2.617,
+     "p95": 3.773
+    }
+   }
+  },
+  "threaded_stress": {
+   "audit": {
+    "inputs_checked_against_training_encoding": 0,
+    "inputs_mismatched": 0,
+    "problems": {
+     "duplicate_decision_rows": 0
+    }
+   },
+   "decision_step_ms": {
+    "plain": {
+     "max": 75.561,
+     "n": 698,
+     "p50": 4.129,
+     "p95": 6.51
+    },
+    "with_shadow": {
+     "max": 98.031,
+     "n": 698,
+     "p50": 5.944,
+     "p95": 9.228
+    }
+   },
+   "decisions": 0,
+   "events": {
+    "MODEL_SHADOW_DISCARDED": 698
+   },
+   "model_inference_ms": {},
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "policy_latency_ms": {
+    "plain": {
+     "max": 4.74,
+     "n": 698,
+     "p50": 2.122,
+     "p95": 3.291
+    },
+    "with_shadow": {
+     "max": 18.858,
+     "n": 698,
+     "p50": 3.101,
+     "p95": 4.494
+    }
+   }
+  }
+ },
+ "recordings": 6
+}

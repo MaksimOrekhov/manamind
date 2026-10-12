@@ -1,7 +1,9 @@
 """ML-POLICY-V3-1: compare Policy checkpoints on the frozen split (inference only, no training).
 
-Every checkpoint scores every decision of the dataset once (logits are cached in the output directory); all tables are
-then computed from the cache, so each model sees the identical menus. Metrics are Behavior-Cloning agreement with the
+Every checkpoint scores every decision of the dataset once; the logits are cached under a key made of the checkpoint's
+SHA-256, the dataset identity and a fingerprint of the model/encoder code, and the cache is re-verified on every read
+(a stale or foreign cache is recomputed, never trusted). All tables are computed from these logits, so each model
+sees the identical menus. Metrics are Behavior-Cloning agreement with the
 human choice: they are not move quality and not playing strength.
 
   python scripts/ml_policy_v3_compare.py data/processed_policy_v3/dataset --split data/processed_policy_v3/frozen_split.json \
@@ -12,7 +14,8 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import pickle
+import hashlib
+import io
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
@@ -32,8 +35,28 @@ BOOTSTRAP = 2000
 BOOTSTRAP_SEED = 20261012
 
 
-def model_logits(path: Path, rows) -> dict[str, list[float]]:
-    policy, encoder, _ = load_policy_checkpoint(path)
+CODE_GLOBS = ("src/manamind/models/*.py", "src/manamind/encoding/*.py", "src/manamind/cards/*.py",
+              "src/manamind/domain/*.py", "src/manamind/training/policy_checkpoint.py",
+              "src/manamind/training/real_policy.py")
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def code_fingerprint() -> str:
+    """Hash of every source file that decides what a checkpoint outputs for a given decision."""
+    digest = hashlib.sha256()
+    for pattern in CODE_GLOBS:
+        for path in sorted(ROOT.glob(pattern)):
+            digest.update(str(path.relative_to(ROOT)).encode())
+            digest.update(hashlib.sha256(path.read_bytes()).digest())
+    return digest.hexdigest()
+
+
+def model_logits(path: Path, rows, data: bytes | None = None) -> dict[str, list[float]]:
+    # Parse the very bytes that were hashed, so the cache key cannot describe a different file.
+    policy, encoder, _ = load_policy_checkpoint(io.BytesIO(Path(path).read_bytes() if data is None else data))
     representation = representation_of(policy)
     policy.eval()
     out = {}
@@ -44,6 +67,32 @@ def model_logits(path: Path, rows) -> dict[str, list[float]]:
                 raise ValueError("Nonfinite logits")
             out[row["decision_id"]] = logits.tolist()
     return out
+
+
+def cached_logits(cache_dir: Path, path: Path, rows, dataset_sha256: str) -> dict[str, list[float]]:
+    """Logits of one checkpoint for every row, from a cache that proves whose logits they are."""
+    data = Path(path).read_bytes()
+    sha, code = hashlib.sha256(data).hexdigest(), code_fingerprint()
+    cache_dir = Path(cache_dir)
+    target = cache_dir / f"logits_{sha[:16]}_{dataset_sha256[:16]}_{code[:12]}.json"
+    wanted = {r["decision_id"] for r in rows}
+    if target.is_file():
+        try:
+            payload = json.loads(target.read_text(encoding="utf-8"))
+            if (payload.get("schema") == "manamind.logits_cache/1" and payload.get("checkpoint_sha256") == sha
+                    and payload.get("dataset_sha256") == dataset_sha256 and payload.get("code_sha256") == code
+                    and set(payload["logits"]) == wanted):
+                return payload["logits"]
+        except (OSError, ValueError, KeyError, TypeError):
+            pass                                   # unreadable or foreign cache: recompute below
+    logits = model_logits(path, rows, data)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_suffix(".tmp")
+    temporary.write_text(json.dumps({"schema": "manamind.logits_cache/1", "checkpoint_sha256": sha,
+                                     "dataset_sha256": dataset_sha256, "code_sha256": code, "logits": logits},
+                                    allow_nan=False), encoding="utf-8")
+    temporary.replace(target)
+    return logits
 
 
 def decision_record(row, logits) -> dict:
@@ -163,6 +212,7 @@ def main() -> int:
     parser.add_argument("--split", type=Path, required=True)
     parser.add_argument("--model", action="append", required=True, help="name=checkpoint path (first is the reference)")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--cache-dir", type=Path, help="content-addressed logits cache (default: the output directory)")
     parser.add_argument("--parts", nargs="+", default=["test", "validation"])
     parser.add_argument("--pair", action="append", default=[], help="a-b: extra paired difference a minus b")
     args = parser.parse_args()
@@ -171,14 +221,10 @@ def main() -> int:
     if identity(rows) != split["dataset_sha256"]:
         raise SystemExit("dataset differs from the frozen split")
     args.output.mkdir(parents=True, exist_ok=True)
-    cache_path = args.output / "logits_cache.pkl"
-    cache = pickle.loads(cache_path.read_bytes()) if cache_path.exists() else {}
     models = dict(item.split("=", 1) for item in args.model)
-    for name, path in models.items():
-        if name not in cache:
-            cache[name] = model_logits(Path(path), rows)
-    cache_path.write_bytes(pickle.dumps(cache))
-    result = {"models": {n: str(p) for n, p in models.items()}, "parts": {}}
+    cache = {name: cached_logits(args.cache_dir or args.output, Path(path), rows, split["dataset_sha256"])
+             for name, path in models.items()}
+    result = {"models": {n: {"path": str(p), "sha256": file_sha256(Path(p))} for n, p in models.items()}, "parts": {}}
     reference = next(iter(models))
     for part in args.parts:
         games = set(split["game_ids"][part])

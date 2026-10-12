@@ -1,0 +1,236 @@
+{
+ "faults": {
+  "journal_unwritable": {
+   "decision_step_ms": null,
+   "entries": {},
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {}
+  },
+  "retrained_raises": {
+   "decision_step_ms": null,
+   "entries": {},
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {}
+  },
+  "v3_nan": {
+   "decision_step_ms": null,
+   "entries": {},
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {}
+  },
+  "v3_slow_400ms": {
+   "decision_step_ms": null,
+   "entries": {},
+   "other_experimental_models_unaffected": true,
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "shadow_row_events": {}
+  }
+ },
+ "models": {
+  "policy_v3": {
+   "parameters": 187681,
+   "schema": "manamind.real_policy/3",
+   "sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82"
+  },
+  "retrained_v2": {
+   "parameters": 103713,
+   "schema": "manamind.real_policy/2",
+   "sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3"
+  }
+ },
+ "modes": {
+  "sync": {
+   "audit": {
+    "inputs_checked_against_training_encoding": 5462,
+    "inputs_mismatched": 0,
+    "problems": {
+     "duplicate_decision_rows": 0
+    }
+   },
+   "decision_step_ms": {
+    "plain": {
+     "max": 199.512,
+     "n": 2764,
+     "p50": 3.892,
+     "p95": 6.345
+    },
+    "with_shadow": {
+     "max": 221.258,
+     "n": 2764,
+     "p50": 10.149,
+     "p95": 16.041
+    }
+   },
+   "decisions": 2764,
+   "events": {
+    "MODEL_SHADOW": 2764,
+    "MODEL_SHADOW_INVALIDATION": 2764
+   },
+   "model_inference_ms": {
+    "policy_v2": {
+     "1-5": {
+      "max": 2.813,
+      "n": 907,
+      "p50": 1.305,
+      "p95": 1.894
+     },
+     "11-20": {
+      "max": 211.212,
+      "n": 876,
+      "p50": 1.782,
+      "p95": 2.58
+     },
+     "21-40": {
+      "max": 189.95,
+      "n": 355,
+      "p50": 2.241,
+      "p95": 3.203
+     },
+     "41+": {
+      "max": 5.462,
+      "n": 58,
+      "p50": 3.044,
+      "p95": 4.591
+     },
+     "6-10": {
+      "max": 2.982,
+      "n": 568,
+      "p50": 1.502,
+      "p95": 2.116
+     },
+     "all": {
+      "max": 211.212,
+      "n": 2764,
+      "p50": 1.623,
+      "p95": 2.788
+     }
+    },
+    "policy_v3": {
+     "1-5": {
+      "max": 3.571,
+      "n": 907,
+      "p50": 1.731,
+      "p95": 2.41
+     },
+     "11-20": {
+      "max": 5.904,
+      "n": 876,
+      "p50": 2.187,
+      "p95": 3.131
+     },
+     "21-40": {
+      "max": 4.488,
+      "n": 355,
+      "p50": 2.727,
+      "p95": 3.782
+     },
+     "41+": {
+      "max": 9.598,
+      "n": 58,
+      "p50": 3.661,
+      "p95": 5.7
+     },
+     "6-10": {
+      "max": 62.666,
+      "n": 568,
+      "p50": 1.898,
+      "p95": 2.641
+     },
+     "all": {
+      "max": 62.666,
+      "n": 2764,
+      "p50": 2.049,
+      "p95": 3.316
+     }
+    },
+    "retrained_v2": {
+     "1-5": {
+      "max": 2.486,
+      "n": 907,
+      "p50": 1.297,
+      "p95": 1.878
+     },
+     "11-20": {
+      "max": 3.744,
+      "n": 876,
+      "p50": 1.732,
+      "p95": 2.516
+     },
+     "21-40": {
+      "max": 3.734,
+      "n": 355,
+      "p50": 2.23,
+      "p95": 3.156
+     },
+     "41+": {
+      "max": 5.413,
+      "n": 58,
+      "p50": 3.101,
+      "p95": 4.557
+     },
+     "6-10": {
+      "max": 2.942,
+      "n": 568,
+      "p50": 1.45,
+      "p95": 2.117
+     },
+     "all": {
+      "max": 5.413,
+      "n": 2764,
+      "p50": 1.589,
+      "p95": 2.718
+     }
+    }
+   },
+   "player_visible_identical": {
+    "decisions_identical": true,
+    "emitted_identical": true,
+    "events_identical": true,
+    "hashes_identical": true,
+    "policy_journal_identical": true
+   },
+   "policy_latency_ms": {
+    "plain": {
+     "max": 197.695,
+     "n": 2764,
+     "p50": 2.134,
+     "p95": 3.577
+    },
+    "with_shadow": {
+     "max": 26.427,
+     "n": 2764,
+     "p50": 2.157,
+     "p95": 3.635
+    }
+   }
+  }
+ },
+ "recordings": 50
+}

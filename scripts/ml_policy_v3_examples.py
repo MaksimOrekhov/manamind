@@ -7,7 +7,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import pickle
 import sys
 from pathlib import Path
 
@@ -17,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from ml_policy_v3_compare import decision_record  # noqa: E402
+from ml_policy_v3_compare import cached_logits, decision_record  # noqa: E402
 from manamind.training.real_policy import load_examples  # noqa: E402
 
 
@@ -54,17 +53,21 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset", type=Path)
     parser.add_argument("--split", type=Path, required=True)
-    parser.add_argument("--cache", type=Path, required=True)
-    parser.add_argument("--a", required=True, help="model name that is the reference (e.g. frozen_v2)")
-    parser.add_argument("--b", required=True, help="model name under study (e.g. v3_s42)")
+    parser.add_argument("--cache-dir", type=Path, required=True)
+    parser.add_argument("--a", required=True, help="reference model as name=checkpoint (e.g. frozen_v2=...)")
+    parser.add_argument("--b", required=True, help="model under study as name=checkpoint (e.g. v3_s42=...)")
     parser.add_argument("--per-category", type=int, default=3)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     split = json.loads(args.split.read_text(encoding="utf-8"))
-    cache = pickle.loads(args.cache.read_bytes())
     names = names_from(ROOT / "data/cards/standard_current_enUS.json")
     games = set(split["game_ids"]["test"])
-    rows = [r for r in sorted(load_examples(args.dataset), key=lambda r: r["decision_id"]) if r["game_id"] in games]
+    all_rows = sorted(load_examples(args.dataset), key=lambda r: r["decision_id"])
+    rows = [r for r in all_rows if r["game_id"] in games]
+    (name_a, path_a), (name_b, path_b) = (item.split("=", 1) for item in (args.a, args.b))
+    cache = {name: cached_logits(args.cache_dir, Path(path), all_rows, split["dataset_sha256"])
+             for name, path in ((name_a, path_a), (name_b, path_b))}
+    args.a, args.b = name_a, name_b
     categories = {"b_matches_human_a_does_not": [], "a_matches_human_b_does_not": [], "neither_matches_human": []}
     for row in rows:
         if len(row["legal_actions"]) < 4:

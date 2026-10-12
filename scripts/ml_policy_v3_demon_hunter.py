@@ -1,13 +1,12 @@
 """ML-POLICY-V3-1: HERO_POWER / END_TURN behaviour of cached Policy logits, per SELF class (default Demon Hunter).
 
-Reads the logits cache written by ``ml_policy_v3_compare.py``; no training, no model changes. "Human choice" is the
+Reads the identity-checked logits cache of ``ml_policy_v3_compare.py`` (recomputed when it does not match); no training, no model changes. "Human choice" is the
 recorded player action (description only, not a correct answer).
 """
 from __future__ import annotations
 
 import argparse
 import json
-import pickle
 import sys
 from pathlib import Path
 
@@ -15,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from ml_policy_v3_compare import decision_record  # noqa: E402
+from ml_policy_v3_compare import cached_logits, decision_record  # noqa: E402
 from manamind.training.policy_checkpoint import identity  # noqa: E402
 from manamind.training.real_policy import load_examples  # noqa: E402
 
@@ -70,7 +69,8 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("dataset", type=Path)
     parser.add_argument("--split", type=Path, required=True)
-    parser.add_argument("--cache", type=Path, required=True)
+    parser.add_argument("--model", action="append", required=True, help="name=checkpoint path (repeatable)")
+    parser.add_argument("--cache-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--klass", default="DEMONHUNTER")
     args = parser.parse_args()
@@ -78,7 +78,8 @@ def main() -> int:
     rows = sorted(load_examples(args.dataset), key=lambda r: r["decision_id"])
     if identity(rows) != split["dataset_sha256"]:
         raise SystemExit("dataset differs from the frozen split")
-    cache = pickle.loads(args.cache.read_bytes())
+    cache = {name: cached_logits(args.cache_dir, Path(path), rows, split["dataset_sha256"])
+             for name, path in (item.split("=", 1) for item in args.model)}
     part_of = {g: name for name, ids in split["game_ids"].items() for g in ids}
     selected = [r for r in rows if r["state"]["self_player"]["player_class"] == args.klass]
     sets = {"held_out_test": [r for r in selected if part_of[r["game_id"]] == "test"],

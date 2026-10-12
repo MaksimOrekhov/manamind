@@ -20,6 +20,10 @@ from manamind.live.recommendation import (
     PolicyRecommender, Recommendation, RecommendationUnavailable, render_recommendation,
 )
 from manamind.outcome.live_shadow import OutcomeShadow, ShadowFailed, load_texts
+from manamind.policy_shadow.journal import ModelShadowJournal
+from manamind.policy_shadow.models import load_models
+from manamind.policy_shadow.shadow import ModelShadow
+from manamind.policy_shadow.worker import ModelShadowWorker
 from manamind.strategy.live_shadow import StrategyFailed, StrategyShadow
 from manamind.live.prediction_journal import PredictionJournal
 from manamind.live.presentation import PresentationEvent
@@ -32,6 +36,11 @@ from collect_power_logs import Collector, safe_failure_code
 DEFAULT_LOGS_ROOT = Path("D:/Games/Hearthstone/Logs")  # CLI-only local default; override via flag/env.
 POLICY_V2_CHECKPOINT = ROOT / "data/processed_policy_ml2a/seed42_v2/policy.pt"
 POLICY_V2_SHA256 = "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d"
+# ML-POLICY-V3-1 experiment checkpoints for --model-shadow (local, ignored data; pinned by digest, never auto-promoted).
+RETRAINED_V2_CHECKPOINT = ROOT / "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/policy.pt"
+RETRAINED_V2_SHA256 = "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3"
+POLICY_V3_CHECKPOINT = ROOT / "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/policy.pt"
+POLICY_V3_SHA256 = "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82"
 
 
 class UnifiedRuntime:
@@ -43,7 +52,8 @@ class UnifiedRuntime:
                  on_recommendation: Callable[[Recommendation], None] | None = None,
                  on_event: Callable[[PresentationEvent], None] | None = None,
                  outcome_shadow: OutcomeShadow | None = None,
-                 strategy_shadow: StrategyShadow | None = None) -> None:
+                 strategy_shadow: StrategyShadow | None = None,
+                 model_shadow: ModelShadowWorker | None = None) -> None:
         if collector_seconds <= 0:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
@@ -58,6 +68,7 @@ class UnifiedRuntime:
         self.shadow_snapshot = None        # the displayed decision whose shadow row is in the shadow journal
         self.strategy_shadow = strategy_shadow
         self.strategy_snapshot = None      # the displayed decision whose row is in the strategy journal
+        self.model_shadow = model_shadow   # background worker: hand-over only, it never touches the Policy path
         self.collector_seconds = collector_seconds
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
@@ -101,6 +112,7 @@ class UnifiedRuntime:
                         self.journal.invalidation(snapshot, reason)
                     except OSError as error:
                         self.emit(f"prediction journal warning: {type(error).__name__}")
+            self._model_shadow_invalidated(snapshot, reason)
             self._shadow_invalidated(reason)
             self._strategy_invalidated(reason)
             self.emit(f"recommendation #{active_identity[1]} invalidated")
@@ -124,6 +136,21 @@ class UnifiedRuntime:
                 return False
             self.active_feedback_saved = True
             return True
+
+    def _model_shadow_invalidated(self, snapshot, reason: str) -> None:
+        if self.model_shadow is None or snapshot is None:
+            return
+        try:
+            self.model_shadow.invalidate(snapshot, reason)
+        except Exception:                      # the model shadow must never cost the Policy path anything
+            pass
+
+    def _run_model_shadow(self, snapshot, result: Recommendation) -> None:
+        """Hand the displayed decision to the background model shadow. Constant time, never raises."""
+        try:
+            self.model_shadow.submit(snapshot, result)
+        except Exception:
+            self.model_shadow.shadow.stats.failed += 1
 
     def _shadow_invalidated(self, reason: str) -> None:
         snapshot, self.shadow_snapshot = self.shadow_snapshot, None
@@ -263,6 +290,8 @@ class UnifiedRuntime:
                             self._present(PresentationEvent("recommendation", snapshot=snap, recommendation=result))
                             self.latencies_ms.append(result.latency_ms)
                             self.decisions_scored += 1
+                            if self.model_shadow is not None:
+                                self._run_model_shadow(snap, result)
                             if self.outcome_shadow is not None:
                                 self._run_shadow(snap, result)
                             if self.strategy_shadow is not None:
@@ -306,6 +335,12 @@ class UnifiedRuntime:
         except Exception as error:
             self.emit(f"collection summary warning: {type(error).__name__}")
         stats = self.collector.stats
+        if self.model_shadow is not None:
+            try:
+                self.model_shadow.close()
+                self.emit(self.model_shadow.shadow.stats.summary())
+            except Exception:
+                self.emit("model shadow warning: close failed")
         if self.outcome_shadow is not None:
             self.emit(self.outcome_shadow.stats.summary())
         if self.strategy_shadow is not None:
@@ -336,6 +371,16 @@ def build_parser() -> argparse.ArgumentParser:
                              "write it to <journal>.strategy_shadow.jsonl. Read-only: the Top-3 is unchanged")
     parser.add_argument("--strategy-shadow-budget-ms", type=float, default=250.0,
                         help="Wall-clock budget per decision; actions left over are scored from bookkeeping only")
+    parser.add_argument("--model-shadow", action="store_true",
+                        help="Score every displayed decision also with the retrained Policy v2 and Policy v3 "
+                             "checkpoints (ML-POLICY-V3-1) in a background thread and write the comparison to "
+                             "<journal>.model_shadow.jsonl. Journal only: the Top-3 is unchanged and never shown")
+    parser.add_argument("--model-shadow-retrained", type=Path, default=RETRAINED_V2_CHECKPOINT)
+    parser.add_argument("--model-shadow-retrained-sha256", default=RETRAINED_V2_SHA256)
+    parser.add_argument("--model-shadow-v3", type=Path, default=POLICY_V3_CHECKPOINT)
+    parser.add_argument("--model-shadow-v3-sha256", default=POLICY_V3_SHA256)
+    parser.add_argument("--model-shadow-budget-ms", type=float, default=250.0,
+                        help="Per-decision budget of the experimental models; models left over are recorded as SKIPPED")
     parser.add_argument("--ui", action="store_true", help="Show the Windows always-on-top recommendation panel")
     parser.add_argument("--overlay", action="store_true", help="Show the Vue / WebView2 desktop overlay")
     return parser
@@ -371,6 +416,29 @@ def main(argv: list[str] | None = None) -> int:
             strategy = StrategyShadow(load_texts(ROOT), budget_ms=args.strategy_shadow_budget_ms)
         except Exception as error:
             print(f"strategy shadow warning: {type(error).__name__}; shadow disabled, Policy unaffected", flush=True)
+    model_worker = None
+    journal_path = args.data_root / "raw/live/prediction_journal.jsonl"
+    if args.model_shadow:
+        if recommender is None:
+            print("model shadow warning: no primary Policy; shadow disabled", flush=True)
+        else:
+            try:
+                models, failures = load_models(
+                    [("retrained_v2", args.model_shadow_retrained, args.model_shadow_retrained_sha256),
+                     ("policy_v3", args.model_shadow_v3, args.model_shadow_v3_sha256)],
+                    catalog, reserved_sha256={recommender.checkpoint_sha256})
+                for name, reason in sorted(failures.items()):
+                    print(f"model shadow warning: {name} unavailable ({reason}); the other models are unaffected",
+                          flush=True)
+                if models:
+                    model_worker = ModelShadowWorker(
+                        ModelShadow(recommender.policy, recommender.encoder, recommender.checkpoint_sha256, models,
+                                    budget_ms=args.model_shadow_budget_ms),
+                        ModelShadowJournal.beside(journal_path))
+                else:
+                    print("model shadow warning: no experimental model available; shadow disabled", flush=True)
+            except Exception as error:
+                print(f"model shadow warning: {type(error).__name__}; shadow disabled, Policy unaffected", flush=True)
     session = LiveSession(catalog)
     recorder = Recorder(args.data_root / "raw/live", catalog_path=args.cards)
     live = LiveRunner(args.logs_root, session, recorder)
@@ -378,8 +446,8 @@ def main(argv: list[str] | None = None) -> int:
                           args.data_root / "processed_real", args.cards)
     runtime = UnifiedRuntime(live, collector, recommender, emit=lambda text: print(text, flush=True),
                              collector_seconds=args.collector_seconds, outcome_shadow=shadow,
-                             strategy_shadow=strategy,
-                             journal=PredictionJournal(args.data_root / "raw/live/prediction_journal.jsonl"))
+                             strategy_shadow=strategy, model_shadow=model_worker,
+                             journal=PredictionJournal(journal_path))
     runtime.recommender_unavailable = recommender_error
     print("ManaMind experimental read-only policy. Ctrl+C to stop.", flush=True)
     runtime.emit(f"status: {session.status.value}")

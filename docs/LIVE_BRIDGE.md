@@ -106,6 +106,51 @@ only (no hand, Charge, removal or Secrets), never a mechanically confirmed conse
 python scripts/run_manamind.py --ui --strategy-shadow
 ```
 
+### Model shadow (`--model-shadow`, optional, off by default)
+
+ML-POLICY-SHADOW-1. Next to the displayed Policy v2 the runtime can score every displayed decision with the
+**Retrained v2** (v2 architecture trained on the 79-match ML-POLICY-V3-1 corpus) and **Policy v3** checkpoints and
+write the three rankings side by side to `data/raw/live/prediction_journal.model_shadow.jsonl`. The visible Top-3 is
+always Policy v2; the overlay, the panel, the `RECOMMENDATION` journal rows, the LIVE trust gates, the Outcome shadow,
+the Strategy shadow and the Collector are untouched (a test replays recordings with and without the shadow and compares
+emitted text, presentation events, state hashes and journal rows). `manamind.live`, the overlay and `apps` never import
+`manamind.policy_shadow`; only `scripts/run_manamind.py` wires it.
+
+```bash
+python scripts/run_manamind.py --overlay --model-shadow
+python scripts/model_shadow_report.py                    # compare after one or more matches
+```
+
+* Both experimental checkpoints are pinned by SHA-256 (defaults in `run_manamind.py`, overridable with
+  `--model-shadow-retrained[-sha256]` / `--model-shadow-v3[-sha256]`). The digest is checked on the exact bytes that
+  are parsed; the strict checkpoint loader and the runtime catalog identity must also pass. One refused checkpoint
+  (stable reason code on the console) disables only that model.
+* Every model gets the same decoded public state and the same complete legal menu (menu order). The row proves it:
+  `menu_sha256`, one `inputs_sha256` per model and the primary model's `reproduced` flag (a private copy of Policy v2
+  re-run through the shadow path must give the displayed ranking). The displayed Top-3 comes from the recommendation
+  itself, never from the shadow.
+* The work runs in one low-priority background thread. The LIVE loop only hands over the decision (constant time, no
+  file, no model). A decision that is replaced before it starts is recorded as `SUPERSEDED_BEFORE_START`; one that
+  stops being current while its models run is recorded as `MODEL_SHADOW_DISCARDED` and never as a score; a written
+  row is followed by `MODEL_SHADOW_INVALIDATION` when the decision ends. A failing, invalid (`NaN`), slow
+  (`--model-shadow-budget-ms`, default 250: the remaining models are `SKIPPED`) or unwritable-journal model costs the
+  Policy path nothing.
+* Rows (`manamind.model_shadow/1`): decision identity (`match_id`, `decision_id`, `seq`, `options_id`, `state_hash`),
+  `turn`, `self_class`, `opponent_class`, `mana`, `menu_size`, per action `index`/`type`/digest, a
+  `face_attack_lethal_candidate` flag (total attack of the distinct sources that may legally hit the opposing hero >=
+  its health + armor; a review flag, not a guarantee), and per model: name, role, checkpoint SHA-256, schema,
+  status, `inference_ms` (encode + forward) and `forward_ms`, `top3` (rank, menu index, type, public action
+  descriptor), `ranks` of every menu action and `scores`. No player names, no hidden opponent cards. At 64 MiB the file
+  is renamed (never deleted) and a new one starts.
+* `scripts/model_shadow_report.py` joins the journals (rotated files included) and optionally the Policy prediction
+  journal: integrity (duplicates, checkpoint versions, displayed Top-3 unchanged), latency per menu size, pairwise
+  agreement, and divergences by category - HERO_POWER (Demon Hunter by mana), same source/different target, attacks,
+  lethal candidates, premature END_TURN - with example decision ids. Agreement is not quality: nothing in the journal
+  says what the player did.
+* `scripts/model_shadow_replay.py <recording dirs>` is the offline proof harness (identity, independence, performance).
+
+Report: [reports/ml_policy_shadow_1/README.md](../reports/ml_policy_shadow_1/README.md).
+
 The command below is the standalone state inspector, without policy ranking or collection:
 
 ```bash
@@ -125,6 +170,7 @@ The folder can also come from `MANAMIND_HEARTHSTONE_LOGS`; nothing is hard-coded
 | `--overlay` | optional Vue / WebView2 desktop overlay; structured LIVE DTO, official RU/EN names; mutually exclusive with `--ui` |
 | `--outcome-shadow`, `--outcome-shadow-budget-ms N` | `run_manamind.py` only: optional read-only consequence forecast of the whole menu, journal only (see Outcome shadow); default off, budget 250 |
 | `--strategy-shadow`, `--strategy-shadow-budget-ms N` | `run_manamind.py` only: optional independent Strategic Scorer ranking of the whole menu, journal only (see Strategy shadow); default off, budget 250 |
+| `--model-shadow`, `--model-shadow-budget-ms N` (+ checkpoint/SHA pins) | `run_manamind.py` only: background scoring of the displayed menu with Retrained v2 and Policy v3, journal only (see Model shadow); default off, budget 250 |
 
 The tool only ever opens `Power.log` for reading (for the length of one poll), never writes,
 renames or deletes anything under `Logs`, and never touches `log.config`. Hearthstone must have
