@@ -1,0 +1,9 @@
+{
+  "name": "final_candidates",
+  "base": {"architecture": "v2", "seed": 0, "hidden_size": 64, "dropout": 0.1, "heads": 4, "entity_layers": 1,
+           "menu_layers": 1, "learning_rate": 0.001, "weight_decay": 0.001, "batch_size": 32, "max_epochs": 60,
+           "patience": 8, "min_delta": 0.0001, "gradient_clip": 1.0, "torch_threads": 1, "device": "cpu"},
+  "variants": [{"architecture": "v2"}, {"architecture": "v3"}],
+  "grid": {},
+  "seeds": [42, 43, 44, 45, 46]
+}

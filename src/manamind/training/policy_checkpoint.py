@@ -16,9 +16,11 @@ from manamind.models.policy import (
 )
 from manamind.models.policy_inputs import representation_of
 from manamind.models.policy_v2 import PolicyNetworkV2, feature_contract
+from manamind.models.policy_v3 import PolicyNetworkV3
 
 FORMAT = "manamind.real_policy_baseline/1"
 FORMAT_V2 = "manamind.real_policy/2"
+FORMAT_V3 = "manamind.real_policy/3"  # v2 input contract, PolicyNetworkV3 network
 NORMALIZATION = "signed_log1p_clip_10000"
 
 
@@ -33,15 +35,20 @@ def compatibility(encoder=None, representation=1) -> dict:
             "real_policy_dataset_schema_version": 1, "semantic_action_schema_version": 1,
             "state_feature_names": list(POLICY_STATE_FEATURE_NAMES),
             "action_feature_names": list(ACTION_FEATURE_NAMES), "normalization": NORMALIZATION}
-    if representation == 2:
+    if representation in (2, 3):
         result.update(feature_contract(encoder))
-        result["schema"] = FORMAT_V2
+        result["schema"] = FORMAT_V2 if representation == 2 else FORMAT_V3
     elif representation != 1:
         raise ValueError("Unsupported policy representation")
     return result
 
 
 def model_config(policy, encoder) -> dict:
+    if representation_of(policy) == 3:
+        return {"architecture": "PolicyNetworkV3", "hidden_size": policy.hidden_size, "dropout": policy.dropout,
+                "heads": policy.heads, "entity_layers": policy.entity_layers, "menu_layers": policy.menu_layers,
+                "card_count": encoder.vocabulary.card_count, "state_feature_count": policy.state_feature_count,
+                "entity_feature_count": policy.entity_feature_count, "card_embedding_dim": CARD_EMBEDDING_DIM}
     if representation_of(policy) == 2:
         return {"architecture": "PolicyNetworkV2", "hidden_size": policy.hidden_size,
                 "dropout": policy.dropout, "card_count": encoder.vocabulary.card_count,
@@ -66,9 +73,9 @@ def save_policy_checkpoint(path: Path, policy, encoder, metadata: dict) -> None:
 
 def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
     payload = torch.load(path, map_location=device, weights_only=True)
-    if not isinstance(payload, dict) or payload.get("schema") not in (FORMAT, FORMAT_V2):
+    if not isinstance(payload, dict) or payload.get("schema") not in (FORMAT, FORMAT_V2, FORMAT_V3):
         raise ValueError("Incompatible real policy checkpoint: schema")
-    representation = 2 if payload["schema"] == FORMAT_V2 else 1
+    representation = {FORMAT: 1, FORMAT_V2: 2, FORMAT_V3: 3}[payload["schema"]]
     for name, key in (("catalog", "card_catalog"), ("vocabulary", "card_vocabulary")):
         if identity(payload.get(key)) != payload.get(f"{name}_sha256"):
             raise ValueError(f"Checkpoint {name} identity mismatch")
@@ -86,15 +93,20 @@ def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
                 "state_feature_count": len(POLICY_STATE_FEATURE_NAMES),
                 "card_embedding_dim": CARD_EMBEDDING_DIM, "max_hand_size": MAX_HAND_SIZE}
     extra = {"hidden_size"}
-    if representation == 2:
+    if representation in (2, 3):
         contract = feature_contract(encoder)
-        expected = {"architecture": "PolicyNetworkV2", "card_count": vocabulary.card_count,
+        expected = {"architecture": "PolicyNetworkV2" if representation == 2 else "PolicyNetworkV3",
+                    "card_count": vocabulary.card_count,
                     "state_feature_count": len(contract["state_feature_names"]),
                     "entity_feature_count": len(contract["entity_feature_names"]),
                     "card_embedding_dim": CARD_EMBEDDING_DIM}
         extra.add("dropout")
         if type(config.get("dropout")) not in (float, int) or not 0 <= config["dropout"] < 1:
             raise ValueError("Incompatible policy dropout")
+        if representation == 3:
+            extra.update({"heads", "entity_layers", "menu_layers"})
+            if any(type(config.get(k)) is not int for k in ("heads", "entity_layers", "menu_layers")):
+                raise ValueError("Incompatible policy v3 shape config")
     if (set(config) != {*expected, *extra}
             or any(config.get(k) != v for k, v in expected.items())
             or type(config.get("hidden_size")) is not int or config["hidden_size"] <= 0):
@@ -112,8 +124,9 @@ def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
             or not isinstance(experiment.get("config"), dict)
             or identity(experiment["config"]) != experiment.get("config_sha256")):
         raise ValueError("Invalid policy training/split identity")
-    policy = ((PolicyNetworkV2(**{k: v for k, v in config.items() if k not in {"architecture", "card_embedding_dim"}}))
-              if representation == 2 else PolicyNetwork(card_count=vocabulary.card_count, hidden_size=config["hidden_size"]))
+    kwargs = {k: v for k, v in config.items() if k not in {"architecture", "card_embedding_dim"}}
+    policy = (PolicyNetworkV2(**kwargs) if representation == 2 else PolicyNetworkV3(**kwargs) if representation == 3
+              else PolicyNetwork(card_count=vocabulary.card_count, hidden_size=config["hidden_size"]))
     policy = policy.to(device)
     try:
         policy.load_state_dict(payload["policy_state_dict"], strict=True)

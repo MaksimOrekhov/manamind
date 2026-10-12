@@ -5,10 +5,11 @@ from manamind.models.policy import (
     PolicyNetwork, encode_action_card_ids, encode_hand_card_ids, encode_legal_actions, encode_policy_state,
 )
 from manamind.models.policy_v2 import PolicyNetworkV2, encode_policy_v2
+from manamind.models.policy_v3 import PolicyNetworkV3
 
 
 def encode_policy_inputs(state, actions, encoder, *, representation=1, device="cpu") -> tuple:
-    if representation == 2:
+    if representation in (2, 3):  # v3 changes the network, not the visible-state inputs
         return encode_policy_v2(state, actions, encoder, device)
     if representation != 1:
         raise ValueError("Unsupported policy representation")
@@ -22,6 +23,8 @@ def encode_policy_inputs(state, actions, encoder, *, representation=1, device="c
 def representation_of(policy) -> int:
     if isinstance(policy, PolicyNetworkV2):
         return 2
+    if isinstance(policy, PolicyNetworkV3):
+        return 3
     if isinstance(policy, PolicyNetwork):
         return 1
     raise ValueError("Unsupported policy architecture")

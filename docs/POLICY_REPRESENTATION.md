@@ -44,6 +44,18 @@ never outcomes, provenance, match/decision IDs or future events. Hero identity i
 used only where a reviewed descriptor provides it. Missing history/effect text is
 not invented. Inconsistent bindings reject a decision rather than prune its menu.
 
+## Experimental v3 network (ML-POLICY-V3-1)
+
+`PolicyNetworkV3` (`manamind.real_policy/3`, `src/manamind/models/policy_v3.py`) consumes **exactly the v2 input
+tensors** (`encode_policy_v2`, input representation 2, same ordered state/entity/action columns and vocabulary), so
+a v2/v3 comparison changes only the network. Dispatch: `representation_of(PolicyNetworkV3) == 3`,
+`encode_policy_inputs(..., representation=3)` calls the v2 encoder. Additions over v2: one self-attention block over
+the global state token plus all visible entity tokens (tokens are read in the context of the board), and one
+permutation-equivariant block across the candidates of one menu (a score may depend on the actions actually
+available). `model_config` owns `heads`, `entity_layers`, `menu_layers`; a v2 loader rejects the v3 schema and vice
+versa; there is no migration. The Vue overlay still requires representation 2 and refuses v3 checkpoints; the
+v3 checkpoint is an experiment artifact and is not wired into LIVE. See `reports/ml_policy_v3_1/README.md`.
+
 ## Checkpoint and experiment
 
 The strict loader dispatches by format and checks ordered global/entity/action
