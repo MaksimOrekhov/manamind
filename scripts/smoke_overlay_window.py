@@ -19,7 +19,8 @@ _REQUIRED_CHECKS = (
     "app_mounted", "ru_source_target", "warning_ru", "en_switch", "warning_en",
     "collapsed_height_ok", "native_opacity_ok", "native_topmost", "native_borderless",
     "restored_height_ok", "feedback_button_visible", "feedback_saved_once",
-    "feedback_resets_on_new_decision", "game_over_clears_advice", "no_http_server",
+    "feedback_waiting_absent_ready", "feedback_resets_on_new_decision",
+    "game_over_clears_advice", "no_http_server",
 )
 
 
@@ -106,6 +107,8 @@ def main() -> None:
             result["restored_height_ok"] = result["restored_height"] > 56
             flag = window.evaluate_js("document.querySelector('.feedback-flag')")
             result["feedback_button_visible"] = bool(flag)
+            result["feedback_waiting_absent_ready"] = not window.evaluate_js(
+                "document.querySelector('.waiting') !== null")
             window.evaluate_js("document.querySelector('.feedback-flag').click()")
             time.sleep(.3)
             flagged_text = window.evaluate_js("document.querySelector('.feedback-flag').innerText")
@@ -113,6 +116,7 @@ def main() -> None:
                 ("Отмечено" in flagged_text or "Saved for review" in flagged_text)
                 and window.evaluate_js("document.querySelector('.feedback-flag').disabled")
                 and len(feedback_calls) == 1
+                and not window.evaluate_js("document.querySelector('.waiting') !== null")
             )
             feed.publish(PresentationEvent("recommendation", snapshot=snap, recommendation=ranked))
             time.sleep(.3)

@@ -7,23 +7,25 @@ const props = defineProps<{ frame: Frame; language: Language }>()
 const show = computed(() => props.frame.status === 'READY' && props.frame.recommendations.length > 0)
 const text = computed(() => words[props.language])
 const marking = ref(false)
-const markedRevision = ref<number | null>(null)
+const markedDecision = ref<{ session: string; revision: number } | null>(null)
+const isMarked = computed(() => markedDecision.value?.session === props.frame.session
+  && markedDecision.value?.revision === props.frame.revision)
 const feedbackMessage = ref('')
 watch(() => [props.frame.session, props.frame.revision], () => {
-  if (markedRevision.value !== props.frame.revision) {
-    markedRevision.value = null
+  if (!isMarked.value) {
+    markedDecision.value = null
     feedbackMessage.value = ''
   }
 })
 async function markSuspicious() {
-  if (!show.value || marking.value || markedRevision.value === props.frame.revision) return
+  if (!show.value || marking.value || isMarked.value) return
   marking.value = true
   const expected = { session: props.frame.session, revision: props.frame.revision }
   try {
     const result = await window.pywebview?.api.flag_suspicious(expected)
     if (props.frame.session !== expected.session || props.frame.revision !== expected.revision) return
     if (result?.status === 'SAVED') {
-      markedRevision.value = expected.revision
+      markedDecision.value = expected
       feedbackMessage.value = text.value.flagSaved
     } else if (result?.status === 'STALE') {
       feedbackMessage.value = text.value.flagStale
@@ -46,10 +48,10 @@ async function markSuspicious() {
     <ol v-if="show" class="recommendations">
       <RecommendationItem v-for="rec in frame.recommendations" :key="`${frame.revision}-${rec.rank}`" :rec="rec" :language="language" />
     </ol>
-    <button v-if="show" class="feedback-flag" :disabled="marking || markedRevision === frame.revision"
-      @click="markSuspicious">{{ markedRevision === frame.revision ? text.flagged : text.flagButton }}</button>
-    <p v-if="feedbackMessage" class="feedback-message" role="status">{{ feedbackMessage }}</p>
-    <div v-else class="waiting"><span aria-hidden="true">◇</span><p>{{ frame.reason === 'CHECKPOINT_UNAVAILABLE' ? text.checkpoint : text.waiting }}</p></div>
+    <button v-if="show" class="feedback-flag" :disabled="marking || isMarked"
+      @click="markSuspicious">{{ isMarked ? text.flagged : text.flagButton }}</button>
+    <p v-if="show && feedbackMessage" class="feedback-message" role="status">{{ feedbackMessage }}</p>
+    <div v-if="!show" class="waiting"><span aria-hidden="true">◇</span><p>{{ frame.reason === 'CHECKPOINT_UNAVAILABLE' ? text.checkpoint : text.waiting }}</p></div>
     <p v-if="frame.policy_available === false && frame.reason !== 'CHECKPOINT_UNAVAILABLE'" class="policy-error">{{ text.checkpoint }}</p>
     <footer>
       <p>{{ text.footer }}</p><p class="positions">{{ text.order }}</p>

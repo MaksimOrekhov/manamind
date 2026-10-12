@@ -72,14 +72,46 @@ describe('real overlay DTO presentation', () => {
     window.pywebview = {api:{get_frame:vi.fn(),set_preferences:vi.fn(),flag_suspicious:flag,close:vi.fn()}}
     const panel=mount(OverlayPanel,{props:{frame:ready(),language:'ru'}})
     expect(panel.get('.feedback-flag').text()).toContain('кажется сомнительной')
+    expect(panel.find('.waiting').exists()).toBe(false)
+    expect(panel.findAll('.item')).toHaveLength(3)
     await panel.get('.feedback-flag').trigger('click')
     await flushPromises()
     expect(flag).toHaveBeenCalledWith({session:'session',revision:3})
     expect(panel.get('.feedback-flag').text()).toContain('Отмечено')
     expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(true)
+    expect(panel.find('.feedback-message').exists()).toBe(true)
+    expect(panel.find('.waiting').exists()).toBe(false)
+    expect(panel.findAll('.item')).toHaveLength(3)
     await panel.setProps({frame:{...ready(),revision:4}})
     expect(panel.get('.feedback-flag').text()).toContain('кажется сомнительной')
     expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(false)
+    panel.unmount(); delete window.pywebview
+  })
+  it('clears a saved flag when the LIVE session changes but revision stays the same', async()=>{
+    window.pywebview = {api:{get_frame:vi.fn(),set_preferences:vi.fn(),
+      flag_suspicious:vi.fn().mockResolvedValue({status:'SAVED'}),close:vi.fn()}}
+    const panel=mount(OverlayPanel,{props:{frame:ready(),language:'ru'}})
+    await panel.get('.feedback-flag').trigger('click')
+    await flushPromises()
+    expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(true)
+    await panel.setProps({frame:{...ready(),session:'replacement-session'}})
+    expect(panel.get('.feedback-flag').text()).toContain('кажется сомнительной')
+    expect((panel.get('.feedback-flag').element as HTMLButtonElement).disabled).toBe(false)
+    expect(panel.find('.feedback-message').exists()).toBe(false)
+    expect(panel.findAll('.item')).toHaveLength(3)
+    panel.unmount(); delete window.pywebview
+  })
+  it('shows waiting state and hides feedback when LIVE disconnects', async()=>{
+    window.pywebview = {api:{get_frame:vi.fn(),set_preferences:vi.fn(),
+      flag_suspicious:vi.fn().mockResolvedValue({status:'SAVED'}),close:vi.fn()}}
+    const panel=mount(OverlayPanel,{props:{frame:ready(),language:'ru'}})
+    await panel.get('.feedback-flag').trigger('click')
+    await flushPromises()
+    await panel.setProps({frame:{...ready(),revision:4,status:'DISCONNECTED',recommendations:[]}})
+    expect(panel.findAll('.item')).toHaveLength(0)
+    expect(panel.find('.feedback-flag').exists()).toBe(false)
+    expect(panel.find('.feedback-message').exists()).toBe(false)
+    expect(panel.find('.waiting').exists()).toBe(true)
     panel.unmount(); delete window.pywebview
   })
   it('explains when a click raced with a changed LIVE decision', async()=>{
