@@ -87,6 +87,12 @@ Standard playtests confirmed that recommendations appear during the player's tur
 actions; its technical operation is **PLAYTEST VERIFIED**. Policy v2 recommendation quality is not
 validated and must be evaluated separately.
 
+**STRATEGIC-SCORER-1 (experimental, awaits review):** a Policy-independent one-step scorer over the outcome forecaster
+with a hand-written position value (`manamind.strategy`), journal-only via opt-in `--strategy-shadow`; it never changes
+the displayed Top-3. Verdict GO-SHADOW: it catches confirmed one-action lethals and direct self-harm the Policy misses,
+but its overall ranking is a rough heuristic and no playing-strength gain is shown; see
+[report](../reports/strategic_scorer_1/README.md). A guard layer or training signal built on it needs a separate task.
+
 - **Goal:** run the useful model next to a real game, read-only, and compare its ranking with what the player did.
 - **Outcome:** recorded shadow rankings and agreement statistics; no actions are performed on the player's behalf.
 - **Gate:** stable, privacy-preserving operation over a series of games.

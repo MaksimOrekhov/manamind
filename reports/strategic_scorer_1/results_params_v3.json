@@ -1,0 +1,1170 @@
+{
+ "scorer": "strategic-scorer-1",
+ "params": "strategic-scorer-1/params-v3",
+ "major_gap_points": 3.0,
+ "synthetic": {
+  "model_first_1_control": {
+   "ALL": {
+    "scorer": {
+     "n": 11,
+     "top1": 0.9091,
+     "top3": 1.0,
+     "top3_n": 10,
+     "mrr": 0.9545
+    },
+    "policy_v2": {
+     "n": 11,
+     "top1": 0.9091,
+     "top3": 1.0,
+     "top3_n": 10,
+     "mrr": 0.9394
+    },
+    "scorer_top_score_shared": 2
+   },
+   "lethal": {
+    "scorer": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 1
+   },
+   "menu_order": {
+    "scorer": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 2,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 2,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 0
+   },
+   "target_selection": {
+    "scorer": {
+     "n": 3,
+     "top1": 0.6667,
+     "top3": 1.0,
+     "top3_n": 3,
+     "mrr": 0.8333
+    },
+    "policy_v2": {
+     "n": 3,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 3,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 0
+   },
+   "taunt": {
+    "scorer": {
+     "n": 1,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 1,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 0
+   },
+   "trades": {
+    "scorer": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 2,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 2,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 2,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 1
+   },
+   "unknown_cards": {
+    "scorer": {
+     "n": 1,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 1,
+     "top1": 0.0,
+     "top3": 1.0,
+     "top3_n": 1,
+     "mrr": 0.3333
+    },
+    "scorer_top_score_shared": 0
+   }
+  },
+  "model_first_2_test": {
+   "ALL": {
+    "scorer": {
+     "n": 300,
+     "top1": 0.9967,
+     "top3": 1.0,
+     "top3_n": 300,
+     "mrr": 0.9983
+    },
+    "policy_v2": {
+     "n": 300,
+     "top1": 0.0,
+     "top3": 0.9967,
+     "top3_n": 300,
+     "mrr": 0.4942
+    },
+    "scorer_top_score_shared": 104
+   },
+   "lethal": {
+    "scorer": {
+     "n": 100,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 100,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 100,
+     "top1": 0.0,
+     "top3": 1.0,
+     "top3_n": 100,
+     "mrr": 0.5
+    },
+    "scorer_top_score_shared": 60
+   },
+   "target_selection": {
+    "scorer": {
+     "n": 200,
+     "top1": 0.995,
+     "top3": 1.0,
+     "top3_n": 200,
+     "mrr": 0.9975
+    },
+    "policy_v2": {
+     "n": 200,
+     "top1": 0.0,
+     "top3": 0.995,
+     "top3_n": 200,
+     "mrr": 0.4913
+    },
+    "scorer_top_score_shared": 44
+   }
+  },
+  "model_first_2c_test": {
+   "ALL": {
+    "scorer": {
+     "n": 400,
+     "top1": 0.6575,
+     "top3": 0.795,
+     "top3_n": 400,
+     "mrr": 0.7466
+    },
+    "policy_v2": {
+     "n": 400,
+     "top1": 0.09,
+     "top3": 0.94,
+     "top3_n": 400,
+     "mrr": 0.5099
+    },
+    "scorer_top_score_shared": 91
+   },
+   "favorable_trade": {
+    "scorer": {
+     "n": 328,
+     "top1": 0.6921,
+     "top3": 0.8537,
+     "top3_n": 328,
+     "mrr": 0.7874
+    },
+    "policy_v2": {
+     "n": 328,
+     "top1": 0.0,
+     "top3": 0.9268,
+     "top3_n": 328,
+     "mrr": 0.4577
+    },
+    "scorer_top_score_shared": 44
+   },
+   "lethal": {
+    "scorer": {
+     "n": 36,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 36,
+     "mrr": 1.0
+    },
+    "policy_v2": {
+     "n": 36,
+     "top1": 0.0,
+     "top3": 1.0,
+     "top3_n": 36,
+     "mrr": 0.4954
+    },
+    "scorer_top_score_shared": 31
+   },
+   "no_proven_gain": {
+    "scorer": {
+     "n": 36,
+     "top1": 0.0,
+     "top3": 0.0556,
+     "top3_n": 36,
+     "mrr": 0.1212
+    },
+    "policy_v2": {
+     "n": 36,
+     "top1": 1.0,
+     "top3": 1.0,
+     "top3_n": 36,
+     "mrr": 1.0
+    },
+    "scorer_top_score_shared": 16
+   }
+  }
+ },
+ "recordings": {
+  "games_used": 42,
+  "not_importable": {
+   "GAME_RESET": 5,
+   "PARSE_ERROR": 1
+  },
+  "games_seen_by_policy_training": 0
+ },
+ "real_comparison": {
+  "all": {
+   "decisions": 1614,
+   "games": 42,
+   "menu_size_median": 9.0,
+   "top1_agreement_same_group": 0.3346,
+   "top1_agreement_multi_group_menus": 0.2547,
+   "policy_top1_in_scorer_top3": 0.6202,
+   "scorer_top1_in_policy_top3": 0.6053,
+   "spearman_median": 0.061,
+   "major_disagreements_gap_ge_3": 513,
+   "confident_disagreements": 116,
+   "descriptive_player_agreement": {
+    "player_is_scorer_top1": 0.4058,
+    "player_is_policy_top1": 0.5143,
+    "player_in_scorer_top3": 0.7026,
+    "player_in_policy_top3": 0.7082,
+    "note": "descriptive only: the player's action is not a correct answer"
+   },
+   "top1_action_types": {
+    "scorer": {
+     "PLAY_SPELL": 529,
+     "PLAY_MINION": 274,
+     "END_TURN": 237,
+     "ATTACK_MINION": 157,
+     "ACTIVATE_LOCATION": 138,
+     "PLAY_LOCATION": 135,
+     "ATTACK_HERO": 110,
+     "HERO_POWER": 28,
+     "PLAY_WEAPON": 6
+    },
+    "policy_v2": {
+     "PLAY_MINION": 429,
+     "END_TURN": 400,
+     "HERO_POWER": 253,
+     "PLAY_SPELL": 182,
+     "ATTACK_MINION": 155,
+     "ATTACK_HERO": 106,
+     "PLAY_WEAPON": 37,
+     "PLAY_LOCATION": 27,
+     "ACTIVATE_LOCATION": 25
+    },
+    "player": {
+     "END_TURN": 402,
+     "PLAY_SPELL": 365,
+     "PLAY_MINION": 321,
+     "HERO_POWER": 173,
+     "ATTACK_MINION": 140,
+     "ATTACK_HERO": 104,
+     "ACTIVATE_LOCATION": 56,
+     "PLAY_LOCATION": 37,
+     "PLAY_WEAPON": 16
+    }
+   },
+   "scorer_top1_uncertainty": {
+    "HIGH": 454,
+    "LOW": 364,
+    "MEDIUM": 796
+   },
+   "action_status": {
+    "EXACT": 506,
+    "PARTIAL": 17689,
+    "UNSUPPORTED": 292
+   },
+   "action_uncertainty": {
+    "LOW": 3096,
+    "HIGH": 5678,
+    "MEDIUM": 9713
+   },
+   "latency_ms": {
+    "median": 2.14,
+    "p95": 11.48,
+    "max": 134.88
+   },
+   "journal_top3_reproduced": {
+    "None": 666,
+    "True": 948
+   }
+  },
+  "policy_unseen_games": {
+   "decisions": 1614,
+   "games": 42,
+   "menu_size_median": 9.0,
+   "top1_agreement_same_group": 0.3346,
+   "top1_agreement_multi_group_menus": 0.2547,
+   "policy_top1_in_scorer_top3": 0.6202,
+   "scorer_top1_in_policy_top3": 0.6053,
+   "spearman_median": 0.061,
+   "major_disagreements_gap_ge_3": 513,
+   "confident_disagreements": 116,
+   "descriptive_player_agreement": {
+    "player_is_scorer_top1": 0.4058,
+    "player_is_policy_top1": 0.5143,
+    "player_in_scorer_top3": 0.7026,
+    "player_in_policy_top3": 0.7082,
+    "note": "descriptive only: the player's action is not a correct answer"
+   },
+   "top1_action_types": {
+    "scorer": {
+     "PLAY_SPELL": 529,
+     "PLAY_MINION": 274,
+     "END_TURN": 237,
+     "ATTACK_MINION": 157,
+     "ACTIVATE_LOCATION": 138,
+     "PLAY_LOCATION": 135,
+     "ATTACK_HERO": 110,
+     "HERO_POWER": 28,
+     "PLAY_WEAPON": 6
+    },
+    "policy_v2": {
+     "PLAY_MINION": 429,
+     "END_TURN": 400,
+     "HERO_POWER": 253,
+     "PLAY_SPELL": 182,
+     "ATTACK_MINION": 155,
+     "ATTACK_HERO": 106,
+     "PLAY_WEAPON": 37,
+     "PLAY_LOCATION": 27,
+     "ACTIVATE_LOCATION": 25
+    },
+    "player": {
+     "END_TURN": 402,
+     "PLAY_SPELL": 365,
+     "PLAY_MINION": 321,
+     "HERO_POWER": 173,
+     "ATTACK_MINION": 140,
+     "ATTACK_HERO": 104,
+     "ACTIVATE_LOCATION": 56,
+     "PLAY_LOCATION": 37,
+     "PLAY_WEAPON": 16
+    }
+   },
+   "scorer_top1_uncertainty": {
+    "HIGH": 454,
+    "LOW": 364,
+    "MEDIUM": 796
+   },
+   "action_status": {
+    "EXACT": 506,
+    "PARTIAL": 17689,
+    "UNSUPPORTED": 292
+   },
+   "action_uncertainty": {
+    "LOW": 3096,
+    "HIGH": 5678,
+    "MEDIUM": 9713
+   },
+   "latency_ms": {
+    "median": 2.14,
+    "p95": 11.48,
+    "max": 134.88
+   },
+   "journal_top3_reproduced": {
+    "None": 666,
+    "True": 948
+   }
+  },
+  "policy_seen_games": {
+   "decisions": 0
+  },
+  "recent_sessions_oct_11_12": {
+   "decisions": 430,
+   "games": 14,
+   "menu_size_median": 6.0,
+   "top1_agreement_same_group": 0.4302,
+   "top1_agreement_multi_group_menus": 0.3156,
+   "policy_top1_in_scorer_top3": 0.6907,
+   "scorer_top1_in_policy_top3": 0.6721,
+   "spearman_median": 0.0788,
+   "major_disagreements_gap_ge_3": 89,
+   "confident_disagreements": 25,
+   "descriptive_player_agreement": {
+    "player_is_scorer_top1": 0.4977,
+    "player_is_policy_top1": 0.507,
+    "player_in_scorer_top3": 0.7488,
+    "player_in_policy_top3": 0.7209,
+    "note": "descriptive only: the player's action is not a correct answer"
+   },
+   "top1_action_types": {
+    "scorer": {
+     "PLAY_SPELL": 97,
+     "END_TURN": 95,
+     "PLAY_MINION": 93,
+     "ATTACK_MINION": 67,
+     "ATTACK_HERO": 29,
+     "ACTIVATE_LOCATION": 22,
+     "HERO_POWER": 13,
+     "PLAY_LOCATION": 12,
+     "PLAY_WEAPON": 2
+    },
+    "policy_v2": {
+     "PLAY_MINION": 121,
+     "END_TURN": 119,
+     "HERO_POWER": 66,
+     "ATTACK_MINION": 42,
+     "PLAY_SPELL": 32,
+     "ATTACK_HERO": 32,
+     "ACTIVATE_LOCATION": 8,
+     "PLAY_WEAPON": 7,
+     "PLAY_LOCATION": 3
+    },
+    "player": {
+     "END_TURN": 108,
+     "PLAY_MINION": 91,
+     "PLAY_SPELL": 71,
+     "ATTACK_MINION": 54,
+     "HERO_POWER": 54,
+     "ATTACK_HERO": 38,
+     "ACTIVATE_LOCATION": 6,
+     "PLAY_WEAPON": 5,
+     "PLAY_LOCATION": 3
+    }
+   },
+   "scorer_top1_uncertainty": {
+    "LOW": 159,
+    "MEDIUM": 184,
+    "HIGH": 87
+   },
+   "action_status": {
+    "EXACT": 243,
+    "PARTIAL": 4154,
+    "UNSUPPORTED": 21
+   },
+   "action_uncertainty": {
+    "LOW": 1466,
+    "MEDIUM": 2117,
+    "HIGH": 835
+   },
+   "latency_ms": {
+    "median": 1.35,
+    "p95": 16.02,
+    "max": 34.93
+   },
+   "journal_top3_reproduced": {
+    "True": 407,
+    "None": 23
+   }
+  },
+  "flagged_by_player": {
+   "decisions": 31,
+   "games": 11,
+   "menu_size_median": 7.0,
+   "top1_agreement_same_group": 0.2581,
+   "top1_agreement_multi_group_menus": 0.2333,
+   "policy_top1_in_scorer_top3": 0.7097,
+   "scorer_top1_in_policy_top3": 0.6452,
+   "spearman_median": 0.1568,
+   "major_disagreements_gap_ge_3": 5,
+   "confident_disagreements": 0,
+   "descriptive_player_agreement": {
+    "player_is_scorer_top1": 0.3871,
+    "player_is_policy_top1": 0.0323,
+    "player_in_scorer_top3": 0.6774,
+    "player_in_policy_top3": 0.5161,
+    "note": "descriptive only: the player's action is not a correct answer"
+   },
+   "top1_action_types": {
+    "scorer": {
+     "PLAY_SPELL": 11,
+     "PLAY_MINION": 11,
+     "ATTACK_HERO": 4,
+     "ATTACK_MINION": 3,
+     "HERO_POWER": 1,
+     "END_TURN": 1
+    },
+    "policy_v2": {
+     "PLAY_MINION": 16,
+     "HERO_POWER": 7,
+     "END_TURN": 5,
+     "PLAY_SPELL": 3
+    },
+    "player": {
+     "PLAY_SPELL": 12,
+     "PLAY_MINION": 6,
+     "ATTACK_HERO": 4,
+     "HERO_POWER": 3,
+     "END_TURN": 3,
+     "ATTACK_MINION": 2,
+     "PLAY_WEAPON": 1
+    }
+   },
+   "scorer_top1_uncertainty": {
+    "LOW": 8,
+    "HIGH": 12,
+    "MEDIUM": 11
+   },
+   "action_status": {
+    "EXACT": 30,
+    "PARTIAL": 304,
+    "UNSUPPORTED": 4
+   },
+   "action_uncertainty": {
+    "LOW": 97,
+    "HIGH": 86,
+    "MEDIUM": 155
+   },
+   "latency_ms": {
+    "median": 1.08,
+    "p95": 10.26,
+    "max": 19.41
+   },
+   "journal_top3_reproduced": {
+    "True": 31
+   }
+  },
+  "not_flagged_recent": {
+   "decisions": 399,
+   "games": 14,
+   "menu_size_median": 6.0,
+   "top1_agreement_same_group": 0.4436,
+   "top1_agreement_multi_group_menus": 0.3232,
+   "policy_top1_in_scorer_top3": 0.6892,
+   "scorer_top1_in_policy_top3": 0.6742,
+   "spearman_median": 0.0619,
+   "major_disagreements_gap_ge_3": 84,
+   "confident_disagreements": 25,
+   "descriptive_player_agreement": {
+    "player_is_scorer_top1": 0.5063,
+    "player_is_policy_top1": 0.5439,
+    "player_in_scorer_top3": 0.7544,
+    "player_in_policy_top3": 0.7368,
+    "note": "descriptive only: the player's action is not a correct answer"
+   },
+   "top1_action_types": {
+    "scorer": {
+     "END_TURN": 94,
+     "PLAY_SPELL": 86,
+     "PLAY_MINION": 82,
+     "ATTACK_MINION": 64,
+     "ATTACK_HERO": 25,
+     "ACTIVATE_LOCATION": 22,
+     "PLAY_LOCATION": 12,
+     "HERO_POWER": 12,
+     "PLAY_WEAPON": 2
+    },
+    "policy_v2": {
+     "END_TURN": 114,
+     "PLAY_MINION": 105,
+     "HERO_POWER": 59,
+     "ATTACK_MINION": 42,
+     "ATTACK_HERO": 32,
+     "PLAY_SPELL": 29,
+     "ACTIVATE_LOCATION": 8,
+     "PLAY_WEAPON": 7,
+     "PLAY_LOCATION": 3
+    },
+    "player": {
+     "END_TURN": 105,
+     "PLAY_MINION": 85,
+     "PLAY_SPELL": 59,
+     "ATTACK_MINION": 52,
+     "HERO_POWER": 51,
+     "ATTACK_HERO": 34,
+     "ACTIVATE_LOCATION": 6,
+     "PLAY_WEAPON": 4,
+     "PLAY_LOCATION": 3
+    }
+   },
+   "scorer_top1_uncertainty": {
+    "LOW": 151,
+    "MEDIUM": 173,
+    "HIGH": 75
+   },
+   "action_status": {
+    "EXACT": 213,
+    "PARTIAL": 3850,
+    "UNSUPPORTED": 17
+   },
+   "action_uncertainty": {
+    "LOW": 1369,
+    "MEDIUM": 1962,
+    "HIGH": 749
+   },
+   "latency_ms": {
+    "median": 1.37,
+    "p95": 16.16,
+    "max": 34.93
+   },
+   "journal_top3_reproduced": {
+    "True": 376,
+    "None": 23
+   }
+  },
+  "by_class": {
+   "DEATHKNIGHT": {
+    "decisions": 158,
+    "games": 5,
+    "menu_size_median": 8.0,
+    "top1_agreement_same_group": 0.3861,
+    "top1_agreement_multi_group_menus": 0.2815,
+    "policy_top1_in_scorer_top3": 0.6646,
+    "scorer_top1_in_policy_top3": 0.5886,
+    "spearman_median": 0.0,
+    "major_disagreements_gap_ge_3": 29,
+    "confident_disagreements": 11,
+    "descriptive_player_agreement": {
+     "player_is_scorer_top1": 0.4557,
+     "player_is_policy_top1": 0.4684,
+     "player_in_scorer_top3": 0.7342,
+     "player_in_policy_top3": 0.6519,
+     "note": "descriptive only: the player's action is not a correct answer"
+    },
+    "top1_action_types": {
+     "scorer": {
+      "PLAY_MINION": 50,
+      "END_TURN": 34,
+      "PLAY_SPELL": 28,
+      "ATTACK_MINION": 28,
+      "ATTACK_HERO": 18
+     },
+     "policy_v2": {
+      "PLAY_MINION": 67,
+      "END_TURN": 38,
+      "ATTACK_MINION": 25,
+      "ATTACK_HERO": 17,
+      "HERO_POWER": 9,
+      "PLAY_SPELL": 2
+     },
+     "player": {
+      "PLAY_MINION": 52,
+      "END_TURN": 35,
+      "ATTACK_MINION": 30,
+      "ATTACK_HERO": 20,
+      "HERO_POWER": 12,
+      "PLAY_SPELL": 9
+     }
+    },
+    "scorer_top1_uncertainty": {
+     "MEDIUM": 59,
+     "LOW": 59,
+     "HIGH": 40
+    },
+    "action_status": {
+     "EXACT": 119,
+     "PARTIAL": 2172
+    },
+    "action_uncertainty": {
+     "LOW": 598,
+     "MEDIUM": 1266,
+     "HIGH": 427
+    },
+    "latency_ms": {
+     "median": 2.43,
+     "p95": 23.4,
+     "max": 34.93
+    },
+    "journal_top3_reproduced": {
+     "True": 149,
+     "None": 9
+    }
+   },
+   "DEMONHUNTER": {
+    "decisions": 184,
+    "games": 7,
+    "menu_size_median": 4.0,
+    "top1_agreement_same_group": 0.4728,
+    "top1_agreement_multi_group_menus": 0.3446,
+    "policy_top1_in_scorer_top3": 0.7337,
+    "scorer_top1_in_policy_top3": 0.7609,
+    "spearman_median": 0.2436,
+    "major_disagreements_gap_ge_3": 33,
+    "confident_disagreements": 9,
+    "descriptive_player_agreement": {
+     "player_is_scorer_top1": 0.5489,
+     "player_is_policy_top1": 0.5054,
+     "player_in_scorer_top3": 0.8098,
+     "player_in_policy_top3": 0.7717,
+     "note": "descriptive only: the player's action is not a correct answer"
+    },
+    "top1_action_types": {
+     "scorer": {
+      "END_TURN": 47,
+      "PLAY_SPELL": 40,
+      "PLAY_MINION": 39,
+      "ATTACK_MINION": 29,
+      "ATTACK_HERO": 18,
+      "HERO_POWER": 9,
+      "PLAY_WEAPON": 2
+     },
+     "policy_v2": {
+      "END_TURN": 54,
+      "PLAY_MINION": 43,
+      "HERO_POWER": 31,
+      "ATTACK_MINION": 19,
+      "PLAY_SPELL": 18,
+      "ATTACK_HERO": 14,
+      "PLAY_WEAPON": 5
+     },
+     "player": {
+      "END_TURN": 45,
+      "HERO_POWER": 32,
+      "PLAY_MINION": 32,
+      "PLAY_SPELL": 31,
+      "ATTACK_MINION": 21,
+      "ATTACK_HERO": 20,
+      "PLAY_WEAPON": 3
+     }
+    },
+    "scorer_top1_uncertainty": {
+     "MEDIUM": 55,
+     "LOW": 78,
+     "HIGH": 51
+    },
+    "action_status": {
+     "EXACT": 107,
+     "PARTIAL": 970,
+     "UNSUPPORTED": 18
+    },
+    "action_uncertainty": {
+     "LOW": 516,
+     "MEDIUM": 346,
+     "HIGH": 233
+    },
+    "latency_ms": {
+     "median": 0.87,
+     "p95": 5.1,
+     "max": 17.25
+    },
+    "journal_top3_reproduced": {
+     "True": 170,
+     "None": 14
+    }
+   },
+   "PRIEST": {
+    "decisions": 1036,
+    "games": 22,
+    "menu_size_median": 10.0,
+    "top1_agreement_same_group": 0.3012,
+    "top1_agreement_multi_group_menus": 0.2395,
+    "policy_top1_in_scorer_top3": 0.5965,
+    "scorer_top1_in_policy_top3": 0.6052,
+    "spearman_median": 0.0689,
+    "major_disagreements_gap_ge_3": 391,
+    "confident_disagreements": 81,
+    "descriptive_player_agreement": {
+     "player_is_scorer_top1": 0.3716,
+     "player_is_policy_top1": 0.528,
+     "player_in_scorer_top3": 0.6969,
+     "player_in_policy_top3": 0.7133,
+     "note": "descriptive only: the player's action is not a correct answer"
+    },
+    "top1_action_types": {
+     "scorer": {
+      "PLAY_SPELL": 425,
+      "PLAY_MINION": 136,
+      "ACTIVATE_LOCATION": 115,
+      "END_TURN": 112,
+      "PLAY_LOCATION": 104,
+      "ATTACK_HERO": 64,
+      "ATTACK_MINION": 63,
+      "HERO_POWER": 15,
+      "PLAY_WEAPON": 2
+     },
+     "policy_v2": {
+      "PLAY_MINION": 266,
+      "END_TURN": 243,
+      "HERO_POWER": 185,
+      "PLAY_SPELL": 144,
+      "ATTACK_MINION": 86,
+      "ATTACK_HERO": 58,
+      "PLAY_LOCATION": 23,
+      "PLAY_WEAPON": 19,
+      "ACTIVATE_LOCATION": 12
+     },
+     "player": {
+      "PLAY_SPELL": 282,
+      "END_TURN": 264,
+      "PLAY_MINION": 189,
+      "HERO_POWER": 114,
+      "ATTACK_MINION": 67,
+      "ATTACK_HERO": 43,
+      "ACTIVATE_LOCATION": 40,
+      "PLAY_LOCATION": 28,
+      "PLAY_WEAPON": 9
+     }
+    },
+    "scorer_top1_uncertainty": {
+     "HIGH": 319,
+     "LOW": 147,
+     "MEDIUM": 570
+    },
+    "action_status": {
+     "EXACT": 166,
+     "PARTIAL": 11684,
+     "UNSUPPORTED": 253
+    },
+    "action_uncertainty": {
+     "LOW": 1079,
+     "HIGH": 4330,
+     "MEDIUM": 6694
+    },
+    "latency_ms": {
+     "median": 2.35,
+     "p95": 9.45,
+     "max": 134.88
+    },
+    "journal_top3_reproduced": {
+     "None": 621,
+     "True": 415
+    }
+   },
+   "WARLOCK": {
+    "decisions": 51,
+    "games": 2,
+    "menu_size_median": 6.0,
+    "top1_agreement_same_group": 0.5294,
+    "top1_agreement_multi_group_menus": 0.3846,
+    "policy_top1_in_scorer_top3": 0.7647,
+    "scorer_top1_in_policy_top3": 0.6275,
+    "spearman_median": 0.1446,
+    "major_disagreements_gap_ge_3": 3,
+    "confident_disagreements": 0,
+    "descriptive_player_agreement": {
+     "player_is_scorer_top1": 0.6275,
+     "player_is_policy_top1": 0.5882,
+     "player_in_scorer_top3": 0.6863,
+     "player_in_policy_top3": 0.6471,
+     "note": "descriptive only: the player's action is not a correct answer"
+    },
+    "top1_action_types": {
+     "scorer": {
+      "END_TURN": 15,
+      "PLAY_SPELL": 14,
+      "PLAY_MINION": 11,
+      "ATTACK_HERO": 5,
+      "ATTACK_MINION": 4,
+      "HERO_POWER": 2
+     },
+     "policy_v2": {
+      "END_TURN": 16,
+      "PLAY_MINION": 14,
+      "HERO_POWER": 8,
+      "ATTACK_HERO": 7,
+      "ATTACK_MINION": 4,
+      "PLAY_SPELL": 2
+     },
+     "player": {
+      "END_TURN": 16,
+      "PLAY_SPELL": 10,
+      "PLAY_MINION": 8,
+      "HERO_POWER": 7,
+      "ATTACK_HERO": 6,
+      "ATTACK_MINION": 4
+     }
+    },
+    "scorer_top1_uncertainty": {
+     "LOW": 18,
+     "MEDIUM": 25,
+     "HIGH": 8
+    },
+    "action_status": {
+     "EXACT": 50,
+     "PARTIAL": 439
+    },
+    "action_uncertainty": {
+     "LOW": 134,
+     "MEDIUM": 257,
+     "HIGH": 98
+    },
+    "latency_ms": {
+     "median": 1.53,
+     "p95": 10.26,
+     "max": 21.69
+    },
+    "journal_top3_reproduced": {
+     "True": 49,
+     "None": 2
+    }
+   },
+   "WARRIOR": {
+    "decisions": 185,
+    "games": 6,
+    "menu_size_median": 11.0,
+    "top1_agreement_same_group": 0.2865,
+    "top1_agreement_multi_group_menus": 0.2096,
+    "policy_top1_in_scorer_top3": 0.5622,
+    "scorer_top1_in_policy_top3": 0.4595,
+    "spearman_median": -0.115,
+    "major_disagreements_gap_ge_3": 57,
+    "confident_disagreements": 15,
+    "descriptive_player_agreement": {
+     "player_is_scorer_top1": 0.3514,
+     "player_is_policy_top1": 0.4649,
+     "player_in_scorer_top3": 0.6054,
+     "player_in_policy_top3": 0.6811,
+     "note": "descriptive only: the player's action is not a correct answer"
+    },
+    "top1_action_types": {
+     "scorer": {
+      "PLAY_MINION": 38,
+      "ATTACK_MINION": 33,
+      "PLAY_LOCATION": 31,
+      "END_TURN": 29,
+      "ACTIVATE_LOCATION": 23,
+      "PLAY_SPELL": 22,
+      "ATTACK_HERO": 5,
+      "HERO_POWER": 2,
+      "PLAY_WEAPON": 2
+     },
+     "policy_v2": {
+      "END_TURN": 49,
+      "PLAY_MINION": 39,
+      "ATTACK_MINION": 21,
+      "HERO_POWER": 20,
+      "PLAY_SPELL": 16,
+      "ACTIVATE_LOCATION": 13,
+      "PLAY_WEAPON": 13,
+      "ATTACK_HERO": 10,
+      "PLAY_LOCATION": 4
+     },
+     "player": {
+      "END_TURN": 42,
+      "PLAY_MINION": 40,
+      "PLAY_SPELL": 33,
+      "ATTACK_MINION": 18,
+      "ACTIVATE_LOCATION": 16,
+      "ATTACK_HERO": 15,
+      "PLAY_LOCATION": 9,
+      "HERO_POWER": 8,
+      "PLAY_WEAPON": 4
+     }
+    },
+    "scorer_top1_uncertainty": {
+     "LOW": 62,
+     "MEDIUM": 87,
+     "HIGH": 36
+    },
+    "action_status": {
+     "EXACT": 64,
+     "PARTIAL": 2424,
+     "UNSUPPORTED": 21
+    },
+    "action_uncertainty": {
+     "LOW": 769,
+     "MEDIUM": 1150,
+     "HIGH": 590
+    },
+    "latency_ms": {
+     "median": 2.73,
+     "p95": 16.15,
+     "max": 34.53
+    },
+    "journal_top3_reproduced": {
+     "True": 165,
+     "None": 20
+    }
+   }
+  }
+ },
+ "value_validation": {
+  "games": 67,
+  "positions": 2440,
+  "wins": 35,
+  "losses": 32,
+  "all": {
+   "positions": 2440,
+   "baseline_board_stats_difference": {
+    "auc": 0.6123,
+    "ci95": [
+     0.5531,
+     0.677
+    ]
+   },
+   "baseline_hand_size_difference": {
+    "auc": 0.5269,
+    "ci95": [
+     0.4148,
+     0.6279
+    ]
+   },
+   "baseline_health_difference": {
+    "auc": 0.6485,
+    "ci95": [
+     0.5524,
+     0.7423
+    ]
+   },
+   "scorer_board_terms": {
+    "auc": 0.615,
+    "ci95": [
+     0.5586,
+     0.6849
+    ]
+   },
+   "scorer_hero_terms": {
+    "auc": 0.6497,
+    "ci95": [
+     0.553,
+     0.7443
+    ]
+   },
+   "scorer_risk_terms": {
+    "auc": 0.6203,
+    "ci95": [
+     0.5588,
+     0.6835
+    ]
+   },
+   "scorer_static_plus_risk": {
+    "auc": 0.6937,
+    "ci95": [
+     0.6143,
+     0.767
+    ]
+   }
+  },
+  "turn<=10": {
+   "positions": 783,
+   "baseline_board_stats_difference": {
+    "auc": 0.5895,
+    "ci95": [
+     0.4997,
+     0.6789
+    ]
+   },
+   "baseline_hand_size_difference": {
+    "auc": 0.3662,
+    "ci95": [
+     0.2475,
+     0.4755
+    ]
+   },
+   "baseline_health_difference": {
+    "auc": 0.5016,
+    "ci95": [
+     0.3777,
+     0.623
+    ]
+   },
+   "scorer_board_terms": {
+    "auc": 0.5863,
+    "ci95": [
+     0.496,
+     0.6688
+    ]
+   },
+   "scorer_hero_terms": {
+    "auc": 0.5016,
+    "ci95": [
+     0.3766,
+     0.6205
+    ]
+   },
+   "scorer_risk_terms": {
+    "auc": 0.5927,
+    "ci95": [
+     0.5086,
+     0.6784
+    ]
+   },
+   "scorer_static_plus_risk": {
+    "auc": 0.5929,
+    "ci95": [
+     0.4934,
+     0.6841
+    ]
+   }
+  },
+  "turn>10": {
+   "positions": 1657,
+   "baseline_board_stats_difference": {
+    "auc": 0.6269,
+    "ci95": [
+     0.5447,
+     0.7205
+    ]
+   },
+   "baseline_hand_size_difference": {
+    "auc": 0.5892,
+    "ci95": [
+     0.4414,
+     0.6974
+    ]
+   },
+   "baseline_health_difference": {
+    "auc": 0.6973,
+    "ci95": [
+     0.5872,
+     0.7979
+    ]
+   },
+   "scorer_board_terms": {
+    "auc": 0.6312,
+    "ci95": [
+     0.5504,
+     0.7161
+    ]
+   },
+   "scorer_hero_terms": {
+    "auc": 0.6994,
+    "ci95": [
+     0.588,
+     0.797
+    ]
+   },
+   "scorer_risk_terms": {
+    "auc": 0.6424,
+    "ci95": [
+     0.5632,
+     0.7256
+    ]
+   },
+   "scorer_static_plus_risk": {
+    "auc": 0.7259,
+    "ci95": [
+     0.6342,
+     0.8168
+    ]
+   }
+  }
+ }
+}
