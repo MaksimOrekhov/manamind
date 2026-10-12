@@ -464,3 +464,19 @@ def test_an_unobserved_hero_shield_does_not_hide_lethal_but_marks_it_as_an_estim
     known, order = ranked(state, actions, context=KNOWN)
     assert order[0].index == 2 and known.actions[2].unknown_estimate == 0
     assert known.actions[2].confirmed >= PARAMS.win
+
+
+def test_a_big_body_with_unread_text_is_a_fair_card_not_a_free_giant():
+    texts = TEXTS.extended([{"id": "T_SLEEPER", "type": "MINION", "mechanics": ["RUSH"],
+                             "text": "Dormant for 5 turns. <b>Rush</b>."}])
+    giant = sc.hand_card("T_SLEEPER", "MINION", 3, attack=8, health=8, mechanics=("RUSH",))
+    fair = sc.hand_card("T_BEAR", "MINION", 3, attack=3, health=4)
+    state = sc.position(self_side=sc.side(mana=3), opponent=sc.side(), hand=(giant, fair))
+    actions = [sc.end_turn(), sc.play("T_SLEEPER", 0, "MINION", 3, play_position=1),
+               sc.play("T_BEAR", 1, "MINION", 3, play_position=1)]
+    result, _ = ranked(state, actions, texts=texts)
+    sleeper = result.actions[1]
+    assert sleeper.unknown_estimate < 0                        # the unread text is presumed to pay for the stats
+    assert sleeper.confirmed + sleeper.unknown_estimate == pytest.approx(
+        PARAMS.card_base + 3 * PARAMS.card_per_mana - PARAMS.hand_fraction * (PARAMS.card_base + 3 * PARAMS.card_per_mana))
+    assert sleeper.uncertainty.level != "LOW" and "OWN_TEXT_UNPARSED" in sleeper.uncertainty.tags

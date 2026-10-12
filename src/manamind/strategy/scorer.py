@@ -12,7 +12,8 @@ The score of an action is split into parts that must not be confused:
 * ``plan``              - change of what SELF can still do this turn (Mana and ready attackers), an estimate;
 * ``unknown_estimate``  - for an action whose own text the forecaster cannot read, the value a fair card of that
                           cost would add beyond what was computed (plan-neutral: an unread card is neither free value
-                          nor worthless); and, when a hero's Divine Shield is not observed, the value of the damage
+                          nor worthless; for a minion it may be negative, when the body alone is above the curve the
+                          unread text is presumed to pay for it); and, when a hero's Divine Shield is not observed, the value of the damage
                           the forecaster computes under its own "no hero Divine Shield" assumption. Estimates, never
                           presented as mechanical consequences.
 
@@ -276,7 +277,9 @@ def score_action(state: GameState, index: int, action: dict[str, Any], forecast:
             stored = (after.get("hand_self") - before.get("hand_self")
                       + after.get("locations_self") - before.get("locations_self"))
             modelled = confirmed - stored
-            residual = max(0.0, expected - modelled)
+            residual = expected - modelled
+            if not (kind == "PLAY_CARD" and action.get("card_type") == "MINION"):
+                residual = max(0.0, residual)      # a partly read spell / power / Location is not assumed worse
     shield = 0.0
     if assumed is not None:
         assumed_state, assumed_bound = _forecast_position(state, assumed, p)
@@ -284,14 +287,14 @@ def score_action(state: GameState, index: int, action: dict[str, Any], forecast:
             shield = max(0.0, (position_value(assumed_state, texts, turn_open=turn_open, p=p).total + assumed_bound)
                          - (after.total + bound))
     residual_total = residual + shield
-    magnitude = residual_total
+    magnitude = abs(residual) + shield + (1.0 if own_unknown else 0.0)
     reactions = sum(1 for tag in tags if tag in REACTION_TAGS)
     modifiers = sum(1 for tag in tags if tag not in REACTION_TAGS | SECRET_TAGS | OWN_EFFECT_TAGS
                     and not tag.startswith("NOT_FORECAST"))
     magnitude += 1.0 * reactions + 0.5 * modifiers + (3.0 if any(t in SECRET_TAGS for t in tags) else 0.0)
-    if status in (Status.UNSUPPORTED.value, ERROR, NOT_COMPUTED) or residual_total >= 3.0 or magnitude > 5.0:
+    if status in (Status.UNSUPPORTED.value, ERROR, NOT_COMPUTED) or abs(residual) + shield >= 3.0 or magnitude > 5.0:
         level = "HIGH"
-    elif status == Status.EXACT.value or magnitude <= 1.0:
+    elif status == Status.EXACT.value or (magnitude <= 1.0 and not own_unknown):
         level = "LOW"
     else:
         level = "MEDIUM"

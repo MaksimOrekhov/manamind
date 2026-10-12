@@ -30,7 +30,9 @@ from manamind.outcome.texts import TextSource
 # v1 (frozen at ee55494, evaluated in reports/strategic_scorer_1/results_params_v1.json).
 # v2: structural fixes found by that evaluation, coefficients unchanged - Location charges are a stored resource like
 # a card in hand (an activation is no longer free value), and a card whose cost is not observed is assumed plan-neutral.
-PARAMS_VERSION = "strategic-scorer-1/params-v2"
+# v3: a minion whose text the scorer cannot read is a fair card of its cost (stats above the curve usually pay for a
+# drawback such as Dormant, below it for an upside), instead of max(body, fair card).
+PARAMS_VERSION = "strategic-scorer-1/params-v3"
 
 
 @dataclass(frozen=True, slots=True)
@@ -136,8 +138,9 @@ def body_value(card: CardFeatures, p: Params = PARAMS) -> float | None:
 def expected_play_value(card: CardFeatures, texts: TextSource, p: Params = PARAMS) -> float:
     """What playing this card is expected to give, before any forecast: its body, or a fair card of its cost.
 
-    A minion whose text adds nothing beyond keywords is its body. Any other card (a text the scorer cannot read,
-    a spell, a Location, a weapon) is assumed to be a fair card of its printed cost - an estimate, never a fact.
+    A minion whose text adds nothing beyond keywords is its body. Any other card (a minion with more text, a spell,
+    a Location, a weapon) is assumed to be a fair card of its printed cost - an estimate, never a fact. For a minion
+    this deliberately ignores how far its stats are from the curve: the text usually pays for that difference.
     """
     prior = card_prior(card.cost if card.cost is not None else card.effective_cost, p)
     if card.card_type == "MINION":
@@ -145,7 +148,6 @@ def expected_play_value(card: CardFeatures, texts: TextSource, p: Params = PARAM
         entry = texts.get(card.card_id)
         if body is not None and entry is not None and _text_is_body_only(entry.text):
             return body
-        return prior if body is None else max(body, prior)
     return prior
 
 
