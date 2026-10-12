@@ -1,0 +1,150 @@
+{
+  "inputs": {
+    "card_text_files": {
+      "hearthstonejson_latest_enUS.json": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+      "standard_current_enUS.json": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34"
+    },
+    "dataset": "real_policy_retrain_1 train+validation only",
+    "dataset_sha256": "3cfe24281ca75b2c4243c77afbc35c681b41467645dfe4945e5d6bc702790919",
+    "decisions": 1456,
+    "note": "Top-1/Top-3 imitation metrics use chosen actions as behavior reference only; tactical counts are separate and not strategy labels.",
+    "split_sha256": "bb578b31ef688b71461ac6cd532137efd19fbc2f867c248669168c33c95edaaf",
+    "train_matches": 32,
+    "v1_checkpoint_sha256": "5a5e3435c0dcda5ce69bcd0a48dc8521fb3696e2a7794e268b894efbf7e3e95e",
+    "v2_checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "validation_matches": 7
+  },
+  "results": {
+    "train": {
+      "coarse_can_attack_menu_mismatch": {
+        "can_attack_without_legal_attack_entities": 20,
+        "such_entities_all_enemy_minions_stealth": 0,
+        "such_entities_dormant": 1,
+        "such_entities_frozen": 0,
+        "such_entities_opponent_has_taunt": 6,
+        "such_entities_zero_attack": 0
+      },
+      "decisions": 1175,
+      "face_forecast_unknown_tags_action_counts": {
+        "BOARD_STATIC_TEXT": 694,
+        "BOARD_TEXT_MISSING": 550,
+        "BOARD_TRIGGER": 87,
+        "HERO_SHIELD_UNOBSERVED": 464,
+        "OPPONENT_SECRET": 78,
+        "OWN_SECRET_OR_QUEST": 335,
+        "WEAPON_UNOBSERVED": 17
+      },
+      "matches": 32,
+      "matches_with_potential_lethal": 4,
+      "matches_with_verified_losing_trade": 3,
+      "max_potential_lethal_states_in_one_match": 5,
+      "max_verified_losing_trade_states_in_one_match": 6,
+      "mechanical_trade_facts": {
+        "narrow_local_alternatives_exist": 2,
+        "verified_source_dies_target_survives_actions": 10,
+        "verified_source_dies_target_survives_states": 10
+      },
+      "opportunities": {
+        "confirmed_single_attack_lethal_states": 0,
+        "exact_face_hit_no_return_states": 0,
+        "face_candidate_with_uncertainty_states": 331,
+        "legal_positive_face_attack_states": 331,
+        "potential_lethal_multi_actor": 6,
+        "potential_lethal_shield_unknown": 8,
+        "potential_lethal_single_actor": 2,
+        "potential_lethal_states": 8
+      },
+      "policy_metrics_fraction_of_decisions": {
+        "v1_reference": {
+          "decisions": 1175,
+          "imitation_top1": 0.551489,
+          "imitation_top3": 0.733617,
+          "potential_lethal_top1_recall": 0.25,
+          "potential_lethal_top3_recall": 1.0,
+          "top1": 0.001702,
+          "top3": 0.006809
+        },
+        "v2_live": {
+          "decisions": 1175,
+          "imitation_top1": 0.556596,
+          "imitation_top3": 0.738723,
+          "potential_lethal_top1_recall": 0.75,
+          "potential_lethal_top3_recall": 0.875,
+          "top1": 0.005106,
+          "top3": 0.005957
+        }
+      },
+      "policy_rank_on_narrow_trade_comparisons": {
+        "v1_reference": {
+          "comparisons": 2,
+          "policy_ranks_losing_trade_above_local_alternative": 2
+        },
+        "v2_live": {
+          "comparisons": 2,
+          "policy_ranks_losing_trade_above_local_alternative": 0
+        }
+      }
+    },
+    "validation": {
+      "coarse_can_attack_menu_mismatch": {
+        "can_attack_without_legal_attack_entities": 7,
+        "such_entities_all_enemy_minions_stealth": 0,
+        "such_entities_dormant": 0,
+        "such_entities_frozen": 0,
+        "such_entities_opponent_has_taunt": 0,
+        "such_entities_zero_attack": 0
+      },
+      "decisions": 281,
+      "face_forecast_unknown_tags_action_counts": {
+        "BOARD_STATIC_TEXT": 250,
+        "BOARD_TEXT_MISSING": 159,
+        "BOARD_TRIGGER": 39,
+        "HERO_SHIELD_UNOBSERVED": 107,
+        "OPPONENT_SECRET": 55,
+        "OWN_SECRET_OR_QUEST": 98,
+        "WEAPON_UNOBSERVED": 5
+      },
+      "matches": 7,
+      "matches_with_potential_lethal": 0,
+      "matches_with_verified_losing_trade": 0,
+      "max_potential_lethal_states_in_one_match": 0,
+      "max_verified_losing_trade_states_in_one_match": 0,
+      "mechanical_trade_facts": {},
+      "opportunities": {
+        "confirmed_single_attack_lethal_states": 0,
+        "exact_face_hit_no_return_states": 0,
+        "face_candidate_with_uncertainty_states": 96,
+        "legal_positive_face_attack_states": 96,
+        "potential_lethal_multi_actor": 0,
+        "potential_lethal_shield_unknown": 0,
+        "potential_lethal_single_actor": 0,
+        "potential_lethal_states": 0
+      },
+      "policy_metrics_fraction_of_decisions": {
+        "v1_reference": {
+          "decisions": 281,
+          "imitation_top1": 0.52669,
+          "imitation_top3": 0.72242,
+          "potential_lethal_top1_recall": null,
+          "potential_lethal_top3_recall": null,
+          "top1": 0.0,
+          "top3": 0.0
+        },
+        "v2_live": {
+          "decisions": 281,
+          "imitation_top1": 0.562278,
+          "imitation_top3": 0.754448,
+          "potential_lethal_top1_recall": null,
+          "potential_lethal_top3_recall": null,
+          "top1": 0.0,
+          "top3": 0.0
+        }
+      },
+      "policy_rank_on_narrow_trade_comparisons": {
+        "v1_reference": {},
+        "v2_live": {}
+      }
+    }
+  },
+  "schema": "manamind.tactical_opportunity_bench/1"
+}
