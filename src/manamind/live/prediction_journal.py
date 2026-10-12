@@ -28,16 +28,20 @@ class PredictionJournal:
     format and the growth of the RECOMMENDATION stream stay exactly what they were; rows of both files join on
     ``decision_id``. The shadow file is created only when the shadow is switched on. At ``shadow_max_bytes`` it is
     renamed (never deleted or truncated) to ``<name>.<UTC time>.jsonl`` and a fresh file is started, so one file never
-    grows without bound and no row is lost; archive or analyze the rotated files at will.
+    grows without bound and no row is lost; archive or analyze the rotated files at will. The strategy shadow
+    (STRATEGIC-SCORER-1) follows the same rules in its own ``<stem>.strategy_shadow.jsonl``.
     """
 
     def __init__(self, path: Path, *, shadow_path: Path | None = None,
-                 shadow_max_bytes: int = SHADOW_MAX_BYTES, feedback_path: Path | None = None) -> None:
+                 shadow_max_bytes: int = SHADOW_MAX_BYTES, feedback_path: Path | None = None,
+                 strategy_path: Path | None = None) -> None:
         self.path = Path(path)
         self.feedback_path = (Path(feedback_path) if feedback_path is not None
                               else self.path.with_name("decision_feedback.jsonl"))
         self.shadow_path = (Path(shadow_path) if shadow_path is not None
                             else self.path.with_name(f"{self.path.stem}.outcome_shadow.jsonl"))
+        self.strategy_path = (Path(strategy_path) if strategy_path is not None
+                              else self.path.with_name(f"{self.path.stem}.strategy_shadow.jsonl"))
         self.shadow_max_bytes = shadow_max_bytes
 
     def _append(self, event: dict, path: Path | None = None) -> None:
@@ -124,15 +128,18 @@ class PredictionJournal:
 
     # -- outcome shadow (ACTION-OUTCOME-2) ---------------------------------------------------------------------
 
-    def _append_shadow(self, event: dict) -> None:
+    def _append_rotating(self, event: dict, path: Path) -> None:
         try:
-            size = self.shadow_path.stat().st_size
+            size = path.stat().st_size
         except FileNotFoundError:
             size = 0
         if size >= self.shadow_max_bytes:
             stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-            self.shadow_path.replace(self.shadow_path.with_name(f"{self.shadow_path.stem}.{stamp}.jsonl"))
-        self._append(event, self.shadow_path)
+            path.replace(path.with_name(f"{path.stem}.{stamp}.jsonl"))
+        self._append(event, path)
+
+    def _append_shadow(self, event: dict) -> None:
+        self._append_rotating(event, self.shadow_path)
 
     def outcome_shadow(self, snapshot: Snapshot, record: dict) -> None:
         """One row per displayed decision: the compact forecast of its whole menu (see ``outcome.shadow``)."""
@@ -162,6 +169,46 @@ class PredictionJournal:
         """The decision a shadow row belongs to is no longer current: its forecasts are history, not advice."""
         self._append_shadow({
             "event": "OUTCOME_SHADOW_INVALIDATION",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
+        })
+
+    # -- strategy shadow (STRATEGIC-SCORER-1) ------------------------------------------------------------------
+
+    def _append_strategy(self, event: dict) -> None:
+        self._append_rotating(event, self.strategy_path)
+
+    def strategy_shadow(self, snapshot: Snapshot, record: dict) -> None:
+        """One row per displayed decision: the independent Strategic Scorer ranking of its whole menu."""
+        self._append_strategy({
+            "event": "STRATEGY_SHADOW",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "seq": snapshot.seq,
+            "options_id": snapshot.decision["options_id"],
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            **record,
+        })
+
+    def strategy_shadow_error(self, snapshot: Snapshot, reason: str) -> None:
+        """A strategy shadow that failed; ``reason`` is a stable code, never exception or log text."""
+        self._append_strategy({
+            "event": "STRATEGY_SHADOW_ERROR",
+            "match_id": snapshot.game_key,
+            "decision_id": decision_id(snapshot),
+            "state_hash": snapshot.state_hash,
+            "at_utc": _utc_now(),
+            "reason": reason,
+        })
+
+    def strategy_shadow_invalidation(self, snapshot: Snapshot, reason: str) -> None:
+        """The decision a strategy row belongs to is no longer current."""
+        self._append_strategy({
+            "event": "STRATEGY_SHADOW_INVALIDATION",
             "match_id": snapshot.game_key,
             "decision_id": decision_id(snapshot),
             "state_hash": snapshot.state_hash,

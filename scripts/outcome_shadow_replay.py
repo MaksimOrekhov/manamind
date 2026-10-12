@@ -114,10 +114,12 @@ class RunResult:
     hashes: list[str] = field(default_factory=list)
     journal: list[dict] = field(default_factory=list)
     shadow_rows: list[dict] = field(default_factory=list)
+    strategy_rows: list[dict] = field(default_factory=list)
     policy_latency_ms: list[float] = field(default_factory=list)
     decision_step_ms: list[float] = field(default_factory=list)
     scored: int = 0
     shadow_summary: str | None = None
+    strategy_summary: str | None = None
 
 
 def read_jsonl(path: Path) -> list[dict]:
@@ -127,7 +129,7 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def run_runtime(directory: Path, recommender: PolicyRecommender, texts, work: Path, *, shadow: bool,
-                budget_ms: float = 250.0, shadow_factory=None) -> RunResult:
+                budget_ms: float = 250.0, shadow_factory=None, strategy=None) -> RunResult:
     """One pass of the unchanged runtime over a recording; ``work`` is a fresh directory for the journal files."""
     live = RecordedLive(directory, recommender.encoder.catalog)
     result = RunResult()
@@ -137,7 +139,8 @@ def run_runtime(directory: Path, recommender: PolicyRecommender, texts, work: Pa
         outcome = shadow_factory() if shadow_factory else OutcomeShadow(texts, budget_ms=budget_ms)
     runtime = run_manamind.UnifiedRuntime(
         live, _NoCollector(), recommender, emit=result.emitted.append, collector_seconds=3600, journal=journal,
-        on_event=lambda event: result.events.append(_event_view(event)), outcome_shadow=outcome)
+        on_event=lambda event: result.events.append(_event_view(event)), outcome_shadow=outcome,
+        strategy_shadow=strategy)
     while not live.exhausted:
         before = runtime.decisions_scored
         live.fresh = True
@@ -151,6 +154,10 @@ def run_runtime(directory: Path, recommender: PolicyRecommender, texts, work: Pa
     result.hashes = live.hashes
     result.journal = _strip(read_jsonl(journal.path))
     result.shadow_rows = read_jsonl(journal.shadow_path)
+    result.strategy_rows = read_jsonl(journal.strategy_path)
+    if strategy is not None:
+        result.strategy_summary = next((x for x in result.emitted if x.startswith("strategy shadow:")), None)
+        result.emitted = [line for line in result.emitted if not line.startswith("strategy shadow:")]
     if outcome is not None:
         result.shadow_summary = next((x for x in result.emitted if x.startswith("outcome shadow:")), None)
         # The diagnostics line is the one deliberate difference in the output; the comparison ignores it.

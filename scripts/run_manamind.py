@@ -20,6 +20,7 @@ from manamind.live.recommendation import (
     PolicyRecommender, Recommendation, RecommendationUnavailable, render_recommendation,
 )
 from manamind.outcome.live_shadow import OutcomeShadow, ShadowFailed, load_texts
+from manamind.strategy.live_shadow import StrategyFailed, StrategyShadow
 from manamind.live.prediction_journal import PredictionJournal
 from manamind.live.presentation import PresentationEvent
 from manamind.live.runner import LiveRunner
@@ -41,7 +42,8 @@ class UnifiedRuntime:
                  journal: PredictionJournal | None = None,
                  on_recommendation: Callable[[Recommendation], None] | None = None,
                  on_event: Callable[[PresentationEvent], None] | None = None,
-                 outcome_shadow: OutcomeShadow | None = None) -> None:
+                 outcome_shadow: OutcomeShadow | None = None,
+                 strategy_shadow: StrategyShadow | None = None) -> None:
         if collector_seconds <= 0:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
@@ -54,6 +56,8 @@ class UnifiedRuntime:
         self.on_event = on_event
         self.outcome_shadow = outcome_shadow
         self.shadow_snapshot = None        # the displayed decision whose shadow row is in the shadow journal
+        self.strategy_shadow = strategy_shadow
+        self.strategy_snapshot = None      # the displayed decision whose row is in the strategy journal
         self.collector_seconds = collector_seconds
         self.next_collect = float("-inf")
         self.active_identity: tuple | None = None
@@ -98,6 +102,7 @@ class UnifiedRuntime:
                     except OSError as error:
                         self.emit(f"prediction journal warning: {type(error).__name__}")
             self._shadow_invalidated(reason)
+            self._strategy_invalidated(reason)
             self.emit(f"recommendation #{active_identity[1]} invalidated")
         status = self.live.session.status.value
         self._present(PresentationEvent("invalidated", status=status if status != "READY" else "SYNCING", reason=reason))
@@ -158,6 +163,45 @@ class UnifiedRuntime:
             self.journal.outcome_shadow_error(snapshot, reason)
         except OSError:
             self.outcome_shadow.stats.journal_failures += 1
+
+    def _strategy_invalidated(self, reason: str) -> None:
+        snapshot, self.strategy_snapshot = self.strategy_snapshot, None
+        if snapshot is None or self.journal is None:
+            return
+        try:
+            self.journal.strategy_shadow_invalidation(snapshot, reason)
+        except OSError:
+            self.strategy_shadow.stats.journal_failures += 1
+
+    def _run_strategy(self, snapshot, result: Recommendation) -> None:
+        """Optional independent Strategic Scorer ranking of the displayed menu. Never raises, never changes the display."""
+        shadow = self.strategy_shadow
+        shadow.stats.decisions += 1
+        try:
+            try:
+                record = shadow.score(snapshot, result)
+            except StrategyFailed as error:
+                shadow.fail(error.reason)
+                self._strategy_error(snapshot, error.reason)
+                return
+            if self.journal is not None:
+                self.journal.strategy_shadow(snapshot, record)
+                self.strategy_snapshot = snapshot
+            shadow.count(record)
+        except OSError as error:
+            shadow.stats.journal_failures += 1
+            self.emit(f"strategy shadow warning: {type(error).__name__}")
+        except Exception:                      # the strategy shadow must never cost the Policy path anything
+            shadow.fail("SHADOW_RUNTIME_ERROR")
+            self._strategy_error(snapshot, "SHADOW_RUNTIME_ERROR")
+
+    def _strategy_error(self, snapshot, reason: str) -> None:
+        if self.journal is None:
+            return
+        try:
+            self.journal.strategy_shadow_error(snapshot, reason)
+        except OSError:
+            self.strategy_shadow.stats.journal_failures += 1
 
     def _events(self, events) -> None:
         for event in events:
@@ -221,6 +265,8 @@ class UnifiedRuntime:
                             self.decisions_scored += 1
                             if self.outcome_shadow is not None:
                                 self._run_shadow(snap, result)
+                            if self.strategy_shadow is not None:
+                                self._run_strategy(snap, result)
                         else:
                             self.emit("no recommendation: DECISION_CHANGED_DURING_INFERENCE")
                             self._present(PresentationEvent("unavailable", reason="DECISION_CHANGED_DURING_INFERENCE"))
@@ -262,6 +308,8 @@ class UnifiedRuntime:
         stats = self.collector.stats
         if self.outcome_shadow is not None:
             self.emit(self.outcome_shadow.stats.summary())
+        if self.strategy_shadow is not None:
+            self.emit(self.strategy_shadow.stats.summary())
         self.emit(f"session: {self.decisions_scored} recommendations; "
                   f"{stats.matches_imported} matches retained; {stats.parse_failures} collection failures")
 
@@ -283,6 +331,11 @@ def build_parser() -> argparse.ArgumentParser:
                              "write them to <journal>.outcome_shadow.jsonl. Read-only: the Top-3 is unchanged")
     parser.add_argument("--outcome-shadow-budget-ms", type=float, default=250.0,
                         help="Wall-clock budget per decision; actions left over are recorded as NOT_COMPUTED")
+    parser.add_argument("--strategy-shadow", action="store_true",
+                        help="Rank every legal action with the experimental Strategic Scorer next to the Policy and "
+                             "write it to <journal>.strategy_shadow.jsonl. Read-only: the Top-3 is unchanged")
+    parser.add_argument("--strategy-shadow-budget-ms", type=float, default=250.0,
+                        help="Wall-clock budget per decision; actions left over are scored from bookkeeping only")
     parser.add_argument("--ui", action="store_true", help="Show the Windows always-on-top recommendation panel")
     parser.add_argument("--overlay", action="store_true", help="Show the Vue / WebView2 desktop overlay")
     return parser
@@ -312,6 +365,12 @@ def main(argv: list[str] | None = None) -> int:
             shadow = OutcomeShadow(load_texts(ROOT), budget_ms=args.outcome_shadow_budget_ms)
         except Exception as error:
             print(f"outcome shadow warning: {type(error).__name__}; shadow disabled, Policy unaffected", flush=True)
+    strategy = None
+    if args.strategy_shadow:
+        try:
+            strategy = StrategyShadow(load_texts(ROOT), budget_ms=args.strategy_shadow_budget_ms)
+        except Exception as error:
+            print(f"strategy shadow warning: {type(error).__name__}; shadow disabled, Policy unaffected", flush=True)
     session = LiveSession(catalog)
     recorder = Recorder(args.data_root / "raw/live", catalog_path=args.cards)
     live = LiveRunner(args.logs_root, session, recorder)
@@ -319,6 +378,7 @@ def main(argv: list[str] | None = None) -> int:
                           args.data_root / "processed_real", args.cards)
     runtime = UnifiedRuntime(live, collector, recommender, emit=lambda text: print(text, flush=True),
                              collector_seconds=args.collector_seconds, outcome_shadow=shadow,
+                             strategy_shadow=strategy,
                              journal=PredictionJournal(args.data_root / "raw/live/prediction_journal.jsonl"))
     runtime.recommender_unavailable = recommender_error
     print("ManaMind experimental read-only policy. Ctrl+C to stop.", flush=True)
