@@ -1,0 +1,105 @@
+MODEL-SHADOW-EVAL-1: 3 матча(ей) в журнале, логи Power.log найдены для 3
+строк Shadow 110, из них повторных эмиссий того же решения 21 -> различных решений 89
+сопоставлено 87 (97.8% различных, 79.1% всех строк); причины пропуска: {'IMPORTER_SKIPPED:OPTIONS_SUPERSEDED': 2}
+размечено импортёром, но без строки Shadow: 20
+пересечение с обучением: нет
+
+[all] решений: 87
+  модель          Top-1%  Top-3%    MRR  ср.ранг      случайно T1/T3/MRR
+  policy_v2         26.4    54.0  0.454     4.91     24.1/52.2/0.428
+  retrained_v2      28.7    60.9  0.481     4.14     24.1/52.2/0.428
+  policy_v3         36.8    59.8  0.530     4.16     24.1/52.2/0.428
+[nontrivial_menu_2plus] решений: 80
+  модель          Top-1%  Top-3%    MRR  ср.ранг      случайно T1/T3/MRR
+  policy_v2         20.0    50.0  0.406     5.25     17.5/48.0/0.378
+  retrained_v2      22.5    57.5  0.436     4.41     17.5/48.0/0.378
+  policy_v3         31.2    56.2  0.489     4.44     17.5/48.0/0.378
+[large_menu_5plus] решений: 57
+  модель          Top-1%  Top-3%    MRR  ср.ранг      случайно T1/T3/MRR
+  policy_v2         10.5    31.6  0.294     6.65      9.9/29.7/0.276
+  retrained_v2      17.5    42.1  0.353     5.44      9.9/29.7/0.276
+  policy_v3         22.8    38.6  0.385     5.60      9.9/29.7/0.276
+
+по матчам (нетривиальные меню, Top-1% / MRR, n):
+  1eb9927b  n=10  policy_v2: 20.0%/0.408  retrained_v2: 10.0%/0.357  policy_v3: 0.0%/0.362
+  2659ea1b  n=53  policy_v2: 24.5%/0.429  retrained_v2: 26.4%/0.443  policy_v3: 34.0%/0.492
+  96de69b7  n=17  policy_v2: 5.9%/0.335  retrained_v2: 17.6%/0.461  policy_v3: 41.2%/0.553
+
+порядок по MRR (нетривиальные меню): policy_v3 > retrained_v2 > policy_v2
+надёжность (парные сравнения):
+  policy_v2_vs_retrained_v2: n=80 Top-1 только policy_v2 5 / только retrained_v2 7, p=0.7744; MRR разность -0.029 CI95 [-0.089, +0.031] -> INCONCLUSIVE
+      по матчам MRR: 1eb9927b +0.051(n=10), 2659ea1b -0.014(n=53), 96de69b7 -0.125(n=17)
+  policy_v2_vs_policy_v3: n=80 Top-1 только policy_v2 10 / только policy_v3 19, p=0.136; MRR разность -0.082 CI95 [-0.168, +0.004] -> INCONCLUSIVE
+      по матчам MRR: 1eb9927b +0.046(n=10), 2659ea1b -0.063(n=53), 96de69b7 -0.218(n=17)
+  retrained_v2_vs_policy_v3: n=80 Top-1 только retrained_v2 7 / только policy_v3 14, p=0.1892; MRR разность -0.053 CI95 [-0.121, +0.013] -> INCONCLUSIVE
+      по матчам MRR: 1eb9927b -0.005(n=10), 2659ea1b -0.050(n=53), 96de69b7 -0.092(n=17)
+
+=== DEMONHUNTER: решений 87 ===
+HERO_POWER: доступна 51, игрок использовал 6
+  мана всего  доступна 51  использовал 6   | policy_v2: top1=16 переоц.=13 недооц.=3; retrained_v2: top1=11 переоц.=9 недооц.=4; policy_v3: top1=4 переоц.=2 недооц.=4
+  мана <=1    доступна 11  использовал 2   | policy_v2: top1=11 переоц.=9 недооц.=0; retrained_v2: top1=8 переоц.=6 недооц.=0; policy_v3: top1=3 переоц.=1 недооц.=0
+  мана 2      доступна 4   использовал 0   | policy_v2: top1=2 переоц.=2 недооц.=0; retrained_v2: top1=2 переоц.=2 недооц.=0; policy_v3: top1=0 переоц.=0 недооц.=0
+  мана 3-4    доступна 7   использовал 1   | policy_v2: top1=2 переоц.=2 недооц.=1; retrained_v2: top1=1 переоц.=1 недооц.=1; policy_v3: top1=1 переоц.=1 недооц.=1
+  мана 5+     доступна 29  использовал 3   | policy_v2: top1=1 переоц.=0 недооц.=2; retrained_v2: top1=0 переоц.=0 недооц.=3; policy_v3: top1=0 переоц.=0 недооц.=3
+ATTACK: игрок выбрал 28
+  policy_v2     точное совпадение 5 (17.9%) {'exact_action': 5, 'other_source_or_card': 10, 'same_source_other_target_or_position': 1, 'top1_is_END_TURN': 4, 'top1_is_HERO_POWER': 3, 'top1_is_PLAY_CARD': 5}
+  retrained_v2  точное совпадение 4 (14.3%) {'exact_action': 4, 'other_source_or_card': 14, 'same_source_other_target_or_position': 2, 'top1_is_END_TURN': 2, 'top1_is_HERO_POWER': 1, 'top1_is_PLAY_CARD': 5}
+  policy_v3     точное совпадение 9 (32.1%) {'exact_action': 9, 'other_source_or_card': 16, 'same_source_other_target_or_position': 3}
+PLAY_CARD: игрок выбрал 36
+  policy_v2     точное совпадение 2 (5.6%) {'exact_action': 2, 'other_source_or_card': 22, 'same_source_other_target_or_position': 1, 'top1_is_ATTACK': 2, 'top1_is_HERO_POWER': 9}
+  retrained_v2  точное совпадение 7 (19.4%) {'exact_action': 7, 'other_source_or_card': 21, 'same_source_other_target_or_position': 1, 'top1_is_HERO_POWER': 7}
+  policy_v3     точное совпадение 12 (33.3%) {'exact_action': 12, 'other_source_or_card': 11, 'top1_is_ATTACK': 13}
+END_TURN: меню с альтернативами 80, игрок закончил ход 10
+  policy_v2     модель: конец хода, игрок продолжил 4; игрок: конец хода, модель другое 4; оба 6
+  retrained_v2  модель: конец хода, игрок продолжил 2; игрок: конец хода, модель другое 5; оба 5
+  policy_v3     модель: конец хода, игрок продолжил 0; игрок: конец хода, модель другое 8; оба 2
+цели: игрок выбрал действие с целью 31 раз
+  policy_v2     {'exact': 5, 'other_source_or_card': 25, 'right_source_wrong_target': 1} атака (игрок->модель): {'FACE': {'FACE': 8, 'MINION': 2}, 'MINION': {'FACE': 2, 'MINION': 4}}
+  retrained_v2  {'exact': 5, 'other_source_or_card': 23, 'right_source_wrong_target': 3} атака (игрок->модель): {'FACE': {'FACE': 7, 'MINION': 4}, 'MINION': {'MINION': 8, 'FACE': 1}}
+  policy_v3     {'exact': 9, 'other_source_or_card': 19, 'right_source_wrong_target': 3} атака (игрок->модель): {'FACE': {'FACE': 9, 'MINION': 5}, 'MINION': {'FACE': 2, 'MINION': 12}}
+
+принципиальные расхождения моделей: 64 (все три разные: 19)
+- 2659ea1b ход 28: turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/2, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 12+0 hp, board [Reluctant Wrangler 1/1], hand 0
+    игрок: ATTACK TTN_843t1 -> enemy Reluctant Wrangler
+    policy_v2: PLAY_CARD Eredar Deceptor @7 (ранг выбора игрока 14)
+    retrained_v2: PLAY_CARD Vicious Voidscale @7 (ранг выбора игрока 6)
+    policy_v3: ATTACK TTN_843t1 -> enemy Reluctant Wrangler (ранг выбора игрока 1)
+- 96de69b7 ход 13: turn 13, mana 3/7; me 28+0 hp, board [Perennial Serpent 7/9, Fiendish Servant 2/1, EDR_840t1 3/3, EDR_840t2 5/5, Imp Gang Stooge 2/5], hand [Stardust Scythe(4), Void Blast(2), Mythical Terror(7), Felrattler(3)]; opponent PRIEST 21+0 hp, board [Lunarwing Messenger 3/2, Lunarwing Messenger 3/2], hand 5
+    игрок: PLAY_CARD Void Blast -> enemy Lunarwing Messenger
+    policy_v2: HERO_POWER JAIL_EVENT_101hp (ранг выбора игрока 10)
+    retrained_v2: PLAY_CARD Void Blast -> enemy Lunarwing Messenger (ранг выбора игрока 1)
+    policy_v3: ATTACK Perennial Serpent -> enemy Lunarwing Messenger (ранг выбора игрока 5)
+- 2659ea1b ход 28: turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/4, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 3+0 hp, board [Battlefield Necromancer 2/2, RLK_061t 1/1, Reluctant Wrangler 1/1], hand 0
+    игрок: ATTACK DINO_136t -> enemy RLK_061t
+    policy_v2: PLAY_CARD Eredar Deceptor @7 (ранг выбора игрока 9)
+    retrained_v2: PLAY_CARD Vicious Voidscale @7 (ранг выбора игрока 3)
+    policy_v3: ATTACK DINO_136t -> enemy RLK_061t (ранг выбора игрока 1)
+- 2659ea1b ход 12: turn 12, mana 6/6; me 25+0 hp, board [EDR_840t1 3/3, EDR_840t2 5/5], hand [JAIL_EVENT_COIN(None), Eredar Deceptor(4), Raging Felscreamer(4), Perennial Serpent(4), Horn of Feasting(4), Mythical Terror(7), Perennial Serpent(4), Hellraiser(3)]; opponent DEATHKNIGHT 27+0 hp, board [Falric 2/3, TIME_610t2 3/2, TIME_610t2 3/2, TIME_610t2 3/2], hand 5
+    игрок: PLAY_CARD Horn of Feasting
+    policy_v2: PLAY_CARD Eredar Deceptor @3 (ранг выбора игрока 3)
+    retrained_v2: PLAY_CARD Hellraiser @3 (ранг выбора игрока 3)
+    policy_v3: PLAY_CARD Horn of Feasting (ранг выбора игрока 1)
+- 1eb9927b ход 4: turn 4, mana 2/2; me 28+0 hp, board [], hand [Sigil of the Seas(1), Soul Immolation(2), Stardust Scythe(4), Eredar Deceptor(4), Void Soul(1), Skittish Saucier(3)]; opponent DRUID 30+1 hp, board [], hand 4
+    игрок: PLAY_CARD Void Soul
+    policy_v2: HERO_POWER HERO_10bchp (ранг выбора игрока 2)
+    retrained_v2: PLAY_CARD Void Soul (ранг выбора игрока 1)
+    policy_v3: PLAY_CARD Soul Immolation (ранг выбора игрока 2)
+- 2659ea1b ход 28: turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/4, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 3+0 hp, board [Battlefield Necromancer 2/2, RLK_061t 1/3, TLC_443t 2/2, Reluctant Wrangler 1/1], hand 0
+    игрок: ATTACK DINO_136t -> enemy RLK_061t
+    policy_v2: PLAY_CARD Eredar Deceptor @7 (ранг выбора игрока 16)
+    retrained_v2: PLAY_CARD Vicious Voidscale @7 (ранг выбора игрока 10)
+    policy_v3: ATTACK DINO_136t -> enemy TLC_443t (ранг выбора игрока 5)
+- 96de69b7 ход 13: turn 13, mana 7/7; me 28+0 hp, board [Fiendish Servant 2/1, EDR_840t1 3/3, EDR_840t2 5/5, Imp Gang Stooge 2/5], hand [Stardust Scythe(4), Void Blast(2), Perennial Serpent(4), Mythical Terror(7), Felrattler(3)]; opponent PRIEST 21+0 hp, board [Lunarwing Messenger 3/2, Lunarwing Messenger 3/2], hand 5
+    игрок: PLAY_CARD Perennial Serpent @1
+    policy_v2: PLAY_CARD Stardust Scythe (ранг выбора игрока 8)
+    retrained_v2: PLAY_CARD Void Blast -> enemy Lunarwing Messenger (ранг выбора игрока 15)
+    policy_v3: ATTACK Imp Gang Stooge -> enemy Lunarwing Messenger (ранг выбора игрока 19)
+- 2659ea1b ход 24: turn 24, mana 10/10; me 30+0 hp, board [TTN_843t1 1/1, TTN_843t1 1/1, TTN_843t1 1/1, TTN_843t1 1/1, EDR_840t2 5/5], hand [Raging Felscreamer(4), Vicious Voidscale(3), Skittish Saucier(3), Void Soul(1), Eredar Deceptor(4)]; opponent DEATHKNIGHT 10+0 hp, board [Reluctant Wrangler 2/2, Skeletal Sidekick 2/3], hand 1
+    игрок: PLAY_CARD Skittish Saucier @1
+    policy_v2: PLAY_CARD Eredar Deceptor @6 (ранг выбора игрока 18)
+    retrained_v2: PLAY_CARD Vicious Voidscale @6 (ранг выбора игрока 13)
+    policy_v3: ATTACK TTN_843t1 -> enemy hero (ранг выбора игрока 22)
+
+! Agreement with the player's real action, not playing strength; the player is not assumed optimal.
+! The player saw Policy v2's Top-3 during play, which can favour policy_v2 (exposure, not independence).
+! Few matches of one player and one class: differences are descriptive, not an established ranking.

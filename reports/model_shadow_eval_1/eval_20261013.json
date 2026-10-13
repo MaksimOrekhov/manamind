@@ -1,0 +1,2839 @@
+{
+ "categories": {
+  "attack": {
+   "models": {
+    "policy_v2": {
+     "breakdown": {
+      "exact_action": 5,
+      "other_source_or_card": 10,
+      "same_source_other_target_or_position": 1,
+      "top1_is_END_TURN": 4,
+      "top1_is_HERO_POWER": 3,
+      "top1_is_PLAY_CARD": 5
+     },
+     "mean_rank_of_chosen": 5.786,
+     "top1_exact": 5,
+     "top1_exact_share": 0.1786
+    },
+    "policy_v3": {
+     "breakdown": {
+      "exact_action": 9,
+      "other_source_or_card": 16,
+      "same_source_other_target_or_position": 3
+     },
+     "mean_rank_of_chosen": 3.571,
+     "top1_exact": 9,
+     "top1_exact_share": 0.3214
+    },
+    "retrained_v2": {
+     "breakdown": {
+      "exact_action": 4,
+      "other_source_or_card": 14,
+      "same_source_other_target_or_position": 2,
+      "top1_is_END_TURN": 2,
+      "top1_is_HERO_POWER": 1,
+      "top1_is_PLAY_CARD": 5
+     },
+     "mean_rank_of_chosen": 4.821,
+     "top1_exact": 4,
+     "top1_exact_share": 0.1429
+    }
+   },
+   "player_chose": 28
+  },
+  "end_turn": {
+   "decisions_with_alternatives": 80,
+   "models": {
+    "policy_v2": {
+     "both_end_turn": 6,
+     "mean_rank_of_end_turn_when_player_ended": 2.0,
+     "model_ends_turn_player_continues": 4,
+     "player_ends_turn_model_suggests_other": 4,
+     "top1_end_turn": 10
+    },
+    "policy_v3": {
+     "both_end_turn": 2,
+     "mean_rank_of_end_turn_when_player_ended": 2.7,
+     "model_ends_turn_player_continues": 0,
+     "player_ends_turn_model_suggests_other": 8,
+     "top1_end_turn": 2
+    },
+    "retrained_v2": {
+     "both_end_turn": 5,
+     "mean_rank_of_end_turn_when_player_ended": 2.4,
+     "model_ends_turn_player_continues": 2,
+     "player_ends_turn_model_suggests_other": 5,
+     "top1_end_turn": 7
+    }
+   },
+   "player_ended_turn": 10
+  },
+  "hero_power": {
+   "by_available_mana": {
+    "2": {
+     "available": 4,
+     "models": {
+      "policy_v2": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 2,
+       "top1_hero_power": 2,
+       "top1_share": 0.5,
+       "underestimated_used_but_not_top1": 0
+      },
+      "policy_v3": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 0,
+       "top1_hero_power": 0,
+       "top1_share": 0.0,
+       "underestimated_used_but_not_top1": 0
+      },
+      "retrained_v2": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 2,
+       "top1_hero_power": 2,
+       "top1_share": 0.5,
+       "underestimated_used_but_not_top1": 0
+      }
+     },
+     "player_used": 0,
+     "player_used_share": 0.0
+    },
+    "3-4": {
+     "available": 7,
+     "models": {
+      "policy_v2": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 2,
+       "top1_hero_power": 2,
+       "top1_share": 0.2857,
+       "underestimated_used_but_not_top1": 1
+      },
+      "policy_v3": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 1,
+       "top1_hero_power": 1,
+       "top1_share": 0.1429,
+       "underestimated_used_but_not_top1": 1
+      },
+      "retrained_v2": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 1,
+       "top1_hero_power": 1,
+       "top1_share": 0.1429,
+       "underestimated_used_but_not_top1": 1
+      }
+     },
+     "player_used": 1,
+     "player_used_share": 0.1429
+    },
+    "5+": {
+     "available": 29,
+     "models": {
+      "policy_v2": {
+       "hits_top1_and_used": 1,
+       "overestimated_top1_but_not_used": 0,
+       "top1_hero_power": 1,
+       "top1_share": 0.0345,
+       "underestimated_used_but_not_top1": 2
+      },
+      "policy_v3": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 0,
+       "top1_hero_power": 0,
+       "top1_share": 0.0,
+       "underestimated_used_but_not_top1": 3
+      },
+      "retrained_v2": {
+       "hits_top1_and_used": 0,
+       "overestimated_top1_but_not_used": 0,
+       "top1_hero_power": 0,
+       "top1_share": 0.0,
+       "underestimated_used_but_not_top1": 3
+      }
+     },
+     "player_used": 3,
+     "player_used_share": 0.1034
+    },
+    "<=1": {
+     "available": 11,
+     "models": {
+      "policy_v2": {
+       "hits_top1_and_used": 2,
+       "overestimated_top1_but_not_used": 9,
+       "top1_hero_power": 11,
+       "top1_share": 1.0,
+       "underestimated_used_but_not_top1": 0
+      },
+      "policy_v3": {
+       "hits_top1_and_used": 2,
+       "overestimated_top1_but_not_used": 1,
+       "top1_hero_power": 3,
+       "top1_share": 0.2727,
+       "underestimated_used_but_not_top1": 0
+      },
+      "retrained_v2": {
+       "hits_top1_and_used": 2,
+       "overestimated_top1_but_not_used": 6,
+       "top1_hero_power": 8,
+       "top1_share": 0.7273,
+       "underestimated_used_but_not_top1": 0
+      }
+     },
+     "player_used": 2,
+     "player_used_share": 0.1818
+    }
+   },
+   "overall": {
+    "available": 51,
+    "models": {
+     "policy_v2": {
+      "hits_top1_and_used": 3,
+      "overestimated_top1_but_not_used": 13,
+      "top1_hero_power": 16,
+      "top1_share": 0.3137,
+      "underestimated_used_but_not_top1": 3
+     },
+     "policy_v3": {
+      "hits_top1_and_used": 2,
+      "overestimated_top1_but_not_used": 2,
+      "top1_hero_power": 4,
+      "top1_share": 0.0784,
+      "underestimated_used_but_not_top1": 4
+     },
+     "retrained_v2": {
+      "hits_top1_and_used": 2,
+      "overestimated_top1_but_not_used": 9,
+      "top1_hero_power": 11,
+      "top1_share": 0.2157,
+      "underestimated_used_but_not_top1": 4
+     }
+    },
+    "player_used": 6,
+    "player_used_share": 0.1176
+   }
+  },
+  "play_card": {
+   "models": {
+    "policy_v2": {
+     "breakdown": {
+      "exact_action": 2,
+      "other_source_or_card": 22,
+      "same_source_other_target_or_position": 1,
+      "top1_is_ATTACK": 2,
+      "top1_is_HERO_POWER": 9
+     },
+     "mean_rank_of_chosen": 6.167,
+     "top1_exact": 2,
+     "top1_exact_share": 0.0556,
+     "when_both_play_a_card": {
+      "different_card": 22,
+      "same_card": 3
+     }
+    },
+    "policy_v3": {
+     "breakdown": {
+      "exact_action": 12,
+      "other_source_or_card": 11,
+      "top1_is_ATTACK": 13
+     },
+     "mean_rank_of_chosen": 5.389,
+     "top1_exact": 12,
+     "top1_exact_share": 0.3333,
+     "when_both_play_a_card": {
+      "different_card": 11,
+      "same_card": 12
+     }
+    },
+    "retrained_v2": {
+     "breakdown": {
+      "exact_action": 7,
+      "other_source_or_card": 21,
+      "same_source_other_target_or_position": 1,
+      "top1_is_HERO_POWER": 7
+     },
+     "mean_rank_of_chosen": 4.75,
+     "top1_exact": 7,
+     "top1_exact_share": 0.1944,
+     "when_both_play_a_card": {
+      "different_card": 21,
+      "same_card": 8
+     }
+    }
+   },
+   "player_chose": 36
+  },
+  "player_action_vs_model_top1_type": {
+   "policy_v2": {
+    "ATTACK": {
+     "ATTACK": 16,
+     "END_TURN": 4,
+     "HERO_POWER": 3,
+     "PLAY_CARD": 5
+    },
+    "END_TURN": {
+     "ATTACK": 2,
+     "END_TURN": 13,
+     "HERO_POWER": 1,
+     "PLAY_CARD": 1
+    },
+    "HERO_POWER": {
+     "ATTACK": 1,
+     "HERO_POWER": 3,
+     "PLAY_CARD": 2
+    },
+    "PLAY_CARD": {
+     "ATTACK": 2,
+     "HERO_POWER": 9,
+     "PLAY_CARD": 25
+    }
+   },
+   "policy_v3": {
+    "ATTACK": {
+     "ATTACK": 28
+    },
+    "END_TURN": {
+     "ATTACK": 3,
+     "END_TURN": 9,
+     "HERO_POWER": 2,
+     "PLAY_CARD": 3
+    },
+    "HERO_POWER": {
+     "ATTACK": 2,
+     "HERO_POWER": 2,
+     "PLAY_CARD": 2
+    },
+    "PLAY_CARD": {
+     "ATTACK": 13,
+     "PLAY_CARD": 23
+    }
+   },
+   "retrained_v2": {
+    "ATTACK": {
+     "ATTACK": 20,
+     "END_TURN": 2,
+     "HERO_POWER": 1,
+     "PLAY_CARD": 5
+    },
+    "END_TURN": {
+     "ATTACK": 3,
+     "END_TURN": 12,
+     "HERO_POWER": 1,
+     "PLAY_CARD": 1
+    },
+    "HERO_POWER": {
+     "ATTACK": 2,
+     "HERO_POWER": 2,
+     "PLAY_CARD": 2
+    },
+    "PLAY_CARD": {
+     "HERO_POWER": 7,
+     "PLAY_CARD": 29
+    }
+   }
+  },
+  "targets": {
+   "models": {
+    "policy_v2": {
+     "attack_target_class_player_vs_model_top1_when_both_attack": {
+      "FACE": {
+       "FACE": 8,
+       "MINION": 2
+      },
+      "MINION": {
+       "FACE": 2,
+       "MINION": 4
+      }
+     },
+     "exact": 5,
+     "other_source_or_card": 25,
+     "right_source_wrong_target": 1
+    },
+    "policy_v3": {
+     "attack_target_class_player_vs_model_top1_when_both_attack": {
+      "FACE": {
+       "FACE": 9,
+       "MINION": 5
+      },
+      "MINION": {
+       "FACE": 2,
+       "MINION": 12
+      }
+     },
+     "exact": 9,
+     "other_source_or_card": 19,
+     "right_source_wrong_target": 3
+    },
+    "retrained_v2": {
+     "attack_target_class_player_vs_model_top1_when_both_attack": {
+      "FACE": {
+       "FACE": 7,
+       "MINION": 4
+      },
+      "MINION": {
+       "FACE": 1,
+       "MINION": 8
+      }
+     },
+     "exact": 5,
+     "other_source_or_card": 23,
+     "right_source_wrong_target": 3
+    }
+   },
+   "player_chose_targeted_action": 31
+  }
+ },
+ "claims": [
+  "Agreement with the player's real action, not playing strength; the player is not assumed optimal.",
+  "The player saw Policy v2's Top-3 during play, which can favour policy_v2 (exposure, not independence).",
+  "Few matches of one player and one class: differences are descriptive, not an established ranking."
+ ],
+ "coverage": {
+  "distinct_decisions": 89,
+  "duplicate_rows_collapsed": 21,
+  "labeled_decisions_without_shadow_row": 20,
+  "matched": 87,
+  "matched_share_of_distinct": 0.9775,
+  "matched_share_of_rows": 0.7909,
+  "matches_in_journal": 3,
+  "matches_with_power_log": 3,
+  "per_match": {
+   "1eb9927b": {
+    "matched": 15,
+    "shadow_rows": 19
+   },
+   "2659ea1b": {
+    "matched": 53,
+    "shadow_rows": 63
+   },
+   "96de69b7": {
+    "matched": 19,
+    "shadow_rows": 28
+   }
+  },
+  "shadow_rows": 110,
+  "skip_reasons": {
+   "IMPORTER_SKIPPED:OPTIONS_SUPERSEDED": 2
+  },
+  "skipped": 2
+ },
+ "independence": {
+  "checked_models": [
+   "frozen_split_v3",
+   "policy_v2",
+   "policy_v3",
+   "retrained_v2"
+  ],
+  "training_overlap_matches": {}
+ },
+ "inputs": {
+  "importer_summaries": {
+   "1eb9927b": {
+    "import_error": null,
+    "labeled": 19,
+    "skipped": 13
+   },
+   "2659ea1b": {
+    "import_error": null,
+    "labeled": 64,
+    "skipped": 10
+   },
+   "96de69b7": {
+    "import_error": null,
+    "labeled": 24,
+    "skipped": 7
+   }
+  },
+  "journals": [
+   "prediction_journal.model_shadow.jsonl"
+  ],
+  "raw_dir": "E:\\ManaMind\\data\\raw\\collected"
+ },
+ "matched_decisions": [
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:1:1:49cee0b22a156c2b02952892f0a7b788af43e8b71487ff637e459d91395cfbe6",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:2:5:047c09b83d0bda76ed20fe665d5ac4ebd5c6b9164c380535501bdfac5e97462b",
+   "menu_size": 6,
+   "rank_of_chosen": {
+    "policy_v2": 5,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 2,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:4:11:121affb18541d0c163c161b3c8c320538ab86e9f89a827a9290cbd0bd4340d79",
+   "menu_size": 8,
+   "rank_of_chosen": {
+    "policy_v2": 7,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 6,
+    "policy_v3": 6,
+    "retrained_v2": 6
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:5:12:32dfb7dcd03094b815c1abc3ad805d207ad68d033c4d6d93484e13136b92ac42",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:6:13:c6fec2f9ddc26ee56ec403e0f544016c10c0b5ec460ef05c52ebb4ff38c6c8da",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 13,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:7:17:5d725114bb807f1c43515502897b48e6da29ff020a8f4154a1e20bdd5a1507ad",
+   "menu_size": 16,
+   "rank_of_chosen": {
+    "policy_v2": 6,
+    "policy_v3": 9,
+    "retrained_v2": 9
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 7,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:8:18:2c6f3c1424f8102c2084c58ea149c77723fb379ded63a9d1d7284e888e61abe8",
+   "menu_size": 8,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 5,
+    "retrained_v2": 5
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:9:19:0c1a016385fa32410899887976a2147a24d77633968113b92b7769bbc38b0c65",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:10:21:b2640b2fb0c5ccd32316c7fa634af2cd131e9f3374a1ab180829088b9f177d2e",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 9,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:11:26:98395057f60d93254059f60dd6340683ca464a6211c95ef51e8b2daa887607a9",
+   "menu_size": 11,
+   "rank_of_chosen": {
+    "policy_v2": 5,
+    "policy_v3": 6,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 7,
+    "policy_v3": 6,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 6,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:13:27:6e7f6713acf482ef7c4354fb336d5cf3540d4f8fe8b3b12bead232e6961f1a6f",
+   "menu_size": 10,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 7,
+    "policy_v3": 6,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:14:28:0bb670e9bf9550df176fcfc89824ad6ee9dd907c0421c202dd3ed1773561d308",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:16:37:5bc3a0bee5afadada04e92d04d0a0d8bf4f3874c216c01903981b44d49749972",
+   "menu_size": 16,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 4,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 5,
+    "policy_v3": 14,
+    "retrained_v2": 5
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "ATTACK",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:18:38:929019c77a3e72ff09b390fe40ad01e59e9863ef61a8d21e5e08a376c44aaad7",
+   "menu_size": 11,
+   "rank_of_chosen": {
+    "policy_v2": 11,
+    "policy_v3": 7,
+    "retrained_v2": 11
+   },
+   "top1_index": {
+    "policy_v2": 9,
+    "policy_v3": 9,
+    "retrained_v2": 8
+   }
+  },
+  {
+   "chosen_index": 6,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:21:49:c6391ac2fd98ad161db40b3b0e202d3b5c69a6d2581fe2cdbaf71e032fab3911",
+   "menu_size": 34,
+   "rank_of_chosen": {
+    "policy_v2": 8,
+    "policy_v3": 19,
+    "retrained_v2": 15
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 32,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 3,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:25:50:a6f12269dd8fa1b198de5536632876640a158b83020edb7bb92f828dbedf36b9",
+   "menu_size": 27,
+   "rank_of_chosen": {
+    "policy_v2": 10,
+    "policy_v3": 5,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 18,
+    "policy_v3": 25,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "ATTACK",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:26:51:d55adcebd59231f284b6640e892bb20d58ecad4d22657bce27afa3d87938ffc1",
+   "menu_size": 12,
+   "rank_of_chosen": {
+    "policy_v2": 11,
+    "policy_v3": 7,
+    "retrained_v2": 7
+   },
+   "top1_index": {
+    "policy_v2": 6,
+    "policy_v3": 11,
+    "retrained_v2": 11
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:27:52:b4147c5f38c20a12cae34f404c5b499d8b16387b3d4ee7360d9aa584dcc24fc8",
+   "menu_size": 6,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:28:53:bc29871f1ab54450558359744caf53cea37b042f280bd73f93c8e0909aa8ce19",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:1:2:fb183d150718d364edf0545ad028dab1702d5af083e495f27fcf4fffef584382",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:2:3:a5d10145a35f6851a154da74c008a4eb253e9a02fae0fb11059078109c2631bb",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 1,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:4:6:17b3b6a40c4394e9e102eb025228e428a78630f3fb0bbd41528ad4b67009aa28",
+   "menu_size": 6,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:7:7:2392452f5be82e9a33ed80610448611bfbf47c0bb83f8c9e7e1c9d509c88f3c0",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:8:10:5021c5c0c662189c7676165e3682c0dc901612284b8c3cff54410498cb690493",
+   "menu_size": 7,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 5,
+    "policy_v3": 5,
+    "retrained_v2": 5
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:12:11:bc2486905e3718cc72c61f53a13557ed8616f8ece4e2f03d6e9ea24388949ad7",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:14:12:db8392bd862ab3efd3e135771c60731ddda4a90a65f1f27207fd597d18494320",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 2,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:15:20:e04387a0ce3e19c02ad2d8b27796f5351dab1f3ef9c01c16ad658968fa9afa1c",
+   "menu_size": 11,
+   "rank_of_chosen": {
+    "policy_v2": 5,
+    "policy_v3": 10,
+    "retrained_v2": 8
+   },
+   "top1_index": {
+    "policy_v2": 5,
+    "policy_v3": 10,
+    "retrained_v2": 5
+   }
+  },
+  {
+   "chosen_index": 4,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:16:21:af1e39e18cb2f02de4010d6a9dba127ff835f7f9b4cb868da355b810f59c320f",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 4,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 4,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:18:22:fec7bd0a21fd8d47d14eeb6cbcda816354e9abad5cf69b71e6753b4fabace3c0",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 4,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:20:24:9052163cfd9c3c4a40b7d29090b6a8735e5f8924d044e6cbaed478f79d464dde",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 2,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:21:25:9eb302128131581740d1ecf35f428c589bc5050a6e6ee74104cdd713e6ff7aec",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:22:32:73aeefb1761d72caeeebc88c8d0f429130d59e19ab6020c684a1a5650686a3f8",
+   "menu_size": 7,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 5,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:23:33:411772935b263a10f3068bef6c5edb62cdd640c78ef3635191313511ad4f3b88",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:24:34:c5ef165e2af427e92cb923f074d19f408e6f221cce2f14904965344fa0edd02d",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 2,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:25:35:46c3ed45d492e98c82e08ddd37472afb08f3bc4e26e0ad20ee1abdfd98ddc6f2",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 1,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 11,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:27:43:e05b65a601694c92afb45efe83f27d3b62f7093dfe2547f685930fbcc1c4ef06",
+   "menu_size": 19,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 11,
+    "retrained_v2": 17
+   }
+  },
+  {
+   "chosen_index": 4,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:29:45:f26d883e7d449ff44e352b9506fb12024e7fae69b135dbf94c4ff185348d73bc",
+   "menu_size": 19,
+   "rank_of_chosen": {
+    "policy_v2": 19,
+    "policy_v3": 10,
+    "retrained_v2": 16
+   },
+   "top1_index": {
+    "policy_v2": 15,
+    "policy_v3": 8,
+    "retrained_v2": 16
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:30:49:1bcde05a40ac01821d9c65ee7ea019bea2176e6eeb6add3deb4f233df93bda11",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 1,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 6,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:32:55:c161c7d464fac7974401e3a1ec116393709ef654ff3753f64c372b36a12950a0",
+   "menu_size": 17,
+   "rank_of_chosen": {
+    "policy_v2": 13,
+    "policy_v3": 11,
+    "retrained_v2": 13
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 13,
+    "retrained_v2": 13
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:33:59:bba44527aca283f6170f4ef23bbae6b1421edba5b68f8ff44678a0b0af894899",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 12,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:34:68:03fc328d287e4f96f6bc8de381d3c06a3cddc007895405d652d48043a54e1079",
+   "menu_size": 15,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 6,
+    "retrained_v2": 8
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 8,
+    "retrained_v2": 13
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:36:69:a3e7a8db855e7e7a5f75e50f23a56c0e099387b117d07717c4eb0c29500465f5",
+   "menu_size": 11,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 8,
+    "retrained_v2": 8
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 9,
+    "retrained_v2": 6
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:37:71:7296570179e298ab5b301cfacc9f764be0b08f32d7de80d100b93c853be2eb06",
+   "menu_size": 2,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:39:76:107d3dfbf8528f3e46d9efdb24529dcc2aed03dbe5deef2f18115dfdc7abe5d1",
+   "menu_size": 25,
+   "rank_of_chosen": {
+    "policy_v2": 8,
+    "policy_v3": 12,
+    "retrained_v2": 10
+   },
+   "top1_index": {
+    "policy_v2": 17,
+    "policy_v3": 24,
+    "retrained_v2": 20
+   }
+  },
+  {
+   "chosen_index": 5,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:40:77:ba9dbe7dceb3a5d9b4c26fe11a0980785d92848702f9ab5c75ce1429b114b629",
+   "menu_size": 25,
+   "rank_of_chosen": {
+    "policy_v2": 13,
+    "policy_v3": 10,
+    "retrained_v2": 6
+   },
+   "top1_index": {
+    "policy_v2": 20,
+    "policy_v3": 24,
+    "retrained_v2": 20
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:41:78:14d398c5ef47799e6bef17fb5994854b414a5dd4bf3cbe30ad616cfbd2ae5e27",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 2,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 3,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:42:79:a2a9f3a5de12c46b7f158ce1f0b8fa20163da6af6901291b22a6c063dee67022",
+   "menu_size": 10,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 5,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 6,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:43:80:91f4cdccb5f3c21105239bb676ab23d019c9d28f903143908b203279bbe371e2",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 5,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 13,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:44:89:129d9fec8a47593bbb16b99dad08dff970c23b95d012be4e76cf4d895e8c8154",
+   "menu_size": 23,
+   "rank_of_chosen": {
+    "policy_v2": 12,
+    "policy_v3": 2,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 16,
+    "policy_v3": 12,
+    "retrained_v2": 12
+   }
+  },
+  {
+   "chosen_index": 24,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:45:90:2db29be5d5c9dd05fe557a2db09ffb0c1aa931f19a3b44d0fe7bd01b2a748c2b",
+   "menu_size": 36,
+   "rank_of_chosen": {
+    "policy_v2": 16,
+    "policy_v3": 10,
+    "retrained_v2": 9
+   },
+   "top1_index": {
+    "policy_v2": 27,
+    "policy_v3": 34,
+    "retrained_v2": 18
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:46:92:a4912598f0f1695e8cfe4be0e21eb75818d332444933c0c37a957547504be482",
+   "menu_size": 14,
+   "rank_of_chosen": {
+    "policy_v2": 11,
+    "policy_v3": 9,
+    "retrained_v2": 14
+   },
+   "top1_index": {
+    "policy_v2": 5,
+    "policy_v3": 12,
+    "retrained_v2": 10
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:47:93:377928e7c869658a5ad0566a4fa016e001274f9a9b9acb83a90c2ed5527873cf",
+   "menu_size": 11,
+   "rank_of_chosen": {
+    "policy_v2": 5,
+    "policy_v3": 6,
+    "retrained_v2": 8
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 9,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:48:95:13e901955f68e81f05369601ed6c8d26a599bb49ac08be0feb0afd0613b6874b",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 3,
+    "policy_v3": 5,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 3,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:51:102:22ac58bc35fb17d9ba358b26e732b8c7191b1c2c2e57892a2472c6143f49a336",
+   "menu_size": 29,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 6,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 18,
+    "policy_v3": 27,
+    "retrained_v2": 13
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:53:103:6ab441e6fa772557d00bdb963165e376f6c5123a61a5266e8005160c6016c50a",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 4,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:54:104:759c668efbd60bc9ea0f8ddfd5ce4d16b7d51059ae09bc6c8e5b67dc40747368",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 3,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:55:105:2980c82aed350e2aedf8b8181fad88ad3c0bdb77de5e1616dc5f57136a958046",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 13,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:57:117:874e371b10ff66801711b777f46120f4e0cbf6b76490e115387eefe41102d4e3",
+   "menu_size": 39,
+   "rank_of_chosen": {
+    "policy_v2": 18,
+    "policy_v3": 22,
+    "retrained_v2": 13
+   },
+   "top1_index": {
+    "policy_v2": 25,
+    "policy_v3": 27,
+    "retrained_v2": 12
+   }
+  },
+  {
+   "chosen_index": 15,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:58:118:065706922804316c1fdd5bcfd26512414460e54aa3b73bc5f0bfd38097ba44f6",
+   "menu_size": 36,
+   "rank_of_chosen": {
+    "policy_v2": 12,
+    "policy_v3": 9,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 22,
+    "policy_v3": 24,
+    "retrained_v2": 14
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "HERO_POWER",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:62:119:3ef5d8c29b3f0bd99e8d2f34548d0c0f661f7f92687a6c5d70d974695bf0b510",
+   "menu_size": 14,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 13,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   }
+  },
+  {
+   "chosen_index": 13,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:63:120:073ca81cbf7eb6993ae67adbdf3e198abdf9bdc3823bcae2db3ebabf5110ae59",
+   "menu_size": 16,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 4,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 4,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:64:133:91f85324cf6648d83dab12abf7cafea0b072d8a2a54bd837941f2f815c36e88a",
+   "menu_size": 17,
+   "rank_of_chosen": {
+    "policy_v2": 11,
+    "policy_v3": 12,
+    "retrained_v2": 10
+   },
+   "top1_index": {
+    "policy_v2": 9,
+    "policy_v3": 15,
+    "retrained_v2": 6
+   }
+  },
+  {
+   "chosen_index": 12,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:66:134:792f92264c86531c94d2fb4fec594b34c742d2f0ac294f529e0f8eaf4169eaff",
+   "menu_size": 17,
+   "rank_of_chosen": {
+    "policy_v2": 9,
+    "policy_v3": 8,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 8,
+    "policy_v3": 15,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 4,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:67:136:588d381852b87b90a0eb96057e2a046faf7b0c77c5dd6f88c73a4dd6f7bfb5a1",
+   "menu_size": 7,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 5,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 9,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:68:143:ab11e0bea70a1b20e22cabdd00dd26c77e6ea26c39963a39683102d14d97716c",
+   "menu_size": 17,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 6,
+    "retrained_v2": 7
+   },
+   "top1_index": {
+    "policy_v2": 8,
+    "policy_v3": 13,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 23,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:69:144:9163abe566e447ad203537ed15176bd8d801a094098bdb30e21d87bb8247c514",
+   "menu_size": 28,
+   "rank_of_chosen": {
+    "policy_v2": 16,
+    "policy_v3": 5,
+    "retrained_v2": 10
+   },
+   "top1_index": {
+    "policy_v2": 14,
+    "policy_v3": 22,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 19,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:70:146:7b321b94d00661a35454eb5832fa7d092cba59ef83cce9987a814472b9348e2a",
+   "menu_size": 20,
+   "rank_of_chosen": {
+    "policy_v2": 9,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 14,
+    "policy_v3": 19,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 16,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:71:147:f6cdfe483eb7044af8a7450a207c2e7fccc25c13c58dda13d6f64d02d75cd05b",
+   "menu_size": 25,
+   "rank_of_chosen": {
+    "policy_v2": 11,
+    "policy_v3": 5,
+    "retrained_v2": 8
+   },
+   "top1_index": {
+    "policy_v2": 14,
+    "policy_v3": 20,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 21,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:72:148:c036c89e44488050fe6fe9ec0444b9f01471a976db481ff660d3f6cb6788d68d",
+   "menu_size": 22,
+   "rank_of_chosen": {
+    "policy_v2": 12,
+    "policy_v3": 12,
+    "retrained_v2": 9
+   },
+   "top1_index": {
+    "policy_v2": 14,
+    "policy_v3": 17,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 17,
+   "chosen_type": "ATTACK",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:73:149:6f94c5ae373a75814244c46333785646ca847384166e2b506326fe0621882799",
+   "menu_size": 18,
+   "rank_of_chosen": {
+    "policy_v2": 14,
+    "policy_v3": 1,
+    "retrained_v2": 6
+   },
+   "top1_index": {
+    "policy_v2": 14,
+    "policy_v3": 17,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 6,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:74:150:0c69e289ecdb1e7223451b298fbbc085c84d185aa2044bbc5565408d09ce9175",
+   "menu_size": 14,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 12,
+    "policy_v3": 6,
+    "retrained_v2": 6
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:75:151:d1cf0487614a96d27f2e3e93106313b693ec59d0c700b99012fc36129110ed24",
+   "menu_size": 9,
+   "rank_of_chosen": {
+    "policy_v2": 6,
+    "policy_v3": 4,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 7,
+    "policy_v3": 8,
+    "retrained_v2": 7
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:1:4:19561a92b2e1e8a7580fe81f0a1ec3c52692ce01b58f4e7f7cdbebe54d20278d",
+   "menu_size": 4,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 3,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 1,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 3,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:2:10:ccbf3aa7fe69165fd27809bf5bfe88011700c07c928a4f4611915d72626b5e15",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 2,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 2,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:5:12:97307763d5f776b79e47294440edb05156169b7e063052945a88979b4339321a",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 3,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:7:17:ce55fd8a08a2bb637d27c635cec57842ba92b10971439302586c157628ff40db",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 2,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 4,
+    "policy_v3": 1,
+    "retrained_v2": 4
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:9:18:eb83209a193d175552ce8f36acff5ab5b4eacfa00c05edf63ab350f460d8bb5c",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:12:25:f01bef2f31497653cad72e568f38ac2948e2c142386e0d2e5a8c9c6b83d34b06",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 5,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 3,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:14:27:5ac108ae8f96f7183c340d8335d76fd3169d7d059163382c84a8d23a5f7b945a",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 1,
+   "chosen_type": "ATTACK",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:24:45:4ce1519725d06c474b21013eb4e5c6f19aff6b8b544629d0bc860a20802b80ea",
+   "menu_size": 5,
+   "rank_of_chosen": {
+    "policy_v2": 4,
+    "policy_v3": 3,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:25:46:b187c93a91715cbfc45c34ba3b2c51c3742793f2d9186e07a0a00fabb37ba9df",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 3,
+    "retrained_v2": 3
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 7,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:26:54:6e141fbd59c3966dc8e1bdde68b49958039f70d4b6c8d6e9bcc7ba95443a84ac",
+   "menu_size": 15,
+   "rank_of_chosen": {
+    "policy_v2": 9,
+    "policy_v3": 4,
+    "retrained_v2": 5
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 11,
+    "retrained_v2": 11
+   }
+  },
+  {
+   "chosen_index": 2,
+   "chosen_type": "ATTACK",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:27:55:35c479c7b7143bc50594522f52584d7df9078a56b82abe8f2cc863a20581366e",
+   "menu_size": 3,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 2,
+    "retrained_v2": 2
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:28:56:46abdc51df9610131c644f8060fb4d000943fc923059c92c7524bb7cdd8dd71a",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  },
+  {
+   "chosen_index": 4,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:29:65:a9d6a20502ea54f1226f19be9c1b0c401188a0599c1d1040230b3bc1bd401a75",
+   "menu_size": 8,
+   "rank_of_chosen": {
+    "policy_v2": 7,
+    "policy_v3": 5,
+    "retrained_v2": 6
+   },
+   "top1_index": {
+    "policy_v2": 1,
+    "policy_v3": 5,
+    "retrained_v2": 5
+   }
+  },
+  {
+   "chosen_index": 10,
+   "chosen_type": "PLAY_CARD",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:30:66:9024881568ffd9813d0eddc5c8095452e8088f57c0041e8bc2d0364c96892d85",
+   "menu_size": 12,
+   "rank_of_chosen": {
+    "policy_v2": 8,
+    "policy_v3": 2,
+    "retrained_v2": 4
+   },
+   "top1_index": {
+    "policy_v2": 2,
+    "policy_v3": 8,
+    "retrained_v2": 8
+   }
+  },
+  {
+   "chosen_index": 0,
+   "chosen_type": "END_TURN",
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:32:67:942d564a1db2632e1e61dbbbfb0bc6991480fcf7cd5201e316d67c4d7db97ed1",
+   "menu_size": 1,
+   "rank_of_chosen": {
+    "policy_v2": 1,
+    "policy_v3": 1,
+    "retrained_v2": 1
+   },
+   "top1_index": {
+    "policy_v2": 0,
+    "policy_v3": 0,
+    "retrained_v2": 0
+   }
+  }
+ ],
+ "metrics": {
+  "all": {
+   "decisions": 87,
+   "models": {
+    "policy_v2": {
+     "chance": {
+      "mrr": 0.4276,
+      "top1": 0.2411,
+      "top3": 0.5222
+     },
+     "decisions": 87,
+     "mean_rank": 4.908,
+     "median_rank": 3.0,
+     "mrr": 0.4541,
+     "top1": 0.2644,
+     "top1_hits": 23,
+     "top3": 0.5402,
+     "top3_hits": 47
+    },
+    "policy_v3": {
+     "chance": {
+      "mrr": 0.4276,
+      "top1": 0.2411,
+      "top3": 0.5222
+     },
+     "decisions": 87,
+     "mean_rank": 4.161,
+     "median_rank": 2.0,
+     "mrr": 0.5299,
+     "top1": 0.3678,
+     "top1_hits": 32,
+     "top3": 0.5977,
+     "top3_hits": 52
+    },
+    "retrained_v2": {
+     "chance": {
+      "mrr": 0.4276,
+      "top1": 0.2411,
+      "top3": 0.5222
+     },
+     "decisions": 87,
+     "mean_rank": 4.138,
+     "median_rank": 3.0,
+     "mrr": 0.4811,
+     "top1": 0.2874,
+     "top1_hits": 25,
+     "top3": 0.6092,
+     "top3_hits": 53
+    }
+   }
+  },
+  "large_menu_5plus": {
+   "decisions": 57,
+   "models": {
+    "policy_v2": {
+     "chance": {
+      "mrr": 0.2757,
+      "top1": 0.099,
+      "top3": 0.297
+     },
+     "decisions": 57,
+     "mean_rank": 6.649,
+     "median_rank": 5.0,
+     "mrr": 0.294,
+     "top1": 0.1053,
+     "top1_hits": 6,
+     "top3": 0.3158,
+     "top3_hits": 18
+    },
+    "policy_v3": {
+     "chance": {
+      "mrr": 0.2757,
+      "top1": 0.099,
+      "top3": 0.297
+     },
+     "decisions": 57,
+     "mean_rank": 5.596,
+     "median_rank": 5.0,
+     "mrr": 0.3848,
+     "top1": 0.2281,
+     "top1_hits": 13,
+     "top3": 0.386,
+     "top3_hits": 22
+    },
+    "retrained_v2": {
+     "chance": {
+      "mrr": 0.2757,
+      "top1": 0.099,
+      "top3": 0.297
+     },
+     "decisions": 57,
+     "mean_rank": 5.439,
+     "median_rank": 4.0,
+     "mrr": 0.3527,
+     "top1": 0.1754,
+     "top1_hits": 10,
+     "top3": 0.4211,
+     "top3_hits": 24
+    }
+   }
+  },
+  "nontrivial_menu_2plus": {
+   "decisions": 80,
+   "models": {
+    "policy_v2": {
+     "chance": {
+      "mrr": 0.3775,
+      "top1": 0.1747,
+      "top3": 0.4804
+     },
+     "decisions": 80,
+     "mean_rank": 5.25,
+     "median_rank": 3.5,
+     "mrr": 0.4063,
+     "top1": 0.2,
+     "top1_hits": 16,
+     "top3": 0.5,
+     "top3_hits": 40
+    },
+    "policy_v3": {
+     "chance": {
+      "mrr": 0.3775,
+      "top1": 0.1747,
+      "top3": 0.4804
+     },
+     "decisions": 80,
+     "mean_rank": 4.438,
+     "median_rank": 3.0,
+     "mrr": 0.4888,
+     "top1": 0.3125,
+     "top1_hits": 25,
+     "top3": 0.5625,
+     "top3_hits": 45
+    },
+    "retrained_v2": {
+     "chance": {
+      "mrr": 0.3775,
+      "top1": 0.1747,
+      "top3": 0.4804
+     },
+     "decisions": 80,
+     "mean_rank": 4.412,
+     "median_rank": 3.0,
+     "mrr": 0.4357,
+     "top1": 0.225,
+     "top1_hits": 18,
+     "top3": 0.575,
+     "top3_hits": 46
+    }
+   }
+  }
+ },
+ "model_disagreements": {
+  "decisions_with_different_top1_substance": 64,
+  "examples": [
+   {
+    "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:73:149:6f94c5ae373a75814244c46333785646ca847384166e2b506326fe0621882799",
+    "match": "2659ea1b",
+    "menu_size": 18,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 14,
+      "top1": "PLAY_CARD Eredar Deceptor @7"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 1,
+      "top1": "ATTACK TTN_843t1 -> enemy Reluctant Wrangler"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 6,
+      "top1": "PLAY_CARD Vicious Voidscale @7"
+     }
+    },
+    "player_chose": "ATTACK TTN_843t1 -> enemy Reluctant Wrangler",
+    "state": "turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/2, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 12+0 hp, board [Reluctant Wrangler 1/1], hand 0",
+    "turn": 28
+   },
+   {
+    "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:25:50:a6f12269dd8fa1b198de5536632876640a158b83020edb7bb92f828dbedf36b9",
+    "match": "96de69b7",
+    "menu_size": 27,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 10,
+      "top1": "HERO_POWER JAIL_EVENT_101hp"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 5,
+      "top1": "ATTACK Perennial Serpent -> enemy Lunarwing Messenger"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 1,
+      "top1": "PLAY_CARD Void Blast -> enemy Lunarwing Messenger"
+     }
+    },
+    "player_chose": "PLAY_CARD Void Blast -> enemy Lunarwing Messenger",
+    "state": "turn 13, mana 3/7; me 28+0 hp, board [Perennial Serpent 7/9, Fiendish Servant 2/1, EDR_840t1 3/3, EDR_840t2 5/5, Imp Gang Stooge 2/5], hand [Stardust Scythe(4), Void Blast(2), Mythical Terror(7), Felrattler(3)]; opponent PRIEST 21+0 hp, board [Lunarwing Messenger 3/2, Lunarwing Messenger 3/2], hand 5",
+    "turn": 13
+   },
+   {
+    "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:70:146:7b321b94d00661a35454eb5832fa7d092cba59ef83cce9987a814472b9348e2a",
+    "match": "2659ea1b",
+    "menu_size": 20,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 9,
+      "top1": "PLAY_CARD Eredar Deceptor @7"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 1,
+      "top1": "ATTACK DINO_136t -> enemy RLK_061t"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 3,
+      "top1": "PLAY_CARD Vicious Voidscale @7"
+     }
+    },
+    "player_chose": "ATTACK DINO_136t -> enemy RLK_061t",
+    "state": "turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/4, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 3+0 hp, board [Battlefield Necromancer 2/2, RLK_061t 1/1, Reluctant Wrangler 1/1], hand 0",
+    "turn": 28
+   },
+   {
+    "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:27:43:e05b65a601694c92afb45efe83f27d3b62f7093dfe2547f685930fbcc1c4ef06",
+    "match": "2659ea1b",
+    "menu_size": 19,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 3,
+      "top1": "PLAY_CARD Eredar Deceptor @3"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 1,
+      "top1": "PLAY_CARD Horn of Feasting"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 3,
+      "top1": "PLAY_CARD Hellraiser @3"
+     }
+    },
+    "player_chose": "PLAY_CARD Horn of Feasting",
+    "state": "turn 12, mana 6/6; me 25+0 hp, board [EDR_840t1 3/3, EDR_840t2 5/5], hand [JAIL_EVENT_COIN(None), Eredar Deceptor(4), Raging Felscreamer(4), Perennial Serpent(4), Horn of Feasting(4), Mythical Terror(7), Perennial Serpent(4), Hellraiser(3)]; opponent DEATHKNIGHT 27+0 hp, board [Falric 2/3, TIME_610t2 3/2, TIME_610t2 3/2, TIME_610t2 3/2], hand 5",
+    "turn": 12
+   },
+   {
+    "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:2:10:ccbf3aa7fe69165fd27809bf5bfe88011700c07c928a4f4611915d72626b5e15",
+    "match": "1eb9927b",
+    "menu_size": 5,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 2,
+      "top1": "HERO_POWER HERO_10bchp"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 2,
+      "top1": "PLAY_CARD Soul Immolation"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 1,
+      "top1": "PLAY_CARD Void Soul"
+     }
+    },
+    "player_chose": "PLAY_CARD Void Soul",
+    "state": "turn 4, mana 2/2; me 28+0 hp, board [], hand [Sigil of the Seas(1), Soul Immolation(2), Stardust Scythe(4), Eredar Deceptor(4), Void Soul(1), Skittish Saucier(3)]; opponent DRUID 30+1 hp, board [], hand 4",
+    "turn": 4
+   },
+   {
+    "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:69:144:9163abe566e447ad203537ed15176bd8d801a094098bdb30e21d87bb8247c514",
+    "match": "2659ea1b",
+    "menu_size": 28,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 16,
+      "top1": "PLAY_CARD Eredar Deceptor @7"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 5,
+      "top1": "ATTACK DINO_136t -> enemy TLC_443t"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 10,
+      "top1": "PLAY_CARD Vicious Voidscale @7"
+     }
+    },
+    "player_chose": "ATTACK DINO_136t -> enemy RLK_061t",
+    "state": "turn 28, mana 6/10; me 30+0 hp, board [Raging Felscreamer 4/4, TTN_843t1 1/1, EDR_840t2 5/4, DINO_136t 2/1, DINO_136t 2/1, DINO_136t 2/1], hand [Vicious Voidscale(2), Eredar Deceptor(4)]; opponent DEATHKNIGHT 3+0 hp, board [Battlefield Necromancer 2/2, RLK_061t 1/3, TLC_443t 2/2, Reluctant Wrangler 1/1], hand 0",
+    "turn": 28
+   },
+   {
+    "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:21:49:c6391ac2fd98ad161db40b3b0e202d3b5c69a6d2581fe2cdbaf71e032fab3911",
+    "match": "96de69b7",
+    "menu_size": 34,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 8,
+      "top1": "PLAY_CARD Stardust Scythe"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 19,
+      "top1": "ATTACK Imp Gang Stooge -> enemy Lunarwing Messenger"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 15,
+      "top1": "PLAY_CARD Void Blast -> enemy Lunarwing Messenger"
+     }
+    },
+    "player_chose": "PLAY_CARD Perennial Serpent @1",
+    "state": "turn 13, mana 7/7; me 28+0 hp, board [Fiendish Servant 2/1, EDR_840t1 3/3, EDR_840t2 5/5, Imp Gang Stooge 2/5], hand [Stardust Scythe(4), Void Blast(2), Perennial Serpent(4), Mythical Terror(7), Felrattler(3)]; opponent PRIEST 21+0 hp, board [Lunarwing Messenger 3/2, Lunarwing Messenger 3/2], hand 5",
+    "turn": 13
+   },
+   {
+    "decision_id": "2659ea1ba399d730112af6ae9b0070f5d5bb3d751ea28de24d63a21bddfef268:57:117:874e371b10ff66801711b777f46120f4e0cbf6b76490e115387eefe41102d4e3",
+    "match": "2659ea1b",
+    "menu_size": 39,
+    "models": {
+     "policy_v2": {
+      "rank_of_player_choice": 18,
+      "top1": "PLAY_CARD Eredar Deceptor @6"
+     },
+     "policy_v3": {
+      "rank_of_player_choice": 22,
+      "top1": "ATTACK TTN_843t1 -> enemy hero"
+     },
+     "retrained_v2": {
+      "rank_of_player_choice": 13,
+      "top1": "PLAY_CARD Vicious Voidscale @6"
+     }
+    },
+    "player_chose": "PLAY_CARD Skittish Saucier @1",
+    "state": "turn 24, mana 10/10; me 30+0 hp, board [TTN_843t1 1/1, TTN_843t1 1/1, TTN_843t1 1/1, TTN_843t1 1/1, EDR_840t2 5/5], hand [Raging Felscreamer(4), Vicious Voidscale(3), Skittish Saucier(3), Void Soul(1), Eredar Deceptor(4)]; opponent DEATHKNIGHT 10+0 hp, board [Reluctant Wrangler 2/2, Skeletal Sidekick 2/3], hand 1",
+    "turn": 24
+   }
+  ],
+  "of_which_all_models_differ": 19,
+  "top1_type_combinations": {
+   "ATTACK": 9,
+   "ATTACK+END_TURN": 5,
+   "ATTACK+HERO_POWER": 5,
+   "ATTACK+HERO_POWER+PLAY_CARD": 1,
+   "ATTACK+PLAY_CARD": 18,
+   "END_TURN+PLAY_CARD": 3,
+   "HERO_POWER+PLAY_CARD": 9,
+   "PLAY_CARD": 14
+  }
+ },
+ "models": [
+  "policy_v2",
+  "retrained_v2",
+  "policy_v3"
+ ],
+ "per_match": {
+  "1eb9927b": {
+   "all": {
+    "decisions": 15,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.626,
+       "top1": 0.4661,
+       "top3": 0.7317
+      },
+      "decisions": 15,
+      "mean_rank": 3.2,
+      "median_rank": 2.0,
+      "mrr": 0.6053,
+      "top1": 0.4667,
+      "top1_hits": 7,
+      "top3": 0.6,
+      "top3_hits": 9
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.626,
+       "top1": 0.4661,
+       "top3": 0.7317
+      },
+      "decisions": 15,
+      "mean_rank": 2.333,
+      "median_rank": 2.0,
+      "mrr": 0.5744,
+      "top1": 0.3333,
+      "top1_hits": 5,
+      "top3": 0.8667,
+      "top3_hits": 13
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.626,
+       "top1": 0.4661,
+       "top3": 0.7317
+      },
+      "decisions": 15,
+      "mean_rank": 2.733,
+      "median_rank": 3.0,
+      "mrr": 0.5711,
+      "top1": 0.4,
+      "top1_hits": 6,
+      "top3": 0.6667,
+      "top3_hits": 10
+     }
+    }
+   },
+   "large_menu_5plus": {
+    "decisions": 7,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.378,
+       "top1": 0.1536,
+       "top3": 0.4607
+      },
+      "decisions": 7,
+      "mean_rank": 5.286,
+      "median_rank": 5.0,
+      "mrr": 0.2613,
+      "top1": 0.0,
+      "top1_hits": 0,
+      "top3": 0.2857,
+      "top3_hits": 2
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.378,
+       "top1": 0.1536,
+       "top3": 0.4607
+      },
+      "decisions": 7,
+      "mean_rank": 3.143,
+      "median_rank": 3.0,
+      "mrr": 0.35,
+      "top1": 0.0,
+      "top1_hits": 0,
+      "top3": 0.7143,
+      "top3_hits": 5
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.378,
+       "top1": 0.1536,
+       "top3": 0.4607
+      },
+      "decisions": 7,
+      "mean_rank": 3.857,
+      "median_rank": 4.0,
+      "mrr": 0.3548,
+      "top1": 0.1429,
+      "top1_hits": 1,
+      "top3": 0.4286,
+      "top3_hits": 3
+     }
+    }
+   },
+   "nontrivial_menu_2plus": {
+    "decisions": 10,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.4389,
+       "top1": 0.1992,
+       "top3": 0.5975
+      },
+      "decisions": 10,
+      "mean_rank": 4.3,
+      "median_rank": 4.0,
+      "mrr": 0.4079,
+      "top1": 0.2,
+      "top1_hits": 2,
+      "top3": 0.4,
+      "top3_hits": 4
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.4389,
+       "top1": 0.1992,
+       "top3": 0.5975
+      },
+      "decisions": 10,
+      "mean_rank": 3.0,
+      "median_rank": 3.0,
+      "mrr": 0.3617,
+      "top1": 0.0,
+      "top1_hits": 0,
+      "top3": 0.8,
+      "top3_hits": 8
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.4389,
+       "top1": 0.1992,
+       "top3": 0.5975
+      },
+      "decisions": 10,
+      "mean_rank": 3.6,
+      "median_rank": 3.5,
+      "mrr": 0.3567,
+      "top1": 0.1,
+      "top1_hits": 1,
+      "top3": 0.5,
+      "top3_hits": 5
+     }
+    }
+   }
+  },
+  "2659ea1b": {
+   "all": {
+    "decisions": 53,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 5.547,
+      "median_rank": 3.0,
+      "mrr": 0.4288,
+      "top1": 0.2453,
+      "top1_hits": 13,
+      "top3": 0.5283,
+      "top3_hits": 28
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 4.792,
+      "median_rank": 3.0,
+      "mrr": 0.4922,
+      "top1": 0.3396,
+      "top1_hits": 18,
+      "top3": 0.5094,
+      "top3_hits": 27
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 4.679,
+      "median_rank": 3.0,
+      "mrr": 0.4427,
+      "top1": 0.2642,
+      "top1_hits": 14,
+      "top3": 0.5472,
+      "top3_hits": 29
+     }
+    }
+   },
+   "large_menu_5plus": {
+    "decisions": 38,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.2574,
+       "top1": 0.0902,
+       "top3": 0.2707
+      },
+      "decisions": 38,
+      "mean_rank": 7.079,
+      "median_rank": 4.5,
+      "mrr": 0.3086,
+      "top1": 0.1316,
+      "top1_hits": 5,
+      "top3": 0.3421,
+      "top3_hits": 13
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.2574,
+       "top1": 0.0902,
+       "top3": 0.2707
+      },
+      "decisions": 38,
+      "mean_rank": 6.132,
+      "median_rank": 5.0,
+      "mrr": 0.3707,
+      "top1": 0.2368,
+      "top1_hits": 9,
+      "top3": 0.3158,
+      "top3_hits": 12
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.2574,
+       "top1": 0.0902,
+       "top3": 0.2707
+      },
+      "decisions": 38,
+      "mean_rank": 5.895,
+      "median_rank": 5.0,
+      "mrr": 0.3235,
+      "top1": 0.1579,
+      "top1_hits": 6,
+      "top3": 0.3684,
+      "top3_hits": 14
+     }
+    }
+   },
+   "nontrivial_menu_2plus": {
+    "decisions": 53,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 5.547,
+      "median_rank": 3.0,
+      "mrr": 0.4288,
+      "top1": 0.2453,
+      "top1_hits": 13,
+      "top3": 0.5283,
+      "top3_hits": 28
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 4.792,
+      "median_rank": 3.0,
+      "mrr": 0.4922,
+      "top1": 0.3396,
+      "top1_hits": 18,
+      "top3": 0.5094,
+      "top3_hits": 27
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.3691,
+       "top1": 0.1748,
+       "top3": 0.4582
+      },
+      "decisions": 53,
+      "mean_rank": 4.679,
+      "median_rank": 3.0,
+      "mrr": 0.4427,
+      "top1": 0.2642,
+      "top1_hits": 14,
+      "top3": 0.5472,
+      "top3_hits": 29
+     }
+    }
+   }
+  },
+  "96de69b7": {
+   "all": {
+    "decisions": 19,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.4342,
+       "top1": 0.2486,
+       "top3": 0.5353
+      },
+      "decisions": 19,
+      "mean_rank": 4.474,
+      "median_rank": 3.0,
+      "mrr": 0.4052,
+      "top1": 0.1579,
+      "top1_hits": 3,
+      "top3": 0.5263,
+      "top3_hits": 10
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.4342,
+       "top1": 0.2486,
+       "top3": 0.5353
+      },
+      "decisions": 19,
+      "mean_rank": 3.842,
+      "median_rank": 2.0,
+      "mrr": 0.6,
+      "top1": 0.4737,
+      "top1_hits": 9,
+      "top3": 0.6316,
+      "top3_hits": 12
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.4342,
+       "top1": 0.2486,
+       "top3": 0.5353
+      },
+      "decisions": 19,
+      "mean_rank": 3.737,
+      "median_rank": 2.0,
+      "mrr": 0.5173,
+      "top1": 0.2632,
+      "top1_hits": 5,
+      "top3": 0.7368,
+      "top3_hits": 14
+     }
+    }
+   },
+   "large_menu_5plus": {
+    "decisions": 12,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.2737,
+       "top1": 0.095,
+       "top3": 0.285
+      },
+      "decisions": 12,
+      "mean_rank": 6.083,
+      "median_rank": 5.5,
+      "mrr": 0.2666,
+      "top1": 0.0833,
+      "top1_hits": 1,
+      "top3": 0.25,
+      "top3_hits": 3
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.2737,
+       "top1": 0.095,
+       "top3": 0.285
+      },
+      "decisions": 12,
+      "mean_rank": 5.333,
+      "median_rank": 4.5,
+      "mrr": 0.45,
+      "top1": 0.3333,
+      "top1_hits": 4,
+      "top3": 0.4167,
+      "top3_hits": 5
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.2737,
+       "top1": 0.095,
+       "top3": 0.285
+      },
+      "decisions": 12,
+      "mean_rank": 4.917,
+      "median_rank": 3.0,
+      "mrr": 0.444,
+      "top1": 0.25,
+      "top1_hits": 3,
+      "top3": 0.5833,
+      "top3_hits": 7
+     }
+    }
+   },
+   "nontrivial_menu_2plus": {
+    "decisions": 17,
+    "models": {
+     "policy_v2": {
+      "chance": {
+       "mrr": 0.3676,
+       "top1": 0.1602,
+       "top3": 0.4806
+      },
+      "decisions": 17,
+      "mean_rank": 4.882,
+      "median_rank": 4.0,
+      "mrr": 0.3353,
+      "top1": 0.0588,
+      "top1_hits": 1,
+      "top3": 0.4706,
+      "top3_hits": 8
+     },
+     "policy_v3": {
+      "chance": {
+       "mrr": 0.3676,
+       "top1": 0.1602,
+       "top3": 0.4806
+      },
+      "decisions": 17,
+      "mean_rank": 4.176,
+      "median_rank": 2.0,
+      "mrr": 0.5529,
+      "top1": 0.4118,
+      "top1_hits": 7,
+      "top3": 0.5882,
+      "top3_hits": 10
+     },
+     "retrained_v2": {
+      "chance": {
+       "mrr": 0.3676,
+       "top1": 0.1602,
+       "top3": 0.4806
+      },
+      "decisions": 17,
+      "mean_rank": 4.059,
+      "median_rank": 2.0,
+      "mrr": 0.4605,
+      "top1": 0.1765,
+      "top1_hits": 3,
+      "top3": 0.7059,
+      "top3_hits": 12
+     }
+    }
+   }
+  }
+ },
+ "ranking_by_mrr_nontrivial": [
+  "policy_v3",
+  "retrained_v2",
+  "policy_v2"
+ ],
+ "reliability": {
+  "policy_v2_vs_policy_v3": {
+   "a": "policy_v2",
+   "b": "policy_v3",
+   "decisions": 80,
+   "leave_one_match_out": {
+    "1eb9927b": {
+     "mrr_diff": -0.1008,
+     "top1_diff": -0.1571
+    },
+    "2659ea1b": {
+     "mrr_diff": -0.1199,
+     "top1_diff": -0.1481
+    },
+    "96de69b7": {
+     "mrr_diff": -0.0459,
+     "top1_diff": -0.0476
+    }
+   },
+   "matches": 3,
+   "mrr": {
+    "bootstrap95": [
+     -0.1681,
+     0.0037
+    ],
+    "mean_diff": -0.0824,
+    "resamples": 5000,
+    "seed": 20261013
+   },
+   "per_match": {
+    "1eb9927b": {
+     "decisions": 10,
+     "mrr_diff": 0.0462,
+     "top1_diff": 0.2
+    },
+    "2659ea1b": {
+     "decisions": 53,
+     "mrr_diff": -0.0633,
+     "top1_diff": -0.0943
+    },
+    "96de69b7": {
+     "decisions": 17,
+     "mrr_diff": -0.2176,
+     "top1_diff": -0.3529
+    }
+   },
+   "top1": {
+    "both": 6,
+    "exact_sign_test_p": 0.136,
+    "mean_diff": -0.1125,
+    "neither": 45,
+    "only_policy_v2": 10,
+    "only_policy_v3": 19
+   },
+   "verdict": "INCONCLUSIVE"
+  },
+  "policy_v2_vs_retrained_v2": {
+   "a": "policy_v2",
+   "b": "retrained_v2",
+   "decisions": 80,
+   "leave_one_match_out": {
+    "1eb9927b": {
+     "mrr_diff": -0.0409,
+     "top1_diff": -0.0429
+    },
+    "2659ea1b": {
+     "mrr_diff": -0.0599,
+     "top1_diff": -0.037
+    },
+    "96de69b7": {
+     "mrr_diff": -0.0035,
+     "top1_diff": 0.0
+    }
+   },
+   "matches": 3,
+   "mrr": {
+    "bootstrap95": [
+     -0.0892,
+     0.0311
+    ],
+    "mean_diff": -0.0294,
+    "resamples": 5000,
+    "seed": 20261013
+   },
+   "per_match": {
+    "1eb9927b": {
+     "decisions": 10,
+     "mrr_diff": 0.0512,
+     "top1_diff": 0.1
+    },
+    "2659ea1b": {
+     "decisions": 53,
+     "mrr_diff": -0.0138,
+     "top1_diff": -0.0189
+    },
+    "96de69b7": {
+     "decisions": 17,
+     "mrr_diff": -0.1252,
+     "top1_diff": -0.1176
+    }
+   },
+   "top1": {
+    "both": 11,
+    "exact_sign_test_p": 0.7744,
+    "mean_diff": -0.025,
+    "neither": 57,
+    "only_policy_v2": 5,
+    "only_retrained_v2": 7
+   },
+   "verdict": "INCONCLUSIVE"
+  },
+  "retrained_v2_vs_policy_v3": {
+   "a": "retrained_v2",
+   "b": "policy_v3",
+   "decisions": 80,
+   "leave_one_match_out": {
+    "1eb9927b": {
+     "mrr_diff": -0.0599,
+     "top1_diff": -0.1143
+    },
+    "2659ea1b": {
+     "mrr_diff": -0.06,
+     "top1_diff": -0.1111
+    },
+    "96de69b7": {
+     "mrr_diff": -0.0424,
+     "top1_diff": -0.0476
+    }
+   },
+   "matches": 3,
+   "mrr": {
+    "bootstrap95": [
+     -0.1208,
+     0.0133
+    ],
+    "mean_diff": -0.0531,
+    "resamples": 5000,
+    "seed": 20261013
+   },
+   "per_match": {
+    "1eb9927b": {
+     "decisions": 10,
+     "mrr_diff": -0.005,
+     "top1_diff": 0.1
+    },
+    "2659ea1b": {
+     "decisions": 53,
+     "mrr_diff": -0.0495,
+     "top1_diff": -0.0755
+    },
+    "96de69b7": {
+     "decisions": 17,
+     "mrr_diff": -0.0924,
+     "top1_diff": -0.2353
+    }
+   },
+   "top1": {
+    "both": 11,
+    "exact_sign_test_p": 0.1892,
+    "mean_diff": -0.0875,
+    "neither": 48,
+    "only_policy_v3": 14,
+    "only_retrained_v2": 7
+   },
+   "verdict": "INCONCLUSIVE"
+  }
+ },
+ "schema": "manamind.model_shadow_eval/1",
+ "self_class": "DEMONHUNTER",
+ "self_class_decisions": 87,
+ "skipped_decisions": [
+  {
+   "decision_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04:29:62:2db5969d483b7f9f379ba8453a3f357f4b6143840bdc3a2b7d41717a60db99bf",
+   "match_id": "96de69b77db31584c5908967f68918b4967c173bd20014d714fb267cd42bea04",
+   "reason": "IMPORTER_SKIPPED:OPTIONS_SUPERSEDED"
+  },
+  {
+   "decision_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4:33:72:1d5b7dbcc7ac7541e0b2196497638fa7702fbf1d4121e3626ef4d6cd2326edbc",
+   "match_id": "1eb9927b2731c582171d42669f3239ac1e89d1ab432af2776244ec6fe44137f4",
+   "reason": "IMPORTER_SKIPPED:OPTIONS_SUPERSEDED"
+  }
+ ]
+}
