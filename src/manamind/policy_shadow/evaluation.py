@@ -106,16 +106,25 @@ def _label_problem(row: dict, labels: MatchLabels | None) -> tuple[str | None, d
     return None, example
 
 
+def _checkpoint_mismatch(row: dict, expected: dict[str, str]) -> list[str]:
+    entries = {e.get("name"): e for e in row.get("models", []) if isinstance(e, dict)}
+    return [name for name, sha in expected.items() if name in entries and entries[name].get("checkpoint_sha256") != sha]
+
+
 def match_decisions(shadow_rows: list[dict], labels: dict[str, MatchLabels], models: list[str],
-                    training_games: dict[str, set[str]] | None = None) -> dict:
+                    training_games: dict[str, set[str]] | None = None,
+                    checkpoints: dict[str, str] | None = None) -> dict:
     """Pair every shadow row with its confirmed label or give it exactly one skip reason.
 
     ``training_games`` maps a model name to the match ids its checkpoint trained or was selected on; a match any model
-    saw is ``TRAINING_OVERLAP`` and never enters the independent metrics.
+    saw is ``TRAINING_OVERLAP`` and never enters the independent metrics. ``checkpoints`` maps a model name to the SHA-256
+    of the checkpoint file those training splits were read from: a match with any row whose journaled digest differs (or
+    that mixes versions) is ``CHECKPOINT_MISMATCH``, because its training split would then say nothing about that model.
     """
     training_games = training_games or {}
     overlapping = {match for games in training_games.values() for match in games}
     rows = [r for r in shadow_rows if isinstance(r, dict) and r.get("event") == "MODEL_SHADOW"]
+    unverified = {r.get("match_id") for r in rows if checkpoints and _checkpoint_mismatch(r, checkpoints)}
     groups: dict[tuple, list[int]] = defaultdict(list)
     for position, row in enumerate(rows):
         groups[(row.get("match_id"), str(row.get("options_id")), row.get("state_hash"))].append(position)
@@ -136,6 +145,9 @@ def match_decisions(shadow_rows: list[dict], labels: dict[str, MatchLabels], mod
         problem = _row_problem(row, models)
         if problem:
             skip(row, problem)
+            continue
+        if row["match_id"] in unverified:
+            skip(row, "CHECKPOINT_MISMATCH")
             continue
         if row["match_id"] in overlapping:
             skip(row, "TRAINING_OVERLAP")
@@ -159,11 +171,35 @@ def match_decisions(shadow_rows: list[dict], labels: dict[str, MatchLabels], mod
             "shadow_rows": len(rows)}
 
 
+def explain_unshadowed(missing: list[dict], events: list[dict] | None) -> dict:
+    """Why labeled decisions have no shadow row, joined by match id + options_id to journal events (never guessed).
+
+    Counts are of decisions; ``events`` counts the journal events behind them (one decision can carry several, and a
+    journal event may belong to a decision that was not labeled at all, so the two numbers are not comparable).
+    """
+    if events is None:
+        return {"status": "EVENTS_NOT_PROVIDED", "decisions": len(missing)}
+    wanted = {"RECOMMENDATION", "UNAVAILABLE", "DISCARDED", "MODEL_SHADOW_ERROR", "MODEL_SHADOW_DISCARDED"}
+    index: dict[tuple, list[str]] = defaultdict(list)
+    for event in events:
+        parts = str(event.get("decision_id", "")).split(":")
+        kind = event.get("event")
+        if kind in wanted and len(parts) >= 3:
+            index[(event.get("match_id"), parts[2])].append(f"{kind}:{event['reason']}" if event.get("reason") else kind)
+    decisions, behind = Counter(), Counter()
+    for item in missing:
+        found = sorted(set(index.get((item["match_id"], item["decision_id"].rsplit(":", 1)[1]), [])))
+        decisions["+".join(found) if found else "NO_JOURNAL_EVENT_FOR_DECISION"] += 1
+        behind.update(index.get((item["match_id"], item["decision_id"].rsplit(":", 1)[1]), []))
+    return {"status": "OK", "decisions": len(missing), "by_decision": dict(sorted(decisions.items())),
+            "journal_events_behind_these_decisions": dict(sorted(behind.items()))}
+
+
 # -- metrics -----------------------------------------------------------------------------------------------------
 
 
 def _share(count: int, total: int) -> float | None:
-    return round(count / total, 4) if total else None
+    return round(count / total, 6) if total else None
 
 
 def _harmonic(n: int) -> float:
@@ -171,16 +207,20 @@ def _harmonic(n: int) -> float:
 
 
 def rank_metrics(ranks: list[int], sizes: list[int]) -> dict:
+    """Top-1 and MRR over every decision; Top-3 only over menus of 3+ actions (in a smaller menu it is trivially 100%)."""
     n = len(ranks)
     if not n:
         return {"decisions": 0}
     arr = np.asarray(ranks)
+    wide = np.asarray(sizes) >= 3
+    top3_n = int(wide.sum())
+    top3_hits = int((arr[wide] <= 3).sum())
     return {"decisions": n, "top1_hits": int((arr == 1).sum()), "top1": _share(int((arr == 1).sum()), n),
-            "top3_hits": int((arr <= 3).sum()), "top3": _share(int((arr <= 3).sum()), n),
+            "top3_decisions": top3_n, "top3_hits": top3_hits, "top3": _share(top3_hits, top3_n),
             "mrr": round(float((1 / arr).mean()), 4), "mean_rank": round(float(arr.mean()), 3),
             "median_rank": float(np.median(arr)),
             "chance": {"top1": round(float(np.mean([1 / s for s in sizes])), 4),
-                       "top3": round(float(np.mean([min(3, s) / s for s in sizes])), 4),
+                       "top3": round(float(np.mean([3 / s for s in sizes if s >= 3])), 4) if top3_n else None,
                        "mrr": round(float(np.mean([_harmonic(s) / s for s in sizes])), 4)}}
 
 
@@ -436,10 +476,11 @@ def disagreements(items: list[dict], models: list[str], names: dict[str, str], e
 
 
 def evaluate(shadow_rows: list[dict], labels: dict[str, MatchLabels], models: list[str], *,
-             training_games: dict[str, set[str]] | None = None, names: dict[str, str] | None = None,
+             training_games: dict[str, set[str]] | None = None, checkpoints: dict[str, str] | None = None,
+             prediction_rows: list[dict] | None = None, names: dict[str, str] | None = None,
              examples: int = 6, self_class: str = "DEMONHUNTER") -> dict:
     names = names or {}
-    paired = match_decisions(shadow_rows, labels, models, training_games)
+    paired = match_decisions(shadow_rows, labels, models, training_games, checkpoints)
     matched, skipped = paired["matched"], paired["skipped"]
     total, collapsed = paired["shadow_rows"], len(paired["collapsed_duplicates"])
     distinct = total - collapsed
@@ -450,6 +491,12 @@ def evaluate(shadow_rows: list[dict], labels: dict[str, MatchLabels], models: li
     for m in matched:
         by_match_ok[m["row"]["match_id"]] += 1
     klass_items = [m for m in matched if m["row"]["self_class"] == self_class]
+    journal_shas: dict[str, set] = defaultdict(set)
+    for row in (r for r in shadow_rows if r.get("event") == "MODEL_SHADOW"):
+        for entry in row.get("models", []):
+            if isinstance(entry, dict):
+                journal_shas[entry.get("name")].add(entry.get("checkpoint_sha256"))
+    unverified_matches = {s["match_id"] for s in skipped if s["reason"] == "CHECKPOINT_MISMATCH"}
     overlap = {match: [n for n, games in sorted((training_games or {}).items()) if match in games]
                for match in sorted(by_match_total) if any(match in g for g in (training_games or {}).values())}
     nontrivial = [m for m in matched if m["row"]["menu_size"] >= 2]
@@ -463,12 +510,18 @@ def evaluate(shadow_rows: list[dict], labels: dict[str, MatchLabels], models: li
                      "matched": len(matched), "matched_share_of_distinct": _share(len(matched), distinct),
                      "matched_share_of_rows": _share(len(matched), total), "skipped": len(skipped), "skip_reasons": dict(sorted(reasons.items())),
                      "labeled_decisions_without_shadow_row": len(paired["labeled_without_shadow"]),
+                     "labeled_without_shadow_explained": explain_unshadowed(
+                         paired["labeled_without_shadow"], None if prediction_rows is None else [*prediction_rows, *shadow_rows]),
                      "per_match": {mid[:8]: {"shadow_rows": by_match_total[mid], "matched": by_match_ok[mid]}
                                    for mid in sorted(by_match_total)},
                      "matches_in_journal": len(by_match_total), "matches_with_power_log": sum(
                          1 for mid in by_match_total if mid in labels and labels[mid].import_error is None)},
         "independence": {"training_overlap_matches": {m[:8]: v for m, v in overlap.items()},
-                         "checked_models": sorted(training_games or {})},
+                         "checked_models": sorted(training_games or {}),
+                         "checkpoint_identity_verified": checkpoints is not None and not unverified_matches,
+                         "checkpoint_identity": {n: {"expected_sha256": sha, "journal_sha256": sorted(journal_shas.get(n, ()))}
+                                                 for n, sha in sorted((checkpoints or {}).items())},
+                         "checkpoint_mismatch_matches": sorted(m[:8] for m in unverified_matches)},
         "metrics": metric_tables(matched, models),
         "ranking_by_mrr_nontrivial": ordering,
         "per_match": {mid[:8]: metric_tables([m for m in matched if m["row"]["match_id"] == mid], models)
@@ -503,10 +556,12 @@ def render(report: dict) -> str:
              f"различных решений {cov['distinct_decisions']}",
              f"сопоставлено {cov['matched']} ({_pct(cov['matched_share_of_distinct']).strip()}% различных, "
              f"{_pct(cov['matched_share_of_rows']).strip()}% всех строк); причины пропуска: {cov['skip_reasons'] or 'нет'}",
-             f"размечено импортёром, но без строки Shadow: {cov['labeled_decisions_without_shadow_row']}",
+             f"размечено импортёром, но без строки Shadow: {cov['labeled_decisions_without_shadow_row']} "
+             f"(по журналам: {cov['labeled_without_shadow_explained'].get('by_decision', cov['labeled_without_shadow_explained']['status'])})",
+             f"личность чекпойнтов подтверждена: {report['independence']['checkpoint_identity_verified']}",
              f"пересечение с обучением: {report['independence']['training_overlap_matches'] or 'нет'}", ""]
     for label, table in report["metrics"].items():
-        lines.append(f"[{label}] решений: {table['decisions']}")
+        lines.append(f"[{label}] решений: {table['decisions']} (Top-3 только по меню из 3+ действий)")
         lines.append(f"  {'модель':<14}{'Top-1%':>8}{'Top-3%':>8}{'MRR':>7}{'ср.ранг':>9}{'случайно T1/T3/MRR':>24}")
         for name in models:
             m = table["models"][name]
@@ -514,7 +569,7 @@ def render(report: dict) -> str:
                 continue
             c = m["chance"]
             lines.append(f"  {name:<14}{_pct(m['top1']):>8}{_pct(m['top3']):>8}{m['mrr']:>7.3f}{m['mean_rank']:>9.2f}"
-                         f"{100 * c['top1']:>9.1f}/{100 * c['top3']:.1f}/{c['mrr']:.3f}")
+                         f"{100 * c['top1']:>9.1f}/{_pct(c['top3']).strip()}/{c['mrr']:.3f}  Top-3 n={m['top3_decisions']}")
     lines += ["", "по матчам (нетривиальные меню, Top-1% / MRR, n):"]
     for mid, tables in report["per_match"].items():
         sub = tables["nontrivial_menu_2plus"]

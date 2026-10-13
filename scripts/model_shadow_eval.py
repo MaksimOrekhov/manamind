@@ -13,6 +13,8 @@ dataset is modified, the report goes to a NEW file.
 from __future__ import annotations
 
 import argparse
+import hashlib
+import io
 import json
 import sys
 from pathlib import Path
@@ -37,19 +39,24 @@ def checkpoint_paths() -> dict[str, Path]:
             "policy_v3": run_manamind.POLICY_V3_CHECKPOINT}
 
 
-def training_games(paths: dict[str, Path], frozen_split: Path | None) -> dict[str, set[str]]:
-    """Matches each checkpoint trained or was selected on (train + validation + test), read from the checkpoint itself."""
-    result = {}
+def training_games(paths: dict[str, Path], frozen_split: Path | None) -> tuple[dict[str, set[str]], dict[str, str]]:
+    """Matches each checkpoint trained or was selected on (train + validation + test), read from the checkpoint itself.
+
+    Also returns the SHA-256 of the very bytes that were parsed, to be compared with the digest in the shadow journal.
+    """
+    result, digests = {}, {}
     for name, path in paths.items():
         if not Path(path).is_file():
             raise SystemExit(f"checkpoint for {name} not found: {path} (needed to prove the matches are independent)")
-        _, _, payload = load_policy_checkpoint(path, device="cpu")
+        data = Path(path).read_bytes()
+        digests[name] = hashlib.sha256(data).hexdigest()
+        _, _, payload = load_policy_checkpoint(io.BytesIO(data), device="cpu")
         groups = payload.get("experiment", {}).get("split", {}).get("game_ids", {})
         result[name] = {game for games in groups.values() for game in games}
     if frozen_split is not None and frozen_split.is_file():
         frozen = json.loads(frozen_split.read_text(encoding="utf-8"))
         result["frozen_split_v3"] = {g for games in frozen.get("game_ids", {}).values() for g in games}
-    return result
+    return result, digests
 
 
 def card_names(path: Path) -> dict[str, str]:
@@ -79,6 +86,8 @@ def main(argv: list[str] | None = None) -> int:
                         help="model-shadow journals; default: <data-root>/raw/live/prediction_journal.model_shadow*.jsonl")
     parser.add_argument("--data-root", type=Path, default=ROOT / "data")
     parser.add_argument("--raw-dir", type=Path, help="completed Power.log files; default: <data-root>/raw/collected")
+    parser.add_argument("--prediction-journal", type=Path,
+                        help="Policy journal that explains decisions without a shadow row; default: <data-root>/raw/live/prediction_journal.jsonl")
     parser.add_argument("--match", nargs="*", help="only these match ids (prefixes allowed)")
     parser.add_argument("--self-class", default="DEMONHUNTER", help="class of the category breakdown")
     parser.add_argument("--examples", type=int, default=6, help="model-disagreement examples to list")
@@ -102,8 +111,10 @@ def main(argv: list[str] | None = None) -> int:
     matches = {r["match_id"] for r in rows if r.get("event") == "MODEL_SHADOW" and "match_id" in r}
     labels = import_matches(matches, raw_dir, catalog)
     models = [m for m in MODEL_ORDER if any(e.get("name") == m for r in rows for e in r.get("models", []))]
-    report = evaluate(rows, labels, models,
-                      training_games=training_games(checkpoint_paths(), args.data_root / "processed_policy_v3/frozen_split.json"),
+    games, digests = training_games(checkpoint_paths(), args.data_root / "processed_policy_v3/frozen_split.json")
+    prediction_path = args.prediction_journal or live / "prediction_journal.jsonl"
+    prediction_rows = read_journal([prediction_path]) if prediction_path.is_file() else None
+    report = evaluate(rows, labels, models, training_games=games, checkpoints=digests, prediction_rows=prediction_rows,
                       names=card_names(CARDS), examples=args.examples, self_class=args.self_class)
     report["inputs"] = {"journals": [p.name for p in map(Path, paths)], "raw_dir": str(raw_dir),
                         "importer_summaries": {m[:8]: {"labeled": len(lab.examples), "skipped": len(lab.skipped),

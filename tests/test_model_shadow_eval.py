@@ -170,10 +170,20 @@ def test_matches_a_checkpoint_trained_on_never_enter_the_independent_statistics(
 
 def test_rank_metrics_and_the_chance_baseline_are_exact():
     metrics = ev.rank_metrics([1, 2, 4], [4, 4, 4])
-    assert metrics["top1_hits"] == 1 and metrics["top3_hits"] == 2
+    assert metrics["top1_hits"] == 1 and metrics["top3_hits"] == 2 and metrics["top3_decisions"] == 3
     assert metrics["mrr"] == round((1 + 1 / 2 + 1 / 4) / 3, 4) and metrics["mean_rank"] == round(7 / 3, 3)
     assert metrics["chance"]["top1"] == 0.25 and metrics["chance"]["top3"] == 0.75
     assert metrics["chance"]["mrr"] == round((1 + 1 / 2 + 1 / 3 + 1 / 4) / 4, 4)
+
+
+def test_top3_counts_only_menus_of_three_or_more_while_top1_and_mrr_keep_every_decision():
+    metrics = ev.rank_metrics([1, 2, 5, 1], [1, 2, 6, 3])        # menus of 1 and 2 are trivially inside any Top-3
+    assert metrics["decisions"] == 4 and metrics["top1_hits"] == 2
+    assert metrics["mrr"] == round((1 + 1 / 2 + 1 / 5 + 1) / 4, 4)
+    assert metrics["top3_decisions"] == 2 and metrics["top3_hits"] == 1 and metrics["top3"] == 0.5
+    assert metrics["chance"]["top3"] == round((3 / 6 + 3 / 3) / 2, 4) and metrics["chance"]["top1"] == round((1 + 1 / 2 + 1 / 6 + 1 / 3) / 4, 4)
+    only_small = ev.rank_metrics([1, 1], [1, 2])
+    assert only_small["top3_decisions"] == 0 and only_small["top3"] is None and only_small["chance"]["top3"] is None
 
 
 def test_the_report_separates_matches_menus_and_models_and_is_json_serialisable():
@@ -222,3 +232,43 @@ def test_the_real_importer_output_pairs_with_its_own_menu_and_reports_its_skips(
     assert not superseded and summary["skip_reasons"]
     skipped = ev.MatchLabels.from_import(superseded, summary)
     assert set(skipped.skipped.values()) == set(summary["skip_reasons"])
+
+
+def test_results_of_a_model_other_than_the_checkpoint_the_split_was_read_from_are_not_independent():
+    example, row = make(1, 2, GOOD)
+    same = {name: name for name in MODELS}                      # make() journals the model name as its digest
+    assert ev.match_decisions([row], labels_for(example), MODELS, checkpoints=same)["matched"]
+    swapped = {**same, "policy_v3": "f" * 64}                   # the split belongs to another file than the one that ran
+    result = ev.match_decisions([row], labels_for(example), MODELS, checkpoints=swapped)
+    assert not result["matched"] and [s["reason"] for s in result["skipped"]] == ["CHECKPOINT_MISMATCH"]
+    # a journal that mixes versions poisons the whole match, also its rows that carry the expected digest
+    other, later = make(2, 2, GOOD, state_hash="2" * 64)
+    later["models"][1]["checkpoint_sha256"] = "newer"
+    result = ev.match_decisions([row, later], labels_for(example, other), MODELS, checkpoints=same)
+    assert not result["matched"] and [s["reason"] for s in result["skipped"]] == ["CHECKPOINT_MISMATCH"] * 2
+    report = ev.evaluate([row, later], labels_for(example, other), MODELS, checkpoints=same)
+    assert report["metrics"]["all"]["decisions"] == 0
+    assert report["independence"]["checkpoint_identity_verified"] is False
+    assert report["independence"]["checkpoint_mismatch_matches"] == [MATCH[:8]]
+    assert report["independence"]["checkpoint_identity"]["retrained_v2"]["journal_sha256"] == ["newer", "retrained_v2"]
+    unchecked = ev.evaluate([row], labels_for(example), MODELS)
+    assert unchecked["independence"]["checkpoint_identity_verified"] is False and unchecked["coverage"]["matched"] == 1
+
+
+def test_decisions_without_a_shadow_row_get_a_reason_only_from_journal_events_of_that_very_decision():
+    shown, row = make(1, 2, GOOD)
+    unavailable, _ = make(2, 2, GOOD, state_hash="2" * 64)
+    discarded, _ = make(3, 2, GOOD, state_hash="3" * 64)
+    silent, _ = make(4, 2, GOOD, state_hash="4" * 64)
+    events = [{"event": "RECOMMENDATION", "match_id": MATCH, "decision_id": f"{MATCH}:1:1:{'1' * 64}"},
+              {"event": "UNAVAILABLE", "match_id": MATCH, "decision_id": f"{MATCH}:2:2:{'2' * 64}", "reason": "AMBIGUOUS_SELECTION"},
+              {"event": "UNAVAILABLE", "match_id": MATCH, "decision_id": f"{MATCH}:3:2:{'2' * 64}", "reason": "AMBIGUOUS_SELECTION"},
+              {"event": "DISCARDED", "match_id": MATCH, "decision_id": f"{MATCH}:4:3:{'3' * 64}", "reason": "DECISION_CHANGED_DURING_INFERENCE"},
+              {"event": "UNAVAILABLE", "match_id": "z" * 64, "decision_id": f"{'z' * 64}:1:4:x", "reason": "OTHER_MATCH"}]
+    result = ev.match_decisions([row], labels_for(shown, unavailable, discarded, silent), MODELS)
+    explained = ev.explain_unshadowed(result["labeled_without_shadow"], events)
+    assert explained["decisions"] == 3
+    assert explained["by_decision"] == {"DISCARDED:DECISION_CHANGED_DURING_INFERENCE": 1,
+                                        "NO_JOURNAL_EVENT_FOR_DECISION": 1, "UNAVAILABLE:AMBIGUOUS_SELECTION": 1}
+    assert explained["journal_events_behind_these_decisions"]["UNAVAILABLE:AMBIGUOUS_SELECTION"] == 2     # 2 events, 1 decision
+    assert ev.explain_unshadowed(result["labeled_without_shadow"], None)["status"] == "EVENTS_NOT_PROVIDED"
