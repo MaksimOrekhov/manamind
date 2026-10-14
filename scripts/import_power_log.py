@@ -30,6 +30,7 @@ from hslog.packets import Block
 
 from manamind.cards.catalog import CardCatalog
 from manamind.integrations.powerlog.exporter import CompatibleEntityTreeExporter
+from manamind.integrations.powerlog.tolerant_parse import read_lines
 from manamind.integrations.powerlog import visible_state as _visible
 from manamind.training.synthetic import LabeledState
 
@@ -63,7 +64,7 @@ def import_power_log(
     output_path = Path(output_path)
     parser = LogParser()
     with log_path.open("r", encoding="utf-8", errors="replace") as file:
-        parser.read(file)
+        read_lines(parser, file)
 
     if len(parser.games) != 1:
         raise ValueError("expected a log containing exactly one match")

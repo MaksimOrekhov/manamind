@@ -18,12 +18,13 @@ from contextlib import contextmanager
 
 from hearthstone.enums import BlockType, GameTag
 from hslog import LogParser
-from hslog.exceptions import ExporterError, MissingPlayerData, NoSuchEnum
+from hslog.exceptions import ExporterError, MissingPlayerData
 from hslog.export import EntityTreeExporter
 from hslog.packets import Block, Options, SubSpell
 
 from manamind.integrations.powerlog.exporter import CompatibleEntityTreeExporter
 from manamind.integrations.powerlog.observed_facts import ObservationHistory
+from manamind.integrations.powerlog.tolerant_parse import UnknownTags, read_line
 
 from .trust import Reason
 
@@ -108,7 +109,11 @@ class GameReducer:
         self.parser = LogParser()
         self.exporter: PacketExporter | None = None
         self._cursor = 0
-        self.skipped_unknown_tags = 0
+        self.unknown_tags = UnknownTags()
+
+    @property
+    def skipped_unknown_tags(self) -> int:
+        return self.unknown_tags.skipped_tag_lines
 
     @property
     def tree(self):
@@ -118,14 +123,9 @@ class GameReducer:
     def read_line(self, line: str) -> None:
         with quiet_parser():
             try:
-                self.parser.read_line(line)
-            except NoSuchEnum as error:
-                if error.enum is GameTag:
-                    # A tag name this hearthstone package does not know cannot be one we
-                    # read; count it and keep the line out of the entity table.
-                    self.skipped_unknown_tags += 1
-                    return
-                raise ReducerError(Reason.PARSE_ERROR) from None
+                # A tag name this hearthstone package does not know cannot be one we read: its tag lines are
+                # counted and kept out of the entity table; a BLOCK_START keeps its structure (see tolerant_parse).
+                read_line(self.parser, line, self.unknown_tags)
             except Exception:
                 raise ReducerError(Reason.PARSE_ERROR) from None
 

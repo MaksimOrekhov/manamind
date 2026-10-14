@@ -17,13 +17,14 @@ from hearthstone.enums import CardType, FormatType, GameTag, GameType, PlayState
 from hslog import LogParser
 
 from manamind.integrations.powerlog.exporter import CompatibleEntityTreeExporter  # noqa: F401
+from manamind.integrations.powerlog.tolerant_parse import read_lines
 
 
 def audit_log(path: Path) -> dict[str, Any]:
     """Read a local log and return a privacy-safe eligibility summary."""
     parser = LogParser()
     with path.open("r", encoding="utf-8", errors="replace") as log_file:
-        parser.read(log_file)
+        unknown_tags = read_lines(parser, log_file)
 
     if len(parser.games) != 1:
         return {
@@ -68,6 +69,7 @@ def audit_log(path: Path) -> dict[str, Any]:
         reasons.append("game result is incomplete")
 
     return {
+        **({"unknown_tags": unknown_tags.as_dict()} if unknown_tags.as_dict() else {}),
         "eligible_for_capture": not reasons,
         "game_type": _enum_name(GameType, metadata.get("GameType")),
         "format": _enum_name(FormatType, metadata.get("FormatType")),
