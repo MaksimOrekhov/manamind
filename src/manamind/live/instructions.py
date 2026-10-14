@@ -38,6 +38,7 @@ def instruction(action: dict, state: dict | None, names: CardNames, language: st
     state = state or {}
     kind = action.get("type")
     verbs = {"ATTACK": ("АТАКОВАТЬ", "ATTACK"), "PLAY_CARD": ("РАЗЫГРАТЬ", "PLAY"),
+             "PREPARE_CARD": ("ПОДГОТОВИТЬ (Prepare)", "PREPARE"),
              "HERO_POWER": ("СИЛА ГЕРОЯ", "HERO POWER"),
              "ACTIVATE_LOCATION": ("АКТИВИРОВАТЬ ЛОКАЦИЮ", "ACTIVATE LOCATION"),
              "END_TURN": ("ЗАВЕРШИТЬ ХОД", "END TURN")}
@@ -84,7 +85,7 @@ def instruction(action: dict, state: dict | None, names: CardNames, language: st
         return " · ".join(filter(None, [f"{label}: {names.get(card_id, language)}", stats, coordinate]))
 
     source_id = action.get("source_card_id") or action.get("card_id")
-    if kind == "PLAY_CARD":
+    if kind in ("PLAY_CARD", "PREPARE_CARD"):
         source = ("ИЗ РУКИ: " if ru else "FROM HAND: ") + names.get(source_id, language)
         index = action.get("hand_index")
         hand = state.get("self_hand", [])

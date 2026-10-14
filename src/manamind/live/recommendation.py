@@ -10,7 +10,7 @@ from pathlib import Path
 
 import torch
 
-from manamind.domain.policy_action import ACTION_FIELDS, ACTION_TYPES
+from manamind.domain.policy_action import ACTION_FIELDS, ACTION_TYPES, PREPARE_ACTION_TYPES
 from manamind.domain.serialization import game_state_from_dict
 from manamind.integrations.powerlog.policy_actions import ActionMappingError, map_actions
 from manamind.models.policy_inputs import encode_policy_inputs, representation_of
@@ -74,7 +74,7 @@ def _validate_snapshot(snapshot: Snapshot, session: LiveSession):
     return game, packet, state
 
 
-def _complete_menu(snapshot: Snapshot, mapped) -> None:
+def _complete_menu(snapshot: Snapshot, mapped, allowed_types=ACTION_TYPES) -> None:
     roots = snapshot.decision.get("legal")
     if not isinstance(roots, list) or not roots or not mapped.actions or len(mapped.actions) != len(mapped.keys):
         raise RecommendationUnavailable("INCOMPLETE_MENU")
@@ -90,9 +90,14 @@ def _complete_menu(snapshot: Snapshot, mapped) -> None:
     kinds = {"USE_LOCATION": "ACTIVATE_LOCATION"}
     for action, key in zip(mapped.actions, mapped.keys):
         root = by_option[key[0]]
-        if kinds.get(root.get("kind"), root.get("kind")) != action.get("type"):
+        # A Prepare card's root is an ordinary hand-card root; only the mapper tells PLAY_CARD from PREPARE_CARD.
+        if action.get("type") == "PREPARE_CARD" and root.get("kind") == "PLAY_CARD":
+            expected = "PREPARE_CARD"
+        else:
+            expected = kinds.get(root.get("kind"), root.get("kind"))
+        if expected != action.get("type"):
             raise RecommendationUnavailable("MENU_KIND_MISMATCH")
-        if (not set(action) <= ACTION_FIELDS or action["type"] not in ACTION_TYPES
+        if (not set(action) <= ACTION_FIELDS or action["type"] not in allowed_types
                 or type(action.get("play_position")) is not int):
             raise RecommendationUnavailable("UNSUPPORTED_ACTION")
         for field, value in action.items():
@@ -111,7 +116,11 @@ def _inputs(state, actions, encoder, *, representation=1) -> tuple[torch.Tensor,
 
 
 class PolicyRecommender:
-    def __init__(self, checkpoint: Path, *, expected_sha256: str | None = None) -> None:
+    def __init__(self, checkpoint: Path, *, expected_sha256: str | None = None,
+                 prepare_actions: bool = False) -> None:
+        # Experimental: score a Prepare card's second root as PREPARE_CARD. No checkpoint was trained on that action
+        # type, so this only checks that the menu is complete and encodable, not that the ranking is any good.
+        self.prepare_actions = bool(prepare_actions)
         path = Path(checkpoint)
         expected = REVIEWED_CHECKPOINT_SHA256 if expected_sha256 is None else expected_sha256
         if not isinstance(expected, str) or re.fullmatch(r"[0-9a-f]{64}", expected) is None:
@@ -138,8 +147,9 @@ class PolicyRecommender:
         try:
             self.require_catalog(session.catalog)
             game, packet, state = _validate_snapshot(snapshot, session)
-            mapped = map_actions(packet, game.reducer.game, game.self_player_id, state)
-            _complete_menu(snapshot, mapped)
+            mapped = map_actions(packet, game.reducer.game, game.self_player_id, state,
+                                 prepare_actions=self.prepare_actions)
+            _complete_menu(snapshot, mapped, PREPARE_ACTION_TYPES if self.prepare_actions else ACTION_TYPES)
             with torch.inference_mode():
                 logits = self.policy(*_inputs(state, mapped.actions, self.encoder,
                                              representation=representation_of(self.policy)))

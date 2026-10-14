@@ -13,6 +13,8 @@ from hslog.player import coerce_to_entity_id
 
 from manamind.domain.game_state import GameState
 
+PLAY_ROLE = "PLAY"
+PREPARE_ROLE = "PREPARE"
 
 
 class ActionMappingError(ValueError):
@@ -87,9 +89,83 @@ class MatchActions:
         return hits[0]
 
 
-def map_actions(packet, game, self_id: int, state: GameState) -> MatchActions:
-    """Enumerate the whole supported MAIN_ACTION menu; never prune unknown options."""
+def _tag_int(entity, tag) -> int | None:
+    value = entity.tags.get(tag)
+    return value if isinstance(value, int) and not isinstance(value, bool) else None
+
+
+def _error_name(option) -> str | None:
+    return None if option.error is None else getattr(option.error, "name", str(option.error))
+
+
+def _classify_prepare_roots(state: GameState, entity, roots) -> dict[int, str]:
+    """Role (PLAY or PREPARE) of each *legal* root of one Prepare hand card, from observable facts only.
+
+    Evidence (ranked Standard logs, 62 chosen selections; each label was checked against the following public block
+    and the ``IS_USING_PREPARE_OPTION`` tag): a Prepare card always lists exactly two roots, both ``type=POWER`` with the
+    same ``mainEntity``. Option order is not used. Nothing in the message names a root, so a role is accepted only where
+    the message itself decides it:
+
+    * neither root legal: the card contributes no action;
+    * one legal root, the other ``REQ_ENOUGH_MANA``, with ``COST > available mana >= DECK_ACTION_COST``: the
+      unaffordable root is the normal play, so the legal one is the Prepare action (42 of 42 chosen);
+    * one legal root without targets, the other ``REQ_TARGET_TO_PLAY`` (the normal play of a spell that needs a target
+      none exists for): the legal root is the Prepare action (1 of 1 chosen, 14 unchosen occurrences consistent);
+    * both legal and exactly one of them lists targets: the root that needs a target is the normal play of a targeted
+      spell and the target-free root is the Prepare action (16 of 16 chosen).
+
+    Everything else (for example both legal minion roots, which only differ by their order) is refused.
+    """
+    legal = [o for o in roots if o.error is None]
+    if not legal:
+        return {}
+    has_targets = [any(item.optype == "target" and item.error is None for item in o.options) for o in legal]
+    if any(item.optype == "subOption" for o in roots for item in o.options):
+        raise ActionMappingError("AMBIGUOUS_SELECTION")
+    if len(legal) == 1:
+        blocked = next(o for o in roots if o.error is not None)
+        reason = _error_name(blocked)
+        if reason == "REQ_TARGET_TO_PLAY" and not has_targets[0]:
+            return {legal[0].id: PREPARE_ROLE}
+        cost = _tag_int(entity, GameTag.COST)
+        deck_action_cost = _tag_int(entity, GameTag.DECK_ACTION_COST)
+        if (reason == "REQ_ENOUGH_MANA" and not has_targets[0] and None not in (cost, deck_action_cost)
+                and cost > state.self_player.available_mana >= deck_action_cost):
+            return {legal[0].id: PREPARE_ROLE}
+        raise ActionMappingError("AMBIGUOUS_SELECTION")
+    if sorted(has_targets) != [False, True]:
+        raise ActionMappingError("AMBIGUOUS_SELECTION")
+    return {o.id: PLAY_ROLE if targeted else PREPARE_ROLE for o, targeted in zip(legal, has_targets)}
+
+
+def _prepare_roles(packet, game, state: GameState) -> dict[int, str]:
+    """option id -> role for every legal root of a Prepare hand card (empty for menus without one)."""
+    by_entity: dict[int, list] = {}
+    for option in packet.options:
+        if option.entity is not None:
+            by_entity.setdefault(int(coerce_to_entity_id(option.entity)), []).append(option)
+    roles: dict[int, str] = {}
+    for handle, roots in by_entity.items():
+        try:
+            entity = game.find_entity_by_id(handle)
+        except Exception:
+            entity = None
+        if entity is None or entity.zone != Zone.HAND or not entity.tags.get(GameTag.PREPARE):
+            continue
+        if len(roots) != 2 or entity.tags.get(GameTag.TRADEABLE):
+            raise ActionMappingError("UNSUPPORTED_DECISION_KIND")
+        roles.update(_classify_prepare_roots(state, entity, roots))
+    return roles
+
+
+def map_actions(packet, game, self_id: int, state: GameState, *, prepare_actions: bool = False) -> MatchActions:
+    """Enumerate the whole supported MAIN_ACTION menu; never prune unknown options.
+
+    ``prepare_actions`` (experimental, off by default) additionally maps the second root of a Prepare card to a
+    ``PREPARE_CARD`` action. With it off, a Prepare card keeps being refused as ``AMBIGUOUS_SELECTION``.
+    """
     actions, keys, sources = [], [], set()
+    roles = _prepare_roles(packet, game, state) if prepare_actions else {}
     # Invalid PLAY variants still disambiguate alternate HAND powers (Trade/Forge).
     # Counting only legal roots would misclassify an affordable alternate power
     # when the normal play itself is unaffordable.
@@ -105,7 +181,8 @@ def map_actions(packet, game, self_id: int, state: GameState) -> MatchActions:
         if option.entity is None:
             raise ActionMappingError("UNSUPPORTED_DECISION_KIND")
         handle = int(coerce_to_entity_id(option.entity))
-        if handle in sources or all_sources[handle] != 1:
+        role = roles.get(option.id)
+        if role is None and (handle in sources or all_sources[handle] != 1):
             raise ActionMappingError("AMBIGUOUS_SELECTION")
         sources.add(handle)
         source = visible_entity(game, handle, self_id, state)
@@ -120,7 +197,7 @@ def map_actions(packet, game, self_id: int, state: GameState) -> MatchActions:
                 raise ActionMappingError("UNSUPPORTED_DECISION_KIND")
             if source["kind"] not in {"MINION", "SPELL", "WEAPON", "LOCATION", "HERO"}:
                 raise ActionMappingError("UNSUPPORTED_DECISION_KIND")
-            kind = "PLAY_CARD"
+            kind = "PREPARE_CARD" if role == PREPARE_ROLE else "PLAY_CARD"
         else:
             kind = {"HERO": "ATTACK", "MINION": "ATTACK", "HERO_POWER": "HERO_POWER",
                     "LOCATION": "ACTIVATE_LOCATION"}.get(source["kind"])
@@ -149,6 +226,8 @@ def map_actions(packet, game, self_id: int, state: GameState) -> MatchActions:
             positions = list(range(1, count + 2))
         targets = [item for item in option.options if item.optype == "target"]
         valid = [item for item in targets if item.error is None]
+        if kind == "PREPARE_CARD" and targets:
+            raise ActionMappingError("AMBIGUOUS_SELECTION")
         # A root with target records but no legal target is not an untargeted action.
         for item in valid if targets else [None]:
             target_handle = 0 if item is None else int(coerce_to_entity_id(item.entity))

@@ -56,6 +56,10 @@ available). `model_config` owns `heads`, `entity_layers`, `menu_layers`; a v2 lo
 versa; there is no migration. The Vue overlay still requires representation 2 and refuses v3 checkpoints; the
 v3 checkpoint is an experiment artifact and is not wired into LIVE. See `reports/ml_policy_v3_1/README.md`.
 
+## Experimental PREPARE_CARD action (PREPARE-ROOTS-1)
+
+`PREPARE_CARD` reuses the existing `prepare_card` action column (`POLICY_ACTION_SCHEMA_VERSION` 4, so no input width or checkpoint changes): it carries the hand card's identity and effective cost like `PLAY_CARD`, has `play_position` 0 and no target. The v2 encoder links it to the same ordered-hand token as the normal play. `ACTION_TYPES` (version 1 real menus) is unchanged; `PREPARE_ACTION_TYPES` adds the type, and a row whose menu contains it has `action_schema_version` 2. Mapping is opt-in (see `docs/REAL_MATCH_DATA.md`). **No checkpoint was trained on this column:** its input weights equal their initial values in the frozen and retrained v2 networks, so a score for a `PREPARE_CARD` is technically valid but unvalidated. Compatibility of the encoder is not evidence of recommendation quality.
+
 ## Checkpoint and experiment
 
 The strict loader dispatches by format and checks ordered global/entity/action

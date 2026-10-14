@@ -132,7 +132,7 @@ def encode_policy_v2(state, actions, encoder, device="cpu") -> tuple:
         if action["type"] != "END_TURN":
             source_id = action.get("source_card_id") or action.get("card_id")
             card_ids[i, 0] = encoder.vocabulary.card_id(source_id)
-            if action["type"] == "PLAY_CARD":
+            if action["type"] in ("PLAY_CARD", "PREPARE_CARD"):  # both name a card of the ordered SELF hand
                 position = action["hand_index"]
                 if state.self_hand[position].card_id != source_id:
                     raise ValueError("Action source differs from the current hand")

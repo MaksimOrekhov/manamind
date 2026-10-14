@@ -9,6 +9,7 @@ from hearthstone.enums import GameTag, PlayState
 from hslog.player import coerce_to_entity_id
 
 from manamind.cards.catalog import CardCatalog
+from manamind.domain.policy_action import PREPARE_ACTION_SCHEMA_VERSION
 from manamind.integrations.powerlog.lines import inspect_segment
 from manamind.live.session import LiveSession
 from manamind.live.snapshot import Snapshot
@@ -33,7 +34,8 @@ class PolicyImportError(ValueError):
 
 
 def extract_match(lines: list[str], catalog: CardCatalog,
-                  observer: Callable[[str, ObservedFacts | None], None] | None = None) -> tuple[list[dict], dict]:
+                  observer: Callable[[str, ObservedFacts | None], None] | None = None,
+                  *, prepare_actions: bool = False) -> tuple[list[dict], dict]:
     """Take complete options at their line boundary, before SendOption mutates state.
 
     ``observer(decision_id, facts)`` is called for every labeled decision with the SELF facts read in the same live
@@ -42,6 +44,10 @@ def extract_match(lines: list[str], catalog: CardCatalog,
     Offline message completeness comes from the next line, not an invented idle delay.
     The real client task-list gate must still be settled. Any intervening GameState
     message invalidates an unanswered candidate; no power-block fallback is guessed.
+
+    ``prepare_actions`` (experimental, off by default) maps Prepare cards' two roots to PLAY_CARD / PREPARE_CARD
+    (see ``policy_actions``); a decision whose menu holds PREPARE_CARD is written with action schema version 2, and its
+    label is dropped unless the following public block is the matching one (PLAY or DECK_ACTION).
     """
     info = inspect_segment(lines)
     if info.game_types != {"GT_RANKED"} or info.formats != {"FT_STANDARD"}:
@@ -86,7 +92,7 @@ def extract_match(lines: list[str], catalog: CardCatalog,
                 from manamind.domain.serialization import game_state_from_dict
                 state = game_state_from_dict(snapshot.state)
                 mapped = map_actions(packet, session.game.reducer.game,
-                                     session.game.self_player_id, state)
+                                     session.game.self_player_id, state, prepare_actions=prepare_actions)
                 candidate = (snapshot, mapped)
             except ActionMappingError as error:
                 skip(identifier, error.reason)
@@ -137,7 +143,9 @@ def extract_match(lines: list[str], catalog: CardCatalog,
                 try:
                     chosen = mapped.select(*map(int, send.groups()))
                     examples.append({
-                        "schema_version": 1, "action_schema_version": 1,
+                        "schema_version": 1,
+                        "action_schema_version": (PREPARE_ACTION_SCHEMA_VERSION if any(
+                            a["type"] == "PREPARE_CARD" for a in mapped.actions) else 1),
                         "game_id": info.start_key, "decision_id": f"{info.start_key}:{identifier}",
                         "state": snapshot.state, "legal_actions": mapped.actions,
                         "chosen_action_index": chosen, "final_result": None,
@@ -153,7 +161,7 @@ def extract_match(lines: list[str], catalog: CardCatalog,
                         selected = [o for o in packet.options if o.id == int(send.group(1))]
                         confirmation = {"id": identifier,
                                         "actor": int(coerce_to_entity_id(selected[0].entity)),
-                                        "block_type": "ATTACK" if kind == "ATTACK" else "PLAY",
+                                        "block_type": {"ATTACK": "ATTACK", "PREPARE_CARD": "DECK_ACTION"}.get(kind, "PLAY"),
                                         "confirmed": False}
                 except ActionMappingError as error:
                     skip(identifier, error.reason)

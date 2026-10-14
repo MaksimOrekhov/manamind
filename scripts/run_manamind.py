@@ -381,6 +381,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--model-shadow-v3-sha256", default=POLICY_V3_SHA256)
     parser.add_argument("--model-shadow-budget-ms", type=float, default=250.0,
                         help="Per-decision budget of the experimental models; models left over are recorded as SKIPPED")
+    parser.add_argument("--prepare-actions", action="store_true",
+                        help="EXPERIMENTAL: list a Prepare card's second root as PREPARE_CARD. No checkpoint was trained on that action, "
+                             "so its score is unvalidated; without this flag such decisions stay 'no recommendation'")
     parser.add_argument("--ui", action="store_true", help="Show the Windows always-on-top recommendation panel")
     parser.add_argument("--overlay", action="store_true", help="Show the Vue / WebView2 desktop overlay")
     return parser
@@ -398,7 +401,8 @@ def main(argv: list[str] | None = None) -> int:
     catalog = CardCatalog.from_json(args.cards)
     recommender_error = None
     try:
-        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256)
+        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256,
+                                        prepare_actions=args.prepare_actions)
         recommender.require_catalog(catalog)
     except Exception as error:
         recommender = None

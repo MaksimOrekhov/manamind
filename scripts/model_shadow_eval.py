@@ -66,14 +66,16 @@ def card_names(path: Path) -> dict[str, str]:
             for c in cards if isinstance(c, dict) and (c.get("id") or c.get("card_id"))}
 
 
-def import_matches(match_ids: set[str], raw_dir: Path, catalog: CardCatalog) -> dict[str, MatchLabels]:
+def import_matches(match_ids: set[str], raw_dir: Path, catalog: CardCatalog, *,
+                   prepare_actions: bool = False) -> dict[str, MatchLabels]:
     labels = {}
     for match in sorted(match_ids):
         path = raw_dir / f"{match[:16]}.log"
         if not path.is_file():
             continue
         try:
-            examples, summary = extract_match(path.read_text(encoding="utf-8").splitlines(), catalog)
+            examples, summary = extract_match(path.read_text(encoding="utf-8").splitlines(), catalog,
+                                              prepare_actions=prepare_actions)
             labels[match] = MatchLabels.from_import(examples, summary)
         except PolicyImportError as error:
             labels[match] = MatchLabels(import_error=error.reason)
@@ -92,6 +94,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--self-class", default="DEMONHUNTER", help="class of the category breakdown")
     parser.add_argument("--examples", type=int, default=6, help="model-disagreement examples to list")
     parser.add_argument("--out", type=Path, help="write the full report here (a NEW file)")
+    parser.add_argument("--prepare-actions", action="store_true",
+                        help="experimental: label Prepare cards' PLAY_CARD / PREPARE_CARD roots (use with run_manamind.py --prepare-actions)")
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
@@ -109,7 +113,7 @@ def main(argv: list[str] | None = None) -> int:
     catalog = CardCatalog.from_json(CARDS)
     raw_dir = args.raw_dir or args.data_root / "raw/collected"
     matches = {r["match_id"] for r in rows if r.get("event") == "MODEL_SHADOW" and "match_id" in r}
-    labels = import_matches(matches, raw_dir, catalog)
+    labels = import_matches(matches, raw_dir, catalog, prepare_actions=args.prepare_actions)
     models = [m for m in MODEL_ORDER if any(e.get("name") == m for r in rows for e in r.get("models", []))]
     games, digests = training_games(checkpoint_paths(), args.data_root / "processed_policy_v3/frozen_split.json")
     prediction_path = args.prediction_journal or live / "prediction_journal.jsonl"

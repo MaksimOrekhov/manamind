@@ -16,6 +16,7 @@ _STATUS_TEXT = {
 }
 _ACTION_TEXT = {
     "PLAY_CARD": "Разыграть карту",
+    "PREPARE_CARD": "Подготовить карту (Prepare)",
     "ATTACK": "Атаковать",
     "HERO_POWER": "Использовать силу героя",
     "ACTIVATE_LOCATION": "Активировать локацию",
@@ -106,7 +107,7 @@ def describe_action(action: dict, names: dict[str, str]) -> str:
     label = _ACTION_TEXT.get(kind, kind)
     if kind == "END_TURN":
         return label
-    if kind == "PLAY_CARD":
+    if kind in ("PLAY_CARD", "PREPARE_CARD"):
         card_id = action.get("card_id")
         card_type = action.get("card_type", "тип неизвестен")
         hand_index = action.get("hand_index")

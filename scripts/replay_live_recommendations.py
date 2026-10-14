@@ -63,7 +63,8 @@ def replay_once(directory: Path, recommender: PolicyRecommender, admitted: dict 
             if example is not None:
                 game = session.game
                 mapped = map_actions(game.reducer.last_options(), game.reducer.game, game.self_player_id,
-                                     game_state_from_dict(snapshot.state))
+                                     game_state_from_dict(snapshot.state),
+                                     prepare_actions=recommender.prepare_actions)
                 representation = representation_of(recommender.policy)
                 current_inputs = _inputs(game_state_from_dict(snapshot.state), mapped.actions, recommender.encoder,
                                          representation=representation)
@@ -105,9 +106,11 @@ def main() -> int:
                         default=ROOT / "data/processed_policy_ml1c/baseline_seed42_v1/policy.pt")
     parser.add_argument("--checkpoint-sha256", help="Explicit pinned experimental checkpoint digest; defaults to ML-1C")
     parser.add_argument("--admitted-dataset", type=Path)
+    parser.add_argument("--prepare-actions", action="store_true", help="experimental PREPARE_CARD menu (see run_manamind.py)")
     args = parser.parse_args()
     try:
-        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256)
+        recommender = PolicyRecommender(args.checkpoint, expected_sha256=args.checkpoint_sha256,
+                                        prepare_actions=args.prepare_actions)
         admitted = ({row["decision_id"]: row for row in load_examples(args.admitted_dataset)}
                     if args.admitted_dataset else None)
         summary = replay_summary(args.recordings, recommender, admitted)
