@@ -1,0 +1,95 @@
+{
+  "live_session_recorded": 59,
+  "not_trained_matches": [
+    {
+      "live_session_recorded": true,
+      "match": "1eb9927b2731",
+      "status": "EVALUATED_ONLY",
+      "usage": [
+        "model_shadow_eval_1"
+      ]
+    },
+    {
+      "live_session_recorded": true,
+      "match": "2659ea1ba399",
+      "status": "EVALUATED_ONLY",
+      "usage": [
+        "model_shadow_eval_1"
+      ]
+    },
+    {
+      "live_session_recorded": false,
+      "match": "63af11ccd07e",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "7c744bb49468",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "7f626be7b038",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "91573e311dc1",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "96de69b77db3",
+      "status": "EVALUATED_ONLY",
+      "usage": [
+        "model_shadow_eval_1"
+      ]
+    },
+    {
+      "live_session_recorded": true,
+      "match": "a23ccda75896",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "cbde28e473e7",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "d688d7969a2f",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": false,
+      "match": "d9a133e564a7",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    },
+    {
+      "live_session_recorded": true,
+      "match": "ffacc060dc36",
+      "status": "NOT_KNOWN_USED",
+      "usage": []
+    }
+  ],
+  "sources_by_kind": {
+    "checkpoint": 398,
+    "cross_validation": 1,
+    "shadow_evaluation": 1,
+    "split": 1,
+    "usage_registry": 3
+  },
+  "status_counts": {
+    "EVALUATED_ONLY": 3,
+    "NOT_KNOWN_USED": 9,
+    "TRAINED_OR_SELECTED": 80
+  }
+}

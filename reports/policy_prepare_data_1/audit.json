@@ -1,0 +1,113 @@
+{
+  "canonical_content_identity_sha256": "e616d93d0c033ed0f4b348a993149b1340f86a41978c1f46479cb9ea9e31a4ec",
+  "decisions_labeled": 3884,
+  "decisions_per_match": {
+    "max": 111,
+    "median": 37.5,
+    "min": 3
+  },
+  "decisions_skipped": 363,
+  "decisions_total": 4247,
+  "full_validation": "PASS",
+  "import_dataset_identity_sha256": "4e4733eb3578655b7c9287786faee1b722c950d5b107cfd4be782f1f9e8df1c0",
+  "matches": 92,
+  "menu": {
+    "chosen_action_types": {
+      "ACTIVATE_LOCATION": 127,
+      "ATTACK": 600,
+      "END_TURN": 850,
+      "HERO_POWER": 435,
+      "PLAY_CARD": 1823,
+      "PREPARE_CARD": 49
+    },
+    "max": 98,
+    "mean": 11.274974253347064,
+    "median": 9.0,
+    "menus_of_3_plus": 3183,
+    "min": 1,
+    "p90": 24,
+    "single_action_menus": 363
+  },
+  "outcomes_by_match": {
+    "LOSSES": 49,
+    "WINS": 43
+  },
+  "prepare": {
+    "action_schema_versions": {
+      "1": 3442,
+      "2": 442
+    },
+    "decisions_where_player_chose_prepare": 49,
+    "decisions_with_prepare_in_menu": 442,
+    "decisions_with_prepare_in_menu_player_chose_other": 393,
+    "matches_where_player_chose_prepare": 35,
+    "matches_with_prepare_in_menu": 50,
+    "menus_where_a_card_has_both_play_and_prepare": 176,
+    "menus_with_a_prepare_only_card": 266,
+    "prepare_chosen_by_card": {
+      "JAIL_321": 1,
+      "JAIL_721": 4,
+      "JAIL_912": 2,
+      "JAIL_913": 42
+    },
+    "prepare_in_menu_by_card": {
+      "JAIL_321": 1,
+      "JAIL_721": 60,
+      "JAIL_912": 4,
+      "JAIL_913": 390
+    }
+  },
+  "privacy": {
+    "keys_that_look_like_handles": 0,
+    "rows_scanned": 3884,
+    "rows_violating_visibility_boundary": 0,
+    "rows_with_battletag_like_text": 0,
+    "verdict": "PASS"
+  },
+  "raw_match_rejections": {
+    "PARSE_ERROR": 1
+  },
+  "self_class_by_match": {
+    "DEATHKNIGHT": 5,
+    "DEMONHUNTER": 19,
+    "PRIEST": 46,
+    "WARLOCK": 2,
+    "WARRIOR": 20
+  },
+  "skip_reasons": {
+    "AMBIGUOUS_SELECTION": 42,
+    "CHOICE_UNRESOLVED": 15,
+    "GAME_RESET_STALE_STATE": 3,
+    "OPTIONS_SUPERSEDED": 299,
+    "TARGET_UNRESOLVED": 3,
+    "UNSUPPORTED_DECISION_KIND": 1
+  },
+  "unknown_action_card_identity_ratio": 0.24394475744129232,
+  "unknown_card_ids": {
+    "by_family_occurrences": {
+      "hero_or_hero_power": 20412,
+      "other": 3272,
+      "token_or_generated": 15817
+    },
+    "distinct": 244,
+    "most_common": {
+      "CAP_107t": 1911,
+      "DINO_COIN2": 987,
+      "EDR_449p": 4859,
+      "HERO_01dbp": 842,
+      "HERO_09aa": 3805,
+      "HERO_09dbp": 1983,
+      "HERO_10bc": 604,
+      "HERO_10bchp": 614,
+      "JAIL_941t": 609,
+      "JAIL_EVENT_101hp": 802,
+      "JAIL_EVENT_COIN": 912,
+      "TIME_890t": 1541,
+      "TIME_890t2": 2490,
+      "TLC_817t3": 1325,
+      "TLC_817t5": 861
+    },
+    "occurrences": 39501
+  },
+  "unknown_public_card_identity_ratio_state_and_actions": 0.26585677749360614
+}

@@ -1,0 +1,275 @@
+{
+  "baseline_dataset_identity_sha256": "40a28e3d33cca66ef070b85ef60b3532fe3153de1a9cb7cc17dd9b4779a95732",
+  "canonical_content_identity_sha256": "e616d93d0c033ed0f4b348a993149b1340f86a41978c1f46479cb9ea9e31a4ec",
+  "catalog_file_sha256": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+  "dataset_identity_sha256": "4e4733eb3578655b7c9287786faee1b722c950d5b107cfd4be782f1f9e8df1c0",
+  "determinism": {
+    "identical_content_identity": true,
+    "runs": 2,
+    "verified": true
+  },
+  "git_source_sha": "b5d3216289d26f1624643c24990c8236cec17f87",
+  "importer_source_fingerprint_sha256": "0e47c694df8b20f12c687d82539e4e1f1f4ba705413422ea39499d1d7495792a",
+  "input_corpus_fingerprint": "ccd56d9dc28cc828f4be9a7ce43188e4a83603bae2773abb00609a5796998fc8",
+  "isolation": {
+    "protected_tree_digest_after": "9e67af35774ba1a3641934ecf263a7835393a82d14e67d8f657b914e41d3ee1c",
+    "protected_tree_digest_before": "9e67af35774ba1a3641934ecf263a7835393a82d14e67d8f657b914e41d3ee1c",
+    "unchanged": true
+  },
+  "quality": {
+    "admitted_decision_skip_reasons": {
+      "AMBIGUOUS_SELECTION": 42,
+      "CHOICE_UNRESOLVED": 15,
+      "GAME_RESET_STALE_STATE": 3,
+      "OPTIONS_SUPERSEDED": 299,
+      "TARGET_UNRESOLVED": 3,
+      "UNSUPPORTED_DECISION_KIND": 1
+    },
+    "admitted_decisions_skipped": 363,
+    "chosen_action_types": {
+      "ACTIVATE_LOCATION": 127,
+      "ATTACK": 600,
+      "END_TURN": 850,
+      "HERO_POWER": 435,
+      "PLAY_CARD": 1823,
+      "PREPARE_CARD": 49
+    },
+    "decisions": 3884,
+    "decisions_per_match": {
+      "max": 111,
+      "median": 37.5,
+      "min": 3
+    },
+    "deck_diversity": "not reliably inferable from visible hand snapshots; no deck identity reconstructed",
+    "healing_bonus_values": {
+      "known_nonzero": 0,
+      "known_zero": 0,
+      "unknown": 7768
+    },
+    "hero_state_fields": {
+      "hero_frozen": {
+        "opponent": {
+          "known": 0,
+          "unknown": 3884,
+          "values": {
+            "unknown": 3884
+          }
+        },
+        "self_player": {
+          "known": 99,
+          "unknown": 3785,
+          "values": {
+            "false": 75,
+            "true": 24,
+            "unknown": 3785
+          }
+        }
+      },
+      "hero_max_health": {
+        "opponent": {
+          "known": 3884,
+          "unknown": 0,
+          "values": {
+            "12": 4,
+            "30": 2816,
+            "31": 9,
+            "32": 6,
+            "33": 34,
+            "34": 30,
+            "39": 14,
+            "40": 971
+          }
+        },
+        "self_player": {
+          "known": 3884,
+          "unknown": 0,
+          "values": {
+            "29": 63,
+            "30": 3810,
+            "40": 11
+          }
+        }
+      },
+      "hero_power_ready": {
+        "opponent": {
+          "known": 2585,
+          "unknown": 1299,
+          "values": {
+            "false": 1470,
+            "true": 1115,
+            "unknown": 1299
+          }
+        },
+        "self_player": {
+          "known": 3348,
+          "unknown": 536,
+          "values": {
+            "false": 1092,
+            "true": 2256,
+            "unknown": 536
+          }
+        }
+      }
+    },
+    "legal_menu_sizes": {
+      "1": 363,
+      "10": 140,
+      "11": 164,
+      "12": 157,
+      "13": 143,
+      "14": 118,
+      "15": 110,
+      "16": 97,
+      "17": 115,
+      "18": 74,
+      "19": 70,
+      "2": 338,
+      "20": 77,
+      "21": 71,
+      "22": 42,
+      "23": 48,
+      "24": 40,
+      "25": 41,
+      "26": 33,
+      "27": 39,
+      "28": 25,
+      "29": 27,
+      "3": 294,
+      "30": 28,
+      "31": 19,
+      "32": 13,
+      "33": 15,
+      "34": 18,
+      "35": 20,
+      "36": 15,
+      "37": 14,
+      "38": 7,
+      "39": 10,
+      "4": 192,
+      "40": 4,
+      "41": 3,
+      "42": 1,
+      "43": 2,
+      "44": 7,
+      "45": 5,
+      "46": 3,
+      "47": 2,
+      "48": 2,
+      "49": 3,
+      "5": 174,
+      "50": 4,
+      "51": 2,
+      "52": 2,
+      "53": 1,
+      "54": 2,
+      "56": 1,
+      "57": 1,
+      "6": 157,
+      "61": 2,
+      "62": 2,
+      "63": 1,
+      "64": 1,
+      "68": 1,
+      "69": 1,
+      "7": 183,
+      "73": 1,
+      "79": 1,
+      "8": 177,
+      "82": 1,
+      "9": 159,
+      "98": 1
+    },
+    "matches": 92,
+    "missing_player_visible_fields": {
+      "healing_bonus": 7768
+    },
+    "outcomes_by_match": {
+      "LOSSES": 49,
+      "WINS": 43
+    },
+    "raw_match_rejections": {},
+    "selected_targeted_decisions": 1024,
+    "selected_targeted_rate": 0.26364572605561276,
+    "self_class_by_match": {
+      "DEATHKNIGHT": 5,
+      "DEMONHUNTER": 19,
+      "PRIEST": 46,
+      "WARLOCK": 2,
+      "WARRIOR": 20
+    },
+    "turn_decisions": {
+      "1": 68,
+      "10": 167,
+      "11": 179,
+      "12": 187,
+      "13": 189,
+      "14": 155,
+      "15": 164,
+      "16": 173,
+      "17": 180,
+      "18": 145,
+      "19": 147,
+      "2": 75,
+      "20": 130,
+      "21": 133,
+      "22": 83,
+      "23": 73,
+      "24": 77,
+      "25": 61,
+      "26": 69,
+      "27": 50,
+      "28": 54,
+      "29": 40,
+      "3": 100,
+      "30": 35,
+      "31": 32,
+      "32": 25,
+      "33": 39,
+      "34": 25,
+      "35": 30,
+      "36": 19,
+      "37": 28,
+      "38": 7,
+      "39": 19,
+      "4": 92,
+      "40": 9,
+      "41": 23,
+      "42": 10,
+      "43": 14,
+      "44": 13,
+      "45": 12,
+      "46": 7,
+      "47": 3,
+      "48": 2,
+      "5": 126,
+      "50": 5,
+      "52": 5,
+      "54": 4,
+      "6": 111,
+      "7": 151,
+      "8": 143,
+      "9": 196
+    },
+    "unknown_public_card_identity_ratio": 0.26585677749360614
+  },
+  "result_hashes": {
+    "audit": "aff52b3da78c162c2ab0cf4d2edf8c15487a241bac964e9013d8709236eda423",
+    "comparison": "428d2e9931d2805fe3ea9e1c607b56fe97c6cf668c390691a0ff86a5aaa80d42",
+    "encoder_check": "e4c2af3fd49307f414d5b5a9c46a64d03c48d629d1ef0b5e0c7cea1aa7a0e6ba",
+    "split_plan": "408cb21b8e29cd1caa9dfd585c0b6d2dc7917c6a8021aa49910a4ddd5cf0218a",
+    "usage_registry": "d6c6529afa1129e93cd2d15e6ed5af4dc782663c13b9be23874b933997fa2cd9"
+  },
+  "schema": "manamind.policy_prepare_corpus/1",
+  "seed": 20261015,
+  "selected_raw_logs": 93,
+  "split_sha256": "3cec94963224a7d9e997e208d267ea913d852d176aa5144f30cebcedcc391e2d",
+  "verdict_inputs": {
+    "audit_privacy": "PASS",
+    "baseline_byte_identical": true,
+    "encoder": "PASS",
+    "independence": [
+      "INSUFFICIENT_FRESH_MATCHES: 9 < 10",
+      "INSUFFICIENT_FRESH_PREPARE_CHOICES: 2 < 20"
+    ]
+  }
+}

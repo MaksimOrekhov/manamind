@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "action_card_ids_mapped_to_unknown": {
+        "total": 100285,
+        "unknown": 24464
+      },
+      "action_features": 93,
+      "entity_features": 163,
+      "failures": {},
+      "label": "fresh StateEncoder(current pinned catalog)",
+      "prepare_actions_encoded_correctly": 455,
+      "rows_checked": 3884,
+      "state_features": 158,
+      "v3_inputs_identical_to_v2": "3884/3884"
+    },
+    {
+      "action_card_ids_mapped_to_unknown": {
+        "total": 100285,
+        "unknown": 24464
+      },
+      "action_features": 93,
+      "checkpoint_sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
+      "entity_features": 163,
+      "failures": {},
+      "forward_rows": 3884,
+      "forward_rows_with_bad_logits": 0,
+      "label": "retrained_v2",
+      "prepare_actions_encoded_correctly": 455,
+      "rows_checked": 3884,
+      "state_features": 158,
+      "v3_inputs_identical_to_v2": "3884/3884",
+      "weights_unchanged": true
+    },
+    {
+      "action_card_ids_mapped_to_unknown": {
+        "total": 100285,
+        "unknown": 24464
+      },
+      "action_features": 93,
+      "checkpoint_sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "entity_features": 163,
+      "failures": {},
+      "forward_rows": 3884,
+      "forward_rows_with_bad_logits": 0,
+      "label": "policy_v3",
+      "prepare_actions_encoded_correctly": 455,
+      "rows_checked": 3884,
+      "state_features": 158,
+      "v3_inputs_identical_to_v2": "3884/3884",
+      "weights_unchanged": true
+    }
+  ],
+  "verdict": "PASS"
+}

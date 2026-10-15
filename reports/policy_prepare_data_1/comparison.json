@@ -1,0 +1,156 @@
+{
+  "added_chosen_types": {
+    "ACTIVATE_LOCATION": 12,
+    "ATTACK": 30,
+    "END_TURN": 14,
+    "HERO_POWER": 80,
+    "PLAY_CARD": 257,
+    "PREPARE_CARD": 49
+  },
+  "added_decisions": 442,
+  "added_prepare_chosen": 49,
+  "added_schema_versions": {
+    "2": 442
+  },
+  "added_with_prepare_in_menu": 442,
+  "added_without_prepare_in_menu": 0,
+  "baseline_decisions": 3442,
+  "baseline_decisions_missing_from_new": 0,
+  "baseline_matches": 92,
+  "common_byte_identical": 3442,
+  "common_decisions": 3442,
+  "common_not_identical": 0,
+  "matches_only_in_baseline": 0,
+  "matches_only_in_new": 0,
+  "new_decisions": 3884,
+  "new_matches": 92,
+  "not_identical_by_field": {},
+  "not_identical_examples": [],
+  "skip_status_transitions": {
+    "AMBIGUOUS_SELECTION -> CHOICE_UNRESOLVED": 8,
+    "AMBIGUOUS_SELECTION -> LABELED": 442,
+    "AMBIGUOUS_SELECTION -> OPTIONS_SUPERSEDED": 2
+  },
+  "stored_datasets": {
+    "data/processed_policy_real/refresh_obs1_final": {
+      "identity_sha256": "f89984cac9278dca68e02f519098467d2821a0b7d5323331f275b7ce6dfe7e37",
+      "refresh_style": {
+        "chosen_action_semantics_changed": 0,
+        "chosen_index_changed": 0,
+        "common_decisions": 1227,
+        "common_decisions_added": 2657,
+        "common_decisions_missing": 0,
+        "legal_menu_changed": 0,
+        "matches_recovered": 32,
+        "non_schema_state_changed": 0,
+        "outcome_changed": 0,
+        "previous_decisions": 1227,
+        "previous_matches": 32,
+        "previous_matches_missing": 0,
+        "rebuilt_decisions": 3884,
+        "rebuilt_matches": 92,
+        "rebuilt_matches_not_in_previous": 60,
+        "state_field_comparison": {
+          "common_decisions": 1227,
+          "decisions_with_expected_hero_field_changes": 0,
+          "decisions_with_unexpected_state_changes": 0,
+          "expected_changes_by_path": {},
+          "previous_only_decisions": 0,
+          "rebuilt_only_decisions": 2657,
+          "unexpected_changes_by_path": {}
+        },
+        "state_only_healing_bonus_schema_changes": 0
+      },
+      "strict": {
+        "added_chosen_types": {
+          "ACTIVATE_LOCATION": 75,
+          "ATTACK": 463,
+          "END_TURN": 535,
+          "HERO_POWER": 311,
+          "PLAY_CARD": 1224,
+          "PREPARE_CARD": 49
+        },
+        "added_decisions": 2657,
+        "added_prepare_chosen": 49,
+        "added_schema_versions": {
+          "1": 2215,
+          "2": 442
+        },
+        "added_with_prepare_in_menu": 442,
+        "added_without_prepare_in_menu": 2215,
+        "baseline_decisions": 1227,
+        "baseline_decisions_missing_from_new": 0,
+        "baseline_matches": 32,
+        "common_byte_identical": 1227,
+        "common_decisions": 1227,
+        "common_not_identical": 0,
+        "matches_only_in_baseline": 0,
+        "matches_only_in_new": 60,
+        "new_decisions": 3884,
+        "new_matches": 92,
+        "not_identical_by_field": {},
+        "not_identical_examples": []
+      }
+    },
+    "data/processed_policy_v3/dataset": {
+      "identity_sha256": "61f49aa5ac4bd5c9bcf1e9e469a8d48ee8524b375fb10ac48178f7f82ce185f6",
+      "refresh_style": {
+        "chosen_action_semantics_changed": 0,
+        "chosen_index_changed": 0,
+        "common_decisions": 3010,
+        "common_decisions_added": 874,
+        "common_decisions_missing": 0,
+        "legal_menu_changed": 0,
+        "matches_recovered": 79,
+        "non_schema_state_changed": 0,
+        "outcome_changed": 0,
+        "previous_decisions": 3010,
+        "previous_matches": 79,
+        "previous_matches_missing": 0,
+        "rebuilt_decisions": 3884,
+        "rebuilt_matches": 92,
+        "rebuilt_matches_not_in_previous": 13,
+        "state_field_comparison": {
+          "common_decisions": 3010,
+          "decisions_with_expected_hero_field_changes": 0,
+          "decisions_with_unexpected_state_changes": 0,
+          "expected_changes_by_path": {},
+          "previous_only_decisions": 0,
+          "rebuilt_only_decisions": 874,
+          "unexpected_changes_by_path": {}
+        },
+        "state_only_healing_bonus_schema_changes": 0
+      },
+      "strict": {
+        "added_chosen_types": {
+          "ACTIVATE_LOCATION": 15,
+          "ATTACK": 148,
+          "END_TURN": 113,
+          "HERO_POWER": 126,
+          "PLAY_CARD": 423,
+          "PREPARE_CARD": 49
+        },
+        "added_decisions": 874,
+        "added_prepare_chosen": 49,
+        "added_schema_versions": {
+          "1": 432,
+          "2": 442
+        },
+        "added_with_prepare_in_menu": 442,
+        "added_without_prepare_in_menu": 432,
+        "baseline_decisions": 3010,
+        "baseline_decisions_missing_from_new": 0,
+        "baseline_matches": 79,
+        "common_byte_identical": 3010,
+        "common_decisions": 3010,
+        "common_not_identical": 0,
+        "matches_only_in_baseline": 0,
+        "matches_only_in_new": 13,
+        "new_decisions": 3884,
+        "new_matches": 92,
+        "not_identical_by_field": {},
+        "not_identical_examples": []
+      }
+    }
+  }
+}

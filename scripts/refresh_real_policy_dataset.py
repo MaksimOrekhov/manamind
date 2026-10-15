@@ -90,8 +90,8 @@ def read_dataset_unchecked(directory: Path) -> list[dict]:
     return rows
 
 
-def canonical_content_identity(directory: Path) -> str:
-    rows = load_examples(directory)
+def canonical_content_identity(directory: Path, *, allow_prepare: bool = False) -> str:
+    rows = load_examples(directory, allow_prepare=allow_prepare)
     manifests = [json.loads(p.read_text(encoding="utf-8")) for p in Path(directory).glob("*.audit.json")]
     return identity({
         "rows": sorted(rows, key=lambda row: row["decision_id"]),
@@ -295,11 +295,17 @@ def rebuild_once(
     *,
     repo_root: Path = ROOT,
     source_sha: str | None = None,
+    prepare_actions: bool = False,
+    log_paths: list[Path] | None = None,
 ) -> dict:
+    """``prepare_actions`` imports with PREPARE_CARD roots (action schema 2 rows) and validates with that schema only.
+
+    ``log_paths`` replaces the ``raw_dir`` scan with an explicit list of raw logs (the caller owns the selection).
+    """
     raw_dir, output_dir, cards_path = Path(raw_dir), Path(output_dir), Path(cards_path)
     if output_dir.exists():
         raise FileExistsError(f"Refusing to overwrite existing output: {output_dir}")
-    paths = raw_logs(raw_dir)
+    paths = [Path(p) for p in log_paths] if log_paths is not None else raw_logs(raw_dir)
     if not paths:
         raise ValueError("No raw Power.log files found")
     catalog = CardCatalog.from_json(cards_path)
@@ -310,7 +316,7 @@ def rebuild_once(
         segment_ids = _segment_ids(path)
         before = _manifest_ids(output_dir)
         try:
-            result = import_log(path, output_dir, catalog, segmented=True)
+            result = import_log(path, output_dir, catalog, segmented=True, prepare_actions=prepare_actions)
         except Exception as error:
             # Do not expose parser messages, which may contain private log text.
             result = {"games_inspected": len(segment_ids), "games_imported": 0,
@@ -340,15 +346,15 @@ def rebuild_once(
             "decision_skip_reasons": result.get("decision_skip_reasons", {}),
             "game_skip_reasons": result.get("game_skip_reasons", {}),
         })
-    rows = load_examples(output_dir)
+    rows = load_examples(output_dir, allow_prepare=prepare_actions)
     for row in rows:
-        validate_example(row)
-    audit = audit_dataset(output_dir, catalog) if rows else {}
+        validate_example(row, allow_prepare=prepare_actions)
+    audit = audit_dataset(output_dir, catalog, allow_prepare=prepare_actions) if rows else {}
     raw_rejections = {reason: count for reason, count in rejected.items()}
     per_match_rows = {game: sum(row["game_id"] == game for row in rows)
                       for game in sorted({row["game_id"] for row in rows})}
     dataset_sha = dataset_identity(rows)
-    content_sha = canonical_content_identity(output_dir) if rows else identity([])
+    content_sha = canonical_content_identity(output_dir, allow_prepare=prepare_actions) if rows else identity([])
     metadata = {
         "git_source_sha": source_sha or _git_sha(repo_root),
         "input_corpus_fingerprint": input_fingerprint(paths),
@@ -362,6 +368,8 @@ def rebuild_once(
             "real_policy_dataset": 1,
             "semantic_action": 1,
         },
+        "prepare_actions": prepare_actions,
+        "row_action_schema_versions": [1, 2] if prepare_actions else [1],
         "importer_source_hashes": _source_hashes(repo_root),
         "importer_source_fingerprint_sha256": importer_source_fingerprint(repo_root),
         "dataset_identity_sha256": dataset_sha,

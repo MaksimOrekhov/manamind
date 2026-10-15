@@ -14,7 +14,7 @@ from manamind.live.snapshot import canonical_json
 from manamind.training.real_policy import validate_example
 
 
-def save_match(rows, summary, output_dir: Path) -> None:
+def save_match(rows, summary, output_dir: Path, *, allow_prepare: bool = False) -> None:
     output_dir = Path(output_dir)
     if (output_dir / "INVALIDATED.json").exists():
         raise PolicyImportError("DATASET_INVALIDATED")
@@ -37,7 +37,7 @@ def save_match(rows, summary, output_dir: Path) -> None:
     if target.exists() or manifest.exists():
         raise PolicyImportError("DUPLICATE_MATCH")
     for row in rows:
-        validate_example(row)
+        validate_example(row, allow_prepare=allow_prepare)
     with target.open("x", encoding="utf-8", newline="\n") as stream:
         for row in rows:
             stream.write(canonical_json(row) + "\n")
@@ -45,7 +45,8 @@ def save_match(rows, summary, output_dir: Path) -> None:
         stream.write(canonical_json(summary) + "\n")
 
 
-def import_log(log_path: Path, output_dir: Path, catalog: CardCatalog, *, segmented=False) -> dict:
+def import_log(log_path: Path, output_dir: Path, catalog: CardCatalog, *, segmented=False,
+               prepare_actions: bool = False) -> dict:
     lines = read_complete_lines(log_path)
     if any(marker in line for line in lines for marker in
            ("Start Spectator Game", "Begin Spectating 1st player", "Begin Spectating 2nd player")):
@@ -56,8 +57,8 @@ def import_log(log_path: Path, output_dir: Path, catalog: CardCatalog, *, segmen
     imported, labeled, total, decision_skips, game_skips = 0, 0, 0, Counter(), Counter()
     for segment in segments:
         try:
-            rows, summary = extract_match(segment, catalog)
-            save_match(rows, summary, output_dir)
+            rows, summary = extract_match(segment, catalog, prepare_actions=prepare_actions)
+            save_match(rows, summary, output_dir, allow_prepare=prepare_actions)
             imported += 1
             labeled += len(rows)
             total += summary["decisions_total"]

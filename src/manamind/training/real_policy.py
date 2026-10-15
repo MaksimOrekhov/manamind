@@ -12,7 +12,9 @@ import torch
 
 from manamind.cards.catalog import CardCatalog
 from manamind.domain.serialization import game_state_from_dict
-from manamind.domain.policy_action import ACTION_FIELDS, ACTION_TYPES
+from manamind.domain.policy_action import (
+    ACTION_FIELDS, ACTION_TYPES, PREPARE_ACTION_SCHEMA_VERSION, PREPARE_ACTION_TYPES,
+)
 from manamind.live.snapshot import canonical_json, state_to_dict
 from manamind.models.policy_inputs import encode_policy_inputs, representation_of
 
@@ -25,9 +27,33 @@ SKIP_REASONS = frozenset({"AMBIGUOUS_SELECTION", "TARGET_UNRESOLVED", "CHOICE_UN
                           "GAME_RESET_STALE_STATE"})
 
 
-def validate_example(row: dict) -> None:
-    if set(row) != ROW_FIELDS or row["schema_version"] != 1 or row["action_schema_version"] != 1:
+def _check_prepare_action(action: dict, state) -> None:
+    """A PREPARE_CARD names one ordered SELF hand card and nothing else (no target, no board slot)."""
+    hand_index = action.get("hand_index")
+    if (type(hand_index) is not int or not 0 <= hand_index < len(state.self_hand)
+            or action.get("card_id") is None or state.self_hand[hand_index].card_id != action["card_id"]
+            or action.get("source_card_id") != action["card_id"] or action.get("source_kind") != action.get("card_type")
+            or action.get("card_type") not in {"MINION", "SPELL", "WEAPON", "LOCATION", "HERO"}):
+        raise ValueError("PREPARE_CARD must name a card of the ordered SELF hand")
+    if (action.get("play_position") != 0 or action.get("source_is_hero") is not (action.get("card_type") == "HERO")
+            or any(key.startswith("target_") for key in action)):
+        raise ValueError("PREPARE_CARD cannot carry a target or board position")
+
+
+def validate_example(row: dict, *, allow_prepare: bool = False) -> None:
+    """Strict policy row check. Action schema 1 is the default; schema 2 (PREPARE_CARD) only with ``allow_prepare``.
+
+    With ``allow_prepare`` a row is schema 2 exactly when its menu holds a PREPARE_CARD, so a version number that
+    disagrees with the menu is refused in both directions. Without it a schema 2 row is always refused.
+    """
+    if set(row) != ROW_FIELDS or row["schema_version"] != 1:
         raise ValueError("Invalid real policy schema")
+    legal = row["legal_actions"]
+    has_prepare = isinstance(legal, list) and any(isinstance(a, dict) and a.get("type") == "PREPARE_CARD" for a in legal)
+    expected_version = PREPARE_ACTION_SCHEMA_VERSION if allow_prepare and has_prepare else 1
+    if type(row["action_schema_version"]) is not int or row["action_schema_version"] != expected_version:
+        raise ValueError("Invalid real policy schema")
+    allowed_types = PREPARE_ACTION_TYPES if allow_prepare else ACTION_TYPES
     if (row["source"] != "power_log_ranked_standard" or type(row["final_result"]) not in (int, float)
             or row["final_result"] not in (0.0, 0.5, 1.0)):
         raise ValueError("Invalid real policy source/result")
@@ -58,7 +84,7 @@ def validate_example(row: dict) -> None:
         raise ValueError("Chosen action must be exactly one legal action")
     for action in actions:
         if (not isinstance(action, dict) or not set(action) <= ACTION_FIELDS
-                or action.get("type") not in ACTION_TYPES):
+                or action.get("type") not in allowed_types):
             raise ValueError("Unexpected or unsupported semantic action fields")
         if action.get("target_side") not in (None, "SELF", "OPPONENT"):
             raise ValueError("Invalid target side")
@@ -75,8 +101,13 @@ def validate_example(row: dict) -> None:
                 or ("hand_index" in action and (type(action["hand_index"]) is not int
                                                or not 0 <= action["hand_index"] < len(state.self_hand)))):
             raise ValueError("Invalid action position")
+        if action["type"] == "PREPARE_CARD":
+            _check_prepare_action(action, state)
     if len({canonical_json(action) for action in actions}) != len(actions):
         raise ValueError("Ambiguous duplicate semantic actions")
+    prepared = [a["hand_index"] for a in actions if a["type"] == "PREPARE_CARD"]
+    if len(prepared) != len(set(prepared)):
+        raise ValueError("A hand card has one PREPARE_CARD action")
     if set(row["provenance"]) != {"options_line", "selection_line", "state_hash"}:
         raise ValueError("Unexpected provenance fields")
     if not 0 < row["provenance"]["options_line"] < row["provenance"]["selection_line"]:
@@ -86,7 +117,7 @@ def validate_example(row: dict) -> None:
         raise ValueError("State hash does not match provenance")
 
 
-def load_examples(directory: Path) -> list[dict]:
+def load_examples(directory: Path, *, allow_prepare: bool = False) -> list[dict]:
     if (Path(directory) / "INVALIDATED.json").exists():
         raise ValueError("Dataset explicitly invalidated; diagnostic use only")
     rows, seen, seen_matches = [], set(), set()
@@ -96,7 +127,7 @@ def load_examples(directory: Path) -> list[dict]:
             if not line.strip():
                 continue
             row = json.loads(line)
-            validate_example(row)
+            validate_example(row, allow_prepare=allow_prepare)
             if row["decision_id"] in seen:
                 raise ValueError("Duplicate decision")
             seen.add(row["decision_id"])
@@ -110,7 +141,7 @@ def load_examples(directory: Path) -> list[dict]:
     return rows
 
 
-def split_matches(rows: list[dict], seed: int = 1) -> dict[str, list[dict]]:
+def split_matches(rows: list[dict], seed: int = 1, *, allow_prepare: bool = False) -> dict[str, list[dict]]:
     """Deterministic outcome-stratified game split; never split a match's decisions.
 
     Three unique games are the minimum. Small strata start in training; whole
@@ -119,7 +150,7 @@ def split_matches(rows: list[dict], seed: int = 1) -> dict[str, list[dict]]:
     """
     groups, outcomes = defaultdict(list), defaultdict(list)
     for row in rows:
-        validate_example(row)
+        validate_example(row, allow_prepare=allow_prepare)
         groups[row["game_id"]].append(row)
     if len(groups) < 3:
         raise ValueError("At least three whole matches required for train/validation/test")
@@ -144,14 +175,14 @@ def split_matches(rows: list[dict], seed: int = 1) -> dict[str, list[dict]]:
     return partitions
 
 
-def encode_example(row, encoder, device="cpu", *, representation=1) -> tuple:
-    validate_example(row)
+def encode_example(row, encoder, device="cpu", *, representation=1, allow_prepare=False) -> tuple:
+    validate_example(row, allow_prepare=allow_prepare)
     state = game_state_from_dict(row["state"])
     actions = row["legal_actions"]
     return encode_policy_inputs(state, actions, encoder, representation=representation, device=device)
 
 
-def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str]) -> dict:
+def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str], *, allow_prepare: bool = False) -> dict:
     """Supervised metrics only on held-out whole matches, with legal-action masking."""
     if not rows or training_game_ids & {row["game_id"] for row in rows}:
         raise ValueError("Evaluation must use held-out whole matches")
@@ -160,7 +191,8 @@ def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str]) -> dic
     policy.eval()
     with torch.no_grad():
         for row in rows:
-            logits = policy(*encode_example(row, encoder, device, representation=representation_of(policy)))
+            logits = policy(*encode_example(row, encoder, device, representation=representation_of(policy),
+                                            allow_prepare=allow_prepare))
             chosen = row["chosen_action_index"]
             loss += torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen], device=device)).item()
             order = torch.argsort(logits, descending=True, stable=True).tolist()
@@ -175,8 +207,8 @@ def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str]) -> dic
             "top3_decisions": top3_count, "mean_reciprocal_rank": reciprocal / len(rows)}
 
 
-def audit_dataset(directory: Path, catalog: CardCatalog) -> dict:
-    rows = load_examples(directory)
+def audit_dataset(directory: Path, catalog: CardCatalog, *, allow_prepare: bool = False) -> dict:
+    rows = load_examples(directory, allow_prepare=allow_prepare)
     summaries = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(directory.glob("*.audit.json"))]
     for summary in summaries:
         expected = {"schema_version", "game_id", "final_result", "decisions_total", "decisions_labeled",
@@ -233,7 +265,7 @@ def audit_dataset(directory: Path, catalog: CardCatalog) -> dict:
         "unique_matches": len(by_game), "labeled_matches": len(grouped),
         "decisions_total": sum(s["decisions_total"] for s in summaries),
         "decisions_labeled": len(rows), "decisions_skipped": sum(skips.values()),
-        "chosen_action_distribution": {k: sum(a["type"] == k for a in chosen) for k in sorted(ACTION_TYPES)},
+        "chosen_action_distribution": {k: sum(a["type"] == k for a in chosen) for k in sorted(PREPARE_ACTION_TYPES if allow_prepare else ACTION_TYPES)},
         "legal_action_count": {"min": min(counts, default=0), "max": max(counts, default=0),
                                "mean": sum(counts) / len(counts) if counts else 0},
         "targeted_action_count": sum("target_kind" in a for a in chosen),
