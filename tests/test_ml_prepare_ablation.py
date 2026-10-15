@@ -20,6 +20,7 @@ from test_policy_prepare_data import PLAY_AND_PREPARE, prepare_rows, v1_row  # n
 from test_real_policy_dataset import CATALOG  # noqa: E402
 
 from manamind.encoding.state_encoder import StateEncoder  # noqa: E402
+from manamind.live.snapshot import state_hash  # noqa: E402
 from manamind.models.policy_v2 import ACTION_V2_FEATURE_NAMES  # noqa: E402
 from manamind.training.policy_checkpoint import load_policy_checkpoint  # noqa: E402
 from manamind.training.real_policy import encode_example  # noqa: E402
@@ -100,3 +101,73 @@ def test_ablated_run_records_the_flag_keeps_data_identity_and_stays_semantic_2(t
     assert provenance["ablate_prepare_feature"] is True and provenance["fresh_holdout_opened"] is False
     with pytest.raises(FileExistsError):
         experiment.train("ablated_v2", 42, out, root, spec_path)
+
+
+# -- analysis helpers ---------------------------------------------------------------------------------------------------
+
+import ml_prepare_ablation_analyze as ablation  # noqa: E402
+
+
+def test_unknown_card_probe_changes_only_the_card_embedding_indices():
+    encoder = StateEncoder(CATALOG)
+    row, = prepare_rows(roots=PLAY_AND_PREPARE)
+    prepared = next(a["card_id"] for a in row["legal_actions"] if a["type"] == "PREPARE_CARD")
+    token = "JAIL_913"
+    assert encoder.vocabulary.card_id(token) != 1
+    row = json.loads(json.dumps(row).replace(f'"{prepared}"', f'"{token}"'))   # a real vocabulary card in hand and menu
+    row["provenance"]["state_hash"] = state_hash(row["state"])
+    plain = encode_example(row, encoder, representation=2, allow_prepare=True)
+    probed = encode_example(row, ablation.unknown_card_encoder(StateEncoder(CATALOG), token), representation=2,
+                            allow_prepare=True)
+    assert all(a.shape == b.shape for a, b in zip(plain, probed))
+    assert StateEncoder(CATALOG).vocabulary.card_id(token) != 1            # a fresh encoder is unaffected
+    changed = [i for i, (a, b) in enumerate(zip(plain, probed)) if not torch.equal(a, b)]
+    assert changed and set(changed) <= {1, 4}   # entity and action card ids only: stats, features and links identical
+    assert all(torch.equal(plain[i], probed[i]) for i in (0, 2, 3, 5))
+
+
+def report_for_verdict(difference, ci, parts=(-0.3, -0.3), other=(0.0, 0.02), seeds_neg=(3, 3)):
+    seeds = [42, 43, 44]
+    differences = {"pooled/prepare_in_menu": {"cross_entropy": {"difference": difference, "ci95": list(ci)}},
+                   "pooled/no_prepare_in_menu": {"cross_entropy": {"difference": other[0], "ci95": [-0.01, other[1]]}},
+                   "validation/prepare_in_menu": {"cross_entropy": {"difference": parts[0], "ci95": list(ci)}},
+                   "test/prepare_in_menu": {"cross_entropy": {"difference": parts[1], "ci95": list(ci)}}}
+    per_seed = {f"{p}/prepare_in_menu/seed{s}": {"cross_entropy": -0.1 if i < seeds_neg[0] else 0.1}
+                for p in ("validation", "test") for i, s in enumerate(seeds)}
+    return {"seeds": seeds, "paired": {"prepare_v2_minus_ablated_v2": {"differences": differences, "per_seed": per_seed}}}
+
+
+def test_verdict_rules_and_the_documented_tie_break():
+    useful = ablation.verdict(report_for_verdict(-0.30, (-0.45, -0.15)))
+    assert useful["verdict"] == "FEATURE_USEFUL"
+    tie = ablation.verdict(report_for_verdict(-0.01, (-0.02, -0.002), parts=(-0.006, -0.013)))
+    assert tie["registered_conditions_met"] == {"FEATURE_USEFUL": True, "FEATURE_WEAK_OR_REDUNDANT": True}
+    assert tie["verdict"] == "FEATURE_WEAK_OR_REDUNDANT" and tie["rule_overlap_resolved_in_favour_of"]
+    assert tie["verdict_if_first_matching_rule_in_registration_order_were_used"] == "FEATURE_USEFUL"
+    wide = ablation.verdict(report_for_verdict(-0.20, (-0.50, 0.10)))
+    assert wide["verdict"] == "INCONCLUSIVE"
+    assert ablation.verdict(report_for_verdict(0.05, (0.01, 0.09)))["verdict"] == "FEATURE_WEAK_OR_REDUNDANT"
+    assert useful["strength_claim"] is False
+
+
+def test_scoring_checks_the_digest_and_applies_the_training_mask_by_default(tmp_path):
+    from test_ml_prepare_train import metadata, v2_policy
+    from manamind.training.policy_checkpoint import save_policy_checkpoint
+    encoder = StateEncoder(CATALOG)
+    policy = v2_policy(encoder)
+    meta = metadata()
+    meta["ablate_prepare_feature"] = True
+    path = tmp_path / "policy.pt"
+    save_policy_checkpoint(path, policy, encoder, meta, allow_prepare=True)
+    row, = prepare_rows(roots=PLAY_AND_PREPARE)
+    sha = ablation.base.sha256_file(path)
+    as_trained, _ = ablation.score(path, [row], sha)
+    forced_off, _ = ablation.score(path, [row], sha, mask=False)
+    forced_on, _ = ablation.score(path, [row], sha, mask=True)
+    assert as_trained == forced_on and as_trained != forced_off   # the flag in the checkpoint decides the mask
+    with torch.no_grad():
+        expected = policy.eval()(*encode_example(row, encoder, representation=2, allow_prepare=True,
+                                                 mask_prepare_feature=True)).tolist()
+    assert as_trained[row["decision_id"]] == pytest.approx(expected)
+    with pytest.raises(ValueError, match="SHA-256"):
+        ablation.score(path, [row], "0" * 64)
