@@ -17,6 +17,7 @@ from manamind.domain.policy_action import (
 )
 from manamind.live.snapshot import canonical_json, state_to_dict
 from manamind.models.policy_inputs import encode_policy_inputs, representation_of
+from manamind.models.policy_v2 import ACTION_V2_FEATURE_NAMES
 
 ROW_FIELDS = {"schema_version", "action_schema_version", "game_id", "decision_id", "state",
               "legal_actions", "chosen_action_index", "final_result", "source", "provenance"}
@@ -175,14 +176,24 @@ def split_matches(rows: list[dict], seed: int = 1, *, allow_prepare: bool = Fals
     return partitions
 
 
-def encode_example(row, encoder, device="cpu", *, representation=1, allow_prepare=False) -> tuple:
+def encode_example(row, encoder, device="cpu", *, representation=1, allow_prepare=False,
+                   mask_prepare_feature=False) -> tuple:
+    """``mask_prepare_feature`` (ablation only) forces the action column ``prepare_card`` to 0 and nothing else."""
     validate_example(row, allow_prepare=allow_prepare)
     state = game_state_from_dict(row["state"])
     actions = row["legal_actions"]
-    return encode_policy_inputs(state, actions, encoder, representation=representation, device=device)
+    inputs = encode_policy_inputs(state, actions, encoder, representation=representation, device=device)
+    if mask_prepare_feature:
+        if representation not in (2, 3):
+            raise ValueError("The prepare_card ablation needs the v2/v3 representation")
+        features = inputs[3].clone()
+        features[:, ACTION_V2_FEATURE_NAMES.index("prepare_card")] = 0.0
+        inputs = (*inputs[:3], features, *inputs[4:])
+    return inputs
 
 
-def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str], *, allow_prepare: bool = False) -> dict:
+def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str], *, allow_prepare: bool = False,
+                      mask_prepare_feature: bool = False) -> dict:
     """Supervised metrics only on held-out whole matches, with legal-action masking."""
     if not rows or training_game_ids & {row["game_id"] for row in rows}:
         raise ValueError("Evaluation must use held-out whole matches")
@@ -192,7 +203,7 @@ def evaluate_held_out(policy, rows, encoder, training_game_ids: set[str], *, all
     with torch.no_grad():
         for row in rows:
             logits = policy(*encode_example(row, encoder, device, representation=representation_of(policy),
-                                            allow_prepare=allow_prepare))
+                                            allow_prepare=allow_prepare, mask_prepare_feature=mask_prepare_feature))
             chosen = row["chosen_action_index"]
             loss += torch.nn.functional.cross_entropy(logits[None], torch.tensor([chosen], device=device)).item()
             order = torch.argsort(logits, descending=True, stable=True).tolist()

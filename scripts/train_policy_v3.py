@@ -93,14 +93,19 @@ def load_split(dataset: Path, split_path: Path):
 
 def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict, *, evaluate_test=False,
         train_games: list[str] | None = None, validation_games: list[str] | None = None,
-        test_games: list[str] | None = None, label=None, allow_prepare=False, prepared=None) -> dict:
+        test_games: list[str] | None = None, label=None, allow_prepare=False, prepared=None, ablate_prepare_feature=False) -> dict:
     """``train_games``/``validation_games``/``test_games`` override the frozen split (cross-validation folds only).
 
     ``allow_prepare`` accepts action schema 2 rows (PREPARE_CARD) and writes a semantic-schema-2 checkpoint; it is off by
     default, so every existing command behaves exactly as before. ``prepared=(parts, split)`` supplies already
     validated partitions (the Prepare experiment's own split plan) instead of reading ``dataset``/``split_path``;
     ``split`` then needs ``dataset_sha256`` and ``game_ids`` with train/validation/test.
+    ``ablate_prepare_feature`` (needs ``allow_prepare``) zeroes the ``prepare_card`` input column everywhere: training,
+    epoch selection, evaluation and the checkpoint round-trip; menus, labels and every other input stay unchanged.
     """
+    if ablate_prepare_feature and not allow_prepare:
+        raise ValueError("The prepare_card ablation belongs to the Prepare-aware path")
+    mask = {"mask_prepare_feature": True} if ablate_prepare_feature else {}
     validate_config(config)
     rows, parts, split = (None, *prepared) if prepared is not None else load_split(dataset, split_path)
     if train_games is not None:
@@ -127,9 +132,9 @@ def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict
     parameters = sum(p.numel() for p in policy.parameters())
     optimizer = torch.optim.AdamW(policy.parameters(), lr=config["learning_rate"], weight_decay=config["weight_decay"])
     representation = 2 if config["architecture"] == "v2" else 3
-    train = [(encode_example(r, encoder, representation=representation, allow_prepare=allow_prepare),
+    train = [(encode_example(r, encoder, representation=representation, allow_prepare=allow_prepare, **mask),
               r["chosen_action_index"]) for r in parts["train"]]
-    valid = [(encode_example(r, encoder, representation=representation, allow_prepare=allow_prepare),
+    valid = [(encode_example(r, encoder, representation=representation, allow_prepare=allow_prepare, **mask),
               r["chosen_action_index"]) for r in parts["validation"]]
     rng = random.Random(config["seed"])
     started = time.time()
@@ -183,6 +188,8 @@ def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict
                 "frozen_split_sha256": identity(split) if train_games is None else None,
                 "initialization": "fresh_random_no_transfer"}
     if allow_prepare:  # only the experimental path hashes the runner; default runs write the same metadata as before
+        if ablate_prepare_feature:
+            metadata["ablate_prepare_feature"] = True
         metadata["source_sha256"]["scripts/ml_prepare_train.py"] = hashlib.sha256(
             (ROOT / "scripts/ml_prepare_train.py").read_bytes()).hexdigest()
     metadata["split_sha256"] = identity(metadata["split"])
@@ -192,7 +199,8 @@ def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict
         restored, saved_encoder, _ = load_policy_checkpoint(checkpoint, allow_prepare=allow_prepare)
         if not all(torch.equal(t, restored.state_dict()[k]) for k, t in policy.state_dict().items()):
             raise ValueError("Checkpoint weight round-trip mismatch")
-        probe = encode_example(parts["validation"][0], encoder, representation=representation, allow_prepare=allow_prepare)
+        probe = encode_example(parts["validation"][0], encoder, representation=representation, allow_prepare=allow_prepare,
+                               **mask)
         policy.eval()
         with torch.no_grad():
             if not torch.equal(policy(*probe), restored(*probe)):
@@ -209,14 +217,14 @@ def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict
     names = ["train", "validation"] + (["test"] if evaluate_test else [])
     details = {}
     for name in names:
-        learned, records = evaluate(restored, parts[name], saved_encoder, allow_prepare=allow_prepare)
+        learned, records = evaluate(restored, parts[name], saved_encoder, allow_prepare=allow_prepare, **mask)
         result[name] = {"learned": learned, "uniform_random_expected": uniform_metrics(parts[name])}
         details[name] = {"diagnostics": diagnostics(records), "concentration": concentration(parts[name])}
     if train_games is not None and parts["test"]:  # per-decision logits of the held-out fold for pooled comparisons
         restored.eval()
         with torch.no_grad():
             held = {r["decision_id"]: restored(*encode_example(r, saved_encoder, representation=representation,
-                                                               allow_prepare=allow_prepare)).tolist()
+                                                               allow_prepare=allow_prepare, **mask)).tolist()
                     for r in parts["test"]}
         with (output / "heldout_logits.json").open("x", encoding="utf-8", newline="\n") as stream:
             json.dump(held, stream)

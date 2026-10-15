@@ -121,7 +121,8 @@ def train(group: str, seed: int, output_root: Path, corpus: Path = CORPUS, exper
     output = Path(output_root) / f"{group}_seed{seed}"
     result = trainer.run(corpus / "dataset", corpus / "split_plan.json", ROOT / "data/cards/standard_current_enUS.json",
                          output, config, label=output.name, allow_prepare=spec["allow_prepare"],
-                         prepared=(parts, split))
+                         prepared=(parts, split),
+                         ablate_prepare_feature=spec.get("ablate_prepare_feature", False))
     provenance = {"group": group, "seed": seed, "spec": spec, "experiment_sha256": sha256_file(experiment_path),
                   "split_plan_sha256": plan["split_sha256"], "dataset_sha256": split["dataset_sha256"],
                   "decisions": {name: len(rows) for name, rows in parts.items()},
@@ -132,7 +133,7 @@ def train(group: str, seed: int, output_root: Path, corpus: Path = CORPUS, exper
                                                for r in rows) for name, rows in parts.items()},
                   "match_file_sha256": {g: sha256_file(corpus / "dataset" / f"{g}.jsonl")
                                         for ids in split["game_ids"].values() for g in ids},
-                  "fresh_holdout_opened": False, "checkpoint_sha256": result["checkpoint_sha256"]}
+                  "ablate_prepare_feature": spec.get("ablate_prepare_feature", False), "fresh_holdout_opened": False, "checkpoint_sha256": result["checkpoint_sha256"]}
     with (output / "provenance.json").open("x", encoding="utf-8", newline="\n") as stream:
         json.dump(provenance, stream, indent=2, sort_keys=True)
         stream.write("\n")
@@ -146,9 +147,10 @@ def main() -> int:
     one.add_argument("--group", required=True)
     one.add_argument("--seed", type=int, required=True)
     one.add_argument("--output", type=Path, default=OUTPUT)
+    one.add_argument("--experiment", type=Path, default=EXPERIMENT, help="registered experiment definition")
     one.add_argument("--max-epochs", type=int, default=None, help="smoke runs only")
     args = parser.parse_args()
-    result = train(args.group, args.seed, args.output, max_epochs=args.max_epochs)
+    result = train(args.group, args.seed, args.output, experiment_path=args.experiment, max_epochs=args.max_epochs)
     print(json.dumps({k: result[k] for k in ("label", "selected_epoch", "epochs_run", "parameters", "training_seconds",
                                              "best_validation_cross_entropy")}, sort_keys=True))
     return 0

@@ -1,0 +1,26 @@
+{
+  "name": "ML-PREPARE-ABLATION-1",
+  "registered_before_training": true,
+  "question": "How much of the ML-PREPARE-TRAIN-1 gain of Policy v2 comes from the prepare_card input column, as opposed to the 283 extra training decisions?",
+  "hypothesis": "With identical decisions, menus, labels, seeds, architecture and budget, forcing the prepare_card column to 0 in training, epoch selection and evaluation lowers imitation quality on Prepare-menu decisions relative to prepare_v2.",
+  "corpus": "data/processed_policy_prepare_1",
+  "split_plan": "data/processed_policy_prepare_1/split_plan.json",
+  "parts_used": {"train": "train", "validation": "validation", "test": "test_seen"},
+  "parts_never_opened": ["fresh_holdout"],
+  "base_config": "configs/policy_v3_1/final_candidates.json",
+  "reference_models": {"prepare_v2": "data/processed_policy_prepare_train_1/prepare_v2_seed{42,43,44}", "control_v2": "data/processed_policy_prepare_train_1/control_v2_seed{42,43,44}"},
+  "groups": {
+    "ablated_v2": {"architecture": "v2", "data": "all", "allow_prepare": true, "ablate_prepare_feature": true}
+  },
+  "seeds": [42, 43, 44],
+  "selection": "minimum validation cross-entropy over validation rows with the feature masked (same rule as prepare_v2)",
+  "verdict_rules": {
+    "comparison": "prepare_v2 minus ablated_v2, seed-averaged paired differences, validation + test_seen pooled (26 matches), 95% interval from 2000 match-level bootstrap draws (seed 20261015)",
+    "FEATURE_USEFUL": "cross-entropy difference on Prepare-menu decisions < 0 with 95% upper bound < 0; negative in validation and in test_seen separately and in at least 2 of 3 seeds in each; and the no-Prepare-menu difference has mean <= +0.03 and upper bound <= +0.05",
+    "FEATURE_WEAK_OR_REDUNDANT": "the whole 95% interval of the Prepare-menu cross-entropy difference lies inside [-0.10, +0.10] (the feature cannot account for more than a small part of the -0.37 gain), or its lower bound is > 0",
+    "INCONCLUSIVE": "everything else",
+    "caveat": "Zeroing one column does not remove every cue for the action type (type one-hot, hand_index, absent target and position features remain). A positive result is not evidence of playing strength."
+  },
+  "no_training_probe": "existing prepare_v2 checkpoints scored with the column zeroed at inference only; reported separately from the retraining comparison",
+  "card_identity_probe": "inference with the JAIL_913 card id mapped to the unknown-card embedding (stats, text-derived metadata unchanged), for prepare_v2 and ablated_v2"
+}
