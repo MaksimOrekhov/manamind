@@ -182,8 +182,7 @@ def run(dataset: Path, split_path: Path, cards: Path, output: Path, config: dict
                 "selection": "minimum_validation_cross_entropy_with_min_delta", "strength_claim": False,
                 "frozen_split_sha256": identity(split) if train_games is None else None,
                 "initialization": "fresh_random_no_transfer"}
-    if allow_prepare:  # recorded only for the experimental path, so default runs write the same metadata as before
-        metadata.update(allow_prepare=True, semantic_action_schema_version=2)
+    if allow_prepare:  # only the experimental path hashes the runner; default runs write the same metadata as before
         metadata["source_sha256"]["scripts/ml_prepare_train.py"] = hashlib.sha256(
             (ROOT / "scripts/ml_prepare_train.py").read_bytes()).hexdigest()
     metadata["split_sha256"] = identity(metadata["split"])

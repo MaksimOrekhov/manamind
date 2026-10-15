@@ -75,7 +75,8 @@ def save_policy_checkpoint(path: Path, policy, encoder, metadata: dict, *, allow
                "card_catalog": catalog, "card_vocabulary": vocabulary,
                "catalog_sha256": identity(catalog), "vocabulary_sha256": identity(vocabulary),
                "model_config": model_config(policy, encoder),
-               "policy_state_dict": policy.state_dict(), "experiment": metadata}
+               "policy_state_dict": policy.state_dict(),
+               "experiment": {**metadata, "allow_prepare": True} if allow_prepare else metadata}
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("xb") as stream:
@@ -130,6 +131,8 @@ def load_policy_checkpoint(path: Path, device="cpu", *, allow_prepare: bool = Fa
             or type(config.get("hidden_size")) is not int or config["hidden_size"] <= 0):
         raise ValueError("Incompatible policy model config")
     experiment = payload.get("experiment", {})
+    if bool(experiment.get("allow_prepare")) != (semantic == PREPARE_SEMANTIC_VERSION):  # no silent downgrade
+        raise ValueError("Incompatible real policy checkpoint: semantic_action_schema_version")
     split = experiment.get("split", {})
     parts = split.get("game_ids", {})
     if (set(parts) != {"train", "validation", "test"}
