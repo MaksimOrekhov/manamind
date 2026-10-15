@@ -22,6 +22,7 @@ FORMAT = "manamind.real_policy_baseline/1"
 FORMAT_V2 = "manamind.real_policy/2"
 FORMAT_V3 = "manamind.real_policy/3"  # v2 input contract, PolicyNetworkV3 network
 NORMALIZATION = "signed_log1p_clip_10000"
+PREPARE_SEMANTIC_VERSION = 2  # semantic action schema 2 = PLAY_CARD plus PREPARE_CARD roots (experimental)
 
 
 def identity(value) -> str:
@@ -29,10 +30,11 @@ def identity(value) -> str:
                                      ensure_ascii=True, allow_nan=False).encode()).hexdigest()
 
 
-def compatibility(encoder=None, representation=1) -> dict:
+def compatibility(encoder=None, representation=1, semantic_action_schema_version=1) -> dict:
     result = {"schema": FORMAT, "state_encoding_schema_version": STATE_ENCODING_SCHEMA_VERSION,
             "policy_action_schema_version": POLICY_ACTION_SCHEMA_VERSION,
-            "real_policy_dataset_schema_version": 1, "semantic_action_schema_version": 1,
+            "real_policy_dataset_schema_version": 1,
+            "semantic_action_schema_version": semantic_action_schema_version,
             "state_feature_names": list(POLICY_STATE_FEATURE_NAMES),
             "action_feature_names": list(ACTION_FEATURE_NAMES), "normalization": NORMALIZATION}
     if representation in (2, 3):
@@ -59,9 +61,18 @@ def model_config(policy, encoder) -> dict:
             "card_embedding_dim": CARD_EMBEDDING_DIM, "max_hand_size": MAX_HAND_SIZE}
 
 
-def save_policy_checkpoint(path: Path, policy, encoder, metadata: dict) -> None:
+def save_policy_checkpoint(path: Path, policy, encoder, metadata: dict, *, allow_prepare: bool = False) -> None:
+    """``allow_prepare`` marks a checkpoint trained with semantic action schema 2 (PREPARE_CARD roots).
+
+    Such a checkpoint is refused by every loader that does not pass ``allow_prepare=True``, so an experimental
+    Prepare-aware model can never reach LIVE or the shadow evaluation by accident.
+    """
+    representation = representation_of(policy)
+    if allow_prepare and representation not in (2, 3):
+        raise ValueError("Prepare-aware checkpoints need the v2/v3 representation")
     catalog, vocabulary = encoder.catalog.to_dict(), encoder.vocabulary.to_dict()
-    payload = {**compatibility(encoder, representation_of(policy)), "card_catalog": catalog, "card_vocabulary": vocabulary,
+    payload = {**compatibility(encoder, representation, PREPARE_SEMANTIC_VERSION if allow_prepare else 1),
+               "card_catalog": catalog, "card_vocabulary": vocabulary,
                "catalog_sha256": identity(catalog), "vocabulary_sha256": identity(vocabulary),
                "model_config": model_config(policy, encoder),
                "policy_state_dict": policy.state_dict(), "experiment": metadata}
@@ -71,7 +82,8 @@ def save_policy_checkpoint(path: Path, policy, encoder, metadata: dict) -> None:
         torch.save(payload, stream)
 
 
-def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
+def load_policy_checkpoint(path: Path, device="cpu", *, allow_prepare: bool = False) -> tuple:
+    """Load and strictly validate a checkpoint. A semantic action schema 2 (Prepare) checkpoint needs ``allow_prepare``."""
     payload = torch.load(path, map_location=device, weights_only=True)
     if not isinstance(payload, dict) or payload.get("schema") not in (FORMAT, FORMAT_V2, FORMAT_V3):
         raise ValueError("Incompatible real policy checkpoint: schema")
@@ -85,7 +97,13 @@ def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
             or CardVocabulary(catalog).to_dict() != vocabulary.to_dict()):
         raise ValueError("Checkpoint catalog/vocabulary mapping is incompatible")
     encoder = StateEncoder(catalog, vocabulary)
-    for key, expected_value in compatibility(encoder, representation).items():
+    semantic = payload.get("semantic_action_schema_version")
+    if semantic == PREPARE_SEMANTIC_VERSION:
+        if not allow_prepare or representation not in (2, 3):
+            raise ValueError("Incompatible real policy checkpoint: semantic_action_schema_version")
+    else:
+        semantic = 1  # anything but 1 or 2 fails the comparison below
+    for key, expected_value in compatibility(encoder, representation, semantic).items():
         if payload.get(key) != expected_value:
             raise ValueError(f"Incompatible real policy checkpoint: {key}")
     config = payload.get("model_config", {})
@@ -123,6 +141,10 @@ def load_policy_checkpoint(path: Path, device="cpu") -> tuple:
             or split.get("dataset_sha256") != experiment.get("dataset_sha256")
             or not isinstance(experiment.get("config"), dict)
             or identity(experiment["config"]) != experiment.get("config_sha256")):
+        raise ValueError("Invalid policy training/split identity")
+    reserved = split.get("reserved_game_ids", [])  # matches deliberately kept out of training, validation and test
+    if (not isinstance(reserved, list) or len(reserved) != len(set(reserved))
+            or set(reserved) & {g for v in parts.values() for g in v}):
         raise ValueError("Invalid policy training/split identity")
     kwargs = {k: v for k, v in config.items() if k not in {"architecture", "card_embedding_dim"}}
     policy = (PolicyNetworkV2(**kwargs) if representation == 2 else PolicyNetworkV3(**kwargs) if representation == 3

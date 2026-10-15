@@ -1,0 +1,31 @@
+{
+  "name": "ML-PREPARE-TRAIN-1",
+  "registered_before_training": true,
+  "hypothesis": "Adding the 442 Prepare-menu decisions (action schema 2, 49 real PREPARE_CARD choices) to the training set lets Policy v2/v3 imitate the player on Prepare-menu decisions better than the same architecture trained only on the earlier schema-1 decisions, without lowering imitation quality on decisions without Prepare.",
+  "baseline": "control group: identical architecture, seed, config and train/validation matches, restricted to action-schema-1 decisions (the data every earlier checkpoint could use); uniform random menu choice is the floor.",
+  "corpus": "data/processed_policy_prepare_1",
+  "split_plan": "data/processed_policy_prepare_1/split_plan.json",
+  "parts_used": {"train": "train", "validation": "validation", "test": "test_seen"},
+  "parts_never_opened": ["fresh_holdout"],
+  "base_config": "configs/policy_v3_1/final_candidates.json",
+  "groups": {
+    "prepare_v2": {"architecture": "v2", "data": "all", "allow_prepare": true},
+    "prepare_v3": {"architecture": "v3", "data": "all", "allow_prepare": true},
+    "control_v2": {"architecture": "v2", "data": "schema1_only", "allow_prepare": false},
+    "control_v3": {"architecture": "v3", "data": "schema1_only", "allow_prepare": false}
+  },
+  "seeds_first": [42],
+  "seeds_all": [42, 43, 44],
+  "selection": "minimum validation cross-entropy over the group's own validation rows (control: schema-1 rows only, so it never sees a Prepare menu)",
+  "verdict_rules": {
+    "pooled_partitions": "validation + test_seen (26 matches); paired differences = prepare group minus control, averaged over seeds; 95% interval from a 2000-draw bootstrap over whole matches (seed 20261015)",
+    "P1": "cross-entropy difference on Prepare-menu decisions < 0 and the 95% interval upper bound < 0",
+    "P2": "that difference is < 0 separately in validation and in test_seen, and in at least 2 of 3 seeds in each",
+    "N1": "no regression without Prepare: cross-entropy difference on no-Prepare-menu decisions has mean <= +0.03 and 95% upper bound <= +0.05",
+    "N2": "no over-recommendation: top-1 is a PREPARE_CARD action in Prepare-menu decisions at most 2x as often as the player chose Prepare there (pooled)",
+    "PROMISING": "P1, P2, N1 and N2 for the architecture; overall PROMISING needs both architectures",
+    "REGRESSION": "mean cross-entropy difference on no-Prepare-menu decisions >= +0.05 in both validation and test_seen, or top-1 Prepare rate > 3x the player's rate; overall REGRESSION if either architecture regresses",
+    "INCONCLUSIVE": "everything else",
+    "note": "None of the verdicts authorises a LIVE switch; it needs new independent matches."
+  }
+}

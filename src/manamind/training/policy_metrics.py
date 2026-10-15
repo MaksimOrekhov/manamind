@@ -39,13 +39,13 @@ def action_root(action) -> tuple:
             action.get("source_card_id"), action.get("source_board_position"), action.get("source_is_hero"))
 
 
-def evaluate(policy, rows, encoder) -> tuple:
+def evaluate(policy, rows, encoder, *, allow_prepare=False) -> tuple:
     records = []
     policy.eval()
     with torch.no_grad():
         for row in rows:
             representation = representation_of(policy)
-            inputs = encode_example(row, encoder, representation=representation)
+            inputs = encode_example(row, encoder, representation=representation, allow_prepare=allow_prepare)
             logits = policy(*inputs)
             if not torch.isfinite(logits).all():
                 raise ValueError("Nonfinite policy evaluation logits")
