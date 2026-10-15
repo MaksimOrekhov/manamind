@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import math
 import sys
@@ -33,14 +34,20 @@ PARTITIONS = ("validation", "test")  # "test" is the plan's test_seen: seen by e
 DRAWS, BOOTSTRAP_SEED = 2000, 20261015
 SEEDS = (42, 43, 44)
 GROUPS = ("prepare_v2", "control_v2", "prepare_v3", "control_v3")
+# Earlier checkpoints, each pinned by SHA-256 and checked before inference. The first three are the models LIVE and
+# Model Shadow pin (scripts/run_manamind.py); ``retrain_1_v2_older`` is a different, older retrained v2 kept only as an
+# extra baseline. A test compares these pins with run_manamind.
 OLD_CHECKPOINTS = {
     "frozen_v2": ("data/processed_policy_ml2a/seed42_v2/policy.pt",
                   "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d"),
-    "retrained_v2": ("data/processed_policy_retrain_1/seed42_v2/policy.pt",
-                     "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377"),
+    "retrained_v2_model_shadow": ("data/processed_policy_v3/experiment_1/final/architecturev2_seed42/policy.pt",
+                                  "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3"),
     "policy_v3_ml_policy_v3_1": ("data/processed_policy_v3/experiment_1/final/architecturev3_seed42/policy.pt",
                                  "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82"),
+    "retrain_1_v2_older": ("data/processed_policy_retrain_1/seed42_v2/policy.pt",
+                           "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377"),
 }
+REQUIRED_BASELINES = ("frozen_v2", "retrained_v2_model_shadow", "policy_v3_ml_policy_v3_1")
 METRICS = ("cross_entropy", "top1", "top3", "mrr")
 PREPARE_FEATURE = ACTION_V2_FEATURE_NAMES.index("prepare_card")
 
@@ -85,9 +92,15 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def score(path: Path, rows: list[dict]) -> tuple[dict, dict]:
-    """Logits per decision from a checkpoint; also its payload. Prepare rows need the explicit flag everywhere."""
-    policy, encoder, payload = load_policy_checkpoint(path, allow_prepare=True)
+def score(path: Path, rows: list[dict], expected_sha256: str) -> tuple[dict, dict]:
+    """Logits per decision from a checkpoint; also its payload. Prepare rows need the explicit flag everywhere.
+
+    The bytes that were hashed are the bytes that are loaded, so the digest cannot describe a different file.
+    """
+    data = Path(path).read_bytes()
+    if hashlib.sha256(data).hexdigest() != expected_sha256:
+        raise ValueError(f"{path} differs from its recorded SHA-256")
+    policy, encoder, payload = load_policy_checkpoint(io.BytesIO(data), allow_prepare=True)
     representation = representation_of(policy)
     logits = {}
     with torch.no_grad():
@@ -317,15 +330,13 @@ def main() -> int:
             path = args.runs / f"{group}_seed{seed}" / "policy.pt"
             if path.is_file():
                 models[f"{group}_s{seed}"] = (group, seed, path)
-    old = {}
-    for name, (relative, expected_sha) in OLD_CHECKPOINTS.items():
-        path = ROOT / relative
-        if sha256_file(path) != expected_sha:
-            raise ValueError(f"{name} checkpoint differs from its recorded SHA-256")
-        old[name] = path
+    old = {name: ROOT / relative for name, (relative, _) in OLD_CHECKPOINTS.items()}
+    expected = {name: sha for name, (_, sha) in OLD_CHECKPOINTS.items()}
+    for name, (_, _, path) in models.items():  # new models: the digest their own training run recorded
+        expected[name] = json.loads((path.parent / "metrics.json").read_text(encoding="utf-8"))["checkpoint_sha256"]
     logits, payloads, per_record = {}, {}, {}
     for name, (_, _, path) in {**models, **{k: (None, None, v) for k, v in old.items()}}.items():
-        logits[name], payloads[name] = score(path, rows)
+        logits[name], payloads[name] = score(path, rows, expected[name])
         per_record[name] = [record(r, f, logits[name][r["decision_id"]]) for r, f in zip(rows, facts)]
         print("scored", name, flush=True)
 
@@ -406,27 +417,35 @@ def main() -> int:
             f"pooled/{s}": paired_bootstrap(facts, v3, v2, masks[s])
             for s in ("all", "no_prepare_in_menu", "prepare_in_menu")}
 
-    # earlier checkpoints on identical menus, with the matches they trained on removed from the comparison
+    # earlier checkpoints on identical menus. Per checkpoint every match of ours is classified by the role it had in that
+    # checkpoint's own recorded split; only matches in none of its parts are independent of it.
     report["earlier_checkpoints"] = {}
     ours = {p: {r["game_id"] for r in rows_by_part[p]} for p in PARTITIONS}
+    our_matches = ours["validation"] | ours["test"]
     for name in old:
         split = payloads[name]["experiment"]["split"]["game_ids"]
-        seen = {g for ids in split.values() for g in ids if g in (ours["validation"] | ours["test"])}
-        trained = {g for g in split["train"] if g in (ours["validation"] | ours["test"])}
-        clean = np.array([f["game_id"] not in trained for f in facts])
+        roles = {part: our_matches & set(ids) for part, ids in split.items()}
+        known = set().union(*roles.values())
+        subsets = {"all_decisions": np.ones(len(facts), dtype=bool),
+                   "without_its_own_train_matches": np.array([f["game_id"] not in roles["train"] for f in facts]),
+                   "independent_of_this_checkpoint": np.array([f["game_id"] not in known for f in facts])}
         report["earlier_checkpoints"][name] = {
-            "checkpoint_sha256": sha256_file(old[name]), "prepare_card_feature_trained": False,
-            "own_train_matches_inside_our_validation_or_test_seen": len(trained),
-            "any_recorded_part_inside_our_validation_or_test_seen": len(seen),
-            "tables": {scope: {s: metrics_of([(facts[i], per_record[name][i])
-                                              for i in np.flatnonzero(masks[s] & scopes[scope] & clean)])
-                               for s in ("all", "no_prepare_in_menu", "prepare_in_menu")} for scope in scopes},
-            "decisions_scored_without_its_own_train_matches": int((clean & scopes["pooled"]).sum()),
-            "new_groups_on_the_same_decisions": {g: {s: {m: float(np.mean([metrics_of(
-                [(facts[i], per_record[n][i]) for i in np.flatnonzero(masks[s] & scopes["pooled"] & clean)])[m]
-                for n, (gg, _, _) in models.items() if gg == g])) for m in ("cross_entropy", "top1", "mrr")}
-                for s in ("all", "no_prepare_in_menu", "prepare_in_menu")}
-                for g in GROUPS if any(gg == g for gg, _, _ in models.values())}}
+            "checkpoint_sha256": expected[name], "prepare_card_feature_trained": False,
+            "role": "pinned by LIVE / Model Shadow" if name in REQUIRED_BASELINES else "extra older baseline",
+            "our_matches_by_role_in_its_own_split": {part: len(ids) for part, ids in roles.items()},
+            "our_matches_in_none_of_its_parts": len(our_matches - known),
+            "subsets": {sub: {
+                "decisions": int((mask & scopes["pooled"]).sum()),
+                "matches": len({facts[i]["game_id"] for i in np.flatnonzero(mask)}),
+                "checkpoint": {scope: {s: metrics_of([(facts[i], per_record[name][i])
+                                                      for i in np.flatnonzero(masks[s] & scopes[scope] & mask)])
+                                       for s in ("all", "no_prepare_in_menu", "prepare_in_menu")} for scope in scopes},
+                "new_groups_mean_over_seeds": {g: {s: {m: float(np.mean([metrics_of(
+                    [(facts[i], per_record[n][i]) for i in np.flatnonzero(masks[s] & scopes["pooled"] & mask)])[m]
+                    for n, (gg, _, _) in models.items() if gg == g])) for m in ("cross_entropy", "top1", "mrr")}
+                    for s in ("all", "no_prepare_in_menu", "prepare_in_menu")}
+                    for g in GROUPS if any(gg == g for gg, _, _ in models.values())}}
+                for sub, mask in subsets.items()}}
 
     # behaviour counters per model (counts), averaged over seeds per group below
     report["behaviour"] = {}
@@ -506,7 +525,7 @@ def main() -> int:
     _, encoder, _ = load_policy_checkpoint(first, allow_prepare=True)
     report["integrity"] = integrity(rows, all_models, None)
     report["encoding_check"] = encoding_check(rows, encoder)
-    report["checkpoints"] = {n: {"sha256": sha256_file(p), "semantic_action_schema_version":
+    report["checkpoints"] = {n: {"sha256": expected[n], "semantic_action_schema_version":
                                  payloads[n]["semantic_action_schema_version"],
                                  "selected_epoch": payloads[n]["experiment"].get("selected_epoch"),
                                  "parameters": payloads[n]["experiment"].get("parameters"),

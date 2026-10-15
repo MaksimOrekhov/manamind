@@ -1770,7 +1770,7 @@
     "top1_kind_PREPARE_CARD": 11
    }
   },
-  "retrained_v2": {
+  "retrain_1_v2_older": {
    "pooled": {
     "decisions": 1139,
     "hero_power_legal_decisions": 521,
@@ -1880,6 +1880,118 @@
     "top1_kind_HERO_POWER": 115,
     "top1_kind_PLAY_CARD": 194,
     "top1_kind_PREPARE_CARD": 25
+   }
+  },
+  "retrained_v2_model_shadow": {
+   "pooled": {
+    "decisions": 1139,
+    "hero_power_legal_decisions": 521,
+    "hero_power_legal_player_hero_power": 127,
+    "hero_power_legal_top1_hero_power": 163,
+    "player_attack_decisions": 183,
+    "player_attack_top1_attack": 122,
+    "player_attack_top1_exact": 57,
+    "player_end_turn_decisions": 248,
+    "player_hero_power_decisions": 127,
+    "player_hero_power_top1_hero_power": 79,
+    "player_kind_ACTIVATE_LOCATION": 32,
+    "player_kind_ATTACK": 183,
+    "player_kind_END_TURN": 248,
+    "player_kind_HERO_POWER": 127,
+    "player_kind_PLAY_CARD": 535,
+    "player_kind_PREPARE_CARD": 14,
+    "player_prepare_decisions": 14,
+    "player_prepare_top1_prepare": 13,
+    "premature_end_turn": 36,
+    "prepare_menu_decisions": 133,
+    "prepare_menu_mass_sum": 49.936515450514285,
+    "prepare_menu_top1_prepare": 62,
+    "refuses_to_end_turn": 36,
+    "suggests_attack_player_did_other": 80,
+    "suggests_prepare_player_did_other_action": 18,
+    "suggests_prepare_player_played_card": 31,
+    "suggests_prepare_player_played_same_card": 1,
+    "top1_hero_power": 163,
+    "top1_hero_power_player_did_other": 84,
+    "top1_kind_ACTIVATE_LOCATION": 20,
+    "top1_kind_ATTACK": 202,
+    "top1_kind_END_TURN": 248,
+    "top1_kind_HERO_POWER": 163,
+    "top1_kind_PLAY_CARD": 444,
+    "top1_kind_PREPARE_CARD": 62
+   },
+   "test": {
+    "decisions": 580,
+    "hero_power_legal_decisions": 285,
+    "hero_power_legal_player_hero_power": 60,
+    "hero_power_legal_top1_hero_power": 70,
+    "player_attack_decisions": 111,
+    "player_attack_top1_attack": 70,
+    "player_attack_top1_exact": 30,
+    "player_end_turn_decisions": 127,
+    "player_hero_power_decisions": 60,
+    "player_hero_power_top1_hero_power": 28,
+    "player_kind_ACTIVATE_LOCATION": 14,
+    "player_kind_ATTACK": 111,
+    "player_kind_END_TURN": 127,
+    "player_kind_HERO_POWER": 60,
+    "player_kind_PLAY_CARD": 262,
+    "player_kind_PREPARE_CARD": 6,
+    "player_prepare_decisions": 6,
+    "player_prepare_top1_prepare": 6,
+    "premature_end_turn": 21,
+    "prepare_menu_decisions": 74,
+    "prepare_menu_mass_sum": 27.83205022888305,
+    "prepare_menu_top1_prepare": 33,
+    "refuses_to_end_turn": 21,
+    "suggests_attack_player_did_other": 32,
+    "suggests_prepare_player_did_other_action": 15,
+    "suggests_prepare_player_played_card": 12,
+    "top1_hero_power": 70,
+    "top1_hero_power_player_did_other": 42,
+    "top1_kind_ACTIVATE_LOCATION": 9,
+    "top1_kind_ATTACK": 102,
+    "top1_kind_END_TURN": 127,
+    "top1_kind_HERO_POWER": 70,
+    "top1_kind_PLAY_CARD": 239,
+    "top1_kind_PREPARE_CARD": 33
+   },
+   "validation": {
+    "decisions": 559,
+    "hero_power_legal_decisions": 236,
+    "hero_power_legal_player_hero_power": 67,
+    "hero_power_legal_top1_hero_power": 93,
+    "player_attack_decisions": 72,
+    "player_attack_top1_attack": 52,
+    "player_attack_top1_exact": 27,
+    "player_end_turn_decisions": 121,
+    "player_hero_power_decisions": 67,
+    "player_hero_power_top1_hero_power": 51,
+    "player_kind_ACTIVATE_LOCATION": 18,
+    "player_kind_ATTACK": 72,
+    "player_kind_END_TURN": 121,
+    "player_kind_HERO_POWER": 67,
+    "player_kind_PLAY_CARD": 273,
+    "player_kind_PREPARE_CARD": 8,
+    "player_prepare_decisions": 8,
+    "player_prepare_top1_prepare": 7,
+    "premature_end_turn": 15,
+    "prepare_menu_decisions": 59,
+    "prepare_menu_mass_sum": 22.104465221631237,
+    "prepare_menu_top1_prepare": 29,
+    "refuses_to_end_turn": 15,
+    "suggests_attack_player_did_other": 48,
+    "suggests_prepare_player_did_other_action": 3,
+    "suggests_prepare_player_played_card": 19,
+    "suggests_prepare_player_played_same_card": 1,
+    "top1_hero_power": 93,
+    "top1_hero_power_player_did_other": 42,
+    "top1_kind_ACTIVATE_LOCATION": 11,
+    "top1_kind_ATTACK": 100,
+    "top1_kind_END_TURN": 121,
+    "top1_kind_HERO_POWER": 93,
+    "top1_kind_PLAY_CARD": 205,
+    "top1_kind_PREPARE_CARD": 29
    }
   }
  },
@@ -2263,7 +2375,7 @@
    "sha256": "dd2e76493fc0424c662ced09e043d77347d13c6efd45079f61ee687d727a0c8d",
    "split_sha256": "3b7f3dba8a8e16d1c564cc404e9bc64bdda5a15070ae4fc1803f402ed194a04a"
   },
-  "retrained_v2": {
+  "retrain_1_v2_older": {
    "config_sha256": "68bcf0157588d642b07e672f3f02f9941d94973e6c72fe4cb1b956ced2ec3635",
    "dataset_sha256": "3cfe24281ca75b2c4243c77afbc35c681b41467645dfe4945e5d6bc702790919",
    "parameters": null,
@@ -2271,6 +2383,15 @@
    "semantic_action_schema_version": 1,
    "sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
    "split_sha256": "bb578b31ef688b71461ac6cd532137efd19fbc2f867c248669168c33c95edaaf"
+  },
+  "retrained_v2_model_shadow": {
+   "config_sha256": "7b3aaa20ab41251909fd8abbeace58a852a3680b53249b7002e1e2e82b507480",
+   "dataset_sha256": "61f49aa5ac4bd5c9bcf1e9e469a8d48ee8524b375fb10ac48178f7f82ce185f6",
+   "parameters": 103713,
+   "selected_epoch": 9,
+   "semantic_action_schema_version": 1,
+   "sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+   "split_sha256": "4ec4d360ce6f09f9951d3708f43bcba990fa2ff9012468449622ac8339044194"
   }
  },
  "data": {
@@ -2418,499 +2539,1973 @@
  },
  "earlier_checkpoints": {
   "frozen_v2": {
-   "any_recorded_part_inside_our_validation_or_test_seen": 0,
    "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
-   "decisions_scored_without_its_own_train_matches": 1139,
-   "new_groups_on_the_same_decisions": {
-    "control_v2": {
-     "all": {
-      "cross_entropy": 1.5938751264700872,
-      "mrr": 0.6516546543664441,
-      "top1": 0.5051214515657009
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5338096769351772,
-      "mrr": 0.6635397232476357,
-      "top1": 0.5225314777998675
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.0482047673130883,
-      "mrr": 0.561757065686153,
-      "top1": 0.37343358395989973
-     }
-    },
-    "control_v3": {
-     "all": {
-      "cross_entropy": 1.4905022070437555,
-      "mrr": 0.6559144327389325,
-      "top1": 0.5089259584430788
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4431418968506387,
-      "mrr": 0.6680312107421947,
-      "top1": 0.5265076209410205
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.848731320233797,
-      "mrr": 0.5642642171653846,
-      "top1": 0.3759398496240601
-     }
-    },
-    "prepare_v2": {
-     "all": {
-      "cross_entropy": 1.5115801088067056,
-      "mrr": 0.6577443483094586,
-      "top1": 0.5098039215686274
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4900050625996109,
-      "mrr": 0.6621428651318809,
-      "top1": 0.5155732273028496
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.674771811696458,
-      "mrr": 0.6244743639233152,
-      "top1": 0.4661654135338346
-     }
-    },
-    "prepare_v3": {
-     "all": {
-      "cross_entropy": 1.478759843404661,
-      "mrr": 0.6649951310769856,
-      "top1": 0.5218027509511267
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4660236024109832,
-      "mrr": 0.667617640935581,
-      "top1": 0.5248508946322067
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.575095621146314,
-      "mrr": 0.6451587031240015,
-      "top1": 0.49874686716791977
-     }
-    }
+   "our_matches_by_role_in_its_own_split": {
+    "test": 0,
+    "train": 0,
+    "validation": 0
    },
-   "own_train_matches_inside_our_validation_or_test_seen": 0,
+   "our_matches_in_none_of_its_parts": 26,
    "prepare_card_feature_trained": false,
-   "tables": {
-    "pooled": {
-     "all": {
-      "cross_entropy": 1.6983132204536588,
-      "decisions": 1139,
-      "matches": 26,
-      "mrr": 0.6294754648121195,
-      "top1": 0.4863915715539947,
-      "top3": 0.6545265348595213,
-      "top3_decisions": 961
+   "role": "pinned by LIVE / Model Shadow",
+   "subsets": {
+    "all_decisions": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.6983132204536588,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6294754648121195,
+        "top1": 0.4863915715539947,
+        "top3": 0.6545265348595213,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.655620437345352,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6428812173944299,
+        "top1": 0.5049701789264414,
+        "top3": 0.6578313253012048,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0212375799044615,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5280755618211099,
+        "top1": 0.3458646616541353,
+        "top3": 0.6335877862595419,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.7676634606494417,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.5821420629264583,
+        "top1": 0.4241379310344828,
+        "top3": 0.5914893617021276,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.70681727232493,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.5976322362523775,
+        "top1": 0.44466403162055335,
+        "top3": 0.5979899497487438,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.1837198294629956,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.47622276964382226,
+        "top1": 0.28378378378378377,
+        "top3": 0.5555555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.6263576939535618,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6785870445861507,
+        "top1": 0.5509838998211091,
+        "top3": 0.714867617107943,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6038092403460187,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6886731863101869,
+        "top1": 0.566,
+        "top3": 0.7129629629629629,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8174462838479943,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5931112672638096,
+        "top1": 0.423728813559322,
+        "top3": 0.7288135593220338,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.655620437345352,
-      "decisions": 1006,
-      "matches": 26,
-      "mrr": 0.6428812173944299,
-      "top1": 0.5049701789264414,
-      "top3": 0.6578313253012048,
-      "top3_decisions": 830
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.0212375799044615,
-      "decisions": 133,
-      "matches": 14,
-      "mrr": 0.5280755618211099,
-      "top1": 0.3458646616541353,
-      "top3": 0.6335877862595419,
-      "top3_decisions": 131
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     },
-    "test": {
-     "all": {
-      "cross_entropy": 1.7676634606494417,
-      "decisions": 580,
-      "matches": 16,
-      "mrr": 0.5821420629264583,
-      "top1": 0.4241379310344828,
-      "top3": 0.5914893617021276,
-      "top3_decisions": 470
+    "independent_of_this_checkpoint": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.6983132204536588,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6294754648121195,
+        "top1": 0.4863915715539947,
+        "top3": 0.6545265348595213,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.655620437345352,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6428812173944299,
+        "top1": 0.5049701789264414,
+        "top3": 0.6578313253012048,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0212375799044615,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5280755618211099,
+        "top1": 0.3458646616541353,
+        "top3": 0.6335877862595419,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.7676634606494417,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.5821420629264583,
+        "top1": 0.4241379310344828,
+        "top3": 0.5914893617021276,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.70681727232493,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.5976322362523775,
+        "top1": 0.44466403162055335,
+        "top3": 0.5979899497487438,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.1837198294629956,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.47622276964382226,
+        "top1": 0.28378378378378377,
+        "top3": 0.5555555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.6263576939535618,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6785870445861507,
+        "top1": 0.5509838998211091,
+        "top3": 0.714867617107943,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6038092403460187,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6886731863101869,
+        "top1": 0.566,
+        "top3": 0.7129629629629629,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8174462838479943,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5931112672638096,
+        "top1": 0.423728813559322,
+        "top3": 0.7288135593220338,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.70681727232493,
-      "decisions": 506,
-      "matches": 16,
-      "mrr": 0.5976322362523775,
-      "top1": 0.44466403162055335,
-      "top3": 0.5979899497487438,
-      "top3_decisions": 398
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.1837198294629956,
-      "decisions": 74,
-      "matches": 8,
-      "mrr": 0.47622276964382226,
-      "top1": 0.28378378378378377,
-      "top3": 0.5555555555555556,
-      "top3_decisions": 72
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     },
-    "validation": {
-     "all": {
-      "cross_entropy": 1.6263576939535618,
-      "decisions": 559,
-      "matches": 10,
-      "mrr": 0.6785870445861507,
-      "top1": 0.5509838998211091,
-      "top3": 0.714867617107943,
-      "top3_decisions": 491
+    "without_its_own_train_matches": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.6983132204536588,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6294754648121195,
+        "top1": 0.4863915715539947,
+        "top3": 0.6545265348595213,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.655620437345352,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6428812173944299,
+        "top1": 0.5049701789264414,
+        "top3": 0.6578313253012048,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0212375799044615,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5280755618211099,
+        "top1": 0.3458646616541353,
+        "top3": 0.6335877862595419,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.7676634606494417,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.5821420629264583,
+        "top1": 0.4241379310344828,
+        "top3": 0.5914893617021276,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.70681727232493,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.5976322362523775,
+        "top1": 0.44466403162055335,
+        "top3": 0.5979899497487438,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.1837198294629956,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.47622276964382226,
+        "top1": 0.28378378378378377,
+        "top3": 0.5555555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.6263576939535618,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6785870445861507,
+        "top1": 0.5509838998211091,
+        "top3": 0.714867617107943,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6038092403460187,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6886731863101869,
+        "top1": 0.566,
+        "top3": 0.7129629629629629,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8174462838479943,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5931112672638096,
+        "top1": 0.423728813559322,
+        "top3": 0.7288135593220338,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.6038092403460187,
-      "decisions": 500,
-      "matches": 10,
-      "mrr": 0.6886731863101869,
-      "top1": 0.566,
-      "top3": 0.7129629629629629,
-      "top3_decisions": 432
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.8174462838479943,
-      "decisions": 59,
-      "matches": 6,
-      "mrr": 0.5931112672638096,
-      "top1": 0.423728813559322,
-      "top3": 0.7288135593220338,
-      "top3_decisions": 59
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     }
    }
   },
   "policy_v3_ml_policy_v3_1": {
-   "any_recorded_part_inside_our_validation_or_test_seen": 23,
    "checkpoint_sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
-   "decisions_scored_without_its_own_train_matches": 1139,
-   "new_groups_on_the_same_decisions": {
-    "control_v2": {
-     "all": {
-      "cross_entropy": 1.5938751264700872,
-      "mrr": 0.6516546543664441,
-      "top1": 0.5051214515657009
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5338096769351772,
-      "mrr": 0.6635397232476357,
-      "top1": 0.5225314777998675
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.0482047673130883,
-      "mrr": 0.561757065686153,
-      "top1": 0.37343358395989973
-     }
-    },
-    "control_v3": {
-     "all": {
-      "cross_entropy": 1.4905022070437555,
-      "mrr": 0.6559144327389325,
-      "top1": 0.5089259584430788
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4431418968506387,
-      "mrr": 0.6680312107421947,
-      "top1": 0.5265076209410205
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.848731320233797,
-      "mrr": 0.5642642171653846,
-      "top1": 0.3759398496240601
-     }
-    },
-    "prepare_v2": {
-     "all": {
-      "cross_entropy": 1.5115801088067056,
-      "mrr": 0.6577443483094586,
-      "top1": 0.5098039215686274
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4900050625996109,
-      "mrr": 0.6621428651318809,
-      "top1": 0.5155732273028496
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.674771811696458,
-      "mrr": 0.6244743639233152,
-      "top1": 0.4661654135338346
-     }
-    },
-    "prepare_v3": {
-     "all": {
-      "cross_entropy": 1.478759843404661,
-      "mrr": 0.6649951310769856,
-      "top1": 0.5218027509511267
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4660236024109832,
-      "mrr": 0.667617640935581,
-      "top1": 0.5248508946322067
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.575095621146314,
-      "mrr": 0.6451587031240015,
-      "top1": 0.49874686716791977
-     }
-    }
+   "our_matches_by_role_in_its_own_split": {
+    "test": 13,
+    "train": 0,
+    "validation": 10
    },
-   "own_train_matches_inside_our_validation_or_test_seen": 0,
+   "our_matches_in_none_of_its_parts": 3,
    "prepare_card_feature_trained": false,
-   "tables": {
-    "pooled": {
-     "all": {
-      "cross_entropy": 1.4923546679040554,
-      "decisions": 1139,
-      "matches": 26,
-      "mrr": 0.6540520195258,
-      "top1": 0.5083406496927129,
-      "top3": 0.7096774193548387,
-      "top3_decisions": 961
+   "role": "pinned by LIVE / Model Shadow",
+   "subsets": {
+    "all_decisions": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.4923546679040554,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6540520195258,
+        "top1": 0.5083406496927129,
+        "top3": 0.7096774193548387,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4542512205280043,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6636548411064395,
+        "top1": 0.5248508946322068,
+        "top3": 0.7060240963855422,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7805657059514801,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5814171435098351,
+        "top1": 0.38345864661654133,
+        "top3": 0.732824427480916,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.5771702277409536,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.6181893837136041,
+        "top1": 0.46206896551724136,
+        "top3": 0.6595744680851063,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5353942351057468,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.6296574565017644,
+        "top1": 0.48023715415019763,
+        "top3": 0.6557788944723618,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8628276908952053,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.5397725616756426,
+        "top1": 0.33783783783783783,
+        "top3": 0.6805555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4043528347995815,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6912619099928371,
+        "top1": 0.556350626118068,
+        "top3": 0.7576374745417516,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.3721344897753287,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6980601943263708,
+        "top1": 0.57,
+        "top3": 0.7523148148148148,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.6773896570390114,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.6336493308950936,
+        "top1": 0.4406779661016949,
+        "top3": 0.7966101694915254,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4542512205280043,
-      "decisions": 1006,
-      "matches": 26,
-      "mrr": 0.6636548411064395,
-      "top1": 0.5248508946322068,
-      "top3": 0.7060240963855422,
-      "top3_decisions": 830
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.7805657059514801,
-      "decisions": 133,
-      "matches": 14,
-      "mrr": 0.5814171435098351,
-      "top1": 0.38345864661654133,
-      "top3": 0.732824427480916,
-      "top3_decisions": 131
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     },
-    "test": {
-     "all": {
-      "cross_entropy": 1.5771702277409536,
-      "decisions": 580,
-      "matches": 16,
-      "mrr": 0.6181893837136041,
-      "top1": 0.46206896551724136,
-      "top3": 0.6595744680851063,
-      "top3_decisions": 470
+    "independent_of_this_checkpoint": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.753603434045216,
+        "decisions": 116,
+        "matches": 3,
+        "mrr": 0.5475983861873154,
+        "top1": 0.3793103448275862,
+        "top3": 0.5625,
+        "top3_decisions": 96
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.7359950386538203,
+        "decisions": 107,
+        "matches": 3,
+        "mrr": 0.5600799593913219,
+        "top1": 0.40186915887850466,
+        "top3": 0.5517241379310345,
+        "top3_decisions": 87
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9629476903651408,
+        "decisions": 9,
+        "matches": 1,
+        "mrr": 0.39920634920634923,
+        "top1": 0.1111111111111111,
+        "top3": 0.6666666666666666,
+        "top3_decisions": 9
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.753603434045216,
+        "decisions": 116,
+        "matches": 3,
+        "mrr": 0.5475983861873154,
+        "top1": 0.3793103448275862,
+        "top3": 0.5625,
+        "top3_decisions": 96
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.7359950386538203,
+        "decisions": 107,
+        "matches": 3,
+        "mrr": 0.5600799593913219,
+        "top1": 0.40186915887850466,
+        "top3": 0.5517241379310345,
+        "top3_decisions": 87
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9629476903651408,
+        "decisions": 9,
+        "matches": 1,
+        "mrr": 0.39920634920634923,
+        "top1": 0.1111111111111111,
+        "top3": 0.6666666666666666,
+        "top3_decisions": 9
+       }
+      },
+      "validation": {
+       "all": {
+        "decisions": 0
+       },
+       "no_prepare_in_menu": {
+        "decisions": 0
+       },
+       "prepare_in_menu": {
+        "decisions": 0
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5353942351057468,
-      "decisions": 506,
-      "matches": 16,
-      "mrr": 0.6296574565017644,
-      "top1": 0.48023715415019763,
-      "top3": 0.6557788944723618,
-      "top3_decisions": 398
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.8628276908952053,
-      "decisions": 74,
-      "matches": 8,
-      "mrr": 0.5397725616756426,
-      "top1": 0.33783783783783783,
-      "top3": 0.6805555555555556,
-      "top3_decisions": 72
+     "decisions": 116,
+     "matches": 3,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.9837624610623743,
+        "mrr": 0.5315920202646875,
+        "top1": 0.33045977011494254
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.93165128874159,
+        "mrr": 0.5424268630906894,
+        "top1": 0.34890965732087226
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.603306398653922,
+        "mrr": 0.40277777777777773,
+        "top1": 0.1111111111111111
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.7221023920453236,
+        "mrr": 0.5561452314698854,
+        "top1": 0.3620689655172414
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.697730191479132,
+        "mrr": 0.5669684544699484,
+        "top1": 0.38006230529595014
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.01186077655449,
+        "mrr": 0.42746913580246915,
+        "top1": 0.14814814814814814
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.8366132942886282,
+        "mrr": 0.5527062018441328,
+        "top1": 0.3591954022988506
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.851566726668431,
+        "mrr": 0.5570059224264832,
+        "top1": 0.3644859813084112
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.6588335982176368,
+        "mrr": 0.5015873015873016,
+        "top1": 0.2962962962962963
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.6963674910664996,
+        "mrr": 0.5960468459534328,
+        "top1": 0.4310344827586207
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6794929352501045,
+        "mrr": 0.6060861914989399,
+        "top1": 0.4423676012461059
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8969872102169756,
+        "mrr": 0.47669018224573784,
+        "top1": 0.2962962962962963
+       }
+      }
      }
     },
-    "validation": {
-     "all": {
-      "cross_entropy": 1.4043528347995815,
-      "decisions": 559,
-      "matches": 10,
-      "mrr": 0.6912619099928371,
-      "top1": 0.556350626118068,
-      "top3": 0.7576374745417516,
-      "top3_decisions": 491
+    "without_its_own_train_matches": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.4923546679040554,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6540520195258,
+        "top1": 0.5083406496927129,
+        "top3": 0.7096774193548387,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4542512205280043,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6636548411064395,
+        "top1": 0.5248508946322068,
+        "top3": 0.7060240963855422,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7805657059514801,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5814171435098351,
+        "top1": 0.38345864661654133,
+        "top3": 0.732824427480916,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.5771702277409536,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.6181893837136041,
+        "top1": 0.46206896551724136,
+        "top3": 0.6595744680851063,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5353942351057468,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.6296574565017644,
+        "top1": 0.48023715415019763,
+        "top3": 0.6557788944723618,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8628276908952053,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.5397725616756426,
+        "top1": 0.33783783783783783,
+        "top3": 0.6805555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4043528347995815,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6912619099928371,
+        "top1": 0.556350626118068,
+        "top3": 0.7576374745417516,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.3721344897753287,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6980601943263708,
+        "top1": 0.57,
+        "top3": 0.7523148148148148,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.6773896570390114,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.6336493308950936,
+        "top1": 0.4406779661016949,
+        "top3": 0.7966101694915254,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.3721344897753287,
-      "decisions": 500,
-      "matches": 10,
-      "mrr": 0.6980601943263708,
-      "top1": 0.57,
-      "top3": 0.7523148148148148,
-      "top3_decisions": 432
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.6773896570390114,
-      "decisions": 59,
-      "matches": 6,
-      "mrr": 0.6336493308950936,
-      "top1": 0.4406779661016949,
-      "top3": 0.7966101694915254,
-      "top3_decisions": 59
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     }
    }
   },
-  "retrained_v2": {
-   "any_recorded_part_inside_our_validation_or_test_seen": 14,
+  "retrain_1_v2_older": {
    "checkpoint_sha256": "d2f18737be46bc1773997ec5106d1e30fdf2caaf645a3a7c8998956f092d6377",
-   "decisions_scored_without_its_own_train_matches": 987,
-   "new_groups_on_the_same_decisions": {
-    "control_v2": {
-     "all": {
-      "cross_entropy": 1.6260910511321196,
-      "mrr": 0.6424348008277123,
-      "top1": 0.49071259709557585
+   "our_matches_by_role_in_its_own_split": {
+    "test": 8,
+    "train": 3,
+    "validation": 3
+   },
+   "our_matches_in_none_of_its_parts": 12,
+   "prepare_card_feature_trained": false,
+   "role": "extra older baseline",
+   "subsets": {
+    "all_decisions": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.6202118937577807,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6463194849489091,
+        "top1": 0.5074626865671642,
+        "top3": 0.676378772112383,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5521062417566587,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6610748070057442,
+        "top1": 0.525844930417495,
+        "top3": 0.6867469879518072,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.1353569006234085,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5347115602182618,
+        "top1": 0.3684210526315789,
+        "top3": 0.6106870229007634,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.7920926840223415,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.5996551699110916,
+        "top1": 0.45,
+        "top3": 0.6170212765957447,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.7202823859807905,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.6147866286669341,
+        "top1": 0.4683794466403162,
+        "top3": 0.628140703517588,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.283119857117271,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.4961887086887087,
+        "top1": 0.32432432432432434,
+        "top3": 0.5555555555555556,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4418740433938355,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6947368422332278,
+        "top1": 0.5670840787119857,
+        "top3": 0.7331975560081466,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.3819119838018374,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.70791844348462,
+        "top1": 0.584,
+        "top3": 0.7407407407407407,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9500270907836492,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5830283570519385,
+        "top1": 0.423728813559322,
+        "top3": 0.6779661016949152,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5535229241887982,
-      "mrr": 0.6567593056046758,
-      "top1": 0.5113895216400911
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.2106306424737383,
-      "mrr": 0.5270502577618964,
-      "top1": 0.32415902140672787
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     },
-    "control_v3": {
-     "all": {
-      "cross_entropy": 1.5153079571699075,
-      "mrr": 0.6483098621162245,
-      "top1": 0.497129348193178
+    "independent_of_this_checkpoint": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.7169173137657525,
+        "decisions": 551,
+        "matches": 12,
+        "mrr": 0.6286744098516811,
+        "top1": 0.4809437386569873,
+        "top3": 0.6702355460385439,
+        "top3_decisions": 467
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6158583420279073,
+        "decisions": 480,
+        "matches": 12,
+        "mrr": 0.648349447393565,
+        "top1": 0.5083333333333333,
+        "top3": 0.6801007556675063,
+        "top3_decisions": 397
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.4001328973455496,
+        "decisions": 71,
+        "matches": 6,
+        "mrr": 0.49566007154035324,
+        "top1": 0.29577464788732394,
+        "top3": 0.6142857142857143,
+        "top3_decisions": 70
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.976885898841969,
+        "decisions": 265,
+        "matches": 7,
+        "mrr": 0.5501489144718889,
+        "top1": 0.38113207547169814,
+        "top3": 0.5727699530516432,
+        "top3_decisions": 213
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.8888676187070153,
+        "decisions": 223,
+        "matches": 7,
+        "mrr": 0.5626547175676693,
+        "top1": 0.3991031390134529,
+        "top3": 0.5697674418604651,
+        "top3_decisions": 172
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.444221052891842,
+        "decisions": 42,
+        "matches": 3,
+        "mrr": 0.48374905517762656,
+        "top1": 0.2857142857142857,
+        "top3": 0.5853658536585366,
+        "top3_decisions": 41
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4760373310902373,
+        "decisions": 286,
+        "matches": 5,
+        "mrr": 0.701434047179111,
+        "top1": 0.5734265734265734,
+        "top3": 0.7519685039370079,
+        "top3_decisions": 254
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.3789670241312497,
+        "decisions": 257,
+        "matches": 5,
+        "mrr": 0.7227071312502762,
+        "top1": 0.603112840466926,
+        "top3": 0.7644444444444445,
+        "top3_decisions": 225
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.3362810858647127,
+        "decisions": 29,
+        "matches": 3,
+        "mrr": 0.5129105090311987,
+        "top1": 0.3103448275862069,
+        "top3": 0.6551724137931034,
+        "top3_decisions": 29
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4566227690123366,
-      "mrr": 0.6631886631214927,
-      "top1": 0.517463933181473
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.9880198397602502,
-      "mrr": 0.5284604375049812,
-      "top1": 0.3333333333333333
+     "decisions": 551,
+     "matches": 12,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.600244915372987,
+        "mrr": 0.6491972293509605,
+        "top1": 0.49183303085299457
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5087885741951885,
+        "mrr": 0.6671030902648548,
+        "top1": 0.5180555555555556
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.2185413064341577,
+        "mrr": 0.5281435217640685,
+        "top1": 0.3145539906103287
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4965919011529092,
+        "mrr": 0.6500350270684205,
+        "top1": 0.4942528735632184
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4188015669308855,
+        "mrr": 0.6707730170134333,
+        "top1": 0.5236111111111111
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.022498386034198,
+        "mrr": 0.5098345316655176,
+        "top1": 0.29577464788732394
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.4898801222760796,
+        "mrr": 0.6607932834793089,
+        "top1": 0.5051421657592257
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.458703019147782,
+        "mrr": 0.6707877201887619,
+        "top1": 0.5194444444444444
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7006549039885146,
+        "mrr": 0.5932252606548382,
+        "top1": 0.4084507042253522
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.4750050806280954,
+        "mrr": 0.6615836506893717,
+        "top1": 0.5117967332123413
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4377961336980551,
+        "mrr": 0.6686778776856338,
+        "top1": 0.5187499999999999
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7265585246621686,
+        "mrr": 0.6136226794470373,
+        "top1": 0.4647887323943662
+       }
+      }
      }
     },
-    "prepare_v2": {
-     "all": {
-      "cross_entropy": 1.5380244887715566,
-      "mrr": 0.6508844372101383,
-      "top1": 0.4984802431610942
+    "without_its_own_train_matches": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.6812197462104765,
+        "decisions": 987,
+        "matches": 23,
+        "mrr": 0.6320959996607556,
+        "top1": 0.48936170212765956,
+        "top3": 0.6593939393939394,
+        "top3_decisions": 825
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5980149149524192,
+        "decisions": 878,
+        "matches": 23,
+        "mrr": 0.6497403996196967,
+        "top1": 0.5113895216400911,
+        "top3": 0.6727019498607242,
+        "top3_decisions": 718
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.351438478729509,
+        "decisions": 109,
+        "matches": 11,
+        "mrr": 0.4899695486153404,
+        "top1": 0.3119266055045872,
+        "top3": 0.5700934579439252,
+        "top3_decisions": 107
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.8116866834481353,
+        "decisions": 566,
+        "matches": 15,
+        "mrr": 0.5951707865991162,
+        "top1": 0.4452296819787986,
+        "top3": 0.6091703056768559,
+        "top3_decisions": 458
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.7325371614016867,
+        "decisions": 495,
+        "matches": 15,
+        "mrr": 0.6124216177214855,
+        "top1": 0.4666666666666667,
+        "top3": 0.622107969151671,
+        "top3_decisions": 389
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.3635037737719653,
+        "decisions": 71,
+        "matches": 7,
+        "mrr": 0.4749009076473865,
+        "top1": 0.29577464788732394,
+        "top3": 0.5362318840579711,
+        "top3_decisions": 69
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.5058176405655483,
+        "decisions": 421,
+        "matches": 8,
+        "mrr": 0.6817389226842422,
+        "top1": 0.5486935866983373,
+        "top3": 0.7220708446866485,
+        "top3_decisions": 367
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4241545703247753,
+        "decisions": 383,
+        "matches": 8,
+        "mrr": 0.6979722456761314,
+        "top1": 0.5691906005221932,
+        "top3": 0.7325227963525835,
+        "top3_decisions": 329
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.3288954274659712,
+        "decisions": 38,
+        "matches": 4,
+        "mrr": 0.5181241146344121,
+        "top1": 0.34210526315789475,
+        "top3": 0.631578947368421,
+        "top3_decisions": 38
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5047091344095609,
-      "mrr": 0.6589003898021625,
-      "top1": 0.5087319665907365
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.806381196384696,
-      "mrr": 0.5863155713771359,
-      "top1": 0.4159021406727829
-     }
-    },
-    "prepare_v3": {
-     "all": {
-      "cross_entropy": 1.5050936458576034,
-      "mrr": 0.6561117105102937,
-      "top1": 0.5072610604525498
-     },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4777397634849099,
-      "mrr": 0.6621530098830973,
-      "top1": 0.5140470766894457
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 1.7254304231348991,
-      "mrr": 0.6074487669385346,
-      "top1": 0.45259938837920494
+     "decisions": 987,
+     "matches": 23,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.6260910511321196,
+        "mrr": 0.6424348008277123,
+        "top1": 0.49071259709557585
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5535229241887982,
+        "mrr": 0.6567593056046758,
+        "top1": 0.5113895216400911
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.2106306424737383,
+        "mrr": 0.5270502577618964,
+        "top1": 0.32415902140672787
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.5153079571699075,
+        "mrr": 0.6483098621162245,
+        "top1": 0.497129348193178
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4566227690123366,
+        "mrr": 0.6631886631214927,
+        "top1": 0.517463933181473
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9880198397602502,
+        "mrr": 0.5284604375049812,
+        "top1": 0.3333333333333333
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5380244887715566,
+        "mrr": 0.6508844372101383,
+        "top1": 0.4984802431610942
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5047091344095609,
+        "mrr": 0.6589003898021625,
+        "top1": 0.5087319665907365
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.806381196384696,
+        "mrr": 0.5863155713771359,
+        "top1": 0.4159021406727829
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.5050936458576034,
+        "mrr": 0.6561117105102937,
+        "top1": 0.5072610604525498
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4777397634849099,
+        "mrr": 0.6621530098830973,
+        "top1": 0.5140470766894457
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7254304231348991,
+        "mrr": 0.6074487669385346,
+        "top1": 0.45259938837920494
+       }
+      }
      }
     }
+   }
+  },
+  "retrained_v2_model_shadow": {
+   "checkpoint_sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+   "our_matches_by_role_in_its_own_split": {
+    "test": 13,
+    "train": 0,
+    "validation": 10
    },
-   "own_train_matches_inside_our_validation_or_test_seen": 3,
+   "our_matches_in_none_of_its_parts": 3,
    "prepare_card_feature_trained": false,
-   "tables": {
-    "pooled": {
-     "all": {
-      "cross_entropy": 1.6812197462104765,
-      "decisions": 987,
-      "matches": 23,
-      "mrr": 0.6320959996607556,
-      "top1": 0.48936170212765956,
-      "top3": 0.6593939393939394,
-      "top3_decisions": 825
+   "role": "pinned by LIVE / Model Shadow",
+   "subsets": {
+    "all_decisions": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.5513509879766532,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6446021881007252,
+        "top1": 0.4942932396839333,
+        "top3": 0.6899063475546305,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5033406621622678,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6569533199687454,
+        "top1": 0.510934393638171,
+        "top3": 0.6951807228915663,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9144967606779444,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5511793410388582,
+        "top1": 0.3684210526315789,
+        "top3": 0.6564885496183206,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.64992532302352,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.6119839525477263,
+        "top1": 0.4482758620689655,
+        "top3": 0.6553191489361702,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5888035714253128,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.6252705804596577,
+        "top1": 0.466403162055336,
+        "top3": 0.6582914572864321,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0678659488166673,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.5211321454742507,
+        "top1": 0.32432432432432434,
+        "top3": 0.6388888888888888,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4490735025970773,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6784457956512429,
+        "top1": 0.5420393559928444,
+        "top3": 0.7230142566191446,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4168521979880662,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6890162523519424,
+        "top1": 0.556,
+        "top3": 0.7291666666666666,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7221354060632752,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5888656541198914,
+        "top1": 0.423728813559322,
+        "top3": 0.6779661016949152,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.5980149149524192,
-      "decisions": 878,
-      "matches": 23,
-      "mrr": 0.6497403996196967,
-      "top1": 0.5113895216400911,
-      "top3": 0.6727019498607242,
-      "top3_decisions": 718
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.351438478729509,
-      "decisions": 109,
-      "matches": 11,
-      "mrr": 0.4899695486153404,
-      "top1": 0.3119266055045872,
-      "top3": 0.5700934579439252,
-      "top3_decisions": 107
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     },
-    "test": {
-     "all": {
-      "cross_entropy": 1.8116866834481353,
-      "decisions": 566,
-      "matches": 15,
-      "mrr": 0.5951707865991162,
-      "top1": 0.4452296819787986,
-      "top3": 0.6091703056768559,
-      "top3_decisions": 458
+    "independent_of_this_checkpoint": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.9380823999667027,
+        "decisions": 116,
+        "matches": 3,
+        "mrr": 0.5020843021920608,
+        "top1": 0.29310344827586204,
+        "top3": 0.5729166666666666,
+        "top3_decisions": 96
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.881150604130953,
+        "decisions": 107,
+        "matches": 3,
+        "mrr": 0.5087126658388341,
+        "top1": 0.308411214953271,
+        "top3": 0.5632183908045977,
+        "top3_decisions": 87
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.614938194902838,
+        "decisions": 9,
+        "matches": 1,
+        "mrr": 0.42328042328042326,
+        "top1": 0.1111111111111111,
+        "top3": 0.6666666666666666,
+        "top3_decisions": 9
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.9380823999667027,
+        "decisions": 116,
+        "matches": 3,
+        "mrr": 0.5020843021920608,
+        "top1": 0.29310344827586204,
+        "top3": 0.5729166666666666,
+        "top3_decisions": 96
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.881150604130953,
+        "decisions": 107,
+        "matches": 3,
+        "mrr": 0.5087126658388341,
+        "top1": 0.308411214953271,
+        "top3": 0.5632183908045977,
+        "top3_decisions": 87
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.614938194902838,
+        "decisions": 9,
+        "matches": 1,
+        "mrr": 0.42328042328042326,
+        "top1": 0.1111111111111111,
+        "top3": 0.6666666666666666,
+        "top3_decisions": 9
+       }
+      },
+      "validation": {
+       "all": {
+        "decisions": 0
+       },
+       "no_prepare_in_menu": {
+        "decisions": 0
+       },
+       "prepare_in_menu": {
+        "decisions": 0
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.7325371614016867,
-      "decisions": 495,
-      "matches": 15,
-      "mrr": 0.6124216177214855,
-      "top1": 0.4666666666666667,
-      "top3": 0.622107969151671,
-      "top3_decisions": 389
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.3635037737719653,
-      "decisions": 71,
-      "matches": 7,
-      "mrr": 0.4749009076473865,
-      "top1": 0.29577464788732394,
-      "top3": 0.5362318840579711,
-      "top3_decisions": 69
+     "decisions": 116,
+     "matches": 3,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.9837624610623743,
+        "mrr": 0.5315920202646875,
+        "top1": 0.33045977011494254
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.93165128874159,
+        "mrr": 0.5424268630906894,
+        "top1": 0.34890965732087226
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.603306398653922,
+        "mrr": 0.40277777777777773,
+        "top1": 0.1111111111111111
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.7221023920453236,
+        "mrr": 0.5561452314698854,
+        "top1": 0.3620689655172414
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.697730191479132,
+        "mrr": 0.5669684544699484,
+        "top1": 0.38006230529595014
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.01186077655449,
+        "mrr": 0.42746913580246915,
+        "top1": 0.14814814814814814
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.8366132942886282,
+        "mrr": 0.5527062018441328,
+        "top1": 0.3591954022988506
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.851566726668431,
+        "mrr": 0.5570059224264832,
+        "top1": 0.3644859813084112
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.6588335982176368,
+        "mrr": 0.5015873015873016,
+        "top1": 0.2962962962962963
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.6963674910664996,
+        "mrr": 0.5960468459534328,
+        "top1": 0.4310344827586207
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.6794929352501045,
+        "mrr": 0.6060861914989399,
+        "top1": 0.4423676012461059
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.8969872102169756,
+        "mrr": 0.47669018224573784,
+        "top1": 0.2962962962962963
+       }
+      }
      }
     },
-    "validation": {
-     "all": {
-      "cross_entropy": 1.5058176405655483,
-      "decisions": 421,
-      "matches": 8,
-      "mrr": 0.6817389226842422,
-      "top1": 0.5486935866983373,
-      "top3": 0.7220708446866485,
-      "top3_decisions": 367
+    "without_its_own_train_matches": {
+     "checkpoint": {
+      "pooled": {
+       "all": {
+        "cross_entropy": 1.5513509879766532,
+        "decisions": 1139,
+        "matches": 26,
+        "mrr": 0.6446021881007252,
+        "top1": 0.4942932396839333,
+        "top3": 0.6899063475546305,
+        "top3_decisions": 961
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5033406621622678,
+        "decisions": 1006,
+        "matches": 26,
+        "mrr": 0.6569533199687454,
+        "top1": 0.510934393638171,
+        "top3": 0.6951807228915663,
+        "top3_decisions": 830
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.9144967606779444,
+        "decisions": 133,
+        "matches": 14,
+        "mrr": 0.5511793410388582,
+        "top1": 0.3684210526315789,
+        "top3": 0.6564885496183206,
+        "top3_decisions": 131
+       }
+      },
+      "test": {
+       "all": {
+        "cross_entropy": 1.64992532302352,
+        "decisions": 580,
+        "matches": 16,
+        "mrr": 0.6119839525477263,
+        "top1": 0.4482758620689655,
+        "top3": 0.6553191489361702,
+        "top3_decisions": 470
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5888035714253128,
+        "decisions": 506,
+        "matches": 16,
+        "mrr": 0.6252705804596577,
+        "top1": 0.466403162055336,
+        "top3": 0.6582914572864321,
+        "top3_decisions": 398
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0678659488166673,
+        "decisions": 74,
+        "matches": 8,
+        "mrr": 0.5211321454742507,
+        "top1": 0.32432432432432434,
+        "top3": 0.6388888888888888,
+        "top3_decisions": 72
+       }
+      },
+      "validation": {
+       "all": {
+        "cross_entropy": 1.4490735025970773,
+        "decisions": 559,
+        "matches": 10,
+        "mrr": 0.6784457956512429,
+        "top1": 0.5420393559928444,
+        "top3": 0.7230142566191446,
+        "top3_decisions": 491
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4168521979880662,
+        "decisions": 500,
+        "matches": 10,
+        "mrr": 0.6890162523519424,
+        "top1": 0.556,
+        "top3": 0.7291666666666666,
+        "top3_decisions": 432
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.7221354060632752,
+        "decisions": 59,
+        "matches": 6,
+        "mrr": 0.5888656541198914,
+        "top1": 0.423728813559322,
+        "top3": 0.6779661016949152,
+        "top3_decisions": 59
+       }
+      }
      },
-     "no_prepare_in_menu": {
-      "cross_entropy": 1.4241545703247753,
-      "decisions": 383,
-      "matches": 8,
-      "mrr": 0.6979722456761314,
-      "top1": 0.5691906005221932,
-      "top3": 0.7325227963525835,
-      "top3_decisions": 329
-     },
-     "prepare_in_menu": {
-      "cross_entropy": 2.3288954274659712,
-      "decisions": 38,
-      "matches": 4,
-      "mrr": 0.5181241146344121,
-      "top1": 0.34210526315789475,
-      "top3": 0.631578947368421,
-      "top3_decisions": 38
+     "decisions": 1139,
+     "matches": 26,
+     "new_groups_mean_over_seeds": {
+      "control_v2": {
+       "all": {
+        "cross_entropy": 1.5938751264700872,
+        "mrr": 0.6516546543664441,
+        "top1": 0.5051214515657009
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.5338096769351772,
+        "mrr": 0.6635397232476357,
+        "top1": 0.5225314777998675
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 2.0482047673130883,
+        "mrr": 0.561757065686153,
+        "top1": 0.37343358395989973
+       }
+      },
+      "control_v3": {
+       "all": {
+        "cross_entropy": 1.4905022070437555,
+        "mrr": 0.6559144327389325,
+        "top1": 0.5089259584430788
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4431418968506387,
+        "mrr": 0.6680312107421947,
+        "top1": 0.5265076209410205
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.848731320233797,
+        "mrr": 0.5642642171653846,
+        "top1": 0.3759398496240601
+       }
+      },
+      "prepare_v2": {
+       "all": {
+        "cross_entropy": 1.5115801088067056,
+        "mrr": 0.6577443483094586,
+        "top1": 0.5098039215686274
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4900050625996109,
+        "mrr": 0.6621428651318809,
+        "top1": 0.5155732273028496
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.674771811696458,
+        "mrr": 0.6244743639233152,
+        "top1": 0.4661654135338346
+       }
+      },
+      "prepare_v3": {
+       "all": {
+        "cross_entropy": 1.478759843404661,
+        "mrr": 0.6649951310769856,
+        "top1": 0.5218027509511267
+       },
+       "no_prepare_in_menu": {
+        "cross_entropy": 1.4660236024109832,
+        "mrr": 0.667617640935581,
+        "top1": 0.5248508946322067
+       },
+       "prepare_in_menu": {
+        "cross_entropy": 1.575095621146314,
+        "mrr": 0.6451587031240015,
+        "top1": 0.49874686716791977
+       }
+      }
      }
     }
    }
@@ -6924,7 +8519,7 @@
  "integrity": {
   "checked": {
    "actions": 12244,
-   "model_decisions": 17085
+   "model_decisions": 18224
   },
   "problems": {},
   "verdict": "PASS"
@@ -9814,7 +11409,7 @@
     }
    }
   },
-  "retrained_v2": {
+  "retrain_1_v2_older": {
    "pooled": {
     "all": {
      "cross_entropy": 1.6202118937577807,
@@ -10016,6 +11611,212 @@
      "mrr": 0.650799512987013,
      "top1": 0.5,
      "top3": 0.75,
+     "top3_decisions": 40
+    }
+   }
+  },
+  "retrained_v2_model_shadow": {
+   "pooled": {
+    "all": {
+     "cross_entropy": 1.5513509879766532,
+     "decisions": 1139,
+     "matches": 26,
+     "mrr": 0.6446021881007252,
+     "top1": 0.4942932396839333,
+     "top3": 0.6899063475546305,
+     "top3_decisions": 961
+    },
+    "mixed_play_and_prepare_only": {
+     "decisions": 0
+    },
+    "no_prepare_in_menu": {
+     "cross_entropy": 1.5033406621622678,
+     "decisions": 1006,
+     "matches": 26,
+     "mrr": 0.6569533199687454,
+     "top1": 0.510934393638171,
+     "top3": 0.6951807228915663,
+     "top3_decisions": 830
+    },
+    "play_and_prepare": {
+     "cross_entropy": 2.1904998390541146,
+     "decisions": 42,
+     "matches": 9,
+     "mrr": 0.45349240706383565,
+     "top1": 0.2857142857142857,
+     "top3": 0.47619047619047616,
+     "top3_decisions": 42
+    },
+    "player_chose_other_prepare_available": {
+     "cross_entropy": 2.097429520493998,
+     "decisions": 119,
+     "matches": 14,
+     "mrr": 0.508180832141469,
+     "top1": 0.31092436974789917,
+     "top3": 0.6186440677966102,
+     "top3_decisions": 118
+    },
+    "player_chose_prepare": {
+     "cross_entropy": 0.3595683022414874,
+     "decisions": 14,
+     "matches": 9,
+     "mrr": 0.9166666666666667,
+     "top1": 0.8571428571428571,
+     "top3": 1.0,
+     "top3_decisions": 13
+    },
+    "prepare_in_menu": {
+     "cross_entropy": 1.9144967606779444,
+     "decisions": 133,
+     "matches": 14,
+     "mrr": 0.5511793410388582,
+     "top1": 0.3684210526315789,
+     "top3": 0.6564885496183206,
+     "top3_decisions": 131
+    },
+    "prepare_only": {
+     "cross_entropy": 1.7871107245043276,
+     "decisions": 91,
+     "matches": 13,
+     "mrr": 0.5962656182580994,
+     "top1": 0.4065934065934066,
+     "top3": 0.7415730337078652,
+     "top3_decisions": 89
+    }
+   },
+   "test": {
+    "all": {
+     "cross_entropy": 1.64992532302352,
+     "decisions": 580,
+     "matches": 16,
+     "mrr": 0.6119839525477263,
+     "top1": 0.4482758620689655,
+     "top3": 0.6553191489361702,
+     "top3_decisions": 470
+    },
+    "mixed_play_and_prepare_only": {
+     "decisions": 0
+    },
+    "no_prepare_in_menu": {
+     "cross_entropy": 1.5888035714253128,
+     "decisions": 506,
+     "matches": 16,
+     "mrr": 0.6252705804596577,
+     "top1": 0.466403162055336,
+     "top3": 0.6582914572864321,
+     "top3_decisions": 398
+    },
+    "play_and_prepare": {
+     "cross_entropy": 2.1076717893225947,
+     "decisions": 23,
+     "matches": 4,
+     "mrr": 0.47574345943911156,
+     "top1": 0.30434782608695654,
+     "top3": 0.5217391304347826,
+     "top3_decisions": 23
+    },
+    "player_chose_other_prepare_available": {
+     "cross_entropy": 2.225629347264296,
+     "decisions": 68,
+     "matches": 8,
+     "mrr": 0.48623204066315523,
+     "top1": 0.27941176470588236,
+     "top3": 0.6119402985074627,
+     "top3_decisions": 67
+    },
+    "player_chose_prepare": {
+     "cross_entropy": 0.27988076641020637,
+     "decisions": 6,
+     "matches": 5,
+     "mrr": 0.9166666666666666,
+     "top1": 0.8333333333333334,
+     "top3": 1.0,
+     "top3_decisions": 5
+    },
+    "prepare_in_menu": {
+     "cross_entropy": 2.0678659488166673,
+     "decisions": 74,
+     "matches": 8,
+     "mrr": 0.5211321454742507,
+     "top1": 0.32432432432432434,
+     "top3": 0.6388888888888888,
+     "top3_decisions": 72
+    },
+    "prepare_only": {
+     "cross_entropy": 2.0499142952551703,
+     "decisions": 51,
+     "matches": 7,
+     "mrr": 0.5416015529018625,
+     "top1": 0.3333333333333333,
+     "top3": 0.6938775510204082,
+     "top3_decisions": 49
+    }
+   },
+   "validation": {
+    "all": {
+     "cross_entropy": 1.4490735025970773,
+     "decisions": 559,
+     "matches": 10,
+     "mrr": 0.6784457956512429,
+     "top1": 0.5420393559928444,
+     "top3": 0.7230142566191446,
+     "top3_decisions": 491
+    },
+    "mixed_play_and_prepare_only": {
+     "decisions": 0
+    },
+    "no_prepare_in_menu": {
+     "cross_entropy": 1.4168521979880662,
+     "decisions": 500,
+     "matches": 10,
+     "mrr": 0.6890162523519424,
+     "top1": 0.556,
+     "top3": 0.7291666666666666,
+     "top3_decisions": 432
+    },
+    "play_and_prepare": {
+     "cross_entropy": 2.2907653729396382,
+     "decisions": 19,
+     "matches": 5,
+     "mrr": 0.42655692260955425,
+     "top1": 0.2631578947368421,
+     "top3": 0.42105263157894735,
+     "top3_decisions": 19
+    },
+    "player_chose_other_prepare_available": {
+     "cross_entropy": 1.9264964181336008,
+     "decisions": 51,
+     "matches": 6,
+     "mrr": 0.5374458874458875,
+     "top1": 0.35294117647058826,
+     "top3": 0.6274509803921569,
+     "top3_decisions": 51
+    },
+    "player_chose_prepare": {
+     "cross_entropy": 0.41933395411494817,
+     "decisions": 8,
+     "matches": 4,
+     "mrr": 0.9166666666666666,
+     "top1": 0.875,
+     "top3": 1.0,
+     "top3_decisions": 8
+    },
+    "prepare_in_menu": {
+     "cross_entropy": 1.7221354060632752,
+     "decisions": 59,
+     "matches": 6,
+     "mrr": 0.5888656541198914,
+     "top1": 0.423728813559322,
+     "top3": 0.6779661016949152,
+     "top3_decisions": 59
+    },
+    "prepare_only": {
+     "cross_entropy": 1.4520361717970025,
+     "decisions": 40,
+     "matches": 6,
+     "mrr": 0.6659623015873015,
+     "top1": 0.5,
+     "top3": 0.8,
      "top3_decisions": 40
     }
    }

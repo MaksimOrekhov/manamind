@@ -123,3 +123,54 @@ def test_integrity_check_flags_a_hand_card_mismatch():
     assert analysis.integrity([broken], {"m": good}, None)["verdict"] == "FAIL"
     short = {row["decision_id"]: [0.0]}
     assert analysis.integrity([row], {"m": short}, None)["verdict"] == "FAIL"
+
+
+# -- mandatory baselines ----------------------------------------------------------------------------------------------
+
+def pins() -> dict:
+    """The digests and paths LIVE / Model Shadow pin, read from the launcher source without importing it."""
+    import re
+    text = (ROOT / "scripts/run_manamind.py").read_text(encoding="utf-8")
+    found = dict(re.findall(r'^(\w+_SHA256) = "([0-9a-f]{64})"', text, re.M))
+    paths = dict(re.findall(r'^(\w+_CHECKPOINT) = ROOT / "([^"]+)"', text, re.M))
+    return {**found, **paths}
+
+
+def test_required_baselines_are_the_models_that_live_and_model_shadow_pin():
+    pinned = pins()
+    old = analysis.OLD_CHECKPOINTS
+    assert old["frozen_v2"] == (pinned["POLICY_V2_CHECKPOINT"], pinned["POLICY_V2_SHA256"])
+    assert old["retrained_v2_model_shadow"] == (pinned["RETRAINED_V2_CHECKPOINT"], pinned["RETRAINED_V2_SHA256"])
+    assert old["policy_v3_ml_policy_v3_1"] == (pinned["POLICY_V3_CHECKPOINT"], pinned["POLICY_V3_SHA256"])
+    assert old["retrained_v2_model_shadow"][1].startswith("9358f932fc78")
+    assert set(analysis.REQUIRED_BASELINES) <= set(old)
+
+
+def test_the_older_retrain_1_model_is_a_separate_clearly_named_baseline():
+    old = analysis.OLD_CHECKPOINTS
+    shadow, older = old["retrained_v2_model_shadow"], old["retrain_1_v2_older"]
+    assert shadow[0] != older[0] and shadow[1] != older[1]
+    assert "retrain_1" in older[0] and "retrain_1_v2_older" not in analysis.REQUIRED_BASELINES
+    assert "retrained_v2" not in old  # the ambiguous name must not come back
+    assert len({sha for _, sha in old.values()}) == len(old) == len({path for path, _ in old.values()})
+
+
+@pytest.mark.skipif(not all((ROOT / path).is_file() for path, _ in analysis.OLD_CHECKPOINTS.values()),
+                    reason="local ignored checkpoints are absent")
+def test_local_baseline_files_match_their_pinned_digests():
+    for name, (path, sha) in analysis.OLD_CHECKPOINTS.items():
+        assert analysis.sha256_file(ROOT / path) == sha, name
+
+
+def test_scoring_refuses_a_checkpoint_whose_digest_differs(tmp_path):
+    from test_ml_prepare_train import metadata, v2_policy
+    from manamind.training.policy_checkpoint import save_policy_checkpoint
+    encoder = StateEncoder(CATALOG)
+    path = tmp_path / "policy.pt"
+    save_policy_checkpoint(path, v2_policy(encoder), encoder, metadata())
+    row, = prepare_rows()
+    good = analysis.sha256_file(path)
+    logits, payload = analysis.score(path, [row], good)
+    assert len(logits[row["decision_id"]]) == len(row["legal_actions"]) and payload["semantic_action_schema_version"] == 1
+    with pytest.raises(ValueError, match="SHA-256"):
+        analysis.score(path, [row], "0" * 64)
