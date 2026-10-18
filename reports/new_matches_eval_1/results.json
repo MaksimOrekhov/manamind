@@ -1,0 +1,185 @@
+{
+  "conclusion": "NOT_YET_EVALUATED",
+  "data_identity_sha256": "3f94258a274858e58996062ee15cde3afe61589554cfe39cc447c169c812f0b1",
+  "exclusion_reasons": {
+    "LEGACY_FILENAME_WITHOUT_MATCH_KEY": 18,
+    "MATCH_ID_IN_PRIOR_SPLIT_OR_EVALUATION": 64,
+    "NO_DECISION_WITH_EXACT_LIVE_MENU_JOIN": 1,
+    "PRE_EXISTING_LIVE_OBSERVATION": 1,
+    "PROTECTED_FRESH_HOLDOUT_ID_ONLY": 8
+  },
+  "inventory": {
+    "collector_pending_logs": 0,
+    "completed_matches_imported": 14,
+    "decision_exclusions": {
+      "DUPLICATE_LIVE_SNAPSHOT": 157,
+      "LIVE_SNAPSHOT_NOT_MATCHED": 103,
+      "NO_PREDICTION_ROW": 14
+    },
+    "importer_skip_reasons": {
+      "AMBIGUOUS_SELECTION": 2,
+      "CHOICE_UNRESOLVED": 3,
+      "GAME_RESET_STALE_STATE": 41,
+      "OPTIONS_SUPERSEDED": 46
+    },
+    "keyed_collected_match_logs": 86,
+    "legacy_filename_logs": 18,
+    "live_recording_directories_nonprotected": 66,
+    "new_eligible_decisions": 239,
+    "new_eligible_matches": 13,
+    "new_nonoverlap_raw_candidates": 14,
+    "prepare_chosen": 0,
+    "prepare_chosen_live_matched": 0,
+    "prepare_decisions": 0,
+    "prepare_menu_decision_exclusions": {
+      "DUPLICATE_LIVE_SNAPSHOT": 1,
+      "LIVE_SNAPSHOT_NOT_MATCHED": 9,
+      "NO_PREDICTION_ROW": 5
+    },
+    "prepare_menu_decisions_imported": 15,
+    "prepare_menu_decisions_live_matched": 0,
+    "protected_raw_log_prefixes_skipped": 8,
+    "raw_collected_log_files": 104
+  },
+  "match_categories": {
+    "NEW_ELIGIBLE": 13,
+    "PREVIOUSLY_USED": 73,
+    "UNVERIFIED": 19
+  },
+  "metrics": null,
+  "models": {
+    "control_v2_seed42": {
+      "architecture": "v2",
+      "label": "control_v2_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/control_v2_seed42/metrics.json",
+      "metrics_sha256": "6fbd1cd7cddab02548a3b7c0b5745cd8f0024e2c02b45d75d33f442ca3c1128d",
+      "path": "data/processed_policy_prepare_train_1/control_v2_seed42/policy.pt",
+      "role": "prepare_ablation_control",
+      "selected_epoch": 10,
+      "sha256": "4671710a50b3f13fbde2bbbee39f5c51b1abfc2f3e2c53a16b92f55c4d46aaf0",
+      "split_sha256": "edd8255019e7608b0d52f7c337912ef6a4a287604b9624dbd3e44e834c8add04",
+      "supports_prepare": false
+    },
+    "control_v3_seed42": {
+      "architecture": "v3",
+      "label": "control_v3_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/control_v3_seed42/metrics.json",
+      "metrics_sha256": "6abc20fd546fc2bb25fcc7c7b48ceff150807c6f2bd79096d589ac3932cf7707",
+      "path": "data/processed_policy_prepare_train_1/control_v3_seed42/policy.pt",
+      "role": "prepare_ablation_control",
+      "selected_epoch": 3,
+      "sha256": "314232188cc042e837de81ae7865c5d3d1fc0896dc8978ce681fcf25dcc26d7a",
+      "split_sha256": "edd8255019e7608b0d52f7c337912ef6a4a287604b9624dbd3e44e834c8add04",
+      "supports_prepare": false
+    },
+    "frozen_v2": {
+      "architecture": null,
+      "label": null,
+      "metrics_path": "data/processed_policy_ml2a/seed42_v2/metrics.json",
+      "metrics_sha256": "497076326112976babefdd06ae3c16732b3749ae6e285c916a3f134dcded5e07",
+      "path": "data/processed_policy_ml2a/seed42_v2/policy.pt",
+      "role": "live_baseline",
+      "selected_epoch": 8,
+      "sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "split_sha256": "4e96ec57ecdf26ac95d754c23b2ea88d354a27cb9f363ee91cecd8e44d85229b",
+      "supports_prepare": false
+    },
+    "policy_v3": {
+      "architecture": "v3",
+      "label": "architecturev3_seed42",
+      "metrics_path": "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/metrics.json",
+      "metrics_sha256": "e97b69d47eff89230bfc6ffd9a97f8fa2b81bf700ad278051cbabe1d830851ef",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 4,
+      "sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "split_sha256": "4ec4d360ce6f09f9951d3708f43bcba990fa2ff9012468449622ac8339044194",
+      "supports_prepare": false
+    },
+    "prepare_v2_seed42": {
+      "architecture": "v2",
+      "label": "prepare_v2_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/prepare_v2_seed42/metrics.json",
+      "metrics_sha256": "24dcf0d29700c4372ca036a94b202d5bdce2a7987aac3f0a893dcaecd6299a05",
+      "path": "data/processed_policy_prepare_train_1/prepare_v2_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 10,
+      "sha256": "a9dd7c1eee8c9f4bbe23b3447e4aa02b5f06019f421ad27e7240ab2ae3a89c9e",
+      "split_sha256": "3b7f3dba8a8e16d1c564cc404e9bc64bdda5a15070ae4fc1803f402ed194a04a",
+      "supports_prepare": true
+    },
+    "prepare_v3_seed42": {
+      "architecture": "v3",
+      "label": "prepare_v3_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/prepare_v3_seed42/metrics.json",
+      "metrics_sha256": "486dde2ab0c78a4be5ae181288fa5f4ae4089644655eb1a9ccea808c4065ca23",
+      "path": "data/processed_policy_prepare_train_1/prepare_v3_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 7,
+      "sha256": "3541ac74840491491a5ae07a9d1be9ea068d61aaf158ad6016d8b3fab7680d12",
+      "split_sha256": "3b7f3dba8a8e16d1c564cc404e9bc64bdda5a15070ae4fc1803f402ed194a04a",
+      "supports_prepare": true
+    },
+    "retrained_v2": {
+      "architecture": "v2",
+      "label": "architecturev2_seed42",
+      "metrics_path": "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/metrics.json",
+      "metrics_sha256": "9a6713132640f835e87d376a35d376bd0fb67da3908f663de38adf1e63a87e50",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 9,
+      "sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+      "split_sha256": "4ec4d360ce6f09f9951d3708f43bcba990fa2ff9012468449622ac8339044194",
+      "supports_prepare": false
+    }
+  },
+  "protected_fresh_holdout": {
+    "count": 9,
+    "inference_run": false,
+    "opened": false
+  },
+  "protocol": {
+    "baseline": "frozen_v2",
+    "confidence_examples_threshold": 0.6,
+    "hypothesis": "Retrained Policy v2/v3 and Prepare-aware policies may better imitate recorded player actions than Frozen Policy v2 on new non-overlapping games.",
+    "live_prepare_actions_enabled": false,
+    "main_comparison": "All seven fixed seed-42 checkpoints score the same exactly joined decisions without PREPARE_CARD; only Prepare v2/v3 score menus containing PREPARE_CARD.",
+    "metrics": [
+      "cross_entropy",
+      "top1",
+      "top3",
+      "mrr",
+      "uniform_random_baseline",
+      "mean_and_spread_across_matches"
+    ],
+    "model_selection_on_new_data": false,
+    "pairing": "Same game_id, options_id, state_hash, state snapshot, full ordered action digests in both Strategy and Outcome Shadow, and a Frozen v2 RECOMMENDATION row with legal Top-3 actions.",
+    "prepare_controls": [
+      "control_v2_seed42",
+      "control_v3_seed42"
+    ],
+    "prepare_menu_rule": "Evaluate a PREPARE_CARD menu only if the complete schema-2 menu exactly matches both LIVE shadow menus; otherwise exclude it with a reason.",
+    "prepare_semantics": "Prepare models are loaded with allow_prepare=True. Older and control models are never scored on PREPARE_CARD menus.",
+    "primary_candidates": [
+      "frozen_v2",
+      "retrained_v2",
+      "policy_v3",
+      "prepare_v2_seed42",
+      "prepare_v3_seed42"
+    ],
+    "strategy_scorer_gap_threshold": 3.0,
+    "top3_rule": "Only menus with at least three legal actions enter the Top-3 denominator.",
+    "training_or_finetuning": false,
+    "uncertainty": {
+      "draws": 5000,
+      "method": "paired nonparametric bootstrap resampling whole matches",
+      "seed": 20261018
+    }
+  },
+  "schema": "manamind.new_matches_eval_1/results/1",
+  "source_code_sha256": "359ec940486f706d90f71fbf9793de53ee360bdf46ca45e409b8a7a3389d216b",
+  "source_commit": "a8632301ed79268ac116e34e67173217b0b4e2c5",
+  "split_plan_sha256": "408cb21b8e29cd1caa9dfd585c0b6d2dc7917c6a8021aa49910a4ddd5cf0218a",
+  "status": "PROTOCOL_LOCKED",
+  "strategic_analysis": null
+}
