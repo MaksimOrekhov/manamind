@@ -361,6 +361,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--cards", type=Path, default=ROOT / "data/cards/standard_current_enUS.json")
     parser.add_argument("--poll-ms", type=int, default=50)
     parser.add_argument("--collector-seconds", type=float, default=5.0)
+    parser.add_argument("--collector-max-sessions", type=int, default=3,
+                        help="Maximum newest Hearthstone session folders scanned by Collector (default: 3)")
     parser.add_argument("--outcome-shadow", action="store_true",
                         help="Forecast the immediate consequences of every legal action next to the Policy ranking and "
                              "write them to <journal>.outcome_shadow.jsonl. Read-only: the Top-3 is unchanged")
@@ -393,6 +395,8 @@ def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     if args.poll_ms < 10 or args.collector_seconds <= 0:
         raise SystemExit("poll-ms must be >=10 and collector-seconds must be positive")
+    if args.collector_max_sessions < 1:
+        raise SystemExit("collector-max-sessions must be positive")
     if args.ui and args.overlay:
         raise SystemExit("Choose --ui or --overlay")
     # hslog warnings and exceptions may contain raw log text or player identifiers.
@@ -446,8 +450,7 @@ def main(argv: list[str] | None = None) -> int:
     session = LiveSession(catalog)
     recorder = Recorder(args.data_root / "raw/live", catalog_path=args.cards)
     live = LiveRunner(args.logs_root, session, recorder)
-    collector = Collector(args.logs_root, args.data_root / "raw/collected",
-                          args.data_root / "processed_real", args.cards)
+    collector = _make_collector(args)
     runtime = UnifiedRuntime(live, collector, recommender, emit=lambda text: print(text, flush=True),
                              collector_seconds=args.collector_seconds, outcome_shadow=shadow,
                              strategy_shadow=strategy, model_shadow=model_worker,
@@ -476,6 +479,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     finally:
         runtime.finish()
+
+
+def _make_collector(args) -> Collector:
+    return Collector(args.logs_root, args.data_root / "raw/collected",
+                     args.data_root / "processed_real", args.cards,
+                     max_sessions=args.collector_max_sessions)
 
 
 if __name__ == "__main__":
