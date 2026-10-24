@@ -31,6 +31,7 @@ PRIOR = ROOT / "data/processed_new_matches_eval_1/protocol.private.json"
 CODE_PATHS = (
     "scripts/new_matches_eval_2.py", "scripts/new_matches_eval_1.py",
     "scripts/live_join_coverage_1.py", "src/manamind/live/snapshot_join.py",
+    "src/manamind/live/journal_join.py",
 )
 PRIMARY = ("retrained_v2", "policy_v3", "control_v3_seed42",
            "prepare_v2_seed42", "prepare_v3_seed42")
