@@ -52,6 +52,7 @@ from manamind.integrations.powerlog.lines import (  # noqa: F401  (re-exported f
     read_complete_lines,
     split_games,
 )
+from manamind.live.capture_diagnostics import build_capture_report
 
 try:
     from scripts.audit_power_log import audit_log
@@ -348,6 +349,7 @@ class Collector:
                 raw_path, self.outputs, self.catalog_path)
             value = results["value"]
             self._report_derived(results)
+            self._write_capture_diagnostics(key, results)
             if value.status == FAILED:
                 self._report_failure(path, RuntimeError("value processor failed"), stage="VALUE_IMPORT",
                                      retryable=True, match_key=key, segment_index=segment_index,
@@ -390,6 +392,36 @@ class Collector:
                 self.emit(f"[{_now()}] {labels[name]}: already present")
             else:
                 self.emit(f"[{_now()}] {labels[name]}: {result.count}")
+
+    def _write_capture_diagnostics(self, key: str, results: dict) -> None:
+        """Write a compact match reconciliation beside collected raw data."""
+        target = self.raw_output / "capture_reports" / f"{key[:16]}.json"
+        policy = results.get("policy")
+        detail = dict(getattr(policy, "detail", {}) or {})
+        detail["status"] = getattr(policy, "status", "UNKNOWN")
+        try:
+            provider = getattr(self, "live_capture_provider", None)
+            live_observation = provider(key) if callable(provider) else None
+            report = build_capture_report(
+                key,
+                detail,
+                self.raw_output.parent / "live",
+                self.raw_output.parent / "live",
+                self.outputs.policy / f"{key}.jsonl",
+                live_observation=live_observation,
+            )
+            target.parent.mkdir(parents=True, exist_ok=True)
+            temporary = target.with_suffix(".json.tmp")
+            temporary.write_text(json.dumps(report, sort_keys=True, indent=1) + "\n",
+                                  encoding="utf-8", newline="\n")
+            os.replace(temporary, target)
+            self.emit(
+                f"[{_now()}] capture diagnostics: {report['collector']['power_log_decisions']} decisions, "
+                f"{report['live']['snapshots_saved']} LIVE snapshots, "
+                f"{report['strict_identity']['labeled_policy_decisions_with_exact_snapshot']} strict matches"
+            )
+        except Exception as error:
+            self.emit(f"[{_now()}] capture diagnostics warning: code={safe_failure_code(error)}; raw match kept")
 
     def _announce(self, key: str) -> None:
         if key not in self._announced:

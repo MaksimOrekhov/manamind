@@ -7,6 +7,8 @@ they are given, so a recorded slice plus read trace reproduces the same snapshot
 from __future__ import annotations
 
 import re
+from collections import Counter
+from collections.abc import Callable
 from dataclasses import dataclass, field
 
 from manamind.cards.catalog import CardCatalog
@@ -59,6 +61,9 @@ class GameRun:
     ended: bool = False
     failed: bool = False
     unsupported_reason: str | None = None
+    options_packets_seen: int = 0
+    trusted_snapshots: int = 0
+    trust_rejections: Counter[str] = field(default_factory=Counter)
 
     @property
     def blocked(self) -> bool:
@@ -81,9 +86,11 @@ class LiveSession:
         session_name: str | None = None,
         *,
         parity_view: bool = False,
+        sequence_resume: Callable[[str, int, str], tuple[int | None, int]] | None = None,
     ) -> None:
         self.catalog = catalog
         self.parity_view = parity_view
+        self.sequence_resume = sequence_resume
         self.mode_policy = mode_policy or ModePolicy()
         self.session_name = session_name
         self.status = LiveStatus.WAITING_FOR_GAME
@@ -310,6 +317,7 @@ class LiveSession:
             if message.startswith("id="):
                 packet = game.reducer.last_options()
                 if packet is not None:
+                    game.options_packets_seen += 1
                     game.gate.begin(packet, packet.id, now_ms, len(game.lines))
             else:
                 game.gate.touch(now_ms)
@@ -398,8 +406,16 @@ class LiveSession:
             observed = None
 
         state_dict = state_to_dict(state)
-        seq = self._seq.get(game.game_key, 0) + 1
-        self._seq[game.game_key] = seq
+        if game.game_key not in self._seq:
+            resumed_seq, previous_max = (self.sequence_resume(
+                game.game_key, int(decision["options_id"]), state_hash(state_dict)
+            ) if self.sequence_resume is not None else (None, 0))
+            self._seq[game.game_key] = previous_max
+            seq = resumed_seq if resumed_seq is not None else previous_max + 1
+        else:
+            seq = self._seq[game.game_key] + 1
+        self._seq[game.game_key] = max(self._seq[game.game_key], seq)
+        game.trusted_snapshots += 1
         self._set(LiveStatus.READY, None)
         snapshot = Snapshot(
             seq=seq,
@@ -462,6 +478,7 @@ class LiveSession:
 
     def _untrusted(self, game: GameRun, reason: str) -> None:
         game.failed = True
+        game.trust_rejections[reason] += 1
         game.gate.discard()
         self._set(LiveStatus.UNTRUSTED, reason)
 

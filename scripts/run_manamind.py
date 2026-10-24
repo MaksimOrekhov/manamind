@@ -58,6 +58,9 @@ class UnifiedRuntime:
             raise ValueError("Collector poll interval must be positive")
         self.live = live
         self.collector = collector
+        live_capture_provider = getattr(self.live, "capture_summary_for", None)
+        if callable(live_capture_provider):
+            self.collector.live_capture_provider = live_capture_provider
         self.recommender = recommender
         self.recommender_unavailable = None
         self.emit = emit
@@ -82,6 +85,17 @@ class UnifiedRuntime:
         self.latencies_ms: list[float] = []
         self.decisions_scored = 0
         self._collection_warning_attempts: dict[tuple[str, str], int] = {}
+        self._recording_warning_attempts: dict[str, int] = {}
+
+    def _recording_warnings(self) -> None:
+        drain = getattr(self.live, "drain_recording_failures", None)
+        if not callable(drain):
+            return
+        for code, count in drain().items():
+            attempts = self._recording_warning_attempts.get(code, 0) + count
+            self._recording_warning_attempts[code] = attempts
+            if attempts == 1 or attempts % 12 == 0:
+                self.emit(f"live recording warning: code={code} failures={attempts}; recommendations continue")
 
     def _collection_warning(self, stage: str, error: Exception) -> None:
         code = safe_failure_code(error)
@@ -258,6 +272,7 @@ class UnifiedRuntime:
         if not self.live_failed:
             try:
                 events = self.live.step()
+                self._recording_warnings()
                 self._events(events)
                 snap = self.live.session.current_snapshot
                 identity = ((snap.game_key, snap.seq, snap.decision["options_id"], snap.state_hash)
@@ -270,6 +285,7 @@ class UnifiedRuntime:
                         result = self.recommender.score(snap, self.live.session)
                         # Read any lines that appeared during inference before displaying the result.
                         self._events(self.live.step())
+                        self._recording_warnings()
                         if self.live.session.current_snapshot is snap and self.live.session.status is LiveStatus.READY:
                             self.emit(render_recommendation(result))
                             journaled = False
@@ -330,6 +346,10 @@ class UnifiedRuntime:
 
     def finish(self) -> None:
         self._invalidate("APP_STOP")
+        finish_live = getattr(self.live, "finish", None)
+        if callable(finish_live):
+            finish_live()
+        self._recording_warnings()
         try:
             self.collector.write_summary()
         except Exception as error:

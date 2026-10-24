@@ -68,8 +68,13 @@ def main(argv: list[str] | None = None) -> int:
         while True:
             for event in runner.step():
                 emit(event, args.json)
+            for code, count in runner.drain_recording_failures().items():
+                print(f"recording warning: code={code} failures={count}; live state tracking continues", flush=True)
             time.sleep(args.poll_ms / 1000)
     except KeyboardInterrupt:
+        runner.finish()
+        for code, count in runner.drain_recording_failures().items():
+            print(f"recording warning: code={code} failures={count}; live state tracking continues", flush=True)
         return 0
     except Exception as error:  # privacy: class name only, never the message
         print(f"live state stopped: {type(error).__name__}", file=sys.stderr)

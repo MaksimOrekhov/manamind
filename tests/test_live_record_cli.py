@@ -125,6 +125,97 @@ def test_replay_detects_a_changed_sequence(tmp_path: Path):
     assert not identical
 
 
+def test_restart_resumes_slice_trace_and_snapshot_identity(tmp_path: Path):
+    root = make_log_root(tmp_path)
+    recording_root = tmp_path / "rec"
+    first_clock = Clock()
+    first = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                       clock=first_clock)
+    first_events = []
+    for _ in range(4):
+        first_events.extend(first.step())
+        first_clock.now += 0.2
+    first_snapshot = next(event for event in first_events if isinstance(event, Snapshot))
+    directory = next(recording_root.rglob("snapshots.jsonl")).parent
+    slice_before = (directory / "slice.log").read_text(encoding="utf-8")
+
+    restarted_clock = Clock()
+    restarted = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                           clock=restarted_clock)
+    restarted_events = []
+    for _ in range(4):
+        restarted_events.extend(restarted.step())
+        restarted_clock.now += 0.2
+    resumed_snapshot = next(event for event in restarted_events if isinstance(event, Snapshot))
+
+    assert (resumed_snapshot.game_key, resumed_snapshot.seq, resumed_snapshot.decision,
+            resumed_snapshot.state_hash) == (first_snapshot.game_key, first_snapshot.seq,
+                                               first_snapshot.decision, first_snapshot.state_hash)
+    assert (directory / "slice.log").read_text(encoding="utf-8") == slice_before
+    assert len((directory / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()) == 1
+    assert sum(int(json.loads(row)["n"]) for row in
+               (directory / "tail_trace.jsonl").read_text(encoding="utf-8").splitlines()) == len(
+                   slice_before.splitlines()
+               )
+    identical, recorded, replayed = verify_replay(directory, CATALOG)
+    assert identical and recorded == replayed == [first_snapshot.state_hash]
+
+
+def test_restart_catches_up_only_unseen_suffix_of_active_game(tmp_path: Path):
+    root = tmp_path / "Logs"
+    power = root / SESSION / "Power.log"
+    power.parent.mkdir(parents=True)
+    log = LiveLog().create_game().mulligan().begin_turn(1).options()
+    power.write_text("\n".join(log.lines) + "\n", encoding="utf-8", newline="\n")
+    recording_root = tmp_path / "rec"
+    clock = Clock()
+    first = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS), clock=clock)
+    first_events = []
+    for _ in range(4):
+        first_events.extend(first.step())
+        clock.now += 0.2
+    first_snapshot = next(event for event in first_events if isinstance(event, Snapshot))
+
+    suffix_start = len(log.lines)
+    log.send_option(1)
+    log.batch(["TAG_CHANGE Entity=2 tag=RESOURCES_USED value=1"]).finish_list()
+    log.options()
+    with power.open("a", encoding="utf-8", newline="\n") as file:
+        file.write("\n".join(log.lines[suffix_start:]) + "\n")
+
+    restarted_clock = Clock()
+    restarted = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                           clock=restarted_clock)
+    events = []
+    for _ in range(6):
+        events.extend(restarted.step())
+        restarted_clock.now += 0.2
+    snapshots = [event for event in events if isinstance(event, Snapshot)]
+    assert len(snapshots) == 1 and snapshots[0].seq == 2
+    assert snapshots[0].decision["options_id"] == 2
+
+    directory = next(recording_root.rglob("snapshots.jsonl")).parent
+    identical, recorded, replayed = verify_replay(directory, CATALOG)
+    assert identical and recorded == replayed == [first_snapshot.state_hash, snapshots[0].state_hash]
+
+
+def test_recorder_disk_error_does_not_suppress_live_snapshot(tmp_path: Path):
+    root = make_log_root(tmp_path)
+    blocked_root = tmp_path / "not-a-directory"
+    blocked_root.write_text("occupied", encoding="utf-8")
+    clock = Clock()
+    runner = LiveRunner(root, LiveSession(CATALOG), Recorder(blocked_root, catalog_path=CARDS),
+                        clock=clock)
+    events = []
+    for _ in range(4):
+        events.extend(runner.step())
+        clock.now += 0.2
+
+    assert any(isinstance(event, Snapshot) for event in events)
+    assert runner.session.status.value == "READY"
+    assert runner.drain_recording_failures() == {"FILE_IO_ERROR": 4}
+
+
 # -- command line ------------------------------------------------------------------------------
 
 

@@ -34,6 +34,14 @@ decision identity, state/checkpoint hashes and invalidation events. The journal 
 names or hidden opponent cards. Actual player action linkage stays `UNKNOWN` unless decision identity
 can be proven.
 
+After a completed match, Collector writes a compact coverage reconciliation to
+`data/raw/collected/capture_reports/<game_key16>.json`. It compares importer decision counts with valid
+LIVE snapshots, strict identities for labeled decisions, and matching rows found in enabled prediction
+and shadow journals. If no LIVE recording exists, the report uses
+`LIVE_NOT_OBSERVED_OR_NOT_RECORDED`; this cannot prove whether the app was stopped or the recorder failed
+before any diagnostic could be saved. Recording failures observed by the still-running app are reported
+with stable codes. The report stores counts and identities only, not another copy of game states.
+
 The optional Vue/WebView2 overlay adds one button under Top-3: «Рекомендация кажется
 сомнительной». It is available only for the displayed READY decision and sends just the
 overlay session/revision to the local Python bridge. The runtime rechecks the exact active

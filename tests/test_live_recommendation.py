@@ -295,6 +295,30 @@ def test_unified_startup_no_history_new_game_recorder_invalidation_and_lane_fail
     assert SECRET_NAME not in "\n".join(printed)
 
 
+def test_recorder_write_failure_does_not_disable_live_recommendations(tmp_path, recommender):
+    scorer, _ = recommender
+    logs = tmp_path / "Logs"
+    fresh = LiveLog(seed=3).create_game().mulligan().self_decision(1)
+    write(logs / "Hearthstone_2026_10_06_10_00_00/Power.log", fresh.lines)
+    blocked_root = tmp_path / "recording-root-is-a-file"
+    blocked_root.write_text("occupied", encoding="utf-8")
+    clock = Clock()
+    live = LiveRunner(logs, LiveSession(CATALOG), Recorder(blocked_root, catalog_path=CARDS), clock=clock)
+    printed = []
+    runtime = run_manamind.UnifiedRuntime(live, DummyCollector(), scorer, emit=printed.append,
+                                          collector_seconds=1)
+
+    for _ in range(8):
+        runtime.step(clock.now)
+        clock.advance(0.2)
+
+    assert not runtime.live_failed
+    assert runtime.decisions_scored == 1
+    assert runtime.active_identity is not None
+    assert any("live recording warning: code=FILE_IO_ERROR" in row for row in printed)
+    assert not any("recommendations disabled" in row for row in printed)
+
+
 def test_panel_uses_local_names_and_position_fallback_without_handles():
     names = load_card_names(CARDS)
     play = {"type": "PLAY_CARD", "card_type": "MINION", "card_id": "CS2_231",
