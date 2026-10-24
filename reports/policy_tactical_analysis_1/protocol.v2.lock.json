@@ -1,0 +1,136 @@
+{
+  "analysis": {
+    "behavior_review": "Descriptive only. A player choice is an imitation label, not a strategic oracle. Strategy Scorer is heuristic. Outcome Shadow PARTIAL/UNSUPPORTED is not an exact result. Lethal claims require an EXACT one-action forecast; no multi-step search.",
+    "inference": "Existing seven checkpoints only; offline CPU inference; no training or fine-tuning.",
+    "live_policy_changed": false,
+    "metrics": [
+      "top1",
+      "top3 (menus >= 3)",
+      "cross_entropy",
+      "mrr",
+      "top1 confidence",
+      "chosen-action probability",
+      "top3 probability mass",
+      "entropy"
+    ],
+    "protected_fresh_holdout": {
+      "inference_run": false,
+      "opened": false
+    },
+    "uncertainty": "Paired whole-match bootstrap; also report match-balanced and leave-one-match/class-out differences."
+  },
+  "baseline": {
+    "historical_204_metrics": {
+      "frozen_v2": {
+        "cross_entropy": 1.8251438975430545,
+        "mrr": 0.5522112011082599,
+        "top1": 0.3872549019607843,
+        "top3": 0.48344370860927155,
+        "top3_decisions": 151,
+        "uniform_random": {
+          "cross_entropy": 1.6765775315203182,
+          "mrr": 0.4863046928383726,
+          "top1": 0.299737691142342,
+          "top3": 0.43999647006035264
+        }
+      },
+      "policy_v3": {
+        "cross_entropy": 1.7914109653436892,
+        "mrr": 0.5791696621311226,
+        "top1": 0.4264705882352941,
+        "top3": 0.5562913907284768,
+        "top3_decisions": 151,
+        "uniform_random": {
+          "cross_entropy": 1.6765775315203182,
+          "mrr": 0.4863046928383726,
+          "top1": 0.299737691142342,
+          "top3": 0.43999647006035264
+        }
+      },
+      "retrained_v2": {
+        "cross_entropy": 1.9051197401666589,
+        "mrr": 0.5693445747052309,
+        "top1": 0.4068627450980392,
+        "top3": 0.5562913907284768,
+        "top3_decisions": 151,
+        "uniform_random": {
+          "cross_entropy": 1.6765775315203182,
+          "mrr": 0.4863046928383726,
+          "top1": 0.299737691142342,
+          "top3": 0.43999647006035264
+        }
+      }
+    },
+    "historical_note": "The 204-decision EVAL-2 result is already researched and is not an independent holdout.",
+    "primary": "frozen_v2"
+  },
+  "classes": {
+    "DEMONHUNTER": {
+      "decisions": 46,
+      "matches": 2
+    },
+    "HUNTER": {
+      "decisions": 75,
+      "matches": 3
+    },
+    "WARLOCK": {
+      "decisions": 87,
+      "matches": 4
+    },
+    "WARRIOR": {
+      "decisions": 87,
+      "matches": 3
+    }
+  },
+  "counts": {
+    "decisions": 295,
+    "matches": 12,
+    "previously_scored": 204,
+    "recovered_for_this_analysis": 91
+  },
+  "data_identity_sha256": "cdda16daecb314c57cbf4f7e48893cbb6f3f12b31df78f84a1a4153eda163767",
+  "documented_post_lock_code_changes": [
+    "scripts/live_join_coverage_1.py",
+    "scripts/new_matches_eval_2.py"
+  ],
+  "hypothesis": "Восстановление 91 строго сопоставленного решения может изменить картину имитации. Проверить, сохраняется ли относительный результат Policy v3 против Frozen v2 и Retrained v2 на тех же данных при равном весе матчей и при исключении по одному матчу или классу.",
+  "locked_eval_2_identity_sha256": "9522fcec5b3768d351703517ed6f557e4c352c8e537883df6a8a91819939a906",
+  "models": {
+    "control_v2_seed42": {
+      "checkpoint_sha256": "4671710a50b3f13fbde2bbbee39f5c51b1abfc2f3e2c53a16b92f55c4d46aaf0",
+      "metrics_sha256": "6fbd1cd7cddab02548a3b7c0b5745cd8f0024e2c02b45d75d33f442ca3c1128d"
+    },
+    "control_v3_seed42": {
+      "checkpoint_sha256": "314232188cc042e837de81ae7865c5d3d1fc0896dc8978ce681fcf25dcc26d7a",
+      "metrics_sha256": "6abc20fd546fc2bb25fcc7c7b48ceff150807c6f2bd79096d589ac3932cf7707"
+    },
+    "frozen_v2": {
+      "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "metrics_sha256": "497076326112976babefdd06ae3c16732b3749ae6e285c916a3f134dcded5e07"
+    },
+    "policy_v3": {
+      "checkpoint_sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "metrics_sha256": "e97b69d47eff89230bfc6ffd9a97f8fa2b81bf700ad278051cbabe1d830851ef"
+    },
+    "prepare_v2_seed42": {
+      "checkpoint_sha256": "a9dd7c1eee8c9f4bbe23b3447e4aa02b5f06019f421ad27e7240ab2ae3a89c9e",
+      "metrics_sha256": "24dcf0d29700c4372ca036a94b202d5bdce2a7987aac3f0a893dcaecd6299a05"
+    },
+    "prepare_v3_seed42": {
+      "checkpoint_sha256": "3541ac74840491491a5ae07a9d1be9ea068d61aaf158ad6016d8b3fab7680d12",
+      "metrics_sha256": "486dde2ab0c78a4be5ae181288fa5f4ae4089644655eb1a9ccea808c4065ca23"
+    },
+    "retrained_v2": {
+      "checkpoint_sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+      "metrics_sha256": "9a6713132640f835e87d376a35d376bd0fb67da3908f663de38adf1e63a87e50"
+    }
+  },
+  "privacy": "Match IDs, states, legal menus, logits, per-decision outcomes and player names remain in ignored data/.",
+  "protocol_revision": 2,
+  "revision_reason": "Исправлена отсутствовавшая запись сравнения в анализаторе до записи результатов; все 295 выбранных строк побайтно совпадают с исходной фиксацией.",
+  "schema": "manamind.policy_tactical_analysis_1/1",
+  "source_code_sha256": "cd8eae166ec7825243325c2d0e05c7dca8efb38e1f6f8eba4189988d46b924ad",
+  "source_commit": "a5a80cba1f97eca82b1bf29d95325f22a53ddc2b",
+  "status": "PROTOCOL_LOCKED",
+  "supersedes_protocol_sha256": "5cf68c4bf16f456608c306f58693e532dcdae1fc2dc9ee8dd36a0524951da809"
+}

@@ -1,10 +1,10 @@
 # POLICY-TACTICAL-ANALYSIS-1
 
-Статус: **PROTOCOL_LOCKED**. Идентификатор выборки: `159318a76daf28b82b240cee9326613e59a0fe0b6a8f7ee326b0552570317229`.
+Статус: **PROTOCOL_LOCKED**. Идентификатор выборки: `cdda16daecb314c57cbf4f7e48893cbb6f3f12b31df78f84a1a4153eda163767`.
 
 ## Гипотеза и baseline до inference
 
-Recovering the 91 strictly joinable decisions may change the apparent imitation pattern; test whether Policy v3's relative result against Frozen v2 and same-data Retrained v2 survives equal-match weighting and leave-one-match/class-out checks.
+Восстановление 91 строго сопоставленного решения может изменить картину имитации. Проверить, сохраняется ли относительный результат Policy v3 против Frozen v2 и Retrained v2 на тех же данных при равном весе матчей и при исключении по одному матчу или классу.
 
 Baseline — Frozen v2. Прежние метрики на 204 решениях уже исследованы и не являются независимым holdout.
 

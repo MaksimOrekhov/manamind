@@ -10,6 +10,7 @@ import argparse
 import hashlib
 import json
 import math
+import shutil
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -289,7 +290,8 @@ def _public_protocol(protocol: dict, rows: list[dict], source_hashes: dict[str, 
                    for model in base.MODELS},
         "source_hashes": source_hashes,
         "documented_post_lock_code_changes": changed_code,
-        "hypothesis": "Recovering the 91 strictly joinable decisions may change the apparent imitation pattern; test whether Policy v3's relative result against Frozen v2 and same-data Retrained v2 survives equal-match weighting and leave-one-match/class-out checks.",
+        "hypothesis": "Восстановление 91 строго сопоставленного решения может изменить картину имитации. Проверить, сохраняется ли относительный результат Policy v3 против Frozen v2 и Retrained v2 на тех же данных при равном весе матчей и при исключении по одному матчу или классу.",
+        "selected_rows_sha256": digest(rows),
         "baseline": {"primary": "frozen_v2", "historical_204_metrics": baseline_metrics,
                      "historical_note": "The 204-decision EVAL-2 result is already researched and is not an independent holdout."},
         "analysis": {
@@ -336,14 +338,64 @@ def preflight() -> dict:
             "data_identity_sha256": private["data_identity_sha256"]}
 
 
+def relock() -> dict:
+    """Preserve and supersede a pre-inference lock after an analysis-code repair."""
+    old_path = PRIVATE / "protocol.private.json"
+    new_path = PRIVATE / "protocol.private.v2.json"
+    old_public = REPORT / "protocol.json"
+    old_readme = REPORT / "README.md"
+    for path in (new_path, REPORT / "protocol.v1.json", REPORT / "README.protocol.v1.md",
+                 REPORT / "protocol.v2.lock.json"):
+        if path.exists():
+            raise FileExistsError(f"refusing to overwrite prior protocol artifact: {path}")
+    if any((PRIVATE / name).exists() for name in (
+        "logits.private.jsonl", "recovered_inference.private.jsonl", "cases.private.json", "results.private.json"
+    )):
+        raise ValueError("cannot relock after inference has produced results")
+
+    old_private = _read_json(old_path)
+    old_rows = _read_jsonl(PRIVATE / "decisions.private.jsonl")
+    for path, expected in old_private["source_hashes"].items():
+        if path == "scripts/policy_tactical_analysis_1.py":
+            continue
+        if sha256_file(ROOT / path) != expected:
+            raise ValueError(f"cannot relock because a pinned input changed: {path}")
+
+    cohort_protocol, rows, source_hashes = _strict_rows()
+    if canonical_json(rows) != canonical_json(old_rows):
+        raise ValueError("strictly reconstructed 295 rows differ from the original lock")
+    private, public = _public_protocol(cohort_protocol, rows, source_hashes)
+    private["protocol_revision"] = 2
+    private["previous_protocol_sha256"] = sha256_file(old_path)
+    public["protocol_revision"] = 2
+    public["supersedes_protocol_sha256"] = private["previous_protocol_sha256"]
+    public["revision_reason"] = "Исправлена отсутствовавшая запись сравнения в анализаторе до записи результатов; все 295 выбранных строк побайтно совпадают с исходной фиксацией."
+
+    shutil.copyfile(old_public, REPORT / "protocol.v1.json")
+    shutil.copyfile(old_readme, REPORT / "README.protocol.v1.md")
+    (REPORT / "protocol.json").write_text(
+        json.dumps(public, ensure_ascii=False, indent=2, sort_keys=True, allow_nan=False) + "\n", encoding="utf-8")
+    shutil.copyfile(REPORT / "protocol.json", REPORT / "protocol.v2.lock.json")
+    private["public_protocol_lock_path"] = "reports/policy_tactical_analysis_1/protocol.v2.lock.json"
+    private["public_protocol_sha256"] = sha256_file(REPORT / "protocol.v2.lock.json")
+    _new_json(new_path, private)
+    (REPORT / "README.md").write_text(_render_protocol(public), encoding="utf-8")
+    return {"status": "PROTOCOL_RELOCKED", "revision": 2,
+            "data_identity_sha256": private["data_identity_sha256"],
+            "counts": private["counts"], "decision_rows_unchanged": True}
+
+
 def _verify_locked(private: dict, rows: list[dict]) -> None:
     if private.get("schema") != ANALYSIS_SCHEMA or private.get("status") != "PROTOCOL_LOCKED":
         raise ValueError("invalid tactical-analysis protocol")
     for path, expected in private["source_hashes"].items():
         if sha256_file(ROOT / path) != expected:
             raise ValueError(f"locked source changed: {path}")
-    if sha256_file(REPORT / "protocol.json") != private.get("public_protocol_sha256"):
+    lock_path = ROOT / private.get("public_protocol_lock_path", "reports/policy_tactical_analysis_1/protocol.json")
+    if sha256_file(lock_path) != private.get("public_protocol_sha256"):
         raise ValueError("public analysis protocol changed after lock")
+    if private.get("selected_rows_sha256") and digest(rows) != private["selected_rows_sha256"]:
+        raise ValueError("locked decision contents changed")
     ids = sorted(row["example"]["decision_id"] for row in rows)
     recovered_ids = sorted(row["example"]["decision_id"] for row in rows
                            if row["analysis_origin"] == "RECOVERED_91")
@@ -848,7 +900,13 @@ def _render_protocol(public: dict) -> str:
 
 
 def evaluate() -> dict:
-    private_protocol = _read_json(PRIVATE / "protocol.private.json")
+    versioned_protocol = PRIVATE / "protocol.private.v2.json"
+    if not versioned_protocol.exists():
+        original = _read_json(PRIVATE / "protocol.private.json")
+        if sha256_file(ROOT / "scripts/policy_tactical_analysis_1.py") != original["source_hashes"]["scripts/policy_tactical_analysis_1.py"]:
+            raise ValueError("analysis code changed after protocol lock; run --relock before inference")
+    private_protocol = _read_json(versioned_protocol if versioned_protocol.exists()
+                                  else PRIVATE / "protocol.private.json")
     rows = _read_jsonl(PRIVATE / "decisions.private.jsonl")
     _verify_locked(private_protocol, rows)
     if any((PRIVATE / name).exists() for name in (
@@ -890,14 +948,21 @@ def evaluate() -> dict:
         if sha256_file(ROOT / name["path"]) != name["sha256"]:
             raise ValueError(f"checkpoint changed during inference: {name['name']}")
 
-    # The original EVAL-2 extension uses the same whole-match bootstrap family.
-    for name in ("retrained_v2", "policy_v3", "control_v3_seed42", "prepare_v2_seed42", "prepare_v3_seed42"):
-        comparison = report["paired_comparisons"][f"{name}_minus_frozen_v2_ordinary"]
-        subset = [row for row in predictions if not any(
-            action["type"] == "PREPARE_CARD" for action in row["example"]["legal_actions"])]
+    # Keep paired comparisons against Frozen v2 for all checkpoints, not only the
+    # original EVAL-2 primary list. Bootstrap blocks are whole matches.
+    subset = [row for row in predictions if not any(
+        action["type"] == "PREPARE_CARD" for action in row["example"]["legal_actions"])]
+    for name in (model["name"] for model in base.MODELS if model["name"] != "frozen_v2"):
+        key = f"{name}_minus_frozen_v2_ordinary"
+        if key not in report["paired_comparisons"]:
+            report["paired_comparisons"][key] = base._paired_cluster_bootstrap(
+                subset, [row["model_scores"][name] for row in subset],
+                [row["model_scores"]["frozen_v2"] for row in subset])
+        comparison = report["paired_comparisons"][key]
         left = [row["model_scores"][name] for row in subset]
         right = [row["model_scores"]["frozen_v2"] for row in subset]
-        comparison["simultaneous_primary_ci"] = eval2.simultaneous_bootstrap(subset, left, right)
+        comparison["simultaneous_primary_ci"] = (eval2.simultaneous_bootstrap(subset, left, right)
+                                                  if name in eval2.PRIMARY else None)
 
     report["confidence"] = _confidence_analysis(predictions)
     report["robustness"] = _robustness(predictions)
@@ -954,9 +1019,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--preflight", action="store_true")
+    modes.add_argument("--relock", action="store_true")
     modes.add_argument("--evaluate", action="store_true")
     args = parser.parse_args(argv)
-    result = preflight() if args.preflight else evaluate()
+    result = preflight() if args.preflight else relock() if args.relock else evaluate()
     print(json.dumps(result, ensure_ascii=False, sort_keys=True, allow_nan=False))
     return 0
 

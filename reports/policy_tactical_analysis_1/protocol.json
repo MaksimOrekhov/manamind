@@ -88,12 +88,12 @@
     "previously_scored": 204,
     "recovered_for_this_analysis": 91
   },
-  "data_identity_sha256": "159318a76daf28b82b240cee9326613e59a0fe0b6a8f7ee326b0552570317229",
+  "data_identity_sha256": "cdda16daecb314c57cbf4f7e48893cbb6f3f12b31df78f84a1a4153eda163767",
   "documented_post_lock_code_changes": [
     "scripts/live_join_coverage_1.py",
     "scripts/new_matches_eval_2.py"
   ],
-  "hypothesis": "Recovering the 91 strictly joinable decisions may change the apparent imitation pattern; test whether Policy v3's relative result against Frozen v2 and same-data Retrained v2 survives equal-match weighting and leave-one-match/class-out checks.",
+  "hypothesis": "Восстановление 91 строго сопоставленного решения может изменить картину имитации. Проверить, сохраняется ли относительный результат Policy v3 против Frozen v2 и Retrained v2 на тех же данных при равном весе матчей и при исключении по одному матчу или классу.",
   "locked_eval_2_identity_sha256": "9522fcec5b3768d351703517ed6f557e4c352c8e537883df6a8a91819939a906",
   "models": {
     "control_v2_seed42": {
@@ -126,8 +126,11 @@
     }
   },
   "privacy": "Match IDs, states, legal menus, logits, per-decision outcomes and player names remain in ignored data/.",
+  "protocol_revision": 2,
+  "revision_reason": "Исправлена отсутствовавшая запись сравнения в анализаторе до записи результатов; все 295 выбранных строк побайтно совпадают с исходной фиксацией.",
   "schema": "manamind.policy_tactical_analysis_1/1",
-  "source_code_sha256": "c8e27ca68b77beac4e1c1fbbf5ebd5d652870e809c57edf65d5266b83756c07f",
-  "source_commit": "ae26cac3eb8fbd239d92e7cd2deba4e868061294",
-  "status": "PROTOCOL_LOCKED"
+  "source_code_sha256": "cd8eae166ec7825243325c2d0e05c7dca8efb38e1f6f8eba4189988d46b924ad",
+  "source_commit": "a5a80cba1f97eca82b1bf29d95325f22a53ddc2b",
+  "status": "PROTOCOL_LOCKED",
+  "supersedes_protocol_sha256": "5cf68c4bf16f456608c306f58693e532dcdae1fc2dc9ee8dd36a0524951da809"
 }
