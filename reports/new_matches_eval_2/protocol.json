@@ -1,0 +1,238 @@
+{
+  "classes": {
+    "DEMONHUNTER": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 2,
+      "imported_decisions": 55,
+      "strict_decisions": 31,
+      "strict_games": 2
+    },
+    "HUNTER": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 16,
+      "imported_decisions": 503,
+      "strict_decisions": 58,
+      "strict_games": 3
+    },
+    "PALADIN": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 1,
+      "imported_decisions": 34,
+      "strict_decisions": 0,
+      "strict_games": 0
+    },
+    "ROGUE": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 1,
+      "imported_decisions": 25,
+      "strict_decisions": 0,
+      "strict_games": 0
+    },
+    "WARLOCK": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 4,
+      "imported_decisions": 92,
+      "strict_decisions": 64,
+      "strict_games": 4
+    },
+    "WARRIOR": {
+      "archetypes": "UNKNOWN",
+      "completed_games": 9,
+      "imported_decisions": 285,
+      "strict_decisions": 51,
+      "strict_games": 3
+    }
+  },
+  "code_sha256": {
+    "scripts/live_join_coverage_1.py": "5a98e1c0c7ee53ef80665530bb1c523b15dfe720e1723abce3906d74e8b70307",
+    "scripts/new_matches_eval_1.py": "359ec940486f706d90f71fbf9793de53ee360bdf46ca45e409b8a7a3389d216b",
+    "scripts/new_matches_eval_2.py": "62186f7484b05e7c6e03fa8558d421f8977027238a84c0e528273b4b418cca3b",
+    "src/manamind/live/snapshot_join.py": "f010412a8cac82048b7b16332e889986bc390dfe639d245242fbc46334f9aa7a"
+  },
+  "conclusion": "NOT_YET_EVALUATED",
+  "data_identity_sha256": "9522fcec5b3768d351703517ed6f557e4c352c8e537883df6a8a91819939a906",
+  "exclusion_reasons": {
+    "LEGACY_FILENAME_WITHOUT_MATCH_KEY": 18,
+    "MATCH_ID_IN_PRIOR_SPLIT_OR_EVALUATION": 77,
+    "NO_EXACT_LIVE_JOIN": 21,
+    "PROTECTED_FRESH_HOLDOUT_ID_ONLY": 8,
+    "SELF_AMBIGUOUS": 2,
+    "SOURCE_ALREADY_IN_EVAL_1_INVENTORY": 1
+  },
+  "inventory": {
+    "collector_pending_logs": 0,
+    "completed_matches_imported": 33,
+    "decision_exclusions": {
+      "CONFLICTING_OUTCOME_ROWS": 91,
+      "LIVE_SNAPSHOT_NOT_MATCHED": 694,
+      "NO_PREDICTION_ROW": 5
+    },
+    "diagnostic_only_decisions": 790,
+    "importer_skip_reasons": {
+      "AMBIGUOUS_SELECTION": 11,
+      "CHOICE_UNRESOLVED": 1,
+      "GAME_RESET_STALE_STATE": 1,
+      "OPTIONS_SUPERSEDED": 113,
+      "TARGET_UNRESOLVED": 6,
+      "UNSUPPORTED_DECISION_KIND": 22
+    },
+    "keyed_collected_match_logs": 121,
+    "legacy_filename_logs": 18,
+    "live_recording_directories_nonprotected": 80,
+    "new_eligible_decisions": 204,
+    "new_eligible_matches": 12,
+    "new_nonoverlap_raw_candidates": 35,
+    "prepare_chosen": 0,
+    "prepare_chosen_live_matched": 0,
+    "prepare_decisions": 0,
+    "prepare_menu_decision_exclusions": {},
+    "prepare_menu_decisions_imported": 0,
+    "prepare_menu_decisions_live_matched": 0,
+    "previous_eval_1_matches_excluded": 13,
+    "protected_raw_log_prefixes_skipped": 8,
+    "raw_collected_log_files": 139,
+    "recovered_identical_snapshot_decisions": 33
+  },
+  "match_categories": {
+    "EXCLUDED": 104,
+    "IMPORT_FAILED": 2,
+    "NEW_ELIGIBLE": 12,
+    "UNVERIFIED": 21
+  },
+  "metrics": null,
+  "models": {
+    "control_v2_seed42": {
+      "architecture": "v2",
+      "label": "control_v2_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/control_v2_seed42/metrics.json",
+      "metrics_sha256": "6fbd1cd7cddab02548a3b7c0b5745cd8f0024e2c02b45d75d33f442ca3c1128d",
+      "path": "data/processed_policy_prepare_train_1/control_v2_seed42/policy.pt",
+      "role": "prepare_ablation_control",
+      "selected_epoch": 10,
+      "sha256": "4671710a50b3f13fbde2bbbee39f5c51b1abfc2f3e2c53a16b92f55c4d46aaf0",
+      "split_sha256": "edd8255019e7608b0d52f7c337912ef6a4a287604b9624dbd3e44e834c8add04",
+      "supports_prepare": false
+    },
+    "control_v3_seed42": {
+      "architecture": "v3",
+      "label": "control_v3_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/control_v3_seed42/metrics.json",
+      "metrics_sha256": "6abc20fd546fc2bb25fcc7c7b48ceff150807c6f2bd79096d589ac3932cf7707",
+      "path": "data/processed_policy_prepare_train_1/control_v3_seed42/policy.pt",
+      "role": "prepare_ablation_control",
+      "selected_epoch": 3,
+      "sha256": "314232188cc042e837de81ae7865c5d3d1fc0896dc8978ce681fcf25dcc26d7a",
+      "split_sha256": "edd8255019e7608b0d52f7c337912ef6a4a287604b9624dbd3e44e834c8add04",
+      "supports_prepare": false
+    },
+    "frozen_v2": {
+      "architecture": null,
+      "label": null,
+      "metrics_path": "data/processed_policy_ml2a/seed42_v2/metrics.json",
+      "metrics_sha256": "497076326112976babefdd06ae3c16732b3749ae6e285c916a3f134dcded5e07",
+      "path": "data/processed_policy_ml2a/seed42_v2/policy.pt",
+      "role": "live_baseline",
+      "selected_epoch": 8,
+      "sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "split_sha256": "4e96ec57ecdf26ac95d754c23b2ea88d354a27cb9f363ee91cecd8e44d85229b",
+      "supports_prepare": false
+    },
+    "policy_v3": {
+      "architecture": "v3",
+      "label": "architecturev3_seed42",
+      "metrics_path": "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/metrics.json",
+      "metrics_sha256": "e97b69d47eff89230bfc6ffd9a97f8fa2b81bf700ad278051cbabe1d830851ef",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 4,
+      "sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "split_sha256": "4ec4d360ce6f09f9951d3708f43bcba990fa2ff9012468449622ac8339044194",
+      "supports_prepare": false
+    },
+    "prepare_v2_seed42": {
+      "architecture": "v2",
+      "label": "prepare_v2_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/prepare_v2_seed42/metrics.json",
+      "metrics_sha256": "24dcf0d29700c4372ca036a94b202d5bdce2a7987aac3f0a893dcaecd6299a05",
+      "path": "data/processed_policy_prepare_train_1/prepare_v2_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 10,
+      "sha256": "a9dd7c1eee8c9f4bbe23b3447e4aa02b5f06019f421ad27e7240ab2ae3a89c9e",
+      "split_sha256": "3b7f3dba8a8e16d1c564cc404e9bc64bdda5a15070ae4fc1803f402ed194a04a",
+      "supports_prepare": true
+    },
+    "prepare_v3_seed42": {
+      "architecture": "v3",
+      "label": "prepare_v3_seed42",
+      "metrics_path": "data/processed_policy_prepare_train_1/prepare_v3_seed42/metrics.json",
+      "metrics_sha256": "486dde2ab0c78a4be5ae181288fa5f4ae4089644655eb1a9ccea808c4065ca23",
+      "path": "data/processed_policy_prepare_train_1/prepare_v3_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 7,
+      "sha256": "3541ac74840491491a5ae07a9d1be9ea068d61aaf158ad6016d8b3fab7680d12",
+      "split_sha256": "3b7f3dba8a8e16d1c564cc404e9bc64bdda5a15070ae4fc1803f402ed194a04a",
+      "supports_prepare": true
+    },
+    "retrained_v2": {
+      "architecture": "v2",
+      "label": "architecturev2_seed42",
+      "metrics_path": "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/metrics.json",
+      "metrics_sha256": "9a6713132640f835e87d376a35d376bd0fb67da3908f663de38adf1e63a87e50",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/policy.pt",
+      "role": "primary_candidate",
+      "selected_epoch": 9,
+      "sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+      "split_sha256": "4ec4d360ce6f09f9951d3708f43bcba990fa2ff9012468449622ac8339044194",
+      "supports_prepare": false
+    }
+  },
+  "protected_fresh_holdout": {
+    "count": 9,
+    "inference_run": false,
+    "opened": false
+  },
+  "protocol": {
+    "additional": [
+      "control_v2_seed42"
+    ],
+    "baseline": "frozen_v2",
+    "class_rule": "At least 5 games per class for descriptive comparisons; fewer marked insufficient. No class-specific model choice. Archetypes remain UNKNOWN without verified deck metadata.",
+    "hypothesis": "Fixed existing candidates may improve imitation over Frozen v2 across newly collected classes.",
+    "live_policy_changed": false,
+    "main_comparison": "All seven fixed seed42 models, identical ordinary full ordered legal menus.",
+    "metrics": [
+      "cross_entropy",
+      "top1",
+      "top3",
+      "mrr",
+      "uniform_random",
+      "top1_pairwise_agreement"
+    ],
+    "pairing": "Unique raw key; same full state/hash/options ID; identical snapshots except seq; shadow seq belongs to group; no conflicting journals; complete ordered menus; block-corroborated player choice.",
+    "prepare_rule": "Only Prepare v2/v3 on exactly joined compatible menus; zero examples does not block ordinary comparison.",
+    "primary_candidates": [
+      "retrained_v2",
+      "policy_v3",
+      "control_v3_seed42",
+      "prepare_v2_seed42",
+      "prepare_v3_seed42"
+    ],
+    "review_rule": "Up to 20 unique decisions, round-robin over EVAL-1 fixed disagreement categories sorted by score/ID; check every legal action with existing forecaster. CONFIRMED_ERROR only if a strict EXACT living-self lethal exists and model top1 is EXACT nonlethal; heuristic gaps alone are DISAGREEMENT_ONLY. PARTIAL/unsupported coverage is INSUFFICIENT_COVERAGE. No multistep lethal claim.",
+    "top3_rule": "Menus with at least three actions only; ties use original menu order.",
+    "training_or_finetuning": false,
+    "uncertainty": {
+      "draws": 5000,
+      "method": "paired whole-match bootstrap",
+      "primary_family_correction": "Bonferroni simultaneous 99% intervals for five candidates; marginal 95% also reported",
+      "seed": 20261018
+    },
+    "verdict_rule": "Fewer than 10 strict ordinary matches: INSUFFICIENT_DATA. Otherwise candidate improvement requires simultaneous CE CI <0 and Top1 CI >0, same signs on match-balanced means, and no sign reversal when leaving one class out. Regression requires simultaneous CE CI >0 and Top1 CI <0. Else NO_CLEAR_WINNER. No automatic live promotion."
+  },
+  "schema": "manamind.new_matches_eval_2/results/1",
+  "source_code_sha256": "62186f7484b05e7c6e03fa8558d421f8977027238a84c0e528273b4b418cca3b",
+  "source_commit": "6691b717f075eacde5157770c925cb8b7dd9d53f",
+  "source_manifest_sha256": "28da4a45c520d146b97ad9f0b38503008a376073437dcdf1b93d3a24e455c818",
+  "split_plan_sha256": "408cb21b8e29cd1caa9dfd585c0b6d2dc7917c6a8021aa49910a4ddd5cf0218a",
+  "status": "PROTOCOL_LOCKED",
+  "strategic_analysis": null
+}
