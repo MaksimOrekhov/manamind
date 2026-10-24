@@ -73,6 +73,7 @@ _TRIGGER_START = re.compile(
     r"(?:whenever|after|at the (?:start|end) of|deathrattle:|spellburst:|frenzy:|overkill:|"
     r"honorable kill:|inspire:)", re.I)
 _CONDITIONAL = re.compile(r"if it (?P<cond>dies|survives), (?P<rest>.+)")
+_FREEZE_FORM = re.compile(r"\b(?:freeze|freezes|freezing|frozen|froze)\b")
 _PLAY_LABEL = re.compile(r"(?:battlecry|combo|outcast|choose one)", re.I)
 # A sentence that starts like this continues the Battlecry/trigger paragraph before it. Line breaks cannot
 # tell a continuation from a new rule (layout wraps after periods), but static rules read descriptively
@@ -313,7 +314,7 @@ def trigger_events(sentence: str) -> frozenset[str]:
         found |= {"BUFF", "KEYWORD_GAIN", "ARMOR_GAIN"}
     if "mana" in condition:
         found.add("MANA_SPENT")
-    if "freez" in condition:
+    if _FREEZE_FORM.search(condition):
         found.add("FREEZE")
     if re.search(r"\b(draw|draws|discard|shuffle)\b", condition) and not found:
         found.add("OTHER")                      # none of the supported actions draws or discards

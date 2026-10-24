@@ -15,6 +15,7 @@ from manamind.outcome import (
     summarise,
 )
 from manamind.outcome import scenario as sc
+from manamind.outcome.grammar import trigger_events
 
 
 def _ctx(**kwargs) -> ObservedContext:
@@ -70,6 +71,10 @@ TEXTS = TextSource.from_records([
     _body("T_BC_DRAW", "<b>Battlecry:</b> Draw a card.", ("BATTLECRY",)),
     _body("T_RUSH", "<b>Rush</b>", ("RUSH",)),
     _body("T_FREEZE_TRIGGER", "Whenever a minion is Frozen, gain +1 Attack."),
+    _body("T_FREEZE_SOURCE_TRIGGER", "<b>Battlecry:</b> Freeze an enemy. "
+          "Whenever a minion is Frozen, gain +1 Attack.", ("BATTLECRY",)),
+    _body("T_FREEZE_SOURCE_END_TRIGGER", "<b>Battlecry:</b> Freeze an enemy. "
+          "At the end of your turn, gain +1 Attack.", ("BATTLECRY",)),
     _body("T_LOC", "Deal $1 damage to a minion.", (), "LOCATION"),
     {"id": "T_POWER_HEAL", "text": "Restore #2 Health.", "type": "HERO_POWER"},
     {"id": "T_POWER_DMG", "text": "Deal $1 damage.", "type": "HERO_POWER"},
@@ -409,7 +414,60 @@ def test_freeze_trigger_on_the_target_blocks_an_exact_forecast():
     state = _state(theirs=[sc.minion("E1", 2, 3, 1)], hand=[sc.hand_card("T_FREEZE", "SPELL", 1)])
     forecast = forecast_action(state, _cast("T_FREEZE", sc.target_minion("OPPONENT", 1, "E1"), 1), texts, _ctx())
     assert forecast.status is Status.PARTIAL
-    assert any(unknown.tag == "BOARD_TRIGGER" for unknown in forecast.unknowns)
+    assert any(unknown.tag == "BOARD_TRIGGER" and "may fire on ['FREEZE']" in unknown.detail
+               for unknown in forecast.unknowns)
+
+
+def test_freeze_trigger_word_forms_are_classified_and_unknown_conditions_stay_any():
+    for condition in (
+        "Whenever you freeze a minion, gain +1 Attack.",
+        "Whenever a minion freezes, gain +1 Attack.",
+        "Whenever a minion is frozen, gain +1 Attack.",
+        "After freezing a minion, gain +1 Attack.",
+        "After you froze a minion, gain +1 Attack.",
+    ):
+        assert trigger_events(condition) == frozenset({"FREEZE"})
+    assert trigger_events("Whenever the stars align, gain +1 Attack.") == frozenset({"ANY"})
+
+
+def test_freeze_trigger_does_not_block_an_action_without_freeze():
+    texts = TEXTS.extended([_body("E1", "Whenever a minion is Frozen, gain +1 Attack.")])
+    state = _state(theirs=[sc.minion("E1", 2, 3, 1)], hand=[sc.hand_card("T_ARMOR", "SPELL", 2)])
+    forecast = forecast_action(state, _cast("T_ARMOR", None, 2), texts, _ctx())
+    assert forecast.status is Status.EXACT
+    assert not any(unknown.tag == "BOARD_TRIGGER" for unknown in forecast.unknowns)
+
+
+def test_new_minion_freeze_trigger_is_seen_when_its_battlecry_freezes():
+    state = _state(theirs=[sc.minion("E1", 2, 3, 1)],
+                   hand=[sc.hand_card("T_FREEZE_SOURCE_TRIGGER", "MINION", 1, attack=2, health=1)])
+    action = sc.play("T_FREEZE_SOURCE_TRIGGER", 0, "MINION", 1,
+                     sc.target_minion("OPPONENT", 1, "E1"), play_position=1)
+    context = _ctx(hand_keywords=(frozenset(),), hand_keywords_match_card=True)
+    forecast = forecast_action(state, action, TEXTS, context)
+    assert forecast.status is Status.PARTIAL
+    assert any(unknown.tag == "BOARD_TRIGGER" and "may fire on ['FREEZE']" in unknown.detail
+               for unknown in forecast.unknowns)
+
+
+def test_new_minion_non_freeze_trigger_is_not_activated_by_freeze():
+    state = _state(theirs=[sc.minion("E1", 2, 3, 1)],
+                   hand=[sc.hand_card("T_FREEZE_SOURCE_END_TRIGGER", "MINION", 1, attack=2, health=1)])
+    action = sc.play("T_FREEZE_SOURCE_END_TRIGGER", 0, "MINION", 1,
+                     sc.target_minion("OPPONENT", 1, "E1"), play_position=1)
+    context = _ctx(hand_keywords=(frozenset(),), hand_keywords_match_card=True)
+    forecast = forecast_action(state, action, TEXTS, context)
+    assert forecast.status is Status.EXACT
+    assert not any(unknown.tag == "BOARD_TRIGGER" for unknown in forecast.unknowns)
+
+
+def test_unknown_trigger_condition_still_blocks_exact_conservatively():
+    texts = TEXTS.extended([_body("E1", "Whenever the stars align, gain +1 Attack.")])
+    state = _state(theirs=[sc.minion("E1", 2, 3, 1)], hand=[sc.hand_card("T_ARMOR", "SPELL", 2)])
+    forecast = forecast_action(state, _cast("T_ARMOR", None, 2), texts, _ctx())
+    assert forecast.status is Status.PARTIAL
+    assert any(unknown.tag == "BOARD_TRIGGER" and "unreadable condition" in unknown.detail
+               for unknown in forecast.unknowns)
 
 
 def test_freeze_on_an_immune_minion_fails_closed():
