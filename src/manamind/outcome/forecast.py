@@ -29,6 +29,7 @@ RULE_EVIDENCE = {
     "HEALING_PACKET": "public rules; additive healing bonus per packet (ManaEngine healing pipeline v1)",
     "STAT_CHANGE": "public rules: +A/+H raises current and maximum Health together",
     "KEYWORD_GRANT": "public rules; re-granting a held keyword changes nothing",
+    "FREEZE": "public rules; reports the immediate Frozen flag, not turn advancement or expiration",
     "DESTROY": "public rules; Immune targets excluded as unreviewed",
     "MANA_COST": "observed effective cost of the action (checked against the next observation)",
     "SUMMON": "public rules: a played minion enters at the chosen board position",
@@ -243,7 +244,16 @@ class _Run:
             return
         for target in targets:
             self._involve(target)
-            if kind == "HEAL":
+            if kind == "FREEZE":
+                if isinstance(target, Ent) and target.fields.get("immune"):
+                    raise Unsupported("FREEZE_ON_IMMUNE_UNREVIEWED")
+                target.set("frozen", True, cause)
+                if isinstance(target, Ent):
+                    target.set("can_attack", False, cause)
+                world.note_rule("FREEZE")
+                world.event("FREEZE", target.ref, None, f"{cause}: becomes Frozen")
+                self.classes.add("FREEZE")
+            elif kind == "HEAL":
                 world.heal(target, clause.amount, "SELF", cause, spell=self.damaging_source == "SPELL",
                            unverified_double=bool(world.context.spell_healing_doubled))
                 self.classes.add("HEAL")
@@ -264,6 +274,16 @@ class _Run:
                     attack = target.fields["attack"]
                     if (attack < limit) if op == "GE" else (attack > limit):
                         continue
+                world.destroy(target, cause)
+                self.classes.add("DEATH")
+            elif kind == "DESTROY_DAMAGED":
+                if not isinstance(target, Ent):
+                    raise Unsupported("DESTROY_ON_HERO")
+                health, max_health = target.fields["health"], target.fields["max_health"]
+                if health is None or max_health is None:
+                    raise Unsupported("DAMAGED_TARGET_HEALTH_UNOBSERVED")
+                if health >= max_health:
+                    raise Unsupported("TARGET_NOT_DAMAGED")
                 world.destroy(target, cause)
                 self.classes.add("DEATH")
 
@@ -594,7 +614,7 @@ class _Run:
         dead = {entity.ref for entity in casualties}
         attacker_ref = self.actor.ref if self.actor is not None else None
         for entity in world.entities:
-            if entity.new:
+            if entity.new and "FREEZE" not in self.classes:
                 continue
             self_events = set()
             if entity.ref in dead:
