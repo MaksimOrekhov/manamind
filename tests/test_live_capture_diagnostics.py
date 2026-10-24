@@ -110,12 +110,25 @@ def test_collector_reports_imported_match_without_live_recording(tmp_path: Path)
 
 
 def test_in_memory_observation_identifies_a_failed_recorder(tmp_path: Path):
+    live_root = tmp_path / "live"
+    recording = live_root / "session" / MATCH_ID[:16]
+    recording.mkdir(parents=True)
+    snapshot = _snapshot()
+    (recording / "meta.json").write_text(json.dumps({"game_key": MATCH_ID}), encoding="utf-8")
+    (recording / "capture_summary.json").write_text(json.dumps({
+        "game_key": MATCH_ID,
+        "trusted_snapshots_emitted": 1,
+        "snapshots_saved": 1,
+        "trust_rejections": {},
+        "recording_failures": {},
+    }), encoding="utf-8")
+    (recording / "snapshots.jsonl").write_text(snapshot.to_json() + "\n", encoding="utf-8")
     report = build_capture_report(MATCH_ID, {
         "status": "OK",
         "decisions_total": 2,
         "decisions_labeled": 2,
         "decision_skip_reasons": {},
-    }, tmp_path / "missing-recordings", tmp_path / "missing-journals", tmp_path / "missing-policy.jsonl",
+    }, live_root, tmp_path / "missing-journals", tmp_path / "missing-policy.jsonl",
        live_observation={
            "game_key": MATCH_ID,
            "live_observed": True,
@@ -125,8 +138,9 @@ def test_in_memory_observation_identifies_a_failed_recorder(tmp_path: Path):
            "recording_failures": {"FILE_IO_ERROR": 1},
        })
 
-    assert report["live"]["status"] == "LIVE_OBSERVED_NO_RECORDING"
+    assert report["live"]["status"] == "RECORDING_PARTIAL"
     assert report["live"]["absence_reason"] == "RECORDING_WRITE_FAILED"
+    assert report["live"]["snapshots_saved"] == 1
     assert report["missed_reason_counts"] == {
         "RECORDING_FILE_IO_ERROR": 1,
         "SNAPSHOT_NOT_SAVED": 1,

@@ -67,7 +67,7 @@ Ruff в этом каталоге также пытался прочитать �
 1. Запустить `scripts/run_manamind.py` обычной командой из `docs/LIVE_BRIDGE.md`; менять аргументы не требуется.
 2. После завершения матча открыть свежий JSON из `data/raw/collected/capture_reports/`.
 3. Проверить `collector.power_log_decisions`, `live.status`, `live.snapshots_saved`, `live.valid_trusted_snapshots` и `strict_identity.labeled_policy_decisions_with_exact_snapshot`.
-4. Если `live.status` — `NO_LIVE_RECORDING`, процесс не сохранил запись или не наблюдал игру. Если `LIVE_OBSERVED_NO_RECORDING` и есть `recording_failures`, это технический сбой записи. Если есть `trust_rejections`, это отказ trust gate. Если strict count ниже числа размеченных policy-решений, просмотреть `labeled_policy_decisions_without_exact_snapshot`; сопоставление не ослаблять.
+4. Если `live.status` — `NO_LIVE_RECORDING`, процесс не сохранил запись или не наблюдал игру. Если `LIVE_OBSERVED_NO_RECORDING` и есть `recording_failures`, запись не создалась. `RECORDING_PARTIAL` означает, что доверенных снимков выпущено больше, чем найдено на диске; `recording_failures` показывает ошибки записи. Если есть `trust_rejections`, это отказ trust gate. Если strict count ниже числа размеченных policy-решений, просмотреть `labeled_policy_decisions_without_exact_snapshot`; сопоставление не ослаблять.
 5. Проверить `journals.rows_by_kind` для реально включённых журналов. Нулевой счётчик сам по себе не доказывает ошибку: optional shadow мог быть отключён.
 
 Подтверждение реальной надёжности записи требует нескольких новых матчей с работающим процессом. Этот код не может восстановить решения, принятые до запуска, и не доказывает покрытие для исторических 666 решений.

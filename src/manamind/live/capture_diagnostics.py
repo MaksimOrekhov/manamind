@@ -48,6 +48,8 @@ def build_capture_report(match_id: str, policy_result: dict, recordings_root: Pa
     elif live_observation is not None:
         capture_summary = live_observation
         recording_status = "LIVE_OBSERVED_NO_RECORDING"
+    if live_observation is not None:
+        capture_summary = _merge_live_summary(capture_summary, live_observation)
 
     valid_snapshots: dict[tuple[str, int, str], dict] = {}
     grouped: dict[tuple[str, int, str], list[dict]] = defaultdict(list)
@@ -77,6 +79,12 @@ def build_capture_report(match_id: str, policy_result: dict, recordings_root: Pa
         name: len(policy_keys & decisions)
         for name, decisions in journal_decisions.items()
     }
+    saved_snapshot_count = (len(snapshots) if directories else
+                            (_summary_int(capture_summary, "snapshots_saved") or 0))
+    trusted_count = _summary_int(capture_summary, "trusted_snapshots_emitted") or 0
+    recording_failures = (capture_summary or {}).get("recording_failures", {})
+    if directories and trusted_count > saved_snapshot_count and recording_failures:
+        recording_status = "RECORDING_PARTIAL"
 
     missing_reasons: dict[str, int] = {}
     if recording_status == "NO_LIVE_RECORDING" and total is not None:
@@ -90,11 +98,8 @@ def build_capture_report(match_id: str, policy_result: dict, recordings_root: Pa
             for code, count in failures.items():
                 if isinstance(count, int) and count > 0:
                     missing_reasons[f"RECORDING_{code}"] = count
-        if recording_status == "LIVE_OBSERVED_NO_RECORDING":
-            emitted = _summary_int(capture_summary, "trusted_snapshots_emitted") or 0
-            saved = _summary_int(capture_summary, "snapshots_saved") or 0
-            if emitted > saved:
-                missing_reasons["SNAPSHOT_NOT_SAVED"] = emitted - saved
+        if trusted_count > saved_snapshot_count:
+            missing_reasons["SNAPSHOT_NOT_SAVED"] = trusted_count - saved_snapshot_count
         superseded = capture_summary.get("superseded_menus")
         if isinstance(superseded, int) and superseded > 0:
             missing_reasons["OPTIONS_SUPERSEDED"] = superseded
@@ -116,7 +121,7 @@ def build_capture_report(match_id: str, policy_result: dict, recordings_root: Pa
             "absence_reason": _absence_reason(recording_status, capture_summary),
             "options_packets_seen": _summary_int(capture_summary, "options_packets_seen"),
             "trusted_snapshots_emitted": _summary_int(capture_summary, "trusted_snapshots_emitted"),
-            "snapshots_saved": len(snapshots),
+            "snapshots_saved": saved_snapshot_count,
             "valid_trusted_snapshots": len(valid_snapshots),
             "invalid_snapshot_rows": invalid_snapshot_rows,
             "conflicting_identity_groups": conflicting_snapshot_groups,
@@ -256,6 +261,25 @@ def _merge_summaries(left: dict | None, right: dict) -> dict:
     return result
 
 
+def _merge_live_summary(persisted: dict | None, current: dict) -> dict:
+    """Overlay current-process counters without double-counting the persisted session."""
+    if persisted is None:
+        return current
+    result = dict(persisted)
+    for name in ("options_packets_seen", "trusted_snapshots_emitted", "snapshots_saved", "superseded_menus"):
+        if isinstance(current.get(name), int):
+            result[name] = max(int(result.get(name, 0)), int(current[name]))
+    for name in ("trust_rejections", "recording_failures"):
+        merged = Counter(result.get(name, {}))
+        for code, count in current.get(name, {}).items():
+            if isinstance(count, int):
+                merged[code] = max(merged[code], count)
+        result[name] = dict(sorted(merged.items()))
+    if current.get("capture_status") == "COMPLETE":
+        result["capture_status"] = "COMPLETE"
+    return result
+
+
 def _optional_int(value) -> int | None:
     return value if isinstance(value, int) and not isinstance(value, bool) else None
 
@@ -267,6 +291,8 @@ def _summary_int(summary: dict | None, key: str) -> int | None:
 def _absence_reason(status: str, summary: dict | None) -> str | None:
     if status == "NO_LIVE_RECORDING":
         return "LIVE_NOT_OBSERVED_OR_NOT_RECORDED"
-    if status == "LIVE_OBSERVED_NO_RECORDING":
-        return "RECORDING_WRITE_FAILED" if (summary or {}).get("recording_failures") else "RECORDING_UNAVAILABLE"
+    if status in {"LIVE_OBSERVED_NO_RECORDING", "RECORDING_PARTIAL"}:
+        if (summary or {}).get("recording_failures"):
+            return "RECORDING_WRITE_FAILED"
+        return "RECORDING_UNAVAILABLE" if status == "LIVE_OBSERVED_NO_RECORDING" else "SNAPSHOT_WRITE_UNCONFIRMED"
     return None
