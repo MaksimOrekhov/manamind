@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 import new_matches_eval_1 as eval1  # noqa: E402
 from manamind.cards.catalog import CardCatalog  # noqa: E402
+from manamind.live.journal_join import outcome_journal_signature  # noqa: E402
 from manamind.live.snapshot_join import collapse_identical_main_action_snapshots  # noqa: E402
 
 
@@ -195,7 +196,14 @@ def _pair_reason(example: dict, key: tuple, snapshot_rows: list[dict], journal_g
         if require_snapshot_sequence_membership and any(
                 not _seq_in_snapshot_group(row, snapshot_rows) for row in group):
             return f"{kind.upper()}_SEQ_NOT_IN_SNAPSHOT_GROUP"
-        record, reason = eval1._one_record(group, kind)
+        if kind == "outcome":
+            # Per-action ``us`` is runtime telemetry, not a game consequence.
+            # Keep all semantic row fields in the signature and fail closed if
+            # repeated forecasts differ in any of them.
+            signatures = {outcome_journal_signature(row) for row in group}
+            record, reason = (group[0], None) if len(signatures) == 1 else (None, "CONFLICTING_OUTCOME_ROWS")
+        else:
+            record, reason = eval1._one_record(group, kind)
         if reason:
             return reason
         records[kind] = record

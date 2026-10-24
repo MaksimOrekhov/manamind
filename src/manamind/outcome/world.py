@@ -171,6 +171,7 @@ class World:
                               else self.context.self_hero_divine_shield if side == "SELF"
                               else self.context.opponent_hero_divine_shield),
             "hero_power_ready": player.hero_power_ready,
+            "frozen": player.hero_frozen,
         })
         self.players[side] = Obj(Ref(side, "PLAYER", None, "PLAYER"), {
             "available_mana": player.available_mana, "hand_size": player.hand_size,
@@ -465,6 +466,7 @@ class World:
                 player, board=tuple(board), locations=tuple(locations),
                 hero_health=max(0, hero["health"]), armor=hero["armor"], hero_attack=hero["attack"],
                 hero_divine_shield=hero["divine_shield"], hero_power_ready=hero["hero_power_ready"],
+                hero_frozen=hero["frozen"],
                 available_mana=mana["available_mana"], hand_size=mana["hand_size"],
                 weapon=player.weapon if weapon is None else self._weapon_card(player, weapon),
             )

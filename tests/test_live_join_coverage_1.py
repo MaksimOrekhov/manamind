@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 import new_matches_eval_1 as eval1  # noqa: E402
+import live_join_coverage_1 as join_audit  # noqa: E402
 import run_manamind  # noqa: E402
 from manamind.live.snapshot import state_hash  # noqa: E402
 from manamind.live.snapshot_join import collapse_identical_main_action_snapshots  # noqa: E402
@@ -91,6 +92,50 @@ def test_repeated_join_does_not_weaken_full_ordered_menu_check():
     assert eval1._match_menu_actions(shadow, actions)
     assert not eval1._match_menu_actions(shadow, list(reversed(actions)))
     assert not eval1._match_menu_actions({**shadow, "menu_size": 1}, actions)
+
+
+def test_strict_join_ignores_outcome_runtime_timing_but_keeps_semantics():
+    game = "a" * 64
+    state_hash_ = "b" * 64
+    options_id = 17
+    action = {"type": "END_TURN"}
+    snapshots = [
+        {"seq": seq, "game_key": game, "state_hash": state_hash_,
+         "decision": {"kind": "MAIN_ACTION", "options_id": options_id}}
+        for seq in (8, 9)
+    ]
+    journal = {
+        "prediction": [{
+            "decision_id": f"{game}:8:{options_id}:{state_hash_}", "match_id": game,
+            "seq": 8, "options_id": options_id, "state_hash": state_hash_,
+            "checkpoint_sha256": eval1.MODELS[0]["sha256"], "top3": [{"action": action}],
+        }],
+        "strategy": [{
+            "decision_id": f"{game}:8:{options_id}:{state_hash_}", "match_id": game,
+            "seq": 8, "options_id": options_id, "state_hash": state_hash_,
+            "menu_size": 1, "actions": [{"index": 0, "action": action_digest(action)}],
+        }],
+        "outcome": [],
+    }
+    for seq, elapsed_us in ((8, 18), (9, 41_000)):
+        journal["outcome"].append({
+            "decision_id": f"{game}:{seq}:{options_id}:{state_hash_}", "match_id": game,
+            "seq": seq, "options_id": options_id, "state_hash": state_hash_,
+            "schema": "manamind.outcome_shadow/1", "forecaster_rev": 2,
+            "texts_sha256": "c" * 64, "context": {}, "complete": True, "menu_size": 1,
+            "actions": [{"index": 0, "action": action_digest(action), "status": "PARTIAL",
+                         "unknowns": ["MECHANIC:UNKNOWN"], "us": elapsed_us}],
+        })
+    groups = {kind: {(game, options_id, state_hash_): rows} for kind, rows in journal.items()}
+    example = {"legal_actions": [action]}
+    key = (game, options_id, state_hash_)
+
+    assert join_audit._pair_reason(example, key, snapshots, groups,
+                                   require_snapshot_sequence_membership=True) is None
+
+    journal["outcome"][1]["actions"][0]["unknowns"] = ["MECHANIC:DIFFERENT"]
+    assert join_audit._pair_reason(example, key, snapshots, groups,
+                                   require_snapshot_sequence_membership=True) == "CONFLICTING_OUTCOME_ROWS"
 
 
 def test_run_manamind_collector_session_limit_defaults_and_forwards(monkeypatch):
