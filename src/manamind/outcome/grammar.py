@@ -58,6 +58,8 @@ _PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("BUFF", re.compile(rf"give (?P<sel>{_SEL}) \+(?P<a>\d+) attack(?P<kw>(?:(?:, and|,| and) (?:{_KW}))*)")),
     ("BUFF", re.compile(rf"give (?P<sel>{_SEL}) \+(?P<h>\d+) health(?P<kw>(?:(?:, and|,| and) (?:{_KW}))*)")),
     ("GRANT", re.compile(rf"give (?P<sel>{_SEL}) (?P<kw>(?:{_KW})(?:(?:, and|,| and) (?:{_KW}))*)")),
+    ("FREEZE", re.compile(r"freeze (?P<sel>an enemy)")),
+    ("DESTROY_DAMAGED", re.compile(r"destroy a damaged enemy minion")),
     ("DESTROY", re.compile(
         r"destroy (?P<sel>a minion|all minions|all enemy minions|all friendly minions)"
         r"(?: with (?P<cmp_n>\d+) or (?P<cmp>more|less) attack)?")),
@@ -161,6 +163,10 @@ def _effect(sentence: str) -> Clause | None:
                           health=int(groups.get("h") or 0), keywords=_keywords(groups.get("kw")))
         if kind == "GRANT":
             return Clause(kind, sentence, _selector(groups["sel"], None), keywords=_keywords(groups["kw"]))
+        if kind == "FREEZE":
+            return Clause(kind, sentence, _selector(groups["sel"], None))
+        if kind == "DESTROY_DAMAGED":
+            return Clause(kind, sentence, Selector("CHOSEN", "MINION", "ENEMY"))
         if kind == "DESTROY":
             attack_filter = None
             if groups.get("cmp"):
@@ -307,6 +313,8 @@ def trigger_events(sentence: str) -> frozenset[str]:
         found |= {"BUFF", "KEYWORD_GAIN", "ARMOR_GAIN"}
     if "mana" in condition:
         found.add("MANA_SPENT")
+    if "freez" in condition:
+        found.add("FREEZE")
     if re.search(r"\b(draw|draws|discard|shuffle)\b", condition) and not found:
         found.add("OTHER")                      # none of the supported actions draws or discards
     return frozenset(found) if found else frozenset({"ANY"})
