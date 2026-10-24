@@ -127,10 +127,11 @@
   },
   "privacy": "Match IDs, states, legal menus, logits, per-decision outcomes and player names remain in ignored data/.",
   "protocol_revision": 2,
+  "results_sha256": "ba477333b735b744539735e2771842f8606aef5886a3456bd33d679c577b5a89",
   "revision_reason": "Исправлена отсутствовавшая запись сравнения в анализаторе до записи результатов; все 295 выбранных строк побайтно совпадают с исходной фиксацией.",
   "schema": "manamind.policy_tactical_analysis_1/1",
   "source_code_sha256": "cd8eae166ec7825243325c2d0e05c7dca8efb38e1f6f8eba4189988d46b924ad",
   "source_commit": "a5a80cba1f97eca82b1bf29d95325f22a53ddc2b",
-  "status": "PROTOCOL_LOCKED",
+  "status": "COMPLETE",
   "supersedes_protocol_sha256": "5cf68c4bf16f456608c306f58693e532dcdae1fc2dc9ee8dd36a0524951da809"
 }
