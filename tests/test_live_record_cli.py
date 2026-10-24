@@ -199,6 +199,116 @@ def test_restart_catches_up_only_unseen_suffix_of_active_game(tmp_path: Path):
     assert identical and recorded == replayed == [first_snapshot.state_hash, snapshots[0].state_hash]
 
 
+def _append_option_cycle(log: LiveLog, power: Path, option: int, resources_used: int) -> None:
+    start = len(log.lines)
+    log.send_option(option)
+    log.batch([f"TAG_CHANGE Entity=2 tag=RESOURCES_USED value={resources_used}"]).finish_list()
+    log.options()
+    with power.open("a", encoding="utf-8", newline="\n") as file:
+        file.write("\n".join(log.lines[start:]) + "\n")
+
+
+def _step_for_snapshots(runner: LiveRunner, clock: Clock, count: int) -> list[Snapshot]:
+    found = []
+    for _ in range(count):
+        found.extend(event for event in runner.step() if isinstance(event, Snapshot))
+        clock.now += 0.2
+    return found
+
+
+def test_capture_counters_resume_without_double_counting_and_continue_match(tmp_path: Path):
+    root = tmp_path / "Logs"
+    power = root / SESSION / "Power.log"
+    power.parent.mkdir(parents=True)
+    log = LiveLog().create_game().mulligan().begin_turn(1).options()
+    power.write_text("\n".join(log.lines) + "\n", encoding="utf-8", newline="\n")
+    recording_root = tmp_path / "rec"
+
+    first_clock = Clock()
+    first = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                       clock=first_clock)
+    first_snapshots = _step_for_snapshots(first, first_clock, 4)
+    assert len(first_snapshots) == 1
+    _append_option_cycle(log, power, option=1, resources_used=1)
+    first_snapshots.extend(_step_for_snapshots(first, first_clock, 6))
+    assert len(first_snapshots) == 2
+
+    directory = next(recording_root.rglob("snapshots.jsonl")).parent
+    before_restart = json.loads((directory / "capture_summary.json").read_text(encoding="utf-8"))
+    assert before_restart["trusted_snapshots_emitted"] == 2
+    assert before_restart["snapshots_saved"] == 2
+
+    restarted_clock = Clock()
+    restarted = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                           clock=restarted_clock)
+    resumed = _step_for_snapshots(restarted, restarted_clock, 5)
+    assert len(resumed) == 1 and resumed[0].state_hash == first_snapshots[-1].state_hash
+    assert len((directory / "snapshots.jsonl").read_text(encoding="utf-8").splitlines()) == 2
+
+    _append_option_cycle(log, power, option=0, resources_used=2)
+    continued = _step_for_snapshots(restarted, restarted_clock, 6)
+    assert len(continued) == 1 and continued[0].seq == 3
+    summary = json.loads((directory / "capture_summary.json").read_text(encoding="utf-8"))
+    assert summary["options_packets_seen"] == 3
+    assert summary["trusted_snapshots_emitted"] == 3
+    assert summary["snapshots_saved"] == 3
+    assert summary["recording_failures"] == {}
+
+
+def test_partial_summary_write_failure_preserves_counters_across_restart(tmp_path: Path, monkeypatch):
+    root = tmp_path / "Logs"
+    power = root / SESSION / "Power.log"
+    power.parent.mkdir(parents=True)
+    log = LiveLog().create_game().mulligan().begin_turn(1).options()
+    power.write_text("\n".join(log.lines) + "\n", encoding="utf-8", newline="\n")
+    recording_root = tmp_path / "rec"
+    clock = Clock()
+    recorder = Recorder(recording_root, catalog_path=CARDS)
+    runner = LiveRunner(root, LiveSession(CATALOG), recorder, clock=clock)
+    assert len(_step_for_snapshots(runner, clock, 4)) == 1
+    _append_option_cycle(log, power, option=1, resources_used=1)
+    assert len(_step_for_snapshots(runner, clock, 6)) == 1
+
+    original_write = recorder._write_capture_summary
+    failed = False
+
+    def fail_one_summary(cursor, game, *, update=True):
+        nonlocal failed
+        if not failed:
+            failed = True
+            raise OSError("simulated summary write failure")
+        original_write(cursor, game, update=update)
+
+    monkeypatch.setattr(recorder, "_write_capture_summary", fail_one_summary)
+    _append_option_cycle(log, power, option=0, resources_used=2)
+    third = _step_for_snapshots(runner, clock, 6)
+    assert len(third) == 1
+    assert failed
+
+    # Finalization retries the summary write after the snapshot itself was saved.
+    runner.finish()
+    directory = next(recording_root.rglob("snapshots.jsonl")).parent
+    after_retry = json.loads((directory / "capture_summary.json").read_text(encoding="utf-8"))
+    assert after_retry["trusted_snapshots_emitted"] == 3
+    assert after_retry["snapshots_saved"] == 3
+    assert after_retry["recording_failures"] == {"FILE_IO_ERROR": 1}
+
+    restarted_clock = Clock()
+    restarted = LiveRunner(root, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS),
+                           clock=restarted_clock)
+    resumed = _step_for_snapshots(restarted, restarted_clock, 5)
+    assert len(resumed) == 1 and resumed[0].state_hash == third[0].state_hash
+    _append_option_cycle(log, power, option=1, resources_used=3)
+    fourth = _step_for_snapshots(restarted, restarted_clock, 6)
+    assert len(fourth) == 1 and fourth[0].seq == 4
+
+    summary = json.loads((directory / "capture_summary.json").read_text(encoding="utf-8"))
+    assert summary["options_packets_seen"] == 4
+    assert summary["trusted_snapshots_emitted"] == 4
+    assert summary["snapshots_saved"] == 4
+    assert summary["recording_failures"] == {"FILE_IO_ERROR": 1}
+
+
 def test_recorder_disk_error_does_not_suppress_live_snapshot(tmp_path: Path):
     root = make_log_root(tmp_path)
     blocked_root = tmp_path / "not-a-directory"

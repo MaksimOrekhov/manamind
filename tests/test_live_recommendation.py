@@ -319,6 +319,45 @@ def test_recorder_write_failure_does_not_disable_live_recommendations(tmp_path, 
     assert not any("recommendations disabled" in row for row in printed)
 
 
+def test_corrupt_recording_resume_does_not_disable_recommendations_or_append_snapshot(
+    tmp_path, recommender
+):
+    scorer, _ = recommender
+    logs = tmp_path / "Logs"
+    log = LiveLog(seed=8).create_game().mulligan().self_decision(1)
+    write(logs / "Hearthstone_2026_10_06_10_00_00/Power.log", log.lines)
+    recording_root = tmp_path / "data/raw/live"
+
+    seed_clock = Clock()
+    seed_runner = LiveRunner(
+        logs, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS), clock=seed_clock
+    )
+    for _ in range(5):
+        seed_runner.step()
+        seed_clock.advance(0.2)
+    snapshots_path = next(recording_root.rglob("snapshots.jsonl"))
+    snapshots_path.write_text('{"corrupt":}\n', encoding="utf-8")
+    corrupt_contents = snapshots_path.read_bytes()
+
+    clock = Clock()
+    printed = []
+    live = LiveRunner(logs, LiveSession(CATALOG), Recorder(recording_root, catalog_path=CARDS), clock=clock)
+    runtime = run_manamind.UnifiedRuntime(
+        live, DummyCollector(), scorer, emit=printed.append, collector_seconds=1
+    )
+    for _ in range(8):
+        runtime.step(clock.now)
+        clock.advance(0.2)
+
+    assert not runtime.live_failed
+    assert runtime.decisions_scored == 1
+    assert runtime.active_identity is not None
+    assert runtime.live.session.current_snapshot is not None
+    assert snapshots_path.read_bytes() == corrupt_contents
+    assert any("live recording warning: code=RECORDING_RESUME_FAILED" in row for row in printed)
+    assert not any("recommendations disabled" in row for row in printed)
+
+
 def test_panel_uses_local_names_and_position_fallback_without_handles():
     names = load_card_names(CARDS)
     play = {"type": "PLAY_CARD", "card_type": "MINION", "card_id": "CS2_231",

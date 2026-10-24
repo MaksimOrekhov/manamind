@@ -262,19 +262,54 @@ def _merge_summaries(left: dict | None, right: dict) -> dict:
 
 
 def _merge_live_summary(persisted: dict | None, current: dict) -> dict:
-    """Overlay current-process counters without double-counting the persisted session."""
+    """Merge either cumulative Recorder counters or a new process's incremental observations."""
     if persisted is None:
         return current
     result = dict(persisted)
-    for name in ("options_packets_seen", "trusted_snapshots_emitted", "snapshots_saved", "superseded_menus"):
-        if isinstance(current.get(name), int):
-            result[name] = max(int(result.get(name, 0)), int(current[name]))
-    for name in ("trust_rejections", "recording_failures"):
-        merged = Counter(result.get(name, {}))
-        for code, count in current.get(name, {}).items():
+    if current.get("counter_scope") == "CUMULATIVE_MATCH":
+        for name in ("options_packets_seen", "trusted_snapshots_emitted", "snapshots_saved", "superseded_menus"):
+            if isinstance(current.get(name), int):
+                result[name] = max(int(result.get(name, 0)), int(current[name]))
+        for name in ("trust_rejections", "recording_failures"):
+            merged = Counter(result.get(name, {}))
+            for code, count in current.get(name, {}).items():
+                if isinstance(count, int):
+                    merged[code] = max(merged[code], count)
+            result[name] = dict(sorted(merged.items()))
+    else:
+        if isinstance(current.get("options_packets_seen"), int):
+            result["options_packets_seen"] = max(
+                int(result.get("options_packets_seen", 0)), int(current["options_packets_seen"])
+            )
+        if "trusted_snapshots_increment" in current:
+            result["trusted_snapshots_emitted"] = (
+                _nonnegative_int(result.get("trusted_snapshots_emitted"))
+                + _nonnegative_int(current.get("trusted_snapshots_increment"))
+            )
+        elif isinstance(current.get("trusted_snapshots_emitted"), int):
+            result["trusted_snapshots_emitted"] = max(
+                _nonnegative_int(result.get("trusted_snapshots_emitted")),
+                _nonnegative_int(current.get("trusted_snapshots_emitted")),
+            )
+        if isinstance(current.get("snapshots_saved"), int):
+            result["snapshots_saved"] = max(
+                int(result.get("snapshots_saved", 0)), int(current["snapshots_saved"])
+            )
+        if isinstance(current.get("superseded_menus"), int):
+            result["superseded_menus"] = max(
+                int(result.get("superseded_menus", 0)), int(current["superseded_menus"])
+            )
+        for name in ("trust_rejections",):
+            merged = Counter(result.get(name, {}))
+            for code, count in current.get(name, {}).items():
+                if isinstance(count, int):
+                    merged[code] = max(merged[code], count)
+            result[name] = dict(sorted(merged.items()))
+        failures = Counter(result.get("recording_failures", {}))
+        for code, count in current.get("recording_failures", {}).items():
             if isinstance(count, int):
-                merged[code] = max(merged[code], count)
-        result[name] = dict(sorted(merged.items()))
+                failures[code] += count
+        result["recording_failures"] = dict(sorted(failures.items()))
     if current.get("capture_status") == "COMPLETE":
         result["capture_status"] = "COMPLETE"
     return result
@@ -282,6 +317,11 @@ def _merge_live_summary(persisted: dict | None, current: dict) -> dict:
 
 def _optional_int(value) -> int | None:
     return value if isinstance(value, int) and not isinstance(value, bool) else None
+
+
+def _nonnegative_int(value) -> int:
+    result = _optional_int(value)
+    return result if result is not None and result >= 0 else 0
 
 
 def _summary_int(summary: dict | None, key: str) -> int | None:

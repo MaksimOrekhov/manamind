@@ -7,7 +7,7 @@ from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
 
-from .recorder import Recorder
+from .recorder import Recorder, RecordingResumeError
 from .session import GameRun, LiveEvent, LiveSession
 from .tail import FILE_DISCONTINUITY, NEW_SESSION, START, LogTail
 
@@ -28,9 +28,7 @@ class LiveRunner:
         self._games: dict[str, GameRun] = {}
         self._match_recording_failures: dict[str, Counter[str]] = {}
         if recorder is not None:
-            self.session.sequence_resume = lambda game_key, options_id, digest: recorder.sequence_for(
-                self.session.session_name, game_key, options_id, digest
-            )
+            self.session.sequence_resume = self._resume_sequence
 
     def step(self) -> list[LiveEvent]:
         now_ms = int(self.clock() * 1000)
@@ -65,11 +63,11 @@ class LiveRunner:
                 self.recorder.sync(self.session.session_name, unique, events)
             except Exception as error:
                 code = _recording_failure_code(error)
-                self.recording_failures[code] += 1
-                self.recorder.note_failure(code)
-                for game in unique:
-                    if game.game_key is not None:
-                        self._match_recording_failures.setdefault(game.game_key, Counter())[code] += 1
+                failed_keys = [game.game_key for game in unique if game.game_key is not None]
+                if isinstance(error, RecordingResumeError):
+                    for key in failed_keys:
+                        self.recorder.disable_game(key, code)
+                self._note_recording_failure(code, failed_keys)
         return events
 
     def drain_recording_failures(self) -> dict[str, int]:
@@ -91,12 +89,20 @@ class LiveRunner:
         game = self._games.get(game_key)
         if game is None:
             return None
+        recorded = self.recorder.capture_summary_for(game_key) if self.recorder is not None else None
+        if recorded is not None:
+            return recorded
         return {
             "game_key": game_key,
             "live_observed": True,
+            "counter_scope": "CURRENT_PROCESS",
             "capture_status": "COMPLETE" if game.ended else "ACTIVE",
             "options_packets_seen": game.options_packets_seen,
             "trusted_snapshots_emitted": game.trusted_snapshots,
+            "trusted_snapshots_increment": max(
+                0, game.trusted_snapshots - game.resumed_snapshot_duplicates
+            ),
+            "resumed_snapshot_duplicates": game.resumed_snapshot_duplicates,
             "snapshots_saved": (self.recorder.snapshot_count_for(game_key)
                                 if self.recorder is not None else 0),
             "trust_rejections": dict(sorted(game.trust_rejections.items())),
@@ -106,8 +112,33 @@ class LiveRunner:
             )),
         }
 
+    def _resume_sequence(self, game_key: str, options_id: int, digest: str) -> tuple[int | None, int]:
+        if self.recorder is None:
+            return None, 0
+        try:
+            return self.recorder.sequence_for(self.session.session_name, game_key, options_id, digest)
+        except Exception as error:
+            code = _recording_failure_code(error)
+            self.recorder.disable_game(game_key, code)
+            self._note_recording_failure(code, [game_key])
+            # Sequence history cannot be proven. Keep a process-local identity for LIVE
+            # recommendations, but permanently fail closed on recording this match.
+            return None, 0
+
+    def _note_recording_failure(self, code: str, game_keys: list[str]) -> None:
+        self.recording_failures[code] += 1
+        if self.recorder is None or not game_keys:
+            if self.recorder is not None:
+                self.recorder.note_failure(code)
+            return
+        for game_key in game_keys:
+            self._match_recording_failures.setdefault(game_key, Counter())[code] += 1
+            self.recorder.note_match_failure(game_key, code)
+
 
 def _recording_failure_code(error: Exception) -> str:
+    if isinstance(error, RecordingResumeError):
+        return "RECORDING_RESUME_FAILED"
     if isinstance(error, PermissionError):
         return "FILE_ACCESS_DENIED"
     if isinstance(error, FileNotFoundError):

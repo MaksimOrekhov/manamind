@@ -8,7 +8,7 @@ ROOT = Path(__file__).parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from manamind.live.capture_diagnostics import build_capture_report  # noqa: E402
+from manamind.live.capture_diagnostics import _merge_live_summary, build_capture_report  # noqa: E402
 from manamind.live.snapshot import Snapshot, state_hash  # noqa: E402
 from collect_power_logs import Collector  # noqa: E402
 from process_completed_match import ProcessorResult  # noqa: E402
@@ -145,3 +145,62 @@ def test_in_memory_observation_identifies_a_failed_recorder(tmp_path: Path):
         "RECORDING_FILE_IO_ERROR": 1,
         "SNAPSHOT_NOT_SAVED": 1,
     }
+
+
+def test_live_summary_merge_keeps_cumulative_counts_idempotent():
+    persisted = {
+        "options_packets_seen": 3,
+        "trusted_snapshots_emitted": 2,
+        "snapshots_saved": 2,
+        "trust_rejections": {"UNTRUSTED": 1},
+        "superseded_menus": 1,
+        "recording_failures": {"FILE_IO_ERROR": 1},
+    }
+    current = {
+        "counter_scope": "CUMULATIVE_MATCH",
+        "options_packets_seen": 4,
+        "trusted_snapshots_emitted": 3,
+        "snapshots_saved": 3,
+        "trust_rejections": {"UNTRUSTED": 1, "MISSING_FACT": 2},
+        "superseded_menus": 2,
+        "recording_failures": {"FILE_IO_ERROR": 1, "RECORDING_RESUME_FAILED": 1},
+    }
+
+    merged = _merge_live_summary(persisted, current)
+
+    assert merged["options_packets_seen"] == 4
+    assert merged["trusted_snapshots_emitted"] == 3
+    assert merged["snapshots_saved"] == 3
+    assert merged["trust_rejections"] == {"MISSING_FACT": 2, "UNTRUSTED": 1}
+    assert merged["superseded_menus"] == 2
+    assert merged["recording_failures"] == {"FILE_IO_ERROR": 1, "RECORDING_RESUME_FAILED": 1}
+    assert _merge_live_summary(merged, current) == merged
+
+
+def test_live_summary_merge_adds_current_process_trusted_emissions_once():
+    persisted = {
+        "options_packets_seen": 2,
+        "trusted_snapshots_emitted": 2,
+        "snapshots_saved": 2,
+        "trust_rejections": {},
+        "superseded_menus": 0,
+        "recording_failures": {},
+    }
+    current = {
+        "counter_scope": "CURRENT_PROCESS",
+        "options_packets_seen": 3,
+        "trusted_snapshots_emitted": 2,
+        "trusted_snapshots_increment": 1,
+        "resumed_snapshot_duplicates": 1,
+        "snapshots_saved": 2,
+        "trust_rejections": {},
+        "superseded_menus": 0,
+        "recording_failures": {"RECORDING_RESUME_FAILED": 1},
+    }
+
+    merged = _merge_live_summary(persisted, current)
+
+    assert merged["options_packets_seen"] == 3
+    assert merged["trusted_snapshots_emitted"] == 3
+    assert merged["snapshots_saved"] == 2
+    assert merged["recording_failures"] == {"RECORDING_RESUME_FAILED": 1}

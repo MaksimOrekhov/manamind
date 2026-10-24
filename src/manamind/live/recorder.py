@@ -16,7 +16,7 @@ import hashlib
 import json
 import platform
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from importlib import metadata
 from pathlib import Path
 
@@ -35,6 +35,9 @@ class _Cursor:
     rows: int = 0
     saved_snapshots: dict[tuple[int, str], dict] | None = None
     snapshot_count: int = 0
+    capture_totals: dict = field(default_factory=dict)
+    trusted_snapshots_seen: int = 0
+    failure_counts_seen: Counter[str] = field(default_factory=Counter)
     resume_trace_pending: bool = False
     resume_snapshot_pending: bool = False
 
@@ -59,11 +62,13 @@ class Recorder:
         self._resume_indexes: dict[Path, tuple[dict[tuple[int, str], dict], int]] = {}
         self._games: dict[str, GameRun] = {}
         self._recording_failures: Counter[str] = Counter()
+        self._recording_failures_by_game: dict[str, Counter[str]] = {}
+        self._disabled_games: dict[str, str] = {}
 
     def sync(self, session_name: str | None, games: list[GameRun], events: list) -> None:
         touched: dict[str, tuple[_Cursor, GameRun, bool]] = {}
         for game in games:
-            if game.game_key is None or game.mode_state != "OK":
+            if game.game_key is None or game.mode_state != "OK" or game.game_key in self._disabled_games:
                 continue
             cursor = self._cursor(session_name, game)
             self._games[game.game_key] = game
@@ -72,6 +77,8 @@ class Recorder:
             touched[game.game_key] = cursor, game, changed
         for event in events:
             key = event.game_key
+            if key in self._disabled_games:
+                continue
             cursor = self._cursors.get(key) if key else None
             if cursor is None:
                 continue
@@ -86,8 +93,9 @@ class Recorder:
                     c, game, _ = touched[key]
                     touched[key] = c, game, True
         for cursor, game, changed in touched.values():
-            if changed or game.ended:
-                self._write_capture_summary(cursor, game)
+            totals_changed = self._update_capture_totals(cursor, game)
+            if changed or totals_changed or game.ended:
+                self._write_capture_summary(cursor, game, update=False)
 
     def sequence_for(self, session_name: str | None, game_key: str, options_id: int,
                      digest: str) -> tuple[int | None, int]:
@@ -112,6 +120,24 @@ class Recorder:
     def note_failure(self, code: str) -> None:
         self._recording_failures[code] += 1
 
+    def note_match_failure(self, game_key: str, code: str) -> None:
+        self._recording_failures[code] += 1
+        self._recording_failures_by_game.setdefault(game_key, Counter())[code] += 1
+
+    def disable_game(self, game_key: str, code: str) -> None:
+        """Stop writes for a match whose existing recording cannot be resumed safely."""
+        self._disabled_games[game_key] = code
+
+    def capture_summary_for(self, game_key: str) -> dict | None:
+        cursor = self._cursors.get(game_key)
+        game = self._games.get(game_key)
+        if cursor is None or game is None:
+            return None
+        self._update_capture_totals(cursor, game)
+        return {**cursor.capture_totals, "game_key": game_key,
+                "capture_status": "COMPLETE" if game.ended else "ACTIVE",
+                "counter_scope": "CUMULATIVE_MATCH"}
+
     def snapshot_count_for(self, game_key: str) -> int:
         cursor = self._cursors.get(game_key)
         return cursor.snapshot_count if cursor is not None else 0
@@ -133,12 +159,15 @@ class Recorder:
             rows, _ = self._resume_index(directory, key, game.lines)
             slice_path = directory / "slice.log"
             existing_lines = len(slice_path.read_text(encoding="utf-8").splitlines()) if slice_path.exists() else 0
+            snapshot_count = _jsonl_count(directory / "snapshots.jsonl")
+            capture_totals = self._load_capture_totals(directory, key, snapshot_count)
             cursor = self._cursors[key] = _Cursor(
                 directory=directory,
                 game_id=id(game),
                 lines=existing_lines,
                 saved_snapshots=rows,
-                snapshot_count=_jsonl_count(directory / "snapshots.jsonl"),
+                snapshot_count=snapshot_count,
+                capture_totals=capture_totals,
                 resume_trace_pending=bool(existing_lines),
                 resume_snapshot_pending=bool(rows),
             )
@@ -152,6 +181,41 @@ class Recorder:
             cursor.resume_trace_pending = resumed_catchup
             cursor.resume_snapshot_pending = resumed_catchup
         return cursor
+
+    @staticmethod
+    def _load_capture_totals(directory: Path, game_key: str, snapshot_count: int) -> dict:
+        path = directory / "capture_summary.json"
+        summary = {}
+        if path.exists():
+            try:
+                summary = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, ValueError) as error:
+                raise RecordingResumeError("capture summary is unreadable") from error
+            if not isinstance(summary, dict) or summary.get("game_key") != game_key:
+                raise RecordingResumeError("capture summary identity mismatch")
+            if summary.get("schema") != "manamind.live.capture/1":
+                raise RecordingResumeError("capture summary schema mismatch")
+            for name in ("options_packets_seen", "trusted_snapshots_emitted", "snapshots_saved",
+                         "superseded_menus"):
+                if name in summary and not _is_nonnegative_count(summary[name]):
+                    raise RecordingResumeError("capture summary counter is invalid")
+            for name in ("trust_rejections", "recording_failures"):
+                if name in summary and not _is_count_mapping(summary[name]):
+                    raise RecordingResumeError("capture summary counter map is invalid")
+            saved_count = _nonnegative_count(summary.get("snapshots_saved"))
+            if saved_count > snapshot_count:
+                raise RecordingResumeError("capture summary snapshot count mismatch")
+        result = {
+            "options_packets_seen": _nonnegative_count(summary.get("options_packets_seen")),
+            "trusted_snapshots_emitted": max(
+                snapshot_count, _nonnegative_count(summary.get("trusted_snapshots_emitted"))
+            ),
+            "snapshots_saved": snapshot_count,
+            "trust_rejections": _count_mapping(summary.get("trust_rejections")),
+            "superseded_menus": _nonnegative_count(summary.get("superseded_menus")),
+            "recording_failures": _count_mapping(summary.get("recording_failures")),
+        }
+        return result
 
     @staticmethod
     def _validate_existing_prefix(directory: Path, game_key: str, current_lines: list[str]) -> None:
@@ -308,17 +372,40 @@ class Recorder:
         cursor.snapshot_count += 1
         cursor.resume_snapshot_pending = False
 
-    def _write_capture_summary(self, cursor: _Cursor, game: GameRun) -> None:
+    def _update_capture_totals(self, cursor: _Cursor, game: GameRun) -> bool:
+        totals = cursor.capture_totals
+        before = canonical_json(totals)
+        totals["options_packets_seen"] = max(
+            int(totals.get("options_packets_seen", 0)), game.options_packets_seen
+        )
+        effective_trusted = max(0, game.trusted_snapshots - game.resumed_snapshot_duplicates)
+        trusted_delta = max(0, effective_trusted - cursor.trusted_snapshots_seen)
+        totals["trusted_snapshots_emitted"] = int(totals.get("trusted_snapshots_emitted", 0)) + trusted_delta
+        cursor.trusted_snapshots_seen = max(cursor.trusted_snapshots_seen, effective_trusted)
+        totals["snapshots_saved"] = cursor.snapshot_count
+        reasons = Counter(totals.get("trust_rejections", {}))
+        for reason, count in game.trust_rejections.items():
+            reasons[reason] = max(reasons[reason], count)
+        totals["trust_rejections"] = dict(sorted(reasons.items()))
+        totals["superseded_menus"] = max(int(totals.get("superseded_menus", 0)), game.gate.superseded)
+        failures = Counter(totals.get("recording_failures", {}))
+        current_failures = self._recording_failures_by_game.get(game.game_key or "", Counter())
+        for code, count in current_failures.items():
+            previous_count = cursor.failure_counts_seen[code]
+            if count > previous_count:
+                failures[code] += count - previous_count
+                cursor.failure_counts_seen[code] = count
+        totals["recording_failures"] = dict(sorted(failures.items()))
+        return before != canonical_json(totals)
+
+    def _write_capture_summary(self, cursor: _Cursor, game: GameRun, *, update: bool = True) -> None:
+        if update:
+            self._update_capture_totals(cursor, game)
         payload = {
             "schema": "manamind.live.capture/1",
             "game_key": game.game_key,
             "capture_status": "COMPLETE" if game.ended else "ACTIVE",
-            "options_packets_seen": game.options_packets_seen,
-            "trusted_snapshots_emitted": game.trusted_snapshots,
-            "snapshots_saved": cursor.snapshot_count,
-            "trust_rejections": dict(sorted(game.trust_rejections.items())),
-            "superseded_menus": game.gate.superseded,
-            "recording_failures": dict(sorted(self._recording_failures.items())),
+            **cursor.capture_totals,
         }
         target = cursor.directory / "capture_summary.json"
         temporary = target.with_suffix(".json.tmp")
@@ -343,6 +430,26 @@ def _jsonl_count(path: Path) -> int:
         return sum(bool(row.strip()) for row in path.read_text(encoding="utf-8").splitlines())
     except OSError as error:
         raise RecordingResumeError("recorded snapshot file is unreadable") from error
+
+
+def _nonnegative_count(value: object) -> int:
+    return value if isinstance(value, int) and not isinstance(value, bool) and value >= 0 else 0
+
+
+def _is_nonnegative_count(value: object) -> bool:
+    return isinstance(value, int) and not isinstance(value, bool) and value >= 0
+
+
+def _is_count_mapping(value: object) -> bool:
+    return isinstance(value, dict) and all(
+        isinstance(key, str) and _is_nonnegative_count(count) for key, count in value.items()
+    )
+
+
+def _count_mapping(value: object) -> dict[str, int]:
+    if not isinstance(value, dict):
+        return {}
+    return dict(value)
 
 
 def _append(path: Path, text: str) -> None:

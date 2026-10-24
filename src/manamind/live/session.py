@@ -63,6 +63,7 @@ class GameRun:
     unsupported_reason: str | None = None
     options_packets_seen: int = 0
     trusted_snapshots: int = 0
+    resumed_snapshot_duplicates: int = 0
     trust_rejections: Counter[str] = field(default_factory=Counter)
 
     @property
@@ -410,6 +411,8 @@ class LiveSession:
             resumed_seq, previous_max = (self.sequence_resume(
                 game.game_key, int(decision["options_id"]), state_hash(state_dict)
             ) if self.sequence_resume is not None else (None, 0))
+            if resumed_seq is not None:
+                game.resumed_snapshot_duplicates += 1
             self._seq[game.game_key] = previous_max
             seq = resumed_seq if resumed_seq is not None else previous_max + 1
         else:
