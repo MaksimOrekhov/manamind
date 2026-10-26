@@ -15,7 +15,7 @@ for d in cands:
         try:
             r = load_examples(Path(sub))
             if r: rows = r; src = sub; break
-        except Exception as e:
+        except Exception:
             continue
     if rows: break
 print("examples from", src, len(rows))

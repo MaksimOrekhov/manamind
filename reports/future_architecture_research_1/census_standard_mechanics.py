@@ -1,7 +1,7 @@
 """Read-only census of the pinned Standard catalog: grammar coverage + mechanic families."""
 import json, re, sys, collections
 sys.path.insert(0, "src")
-from manamind.outcome.grammar import parse_text, normalise
+from manamind.outcome.grammar import parse_text
 
 cat = json.load(open("data/cards/standard_current_enUS.json", encoding="utf-8"))["cards"]
 N = len(cat)
