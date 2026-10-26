@@ -1,0 +1,3182 @@
+{
+  "build_matched": {
+    "NEWER": {
+      "appearances": 19918,
+      "incomplete_field_appearances": {
+        "MISSING_CLASS": 127
+      },
+      "level_appearances": {
+        "complete": 19791,
+        "engine_declared": 1459,
+        "parse_complete": 3428,
+        "resolved": 19918,
+        "text_meaningful": 19918
+      },
+      "level_share": {
+        "complete": 0.993624,
+        "engine_declared": 0.07325,
+        "parse_complete": 0.172106,
+        "resolved": 1.0,
+        "text_meaningful": 1.0
+      },
+      "level_unique_ids": {
+        "complete": 585,
+        "engine_declared": 42,
+        "parse_complete": 81,
+        "resolved": 594,
+        "text_meaningful": 594
+      },
+      "status_appearances": {
+        "EMPTY_TEXT_VANILLA": 277,
+        "TEXT_PARSED": 3151,
+        "TEXT_UNPARSED_OPAQUE": 10914,
+        "TEXT_UNPARSED_TRIGGER": 5576
+      },
+      "status_unique_ids": {
+        "EMPTY_TEXT_VANILLA": 22,
+        "TEXT_PARSED": 59,
+        "TEXT_UNPARSED_OPAQUE": 348,
+        "TEXT_UNPARSED_TRIGGER": 165
+      },
+      "unique_ids": 594
+    },
+    "OLDER": {
+      "appearances": 32751,
+      "incomplete_field_appearances": {
+        "MISSING_CLASS": 1358
+      },
+      "level_appearances": {
+        "complete": 31393,
+        "engine_declared": 4742,
+        "parse_complete": 9668,
+        "resolved": 32751,
+        "text_meaningful": 32751
+      },
+      "level_share": {
+        "complete": 0.958536,
+        "engine_declared": 0.144789,
+        "parse_complete": 0.295197,
+        "resolved": 1.0,
+        "text_meaningful": 1.0
+      },
+      "level_unique_ids": {
+        "complete": 618,
+        "engine_declared": 41,
+        "parse_complete": 82,
+        "resolved": 633,
+        "text_meaningful": 633
+      },
+      "status_appearances": {
+        "EMPTY_TEXT_VANILLA": 457,
+        "TEXT_PARSED": 9211,
+        "TEXT_UNPARSED_OPAQUE": 17693,
+        "TEXT_UNPARSED_TRIGGER": 5390
+      },
+      "status_unique_ids": {
+        "EMPTY_TEXT_VANILLA": 25,
+        "TEXT_PARSED": 57,
+        "TEXT_UNPARSED_OPAQUE": 371,
+        "TEXT_UNPARSED_TRIGGER": 180
+      },
+      "unique_ids": 633
+    }
+  },
+  "by_class": {
+    "A_old_pinned_collectible": {
+      "OPP DEATHKNIGHT": {
+        "appearances": 730,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 43
+        },
+        "level_appearances": {
+          "complete": 395,
+          "engine_declared": 15,
+          "parse_complete": 11,
+          "resolved": 438,
+          "text_meaningful": 438
+        },
+        "level_share": {
+          "complete": 0.541096,
+          "engine_declared": 0.020548,
+          "parse_complete": 0.015068,
+          "resolved": 0.6,
+          "text_meaningful": 0.6
+        },
+        "level_unique_ids": {
+          "complete": 47,
+          "engine_declared": 2,
+          "parse_complete": 1,
+          "resolved": 51,
+          "text_meaningful": 51
+        },
+        "status_appearances": {
+          "MISSING_ID": 292,
+          "TEXT_PARSED": 11,
+          "TEXT_UNPARSED_OPAQUE": 266,
+          "TEXT_UNPARSED_TRIGGER": 161
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 16,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 33,
+          "TEXT_UNPARSED_TRIGGER": 17
+        },
+        "unique_ids": 67
+      },
+      "OPP DEMONHUNTER": {
+        "appearances": 680,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 6
+        },
+        "level_appearances": {
+          "complete": 458,
+          "engine_declared": 19,
+          "parse_complete": 40,
+          "resolved": 464,
+          "text_meaningful": 464
+        },
+        "level_share": {
+          "complete": 0.673529,
+          "engine_declared": 0.027941,
+          "parse_complete": 0.058824,
+          "resolved": 0.682353,
+          "text_meaningful": 0.682353
+        },
+        "level_unique_ids": {
+          "complete": 46,
+          "engine_declared": 3,
+          "parse_complete": 5,
+          "resolved": 47,
+          "text_meaningful": 47
+        },
+        "status_appearances": {
+          "MISSING_ID": 216,
+          "TEXT_PARSED": 40,
+          "TEXT_UNPARSED_OPAQUE": 155,
+          "TEXT_UNPARSED_TRIGGER": 269
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 13,
+          "TEXT_PARSED": 5,
+          "TEXT_UNPARSED_OPAQUE": 22,
+          "TEXT_UNPARSED_TRIGGER": 20
+        },
+        "unique_ids": 60
+      },
+      "OPP DRUID": {
+        "appearances": 170,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 152,
+          "engine_declared": 5,
+          "parse_complete": 0,
+          "resolved": 152,
+          "text_meaningful": 152
+        },
+        "level_share": {
+          "complete": 0.894118,
+          "engine_declared": 0.029412,
+          "parse_complete": 0.0,
+          "resolved": 0.894118,
+          "text_meaningful": 0.894118
+        },
+        "level_unique_ids": {
+          "complete": 31,
+          "engine_declared": 1,
+          "parse_complete": 0,
+          "resolved": 31,
+          "text_meaningful": 31
+        },
+        "status_appearances": {
+          "MISSING_ID": 18,
+          "TEXT_UNPARSED_OPAQUE": 110,
+          "TEXT_UNPARSED_TRIGGER": 42
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 4,
+          "TEXT_UNPARSED_OPAQUE": 20,
+          "TEXT_UNPARSED_TRIGGER": 11
+        },
+        "unique_ids": 35
+      },
+      "OPP HUNTER": {
+        "appearances": 623,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 556,
+          "engine_declared": 28,
+          "parse_complete": 27,
+          "resolved": 556,
+          "text_meaningful": 556
+        },
+        "level_share": {
+          "complete": 0.892456,
+          "engine_declared": 0.044944,
+          "parse_complete": 0.043339,
+          "resolved": 0.892456,
+          "text_meaningful": 0.892456
+        },
+        "level_unique_ids": {
+          "complete": 45,
+          "engine_declared": 5,
+          "parse_complete": 3,
+          "resolved": 45,
+          "text_meaningful": 45
+        },
+        "status_appearances": {
+          "MISSING_ID": 67,
+          "TEXT_PARSED": 27,
+          "TEXT_UNPARSED_OPAQUE": 264,
+          "TEXT_UNPARSED_TRIGGER": 265
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 8,
+          "TEXT_PARSED": 3,
+          "TEXT_UNPARSED_OPAQUE": 22,
+          "TEXT_UNPARSED_TRIGGER": 20
+        },
+        "unique_ids": 53
+      },
+      "OPP MAGE": {
+        "appearances": 1060,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 881,
+          "engine_declared": 134,
+          "parse_complete": 28,
+          "resolved": 881,
+          "text_meaningful": 881
+        },
+        "level_share": {
+          "complete": 0.831132,
+          "engine_declared": 0.126415,
+          "parse_complete": 0.026415,
+          "resolved": 0.831132,
+          "text_meaningful": 0.831132
+        },
+        "level_unique_ids": {
+          "complete": 104,
+          "engine_declared": 12,
+          "parse_complete": 6,
+          "resolved": 104,
+          "text_meaningful": 104
+        },
+        "status_appearances": {
+          "MISSING_ID": 179,
+          "TEXT_PARSED": 28,
+          "TEXT_UNPARSED_OPAQUE": 669,
+          "TEXT_UNPARSED_TRIGGER": 184
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 14,
+          "TEXT_PARSED": 6,
+          "TEXT_UNPARSED_OPAQUE": 62,
+          "TEXT_UNPARSED_TRIGGER": 36
+        },
+        "unique_ids": 118
+      },
+      "OPP PALADIN": {
+        "appearances": 1327,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 820,
+          "engine_declared": 74,
+          "parse_complete": 138,
+          "resolved": 820,
+          "text_meaningful": 820
+        },
+        "level_share": {
+          "complete": 0.617935,
+          "engine_declared": 0.055765,
+          "parse_complete": 0.103994,
+          "resolved": 0.617935,
+          "text_meaningful": 0.617935
+        },
+        "level_unique_ids": {
+          "complete": 52,
+          "engine_declared": 5,
+          "parse_complete": 9,
+          "resolved": 52,
+          "text_meaningful": 52
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 7,
+          "MISSING_ID": 507,
+          "TEXT_PARSED": 131,
+          "TEXT_UNPARSED_OPAQUE": 353,
+          "TEXT_UNPARSED_TRIGGER": 329
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 21,
+          "TEXT_PARSED": 8,
+          "TEXT_UNPARSED_OPAQUE": 26,
+          "TEXT_UNPARSED_TRIGGER": 17
+        },
+        "unique_ids": 73
+      },
+      "OPP PRIEST": {
+        "appearances": 2458,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 5
+        },
+        "level_appearances": {
+          "complete": 1856,
+          "engine_declared": 68,
+          "parse_complete": 74,
+          "resolved": 1861,
+          "text_meaningful": 1861
+        },
+        "level_share": {
+          "complete": 0.755085,
+          "engine_declared": 0.027665,
+          "parse_complete": 0.030106,
+          "resolved": 0.75712,
+          "text_meaningful": 0.75712
+        },
+        "level_unique_ids": {
+          "complete": 134,
+          "engine_declared": 5,
+          "parse_complete": 7,
+          "resolved": 136,
+          "text_meaningful": 136
+        },
+        "status_appearances": {
+          "MISSING_ID": 597,
+          "TEXT_PARSED": 74,
+          "TEXT_UNPARSED_OPAQUE": 1372,
+          "TEXT_UNPARSED_TRIGGER": 415
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 32,
+          "TEXT_PARSED": 7,
+          "TEXT_UNPARSED_OPAQUE": 87,
+          "TEXT_UNPARSED_TRIGGER": 42
+        },
+        "unique_ids": 168
+      },
+      "OPP ROGUE": {
+        "appearances": 772,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 60
+        },
+        "level_appearances": {
+          "complete": 471,
+          "engine_declared": 13,
+          "parse_complete": 11,
+          "resolved": 531,
+          "text_meaningful": 531
+        },
+        "level_share": {
+          "complete": 0.610104,
+          "engine_declared": 0.016839,
+          "parse_complete": 0.014249,
+          "resolved": 0.687824,
+          "text_meaningful": 0.687824
+        },
+        "level_unique_ids": {
+          "complete": 72,
+          "engine_declared": 4,
+          "parse_complete": 3,
+          "resolved": 76,
+          "text_meaningful": 76
+        },
+        "status_appearances": {
+          "MISSING_ID": 241,
+          "TEXT_PARSED": 11,
+          "TEXT_UNPARSED_OPAQUE": 330,
+          "TEXT_UNPARSED_TRIGGER": 190
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 13,
+          "TEXT_PARSED": 3,
+          "TEXT_UNPARSED_OPAQUE": 47,
+          "TEXT_UNPARSED_TRIGGER": 26
+        },
+        "unique_ids": 89
+      },
+      "OPP SHAMAN": {
+        "appearances": 377,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 19
+        },
+        "level_appearances": {
+          "complete": 263,
+          "engine_declared": 14,
+          "parse_complete": 14,
+          "resolved": 282,
+          "text_meaningful": 282
+        },
+        "level_share": {
+          "complete": 0.697613,
+          "engine_declared": 0.037135,
+          "parse_complete": 0.037135,
+          "resolved": 0.748011,
+          "text_meaningful": 0.748011
+        },
+        "level_unique_ids": {
+          "complete": 35,
+          "engine_declared": 1,
+          "parse_complete": 1,
+          "resolved": 38,
+          "text_meaningful": 38
+        },
+        "status_appearances": {
+          "MISSING_ID": 95,
+          "TEXT_PARSED": 14,
+          "TEXT_UNPARSED_OPAQUE": 150,
+          "TEXT_UNPARSED_TRIGGER": 118
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 12,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 25,
+          "TEXT_UNPARSED_TRIGGER": 12
+        },
+        "unique_ids": 50
+      },
+      "OPP WARLOCK": {
+        "appearances": 770,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 2
+        },
+        "level_appearances": {
+          "complete": 446,
+          "engine_declared": 29,
+          "parse_complete": 39,
+          "resolved": 448,
+          "text_meaningful": 448
+        },
+        "level_share": {
+          "complete": 0.579221,
+          "engine_declared": 0.037662,
+          "parse_complete": 0.050649,
+          "resolved": 0.581818,
+          "text_meaningful": 0.581818
+        },
+        "level_unique_ids": {
+          "complete": 43,
+          "engine_declared": 3,
+          "parse_complete": 5,
+          "resolved": 44,
+          "text_meaningful": 44
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 2,
+          "MISSING_ID": 322,
+          "TEXT_PARSED": 37,
+          "TEXT_UNPARSED_OPAQUE": 242,
+          "TEXT_UNPARSED_TRIGGER": 167
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 22,
+          "TEXT_PARSED": 4,
+          "TEXT_UNPARSED_OPAQUE": 20,
+          "TEXT_UNPARSED_TRIGGER": 19
+        },
+        "unique_ids": 66
+      },
+      "OPP WARRIOR": {
+        "appearances": 1028,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 13
+        },
+        "level_appearances": {
+          "complete": 688,
+          "engine_declared": 18,
+          "parse_complete": 76,
+          "resolved": 701,
+          "text_meaningful": 701
+        },
+        "level_share": {
+          "complete": 0.669261,
+          "engine_declared": 0.01751,
+          "parse_complete": 0.07393,
+          "resolved": 0.681907,
+          "text_meaningful": 0.681907
+        },
+        "level_unique_ids": {
+          "complete": 63,
+          "engine_declared": 5,
+          "parse_complete": 2,
+          "resolved": 65,
+          "text_meaningful": 65
+        },
+        "status_appearances": {
+          "MISSING_ID": 327,
+          "TEXT_PARSED": 76,
+          "TEXT_UNPARSED_OPAQUE": 439,
+          "TEXT_UNPARSED_TRIGGER": 186
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 21,
+          "TEXT_PARSED": 2,
+          "TEXT_UNPARSED_OPAQUE": 42,
+          "TEXT_UNPARSED_TRIGGER": 21
+        },
+        "unique_ids": 86
+      },
+      "SELF DEATHKNIGHT": {
+        "appearances": 1417,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1228,
+          "engine_declared": 72,
+          "parse_complete": 70,
+          "resolved": 1228,
+          "text_meaningful": 1228
+        },
+        "level_share": {
+          "complete": 0.86662,
+          "engine_declared": 0.050812,
+          "parse_complete": 0.0494,
+          "resolved": 0.86662,
+          "text_meaningful": 0.86662
+        },
+        "level_unique_ids": {
+          "complete": 22,
+          "engine_declared": 2,
+          "parse_complete": 1,
+          "resolved": 22,
+          "text_meaningful": 22
+        },
+        "status_appearances": {
+          "MISSING_ID": 189,
+          "TEXT_PARSED": 70,
+          "TEXT_UNPARSED_OPAQUE": 700,
+          "TEXT_UNPARSED_TRIGGER": 458
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 10,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 13,
+          "TEXT_UNPARSED_TRIGGER": 8
+        },
+        "unique_ids": 32
+      },
+      "SELF DEMONHUNTER": {
+        "appearances": 6149,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 9
+        },
+        "level_appearances": {
+          "complete": 4874,
+          "engine_declared": 351,
+          "parse_complete": 695,
+          "resolved": 4883,
+          "text_meaningful": 4883
+        },
+        "level_share": {
+          "complete": 0.792649,
+          "engine_declared": 0.057082,
+          "parse_complete": 0.113027,
+          "resolved": 0.794113,
+          "text_meaningful": 0.794113
+        },
+        "level_unique_ids": {
+          "complete": 71,
+          "engine_declared": 5,
+          "parse_complete": 6,
+          "resolved": 72,
+          "text_meaningful": 72
+        },
+        "status_appearances": {
+          "MISSING_ID": 1266,
+          "TEXT_PARSED": 695,
+          "TEXT_UNPARSED_OPAQUE": 2245,
+          "TEXT_UNPARSED_TRIGGER": 1943
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 22,
+          "TEXT_PARSED": 6,
+          "TEXT_UNPARSED_OPAQUE": 42,
+          "TEXT_UNPARSED_TRIGGER": 24
+        },
+        "unique_ids": 94
+      },
+      "SELF HUNTER": {
+        "appearances": 4266,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1473,
+          "engine_declared": 10,
+          "parse_complete": 1,
+          "resolved": 1473,
+          "text_meaningful": 1473
+        },
+        "level_share": {
+          "complete": 0.345288,
+          "engine_declared": 0.002344,
+          "parse_complete": 0.000234,
+          "resolved": 0.345288,
+          "text_meaningful": 0.345288
+        },
+        "level_unique_ids": {
+          "complete": 44,
+          "engine_declared": 2,
+          "parse_complete": 1,
+          "resolved": 44,
+          "text_meaningful": 44
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 2793,
+          "TEXT_UNPARSED_OPAQUE": 626,
+          "TEXT_UNPARSED_TRIGGER": 846
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 29,
+          "TEXT_UNPARSED_OPAQUE": 30,
+          "TEXT_UNPARSED_TRIGGER": 13
+        },
+        "unique_ids": 73
+      },
+      "SELF MAGE": {
+        "appearances": 1099,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 37
+        },
+        "level_appearances": {
+          "complete": 938,
+          "engine_declared": 392,
+          "parse_complete": 141,
+          "resolved": 975,
+          "text_meaningful": 975
+        },
+        "level_share": {
+          "complete": 0.853503,
+          "engine_declared": 0.356688,
+          "parse_complete": 0.128298,
+          "resolved": 0.88717,
+          "text_meaningful": 0.88717
+        },
+        "level_unique_ids": {
+          "complete": 34,
+          "engine_declared": 10,
+          "parse_complete": 3,
+          "resolved": 35,
+          "text_meaningful": 35
+        },
+        "status_appearances": {
+          "MISSING_ID": 124,
+          "TEXT_PARSED": 141,
+          "TEXT_UNPARSED_OPAQUE": 668,
+          "TEXT_UNPARSED_TRIGGER": 166
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 4,
+          "TEXT_PARSED": 3,
+          "TEXT_UNPARSED_OPAQUE": 23,
+          "TEXT_UNPARSED_TRIGGER": 9
+        },
+        "unique_ids": 39
+      },
+      "SELF PALADIN": {
+        "appearances": 254,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 91,
+          "engine_declared": 18,
+          "parse_complete": 9,
+          "resolved": 91,
+          "text_meaningful": 91
+        },
+        "level_share": {
+          "complete": 0.358268,
+          "engine_declared": 0.070866,
+          "parse_complete": 0.035433,
+          "resolved": 0.358268,
+          "text_meaningful": 0.358268
+        },
+        "level_unique_ids": {
+          "complete": 9,
+          "engine_declared": 1,
+          "parse_complete": 1,
+          "resolved": 9,
+          "text_meaningful": 9
+        },
+        "status_appearances": {
+          "MISSING_ID": 163,
+          "TEXT_PARSED": 9,
+          "TEXT_UNPARSED_OPAQUE": 68,
+          "TEXT_UNPARSED_TRIGGER": 14
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 14,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 6,
+          "TEXT_UNPARSED_TRIGGER": 2
+        },
+        "unique_ids": 23
+      },
+      "SELF PRIEST": {
+        "appearances": 18678,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1098
+        },
+        "level_appearances": {
+          "complete": 14488,
+          "engine_declared": 3616,
+          "parse_complete": 6815,
+          "resolved": 15586,
+          "text_meaningful": 15586
+        },
+        "level_share": {
+          "complete": 0.775672,
+          "engine_declared": 0.193597,
+          "parse_complete": 0.364868,
+          "resolved": 0.834458,
+          "text_meaningful": 0.834458
+        },
+        "level_unique_ids": {
+          "complete": 201,
+          "engine_declared": 20,
+          "parse_complete": 18,
+          "resolved": 208,
+          "text_meaningful": 208
+        },
+        "status_appearances": {
+          "MISSING_ID": 3092,
+          "TEXT_PARSED": 6815,
+          "TEXT_UNPARSED_OPAQUE": 7916,
+          "TEXT_UNPARSED_TRIGGER": 855
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 32,
+          "TEXT_PARSED": 18,
+          "TEXT_UNPARSED_OPAQUE": 137,
+          "TEXT_UNPARSED_TRIGGER": 53
+        },
+        "unique_ids": 240
+      },
+      "SELF ROGUE": {
+        "appearances": 260,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 86,
+          "engine_declared": 28,
+          "parse_complete": 0,
+          "resolved": 86,
+          "text_meaningful": 86
+        },
+        "level_share": {
+          "complete": 0.330769,
+          "engine_declared": 0.107692,
+          "parse_complete": 0.0,
+          "resolved": 0.330769,
+          "text_meaningful": 0.330769
+        },
+        "level_unique_ids": {
+          "complete": 7,
+          "engine_declared": 3,
+          "parse_complete": 0,
+          "resolved": 7,
+          "text_meaningful": 7
+        },
+        "status_appearances": {
+          "MISSING_ID": 174,
+          "TEXT_UNPARSED_OPAQUE": 48,
+          "TEXT_UNPARSED_TRIGGER": 38
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 14,
+          "TEXT_UNPARSED_OPAQUE": 5,
+          "TEXT_UNPARSED_TRIGGER": 2
+        },
+        "unique_ids": 21
+      },
+      "SELF WARLOCK": {
+        "appearances": 4430,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 38
+        },
+        "level_appearances": {
+          "complete": 2474,
+          "engine_declared": 445,
+          "parse_complete": 486,
+          "resolved": 2512,
+          "text_meaningful": 2512
+        },
+        "level_share": {
+          "complete": 0.558465,
+          "engine_declared": 0.100451,
+          "parse_complete": 0.109707,
+          "resolved": 0.567043,
+          "text_meaningful": 0.567043
+        },
+        "level_unique_ids": {
+          "complete": 49,
+          "engine_declared": 7,
+          "parse_complete": 7,
+          "resolved": 52,
+          "text_meaningful": 52
+        },
+        "status_appearances": {
+          "MISSING_ID": 1918,
+          "TEXT_PARSED": 486,
+          "TEXT_UNPARSED_OPAQUE": 1609,
+          "TEXT_UNPARSED_TRIGGER": 417
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 35,
+          "TEXT_PARSED": 7,
+          "TEXT_UNPARSED_OPAQUE": 34,
+          "TEXT_UNPARSED_TRIGGER": 11
+        },
+        "unique_ids": 87
+      },
+      "SELF WARRIOR": {
+        "appearances": 6121,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 155
+        },
+        "level_appearances": {
+          "complete": 4045,
+          "engine_declared": 852,
+          "parse_complete": 920,
+          "resolved": 4200,
+          "text_meaningful": 4200
+        },
+        "level_share": {
+          "complete": 0.66084,
+          "engine_declared": 0.139193,
+          "parse_complete": 0.150302,
+          "resolved": 0.686162,
+          "text_meaningful": 0.686162
+        },
+        "level_unique_ids": {
+          "complete": 55,
+          "engine_declared": 9,
+          "parse_complete": 6,
+          "resolved": 58,
+          "text_meaningful": 58
+        },
+        "status_appearances": {
+          "MISSING_ID": 1921,
+          "TEXT_PARSED": 920,
+          "TEXT_UNPARSED_OPAQUE": 2607,
+          "TEXT_UNPARSED_TRIGGER": 673
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 20,
+          "TEXT_PARSED": 6,
+          "TEXT_UNPARSED_OPAQUE": 35,
+          "TEXT_UNPARSED_TRIGGER": 17
+        },
+        "unique_ids": 78
+      }
+    },
+    "C_new_full_build_255130": {
+      "OPP DEATHKNIGHT": {
+        "appearances": 730,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 43
+        },
+        "level_appearances": {
+          "complete": 687,
+          "engine_declared": 15,
+          "parse_complete": 142,
+          "resolved": 730,
+          "text_meaningful": 730
+        },
+        "level_share": {
+          "complete": 0.941096,
+          "engine_declared": 0.020548,
+          "parse_complete": 0.194521,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 63,
+          "engine_declared": 2,
+          "parse_complete": 8,
+          "resolved": 67,
+          "text_meaningful": 67
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 63,
+          "TEXT_PARSED": 79,
+          "TEXT_UNPARSED_OPAQUE": 379,
+          "TEXT_UNPARSED_TRIGGER": 209
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_PARSED": 5,
+          "TEXT_UNPARSED_OPAQUE": 39,
+          "TEXT_UNPARSED_TRIGGER": 20
+        },
+        "unique_ids": 67
+      },
+      "OPP DEMONHUNTER": {
+        "appearances": 680,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 6
+        },
+        "level_appearances": {
+          "complete": 674,
+          "engine_declared": 19,
+          "parse_complete": 118,
+          "resolved": 680,
+          "text_meaningful": 680
+        },
+        "level_share": {
+          "complete": 0.991176,
+          "engine_declared": 0.027941,
+          "parse_complete": 0.173529,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 59,
+          "engine_declared": 3,
+          "parse_complete": 9,
+          "resolved": 60,
+          "text_meaningful": 60
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 118,
+          "TEXT_UNPARSED_OPAQUE": 240,
+          "TEXT_UNPARSED_TRIGGER": 322
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 9,
+          "TEXT_UNPARSED_OPAQUE": 27,
+          "TEXT_UNPARSED_TRIGGER": 24
+        },
+        "unique_ids": 60
+      },
+      "OPP DRUID": {
+        "appearances": 170,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 170,
+          "engine_declared": 5,
+          "parse_complete": 12,
+          "resolved": 170,
+          "text_meaningful": 170
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.029412,
+          "parse_complete": 0.070588,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 35,
+          "engine_declared": 1,
+          "parse_complete": 2,
+          "resolved": 35,
+          "text_meaningful": 35
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 11,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 115,
+          "TEXT_UNPARSED_TRIGGER": 43
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 21,
+          "TEXT_UNPARSED_TRIGGER": 12
+        },
+        "unique_ids": 35
+      },
+      "OPP HUNTER": {
+        "appearances": 623,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 623,
+          "engine_declared": 28,
+          "parse_complete": 37,
+          "resolved": 623,
+          "text_meaningful": 623
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.044944,
+          "parse_complete": 0.05939,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 53,
+          "engine_declared": 5,
+          "parse_complete": 6,
+          "resolved": 53,
+          "text_meaningful": 53
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 4,
+          "TEXT_PARSED": 33,
+          "TEXT_UNPARSED_OPAQUE": 289,
+          "TEXT_UNPARSED_TRIGGER": 297
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 5,
+          "TEXT_UNPARSED_OPAQUE": 25,
+          "TEXT_UNPARSED_TRIGGER": 22
+        },
+        "unique_ids": 53
+      },
+      "OPP MAGE": {
+        "appearances": 1060,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1060,
+          "engine_declared": 134,
+          "parse_complete": 121,
+          "resolved": 1060,
+          "text_meaningful": 1060
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.126415,
+          "parse_complete": 0.114151,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 118,
+          "engine_declared": 12,
+          "parse_complete": 13,
+          "resolved": 118,
+          "text_meaningful": 118
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 70,
+          "TEXT_PARSED": 51,
+          "TEXT_UNPARSED_OPAQUE": 683,
+          "TEXT_UNPARSED_TRIGGER": 256
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 4,
+          "TEXT_PARSED": 9,
+          "TEXT_UNPARSED_OPAQUE": 67,
+          "TEXT_UNPARSED_TRIGGER": 38
+        },
+        "unique_ids": 118
+      },
+      "OPP PALADIN": {
+        "appearances": 1327,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1327,
+          "engine_declared": 74,
+          "parse_complete": 589,
+          "resolved": 1327,
+          "text_meaningful": 1327
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.055765,
+          "parse_complete": 0.443858,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 73,
+          "engine_declared": 5,
+          "parse_complete": 23,
+          "resolved": 73,
+          "text_meaningful": 73
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 297,
+          "TEXT_PARSED": 292,
+          "TEXT_UNPARSED_OPAQUE": 403,
+          "TEXT_UNPARSED_TRIGGER": 335
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 11,
+          "TEXT_PARSED": 12,
+          "TEXT_UNPARSED_OPAQUE": 31,
+          "TEXT_UNPARSED_TRIGGER": 19
+        },
+        "unique_ids": 73
+      },
+      "OPP PRIEST": {
+        "appearances": 2458,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 5
+        },
+        "level_appearances": {
+          "complete": 2453,
+          "engine_declared": 68,
+          "parse_complete": 165,
+          "resolved": 2458,
+          "text_meaningful": 2458
+        },
+        "level_share": {
+          "complete": 0.997966,
+          "engine_declared": 0.027665,
+          "parse_complete": 0.067128,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 166,
+          "engine_declared": 5,
+          "parse_complete": 17,
+          "resolved": 168,
+          "text_meaningful": 168
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 4,
+          "TEXT_PARSED": 161,
+          "TEXT_UNPARSED_OPAQUE": 1722,
+          "TEXT_UNPARSED_TRIGGER": 571
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 2,
+          "TEXT_PARSED": 15,
+          "TEXT_UNPARSED_OPAQUE": 97,
+          "TEXT_UNPARSED_TRIGGER": 54
+        },
+        "unique_ids": 168
+      },
+      "OPP ROGUE": {
+        "appearances": 772,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 60
+        },
+        "level_appearances": {
+          "complete": 712,
+          "engine_declared": 13,
+          "parse_complete": 162,
+          "resolved": 772,
+          "text_meaningful": 772
+        },
+        "level_share": {
+          "complete": 0.92228,
+          "engine_declared": 0.016839,
+          "parse_complete": 0.209845,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 85,
+          "engine_declared": 4,
+          "parse_complete": 9,
+          "resolved": 89,
+          "text_meaningful": 89
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 112,
+          "TEXT_PARSED": 50,
+          "TEXT_UNPARSED_OPAQUE": 395,
+          "TEXT_UNPARSED_TRIGGER": 215
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_PARSED": 6,
+          "TEXT_UNPARSED_OPAQUE": 50,
+          "TEXT_UNPARSED_TRIGGER": 30
+        },
+        "unique_ids": 89
+      },
+      "OPP SHAMAN": {
+        "appearances": 377,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 19
+        },
+        "level_appearances": {
+          "complete": 358,
+          "engine_declared": 14,
+          "parse_complete": 26,
+          "resolved": 377,
+          "text_meaningful": 377
+        },
+        "level_share": {
+          "complete": 0.949602,
+          "engine_declared": 0.037135,
+          "parse_complete": 0.068966,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 47,
+          "engine_declared": 1,
+          "parse_complete": 4,
+          "resolved": 50,
+          "text_meaningful": 50
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 11,
+          "TEXT_PARSED": 15,
+          "TEXT_UNPARSED_OPAQUE": 217,
+          "TEXT_UNPARSED_TRIGGER": 134
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 2,
+          "TEXT_PARSED": 2,
+          "TEXT_UNPARSED_OPAQUE": 31,
+          "TEXT_UNPARSED_TRIGGER": 15
+        },
+        "unique_ids": 50
+      },
+      "OPP WARLOCK": {
+        "appearances": 770,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 2
+        },
+        "level_appearances": {
+          "complete": 768,
+          "engine_declared": 29,
+          "parse_complete": 147,
+          "resolved": 770,
+          "text_meaningful": 770
+        },
+        "level_share": {
+          "complete": 0.997403,
+          "engine_declared": 0.037662,
+          "parse_complete": 0.190909,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 65,
+          "engine_declared": 3,
+          "parse_complete": 10,
+          "resolved": 66,
+          "text_meaningful": 66
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 35,
+          "TEXT_PARSED": 112,
+          "TEXT_UNPARSED_OPAQUE": 419,
+          "TEXT_UNPARSED_TRIGGER": 204
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_PARSED": 7,
+          "TEXT_UNPARSED_OPAQUE": 33,
+          "TEXT_UNPARSED_TRIGGER": 23
+        },
+        "unique_ids": 66
+      },
+      "OPP WARRIOR": {
+        "appearances": 1028,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 13
+        },
+        "level_appearances": {
+          "complete": 1015,
+          "engine_declared": 18,
+          "parse_complete": 111,
+          "resolved": 1028,
+          "text_meaningful": 1028
+        },
+        "level_share": {
+          "complete": 0.987354,
+          "engine_declared": 0.01751,
+          "parse_complete": 0.107977,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 84,
+          "engine_declared": 5,
+          "parse_complete": 6,
+          "resolved": 86,
+          "text_meaningful": 86
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 9,
+          "TEXT_PARSED": 102,
+          "TEXT_UNPARSED_OPAQUE": 540,
+          "TEXT_UNPARSED_TRIGGER": 377
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 5,
+          "TEXT_UNPARSED_OPAQUE": 48,
+          "TEXT_UNPARSED_TRIGGER": 32
+        },
+        "unique_ids": 86
+      },
+      "SELF DEATHKNIGHT": {
+        "appearances": 1417,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1417,
+          "engine_declared": 72,
+          "parse_complete": 137,
+          "resolved": 1417,
+          "text_meaningful": 1417
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.050812,
+          "parse_complete": 0.096683,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 32,
+          "engine_declared": 2,
+          "parse_complete": 7,
+          "resolved": 32,
+          "text_meaningful": 32
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 14,
+          "TEXT_PARSED": 123,
+          "TEXT_UNPARSED_OPAQUE": 802,
+          "TEXT_UNPARSED_TRIGGER": 478
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_PARSED": 4,
+          "TEXT_UNPARSED_OPAQUE": 16,
+          "TEXT_UNPARSED_TRIGGER": 9
+        },
+        "unique_ids": 32
+      },
+      "SELF DEMONHUNTER": {
+        "appearances": 6149,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 9
+        },
+        "level_appearances": {
+          "complete": 6140,
+          "engine_declared": 351,
+          "parse_complete": 1185,
+          "resolved": 6149,
+          "text_meaningful": 6149
+        },
+        "level_share": {
+          "complete": 0.998536,
+          "engine_declared": 0.057082,
+          "parse_complete": 0.192714,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 93,
+          "engine_declared": 5,
+          "parse_complete": 13,
+          "resolved": 94,
+          "text_meaningful": 94
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 1185,
+          "TEXT_UNPARSED_OPAQUE": 2922,
+          "TEXT_UNPARSED_TRIGGER": 2042
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 13,
+          "TEXT_UNPARSED_OPAQUE": 51,
+          "TEXT_UNPARSED_TRIGGER": 30
+        },
+        "unique_ids": 94
+      },
+      "SELF HUNTER": {
+        "appearances": 4266,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 4266,
+          "engine_declared": 10,
+          "parse_complete": 197,
+          "resolved": 4266,
+          "text_meaningful": 4266
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.002344,
+          "parse_complete": 0.046179,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 73,
+          "engine_declared": 2,
+          "parse_complete": 8,
+          "resolved": 73,
+          "text_meaningful": 73
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 196,
+          "TEXT_UNPARSED_OPAQUE": 1909,
+          "TEXT_UNPARSED_TRIGGER": 2160
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 7,
+          "TEXT_UNPARSED_OPAQUE": 40,
+          "TEXT_UNPARSED_TRIGGER": 25
+        },
+        "unique_ids": 73
+      },
+      "SELF MAGE": {
+        "appearances": 1099,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 37
+        },
+        "level_appearances": {
+          "complete": 1062,
+          "engine_declared": 392,
+          "parse_complete": 263,
+          "resolved": 1099,
+          "text_meaningful": 1099
+        },
+        "level_share": {
+          "complete": 0.966333,
+          "engine_declared": 0.356688,
+          "parse_complete": 0.239308,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 38,
+          "engine_declared": 10,
+          "parse_complete": 6,
+          "resolved": 39,
+          "text_meaningful": 39
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 263,
+          "TEXT_UNPARSED_OPAQUE": 670,
+          "TEXT_UNPARSED_TRIGGER": 166
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 6,
+          "TEXT_UNPARSED_OPAQUE": 24,
+          "TEXT_UNPARSED_TRIGGER": 9
+        },
+        "unique_ids": 39
+      },
+      "SELF PALADIN": {
+        "appearances": 254,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 254,
+          "engine_declared": 18,
+          "parse_complete": 78,
+          "resolved": 254,
+          "text_meaningful": 254
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.070866,
+          "parse_complete": 0.307087,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 23,
+          "engine_declared": 1,
+          "parse_complete": 10,
+          "resolved": 23,
+          "text_meaningful": 23
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 25,
+          "TEXT_PARSED": 53,
+          "TEXT_UNPARSED_OPAQUE": 144,
+          "TEXT_UNPARSED_TRIGGER": 32
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_PARSED": 7,
+          "TEXT_UNPARSED_OPAQUE": 9,
+          "TEXT_UNPARSED_TRIGGER": 4
+        },
+        "unique_ids": 23
+      },
+      "SELF PRIEST": {
+        "appearances": 18678,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1098
+        },
+        "level_appearances": {
+          "complete": 17580,
+          "engine_declared": 3616,
+          "parse_complete": 7260,
+          "resolved": 18678,
+          "text_meaningful": 18678
+        },
+        "level_share": {
+          "complete": 0.941214,
+          "engine_declared": 0.193597,
+          "parse_complete": 0.388693,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 233,
+          "engine_declared": 20,
+          "parse_complete": 31,
+          "resolved": 240,
+          "text_meaningful": 240
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 44,
+          "TEXT_PARSED": 7216,
+          "TEXT_UNPARSED_OPAQUE": 10261,
+          "TEXT_UNPARSED_TRIGGER": 1157
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 6,
+          "TEXT_PARSED": 25,
+          "TEXT_UNPARSED_OPAQUE": 148,
+          "TEXT_UNPARSED_TRIGGER": 61
+        },
+        "unique_ids": 240
+      },
+      "SELF ROGUE": {
+        "appearances": 260,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 260,
+          "engine_declared": 28,
+          "parse_complete": 58,
+          "resolved": 260,
+          "text_meaningful": 260
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.107692,
+          "parse_complete": 0.223077,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 21,
+          "engine_declared": 3,
+          "parse_complete": 3,
+          "resolved": 21,
+          "text_meaningful": 21
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 20,
+          "TEXT_PARSED": 38,
+          "TEXT_UNPARSED_OPAQUE": 152,
+          "TEXT_UNPARSED_TRIGGER": 50
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "TEXT_PARSED": 2,
+          "TEXT_UNPARSED_OPAQUE": 14,
+          "TEXT_UNPARSED_TRIGGER": 4
+        },
+        "unique_ids": 21
+      },
+      "SELF WARLOCK": {
+        "appearances": 4430,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 38
+        },
+        "level_appearances": {
+          "complete": 4392,
+          "engine_declared": 445,
+          "parse_complete": 1005,
+          "resolved": 4430,
+          "text_meaningful": 4430
+        },
+        "level_share": {
+          "complete": 0.991422,
+          "engine_declared": 0.100451,
+          "parse_complete": 0.226862,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 84,
+          "engine_declared": 7,
+          "parse_complete": 17,
+          "resolved": 87,
+          "text_meaningful": 87
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 14,
+          "TEXT_PARSED": 991,
+          "TEXT_UNPARSED_OPAQUE": 2918,
+          "TEXT_UNPARSED_TRIGGER": 507
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 4,
+          "TEXT_PARSED": 13,
+          "TEXT_UNPARSED_OPAQUE": 57,
+          "TEXT_UNPARSED_TRIGGER": 13
+        },
+        "unique_ids": 87
+      },
+      "SELF WARRIOR": {
+        "appearances": 6121,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 155
+        },
+        "level_appearances": {
+          "complete": 5966,
+          "engine_declared": 852,
+          "parse_complete": 1283,
+          "resolved": 6121,
+          "text_meaningful": 6121
+        },
+        "level_share": {
+          "complete": 0.974677,
+          "engine_declared": 0.139193,
+          "parse_complete": 0.209606,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 75,
+          "engine_declared": 9,
+          "parse_complete": 10,
+          "resolved": 78,
+          "text_meaningful": 78
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 1283,
+          "TEXT_UNPARSED_OPAQUE": 3427,
+          "TEXT_UNPARSED_TRIGGER": 1411
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 10,
+          "TEXT_UNPARSED_OPAQUE": 45,
+          "TEXT_UNPARSED_TRIGGER": 23
+        },
+        "unique_ids": 78
+      }
+    }
+  },
+  "by_source_and_group": {
+    "A_old_pinned_collectible": {
+      "ALL": {
+        "appearances": 52669,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1485
+        },
+        "level_appearances": {
+          "complete": 36683,
+          "engine_declared": 6201,
+          "parse_complete": 9595,
+          "resolved": 38168,
+          "text_meaningful": 38168
+        },
+        "level_share": {
+          "complete": 0.696482,
+          "engine_declared": 0.117735,
+          "parse_complete": 0.182175,
+          "resolved": 0.724677,
+          "text_meaningful": 0.724677
+        },
+        "level_unique_ids": {
+          "complete": 675,
+          "engine_declared": 58,
+          "parse_complete": 48,
+          "resolved": 693,
+          "text_meaningful": 693
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 10,
+          "MISSING_ID": 14501,
+          "TEXT_PARSED": 9585,
+          "TEXT_UNPARSED_OPAQUE": 20837,
+          "TEXT_UNPARSED_TRIGGER": 7736
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "MISSING_ID": 213,
+          "TEXT_PARSED": 45,
+          "TEXT_UNPARSED_OPAQUE": 455,
+          "TEXT_UNPARSED_TRIGGER": 190
+        },
+        "unique_ids": 906
+      },
+      "NEWER": {
+        "appearances": 19918,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 127
+        },
+        "level_appearances": {
+          "complete": 10946,
+          "engine_declared": 1459,
+          "parse_complete": 1406,
+          "resolved": 11073,
+          "text_meaningful": 11073
+        },
+        "level_share": {
+          "complete": 0.549553,
+          "engine_declared": 0.07325,
+          "parse_complete": 0.070589,
+          "resolved": 0.555929,
+          "text_meaningful": 0.555929
+        },
+        "level_unique_ids": {
+          "complete": 405,
+          "engine_declared": 42,
+          "parse_complete": 28,
+          "resolved": 414,
+          "text_meaningful": 414
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 8845,
+          "TEXT_PARSED": 1405,
+          "TEXT_UNPARSED_OPAQUE": 6341,
+          "TEXT_UNPARSED_TRIGGER": 3326
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 180,
+          "TEXT_PARSED": 27,
+          "TEXT_UNPARSED_OPAQUE": 265,
+          "TEXT_UNPARSED_TRIGGER": 121
+        },
+        "unique_ids": 594
+      },
+      "OLDER": {
+        "appearances": 32751,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1358
+        },
+        "level_appearances": {
+          "complete": 25737,
+          "engine_declared": 4742,
+          "parse_complete": 8189,
+          "resolved": 27095,
+          "text_meaningful": 27095
+        },
+        "level_share": {
+          "complete": 0.785839,
+          "engine_declared": 0.144789,
+          "parse_complete": 0.250038,
+          "resolved": 0.827303,
+          "text_meaningful": 0.827303
+        },
+        "level_unique_ids": {
+          "complete": 522,
+          "engine_declared": 41,
+          "parse_complete": 41,
+          "resolved": 537,
+          "text_meaningful": 537
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 9,
+          "MISSING_ID": 5656,
+          "TEXT_PARSED": 8180,
+          "TEXT_UNPARSED_OPAQUE": 14496,
+          "TEXT_UNPARSED_TRIGGER": 4410
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 2,
+          "MISSING_ID": 96,
+          "TEXT_PARSED": 39,
+          "TEXT_UNPARSED_OPAQUE": 339,
+          "TEXT_UNPARSED_TRIGGER": 157
+        },
+        "unique_ids": 633
+      }
+    },
+    "B_old_full_build_253216": {
+      "ALL": {
+        "appearances": 52669,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1485
+        },
+        "level_appearances": {
+          "complete": 45735,
+          "engine_declared": 6201,
+          "parse_complete": 12494,
+          "resolved": 47220,
+          "text_meaningful": 47220
+        },
+        "level_share": {
+          "complete": 0.868348,
+          "engine_declared": 0.117735,
+          "parse_complete": 0.237217,
+          "resolved": 0.896543,
+          "text_meaningful": 0.896543
+        },
+        "level_unique_ids": {
+          "complete": 815,
+          "engine_declared": 58,
+          "parse_complete": 111,
+          "resolved": 833,
+          "text_meaningful": 833
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 734,
+          "MISSING_ID": 5449,
+          "TEXT_PARSED": 11760,
+          "TEXT_UNPARSED_OPAQUE": 25549,
+          "TEXT_UNPARSED_TRIGGER": 9177
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 33,
+          "MISSING_ID": 73,
+          "TEXT_PARSED": 78,
+          "TEXT_UNPARSED_OPAQUE": 502,
+          "TEXT_UNPARSED_TRIGGER": 220
+        },
+        "unique_ids": 906
+      },
+      "NEWER": {
+        "appearances": 19918,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 127
+        },
+        "level_appearances": {
+          "complete": 14342,
+          "engine_declared": 1459,
+          "parse_complete": 2826,
+          "resolved": 14469,
+          "text_meaningful": 14469
+        },
+        "level_share": {
+          "complete": 0.720052,
+          "engine_declared": 0.07325,
+          "parse_complete": 0.141882,
+          "resolved": 0.726428,
+          "text_meaningful": 0.726428
+        },
+        "level_unique_ids": {
+          "complete": 512,
+          "engine_declared": 42,
+          "parse_complete": 75,
+          "resolved": 521,
+          "text_meaningful": 521
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 277,
+          "MISSING_ID": 5449,
+          "TEXT_PARSED": 2549,
+          "TEXT_UNPARSED_OPAQUE": 7856,
+          "TEXT_UNPARSED_TRIGGER": 3787
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 22,
+          "MISSING_ID": 73,
+          "TEXT_PARSED": 53,
+          "TEXT_UNPARSED_OPAQUE": 303,
+          "TEXT_UNPARSED_TRIGGER": 143
+        },
+        "unique_ids": 594
+      },
+      "OLDER": {
+        "appearances": 32751,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1358
+        },
+        "level_appearances": {
+          "complete": 31393,
+          "engine_declared": 4742,
+          "parse_complete": 9668,
+          "resolved": 32751,
+          "text_meaningful": 32751
+        },
+        "level_share": {
+          "complete": 0.958536,
+          "engine_declared": 0.144789,
+          "parse_complete": 0.295197,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 618,
+          "engine_declared": 41,
+          "parse_complete": 82,
+          "resolved": 633,
+          "text_meaningful": 633
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 457,
+          "TEXT_PARSED": 9211,
+          "TEXT_UNPARSED_OPAQUE": 17693,
+          "TEXT_UNPARSED_TRIGGER": 5390
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 25,
+          "TEXT_PARSED": 57,
+          "TEXT_UNPARSED_OPAQUE": 371,
+          "TEXT_UNPARSED_TRIGGER": 180
+        },
+        "unique_ids": 633
+      }
+    },
+    "C_new_full_build_255130": {
+      "ALL": {
+        "appearances": 52669,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1485
+        },
+        "level_appearances": {
+          "complete": 51184,
+          "engine_declared": 6201,
+          "parse_complete": 13096,
+          "resolved": 52669,
+          "text_meaningful": 52669
+        },
+        "level_share": {
+          "complete": 0.971805,
+          "engine_declared": 0.117735,
+          "parse_complete": 0.248647,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 888,
+          "engine_declared": 58,
+          "parse_complete": 117,
+          "resolved": 906,
+          "text_meaningful": 906
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 734,
+          "TEXT_PARSED": 12362,
+          "TEXT_UNPARSED_OPAQUE": 28607,
+          "TEXT_UNPARSED_TRIGGER": 10966
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 33,
+          "TEXT_PARSED": 84,
+          "TEXT_UNPARSED_OPAQUE": 547,
+          "TEXT_UNPARSED_TRIGGER": 242
+        },
+        "unique_ids": 906
+      },
+      "NEWER": {
+        "appearances": 19918,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 127
+        },
+        "level_appearances": {
+          "complete": 19791,
+          "engine_declared": 1459,
+          "parse_complete": 3428,
+          "resolved": 19918,
+          "text_meaningful": 19918
+        },
+        "level_share": {
+          "complete": 0.993624,
+          "engine_declared": 0.07325,
+          "parse_complete": 0.172106,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 585,
+          "engine_declared": 42,
+          "parse_complete": 81,
+          "resolved": 594,
+          "text_meaningful": 594
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 277,
+          "TEXT_PARSED": 3151,
+          "TEXT_UNPARSED_OPAQUE": 10914,
+          "TEXT_UNPARSED_TRIGGER": 5576
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 22,
+          "TEXT_PARSED": 59,
+          "TEXT_UNPARSED_OPAQUE": 348,
+          "TEXT_UNPARSED_TRIGGER": 165
+        },
+        "unique_ids": 594
+      },
+      "OLDER": {
+        "appearances": 32751,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1358
+        },
+        "level_appearances": {
+          "complete": 31393,
+          "engine_declared": 4742,
+          "parse_complete": 9668,
+          "resolved": 32751,
+          "text_meaningful": 32751
+        },
+        "level_share": {
+          "complete": 0.958536,
+          "engine_declared": 0.144789,
+          "parse_complete": 0.295197,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 618,
+          "engine_declared": 41,
+          "parse_complete": 82,
+          "resolved": 633,
+          "text_meaningful": 633
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 457,
+          "TEXT_PARSED": 9211,
+          "TEXT_UNPARSED_OPAQUE": 17693,
+          "TEXT_UNPARSED_TRIGGER": 5390
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 25,
+          "TEXT_PARSED": 57,
+          "TEXT_UNPARSED_OPAQUE": 371,
+          "TEXT_UNPARSED_TRIGGER": 180
+        },
+        "unique_ids": 633
+      }
+    }
+  },
+  "by_zone": {
+    "A_old_pinned_collectible": {
+      "hand": {
+        "appearances": 30275,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1213
+        },
+        "level_appearances": {
+          "complete": 22148,
+          "engine_declared": 5019,
+          "parse_complete": 8672,
+          "resolved": 23361,
+          "text_meaningful": 23361
+        },
+        "level_share": {
+          "complete": 0.731561,
+          "engine_declared": 0.16578,
+          "parse_complete": 0.286441,
+          "resolved": 0.771627,
+          "text_meaningful": 0.771627
+        },
+        "level_unique_ids": {
+          "complete": 338,
+          "engine_declared": 42,
+          "parse_complete": 32,
+          "resolved": 348,
+          "text_meaningful": 348
+        },
+        "status_appearances": {
+          "MISSING_ID": 6914,
+          "TEXT_PARSED": 8672,
+          "TEXT_UNPARSED_OPAQUE": 11479,
+          "TEXT_UNPARSED_TRIGGER": 3210
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 83,
+          "TEXT_PARSED": 32,
+          "TEXT_UNPARSED_OPAQUE": 240,
+          "TEXT_UNPARSED_TRIGGER": 76
+        },
+        "unique_ids": 431
+      },
+      "opp_board": {
+        "appearances": 8222,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 95
+        },
+        "level_appearances": {
+          "complete": 5853,
+          "engine_declared": 417,
+          "parse_complete": 344,
+          "resolved": 5948,
+          "text_meaningful": 5948
+        },
+        "level_share": {
+          "complete": 0.711871,
+          "engine_declared": 0.050718,
+          "parse_complete": 0.041839,
+          "resolved": 0.723425,
+          "text_meaningful": 0.723425
+        },
+        "level_unique_ids": {
+          "complete": 435,
+          "engine_declared": 25,
+          "parse_complete": 22,
+          "resolved": 443,
+          "text_meaningful": 443
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 2,
+          "MISSING_ID": 2274,
+          "TEXT_PARSED": 342,
+          "TEXT_UNPARSED_OPAQUE": 3600,
+          "TEXT_UNPARSED_TRIGGER": 2004
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 128,
+          "TEXT_PARSED": 21,
+          "TEXT_UNPARSED_OPAQUE": 278,
+          "TEXT_UNPARSED_TRIGGER": 143
+        },
+        "unique_ids": 571
+      },
+      "opp_hero_power": {
+        "appearances": 5142,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 0,
+          "engine_declared": 525,
+          "parse_complete": 0,
+          "resolved": 0,
+          "text_meaningful": 0
+        },
+        "level_share": {
+          "complete": 0.0,
+          "engine_declared": 0.1021,
+          "parse_complete": 0.0,
+          "resolved": 0.0,
+          "text_meaningful": 0.0
+        },
+        "level_unique_ids": {
+          "complete": 0,
+          "engine_declared": 4,
+          "parse_complete": 0,
+          "resolved": 0,
+          "text_meaningful": 0
+        },
+        "status_appearances": {
+          "MISSING_ID": 5142
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 45
+        },
+        "unique_ids": 45
+      },
+      "opp_location": {
+        "appearances": 922,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 750,
+          "engine_declared": 0,
+          "parse_complete": 107,
+          "resolved": 750,
+          "text_meaningful": 750
+        },
+        "level_share": {
+          "complete": 0.813449,
+          "engine_declared": 0.0,
+          "parse_complete": 0.116052,
+          "resolved": 0.813449,
+          "text_meaningful": 0.813449
+        },
+        "level_unique_ids": {
+          "complete": 9,
+          "engine_declared": 0,
+          "parse_complete": 1,
+          "resolved": 9,
+          "text_meaningful": 9
+        },
+        "status_appearances": {
+          "MISSING_ID": 172,
+          "TEXT_PARSED": 107,
+          "TEXT_UNPARSED_OPAQUE": 618,
+          "TEXT_UNPARSED_TRIGGER": 25
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 5,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 7,
+          "TEXT_UNPARSED_TRIGGER": 1
+        },
+        "unique_ids": 14
+      },
+      "opp_revealed": {
+        "appearances": 0
+      },
+      "opp_weapon": {
+        "appearances": 851,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 53
+        },
+        "level_appearances": {
+          "complete": 383,
+          "engine_declared": 0,
+          "parse_complete": 7,
+          "resolved": 436,
+          "text_meaningful": 436
+        },
+        "level_share": {
+          "complete": 0.450059,
+          "engine_declared": 0.0,
+          "parse_complete": 0.008226,
+          "resolved": 0.512338,
+          "text_meaningful": 0.512338
+        },
+        "level_unique_ids": {
+          "complete": 23,
+          "engine_declared": 0,
+          "parse_complete": 1,
+          "resolved": 25,
+          "text_meaningful": 25
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 7,
+          "MISSING_ID": 415,
+          "TEXT_UNPARSED_OPAQUE": 132,
+          "TEXT_UNPARSED_TRIGGER": 297
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 13,
+          "TEXT_UNPARSED_OPAQUE": 6,
+          "TEXT_UNPARSED_TRIGGER": 18
+        },
+        "unique_ids": 38
+      },
+      "self_board": {
+        "appearances": 9163,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 122
+        },
+        "level_appearances": {
+          "complete": 5307,
+          "engine_declared": 765,
+          "parse_complete": 249,
+          "resolved": 5429,
+          "text_meaningful": 5429
+        },
+        "level_share": {
+          "complete": 0.579177,
+          "engine_declared": 0.083488,
+          "parse_complete": 0.027175,
+          "resolved": 0.592492,
+          "text_meaningful": 0.592492
+        },
+        "level_unique_ids": {
+          "complete": 250,
+          "engine_declared": 15,
+          "parse_complete": 10,
+          "resolved": 256,
+          "text_meaningful": 256
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 3734,
+          "TEXT_PARSED": 248,
+          "TEXT_UNPARSED_OPAQUE": 3309,
+          "TEXT_UNPARSED_TRIGGER": 1871
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 1,
+          "MISSING_ID": 94,
+          "TEXT_PARSED": 9,
+          "TEXT_UNPARSED_OPAQUE": 150,
+          "TEXT_UNPARSED_TRIGGER": 96
+        },
+        "unique_ids": 350
+      },
+      "self_hero_power": {
+        "appearances": 5142,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 0,
+          "engine_declared": 337,
+          "parse_complete": 0,
+          "resolved": 0,
+          "text_meaningful": 0
+        },
+        "level_share": {
+          "complete": 0.0,
+          "engine_declared": 0.065539,
+          "parse_complete": 0.0,
+          "resolved": 0.0,
+          "text_meaningful": 0.0
+        },
+        "level_unique_ids": {
+          "complete": 0,
+          "engine_declared": 2,
+          "parse_complete": 0,
+          "resolved": 0,
+          "text_meaningful": 0
+        },
+        "status_appearances": {
+          "MISSING_ID": 5142
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 15
+        },
+        "unique_ids": 15
+      },
+      "self_location": {
+        "appearances": 2192,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 1881,
+          "engine_declared": 0,
+          "parse_complete": 216,
+          "resolved": 1881,
+          "text_meaningful": 1881
+        },
+        "level_share": {
+          "complete": 0.85812,
+          "engine_declared": 0.0,
+          "parse_complete": 0.09854,
+          "resolved": 0.85812,
+          "text_meaningful": 0.85812
+        },
+        "level_unique_ids": {
+          "complete": 5,
+          "engine_declared": 0,
+          "parse_complete": 1,
+          "resolved": 5,
+          "text_meaningful": 5
+        },
+        "status_appearances": {
+          "MISSING_ID": 311,
+          "TEXT_PARSED": 216,
+          "TEXT_UNPARSED_OPAQUE": 1665
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 2,
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 4
+        },
+        "unique_ids": 7
+      },
+      "self_weapon": {
+        "appearances": 1044,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 2
+        },
+        "level_appearances": {
+          "complete": 361,
+          "engine_declared": 0,
+          "parse_complete": 0,
+          "resolved": 363,
+          "text_meaningful": 363
+        },
+        "level_share": {
+          "complete": 0.345785,
+          "engine_declared": 0.0,
+          "parse_complete": 0.0,
+          "resolved": 0.347701,
+          "text_meaningful": 0.347701
+        },
+        "level_unique_ids": {
+          "complete": 12,
+          "engine_declared": 0,
+          "parse_complete": 0,
+          "resolved": 13,
+          "text_meaningful": 13
+        },
+        "status_appearances": {
+          "MISSING_ID": 681,
+          "TEXT_UNPARSED_OPAQUE": 34,
+          "TEXT_UNPARSED_TRIGGER": 329
+        },
+        "status_unique_ids": {
+          "MISSING_ID": 12,
+          "TEXT_UNPARSED_OPAQUE": 3,
+          "TEXT_UNPARSED_TRIGGER": 10
+        },
+        "unique_ids": 25
+      }
+    },
+    "C_new_full_build_255130": {
+      "hand": {
+        "appearances": 30275,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 1213
+        },
+        "level_appearances": {
+          "complete": 29062,
+          "engine_declared": 5019,
+          "parse_complete": 9779,
+          "resolved": 30275,
+          "text_meaningful": 30275
+        },
+        "level_share": {
+          "complete": 0.959934,
+          "engine_declared": 0.16578,
+          "parse_complete": 0.323006,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 421,
+          "engine_declared": 42,
+          "parse_complete": 38,
+          "resolved": 431,
+          "text_meaningful": 431
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 9779,
+          "TEXT_UNPARSED_OPAQUE": 16310,
+          "TEXT_UNPARSED_TRIGGER": 4186
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 38,
+          "TEXT_UNPARSED_OPAQUE": 299,
+          "TEXT_UNPARSED_TRIGGER": 94
+        },
+        "unique_ids": 431
+      },
+      "opp_board": {
+        "appearances": 8222,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 95
+        },
+        "level_appearances": {
+          "complete": 8127,
+          "engine_declared": 417,
+          "parse_complete": 1468,
+          "resolved": 8222,
+          "text_meaningful": 8222
+        },
+        "level_share": {
+          "complete": 0.988446,
+          "engine_declared": 0.050718,
+          "parse_complete": 0.178545,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 563,
+          "engine_declared": 25,
+          "parse_complete": 74,
+          "resolved": 571,
+          "text_meaningful": 571
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 561,
+          "TEXT_PARSED": 907,
+          "TEXT_UNPARSED_OPAQUE": 4281,
+          "TEXT_UNPARSED_TRIGGER": 2473
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 24,
+          "TEXT_PARSED": 50,
+          "TEXT_UNPARSED_OPAQUE": 323,
+          "TEXT_UNPARSED_TRIGGER": 174
+        },
+        "unique_ids": 571
+      },
+      "opp_hero_power": {
+        "appearances": 5142,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 5142,
+          "engine_declared": 525,
+          "parse_complete": 0,
+          "resolved": 5142,
+          "text_meaningful": 5142
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.1021,
+          "parse_complete": 0.0,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 45,
+          "engine_declared": 4,
+          "parse_complete": 0,
+          "resolved": 45,
+          "text_meaningful": 45
+        },
+        "status_appearances": {
+          "TEXT_UNPARSED_OPAQUE": 5142
+        },
+        "status_unique_ids": {
+          "TEXT_UNPARSED_OPAQUE": 45
+        },
+        "unique_ids": 45
+      },
+      "opp_location": {
+        "appearances": 922,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 922,
+          "engine_declared": 0,
+          "parse_complete": 107,
+          "resolved": 922,
+          "text_meaningful": 922
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.0,
+          "parse_complete": 0.116052,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 14,
+          "engine_declared": 0,
+          "parse_complete": 1,
+          "resolved": 14,
+          "text_meaningful": 14
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 107,
+          "TEXT_UNPARSED_OPAQUE": 790,
+          "TEXT_UNPARSED_TRIGGER": 25
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 12,
+          "TEXT_UNPARSED_TRIGGER": 1
+        },
+        "unique_ids": 14
+      },
+      "opp_revealed": {
+        "appearances": 0
+      },
+      "opp_weapon": {
+        "appearances": 851,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 53
+        },
+        "level_appearances": {
+          "complete": 798,
+          "engine_declared": 0,
+          "parse_complete": 55,
+          "resolved": 851,
+          "text_meaningful": 851
+        },
+        "level_share": {
+          "complete": 0.93772,
+          "engine_declared": 0.0,
+          "parse_complete": 0.06463,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 36,
+          "engine_declared": 0,
+          "parse_complete": 3,
+          "resolved": 38,
+          "text_meaningful": 38
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 55,
+          "TEXT_UNPARSED_OPAQUE": 331,
+          "TEXT_UNPARSED_TRIGGER": 465
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_UNPARSED_OPAQUE": 7,
+          "TEXT_UNPARSED_TRIGGER": 28
+        },
+        "unique_ids": 38
+      },
+      "self_board": {
+        "appearances": 9163,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 122
+        },
+        "level_appearances": {
+          "complete": 9041,
+          "engine_declared": 765,
+          "parse_complete": 1428,
+          "resolved": 9163,
+          "text_meaningful": 9163
+        },
+        "level_share": {
+          "complete": 0.986686,
+          "engine_declared": 0.083488,
+          "parse_complete": 0.155844,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 344,
+          "engine_declared": 15,
+          "parse_complete": 42,
+          "resolved": 350,
+          "text_meaningful": 350
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 75,
+          "TEXT_PARSED": 1353,
+          "TEXT_UNPARSED_OPAQUE": 4473,
+          "TEXT_UNPARSED_TRIGGER": 3262
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 12,
+          "TEXT_PARSED": 30,
+          "TEXT_UNPARSED_OPAQUE": 188,
+          "TEXT_UNPARSED_TRIGGER": 120
+        },
+        "unique_ids": 350
+      },
+      "self_hero_power": {
+        "appearances": 5142,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 5142,
+          "engine_declared": 337,
+          "parse_complete": 0,
+          "resolved": 5142,
+          "text_meaningful": 5142
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.065539,
+          "parse_complete": 0.0,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 15,
+          "engine_declared": 2,
+          "parse_complete": 0,
+          "resolved": 15,
+          "text_meaningful": 15
+        },
+        "status_appearances": {
+          "TEXT_UNPARSED_OPAQUE": 4788,
+          "TEXT_UNPARSED_TRIGGER": 354
+        },
+        "status_unique_ids": {
+          "TEXT_UNPARSED_OPAQUE": 14,
+          "TEXT_UNPARSED_TRIGGER": 1
+        },
+        "unique_ids": 15
+      },
+      "self_location": {
+        "appearances": 2192,
+        "incomplete_field_appearances": {},
+        "level_appearances": {
+          "complete": 2192,
+          "engine_declared": 0,
+          "parse_complete": 216,
+          "resolved": 2192,
+          "text_meaningful": 2192
+        },
+        "level_share": {
+          "complete": 1.0,
+          "engine_declared": 0.0,
+          "parse_complete": 0.09854,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 7,
+          "engine_declared": 0,
+          "parse_complete": 1,
+          "resolved": 7,
+          "text_meaningful": 7
+        },
+        "status_appearances": {
+          "TEXT_PARSED": 216,
+          "TEXT_UNPARSED_OPAQUE": 1976
+        },
+        "status_unique_ids": {
+          "TEXT_PARSED": 1,
+          "TEXT_UNPARSED_OPAQUE": 6
+        },
+        "unique_ids": 7
+      },
+      "self_weapon": {
+        "appearances": 1044,
+        "incomplete_field_appearances": {
+          "MISSING_CLASS": 2
+        },
+        "level_appearances": {
+          "complete": 1042,
+          "engine_declared": 0,
+          "parse_complete": 43,
+          "resolved": 1044,
+          "text_meaningful": 1044
+        },
+        "level_share": {
+          "complete": 0.998084,
+          "engine_declared": 0.0,
+          "parse_complete": 0.041188,
+          "resolved": 1.0,
+          "text_meaningful": 1.0
+        },
+        "level_unique_ids": {
+          "complete": 24,
+          "engine_declared": 0,
+          "parse_complete": 3,
+          "resolved": 25,
+          "text_meaningful": 25
+        },
+        "status_appearances": {
+          "EMPTY_TEXT_VANILLA": 43,
+          "TEXT_UNPARSED_OPAQUE": 446,
+          "TEXT_UNPARSED_TRIGGER": 555
+        },
+        "status_unique_ids": {
+          "EMPTY_TEXT_VANILLA": 3,
+          "TEXT_UNPARSED_OPAQUE": 4,
+          "TEXT_UNPARSED_TRIGGER": 18
+        },
+        "unique_ids": 25
+      }
+    }
+  },
+  "corpus": {
+    "client_builds_by_group": {
+      "NEWER": {
+        "254477": 68
+      },
+      "OLDER": {
+        "253216": 64,
+        "?": 18
+      }
+    },
+    "decisions": 5142,
+    "effect_zone_appearances": 52669,
+    "matches": 150,
+    "newer_matches": 68,
+    "older_matches": 82,
+    "protected_files_present_not_opened": 8,
+    "protected_fresh_holdout_excluded_by_id": 9,
+    "unique_effect_zone_ids": 906
+  },
+  "decision_level": {
+    "A_old_pinned_collectible": {
+      "all_complete_metadata": 538,
+      "all_engine_declared": 0,
+      "all_parse_complete": 0,
+      "all_resolved": 685,
+      "decisions": 5142
+    },
+    "C_new_full_build_255130": {
+      "all_complete_metadata": 3822,
+      "all_engine_declared": 0,
+      "all_parse_complete": 0,
+      "all_resolved": 5142,
+      "decisions": 5142
+    }
+  },
+  "old_gap_reasons": [
+    {
+      "appearances": 5341,
+      "collectibility": "non_collectible",
+      "scope": "in_old_full_build_but_not_in_collectible_file",
+      "set_if_new": "-",
+      "share_of_all": 0.101407,
+      "type": "MINION"
+    },
+    {
+      "appearances": 2677,
+      "collectibility": "collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.050827,
+      "type": "MINION"
+    },
+    {
+      "appearances": 1456,
+      "collectibility": "non_collectible",
+      "scope": "in_old_full_build_but_not_in_collectible_file",
+      "set_if_new": "-",
+      "share_of_all": 0.027644,
+      "type": "WEAPON"
+    },
+    {
+      "appearances": 1293,
+      "collectibility": "collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.02455,
+      "type": "SPELL"
+    },
+    {
+      "appearances": 1263,
+      "collectibility": "non_collectible",
+      "scope": "in_old_full_build_but_not_in_collectible_file",
+      "set_if_new": "-",
+      "share_of_all": 0.02398,
+      "type": "SPELL"
+    },
+    {
+      "appearances": 992,
+      "collectibility": "non_collectible",
+      "scope": "in_old_full_build_but_not_in_collectible_file",
+      "set_if_new": "-",
+      "share_of_all": 0.018835,
+      "type": "LOCATION"
+    },
+    {
+      "appearances": 648,
+      "collectibility": "non_collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.012303,
+      "type": "MINION"
+    },
+    {
+      "appearances": 367,
+      "collectibility": "collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.006968,
+      "type": "WEAPON"
+    },
+    {
+      "appearances": 181,
+      "collectibility": "collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.003437,
+      "type": "LOCATION"
+    },
+    {
+      "appearances": 166,
+      "collectibility": "non_collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.003152,
+      "type": "SPELL"
+    },
+    {
+      "appearances": 99,
+      "collectibility": "non_collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "BE",
+      "share_of_all": 0.00188,
+      "type": "WEAPON"
+    },
+    {
+      "appearances": 18,
+      "collectibility": "collectible",
+      "scope": "only_in_new_build",
+      "set_if_new": "EVENT",
+      "share_of_all": 0.000342,
+      "type": "MINION"
+    }
+  ],
+  "remaining_data_problems_new": {
+    "METADATA_INCOMPLETE": [
+      {
+        "appearances": 960,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_025",
+        "mechanics": [
+          "LIFESTEAL"
+        ],
+        "name": "Eternal Firebolt",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_PARSED",
+        "type": "SPELL"
+      },
+      {
+        "appearances": 167,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_020",
+        "mechanics": null,
+        "name": "Eternal Toil",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_PARSED",
+        "type": "SPELL"
+      },
+      {
+        "appearances": 95,
+        "flags": [
+          "MISSING_CLASS",
+          "LAYOUT_MARKER_IN_TEXT"
+        ],
+        "id": "END_026",
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "name": "Fragment of Nothing",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_TRIGGER",
+        "type": "MINION"
+      },
+      {
+        "appearances": 55,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_029",
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "name": "Voodoo Totem",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_TRIGGER",
+        "type": "MINION"
+      },
+      {
+        "appearances": 45,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_001",
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "name": "Jagged Edge of Time",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "WEAPON"
+      },
+      {
+        "appearances": 41,
+        "flags": [
+          "MISSING_CLASS",
+          "TEMPLATE_VALUE_IN_TEXT"
+        ],
+        "id": "CATA_722",
+        "mechanics": [
+          "BATTLECRY",
+          "TAUNT"
+        ],
+        "name": "Envoy of the End",
+        "set": "CATACLYSM",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 32,
+        "flags": [
+          "MISSING_CLASS",
+          "TEMPLATE_VALUE_IN_TEXT"
+        ],
+        "id": "CATA_497",
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "name": "Ultraxion",
+        "set": "CATACLYSM",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 17,
+        "flags": [
+          "MISSING_CLASS",
+          "LAYOUT_MARKER_IN_TEXT"
+        ],
+        "id": "END_019",
+        "mechanics": [
+          "BATTLECRY",
+          "TAUNT"
+        ],
+        "name": "Endtime Survivor",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 15,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_032",
+        "mechanics": [
+          "COMBO",
+          "RUSH"
+        ],
+        "name": "Winged Aberration",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 11,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_022",
+        "mechanics": null,
+        "name": "Time-Twisted Seer",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 10,
+        "flags": [
+          "MISSING_CLASS",
+          "LAYOUT_MARKER_IN_TEXT"
+        ],
+        "id": "END_004",
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "name": "Remnant of Rage",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 10,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_016",
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "name": "Chronoclaws",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_TRIGGER",
+        "type": "WEAPON"
+      },
+      {
+        "appearances": 9,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_005",
+        "mechanics": [
+          "OUTCAST"
+        ],
+        "name": "Bygone Echoes",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "SPELL"
+      },
+      {
+        "appearances": 5,
+        "flags": [
+          "MISSING_CLASS",
+          "LAYOUT_MARKER_IN_TEXT"
+        ],
+        "id": "END_013",
+        "mechanics": [
+          "BATTLECRY",
+          "DISCOVER"
+        ],
+        "name": "Brutish Endmaw",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 4,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_010",
+        "mechanics": [
+          "CHOOSE_ONE"
+        ],
+        "name": "Twilight Timereaver",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "MINION"
+      },
+      {
+        "appearances": 3,
+        "flags": [
+          "MISSING_CLASS",
+          "LAYOUT_MARKER_IN_TEXT"
+        ],
+        "id": "END_008",
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "name": "Enduring Roach",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_TRIGGER",
+        "type": "MINION"
+      },
+      {
+        "appearances": 3,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_014",
+        "mechanics": null,
+        "name": "Synchronized Spark",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_PARSED",
+        "type": "SPELL"
+      },
+      {
+        "appearances": 3,
+        "flags": [
+          "MISSING_CLASS"
+        ],
+        "id": "END_028",
+        "mechanics": [
+          "OVERLOAD"
+        ],
+        "name": "For All Time",
+        "set": "TIME_TRAVEL",
+        "text_status": "TEXT_UNPARSED_OPAQUE",
+        "type": "SPELL"
+      }
+    ]
+  },
+  "temporal_drift_older_matches": {
+    "appearances": 32751,
+    "differs_only_by_text_artifact_or_markup": 3975,
+    "identical": 28610,
+    "shares": {
+      "differs_only_by_text_artifact_or_markup": 0.12137,
+      "identical": 0.873561,
+      "substantive_difference": 0.005069
+    },
+    "substantive_difference": 166,
+    "substantive_examples": [
+      {
+        "appearances": 66,
+        "fields": [
+          "text"
+        ],
+        "id": "JAIL_734"
+      },
+      {
+        "appearances": 12,
+        "fields": [
+          "referencedTags",
+          "text"
+        ],
+        "id": "CATA_528"
+      },
+      {
+        "appearances": 3,
+        "fields": [
+          "howToEarn",
+          "text"
+        ],
+        "id": "CORE_SW_047"
+      },
+      {
+        "appearances": 11,
+        "fields": [
+          "howToEarn"
+        ],
+        "id": "JAIL_407"
+      },
+      {
+        "appearances": 37,
+        "fields": [
+          "health"
+        ],
+        "id": "JAIL_321"
+      },
+      {
+        "appearances": 6,
+        "fields": [
+          "howToEarn",
+          "howToEarnGolden",
+          "text"
+        ],
+        "id": "CORE_WW_329"
+      },
+      {
+        "appearances": 31,
+        "fields": [
+          "text"
+        ],
+        "id": "TLC_600"
+      }
+    ]
+  },
+  "text_artifacts": {
+    "appearances_with_artifact": 8698,
+    "parse_complete_share_after_stripping": 0.248647,
+    "parse_complete_share_with_artifacts_left_in": 0.247546,
+    "share_of_appearances": 0.165145,
+    "unique_ids_with_artifact": 178
+  },
+  "unresolved_in_new": {
+    "ambiguous_ids_in_corpus": 0,
+    "appearances": 0,
+    "unique_ids": 0
+  }
+}

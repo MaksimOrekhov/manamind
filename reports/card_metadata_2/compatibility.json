@@ -1,0 +1,44 @@
+{
+  "card_metadata_imported_by_live_path": false,
+  "live_checkpoints": {
+    "policy_v2": {
+      "file_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "path": "data/processed_policy_ml2a/seed42_v2/policy.pt",
+      "pinned_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+      "sha_matches_pin": true,
+      "strict_loader_and_catalog_identity": "PASS"
+    },
+    "policy_v3": {
+      "file_sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev3_seed42/policy.pt",
+      "pinned_sha256": "d874d196d9c2f1e12c6d697ad2de57883a29352976dbb1ee9dbd6ba63af84f82",
+      "sha_matches_pin": true,
+      "strict_loader_and_catalog_identity": "PASS"
+    },
+    "retrained_v2": {
+      "file_sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+      "path": "data/processed_policy_v3/experiment_1/final/architecturev2_seed42/policy.pt",
+      "pinned_sha256": "9358f932fc7846d6a436e2a1e6c7ff6cffda1f2929fac5521710f973e14a05e3",
+      "sha_matches_pin": true,
+      "strict_loader_and_catalog_identity": "PASS"
+    }
+  },
+  "model_checkpoint_files": {
+    "policy_mother_drake_cycle1_20260927.pt": "ea152fa4b754d1a2942ef78538b768504a013a455fe64d7450ee0a2eac35e552",
+    "policy_mother_drake_pilot_20260927.pt": "d63e0f7ce91f915687366d195af391536fe2f70e22db9b41dd3eba55085707d6",
+    "policy_real_deck_mix_100games_20260928.pt": "27a83ba8ab2b380ee8e0356f04bda516cdeb66bf0f1e3278ed0158bcd4bef301",
+    "policy_real_deck_mix_48games_20260928.pt": "e6fd147cc3f74cc6d142f033eef506152f357c3080fe8358e225de8daacd7e62",
+    "policy_selfplay_v1.pt": "0558ef24d9159a55a3aba7b2b4c7348424e2ab543109b7663b70108b58a6cd96",
+    "value_v1.pt": "eea18b17cc7614daff23494aa4073054c11fb149223799b384ff68f5dc7b6ff8",
+    "value_v1_s2.pt": "29dc723b4bb2a43c5b671888959b31488dfa25818b19a239675bc916fd24946f"
+  },
+  "pinned_artifact_sha256": {
+    "configs/standard_profile.json": "5e1280193459698d7df7f864bfa561977b93df982508e024976bf84cc4437f57",
+    "data/cards/source_snapshots/cards_collectible_20261001_enUS.json": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930",
+    "data/cards/standard_current_enUS.json": "c767c303baad170e52ee5f901ba00e8b0880eb4f0e3aa47d9fdea4fcf0bdcb34",
+    "data/cards/standard_roots_20261001_enUS.json": "1820a2f3b78539929e267a7da68e3a91d2275528ba969ed2540d778735198915",
+    "data/cards/standard_scope_20261001.json": "adc6ae328d5d5db9edc911fb307af4d571492144aab0e11061f480167cfc32cb",
+    "data/cards/standard_sets.json": "fd454733401f01c0bd3502491ad91aed503793e0df85468a8156167d72ff3ac5",
+    "data/localization/card_names_253932.json": "bb8a9b4334e6f4c83a937a951884529f846e561f92bfb1f81d83940f85cda7fa"
+  }
+}

@@ -1,0 +1,349 @@
+{
+  "appearances": 52669,
+  "frequent_cards": {
+    "100": {
+      "grammar_complete_after": 0.312258,
+      "share_of_all_appearances": 0.652547,
+      "text_record_after": 1.0,
+      "text_record_before": 0.712182
+    },
+    "195": {
+      "grammar_complete_after": 0.276818,
+      "share_of_all_appearances": 0.800908,
+      "text_record_after": 1.0,
+      "text_record_before": 0.715739
+    },
+    "25": {
+      "grammar_complete_after": 0.430907,
+      "share_of_all_appearances": 0.379768,
+      "text_record_after": 1.0,
+      "text_record_before": 0.786671
+    },
+    "327": {
+      "grammar_complete_after": 0.264186,
+      "share_of_all_appearances": 0.900435,
+      "text_record_after": 1.0,
+      "text_record_before": 0.716458
+    },
+    "459": {
+      "grammar_complete_after": 0.256144,
+      "share_of_all_appearances": 0.950198,
+      "text_record_after": 1.0,
+      "text_record_before": 0.720177
+    },
+    "50": {
+      "grammar_complete_after": 0.345874,
+      "share_of_all_appearances": 0.505686,
+      "text_record_after": 1.0,
+      "text_record_before": 0.748517
+    },
+    "906": {
+      "grammar_complete_after": 0.248647,
+      "share_of_all_appearances": 1.0,
+      "text_record_after": 1.0,
+      "text_record_before": 0.724677
+    }
+  },
+  "pilot_candidates": {
+    "appearance_share": 0.531527,
+    "candidates": 60,
+    "candidates_with_special_case": 30,
+    "distinct_verb_families": 17,
+    "per_stratum": 12,
+    "strata_sizes": {
+      "S1_new_collectible": 60,
+      "S2_new_to_source_noncollectible_token": 84,
+      "S3_known_before_trigger_text": 190,
+      "S4_known_before_one_shot_text": 454,
+      "S5_control_grammar_parses": 84
+    }
+  },
+  "previously_unknown_appearances": 14501,
+  "previously_unknown_by_text_status": {
+    "appearances": {
+      "EMPTY_TEXT_VANILLA": 724,
+      "TEXT_PARSED": 2777,
+      "TEXT_UNPARSED_OPAQUE": 7770,
+      "TEXT_UNPARSED_TRIGGER": 3230
+    },
+    "shares": {
+      "EMPTY_TEXT_VANILLA": 0.049928,
+      "TEXT_PARSED": 0.191504,
+      "TEXT_UNPARSED_OPAQUE": 0.535825,
+      "TEXT_UNPARSED_TRIGGER": 0.222743
+    }
+  },
+  "previously_unknown_by_type_and_collectibility": [
+    {
+      "appearances": 5989,
+      "collectible": false,
+      "type": "MINION",
+      "unique_ids": 119
+    },
+    {
+      "appearances": 2695,
+      "collectible": true,
+      "type": "MINION",
+      "unique_ids": 40
+    },
+    {
+      "appearances": 1555,
+      "collectible": false,
+      "type": "WEAPON",
+      "unique_ids": 12
+    },
+    {
+      "appearances": 1429,
+      "collectible": false,
+      "type": "SPELL",
+      "unique_ids": 17
+    },
+    {
+      "appearances": 1293,
+      "collectible": true,
+      "type": "SPELL",
+      "unique_ids": 16
+    },
+    {
+      "appearances": 992,
+      "collectible": false,
+      "type": "LOCATION",
+      "unique_ids": 4
+    },
+    {
+      "appearances": 367,
+      "collectible": true,
+      "type": "WEAPON",
+      "unique_ids": 4
+    },
+    {
+      "appearances": 181,
+      "collectible": true,
+      "type": "LOCATION",
+      "unique_ids": 1
+    }
+  ],
+  "previously_unknown_families": [
+    {
+      "appearances": 8684,
+      "family": "type:MINION",
+      "share_of_group_appearances": 0.598855,
+      "unique_ids": 159
+    },
+    {
+      "appearances": 3294,
+      "family": "verb:damage",
+      "share_of_group_appearances": 0.227157,
+      "unique_ids": 23
+    },
+    {
+      "appearances": 3158,
+      "family": "tag:BATTLECRY",
+      "share_of_group_appearances": 0.217778,
+      "unique_ids": 41
+    },
+    {
+      "appearances": 3102,
+      "family": "verb:summon",
+      "share_of_group_appearances": 0.213916,
+      "unique_ids": 32
+    },
+    {
+      "appearances": 3073,
+      "family": "tag:TAUNT",
+      "share_of_group_appearances": 0.211916,
+      "unique_ids": 40
+    },
+    {
+      "appearances": 2985,
+      "family": "verb:random",
+      "share_of_group_appearances": 0.205848,
+      "unique_ids": 27
+    },
+    {
+      "appearances": 2722,
+      "family": "type:SPELL",
+      "share_of_group_appearances": 0.187711,
+      "unique_ids": 33
+    },
+    {
+      "appearances": 2126,
+      "family": "tag:DEATHRATTLE",
+      "share_of_group_appearances": 0.146611,
+      "unique_ids": 25
+    },
+    {
+      "appearances": 1922,
+      "family": "type:WEAPON",
+      "share_of_group_appearances": 0.132543,
+      "unique_ids": 16
+    },
+    {
+      "appearances": 1691,
+      "family": "verb:buff",
+      "share_of_group_appearances": 0.116613,
+      "unique_ids": 22
+    },
+    {
+      "appearances": 1691,
+      "family": "verb:trigger_sentence",
+      "share_of_group_appearances": 0.116613,
+      "unique_ids": 33
+    },
+    {
+      "appearances": 1519,
+      "family": "verb:heal",
+      "share_of_group_appearances": 0.104751,
+      "unique_ids": 12
+    },
+    {
+      "appearances": 1495,
+      "family": "tag:TRIGGER_VISUAL",
+      "share_of_group_appearances": 0.103096,
+      "unique_ids": 28
+    },
+    {
+      "appearances": 1234,
+      "family": "verb:mana",
+      "share_of_group_appearances": 0.085098,
+      "unique_ids": 4
+    },
+    {
+      "appearances": 1173,
+      "family": "type:LOCATION",
+      "share_of_group_appearances": 0.080891,
+      "unique_ids": 5
+    },
+    {
+      "appearances": 1153,
+      "family": "verb:armor",
+      "share_of_group_appearances": 0.079512,
+      "unique_ids": 10
+    },
+    {
+      "appearances": 1017,
+      "family": "verb:copy",
+      "share_of_group_appearances": 0.070133,
+      "unique_ids": 7
+    },
+    {
+      "appearances": 915,
+      "family": "tag:REBORN",
+      "share_of_group_appearances": 0.063099,
+      "unique_ids": 7
+    },
+    {
+      "appearances": 875,
+      "family": "tag:RUSH",
+      "share_of_group_appearances": 0.060341,
+      "unique_ids": 15
+    },
+    {
+      "appearances": 706,
+      "family": "verb:cost_change",
+      "share_of_group_appearances": 0.048686,
+      "unique_ids": 13
+    },
+    {
+      "appearances": 637,
+      "family": "tag:DISCOVER",
+      "share_of_group_appearances": 0.043928,
+      "unique_ids": 9
+    },
+    {
+      "appearances": 637,
+      "family": "verb:discover",
+      "share_of_group_appearances": 0.043928,
+      "unique_ids": 9
+    },
+    {
+      "appearances": 506,
+      "family": "tag:CHARGE",
+      "share_of_group_appearances": 0.034894,
+      "unique_ids": 5
+    },
+    {
+      "appearances": 431,
+      "family": "verb:draw",
+      "share_of_group_appearances": 0.029722,
+      "unique_ids": 11
+    },
+    {
+      "appearances": 375,
+      "family": "tag:LIFESTEAL",
+      "share_of_group_appearances": 0.02586,
+      "unique_ids": 11
+    },
+    {
+      "appearances": 308,
+      "family": "verb:destroy",
+      "share_of_group_appearances": 0.02124,
+      "unique_ids": 3
+    },
+    {
+      "appearances": 219,
+      "family": "tag:ELUSIVE",
+      "share_of_group_appearances": 0.015102,
+      "unique_ids": 2
+    },
+    {
+      "appearances": 208,
+      "family": "verb:transform",
+      "share_of_group_appearances": 0.014344,
+      "unique_ids": 3
+    },
+    {
+      "appearances": 153,
+      "family": "verb:counter_progress",
+      "share_of_group_appearances": 0.010551,
+      "unique_ids": 1
+    },
+    {
+      "appearances": 144,
+      "family": "verb:shuffle",
+      "share_of_group_appearances": 0.00993,
+      "unique_ids": 7
+    }
+  ],
+  "previously_unknown_share": 0.275323,
+  "previously_unknown_unique_ids": 213,
+  "special_cases": {
+    "appearances_by_case": {
+      "copy_alias_of_another_card": 3384,
+      "game_history_counter": 6143,
+      "hidden_information": 6377,
+      "multi_state_text": 327,
+      "pool_not_in_text": 11016,
+      "runtime_value_in_text": 1117,
+      "stateful_keyword": 7999
+    },
+    "appearances_with_any_case": 26591,
+    "no_screened_case_but_text_unparsed": 0.293911,
+    "share_by_case": {
+      "copy_alias_of_another_card": 0.06425,
+      "game_history_counter": 0.116634,
+      "hidden_information": 0.121077,
+      "multi_state_text": 0.006209,
+      "pool_not_in_text": 0.209155,
+      "runtime_value_in_text": 0.021208,
+      "stateful_keyword": 0.151873
+    },
+    "share_with_any_case": 0.50487,
+    "share_with_any_case_among_zone": {
+      "hand": 0.460248,
+      "opp_board": 0.530649,
+      "self_board": 0.526247
+    },
+    "unique_ids_by_case": {
+      "copy_alias_of_another_card": 66,
+      "game_history_counter": 69,
+      "hidden_information": 144,
+      "multi_state_text": 16,
+      "pool_not_in_text": 209,
+      "runtime_value_in_text": 36,
+      "stateful_keyword": 200
+    },
+    "unique_ids_with_any_case": 518
+  },
+  "unique_ids": 906
+}

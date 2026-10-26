@@ -1,0 +1,662 @@
+{
+  "added": {
+    "by_set": {
+      "BASIC": 7,
+      "BATTLEGROUNDS": 1,
+      "BE": 288,
+      "ESCAPEFROM_VIOLET_HOLD": 1,
+      "EVENT": 2,
+      "HERO_SKINS": 53,
+      "PET": 4,
+      "TB": 13
+    },
+    "by_type": {
+      "ENCHANTMENT": 73,
+      "GAME_MODE_BUTTON": 1,
+      "HERO": 40,
+      "HERO_POWER": 27,
+      "LOCATION": 3,
+      "MINION": 138,
+      "PET": 4,
+      "SPELL": 76,
+      "WEAPON": 7
+    },
+    "collectible": 158,
+    "count": 369,
+    "enchantments": 73,
+    "examples_playable_noncollectible": [
+      "BE_002",
+      "BE_004p",
+      "BE_009t1",
+      "BE_009t2",
+      "BE_009t3",
+      "BE_009t4",
+      "BE_013t6",
+      "BE_017t3",
+      "BE_017t4",
+      "BE_017t5",
+      "BE_017t6",
+      "BE_055t"
+    ],
+    "expansion_set_by_type": {
+      "ENCHANTMENT": 64,
+      "HERO_POWER": 1,
+      "LOCATION": 3,
+      "MINION": 137,
+      "SPELL": 76,
+      "WEAPON": 7
+    },
+    "expansion_set_collectible": 131,
+    "expansion_set_ids": 288,
+    "expansion_set_non_collectible": 157,
+    "expansion_set_tokens_playable": 93,
+    "in_other_game_modes": 71,
+    "non_collectible": 211,
+    "playable_standard_like": 226,
+    "playable_standard_like_by_set": {
+      "BASIC": 1,
+      "BE": 224,
+      "EVENT": 1
+    },
+    "playable_standard_like_by_type": {
+      "HERO_POWER": 2,
+      "LOCATION": 3,
+      "MINION": 138,
+      "SPELL": 76,
+      "WEAPON": 7
+    },
+    "playable_standard_like_collectible": 132,
+    "playable_standard_like_tokens": 94
+  },
+  "changed": {
+    "cause_group_examples": {
+      "expansion_set_record": [
+        "BE_013",
+        "BE_013t1",
+        "BE_013t2",
+        "BE_013t3",
+        "BE_013t4",
+        "BE_013t5",
+        "BE_703"
+      ],
+      "gameplay_field_change_collectible_other_sets": [
+        "CATA_528",
+        "EDR_271",
+        "EDR_483",
+        "EDR_811",
+        "ETC_386",
+        "JAIL_200",
+        "JAIL_321",
+        "JAIL_734",
+        "TLC_600"
+      ],
+      "gameplay_field_change_noncollectible": [
+        "BG22_403",
+        "BG22_403_G",
+        "BG26_810",
+        "BG26_810_G",
+        "BG26_814",
+        "BG26_814_G",
+        "BG28_604",
+        "BG28_698",
+        "BG28_707",
+        "BG28_707_G",
+        "BG30_MagicItem_406",
+        "BG30_MagicItem_410t2"
+      ],
+      "non_gameplay_metadata_only": [
+        "BG24_004",
+        "BG25_009",
+        "BG25_009_G",
+        "BG25_806",
+        "BG26_148",
+        "BG26_162",
+        "BG26_537",
+        "BG27_000",
+        "BG27_002",
+        "BG27_080",
+        "BG28_582",
+        "BG28_595"
+      ],
+      "text_artifact_only": [
+        "AV_337",
+        "BAR_310",
+        "BAR_313",
+        "BAR_551",
+        "BOT_256",
+        "BT_014",
+        "BT_321",
+        "BT_351",
+        "BT_416",
+        "BT_480",
+        "BT_493",
+        "CAP_003"
+      ],
+      "text_markup_or_whitespace_only": [
+        "BAR_878",
+        "BT_510",
+        "CATA_305",
+        "CFM_781",
+        "CORE_BAR_878",
+        "CORE_BT_510",
+        "CORE_CFM_781",
+        "CORE_ICC_214",
+        "CORE_TTN_866",
+        "CORE_WON_096",
+        "DINO_434",
+        "EX1_383"
+      ]
+    },
+    "cause_groups": {
+      "expansion_set_record": 7,
+      "gameplay_field_change_collectible_other_sets": 9,
+      "gameplay_field_change_noncollectible": 180,
+      "non_gameplay_metadata_only": 87,
+      "text_artifact_only": 276,
+      "text_markup_or_whitespace_only": 19
+    },
+    "collectible_changed_gameplay_by_set": {
+      "BE": 1,
+      "CATACLYSM": 1,
+      "EMERALD_DREAM": 2,
+      "ESCAPEFROM_VIOLET_HOLD": 1
+    },
+    "collectible_flag_flips": 0,
+    "collectible_flip_examples": [],
+    "collectible_substantive_changes": [
+      {
+        "changes": {
+          "mechanics": [
+            null,
+            [
+              "DEATHRATTLE"
+            ]
+          ]
+        },
+        "group": "expansion_set_record",
+        "id": "BE_703",
+        "name": "Drest'agath",
+        "set": "BE"
+      },
+      {
+        "changes": {
+          "referencedTags": [
+            null,
+            [
+              "TAUNT"
+            ]
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "CATA_528",
+        "name": "Sigil of the Seas",
+        "set": "CATACLYSM"
+      },
+      {
+        "changes": {
+          "text": [
+            "After you cast a Nature spell, summon a 2/2 Treant with \"Deathrattle: Get a copy of that spell.\"",
+            "After you cast a Nature spell, summon a 2/2 Treant with \"Deathrattle: Get a random Nature spell.\""
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "EDR_271",
+        "name": "Grove Shaper",
+        "set": "EMERALD_DREAM"
+      },
+      {
+        "changes": {
+          "spellSchool": [
+            null,
+            "SHADOW"
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "EDR_483",
+        "name": "Fractured Power",
+        "set": "EMERALD_DREAM"
+      },
+      {
+        "changes": {
+          "spellSchool": [
+            null,
+            "SHADOW"
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "EDR_811",
+        "name": "Rite of Atrocity",
+        "set": "EMERALD_DREAM"
+      },
+      {
+        "changes": {
+          "text": [
+            "Battlecry: Summon two {0}/{1} Quilboar with Taunt. (Improved by your hero Attack & Armor gained this turn!)",
+            "Battlecry: Summon two {0}/{1} Quilboar with Taunt. (Improved by your hero Attack \\& Armor gained this turn!)"
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "ETC_386",
+        "name": "Zok Fogsnout",
+        "set": "BATTLE_OF_THE_BANDS"
+      },
+      {
+        "changes": {
+          "text": [
+            "Summon two random 3-Cost minions. (Improved by your hero attacks this game.)",
+            "Summon two random 2-Cost minions. (Improved by your hero attacks this game.)"
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "JAIL_200",
+        "name": "Infest the Scullery",
+        "set": "ESCAPEFROM_VIOLET_HOLD"
+      },
+      {
+        "changes": {
+          "health": [
+            3,
+            4
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "JAIL_321",
+        "name": "Tricksy Improviser",
+        "set": "ESCAPEFROM_VIOLET_HOLD"
+      },
+      {
+        "changes": {
+          "text": [
+            "Taunt Battlecry: Discover a card in your deck. If it's empty, gain +4/+4 instead.",
+            "Battlecry: Discover a card in your deck. If it's empty, gain +4/+4 instead."
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "JAIL_734",
+        "name": "Hellraiser",
+        "set": "ESCAPEFROM_VIOLET_HOLD"
+      },
+      {
+        "changes": {
+          "text": [
+            "Battlecry: Deal 5 damage and gain 5 Armor. Kindred: Costs (3) less.",
+            "Battlecry: Deal 5 damage and gain 5 Armor. Kindred: Costs (2) less."
+          ]
+        },
+        "group": "gameplay_field_change_collectible_other_sets",
+        "id": "TLC_600",
+        "name": "Windpeak Wyrm",
+        "set": "THE_LOST_CITY"
+      }
+    ],
+    "field_change_counts": {
+      "artist": 1,
+      "attack": 42,
+      "battlegroundsHero": 2,
+      "cardClass": 2,
+      "collectionText": 5,
+      "cost": 87,
+      "elite": 1,
+      "flavor": 1,
+      "health": 51,
+      "howToEarn": 5,
+      "howToEarnGolden": 3,
+      "isBattlegroundsDarkGift": 4,
+      "isBattlegroundsPoolMinion": 75,
+      "isBattlegroundsPoolSpell": 3,
+      "mechanics": 9,
+      "name": 1,
+      "race": 2,
+      "races": 2,
+      "referencedTags": 2,
+      "spellSchool": 2,
+      "techLevel": 17,
+      "text": 391
+    },
+    "gameplay_field_change_counts": {
+      "attack": 42,
+      "cardClass": 2,
+      "cost": 87,
+      "elite": 1,
+      "health": 51,
+      "mechanics": 9,
+      "race": 2,
+      "races": 2,
+      "referencedTags": 2,
+      "spellSchool": 2,
+      "text": 391
+    },
+    "identity_change_examples": {
+      "class_changed": [
+        "TB_BaconShop_HERO_29_Buddy",
+        "TB_BaconShop_HERO_29_Buddy_G"
+      ],
+      "dbf_id_changed": [],
+      "name_changed": [
+        "BE_703"
+      ],
+      "type_changed": []
+    },
+    "identity_changes": {
+      "class_changed": 2,
+      "dbf_id_changed": 0,
+      "name_changed": 1,
+      "type_changed": 0
+    },
+    "noncollectible_playable_standard_like_examples": [
+      "BE_013t1",
+      "BE_013t2",
+      "BE_013t3",
+      "BE_013t4",
+      "BE_013t5",
+      "EDR_271t",
+      "ULDA_Finley_HP3"
+    ],
+    "noncollectible_playable_standard_like_substantive_changes": 7,
+    "records_unchanged": 35443,
+    "records_with_any_difference": 578,
+    "text_change_kinds": {
+      "markup_or_whitespace_only": 19,
+      "numbers_only": 62,
+      "text_artifact_only": 277,
+      "wording": 33
+    }
+  },
+  "duplicate_collectible_names_in_expansion": {},
+  "ids": {
+    "added": 369,
+    "ambiguous_new": 0,
+    "ambiguous_old": 0,
+    "common": 36021,
+    "new_full": 36390,
+    "old_full": 36022,
+    "removed": 1
+  },
+  "new_set_totals": {
+    "expansion_set": "BE",
+    "new_collectible": 135,
+    "new_collectible_by_rarity": {
+      "COMMON": 43,
+      "EPIC": 27,
+      "LEGENDARY": 27,
+      "RARE": 38
+    },
+    "new_full": 300,
+    "old_collectible": 4,
+    "old_full": 13
+  },
+  "new_snapshot": "hsjson_255130_enUS",
+  "old_collectible_file": {
+    "path": "data/cards/source_snapshots/cards_collectible_20261001_enUS.json",
+    "records": 8170,
+    "records_identical_to_old_snapshot": true,
+    "sha256": "d8c6616877b7b0736a59a3b24bee3d6b789a7504382ef68650feec5b8385a930"
+  },
+  "old_collectible_source_ids": 8170,
+  "old_snapshot": "hsjson_253216_enUS",
+  "preview_be_file": {
+    "cards": [
+      "BE_013",
+      "BE_036",
+      "BE_259",
+      "BE_703"
+    ],
+    "changed_in_new_snapshot": [
+      "BE_013",
+      "BE_703"
+    ],
+    "present_in_new_snapshot": 4
+  },
+  "quality_new_added_ids": {
+    "flag_counts": {
+      "DEBUG_MARKER_IN_TEXT": 3,
+      "LAYOUT_MARKER_IN_TEXT": 30,
+      "MULTI_STATE_TEXT": 5,
+      "TEMPLATE_VALUE_IN_TEXT": 6
+    },
+    "flag_examples": {
+      "DEBUG_MARKER_IN_TEXT": [
+        "BE_873",
+        "BE_994",
+        "BE_997"
+      ],
+      "LAYOUT_MARKER_IN_TEXT": [
+        "BE_008",
+        "BE_150",
+        "BE_151",
+        "BE_152",
+        "BE_204",
+        "BE_207",
+        "BE_255",
+        "BE_256",
+        "BE_264",
+        "BE_270",
+        "BE_337",
+        "BE_349"
+      ],
+      "MULTI_STATE_TEXT": [
+        "BE_012",
+        "BE_565",
+        "BE_784",
+        "core_mon_0022",
+        "core_mon_0032"
+      ],
+      "TEMPLATE_VALUE_IN_TEXT": [
+        "BE_004p",
+        "BE_012",
+        "BE_055t",
+        "BE_565",
+        "BE_784",
+        "BE_850t"
+      ]
+    },
+    "playable_standard_like_records": 226
+  },
+  "quality_new_all": {
+    "flag_counts": {
+      "DEBUG_MARKER_IN_TEXT": 10,
+      "EMPTY_TEXT": 1643,
+      "EMPTY_TEXT_WITH_EFFECT_TAG": 40,
+      "LAYOUT_MARKER_IN_TEXT": 323,
+      "MISSING_CLASS": 105,
+      "MULTI_STATE_TEXT": 90,
+      "TEMPLATE_VALUE_IN_TEXT": 214
+    },
+    "flag_examples": {
+      "DEBUG_MARKER_IN_TEXT": [
+        "BE_873",
+        "BE_994",
+        "BE_997",
+        "CATA_528",
+        "CORE_EX1_323",
+        "CORE_RLK_066",
+        "EDR_462",
+        "EX1_323",
+        "FIR_927",
+        "RLK_066"
+      ],
+      "EMPTY_TEXT": [
+        "AIBot_DemonHunterTrainee_001_hb",
+        "AIBot_DruidTrainee_002_hb",
+        "AIBot_HunterTrainee_003_hb",
+        "AIBot_MageTrainee_004_hb",
+        "AIBot_PaladinTrainee_005_hb",
+        "AIBot_PriestTrainee_006_hb",
+        "AIBot_RogueTrainee_007_hb",
+        "AIBot_ShamanTrainee_008_hb",
+        "AIBot_WarlockTrainee_009_hb",
+        "AIBot_WarriorTrainee_010_hb",
+        "AT_020",
+        "AT_037t"
+      ],
+      "EMPTY_TEXT_WITH_EFFECT_TAG": [
+        "BOM_08_Tavish_002hp",
+        "DALA_832t",
+        "DRGA_001t",
+        "DRGA_BOSS_18t",
+        "LOOT_526d",
+        "RLK_Prologue_FroznThrn_004hb3",
+        "Story_09_Fenris",
+        "Story_09_KargathMinion",
+        "Story_11_Drill",
+        "Story_11_FreezingPotionMinion",
+        "Story_11_Ini_004hp",
+        "Story_11_Ini_008hp"
+      ],
+      "LAYOUT_MARKER_IN_TEXT": [
+        "AV_337",
+        "BAR_310",
+        "BAR_313",
+        "BAR_551",
+        "BAR_878",
+        "BE_008",
+        "BE_150",
+        "BE_151",
+        "BE_152",
+        "BE_204",
+        "BE_207",
+        "BE_255"
+      ],
+      "MISSING_CLASS": [
+        "BOM_06_BigAnetheron_006hb",
+        "BOM_07_Scabbs_Dawngrasp_004c",
+        "BOM_07_Scabbs_EllingTrias_001c",
+        "BOM_07_Scabbs_Guff_006c",
+        "BOM_07_Scabbs_Scabbs_001c",
+        "CATA_190h",
+        "CATA_497",
+        "CATA_722",
+        "DRGA_24w",
+        "DRG_238ht",
+        "END_001",
+        "END_002"
+      ],
+      "MULTI_STATE_TEXT": [
+        "AV_145",
+        "AV_257",
+        "BAR_547",
+        "BE_012",
+        "BE_565",
+        "BE_784",
+        "BT_427",
+        "CATA_131",
+        "CATA_132",
+        "CATA_140",
+        "CATA_150t",
+        "CATA_150t1"
+      ],
+      "TEMPLATE_VALUE_IN_TEXT": [
+        "AT_100",
+        "AV_145",
+        "BAR_079_m1",
+        "BAR_079_m2",
+        "BAR_079_m3",
+        "BAR_547",
+        "BAR_871",
+        "BE_004p",
+        "BE_012",
+        "BE_055t",
+        "BE_565",
+        "BE_784"
+      ]
+    },
+    "playable_standard_like_records": 15903
+  },
+  "quality_old_all": {
+    "flag_counts": {
+      "EMPTY_TEXT": 1643,
+      "EMPTY_TEXT_WITH_EFFECT_TAG": 40,
+      "MISSING_CLASS": 105,
+      "MULTI_STATE_TEXT": 85,
+      "TEMPLATE_VALUE_IN_TEXT": 209
+    },
+    "flag_examples": {
+      "EMPTY_TEXT": [
+        "AIBot_DemonHunterTrainee_001_hb",
+        "AIBot_DruidTrainee_002_hb",
+        "AIBot_HunterTrainee_003_hb",
+        "AIBot_MageTrainee_004_hb",
+        "AIBot_PaladinTrainee_005_hb",
+        "AIBot_PriestTrainee_006_hb",
+        "AIBot_RogueTrainee_007_hb",
+        "AIBot_ShamanTrainee_008_hb",
+        "AIBot_WarlockTrainee_009_hb",
+        "AIBot_WarriorTrainee_010_hb",
+        "AT_020",
+        "AT_037t"
+      ],
+      "EMPTY_TEXT_WITH_EFFECT_TAG": [
+        "BOM_08_Tavish_002hp",
+        "DALA_832t",
+        "DRGA_001t",
+        "DRGA_BOSS_18t",
+        "LOOT_526d",
+        "RLK_Prologue_FroznThrn_004hb3",
+        "Story_09_Fenris",
+        "Story_09_KargathMinion",
+        "Story_11_Drill",
+        "Story_11_FreezingPotionMinion",
+        "Story_11_Ini_004hp",
+        "Story_11_Ini_008hp"
+      ],
+      "MISSING_CLASS": [
+        "BOM_06_BigAnetheron_006hb",
+        "BOM_07_Scabbs_Dawngrasp_004c",
+        "BOM_07_Scabbs_EllingTrias_001c",
+        "BOM_07_Scabbs_Guff_006c",
+        "BOM_07_Scabbs_Scabbs_001c",
+        "CATA_190h",
+        "CATA_497",
+        "CATA_722",
+        "DRGA_24w",
+        "DRG_238ht",
+        "END_001",
+        "END_002"
+      ],
+      "MULTI_STATE_TEXT": [
+        "AV_145",
+        "AV_257",
+        "BAR_547",
+        "BT_427",
+        "CATA_131",
+        "CATA_132",
+        "CATA_140",
+        "CATA_150t",
+        "CATA_150t1",
+        "CATA_151t",
+        "CATA_151t1",
+        "CATA_153t"
+      ],
+      "TEMPLATE_VALUE_IN_TEXT": [
+        "AT_100",
+        "AV_145",
+        "BAR_079_m1",
+        "BAR_079_m2",
+        "BAR_079_m3",
+        "BAR_547",
+        "BAR_871",
+        "BG_BT_258",
+        "BG_BT_258_G",
+        "CAP_405tb1",
+        "CAP_405tb2",
+        "CAP_405tb3"
+      ]
+    },
+    "playable_standard_like_records": 15677
+  },
+  "removed": {
+    "count": 1,
+    "ids": [
+      "BE_259e2"
+    ],
+    "in_old_collectible_file": 0
+  },
+  "scope_effect": {
+    "ids_in_old_collectible_file": 8170,
+    "ids_in_old_full_build_only": 27852,
+    "new_full_ids_not_in_old_collectible_file": 28220,
+    "of_which_already_in_old_full_build": 27851,
+    "of_which_new_in_new_build": 369,
+    "old_noncollectible_ids_still_present": 27851
+  }
+}

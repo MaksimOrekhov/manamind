@@ -1,0 +1,905 @@
+[
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_207",
+    "name": "Unstable Prototype",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 1,
+    "appearances": 521,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE",
+      "tag:REBORN"
+    ],
+    "special_cases": [
+      "hidden_information"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_550",
+    "name": "Tank Regiment",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 6,
+    "appearances": 347,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_151",
+    "name": "Vaultkeeper",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 5,
+    "appearances": 277,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_552",
+    "name": "Flamespitter",
+    "set": "BE",
+    "type": "WEAPON",
+    "cost": 3,
+    "appearances": 236,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_555",
+    "name": "Reload",
+    "set": "BE",
+    "type": "SPELL",
+    "cost": 8,
+    "appearances": 231,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:DISCOVER"
+    ],
+    "special_cases": [
+      "pool_not_in_text",
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_557",
+    "name": "Setesh",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 7,
+    "appearances": 230,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_730",
+    "name": "Clockwork Boars",
+    "set": "BE",
+    "type": "SPELL",
+    "cost": 2,
+    "appearances": 222,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:CHARGE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_900",
+    "name": "Mechacycle",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 4,
+    "appearances": 222,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE",
+      "tag:TAUNT"
+    ],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_560",
+    "name": "Brassknuckle Brawler",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 8,
+    "appearances": 184,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:CHARGE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_561",
+    "name": "Forge of Origination",
+    "set": "BE",
+    "type": "LOCATION",
+    "cost": 3,
+    "appearances": 181,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_554",
+    "name": "Bombardment",
+    "set": "BE",
+    "type": "SPELL",
+    "cost": 5,
+    "appearances": 177,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S1_new_collectible",
+    "id": "BE_553",
+    "name": "Tinker",
+    "set": "BE",
+    "type": "SPELL",
+    "cost": 2,
+    "appearances": 149,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_890t",
+    "name": "Atiesh the Greatstaff",
+    "set": "TIME_TRAVEL",
+    "type": "WEAPON",
+    "cost": 10,
+    "appearances": 1237,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_890t2",
+    "name": "Karazhan the Sanctum",
+    "set": "TIME_TRAVEL",
+    "type": "LOCATION",
+    "cost": 10,
+    "appearances": 966,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "CAP_107t",
+    "name": "Cannoneer",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "MINION",
+    "cost": 1,
+    "appearances": 563,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "pool_not_in_text",
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TLC_817t3",
+    "name": "Sol'etos, Life's Breath",
+    "set": "THE_LOST_CITY",
+    "type": "MINION",
+    "cost": 5,
+    "appearances": 329,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "EDR_840t1",
+    "name": "Crow Dreadseed",
+    "set": "EMERALD_DREAM",
+    "type": "MINION",
+    "cost": 1,
+    "appearances": 214,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:ELUSIVE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "EDR_840t2",
+    "name": "Serpent Dreadseed",
+    "set": "EMERALD_DREAM",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 210,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:LIFESTEAL",
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TLC_817t5",
+    "name": "Sol'etos, Cycle's Rebirth",
+    "set": "THE_LOST_CITY",
+    "type": "MINION",
+    "cost": 5,
+    "appearances": 191,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:DEATHRATTLE",
+      "tag:REBORN",
+      "tag:TAUNT"
+    ],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "BE_553t",
+    "name": "Overdrive",
+    "set": "BE",
+    "type": "SPELL",
+    "cost": 0,
+    "appearances": 161,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:RUSH"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_005t7",
+    "name": "Giant Rafaam",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 8,
+    "appearances": 154,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:RUSH"
+    ],
+    "special_cases": [
+      "game_history_counter"
+    ]
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_005t4",
+    "name": "Warchief Rafaam",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 5,
+    "appearances": 153,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_005t6",
+    "name": "Calamitous Rafaam",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 6,
+    "appearances": 142,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S2_new_to_source_noncollectible_token",
+    "id": "TIME_005t5",
+    "name": "Mindflayer R'faam",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 7,
+    "appearances": 133,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "JAIL_730",
+    "name": "Stardust Scythe",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "WEAPON",
+    "cost": 4,
+    "appearances": 513,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CORE_TTN_843",
+    "name": "Eredar Deceptor",
+    "set": "CORE",
+    "type": "MINION",
+    "cost": 4,
+    "appearances": 381,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:RUSH",
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "copy_alias_of_another_card",
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "TIME_603",
+    "name": "Ticking Timebomb",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 2,
+    "appearances": 343,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CORE_BT_201",
+    "name": "Augmented Porcupine",
+    "set": "CORE",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 271,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": [
+      "copy_alias_of_another_card",
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CORE_TTN_866",
+    "name": "Mythical Terror",
+    "set": "CORE",
+    "type": "MINION",
+    "cost": 7,
+    "appearances": 246,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:LIFESTEAL",
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "copy_alias_of_another_card",
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "RLK_061",
+    "name": "Battlefield Necromancer",
+    "set": "CORE",
+    "type": "MINION",
+    "cost": 2,
+    "appearances": 234,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:TAUNT",
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "FIR_929",
+    "name": "Living Flame",
+    "set": "EMERALD_DREAM",
+    "type": "MINION",
+    "cost": 2,
+    "appearances": 231,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "JAIL_733",
+    "name": "Vicious Voidscale",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 228,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE",
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CAP_103",
+    "name": "Hand Cannon",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "WEAPON",
+    "cost": 3,
+    "appearances": 220,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:TRIGGER_VISUAL"
+    ],
+    "special_cases": [
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CATA_725",
+    "name": "Shadowsworn Disciple",
+    "set": "CATACLYSM",
+    "type": "MINION",
+    "cost": 2,
+    "appearances": 195,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": [
+      "runtime_value_in_text"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "CORE_WC_701",
+    "name": "Felrattler",
+    "set": "CORE",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 147,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE",
+      "tag:RUSH"
+    ],
+    "special_cases": [
+      "copy_alias_of_another_card"
+    ]
+  },
+  {
+    "stratum": "S3_known_before_trigger_text",
+    "id": "JAIL_399",
+    "name": "Imp Gang Stooge",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 141,
+    "text_status": "TEXT_UNPARSED_TRIGGER",
+    "tags": [
+      "tag:DEATHRATTLE",
+      "tag:LIFESTEAL",
+      "tag:TAUNT"
+    ],
+    "special_cases": [
+      "hidden_information"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "CATA_301",
+    "name": "Ruby Sanctum",
+    "set": "CATACLYSM",
+    "type": "LOCATION",
+    "cost": 1,
+    "appearances": 2356,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": [
+      "game_history_counter"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "TIME_890",
+    "name": "Medivh the Hallowed",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 10,
+    "appearances": 1058,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:SILENCE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "CATA_216",
+    "name": "Cleansing Cleric",
+    "set": "CATACLYSM",
+    "type": "MINION",
+    "cost": 4,
+    "appearances": 699,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY"
+    ],
+    "special_cases": [
+      "game_history_counter"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "TLC_816",
+    "name": "Gravedawn Sunbloom",
+    "set": "THE_LOST_CITY",
+    "type": "SPELL",
+    "cost": 4,
+    "appearances": 681,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "EDR_970",
+    "name": "Kaldorei Priestess",
+    "set": "EMERALD_DREAM",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 659,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:IMBUE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "CORE_BAR_311",
+    "name": "Devouring Plague",
+    "set": "CORE",
+    "type": "SPELL",
+    "cost": 3,
+    "appearances": 602,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:ImmuneToSpellpower",
+      "tag:LIFESTEAL"
+    ],
+    "special_cases": [
+      "copy_alias_of_another_card",
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "EDR_449",
+    "name": "Lunarwing Messenger",
+    "set": "EMERALD_DREAM",
+    "type": "MINION",
+    "cost": 2,
+    "appearances": 556,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:IMBUE",
+      "tag:LIFESTEAL"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "TIME_432",
+    "name": "Intertwined Fate",
+    "set": "TIME_TRAVEL",
+    "type": "SPELL",
+    "cost": 3,
+    "appearances": 539,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:DISCOVER"
+    ],
+    "special_cases": [
+      "hidden_information",
+      "pool_not_in_text",
+      "stateful_keyword"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "JAIL_732",
+    "name": "Void Soul",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "SPELL",
+    "cost": 1,
+    "appearances": 433,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": [
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "CATA_584",
+    "name": "Erupting Volcano",
+    "set": "CATACLYSM",
+    "type": "LOCATION",
+    "cost": 3,
+    "appearances": 358,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [],
+    "special_cases": [
+      "game_history_counter",
+      "pool_not_in_text"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "JAIL_513",
+    "name": "Caged Cranium",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "MINION",
+    "cost": 3,
+    "appearances": 264,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:BATTLECRY",
+      "tag:TAUNT"
+    ],
+    "special_cases": [
+      "hidden_information"
+    ]
+  },
+  {
+    "stratum": "S4_known_before_one_shot_text",
+    "id": "JAIL_877",
+    "name": "Underbelly Network",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "LOCATION",
+    "cost": 2,
+    "appearances": 254,
+    "text_status": "TEXT_UNPARSED_OPAQUE",
+    "tags": [
+      "tag:DEATHRATTLE"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "CORE_AT_055",
+    "name": "Flash Heal",
+    "set": "CORE",
+    "type": "SPELL",
+    "cost": 1,
+    "appearances": 1463,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "CORE_EX1_197",
+    "name": "Shadow Word: Ruin",
+    "set": "CORE",
+    "type": "SPELL",
+    "cost": 4,
+    "appearances": 1118,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "CATA_308",
+    "name": "Medivh's Triumph",
+    "set": "CATACLYSM",
+    "type": "SPELL",
+    "cost": 5,
+    "appearances": 960,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "END_025",
+    "name": "Eternal Firebolt",
+    "set": "TIME_TRAVEL",
+    "type": "SPELL",
+    "cost": 3,
+    "appearances": 960,
+    "text_status": "TEXT_PARSED",
+    "tags": [
+      "tag:LIFESTEAL"
+    ],
+    "special_cases": [
+      "hidden_information"
+    ]
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "EDR_476",
+    "name": "Moonwell",
+    "set": "EMERALD_DREAM",
+    "type": "SPELL",
+    "cost": 6,
+    "appearances": 953,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "JAIL_913",
+    "name": "Hold Them Off!",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "SPELL",
+    "cost": 5,
+    "appearances": 874,
+    "text_status": "TEXT_PARSED",
+    "tags": [
+      "tag:LIFESTEAL"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "JAIL_EVENT_COIN",
+    "name": "The Coin",
+    "set": "ESCAPEFROM_VIOLET_HOLD",
+    "type": "SPELL",
+    "cost": 0,
+    "appearances": 509,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": [
+      "game_history_counter"
+    ]
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "CORE_REV_990",
+    "name": "Sanguine Depths",
+    "set": "CORE",
+    "type": "LOCATION",
+    "cost": 1,
+    "appearances": 480,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "DINO_COIN2",
+    "name": "The Coin",
+    "set": "THE_LOST_CITY",
+    "type": "SPELL",
+    "cost": 0,
+    "appearances": 471,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": [
+      "game_history_counter"
+    ]
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "TIME_022",
+    "name": "Perennial Serpent",
+    "set": "TIME_TRAVEL",
+    "type": "MINION",
+    "cost": 8,
+    "appearances": 450,
+    "text_status": "TEXT_PARSED",
+    "tags": [
+      "tag:RUSH"
+    ],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "CATA_303",
+    "name": "Purifying Breath",
+    "set": "CATACLYSM",
+    "type": "SPELL",
+    "cost": 2,
+    "appearances": 381,
+    "text_status": "TEXT_PARSED",
+    "tags": [],
+    "special_cases": []
+  },
+  {
+    "stratum": "S5_control_grammar_parses",
+    "id": "BE_085t",
+    "name": "C'thrax Brute",
+    "set": "BE",
+    "type": "MINION",
+    "cost": 4,
+    "appearances": 337,
+    "text_status": "TEXT_PARSED",
+    "tags": [
+      "tag:TAUNT"
+    ],
+    "special_cases": []
+  }
+]

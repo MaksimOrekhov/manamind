@@ -48,6 +48,7 @@ Priorities, in order:
 - Preserve all checkpoints, datasets, raw logs and historical results. Write to new output paths and temporary smoke directories; never overwrite old results, and do not edit old research results to match new architecture.
 - Keep raw logs and imports in ignored `data/raw/` and `data/processed_real/`. Do not expose player names or hidden opponent information. The single-match Power.log limitation remains until mode metadata can be associated safely per game.
 - The pinned Standard catalog `data/cards/standard_current_enUS.json` is rebuilt from the pinned HearthstoneJSON snapshot by `scripts/check_generated_artifacts.py`. Do not download or swap a snapshot, or change the Standard composition or model catalog, as a side effect.
+- The full read-only metadata layer `data/card_metadata/` (`manamind.card_metadata`, see [data/card_metadata/README.md](data/card_metadata/README.md)) holds complete HearthstoneJSON builds, tokens included, for research tools and future components. It never replaces a checkpoint's catalog or the Standard profile, and a record there does not make a card Standard-legal or engine-supported.
 
 ## ManaEngine (frozen, optional)
 

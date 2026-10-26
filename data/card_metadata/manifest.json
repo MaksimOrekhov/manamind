@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "snapshot_id": "hsjson_255130_enUS",
+      "build": 255130,
+      "patch": "37.0.0.255130",
+      "locale": "enUS",
+      "file": "hearthstonejson_255130_enUS.json.gz",
+      "raw_sha256": "06e61ce4afd2bce9c2ff53de8c2c1cc0080df27aa4743c8eee3d63894d10dc04",
+      "raw_bytes": 10009365,
+      "record_count": 36390,
+      "source_url": "https://api.hearthstonejson.com/v1/255130/enUS/cards.json",
+      "retrieved_at_utc": "2026-10-26T06:20:03Z",
+      "equivalent_builds": [
+        254477,
+        255026
+      ],
+      "role": "current",
+      "notes": "Newest build published at retrieval time (hsdata head 'Update to patch 37.0.0.255130', 2026-10-15). Builds 254477, 255026 and 255130 are published with byte-identical cards.json (same SHA-256 and ETag), so the card data is the same for all three client builds; the later real matches carry client BuildNumber 254477."
+    },
+    {
+      "snapshot_id": "hsjson_253216_enUS",
+      "build": 253216,
+      "patch": "36.6.0.253216",
+      "locale": "enUS",
+      "file": "hearthstonejson_253216_enUS.json.gz",
+      "raw_sha256": "079c41a102d386a289bcf2676815799967a8aa0aaeb6b0a5958c76bdd4a20ac3",
+      "raw_bytes": 9898936,
+      "record_count": 36022,
+      "source_url": "https://api.hearthstonejson.com/v1/253216/enUS/cards.json",
+      "retrieved_at_utc": "2026-10-26T06:20:04Z",
+      "equivalent_builds": [
+        251952
+      ],
+      "role": "previous",
+      "notes": "Build under which the older real matches were played (client BuildNumber 253216). Collectible records are identical to data/cards/source_snapshots/cards_collectible_20261001_enUS.json; build 251952 is published with identical bytes. Not the 36.6.3.253932 build that the profile date 2026-10-01 suggests (4 collectible records differ)."
+    }
+  ]
+}
