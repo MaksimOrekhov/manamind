@@ -9,14 +9,19 @@
 """
 from __future__ import annotations
 
+import ctypes
+import sys
 import threading
 from collections import deque
 from dataclasses import dataclass
+from ctypes import wintypes
 
 from manamind.live.snapshot import Snapshot
 
 from .journal import ModelShadowJournal, utc_now
 from .shadow import ModelShadow, ShadowFailed, identity_fields
+
+THREAD_PRIORITY_BELOW_NORMAL = -1
 
 
 @dataclass
@@ -34,14 +39,21 @@ class _Control:
     reason: str
 
 
-def _lower_thread_priority() -> None:
+def _lower_thread_priority() -> bool:
     """Best effort: the worker must never compete with the polling loop that serves the displayed recommendation."""
+    if sys.platform != "win32":
+        return False
     try:
-        import ctypes
-        kernel = ctypes.windll.kernel32           # Windows only; any failure is ignored
-        kernel.SetThreadPriority(kernel.GetCurrentThread(), -1)   # THREAD_PRIORITY_BELOW_NORMAL
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        get_current_thread = kernel.GetCurrentThread
+        get_current_thread.argtypes = []
+        get_current_thread.restype = wintypes.HANDLE
+        set_thread_priority = kernel.SetThreadPriority
+        set_thread_priority.argtypes = [wintypes.HANDLE, ctypes.c_int]
+        set_thread_priority.restype = wintypes.BOOL
+        return bool(set_thread_priority(get_current_thread(), THREAD_PRIORITY_BELOW_NORMAL))
     except Exception:
-        pass
+        return False
 
 
 class ModelShadowWorker:
