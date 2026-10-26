@@ -1,0 +1,39 @@
+{
+  "id": "CARD-IR-OUTCOME-PARITY-1",
+  "base_sha": "fc501cee81feaa028bca2fd0d9a33b890936a005",
+  "branch": "codex/card-ir-outcome-parity-1",
+  "hypothesis": "Card IR can supply direct-effect instructions to the existing Outcome resolver; on the same pre-action states and observed facts its checkable direct effects are no worse than text parsing, with explicit abstention for unknown modifiers.",
+  "baseline": "Unchanged manamind.outcome.forecast.forecast_action and current observation/context mapping; no assumed-default context in real-data metrics",
+  "candidate": "Experimental report-local adapter, no src/outcome modification. IR controls effect kind, amount, target, keyword and sequence; reuse Outcome _Run/World primitives and reaction guards. Refuse unrepresentable IR and contexts instead of rebuilding ManaEngine positions.",
+  "cards": ["CORE_EX1_238", "CORE_AT_055", "CORE_ICC_055", "FIR_906"],
+  "declarations": "Immutable reports/card_ir_execution_pilot_1/declarations; strict v0.2 gate plus bounded translation, not semantic gold",
+  "stage_a": {
+    "baseline": "Current _check_numbers is asymmetric for unmarked literals and mixes their roles within an ability",
+    "fix_scope": "v0.2 strict only: role-specific signed stat pairs and discard counts in unambiguous text templates; preserve implicit defaults, expressions and metadata values; no blanket number-occurrence requirement",
+    "freeze": "Save original measurement and commit protocol before fix. Commit validator fix before any candidate real-outcome experiment. Preserve historical results; record changed verdicts separately."
+  },
+  "data": {
+    "split_plan": "data/processed_policy_prepare_1/split_plan.json",
+    "allow_parts": ["train", "validation", "test_seen"],
+    "excluded": "fresh_holdout and every match absent from the explicit allow parts; filter exact/prefix membership before opening any match file; reject prefix collisions",
+    "policy_corpus": "data/processed_policy_prepare_1/dataset",
+    "evidence": "data/processed_evidence/collected",
+    "observed_context": "Re-extract existing ObservedFacts mechanism only from eligible per-match raw files where safely addressable; never open aggregate facts/corpora containing protected matches. Join by exact decision/state hash; otherwise all-unknown context.",
+    "inventory_before_content": {"plan_matches": 92, "allowed_policy_files": 83, "protected_policy_files_unopened": 9, "evidence_directories_present": 164},
+    "bounds": "Four cards only, all permitted available plays in the fixed current input set; no sampling to improve accuracy, no additional imports/downloads or synthetic events in real totals",
+    "privacy": "Reports contain aggregates and public pilot card IDs only; no player names, raw match/decision IDs, hidden opponent hand or deck order. Private caches, if needed, in new ignored data/processed_real paths."
+  },
+  "causality": "Freeze permitted input hashes before forecast run. Forecast inputs contain only current state/action and facts extracted at the decision. Compute both forecasts before accessing next-state/effect evidence for scoring. Never infer a modifier from its observed action outcome.",
+  "comparison": {
+    "unit": "A SELF logged PLAY_CARD/SPELL of one of the four cards. Other-side or unmappable evidence observations are inventory, not scored SELF actions.",
+    "eligibility": "Known before state, exact action identity; for verify score adjacent consecutive labeled decisions in same SELF turn. Evidence packets may supplement only after prediction with exact target/action linkage; ambiguous or absent after-witness excluded with reason.",
+    "primary": "Observable direct-effect claims: target, damage/heal/buff kind and exact amount where available. Explicit zero/no-op verification reported separately. Resources and collateral reactions separate from direct-effect accuracy.",
+    "scorer": "Reuse outcome.verify observe/alignment/path classification, adapting a precomputed forecast without changing baseline. Packet checks, if needed, are an additional named diagnostic, not a replacement incompatible estimator.",
+    "coverage": "Events with at least one checkable exact direct-effect claim divided by all admitted pre-action events; also report complete direct-effect coverage and all exclusions",
+    "accuracy": "Confirmed / (confirmed + contradicted) checkable direct claims; report misses, no-claim cases, event-level conflicts and denominator. No exact success from mana/played-hand bookkeeping alone.",
+    "unknowns": "Stratify Spell Damage, healing bonus/doubling/conversion, Shield, Armor, overkill, Lifesteal, secrets/other reactions using pre-action context only; no default zero/false without evidence",
+    "limits": "Seen real data, paired technical diagnostic, not game strength or independent holdout generalization. A small denominator or missing observations warrants INCONCLUSIVE."
+  },
+  "ir_dependence": "Controlled copies: damage 3->5, target side, removal Lifesteal, heal->damage, sequence order. Public gate must reject or forecast must change. Also test unchecked internal compilation with a deliberately inconsistent original TextSource to prove execution reads IR rather than original rules text; this path is tests only.",
+  "stop": "No new simulator, native engine changes, GameState import, v0.3/S2/Herald, LIVE integration, model changes, training labels or training. If no faithful minimal adapter/data path exists, report technical limitations without pretending successful IR forecasting. Stop after report and branch push."
+}
