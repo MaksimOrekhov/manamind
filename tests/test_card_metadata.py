@@ -329,8 +329,8 @@ def test_standard_profile_does_not_reference_the_new_layer():
 def test_nothing_outside_the_layer_imports_it():
     pattern = re.compile(r"\b(?:from|import)\s+manamind\.card_metadata\b|\bfrom\s+manamind\s+import\s+card_metadata\b")
     offenders = [str(path.relative_to(ROOT)) for path in (ROOT / "src").rglob("*.py")
-                 if "card_metadata" not in path.parts and pattern.search(path.read_text(encoding="utf-8"))]
-    assert offenders == []
+                 if not {"card_metadata", "card_ir"} & set(path.parts) and pattern.search(path.read_text(encoding="utf-8"))]
+    assert offenders == []  # card_ir (CARD-IR-PILOT-1) is an isolated research reader; nothing imports it
 
 
 def test_catalog_and_vocabulary_never_read_the_snapshot_directory():
