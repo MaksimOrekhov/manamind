@@ -1,0 +1,83 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "FIR_906",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+  "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+      "effect": {
+        "seq": [
+          {
+            "op": "ENCHANT",
+            "to": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "FRIENDLY"
+            },
+            "attack": 1,
+            "health": 1,
+            "enchantment_id": "FIR_906e",
+            "as": "buffed"
+          },
+          {
+            "pay": {
+              "discard": {
+                "pick": "RANDOM",
+                "n": 1,
+                "type": "SPELL",
+                "side": "FRIENDLY",
+                "zone": "HAND",
+                "where": [
+                  {
+                    "spell_school": "NATURE"
+                  }
+                ]
+              }
+            },
+            "then": {
+              "op": "ENCHANT",
+              "to": {
+                "ref": "buffed"
+              },
+              "attack": 1,
+              "health": 1,
+              "enchantment_id": "FIR_906e"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "'them' = the minions buffed by the first step (not re-selected)?",
+      "alternatives": [
+        "the buffed minions",
+        "your minions now"
+      ],
+      "chosen": "the buffed minions",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "equal unless a minion enters or leaves between the steps"
+    },
+    {
+      "id": "d2",
+      "question": "No Nature spell in hand: no second buff and nothing discarded",
+      "alternatives": [
+        "nothing",
+        "discard anything"
+      ],
+      "chosen": "nothing",
+      "basis": "TEXT",
+      "risk": "NONE"
+    }
+  ],
+  "status": "FULL"
+}

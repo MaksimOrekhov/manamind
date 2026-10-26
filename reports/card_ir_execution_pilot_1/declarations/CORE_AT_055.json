@@ -1,0 +1,48 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_AT_055",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Restore #5 Health.",
+  "text_sha256": "caebafaf154d01d22e7685b6b599baa74bc1c50753cc29b97c77e153fa7b04a8",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Restore #5 Health.",
+      "target": {
+        "bind": "t",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "CHARACTER",
+          "side": "ANY"
+        }
+      },
+      "effect": {
+        "op": "RESTORE_HEALTH",
+        "to": {
+          "ref": "t"
+        },
+        "amount": {
+          "n": 5,
+          "mark": "#"
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Which targets: any character (friendly or enemy, hero or minion)?",
+      "alternatives": [
+        "any character",
+        "friendly characters only"
+      ],
+      "chosen": "any character",
+      "basis": "TEXT",
+      "risk": "NONE"
+    }
+  ],
+  "status": "FULL"
+}

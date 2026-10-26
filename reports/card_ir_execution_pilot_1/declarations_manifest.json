@@ -1,0 +1,33 @@
+{
+  "note": "Copies of card-ir/0.1 pilot_1 declarations with only the ir field set to card-ir/0.2; sources are not edited.",
+  "cards": {
+    "CORE_EX1_238": {
+      "source": "reports/card_ir_pilot_1/declarations/CORE_EX1_238.json",
+      "source_sha256": "6841abec7a4fc62ea8e778804fa0f483b4d27ed187c97442ab251b2ee1f6842f",
+      "changed_fields": [
+        "ir"
+      ]
+    },
+    "CORE_AT_055": {
+      "source": "reports/card_ir_pilot_1/declarations/CORE_AT_055.json",
+      "source_sha256": "376fc5498949ba7e4d9802065b68554916d707958afb9d00830b431805349e68",
+      "changed_fields": [
+        "ir"
+      ]
+    },
+    "CORE_ICC_055": {
+      "source": "reports/card_ir_pilot_1/declarations/CORE_ICC_055.json",
+      "source_sha256": "573db2a161e32a31a5fbcf0d4744453ef9547e1089befeb41fdd5c18fb651ec5",
+      "changed_fields": [
+        "ir"
+      ]
+    },
+    "FIR_906": {
+      "source": "reports/card_ir_pilot_1/declarations/FIR_906.json",
+      "source_sha256": "4497b3e9b59a41bd3414c8e014fa7abc2cd1d262d5042436828aa784a5e2c960",
+      "changed_fields": [
+        "ir"
+      ]
+    }
+  }
+}

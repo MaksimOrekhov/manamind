@@ -1,0 +1,43 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_EX1_238",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Deal $3 damage. <b>Overload:</b> (1)",
+  "text_sha256": "2e0e6b3b8f701a317d01e7d3101503157af8dd1aaef3dc2ff0c40a514d78affd",
+  "keywords": [
+    {
+      "keyword": "OVERLOAD",
+      "span": "Overload: (1)",
+      "amount": 1
+    }
+  ],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $3 damage.",
+      "target": {
+        "bind": "t",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "CHARACTER",
+          "side": "ANY"
+        }
+      },
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "t"
+        },
+        "amount": {
+          "n": 3,
+          "mark": "$"
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

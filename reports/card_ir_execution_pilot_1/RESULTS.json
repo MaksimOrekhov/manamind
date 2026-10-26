@@ -1,0 +1,4643 @@
+{
+  "schema": "card_ir_execution_pilot_1/results-1",
+  "protocol": "protocol.json",
+  "translations": {
+    "CORE_EX1_238": {
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "keywords": [
+        "OVERLOAD"
+      ],
+      "assumptions": []
+    },
+    "CORE_AT_055": {
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "keywords": [],
+      "assumptions": []
+    },
+    "CORE_ICC_055": {
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_MINION",
+            "amount": 3,
+            "lifesteal": true
+          }
+        ],
+        "overload": 0
+      },
+      "keywords": [
+        "LIFESTEAL"
+      ],
+      "assumptions": []
+    },
+    "FIR_906": {
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "keywords": [],
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ]
+    }
+  },
+  "summary": {
+    "criteria": {
+      "C1_two_generic_operations": {
+        "executed_engine_kinds": [
+          "BUFF_FRIENDLY_MINIONS",
+          "DAMAGE",
+          "DISCARD_RANDOM_SPELL",
+          "HEAL"
+        ],
+        "passed": true
+      },
+      "C2_no_card_specific_code": {
+        "files": [
+          "src/manamind/card_ir/engine_translate.py",
+          "reports/card_ir_execution_pilot_1/engine_bridge.py"
+        ],
+        "findings": [],
+        "passed": true
+      },
+      "C3_supported_scenarios_match": {
+        "passed": true,
+        "failed": []
+      },
+      "C4_unsupported_blocked": {
+        "cases": [
+          "FH-5",
+          "OH-5",
+          "MUT-unused-target",
+          "MUT-no-overload",
+          "MUT-mark",
+          "MUT-unknown-op",
+          "MUT-destroy",
+          "MUT-field",
+          "MUT-no-lifesteal",
+          "MUT-swap",
+          "MUT-enemy-buff",
+          "MUT-stats",
+          "MUT-heal-between",
+          "MUT-damage-between",
+          "MUT-partial",
+          "MUT-version"
+        ],
+        "passed": true
+      },
+      "C5_ir_controls_execution": {
+        "mutations": 25,
+        "executed_and_changed_vs_legacy": [
+          "MUT-amount",
+          "MUT-side",
+          "MUT-area",
+          "MUT-op-heal",
+          "MUT-overload-2",
+          "MUT-heal-2",
+          "MUT-friendly",
+          "MUT-any-character",
+          "MUT-no-pay",
+          "MUT-stats-2",
+          "MUT-stats-9"
+        ],
+        "refused": [
+          "MUT-unused-target",
+          "MUT-no-overload",
+          "MUT-mark",
+          "MUT-unknown-op",
+          "MUT-destroy",
+          "MUT-field",
+          "MUT-no-lifesteal",
+          "MUT-swap",
+          "MUT-enemy-buff",
+          "MUT-stats",
+          "MUT-heal-between",
+          "MUT-damage-between",
+          "MUT-partial",
+          "MUT-version"
+        ],
+        "identical_to_legacy_B1": [],
+        "passed": true
+      }
+    },
+    "b0_legacy_compatibility": {
+      "compared": 18,
+      "equal": 18,
+      "different": []
+    },
+    "evidence_levels": {
+      "CORE_EX1_238": {
+        "L1_validated": "FULL (strict v0.2, 0 errors, 0 warnings)",
+        "L2_independent_semantic_review": "NONE_ON_RECORD",
+        "L3_executes": "7/7 scenarios pass",
+        "L4_independent_game_evidence": "4/4 modifier-free observations fully consistent",
+        "L5_training_admission": false
+      },
+      "CORE_AT_055": {
+        "L1_validated": "FULL (strict v0.2, 0 errors, 0 warnings)",
+        "L2_independent_semantic_review": "NONE_ON_RECORD",
+        "L3_executes": "5/5 scenarios pass",
+        "L4_independent_game_evidence": "7/14 modifier-free observations fully consistent",
+        "L5_training_admission": false
+      },
+      "CORE_ICC_055": {
+        "L1_validated": "FULL (strict v0.2, 0 errors, 0 warnings)",
+        "L2_independent_semantic_review": "NONE_ON_RECORD",
+        "L3_executes": "4/4 scenarios pass",
+        "L4_independent_game_evidence": "11/15 modifier-free observations fully consistent",
+        "L5_training_admission": false
+      },
+      "FIR_906": {
+        "L1_validated": "FULL (strict v0.2, 0 errors, 0 warnings)",
+        "L2_independent_semantic_review": "NONE_ON_RECORD",
+        "L3_executes": "5/5 scenarios pass",
+        "L4_independent_game_evidence": "NO_OBSERVATIONS",
+        "L5_training_admission": false
+      }
+    },
+    "scenarios": {
+      "total": 21,
+      "passed": 21
+    },
+    "mutations": {
+      "total": 25,
+      "passed": 25,
+      "validator_prediction_mismatch": [
+        "MUT-side",
+        "MUT-friendly",
+        "MUT-any-character",
+        "MUT-stats",
+        "MUT-stats-9"
+      ]
+    }
+  },
+  "rows": [
+    {
+      "id": "LB-1",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "normal",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Text 'Deal $3 damage': no Spell Damage on board, so 3. Overload (1) owes 1 Mana; cost 1.",
+      "rules": {
+        "R_DAMAGE": "PROJECT_REVIEWED",
+        "R_SPELL_DAMAGE": "PROJECT_REVIEWED",
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "REAL_LOG_CONSISTENT",
+      "expected_changes": {
+        "OPP.hero_health": 27,
+        "SELF.available_mana": 0,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "LB-2",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "legality",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [],
+      "ir": "declared",
+      "basis": "'a character' with no minions in play: exactly both heroes are legal targets.",
+      "rules": {
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_targets": [
+        "OPP_HERO",
+        "SELF_HERO"
+      ],
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "legal_targets": [
+          "OPP_HERO",
+          "SELF_HERO"
+        ],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "LB-3",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "edge",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Any character includes the caster's own hero.",
+      "rules": {
+        "R_DAMAGE": "PROJECT_REVIEWED",
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.hero_health": 27,
+        "SELF.available_mana": 0,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            30,
+            27
+          ],
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            30,
+            27
+          ],
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "LB-4",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "edge",
+      "setup": "razorjaw",
+      "setup_note": "first seat turn 2 (2 Mana); enemy Razorjaw 3/1 on board",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "('OPP_MINION', 'CS3_038')"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "3 damage to a 3/1 kills it (overkill is irrelevant); it leaves the board at the death phase.",
+      "rules": {
+        "R_DAMAGE": "PROJECT_REVIEWED",
+        "R_DEATH_PHASE": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.board": [],
+        "SELF.available_mana": 1,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 4
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            2,
+            1
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.board": [
+            [
+              "CS3_038 3/1/1"
+            ],
+            []
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            2,
+            1
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.board": [
+            [
+              "CS3_038 3/1/1"
+            ],
+            []
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "LB-5",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "normal",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "('OPP_MINION', 'CORE_CS2_179')"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "3 damage to a 3/5 leaves it 3/2 (max Health 5).",
+      "rules": {
+        "R_DAMAGE": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "REAL_LOG_CONSISTENT",
+      "expected_changes": {
+        "OPP.board": [
+          "CORE_CS2_179 3/2/5"
+        ],
+        "SELF.available_mana": 3,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_AT_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.board": [
+            [
+              "CORE_CS2_179 3/5/5"
+            ],
+            [
+              "CORE_CS2_179 3/2/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.board": [
+            [
+              "CORE_CS2_179 3/5/5"
+            ],
+            [
+              "CORE_CS2_179 3/2/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "LB-6",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "edge",
+      "setup": "thalnos",
+      "setup_note": "first seat turn 3 (3 Mana), own Thalnos (Spell Damage +1), own hero 27 (Razorjaw hit), enemy Razorjaw 3/1",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "'$' amount plus the controller's Spell Damage once per step: 3 + 1 (Thalnos) = 4.",
+      "rules": {
+        "R_SPELL_DAMAGE": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 26,
+        "SELF.available_mana": 2,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 4
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.hero_health": [
+            30,
+            26
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.hero_health": [
+            30,
+            26
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "LB-7",
+      "card": "CORE_EX1_238",
+      "mechanic": "OVERLOAD",
+      "category": "order",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ],
+        [
+          "end"
+        ],
+        [
+          "end"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Overload (1) paid at play locks 1 of the next turn's 2 Mana: max 2, available 1, owed becomes locked.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 27,
+        "SELF.max_mana": 2,
+        "SELF.available_mana": 1,
+        "SELF.overloaded_mana": 1,
+        "SELF.pending_overload": 0
+      },
+      "mode": "fields",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 3
+          }
+        ],
+        "overload": 1
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.max_mana": [
+            1,
+            2
+          ],
+          "SELF.overloaded_mana": [
+            0,
+            1
+          ],
+          "SELF.deck_size": [
+            26,
+            25
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "OPP.max_mana": [
+            0,
+            1
+          ],
+          "OPP.available_mana": [
+            0,
+            1
+          ],
+          "OPP.deck_size": [
+            26,
+            25
+          ],
+          "OPP.hand_size": [
+            5,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "after_fields": {
+          "OPP.hero_health": 27,
+          "SELF.max_mana": 2,
+          "SELF.available_mana": 1,
+          "SELF.overloaded_mana": 1,
+          "SELF.pending_overload": 0
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.max_mana": [
+            1,
+            2
+          ],
+          "SELF.overloaded_mana": [
+            0,
+            1
+          ],
+          "SELF.deck_size": [
+            26,
+            25
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "OPP.max_mana": [
+            0,
+            1
+          ],
+          "OPP.available_mana": [
+            0,
+            1
+          ],
+          "OPP.deck_size": [
+            26,
+            25
+          ],
+          "OPP.hand_size": [
+            5,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "after_fields": {
+          "OPP.hero_health": 27,
+          "SELF.max_mana": 2,
+          "SELF.available_mana": 1,
+          "SELF.overloaded_mana": 1,
+          "SELF.pending_overload": 0
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "FH-1",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "normal",
+      "setup": "hero22",
+      "setup_note": "first seat turn 3 (3 Mana), own hero 22 (four Arcane Shots), no minions",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Restore 5 to a hero missing 8: 22 -> 27. Cost 1.",
+      "rules": {
+        "R_HEALING": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "REAL_LOG_CONSISTENT",
+      "expected_changes": {
+        "SELF.hero_health": 27,
+        "SELF.available_mana": 2,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 5
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            27
+          ],
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.hand_size": [
+            6,
+            5
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            27
+          ],
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.hand_size": [
+            6,
+            5
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "FH-2",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "edge",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Healing is capped at missing Health: 26 + 5 caps at 30.",
+      "rules": {
+        "R_HEALING": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.hero_health": 30,
+        "SELF.available_mana": 3,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            30
+          ],
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            30
+          ],
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "FH-3",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "edge",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "('OPP_MINION', 'CORE_CS2_179')"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Any character includes an undamaged enemy minion; it restores nothing.",
+      "rules": {
+        "R_HEALING": "PROJECT_REVIEWED",
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.available_mana": 3,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "FH-4",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "edge",
+      "setup": "cleric",
+      "setup_note": "first seat turn 5 (5 Mana), own hero 22, own Cleansing Cleric played (healing bonus 2)",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "'#' amount plus the controller's healing bonus per packet: 5 + 2 = 7, 22 -> 29.",
+      "rules": {
+        "R_HEALING": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.hero_health": 29,
+        "SELF.available_mana": 4,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            29
+          ],
+          "SELF.available_mana": [
+            5,
+            4
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            29
+          ],
+          "SELF.available_mana": [
+            5,
+            4
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "FH-5",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "unsupported",
+      "setup": "cleric",
+      "setup_note": "first seat turn 5 (5 Mana), own hero 22, own Cleansing Cleric played (healing bonus 2)",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Whether the caster's healing bonus applies to a character it does not control is unreviewed in ManaEngine; the attempt must stop instead of guessing.",
+      "rules": {
+        "R_HEALING": "PROJECT_REVIEWED",
+        "R_AMOUNT_ORDER": "UNKNOWN"
+      },
+      "expected_outcome": "UNSIMULATABLE:HEALING_BONUS_SCOPE_UNREVIEWED",
+      "evidence": "TEST_CONTRACT",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "HEAL",
+            "target": "EXPLICIT_CHARACTER",
+            "amount": 5
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "UNSIMULATABLE:HEALING_BONUS_SCOPE_UNREVIEWED",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "UNSIMULATABLE:HEALING_BONUS_SCOPE_UNREVIEWED",
+        "parent_unchanged": true
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "DS-1",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE+LIFESTEAL",
+      "category": "normal",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_ICC_055",
+          "('OPP_MINION', 'CORE_CS2_179')"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "3 damage to a 3/5 -> 3/2; Lifesteal heals the caster's hero by the damage dealt: 26 -> 29.",
+      "rules": {
+        "R_DAMAGE": "PROJECT_REVIEWED",
+        "R_HEALING": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "REAL_LOG_CONSISTENT",
+      "expected_changes": {
+        "OPP.board": [
+          "CORE_CS2_179 3/2/5"
+        ],
+        "SELF.hero_health": 29,
+        "SELF.available_mana": 2,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_AT_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_MINION",
+            "amount": 3,
+            "lifesteal": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            29
+          ],
+          "SELF.available_mana": [
+            4,
+            2
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.board": [
+            [
+              "CORE_CS2_179 3/5/5"
+            ],
+            [
+              "CORE_CS2_179 3/2/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            29
+          ],
+          "SELF.available_mana": [
+            4,
+            2
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.board": [
+            [
+              "CORE_CS2_179 3/5/5"
+            ],
+            [
+              "CORE_CS2_179 3/2/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "DS-2",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE+LIFESTEAL",
+      "category": "legality",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [],
+      "ir": "declared",
+      "basis": "'to a minion' (any side): heroes are not legal targets.",
+      "rules": {
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_targets": [
+        "OPP_MINION:CORE_CS2_179"
+      ],
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_MINION",
+            "amount": 3,
+            "lifesteal": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "legal_targets": [
+          "OPP_MINION:CORE_CS2_179"
+        ],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "DS-3",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE+LIFESTEAL",
+      "category": "legality",
+      "setup": "drain_no_minion",
+      "setup_note": "first seat turn 2 (2 Mana), no minions anywhere",
+      "action": [],
+      "ir": "declared",
+      "basis": "A spell needs a legal target: with no minions in play it cannot be cast.",
+      "rules": {
+        "R_PLAY_TARGET": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_targets": [],
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_MINION",
+            "amount": 3,
+            "lifesteal": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "legal_targets": [],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "DS-4",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE+LIFESTEAL",
+      "category": "edge",
+      "setup": "thalnos",
+      "setup_note": "first seat turn 3 (3 Mana), own Thalnos (Spell Damage +1), own hero 27 (Razorjaw hit), enemy Razorjaw 3/1",
+      "action": [
+        [
+          "play",
+          "CORE_ICC_055",
+          "('OPP_MINION', 'CS3_038')"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Spell Damage makes it 4; 4 damage to a 3/1 counts in full for Lifesteal (overkill included): 27 + 4 caps at 30. Real logs show 3 damage into a 2-Health minion healing 3.",
+      "rules": {
+        "R_SPELL_DAMAGE": "PROJECT_REVIEWED",
+        "R_HEALING": "PROJECT_REVIEWED",
+        "R_DEATH_PHASE": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "REAL_LOG_CONSISTENT",
+      "expected_changes": {
+        "OPP.board": [],
+        "SELF.hero_health": 30,
+        "SELF.available_mana": 1,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 4
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "DAMAGE",
+            "target": "EXPLICIT_MINION",
+            "amount": 3,
+            "lifesteal": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            27,
+            30
+          ],
+          "SELF.available_mana": [
+            3,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.board": [
+            [
+              "CS3_038 3/1/1"
+            ],
+            []
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            27,
+            30
+          ],
+          "SELF.available_mana": [
+            3,
+            1
+          ],
+          "SELF.hand_size": [
+            5,
+            4
+          ],
+          "OPP.board": [
+            [
+              "CS3_038 3/1/1"
+            ],
+            []
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "OH-1",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "normal",
+      "setup": "overheat",
+      "setup_note": "first seat turn 3 (3 Mana), own Swamp Leech 2/1 and Razorjaw 3/1, no Nature spell in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "No Nature spell in hand: only the first +1/+1; nothing is discarded. Cost 3.",
+      "rules": {
+        "R_ENCHANTMENT": "UNVERIFIED",
+        "R_PAYMENT": "UNVERIFIED",
+        "R_STEP_BOUNDARY": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.board": [
+          "CORE_GIL_558 3/2/2",
+          "CS3_038 4/2/2"
+        ],
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 3/2/2",
+              "CS3_038 4/2/2"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false,
+        "trace": [
+          "FRIENDLY_MINIONS_BUFF",
+          "RANDOM_SPELL_DISCARD_EMPTY"
+        ]
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 3/2/2",
+              "CS3_038 4/2/2"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false,
+        "trace": [
+          "FRIENDLY_MINIONS_BUFF",
+          "RANDOM_SPELL_DISCARD_EMPTY"
+        ]
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "OH-2",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "order",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Buff, then discard the only Nature spell, then the paid +1/+1 on the same minions: +2/+2 in total.",
+      "rules": {
+        "R_ENCHANTMENT": "UNVERIFIED",
+        "R_PAYMENT": "UNVERIFIED",
+        "R_STEP_BOUNDARY": "PROJECT_REVIEWED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.board": [
+          "CORE_GIL_558 4/3/3",
+          "CS3_038 5/3/3"
+        ],
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 2
+      },
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false,
+        "trace": [
+          "FRIENDLY_MINIONS_BUFF",
+          "RANDOM_SPELL_DISCARDED",
+          "FRIENDLY_MINIONS_BUFF"
+        ]
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false,
+        "trace": [
+          "FRIENDLY_MINIONS_BUFF",
+          "RANDOM_SPELL_DISCARDED",
+          "FRIENDLY_MINIONS_BUFF"
+        ]
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "OH-3",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "edge",
+      "setup": "overheat_two_nature",
+      "setup_note": "as overheat, plus Lightning Bolt and Sparks (both Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "Two Nature spells: exactly one of them is discarded at random; +2/+2 either way.",
+      "rules": {
+        "R_PAYMENT": "UNVERIFIED",
+        "R_RANDOM_LIVE": "COMMUNITY_RULES"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": [
+        {
+          "SELF.board": [
+            "CORE_GIL_558 4/3/3",
+            "CS3_038 5/3/3"
+          ],
+          "SELF.available_mana": 0,
+          "SELF.hand": [
+            "CORE_BOT_451",
+            "CORE_EX1_145"
+          ],
+          "SELF.hand_size": 2
+        },
+        {
+          "SELF.board": [
+            "CORE_GIL_558 4/3/3",
+            "CS3_038 5/3/3"
+          ],
+          "SELF.available_mana": 0,
+          "SELF.hand": [
+            "CORE_EX1_238",
+            "CORE_EX1_145"
+          ],
+          "SELF.hand_size": 2
+        }
+      ],
+      "mode": "full",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_BOT_451",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_BOT_451",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_BOT_451",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_BOT_451",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "OH-4",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "edge",
+      "setup": "overheat_empty_board",
+      "setup_note": "first seat turn 3 (3 Mana), no minions, Lightning Bolt in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "No minions: the payment can still be made, so the Nature spell is discarded and nobody is buffed.",
+      "rules": {
+        "R_PAYMENT": "UNVERIFIED"
+      },
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 4
+      },
+      "mode": "full",
+      "notes": "R_PAYMENT is UNVERIFIED: whether Hearthstone discards with an empty board is not evidenced.",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ],
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            6,
+            4
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            6,
+            4
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "OH-5",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "unsupported",
+      "setup": "unsupported_in_hand",
+      "setup_note": "first seat turn 1 holding Innervate, a Nature spell ManaEngine does not support",
+      "action": [
+        [
+          "end"
+        ]
+      ],
+      "ir": "declared",
+      "basis": "A hand holding a card without a ManaEngine declaration is refused as a whole position; it is not simulated with that card ignored (it would also be a discard candidate).",
+      "rules": {},
+      "expected_outcome": "UNSIMULATABLE:UNSUPPORTED_CARD_ENTERED_HAND",
+      "evidence": "TEST_CONTRACT",
+      "notes": "Expected code corrected after the first run: UNSUPPORTED_CARD_IN_ACTIVE_HAND was predicted; the engine already refuses when the card enters the hand at the opening draw.",
+      "steps": {
+        "ability": "EFFECT_COMPOSITION",
+        "effects": [
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1
+          },
+          {
+            "kind": "DISCARD_RANDOM_SPELL",
+            "target": "SELF",
+            "amount": 0,
+            "discard_school": "NATURE"
+          },
+          {
+            "kind": "BUFF_FRIENDLY_MINIONS",
+            "target": "SELF",
+            "amount": 1,
+            "requires_previous_discard": true
+          }
+        ],
+        "overload": 0
+      },
+      "assumptions": [
+        "ENCHANTMENT_AS_BASE_STATS",
+        "REF_RESELECT_EQUIVALENT:buffed"
+      ],
+      "record": {
+        "outcome": "UNSIMULATABLE:UNSUPPORTED_CARD_ENTERED_HAND",
+        "stage": "position",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "UNSIMULATABLE:UNSUPPORTED_CARD_ENTERED_HAND",
+        "stage": "position",
+        "parent_unchanged": true
+      },
+      "legacy_equal": true,
+      "passed": true
+    },
+    {
+      "id": "MUT-amount",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-amount",
+      "basis": "Executed damage follows the IR amount: 5, not the card's 3.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 25,
+        "SELF.pending_overload": 1,
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "amount",
+        "description": "damage n 3 -> 5",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number $3 has no matching IR number with the same mark",
+          "abilities[0]: IR number $5 carries a mark the text does not have"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 5
+            }
+          ],
+          "overload": 1
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            25
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-side",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "M-side",
+      "basis": "An ENEMY-side target removes the caster's hero from the legal targets.",
+      "rules": {},
+      "expected_outcome": "NO_LEGAL_ACTION",
+      "evidence": "TEST_CONTRACT",
+      "expected_targets": [
+        "OPP_HERO"
+      ],
+      "mutation": {
+        "class": "owner/side",
+        "description": "target side ANY -> ENEMY",
+        "validator": "REJECTED",
+        "expected_validator": "ACCEPTED",
+        "validator_findings": [
+          "abilities[0]: enemy side needs an enemy word",
+          "abilities[0]: CLAUSE_TARGET: DEAL_DAMAGE clause 'deal $3 damage' requires ('CHOSEN', 'CHARACTER', 'ANY', 'PLAY'), got ('CHOSEN', 'CHARACTER', 'ENEMY', 'PLAY')"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_ENEMY_CHARACTER",
+              "amount": 3
+            }
+          ],
+          "overload": 1
+        }
+      },
+      "record": {
+        "legal_targets": [
+          "OPP_HERO"
+        ],
+        "outcome": "NO_LEGAL_ACTION",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "legacy_record": {
+        "legal_targets": [
+          "OPP_HERO",
+          "SELF_HERO"
+        ],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            30,
+            27
+          ],
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-area",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "None"
+        ]
+      ],
+      "ir": "M-area",
+      "basis": "An ALL enemy characters area hits the enemy hero and Sen'jin, with no target chosen.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 27,
+        "OPP.board": [
+          "CORE_CS2_179 3/2/5"
+        ],
+        "SELF.available_mana": 3,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_AT_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "target",
+        "description": "chosen target -> ALL enemy characters (binding removed)",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: enemy side needs an enemy word"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "ENEMY_CHARACTERS",
+              "amount": 3
+            }
+          ],
+          "overload": 1
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "OPP.board": [
+            [
+              "CORE_CS2_179 3/5/5"
+            ],
+            [
+              "CORE_CS2_179 3/2/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "NO_LEGAL_ACTION",
+        "parent_unchanged": true
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-unused-target",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-unused-target",
+      "basis": "A chosen target that no step uses is refused.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNUSED_TARGET",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "target",
+        "description": "effect -> ALL enemy characters, chosen target kept",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0].target: 't' is bound but never used"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNUSED_TARGET",
+        "refusal": "UNUSED_TARGET at doc/abilities/0/target: a chosen target no step uses"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-op-heal",
+      "card": "CORE_EX1_238",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "mutation",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "M-op-heal",
+      "basis": "The operation decides the effect: the same card now restores 3 (26 -> 29) and still Overloads.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.hero_health": 29,
+        "SELF.available_mana": 3,
+        "SELF.pending_overload": 1,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_AT_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "target",
+        "description": "DEAL_DAMAGE $3 -> RESTORE_HEALTH #3",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number $3 has no matching IR number with the same mark",
+          "abilities[0]: IR number #3 carries a mark the text does not have"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "HEAL",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 3
+            }
+          ],
+          "overload": 1
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            29
+          ],
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            23
+          ],
+          "SELF.available_mana": [
+            4,
+            3
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-no-overload",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-no-overload",
+      "basis": "The card's printed Overload mechanic is no longer represented; ManaEngine's catalog guard refuses it.",
+      "rules": {},
+      "expected_outcome": "REFUSED:ENGINE_CATALOG_REJECTED",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "removed keyword",
+        "description": "Overload keyword removed",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "text: word 'Overload' at 16 is not covered by any span",
+          "text: word '1' at 27 is not covered by any span"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 3
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "REFUSED:ENGINE_CATALOG_REJECTED",
+        "refusal": "ENGINE_CATALOG_REJECTED at doc: unrepresented rules mechanic OVERLOAD on CORE_EX1_238"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-overload-2",
+      "card": "CORE_EX1_238",
+      "mechanic": "OVERLOAD",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-overload-2",
+      "basis": "Owed Overload follows the IR amount.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 27,
+        "SELF.pending_overload": 2,
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "amount",
+        "description": "Overload amount 1 -> 2",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "keywords[0]: text number 1 has no matching IR number with the same mark"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 3
+            }
+          ],
+          "overload": 2
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            2
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            1,
+            0
+          ],
+          "SELF.pending_overload": [
+            0,
+            1
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-mark",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-mark",
+      "basis": "A damage amount with a healing mark has no faithful engine step.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNSUPPORTED_AMOUNT",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "amount mark",
+        "description": "damage mark '$' -> '#'",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number $3 has no matching IR number with the same mark",
+          "abilities[0]: IR number #3 carries a mark the text does not have"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNSUPPORTED_AMOUNT",
+        "refusal": "UNSUPPORTED_AMOUNT at doc/abilities/0/effect/amount: DEAL_DAMAGE needs mark '$'"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-unknown-op",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-unknown-op",
+      "basis": "An unknown operation stops translation.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNSUPPORTED_OP",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "unknown operation",
+        "description": "op -> EXPLODE",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0].effect: unknown operation 'EXPLODE'",
+          "abilities[0]: text number $3 has no matching IR number with the same mark",
+          "abilities[0].target: 't' is bound but never used"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNSUPPORTED_OP",
+        "refusal": "UNSUPPORTED_OP at doc/abilities/0/effect: operation 'EXPLODE' has no engine step in this pilot"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-destroy",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-destroy",
+      "basis": "A real IR operation without an engine step in this pilot stops translation.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNSUPPORTED_OP",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "unknown operation",
+        "description": "op -> DESTROY (IR op without an engine step here)",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number $3 has no matching IR number with the same mark"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNSUPPORTED_OP",
+        "refusal": "UNSUPPORTED_OP at doc/abilities/0/effect: operation 'DESTROY' has no engine step in this pilot"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-field",
+      "card": "CORE_EX1_238",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "bolt_turn1",
+      "setup_note": "first seat, turn 1, 1 Mana, empty boards, both heroes 30",
+      "action": [
+        [
+          "play",
+          "CORE_EX1_238",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-field",
+      "basis": "A field the translator does not consume is never ignored.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNKNOWN_FIELD",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "unknown field",
+        "description": "effect gains a 'condition' field",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0].effect: unknown keys ['condition']",
+          "abilities[0]: text number $3 has no matching IR number with the same mark",
+          "abilities[0].target: 't' is bound but never used"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNKNOWN_FIELD",
+        "refusal": "UNKNOWN_FIELD at doc/abilities/0/effect: untranslated fields ['condition']"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-heal-2",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "mutation",
+      "setup": "hero22",
+      "setup_note": "first seat turn 3 (3 Mana), own hero 22 (four Arcane Shots), no minions",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "M-heal-2",
+      "basis": "Restored Health follows the IR amount: 22 -> 24.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.hero_health": 24,
+        "SELF.available_mana": 2,
+        "SELF.hand": [
+          "CORE_ICC_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 5
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "amount",
+        "description": "heal n 5 -> 2",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number #5 has no matching IR number with the same mark",
+          "abilities[0]: IR number #2 carries a mark the text does not have"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "HEAL",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 2
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            24
+          ],
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.hand_size": [
+            6,
+            5
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            22,
+            27
+          ],
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.hand_size": [
+            6,
+            5
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-friendly",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "mutation",
+      "setup": "hero22",
+      "setup_note": "first seat turn 3 (3 Mana), own hero 22 (four Arcane Shots), no minions",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-friendly",
+      "basis": "A FRIENDLY target excludes the enemy hero.",
+      "rules": {},
+      "expected_outcome": "NO_LEGAL_ACTION",
+      "evidence": "TEST_CONTRACT",
+      "expected_targets": [
+        "SELF_HERO"
+      ],
+      "mutation": {
+        "class": "owner/side",
+        "description": "target side ANY -> FRIENDLY",
+        "validator": "REJECTED",
+        "expected_validator": "ACCEPTED",
+        "validator_findings": [
+          "abilities[0]: friendly side needs a friendly word"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "HEAL",
+              "target": "EXPLICIT_FRIENDLY_CHARACTER",
+              "amount": 5
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "legal_targets": [
+          "SELF_HERO"
+        ],
+        "outcome": "NO_LEGAL_ACTION",
+        "parent_unchanged": true
+      },
+      "differences": [],
+      "legacy_record": {
+        "legal_targets": [
+          "OPP_HERO",
+          "SELF_HERO"
+        ],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            2
+          ],
+          "SELF.hand_size": [
+            6,
+            5
+          ],
+          "SELF.hand": [
+            [
+              "CORE_AT_055",
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_ICC_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-no-lifesteal",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE",
+      "category": "mutation",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_ICC_055",
+          "('OPP_MINION', 'CORE_CS2_179')"
+        ]
+      ],
+      "ir": "M-no-lifesteal",
+      "basis": "The printed Lifesteal mechanic is no longer represented; ManaEngine's catalog guard refuses it.",
+      "rules": {},
+      "expected_outcome": "REFUSED:ENGINE_CATALOG_REJECTED",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "removed keyword",
+        "description": "Lifesteal keyword removed",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "text: word 'Lifesteal' at 0 is not covered by any span"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_MINION",
+              "amount": 3
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "REFUSED:ENGINE_CATALOG_REJECTED",
+        "refusal": "ENGINE_CATALOG_REJECTED at doc: unrepresented rules mechanic LIFESTEAL on CORE_ICC_055"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-any-character",
+      "card": "CORE_ICC_055",
+      "mechanic": "DEAL_DAMAGE+LIFESTEAL",
+      "category": "mutation",
+      "setup": "senjin",
+      "setup_note": "first seat turn 4 (4 Mana), own hero 26 (two Arcane Shots), enemy Sen'jin 3/5",
+      "action": [
+        [
+          "play",
+          "CORE_ICC_055",
+          "OPP_HERO"
+        ]
+      ],
+      "ir": "M-any-character",
+      "basis": "A CHARACTER target admits heroes: 3 to the enemy hero, Lifesteal 26 -> 29.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "OPP.hero_health": 27,
+        "SELF.hero_health": 29,
+        "SELF.available_mana": 2,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_AT_055",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 6
+      },
+      "mode": "full",
+      "expected_targets": [
+        "OPP_HERO",
+        "OPP_MINION:CORE_CS2_179",
+        "SELF_HERO"
+      ],
+      "mutation": {
+        "class": "target",
+        "description": "target type MINION -> CHARACTER",
+        "validator": "REJECTED",
+        "expected_validator": "ACCEPTED",
+        "validator_findings": [
+          "abilities[0]: CLAUSE_TARGET: DEAL_DAMAGE clause 'deal $3 damage to a minion' requires ('CHOSEN', 'MINION', 'ANY', 'PLAY'), got ('CHOSEN', 'CHARACTER', 'ANY', 'PLAY')"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "DAMAGE",
+              "target": "EXPLICIT_CHARACTER",
+              "amount": 3,
+              "lifesteal": true
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "legal_targets": [
+          "OPP_HERO",
+          "OPP_MINION:CORE_CS2_179",
+          "SELF_HERO"
+        ],
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.hero_health": [
+            26,
+            29
+          ],
+          "SELF.available_mana": [
+            4,
+            2
+          ],
+          "SELF.hand_size": [
+            7,
+            6
+          ],
+          "OPP.hero_health": [
+            30,
+            27
+          ],
+          "SELF.hand": [
+            [
+              "CORE_EX1_238",
+              "CORE_ICC_055",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_AT_055",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "legal_targets": [
+          "OPP_MINION:CORE_CS2_179"
+        ],
+        "outcome": "NO_LEGAL_ACTION",
+        "parent_unchanged": true
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-no-pay",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-no-pay",
+      "basis": "Without the paid step only +1/+1 happens and the Nature spell stays in hand.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.board": [
+          "CORE_GIL_558 3/2/2",
+          "CS3_038 4/2/2"
+        ],
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_238",
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 3
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "removed operation",
+        "description": "the paid second buff (pay/then) removed",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0].effect: seq needs a list of at least two steps",
+          "abilities[0]: text number 1 has no matching IR number with the same mark",
+          "abilities[0]: text number 1 has no matching IR number with the same mark"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "BUFF_FRIENDLY_MINIONS",
+              "target": "SELF",
+              "amount": 1
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            3
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 3/2/2",
+              "CS3_038 4/2/2"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-swap",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-swap",
+      "basis": "Swapped order refers to 'buffed' before it is bound.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNBOUND_REF",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "step order",
+        "description": "seq steps swapped (paid buff first)",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0].effect.seq[0].then.to: reference 'buffed' is not bound before use"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNBOUND_REF",
+        "refusal": "UNBOUND_REF at doc/abilities/0/effect/seq/0/then/to: 'buffed' is not bound before this step"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-enemy-buff",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-enemy-buff",
+      "basis": "The engine has no enemy-wide buff; the owner change is refused.",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNSUPPORTED_SELECTOR",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "owner/side",
+        "description": "first buff side FRIENDLY -> ENEMY",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: enemy side needs an enemy word",
+          "abilities[0]: your minions: requires ALL FRIENDLY MINION in PLAY"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:UNSUPPORTED_SELECTOR",
+        "refusal": "UNSUPPORTED_SELECTOR at doc/abilities/0/effect/seq/0/to: no engine area for ENCHANT on MINION/ENEMY"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-stats",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-stats",
+      "basis": "+2/+1 has no engine buff (it adds equal Attack and Health).",
+      "rules": {},
+      "expected_outcome": "REFUSED:UNSUPPORTED_STATS",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "amount",
+        "description": "first buff +1/+1 -> +2/+1",
+        "validator": "ACCEPTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": []
+      },
+      "record": {
+        "outcome": "REFUSED:UNSUPPORTED_STATS",
+        "refusal": "UNSUPPORTED_STATS at doc/abilities/0/effect/seq/0: the engine buff adds the same positive Attack and Health"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-stats-2",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-stats-2",
+      "basis": "Both buffs +2/+2: +4/+4 in total, Nature spell discarded.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.board": [
+          "CORE_GIL_558 6/5/5",
+          "CS3_038 7/5/5"
+        ],
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 2
+      },
+      "mode": "full",
+      "mutation": {
+        "class": "amount",
+        "description": "both buffs +1/+1 -> +2/+2",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: text number 1 has no matching IR number with the same mark",
+          "abilities[0]: text number 1 has no matching IR number with the same mark",
+          "abilities[0]: text number 1 has no matching IR number with the same mark"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "BUFF_FRIENDLY_MINIONS",
+              "target": "SELF",
+              "amount": 2
+            },
+            {
+              "kind": "DISCARD_RANDOM_SPELL",
+              "target": "SELF",
+              "amount": 0,
+              "discard_school": "NATURE"
+            },
+            {
+              "kind": "BUFF_FRIENDLY_MINIONS",
+              "target": "SELF",
+              "amount": 2,
+              "requires_previous_discard": true
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 6/5/5",
+              "CS3_038 7/5/5"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-stats-9",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-stats-9",
+      "basis": "+9/+9 then the paid +1/+1: Leech 2/1 -> 12/11, Razorjaw 3/1 -> 13/11; Bolt discarded. Executed exactly as written.",
+      "rules": {},
+      "expected_outcome": "COMPLETED",
+      "evidence": "TEST_CONTRACT",
+      "expected_changes": {
+        "SELF.board": [
+          "CORE_GIL_558 12/11/11",
+          "CS3_038 13/11/11"
+        ],
+        "SELF.available_mana": 0,
+        "SELF.hand": [
+          "CORE_EX1_145",
+          "CORE_EX1_145"
+        ],
+        "SELF.hand_size": 2
+      },
+      "mode": "full",
+      "notes": "Post-hoc probe (added after the first run showed M-stats accepted). Its validator prediction (ACCEPTED) was wrong: the slack in number matching is one number, so changing two is caught.",
+      "mutation": {
+        "class": "amount",
+        "description": "first buff +1/+1 -> +9/+9 (second buff unchanged)",
+        "validator": "REJECTED",
+        "expected_validator": "ACCEPTED",
+        "validator_findings": [
+          "abilities[0]: text number 1 has no matching IR number with the same mark"
+        ],
+        "steps": {
+          "ability": "EFFECT_COMPOSITION",
+          "effects": [
+            {
+              "kind": "BUFF_FRIENDLY_MINIONS",
+              "target": "SELF",
+              "amount": 9
+            },
+            {
+              "kind": "DISCARD_RANDOM_SPELL",
+              "target": "SELF",
+              "amount": 0,
+              "discard_school": "NATURE"
+            },
+            {
+              "kind": "BUFF_FRIENDLY_MINIONS",
+              "target": "SELF",
+              "amount": 1,
+              "requires_previous_discard": true
+            }
+          ],
+          "overload": 0
+        }
+      },
+      "record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 12/11/11",
+              "CS3_038 13/11/11"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "differences": [],
+      "legacy_record": {
+        "outcome": "COMPLETED",
+        "parent_unchanged": true,
+        "changes": {
+          "SELF.available_mana": [
+            3,
+            0
+          ],
+          "SELF.hand_size": [
+            4,
+            2
+          ],
+          "SELF.board": [
+            [
+              "CORE_GIL_558 2/1/1",
+              "CS3_038 3/1/1"
+            ],
+            [
+              "CORE_GIL_558 4/3/3",
+              "CS3_038 5/3/3"
+            ]
+          ],
+          "SELF.hand": [
+            [
+              "FIR_906",
+              "CORE_EX1_238",
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ],
+            [
+              "CORE_EX1_145",
+              "CORE_EX1_145"
+            ]
+          ]
+        },
+        "evidence_constraints": [],
+        "training_eligible": false
+      },
+      "legacy_equal": false,
+      "passed": true
+    },
+    {
+      "id": "MUT-heal-between",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-heal-between",
+      "basis": "A non-neutral step between binding and reuse blocks re-selection.",
+      "rules": {},
+      "expected_outcome": "REFUSED:REF_NOT_EQUIVALENT",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "step order",
+        "description": "a heal-all-friendly step inserted before the payment",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: IR number #1 carries a mark the text does not have"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:REF_NOT_EQUIVALENT",
+        "refusal": "REF_NOT_EQUIVALENT at doc/abilities/0/effect/seq/2/then/to: 'buffed' cannot be re-selected: a step in between may change the set"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-damage-between",
+      "card": "FIR_906",
+      "mechanic": "ENCHANT+PAY",
+      "category": "mutation",
+      "setup": "overheat_nature",
+      "setup_note": "as overheat, plus Lightning Bolt (Nature) in hand",
+      "action": [
+        [
+          "play",
+          "FIR_906",
+          "None"
+        ]
+      ],
+      "ir": "M-damage-between",
+      "basis": "A buff area after damage may differ on mortally wounded minions.",
+      "rules": {},
+      "expected_outcome": "REFUSED:AREA_AFTER_DAMAGE",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "step order",
+        "description": "an enemy-minion damage step inserted before the payment",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "abilities[0]: IR number $1 carries a mark the text does not have"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:AREA_AFTER_DAMAGE",
+        "refusal": "AREA_AFTER_DAMAGE at doc/abilities/0/effect/seq/2/then: a buff area after damage may differ on mortally wounded minions"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-partial",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "mutation",
+      "setup": "hero22",
+      "setup_note": "first seat turn 3 (3 Mana), own hero 22 (four Arcane Shots), no minions",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "M-partial",
+      "basis": "Only FULL declarations are executed.",
+      "rules": {},
+      "expected_outcome": "REFUSED:STATUS_NOT_FULL",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "status",
+        "description": "status FULL -> PARTIAL",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "doc: status PARTIAL differs from implied FULL"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:STATUS_NOT_FULL",
+        "refusal": "STATUS_NOT_FULL at doc/status: FULL_DEP/PARTIAL need dependency handling"
+      },
+      "differences": [],
+      "passed": true
+    },
+    {
+      "id": "MUT-version",
+      "card": "CORE_AT_055",
+      "mechanic": "RESTORE_HEALTH",
+      "category": "mutation",
+      "setup": "hero22",
+      "setup_note": "first seat turn 3 (3 Mana), own hero 22 (four Arcane Shots), no minions",
+      "action": [
+        [
+          "play",
+          "CORE_AT_055",
+          "SELF_HERO"
+        ]
+      ],
+      "ir": "M-version",
+      "basis": "Only card-ir/0.2 is translated.",
+      "rules": {},
+      "expected_outcome": "REFUSED:VERSION",
+      "evidence": "TEST_CONTRACT",
+      "mutation": {
+        "class": "version",
+        "description": "ir card-ir/0.2 -> card-ir/0.1",
+        "validator": "REJECTED",
+        "expected_validator": "REJECTED",
+        "validator_findings": [
+          "doc: ir must be card-ir/0.2 (v0.1 declarations are validated by v0.1 tools)"
+        ]
+      },
+      "record": {
+        "outcome": "REFUSED:VERSION",
+        "refusal": "VERSION at doc/ir: only card-ir/0.2 is translated"
+      },
+      "differences": [],
+      "passed": true
+    }
+  ],
+  "real_evidence": {
+    "schema": "card_ir_execution_pilot_1/real-evidence-1",
+    "source": "data/processed_evidence/collected (EVIDENCE-0B observations; ignored local data)",
+    "games_present": 164,
+    "holdout_games_skipped_unopened": 8,
+    "games_read": 156,
+    "limits": [
+      "single observed outcomes, not rules",
+      "Spell Damage and healing modifiers at play time are not visible here",
+      "possible_modifier observations are listed but never counted as consistent or inconsistent",
+      "HEAL_NOT_OBSERVED: the caster's hero Health before the play is not in the observation"
+    ],
+    "cards": {
+      "CORE_EX1_238": {
+        "verdict": "4/4 modifier-free observations fully consistent",
+        "observations": 4,
+        "no_confounder": {},
+        "attribution_confounder_only": {
+          "DAMAGE_BASE": 4
+        },
+        "possible_modifier": {},
+        "confounder_kinds": {
+          "MULTIPLE_OWNER_UNITS": 4
+        },
+        "target_types": {
+          "SELF_MINION": 4
+        }
+      },
+      "CORE_AT_055": {
+        "verdict": "7/14 modifier-free observations fully consistent",
+        "observations": 57,
+        "no_confounder": {
+          "NO_SINGLE_HEALING_PACKET": 2
+        },
+        "attribution_confounder_only": {
+          "HEAL_ABOVE_BASE": 5,
+          "HEAL_BASE_CAPPED": 7
+        },
+        "possible_modifier": {
+          "HEALING_REPLACED_BY_DAMAGE": 35,
+          "HEAL_ABOVE_BASE": 1,
+          "HEAL_BASE_CAPPED": 7
+        },
+        "confounder_kinds": {
+          "FOREIGN_ENCHANTMENT_ACTIVE": 42,
+          "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW": 12,
+          "MULTIPLE_OWNER_UNITS": 1,
+          "STALE_LAST_AFFECTED_BY": 19
+        },
+        "target_types": {
+          "OPPONENT_HERO": 30,
+          "OPPONENT_MINION": 10,
+          "SELF_HERO": 12,
+          "SELF_MINION": 5
+        }
+      },
+      "CORE_ICC_055": {
+        "verdict": "11/15 modifier-free observations fully consistent",
+        "observations": 23,
+        "no_confounder": {
+          "DAMAGE_BASE+HEAL_NOT_OBSERVED": 4
+        },
+        "attribution_confounder_only": {
+          "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED": 9,
+          "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED+OVERKILL": 2
+        },
+        "possible_modifier": {
+          "DAMAGE_BASE+HEAL_DIFFERENT": 1,
+          "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED": 1,
+          "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED+OVERKILL": 5,
+          "DAMAGE_BASE+HEAL_NOT_OBSERVED": 1
+        },
+        "confounder_kinds": {
+          "FOREIGN_ENCHANTMENT_ACTIVE": 7,
+          "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW": 2,
+          "STALE_LAST_AFFECTED_BY": 18
+        },
+        "target_types": {
+          "OPPONENT_MINION": 14,
+          "SELF_MINION": 9
+        }
+      },
+      "FIR_906": {
+        "verdict": "NO_OBSERVATIONS",
+        "observations": 0,
+        "no_confounder": {},
+        "attribution_confounder_only": {},
+        "possible_modifier": {},
+        "confounder_kinds": {},
+        "target_types": {}
+      }
+    }
+  }
+}

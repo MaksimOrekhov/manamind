@@ -1,0 +1,93 @@
+{
+  "schema": "card_ir_execution_pilot_1/real-evidence-1",
+  "source": "data/processed_evidence/collected (EVIDENCE-0B observations; ignored local data)",
+  "games_present": 164,
+  "holdout_games_skipped_unopened": 8,
+  "games_read": 156,
+  "limits": [
+    "single observed outcomes, not rules",
+    "Spell Damage and healing modifiers at play time are not visible here",
+    "possible_modifier observations are listed but never counted as consistent or inconsistent",
+    "HEAL_NOT_OBSERVED: the caster's hero Health before the play is not in the observation"
+  ],
+  "cards": {
+    "CORE_EX1_238": {
+      "verdict": "4/4 modifier-free observations fully consistent",
+      "observations": 4,
+      "no_confounder": {},
+      "attribution_confounder_only": {
+        "DAMAGE_BASE": 4
+      },
+      "possible_modifier": {},
+      "confounder_kinds": {
+        "MULTIPLE_OWNER_UNITS": 4
+      },
+      "target_types": {
+        "SELF_MINION": 4
+      }
+    },
+    "CORE_AT_055": {
+      "verdict": "7/14 modifier-free observations fully consistent",
+      "observations": 57,
+      "no_confounder": {
+        "NO_SINGLE_HEALING_PACKET": 2
+      },
+      "attribution_confounder_only": {
+        "HEAL_ABOVE_BASE": 5,
+        "HEAL_BASE_CAPPED": 7
+      },
+      "possible_modifier": {
+        "HEALING_REPLACED_BY_DAMAGE": 35,
+        "HEAL_ABOVE_BASE": 1,
+        "HEAL_BASE_CAPPED": 7
+      },
+      "confounder_kinds": {
+        "FOREIGN_ENCHANTMENT_ACTIVE": 42,
+        "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW": 12,
+        "MULTIPLE_OWNER_UNITS": 1,
+        "STALE_LAST_AFFECTED_BY": 19
+      },
+      "target_types": {
+        "OPPONENT_HERO": 30,
+        "OPPONENT_MINION": 10,
+        "SELF_HERO": 12,
+        "SELF_MINION": 5
+      }
+    },
+    "CORE_ICC_055": {
+      "verdict": "11/15 modifier-free observations fully consistent",
+      "observations": 23,
+      "no_confounder": {
+        "DAMAGE_BASE+HEAL_NOT_OBSERVED": 4
+      },
+      "attribution_confounder_only": {
+        "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED": 9,
+        "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED+OVERKILL": 2
+      },
+      "possible_modifier": {
+        "DAMAGE_BASE+HEAL_DIFFERENT": 1,
+        "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED": 1,
+        "DAMAGE_BASE+HEAL_EQUALS_DAMAGE_CAPPED+OVERKILL": 5,
+        "DAMAGE_BASE+HEAL_NOT_OBSERVED": 1
+      },
+      "confounder_kinds": {
+        "FOREIGN_ENCHANTMENT_ACTIVE": 7,
+        "FOREIGN_UNIT_WITH_EFFECTS_IN_WINDOW": 2,
+        "STALE_LAST_AFFECTED_BY": 18
+      },
+      "target_types": {
+        "OPPONENT_MINION": 14,
+        "SELF_MINION": 9
+      }
+    },
+    "FIR_906": {
+      "verdict": "NO_OBSERVATIONS",
+      "observations": 0,
+      "no_confounder": {},
+      "attribution_confounder_only": {},
+      "possible_modifier": {},
+      "confounder_kinds": {},
+      "target_types": {}
+    }
+  }
+}
