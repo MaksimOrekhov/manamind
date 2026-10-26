@@ -1,0 +1,53 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_118",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+  "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "class_negation",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No negation predicate: card_class PALADIN would invert non-Paladin; enumerating other classes is unsafe for multiclass and unknown classes.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "both_sides",
+      "question": "Does all include friendly minions?",
+      "alternatives": [
+        "both sides",
+        "enemies only"
+      ],
+      "chosen": "both sides",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "A friendly non-Paladin minion must be included."
+    },
+    {
+      "id": "multiclass",
+      "question": "Does a mixed-class Paladin minion count as Paladin?",
+      "alternatives": [
+        "has Paladin among its classes",
+        "exactly Paladin class only"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "class_negation",
+      "discriminating_case": "Paladin/Druid minion survives in only one reading."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Battlecry: Destroy all non-Paladin minions.",
+      "why": "No negation predicate: card_class PALADIN would invert non-Paladin; enumerating other classes is unsafe for multiclass and unknown classes."
+    }
+  ],
+  "status": "PARTIAL"
+}

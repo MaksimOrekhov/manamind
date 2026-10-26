@@ -1,0 +1,53 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_SCH_713",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+  "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "next_opponent_turn",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No NEXT_OPPONENT_TURN duration/window. Negative reduce could express +1, but THIS_TURN or turns=1 would not specify the next opponent turn.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "owner",
+      "question": "Whose spells cost more?",
+      "alternatives": [
+        "opponent spells",
+        "own spells"
+      ],
+      "chosen": "opponent spells",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Opponent has a one-cost spell next turn."
+    },
+    {
+      "id": "cost_scope",
+      "question": "Is the modifier applied dynamically to all opponent spells during the window?",
+      "alternatives": [
+        "dynamic rule including new spells",
+        "only spell cards present when played"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "next_opponent_turn",
+      "discriminating_case": "Opponent draws or generates a spell during the affected turn."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+      "why": "No NEXT_OPPONENT_TURN duration/window. Negative reduce could express +1, but THIS_TURN or turns=1 would not specify the next opponent turn."
+    }
+  ],
+  "status": "PARTIAL"
+}

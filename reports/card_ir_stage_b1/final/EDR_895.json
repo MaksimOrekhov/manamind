@@ -1,0 +1,41 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "EDR_895",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+  "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "lunar_cycle",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "v0.1 lacks a lunar phase scheduler, full-moon event and THIS_GAME duration. Do not substitute three arbitrary TURN_END triggers.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "cycle",
+      "question": "Whose turn advances the lunar cycle and when does Full Moon rise?",
+      "alternatives": [
+        "every player turn",
+        "controller turns only"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "lunar_cycle",
+      "discriminating_case": "Play just before the opponent turn: cost reduction could start on different turns."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+      "why": "v0.1 lacks a lunar phase scheduler, full-moon event and THIS_GAME duration. Do not substitute three arbitrary TURN_END triggers."
+    }
+  ],
+  "status": "PARTIAL"
+}

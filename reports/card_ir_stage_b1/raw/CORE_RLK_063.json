@@ -1,0 +1,99 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_RLK_063",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+  "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $5 damage.",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "target"
+        },
+        "amount": {
+          "n": 5,
+          "mark": "$"
+        }
+      },
+      "target": {
+        "bind": "target",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "CHARACTER",
+          "side": "ANY",
+          "zone": "PLAY"
+        }
+      }
+    },
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Summon a 5/5 Frostwyrm.",
+      "effect": {
+        "op": "SUMMON",
+        "count": 1,
+        "what": {
+          "card": "RLK_063t",
+          "resolved": "NAME_IN_SET",
+          "dep": "frostwyrm_identity"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "freeze",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "FREEZE operation is absent. The missing middle step must happen between damage and summon; these fragments are not an executable whole.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "frostwyrm_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "RLK_063t matches name/stats and original ID prefix; CORE parent relation needs confirmation.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "order",
+      "question": "When is Freeze applied?",
+      "alternatives": [
+        "after damage and before summon",
+        "after summon"
+      ],
+      "chosen": "after damage and before summon",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "A reaction to the summon observes the already frozen board."
+    },
+    {
+      "id": "damage_target",
+      "question": "Which type may the damage target?",
+      "alternatives": [
+        "any character",
+        "minions only"
+      ],
+      "chosen": "any character",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Opponent hero is a legal damage target in the first reading."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Freeze all enemy minions.",
+      "why": "FREEZE operation is absent. The missing middle step must happen between damage and summon; these fragments are not an executable whole."
+    }
+  ],
+  "status": "PARTIAL"
+}

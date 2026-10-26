@@ -1,0 +1,105 @@
+{
+  "EDR_895": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "NOT EXPRESSED: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game."
+    ]
+  },
+  "TIME_216": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Cast: choose a chosen minion as <target>; deal $5 damage to them<target>",
+      "NOT EXPRESSED: If it survives, draw 2 cards."
+    ]
+  },
+  "CATA_497": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "NOT EXPRESSED: Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)"
+    ]
+  },
+  "CATA_452": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+      "NOT EXPRESSED: Costs (1) less for each damage you dealt with spells this turn."
+    ]
+  },
+  "JAIL_118": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "NOT EXPRESSED: Battlecry: Destroy all non-Paladin minions."
+    ]
+  },
+  "CORE_BT_921": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Keyword Lifesteal"
+    ]
+  },
+  "JAIL_399": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Keyword Taunt",
+      "NOT EXPRESSED: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck."
+    ]
+  },
+  "CORE_SCH_713": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "NOT EXPRESSED: Battlecry: Your opponent's spells cost (1) more next turn."
+    ]
+  },
+  "CORE_DAL_720": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Deathrattle: you get random 1 friendly minion as <returned>; then cost of them<returned> reduced by 2"
+    ]
+  },
+  "FIR_953": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Keyword Rush",
+      "NOT EXPRESSED: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies."
+    ]
+  },
+  "CATA_585": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Cast: choose a chosen minion damaged as <target>; deal $8 damage to them<target>",
+      "NOT EXPRESSED: Return this to hand with any excess damage."
+    ]
+  },
+  "CORE_RLK_063": {
+    "validator": [],
+    "old_lint": [],
+    "new_lint": [],
+    "render": [
+      "Cast: choose a chosen character as <target>; deal $5 damage to them<target>",
+      "Cast: summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)",
+      "NOT EXPRESSED: Freeze all enemy minions."
+    ]
+  }
+}

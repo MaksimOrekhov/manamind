@@ -1,0 +1,78 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_216",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+  "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $5 damage to a minion.",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "target"
+        },
+        "amount": {
+          "n": 5,
+          "mark": "$"
+        }
+      },
+      "target": {
+        "bind": "target",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "MINION",
+          "side": "ANY",
+          "zone": "PLAY"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "survival",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No survival predicate at the post-damage timing boundary. The conditional draw is omitted rather than made unconditional.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "referent",
+      "question": "Which entity must survive?",
+      "alternatives": [
+        "the damaged target",
+        "the spell source"
+      ],
+      "chosen": "the damaged target",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Target survives while source spell leaves resolution."
+    },
+    {
+      "id": "survival_timing",
+      "question": "When is survival assessed?",
+      "alternatives": [
+        "before death phase",
+        "after resulting reactions and death phase"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "survival",
+      "discriminating_case": "Lethal damage followed by a healing reaction changes whether two cards are drawn."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "If it survives, draw 2 cards.",
+      "why": "No survival predicate at the post-damage timing boundary. The conditional draw is omitted rather than made unconditional."
+    }
+  ],
+  "status": "PARTIAL"
+}

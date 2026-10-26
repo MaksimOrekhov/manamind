@@ -1,0 +1,57 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_497",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Battlecry:</b> <b>Herald</b> {0}.\nReduce Deathwing's\nCost by ({1}).\n <i>(<b>Herald</b> to improve!)</i>",
+  "text_sha256": "3319286510ff397f5b98b00ddab25730a5a1b27b76279e7a288c9b98ea666773",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "herald_runtime",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Herald has no v0.1 rule; {0}/{1} are runtime placeholders, not constants 0 and 1; Deathwing name relation unresolved.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "deathwing_name",
+      "kind": "NAME_REFERENCE",
+      "scope": "DATA",
+      "detail": "Resolve the Deathwing identity/identities affected by the cost reduction.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "herald_rule",
+      "kind": "KEYWORD_RULE",
+      "scope": "CORE",
+      "detail": "Herald progression and runtime client parameters.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "placeholders",
+      "question": "What numeric Herald and discount values are active?",
+      "alternatives": [
+        "runtime-dependent values",
+        "literal zero and one"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "herald_runtime",
+      "discriminating_case": "Second Herald activation may change both values; literal parsing loses the improvement."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+      "why": "Herald has no v0.1 rule; {0}/{1} are runtime placeholders, not constants 0 and 1; Deathwing name relation unresolved."
+    }
+  ],
+  "status": "PARTIAL"
+}

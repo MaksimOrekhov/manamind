@@ -1,0 +1,91 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_585",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+  "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $8 damage to a damaged minion.",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "target"
+        },
+        "amount": {
+          "n": 8,
+          "mark": "$"
+        }
+      },
+      "target": {
+        "bind": "target",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "MINION",
+          "side": "ANY",
+          "zone": "PLAY",
+          "where": [
+            {
+              "damaged": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "excess_return",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No return-source operation with preserved excess-damage parameter; excess damage timing/calculation unresolved.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "spellpower_conflict",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Text carries $8 but metadata says ImmuneToSpellpower. Preserve raw mark pending independent rule review; do not claim spell-damage scaling.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "this",
+      "question": "What returns to hand?",
+      "alternatives": [
+        "this spell",
+        "the damaged minion"
+      ],
+      "chosen": "this spell",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Target dies; the spell rather than that minion returns."
+    },
+    {
+      "id": "spellpower",
+      "question": "Does Spell Damage modify this amount?",
+      "alternatives": [
+        "text $ mark applies",
+        "ImmuneToSpellpower prevents it"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "spellpower_conflict",
+      "discriminating_case": "Cast with +1 Spell Damage and inspect actual damage and returned card amount."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Return this to hand with any excess damage.",
+      "why": "No return-source operation with preserved excess-damage parameter; excess damage timing/calculation unresolved."
+    }
+  ],
+  "status": "PARTIAL"
+}

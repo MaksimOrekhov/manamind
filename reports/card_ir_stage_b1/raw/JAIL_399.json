@@ -1,0 +1,67 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_399",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+  "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "bottom_insert",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "SHUFFLE_INTO_DECK has no insertion-position or multiplicity parameter; random shuffling is not bottom insertion. Token identities also unresolved.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "demons_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "Identify the two generated 8/8 Demon records from client relations.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "deck_order",
+      "question": "Where do the Demons enter?",
+      "alternatives": [
+        "bottom of own deck",
+        "random shuffled positions"
+      ],
+      "chosen": "bottom of own deck",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "The next top-deck draw must not become a newly inserted Demon unless deck was empty."
+    },
+    {
+      "id": "two_demons",
+      "question": "Do both generated Demons share an identity?",
+      "alternatives": [
+        "two copies of one token",
+        "two distinct Demon tokens"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "demons_identity",
+      "discriminating_case": "Identity-sensitive effects distinguish these alternatives."
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "TAUNT",
+      "span": "Taunt."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+      "why": "SHUFFLE_INTO_DECK has no insertion-position or multiplicity parameter; random shuffling is not bottom insertion. Token identities also unresolved."
+    }
+  ],
+  "status": "PARTIAL"
+}

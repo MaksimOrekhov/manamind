@@ -1,0 +1,3518 @@
+{
+  "id": "CARD-IR-STAGE-B1",
+  "summary": {
+    "cards": 12,
+    "first_pass_check_acceptance": 12,
+    "first_pass_complete_check_acceptance": 2,
+    "final_complete_check_acceptance": 1,
+    "author_corrected_cards": 1,
+    "correction_operations": 9,
+    "final_statuses": {
+      "FULL": 1,
+      "PARTIAL": 11
+    },
+    "dependencies": 17,
+    "unresolved_decisions": 10,
+    "decisions": 21,
+    "added_structural_elements": 0,
+    "added_enum_elements": 0,
+    "added_parameters": 0,
+    "proposed_distinct": {
+      "structural": 6,
+      "enum": 8,
+      "parameters": 2
+    },
+    "cards_proposing_structural": 6,
+    "cards_proposing_any": 11,
+    "warning_counts": {
+      "initial": {
+        "validator": 0,
+        "old_lint": 0,
+        "new_lint": 0
+      },
+      "final": {
+        "validator": 0,
+        "old_lint": 0,
+        "new_lint": 0
+      }
+    },
+    "A_unmutated_new_warnings": 0,
+    "independent_gold_review_required": 12,
+    "independent_accuracy": null,
+    "false_acceptance_rate": null,
+    "final_GO_NO_GO": "DEFERRED_PENDING_INDEPENDENT_GOLD",
+    "recommendation": "CHANGE_PROCESS_BEFORE_NEXT_18"
+  },
+  "proposals": {
+    "structural": [
+      "cond:NOT",
+      "control:SCHEDULE",
+      "op:FREEZE",
+      "op:INSERT_INTO_DECK",
+      "op:RETURN_TO_HAND",
+      "value:EXCESS_DAMAGE"
+    ],
+    "enum": [
+      "counter:SPELL_DAMAGE_DEALT",
+      "deck_position:BOTTOM",
+      "duration:NEXT_OPPONENT_TURN",
+      "duration:THIS_GAME",
+      "event:SOURCE_ATTACK",
+      "keyword:HERALD",
+      "keyword:LUNAR_CYCLE",
+      "pred:SURVIVES"
+    ],
+    "parameters": [
+      "INSERT_INTO_DECK.count",
+      "INSERT_INTO_DECK.position"
+    ]
+  },
+  "cards": [
+    {
+      "card_id": "EDR_895",
+      "name": "Aviana, Elune's Chosen",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 1,
+      "used_vocabulary": [],
+      "represented_text_words": 0,
+      "total_text_words": 18,
+      "unexpressed_spans": [
+        {
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "why": "v0.1 lacks a lunar phase scheduler, full-moon event and THIS_GAME duration. Do not substitute three arbitrary TURN_END triggers."
+        }
+      ],
+      "ru": "Эффект не закодирован. Неизвестны часы лунного цикла и момент полной луны; постоянную стоимость 1 нельзя заменить эффектом на один ход.",
+      "risk": "Разная сторона отсчёта ходов меняет момент получения скидки для всех карт.",
+      "proposed_structural": [
+        "control:SCHEDULE"
+      ],
+      "proposed_enum": [
+        "duration:THIS_GAME",
+        "keyword:LUNAR_CYCLE"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "TIME_216",
+      "name": "Nascent Bolt",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen minion as <target>; deal $5 damage to them<target>",
+          "NOT EXPRESSED: If it survives, draw 2 cards."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen minion as <target>; deal $5 damage to them<target>",
+          "NOT EXPRESSED: If it survives, draw 2 cards."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "ability:play",
+        "label:SPELL",
+        "op:DEAL_DAMAGE",
+        "pick:CHOSEN",
+        "selector:ref",
+        "value:spell_damage_literal",
+        "zone:PLAY"
+      ],
+      "represented_text_words": 6,
+      "total_text_words": 12,
+      "unexpressed_spans": [
+        {
+          "span": "If it survives, draw 2 cards.",
+          "why": "No survival predicate at the post-damage timing boundary. The conditional draw is omitted rather than made unconditional."
+        }
+      ],
+      "ru": "Выбирается существо любой стороны, ему наносится $5 урона. Условный добор двух карт оставлен невыраженным: нет проверенного условия выживания в нужной фазе.",
+      "risk": "Безусловный добор или проверка не той сущности дают лишние карты. Послеуронные реакции могут менять выживание.",
+      "proposed_structural": [],
+      "proposed_enum": [
+        "pred:SURVIVES"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CATA_497",
+      "name": "Ultraxion",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)"
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)"
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 3,
+      "dependency_kinds": {
+        "KEYWORD_RULE": 1,
+        "NAME_REFERENCE": 1,
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 1,
+      "used_vocabulary": [],
+      "represented_text_words": 0,
+      "total_text_words": 12,
+      "unexpressed_spans": [
+        {
+          "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+          "why": "Herald has no v0.1 rule; {0}/{1} are runtime placeholders, not constants 0 and 1; Deathwing name relation unresolved."
+        }
+      ],
+      "ru": "Эффект оставлен невыраженным. {0} и {1} являются параметрами клиента; это не числа 0 и 1. Правило Herald и ссылка на Deathwing неизвестны.",
+      "risk": "Буквальное чтение заполнителей меняет величину Herald и скидки; неверный Deathwing меняет получателя скидки.",
+      "proposed_structural": [],
+      "proposed_enum": [
+        "keyword:HERALD"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CATA_452",
+      "name": "Spellweaver's Brilliance",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+          "NOT EXPRESSED: Costs (1) less for each damage you dealt with spells this turn."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+          "NOT EXPRESSED: Costs (1) less for each damage you dealt with spells this turn."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 2,
+      "dependency_kinds": {
+        "TOKEN_IDENTITY": 1,
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "ability:play",
+        "card_source:card",
+        "label:SPELL",
+        "op:SUMMON",
+        "value:literal"
+      ],
+      "represented_text_words": 5,
+      "total_text_words": 17,
+      "unexpressed_spans": [
+        {
+          "span": "Costs (1) less for each damage you dealt with spells this turn.",
+          "why": "v0.1 history counters count casts/cards, not total damage dealt by spells; a damage sum counter is missing."
+        }
+      ],
+      "ru": "Призывается один Azure Warden 6/6 по предположительной связи токена. Скидка за суммарный урон заклинаниями за ход не закодирована.",
+      "risk": "Число сыгранных заклинаний не равно нанесённому ими урону. Приписанная по префиксу связь токена требует подтверждения.",
+      "proposed_structural": [],
+      "proposed_enum": [
+        "counter:SPELL_DAMAGE_DEALT"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "JAIL_118",
+      "name": "V'ama, Looming Death",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Destroy all non-Paladin minions."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Destroy all non-Paladin minions."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [],
+      "represented_text_words": 0,
+      "total_text_words": 6,
+      "unexpressed_spans": [
+        {
+          "span": "Battlecry: Destroy all non-Paladin minions.",
+          "why": "No negation predicate: card_class PALADIN would invert non-Paladin; enumerating other classes is unsafe for multiclass and unknown classes."
+        }
+      ],
+      "ru": "Уничтожение всех существ не-паладинов не закодировано: существующий фильтр класса выражает принадлежность, но не её отрицание.",
+      "risk": "Эффект касается обеих сторон. Список всех остальных классов небезопасен для многоклассовых и будущих карт.",
+      "proposed_structural": [
+        "cond:NOT"
+      ],
+      "proposed_enum": [],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CORE_BT_921",
+      "name": "Aldrachi Warblades",
+      "raw_status": "FULL",
+      "final_status": "FULL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Lifesteal"
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Lifesteal"
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 0,
+      "dependency_kinds": {},
+      "unresolved_decisions": 0,
+      "decisions": 1,
+      "used_vocabulary": [
+        "keyword:LIFESTEAL"
+      ],
+      "represented_text_words": 1,
+      "total_text_words": 1,
+      "unexpressed_spans": [],
+      "ru": "Оружие обладает Lifesteal. Тело карты остаётся в метаданных: базовая прочность указана как health=2, поле durability=0 не подставляется вместо неё.",
+      "risk": "FULL описывает представленность текста, а не проверку правил лечения, готовность исполнителя или текущую прочность экземпляра.",
+      "proposed_structural": [],
+      "proposed_enum": [],
+      "proposed_parameters": [],
+      "dependency_only": true
+    },
+    {
+      "card_id": "JAIL_399",
+      "name": "Imp Gang Stooge",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Taunt",
+          "NOT EXPRESSED: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Taunt",
+          "NOT EXPRESSED: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 2,
+      "dependency_kinds": {
+        "TOKEN_IDENTITY": 1,
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "keyword:TAUNT"
+      ],
+      "represented_text_words": 1,
+      "total_text_words": 17,
+      "unexpressed_spans": [
+        {
+          "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+          "why": "SHUFFLE_INTO_DECK has no insertion-position or multiplicity parameter; random shuffling is not bottom insertion. Token identities also unresolved."
+        }
+      ],
+      "ru": "Собственный Taunt закодирован. Deathrattle с двумя демонами 8/8 с Taunt и Lifesteal на дне своей колоды не закодирован.",
+      "risk": "SHUFFLE дал бы случайные позиции вместо дна колоды. Не установлено, имеют ли два демона одну идентичность токена.",
+      "proposed_structural": [
+        "op:INSERT_INTO_DECK"
+      ],
+      "proposed_enum": [
+        "deck_position:BOTTOM"
+      ],
+      "proposed_parameters": [
+        "INSERT_INTO_DECK.count",
+        "INSERT_INTO_DECK.position"
+      ],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CORE_SCH_713",
+      "name": "Cult Neophyte",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Your opponent's spells cost (1) more next turn."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "NOT EXPRESSED: Battlecry: Your opponent's spells cost (1) more next turn."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [],
+      "represented_text_words": 0,
+      "total_text_words": 10,
+      "unexpressed_spans": [
+        {
+          "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+          "why": "No NEXT_OPPONENT_TURN duration/window. Negative reduce could express +1, but THIS_TURN or turns=1 would not specify the next opponent turn."
+        }
+      ],
+      "ru": "Эффект не закодирован: отсутствует точное окно следующего хода противника для повышения стоимости его заклинаний на 1.",
+      "risk": "THIS_TURN или неопределённый turns=1 могут повысить стоимость на неправильном ходу. Динамическое применение к новым заклинаниям не подтверждено.",
+      "proposed_structural": [],
+      "proposed_enum": [
+        "duration:NEXT_OPPONENT_TURN"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CORE_DAL_720",
+      "name": "Waggle Pick",
+      "raw_status": "FULL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Deathrattle: you get random 1 friendly minion as <returned>; then cost of them<returned> reduced by 2"
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Deathrattle: you get random 1 friendly minion as <returned>; then cost of them<returned> reduced by 2"
+        ]
+      },
+      "author_corrected": true,
+      "correction_operations": [
+        {
+          "path": "/decisions/1/alternatives/0",
+          "operation": "replace",
+          "before": "move the existing minion into hand",
+          "after": "move preserving current state"
+        },
+        {
+          "path": "/decisions/1/alternatives/1",
+          "operation": "replace",
+          "before": "create a second copy",
+          "after": "return with zone-transition reset before applying the two-cost discount"
+        },
+        {
+          "path": "/decisions/1/basis",
+          "operation": "replace",
+          "before": "TEXT",
+          "after": "UNKNOWN"
+        },
+        {
+          "path": "/decisions/1/chosen",
+          "operation": "replace",
+          "before": "move the existing minion into hand",
+          "after": "UNRESOLVED"
+        },
+        {
+          "path": "/decisions/1/dep",
+          "operation": "add",
+          "after": "return_transition"
+        },
+        {
+          "path": "/decisions/1/discriminating_case",
+          "operation": "replace",
+          "before": "The board slot becomes vacant after return.",
+          "after": "Return a damaged enchanted minion: its resulting hand state and replayed stats distinguish the readings."
+        },
+        {
+          "path": "/decisions/1/question",
+          "operation": "replace",
+          "before": "Does from_zone move or copy?",
+          "after": "Does generic from_zone movement implement return-to-hand reset semantics?"
+        },
+        {
+          "path": "/dependencies/0",
+          "operation": "add",
+          "after": {
+            "id": "return_transition",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "ADD_TO_HAND(from_zone) declares movement but v0.1 has no return-to-hand reset contract. Do not infer that enchantments/damage reset correctly. The encoded sequence is provisional, not a certified bounce.",
+            "source_needed": "Independent universal return-to-hand rule plus IR transition contract",
+            "card_level": true
+          }
+        },
+        {
+          "path": "/status",
+          "operation": "replace",
+          "before": "FULL",
+          "after": "PARTIAL"
+        }
+      ],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "ability:deathrattle",
+        "card_source:from_zone",
+        "control:seq",
+        "op:ADD_TO_HAND",
+        "op:MODIFY_COST",
+        "pick:RANDOM",
+        "selector:ref",
+        "value:literal",
+        "zone:PLAY"
+      ],
+      "represented_text_words": 13,
+      "total_text_words": 13,
+      "unexpressed_spans": [],
+      "ru": "Предварительное IR: случайное дружественное существо из PLAY перемещается в свою руку; стоимость именно этого результата уменьшается на 2. Правила сброса состояния при возврате не установлены, поэтому итог PARTIAL.",
+      "risk": "Ошибка первичного авторства: статус FULL предполагал, что обычное перемещение корректно реализует возврат. На повреждённом существе с зачарованиями это способно изменить результат. Ни один проверяющий слой не предупредил.",
+      "proposed_structural": [
+        "op:RETURN_TO_HAND"
+      ],
+      "proposed_enum": [],
+      "proposed_parameters": [],
+      "dependency_only": true
+    },
+    {
+      "card_id": "FIR_953",
+      "name": "Magma Hound",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Rush",
+          "NOT EXPRESSED: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Keyword Rush",
+          "NOT EXPRESSED: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 1,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "keyword:RUSH"
+      ],
+      "represented_text_words": 1,
+      "total_text_words": 18,
+      "unexpressed_spans": [
+        {
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "why": "No after-source-minion-attack-and-survives event; text says split but does not explicitly say randomly. Keep attack timing and distribution unresolved."
+        }
+      ],
+      "ru": "Rush закодирован. Триггер после атаки этого существа с выживанием и распределение урона по врагам оставлены невыраженными.",
+      "risk": "HERO_ATTACK не подходит для атаки существа. Нельзя без подтверждения заменить split случайными пакетами по 1; текущая или последняя известная атака тоже требуют проверки.",
+      "proposed_structural": [],
+      "proposed_enum": [
+        "event:SOURCE_ATTACK",
+        "pred:SURVIVES"
+      ],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CATA_585",
+      "name": "Torch",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen minion damaged as <target>; deal $8 damage to them<target>",
+          "NOT EXPRESSED: Return this to hand with any excess damage."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen minion damaged as <target>; deal $8 damage to them<target>",
+          "NOT EXPRESSED: Return this to hand with any excess damage."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 2,
+      "dependency_kinds": {
+        "UNKNOWN_RULE": 2
+      },
+      "unresolved_decisions": 1,
+      "decisions": 2,
+      "used_vocabulary": [
+        "ability:play",
+        "label:SPELL",
+        "op:DEAL_DAMAGE",
+        "pick:CHOSEN",
+        "pred:damaged",
+        "selector:ref",
+        "value:spell_damage_literal",
+        "zone:PLAY"
+      ],
+      "represented_text_words": 7,
+      "total_text_words": 15,
+      "unexpressed_spans": [
+        {
+          "span": "Return this to hand with any excess damage.",
+          "why": "No return-source operation with preserved excess-damage parameter; excess damage timing/calculation unresolved."
+        }
+      ],
+      "ru": "Выбирается повреждённое существо любой стороны, в IR записан текстовый $8 урона. Возврат самого заклинания с избыточным уроном не выражен. Метка $ конфликтует с ImmuneToSpellpower в метаданных.",
+      "risk": "Нельзя считать величину избыточного урона, пока не решены порядок расчёта и конфликт Spell Damage. Возвращается заклинание, не цель.",
+      "proposed_structural": [
+        "op:RETURN_TO_HAND",
+        "value:EXCESS_DAMAGE"
+      ],
+      "proposed_enum": [],
+      "proposed_parameters": [],
+      "dependency_only": false
+    },
+    {
+      "card_id": "CORE_RLK_063",
+      "name": "Frostwyrm's Fury",
+      "raw_status": "PARTIAL",
+      "final_status": "PARTIAL",
+      "initial": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen character as <target>; deal $5 damage to them<target>",
+          "Cast: summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)",
+          "NOT EXPRESSED: Freeze all enemy minions."
+        ]
+      },
+      "final": {
+        "validator": [],
+        "old_lint": [],
+        "new_lint": [],
+        "render": [
+          "Cast: choose a chosen character as <target>; deal $5 damage to them<target>",
+          "Cast: summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)",
+          "NOT EXPRESSED: Freeze all enemy minions."
+        ]
+      },
+      "author_corrected": false,
+      "correction_operations": [],
+      "dependencies": 2,
+      "dependency_kinds": {
+        "TOKEN_IDENTITY": 1,
+        "UNKNOWN_RULE": 1
+      },
+      "unresolved_decisions": 0,
+      "decisions": 2,
+      "used_vocabulary": [
+        "ability:play",
+        "card_source:card",
+        "label:SPELL",
+        "op:DEAL_DAMAGE",
+        "op:SUMMON",
+        "pick:CHOSEN",
+        "selector:ref",
+        "value:literal",
+        "value:spell_damage_literal",
+        "zone:PLAY"
+      ],
+      "represented_text_words": 8,
+      "total_text_words": 12,
+      "unexpressed_spans": [
+        {
+          "span": "Freeze all enemy minions.",
+          "why": "FREEZE operation is absent. The missing middle step must happen between damage and summon; these fragments are not an executable whole."
+        }
+      ],
+      "ru": "Выбранному персонажу любой стороны наносится $5 урона; отдельно описан призыв одного Frostwyrm 5/5. Средний шаг заморозки всех вражеских существ отсутствует.",
+      "risk": "Порядок должен быть урон → заморозка → призыв. Два фрагмента play с пропуском не являются полной исполнимой последовательностью. Связь токена CORE с RLK_063t предположительна.",
+      "proposed_structural": [
+        "op:FREEZE"
+      ],
+      "proposed_enum": [],
+      "proposed_parameters": [],
+      "dependency_only": false
+    }
+  ],
+  "mutations_A": {
+    "total": {
+      "total": 294,
+      "validator": 189,
+      "old_lint": 68,
+      "new_only": 13,
+      "missed": 24,
+      "baseline_detected_share": 0.87415,
+      "enhanced_detected_share": 0.918367
+    },
+    "by_operator": {
+      "NUMBER": {
+        "total": 40,
+        "validator": 28,
+        "old_lint": 0,
+        "new_only": 4,
+        "missed": 8
+      },
+      "MARK_DROP": {
+        "total": 6,
+        "validator": 6,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "MARK_ADD": {
+        "total": 10,
+        "validator": 10,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "SIDE": {
+        "total": 25,
+        "validator": 0,
+        "old_lint": 24,
+        "new_only": 1,
+        "missed": 0
+      },
+      "PICK": {
+        "total": 25,
+        "validator": 8,
+        "old_lint": 8,
+        "new_only": 1,
+        "missed": 8
+      },
+      "ZONE": {
+        "total": 6,
+        "validator": 0,
+        "old_lint": 5,
+        "new_only": 0,
+        "missed": 1
+      },
+      "TIMING": {
+        "total": 13,
+        "validator": 0,
+        "old_lint": 13,
+        "new_only": 0,
+        "missed": 0
+      },
+      "OP_SWAP": {
+        "total": 18,
+        "validator": 0,
+        "old_lint": 16,
+        "new_only": 0,
+        "missed": 2
+      },
+      "SEQ_SWAP": {
+        "total": 13,
+        "validator": 9,
+        "old_lint": 0,
+        "new_only": 1,
+        "missed": 3
+      },
+      "STEP_DROP": {
+        "total": 13,
+        "validator": 11,
+        "old_lint": 2,
+        "new_only": 0,
+        "missed": 0
+      },
+      "EXCLUDE_DROP": {
+        "total": 2,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 2,
+        "missed": 0
+      },
+      "REF_TO_SELF": {
+        "total": 16,
+        "validator": 14,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 2
+      },
+      "KEYWORD_SWAP": {
+        "total": 4,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 4,
+        "missed": 0
+      },
+      "ABILITY_DROP": {
+        "total": 49,
+        "validator": 49,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "DEP_DROP": {
+        "total": 27,
+        "validator": 27,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "STATUS_OPTIMISTIC": {
+        "total": 27,
+        "validator": 27,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      }
+    },
+    "details": [
+      {
+        "card_id": "BE_207",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.attack",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.attack",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.1.pay.amount",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.to.n",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.from.n",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_458",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.spell_damage",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.count",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: count: 'summon five' requires count=5"
+        ]
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_487",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.attack",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.1.reduce",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_999",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.do.to.n",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_416",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.modifier.cost.reduce",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_145",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.modifier.cost.reduce",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.1.reduce",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EDR_100t",
+        "operator": "NUMBER",
+        "site": "abilities.0.attack",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "END_022",
+        "operator": "NUMBER",
+        "site": "abilities.0.modifier.spell_damage",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.repeat.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.attack",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_321",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.then.count",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.duration.turns",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.what.from_zone.n",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: count: 'summon two' requires count=2"
+        ]
+      },
+      {
+        "card_id": "JAIL_732",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.what.random_from.where.1.cost.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_872",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.count",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: count: 'draw a' requires count=1"
+        ]
+      },
+      {
+        "card_id": "TIME_603",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.to.n",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.amount",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "NUMBER",
+        "site": "abilities.0.modifier.cost.set",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "NUMBER",
+        "site": "abilities.0.modifier.cost.set",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "NUMBER",
+        "site": "abilities.0.modifier.cost.set",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_226",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.count",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: count: 'draw a' requires count=1"
+        ]
+      },
+      {
+        "card_id": "TLC_602",
+        "operator": "NUMBER",
+        "site": "abilities.0.progress.goal",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.count",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_816",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.count",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: count: 'draw 2' requires count=2"
+        ]
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.seq.0.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.repeat",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.seq.1.pay.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.seq.1.pay.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_999",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.do.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.seq.0.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.do.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "MARK_ADD",
+        "site": "abilities.0.effect.seq.0.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_207",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.seq.0.from.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_458",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": [
+          "abilities[0]: enemy scope: damage must address enemy characters in PLAY"
+        ]
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "SIDE",
+        "site": "abilities.0.event.defender.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.do.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.do.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.seq.0.to.side",
+        "layer": "old_lint",
+        "new_warnings": [
+          "abilities[0]: your minions: requires ALL FRIENDLY MINION in PLAY"
+        ]
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.abilities.0.effect.what.from_zone.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.seq.0.what.from_zone.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_603",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.to.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.seq.0.to.side",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: enemy scope: damage must address enemy characters in PLAY"
+        ]
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "SIDE",
+        "site": "abilities.0.while.exists.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "SIDE",
+        "site": "abilities.0.while.exists.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "SIDE",
+        "site": "abilities.0.while.exists.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_207",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "PICK",
+        "site": "abilities.0.effect.seq.0.from.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_458",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": [
+          "abilities[0]: other: all other minions requires ALL excluding SELF"
+        ]
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "PICK",
+        "site": "abilities.0.event.defender.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "PICK",
+        "site": "abilities.0.effect.do.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "PICK",
+        "site": "abilities.0.effect.do.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "PICK",
+        "site": "abilities.0.effect.seq.0.to.pick",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: your minions: requires ALL FRIENDLY MINION in PLAY"
+        ]
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "PICK",
+        "site": "abilities.0.effect.abilities.0.effect.what.from_zone.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "PICK",
+        "site": "abilities.0.effect.seq.0.what.from_zone.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_603",
+        "operator": "PICK",
+        "site": "abilities.0.effect.to.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "PICK",
+        "site": "abilities.0.effect.seq.0.to.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "PICK",
+        "site": "abilities.0.while.exists.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "PICK",
+        "site": "abilities.0.while.exists.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "PICK",
+        "site": "abilities.0.while.exists.pick",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_207",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.to.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.seq.0.from.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_458",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.to.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.seq.1.pay.discard.zone",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.abilities.0.effect.what.from_zone.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.seq.0.what.from_zone.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_552",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "TIMING",
+        "site": "abilities.0.effect.abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_487",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_999",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_TTN_843",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "TIMING",
+        "site": "abilities.0.effect.abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_730",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_872",
+        "operator": "TIMING",
+        "site": "abilities.0.timing",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.abilities.0.effect.op",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_999",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.do.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.seq.0.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_072",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.seq.0.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.do.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_603",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.seq.0.op",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "OP_SWAP",
+        "site": "abilities.1.effect.seq.0.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.1.effect",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[1]: order: straight-line operations differ from textual verb order"
+        ]
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: keyword: 'rush' absent from IR"
+        ]
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: keyword: 'rush' absent from IR"
+        ]
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "STEP_DROP",
+        "site": "abilities.1.effect",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "EXCLUDE_DROP",
+        "site": "abilities.0.effect.to",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: other: all other minions requires ALL excluding SELF"
+        ]
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "EXCLUDE_DROP",
+        "site": "abilities.1.effect.seq.0.to",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[1]: other: all other minions requires ALL excluding SELF"
+        ]
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.do.seq.2.to",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.then.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.then.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.to",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: reference: follow-up pronoun must target the preceding result"
+        ]
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.to",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: reference: follow-up pronoun must target the preceding result"
+        ]
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.0.to",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.0.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.then.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.to",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: reference: follow-up pronoun must target the preceding result"
+        ]
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "KEYWORD_SWAP",
+        "site": "abilities.0.effect.keywords",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: keyword: 'rush' absent from IR",
+          "abilities[0]: keyword: IR TAUNT absent from span"
+        ]
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "KEYWORD_SWAP",
+        "site": "abilities.0.effect.seq.1.then.keywords",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: keyword: 'rush' absent from IR",
+          "abilities[0]: keyword: IR TAUNT absent from span"
+        ]
+      },
+      {
+        "card_id": "EDR_100t",
+        "operator": "KEYWORD_SWAP",
+        "site": "abilities.0.keywords",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: keyword: IR TAUNT absent from span"
+        ]
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "KEYWORD_SWAP",
+        "site": "abilities.0.effect.seq.1.keywords",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: keyword: 'rush' absent from IR",
+          "abilities[0]: keyword: IR TAUNT absent from span"
+        ]
+      },
+      {
+        "card_id": "BE_207",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_552",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_553t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CAP_107t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_301",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_458",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_475",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_487",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_999",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_416",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DRG_107",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_145",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_072",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_TTN_843",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EDR_100t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "END_022",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EX1_277",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_906",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_321",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_327",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_516",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_730",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_732",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_872",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_603",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_226",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_816",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_552",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_301",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DRG_107",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_072",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_TTN_843",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "END_022",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_321",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_730",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_732",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_226",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_816",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_552",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_555",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "BE_561",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_200",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_301",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_465",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_488t",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DRG_107",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SW_072",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_TTN_843",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "END_022",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_321",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_730",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_732",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_609",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_890t2",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_226",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_602t",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TLC_816",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      }
+    ],
+    "caveat": "Same-author mutations, possibly equivalent; PARTIAL bodies supply few sites. Not independent semantic accuracy or a false-acceptance rate."
+  },
+  "mutations_B": {
+    "total": {
+      "total": 56,
+      "validator": 39,
+      "old_lint": 11,
+      "new_only": 1,
+      "missed": 5,
+      "baseline_detected_share": 0.892857,
+      "enhanced_detected_share": 0.910714
+    },
+    "by_operator": {
+      "NUMBER": {
+        "total": 5,
+        "validator": 3,
+        "old_lint": 0,
+        "new_only": 1,
+        "missed": 1
+      },
+      "MARK_DROP": {
+        "total": 3,
+        "validator": 3,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "MARK_ADD": {
+        "total": 0,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "SIDE": {
+        "total": 4,
+        "validator": 0,
+        "old_lint": 4,
+        "new_only": 0,
+        "missed": 0
+      },
+      "PICK": {
+        "total": 4,
+        "validator": 3,
+        "old_lint": 1,
+        "new_only": 0,
+        "missed": 0
+      },
+      "ZONE": {
+        "total": 4,
+        "validator": 0,
+        "old_lint": 3,
+        "new_only": 0,
+        "missed": 1
+      },
+      "TIMING": {
+        "total": 0,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "OP_SWAP": {
+        "total": 3,
+        "validator": 0,
+        "old_lint": 3,
+        "new_only": 0,
+        "missed": 0
+      },
+      "SEQ_SWAP": {
+        "total": 1,
+        "validator": 1,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "STEP_DROP": {
+        "total": 1,
+        "validator": 1,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "EXCLUDE_DROP": {
+        "total": 0,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "REF_TO_SELF": {
+        "total": 4,
+        "validator": 4,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "KEYWORD_SWAP": {
+        "total": 0,
+        "validator": 0,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "ABILITY_DROP": {
+        "total": 5,
+        "validator": 5,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      },
+      "DEP_DROP": {
+        "total": 11,
+        "validator": 8,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 3
+      },
+      "STATUS_OPTIMISTIC": {
+        "total": 11,
+        "validator": 11,
+        "old_lint": 0,
+        "new_only": 0,
+        "missed": 0
+      }
+    },
+    "details": [
+      {
+        "card_id": "TIME_216",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_452",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.count",
+        "layer": "new_only",
+        "new_warnings": [
+          "abilities[0]: count: 'summon a' requires count=1"
+        ]
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.seq.0.what.from_zone.n",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "NUMBER",
+        "site": "abilities.0.effect.amount.n",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "MARK_DROP",
+        "site": "abilities.0.effect.amount",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "SIDE",
+        "site": "abilities.0.effect.seq.0.what.from_zone.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "PICK",
+        "site": "abilities.0.effect.seq.0.what.from_zone.pick",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "PICK",
+        "site": "abilities.0.target.choose.pick",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "ZONE",
+        "site": "abilities.0.target.choose.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "ZONE",
+        "site": "abilities.0.effect.seq.0.what.from_zone.zone",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "ZONE",
+        "site": "abilities.0.target.choose.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "ZONE",
+        "site": "abilities.0.target.choose.zone",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "OP_SWAP",
+        "site": "abilities.0.effect.op",
+        "layer": "old_lint",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "SEQ_SWAP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "STEP_DROP",
+        "site": "abilities.0.effect",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.seq.1.to",
+        "layer": "validator",
+        "new_warnings": [
+          "abilities[0]: reference: follow-up pronoun must target the preceding result"
+        ]
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "REF_TO_SELF",
+        "site": "abilities.0.effect.to",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_452",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "ABILITY_DROP",
+        "site": "abilities.1",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EDR_895",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_497",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_452",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_118",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_399",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SCH_713",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_953",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "DEP_DROP",
+        "site": "dependencies.0",
+        "layer": "missed",
+        "new_warnings": []
+      },
+      {
+        "card_id": "EDR_895",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "TIME_216",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_497",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_452",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_118",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "JAIL_399",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_SCH_713",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "FIR_953",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CATA_585",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "STATUS_OPTIMISTIC",
+        "site": "status",
+        "layer": "validator",
+        "new_warnings": []
+      }
+    ],
+    "caveat": "Same-author mutations, possibly equivalent; PARTIAL bodies supply few sites. Not independent semantic accuracy or a false-acceptance rate."
+  }
+}

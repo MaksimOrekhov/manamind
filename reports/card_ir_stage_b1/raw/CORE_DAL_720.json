@@ -1,0 +1,67 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_DAL_720",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+  "text_sha256": "b3871d585fc7fa49603e7ebeebfe17d42281978a615ac50474f9865ac36f3fef",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
+      "effect": {
+        "seq": [
+          {
+            "op": "ADD_TO_HAND",
+            "player": "SELF",
+            "what": {
+              "from_zone": {
+                "pick": "RANDOM",
+                "n": 1,
+                "type": "MINION",
+                "side": "FRIENDLY",
+                "zone": "PLAY"
+              }
+            },
+            "as": "returned"
+          },
+          {
+            "op": "MODIFY_COST",
+            "to": {
+              "ref": "returned"
+            },
+            "reduce": 2
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "return_identity",
+      "question": "Which card gets the discount?",
+      "alternatives": [
+        "the returned minion",
+        "the weapon"
+      ],
+      "chosen": "the returned minion",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "The chosen minion is now in hand and costs two less."
+    },
+    {
+      "id": "movement",
+      "question": "Does from_zone move or copy?",
+      "alternatives": [
+        "move the existing minion into hand",
+        "create a second copy"
+      ],
+      "chosen": "move the existing minion into hand",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "The board slot becomes vacant after return."
+    }
+  ],
+  "status": "FULL"
+}

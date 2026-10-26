@@ -1,0 +1,76 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_452",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+  "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Summon a 6/6 Dragon.",
+      "effect": {
+        "op": "SUMMON",
+        "count": 1,
+        "what": {
+          "card": "CATA_452t",
+          "resolved": "DESCRIPTION_MATCH",
+          "dep": "dragon_identity"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dragon_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "CATA_452t is a 6/6 Dragon matching description and ID prefix; no authoritative parent-token relation.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    },
+    {
+      "id": "spell_damage_sum",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "v0.1 history counters count casts/cards, not total damage dealt by spells; a damage sum counter is missing.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "damage_sum",
+      "question": "What is counted for the discount?",
+      "alternatives": [
+        "damage actually dealt by spells",
+        "number of spells cast"
+      ],
+      "chosen": "damage actually dealt by spells",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "One spell deals six damage: discount six rather than one."
+    },
+    {
+      "id": "token",
+      "question": "Is the 6/6 Dragon Azure Warden?",
+      "alternatives": [
+        "CATA_452t",
+        "another 6/6 Dragon"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dragon_identity",
+      "discriminating_case": "Different Dragon identity changes generated card and future interactions."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Costs (1) less for each damage you dealt with spells this turn.",
+      "why": "v0.1 history counters count casts/cards, not total damage dealt by spells; a damage sum counter is missing."
+    }
+  ],
+  "status": "PARTIAL"
+}

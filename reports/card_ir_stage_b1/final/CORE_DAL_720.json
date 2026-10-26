@@ -1,0 +1,77 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_DAL_720",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+  "text_sha256": "b3871d585fc7fa49603e7ebeebfe17d42281978a615ac50474f9865ac36f3fef",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
+      "effect": {
+        "seq": [
+          {
+            "op": "ADD_TO_HAND",
+            "player": "SELF",
+            "what": {
+              "from_zone": {
+                "pick": "RANDOM",
+                "n": 1,
+                "type": "MINION",
+                "side": "FRIENDLY",
+                "zone": "PLAY"
+              }
+            },
+            "as": "returned"
+          },
+          {
+            "op": "MODIFY_COST",
+            "to": {
+              "ref": "returned"
+            },
+            "reduce": 2
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "return_transition",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "ADD_TO_HAND(from_zone) declares movement but v0.1 has no return-to-hand reset contract. Do not infer that enchantments/damage reset correctly. The encoded sequence is provisional, not a certified bounce.",
+      "source_needed": "Independent universal return-to-hand rule plus IR transition contract",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "return_identity",
+      "question": "Which card gets the discount?",
+      "alternatives": [
+        "the returned minion",
+        "the weapon"
+      ],
+      "chosen": "the returned minion",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "The chosen minion is now in hand and costs two less."
+    },
+    {
+      "id": "movement",
+      "question": "Does generic from_zone movement implement return-to-hand reset semantics?",
+      "alternatives": [
+        "move preserving current state",
+        "return with zone-transition reset before applying the two-cost discount"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "return_transition",
+      "discriminating_case": "Return a damaged enchanted minion: its resulting hand state and replayed stats distinguish the readings."
+    }
+  ],
+  "status": "PARTIAL"
+}

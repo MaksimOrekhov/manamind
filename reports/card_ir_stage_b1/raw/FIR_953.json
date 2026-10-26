@@ -1,0 +1,59 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "FIR_953",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+  "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "attack_survival_split",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No after-source-minion-attack-and-survives event; text says split but does not explicitly say randomly. Keep attack timing and distribution unresolved.",
+      "source_needed": "Independent rules review or client relationship data; not inferred from a clean lint",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "split",
+      "question": "How are Attack points split among enemy characters?",
+      "alternatives": [
+        "random one-point packets",
+        "another distribution rule"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "attack_survival_split",
+      "discriminating_case": "Two enemy characters with one Health: allocation changes the survivor."
+    },
+    {
+      "id": "trigger_subject",
+      "question": "Whose attack can trigger this?",
+      "alternatives": [
+        "this minion attacks another minion and survives",
+        "any hero attack"
+      ],
+      "chosen": "this minion attacks another minion and survives",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Another friendly attacker acts while this minion stays idle."
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "RUSH",
+      "span": "Rush."
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+      "why": "No after-source-minion-attack-and-survives event; text says split but does not explicitly say randomly. Keep attack timing and distribution unresolved."
+    }
+  ],
+  "status": "PARTIAL"
+}

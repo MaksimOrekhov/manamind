@@ -1,0 +1,30 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_BT_921",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Lifesteal</b>",
+  "text_sha256": "8ce4e2063d0494e66987f5cb47c6b950ed1e38d227385c682c833caa701e011d",
+  "abilities": [],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "weapon_body",
+      "question": "Where is base durability stored?",
+      "alternatives": [
+        "health=2 in this metadata record",
+        "durability=0"
+      ],
+      "chosen": "health=2 in this metadata record",
+      "basis": "METADATA",
+      "risk": "NONE"
+    }
+  ],
+  "keywords": [
+    {
+      "keyword": "LIFESTEAL",
+      "span": "Lifesteal"
+    }
+  ],
+  "status": "FULL"
+}

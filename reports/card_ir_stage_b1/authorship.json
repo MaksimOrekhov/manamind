@@ -1,0 +1,34 @@
+{
+  "protocol_commit": "94c179b1b61f269f6b77173f1a6bf332a62e79fb",
+  "checker_freeze_commit": "94d3f29b4a3459ae39bc7041248eb759c25258f4",
+  "author": "Codex, GPT-6 family; exact serving revision/settings unavailable",
+  "generation_batches": 1,
+  "raw_retries": 0,
+  "author_review_passes": 1,
+  "reviewed_cards": 12,
+  "initial_check_passes": 1,
+  "final_check_passes": 1,
+  "correction_rounds": 1,
+  "time_per_card_seconds": null,
+  "notes": [
+    "No independent compiler service or gold used. Shell helper only serialized LLM-authored data.",
+    "All raw files were written before initial checks; no deliberately injected errors.",
+    "Correction is author self-review, not an external human correction.",
+    "PARTIAL acceptance is never complete compilation or execution readiness."
+  ],
+  "raw_sha256": {
+    "EDR_895": "7e37be130cfa58662965783811d9418e76c7f8918f023bbf8599ab4cc6058b49",
+    "TIME_216": "c9e5522b54ff4a095b107ab8d9e0da9f694340823e1d26565cfb325e90d4e24f",
+    "CATA_497": "fb2c98586471ad15f1cdd44d65420a9a47cfd7a4f1b9713879cb4bb1fa047a90",
+    "CATA_452": "4dab33113ea6b52d93266811a360fd203a7e0c401e1b8d0792ccb3d3bb311558",
+    "JAIL_118": "dabd33c4130d699807e70cdb72a409e23d7aa9a5ed4f3946159a5ab3592bbc8a",
+    "CORE_BT_921": "d41128bc6cb7af480d0a017108ac392023ee346ef9dd395900b1a0ee3fbc3343",
+    "JAIL_399": "ed1064181f7644a00cff649468526164d89d43558fbbeddad379371324075e0e",
+    "CORE_SCH_713": "2b253fe73c5729879f2157493672ddb501505bb7b51dd5dadc8c7c767403bb10",
+    "CORE_DAL_720": "30c516afbcf0929f9c064407eebee2abe5a686cbd2b0ed08a7b28364e894a008",
+    "FIR_953": "f2b7dc6356144a64af75d407b3f28c746123176eb49ea4a7e4164d2c13e2760e",
+    "CATA_585": "a9c5373cf9683e85fe5aa3be8404f9c63f965a4ae61b252f94bf6c7cbbecc7fb",
+    "CORE_RLK_063": "9eb8f7df630148135b33a9b494e8027df7481b44f8e7d29fe11431f4f1941434"
+  },
+  "frozen_checker_sha256": "4a8a8a22c0ece965d2fae9333665f68245dc238f00d18f99c4c00fa963c252d6"
+}
