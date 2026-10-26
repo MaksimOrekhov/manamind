@@ -1,0 +1,168 @@
+{
+  "JAIL_732": {
+    "card_id": "JAIL_732",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "8575a54f5ad04b251ce2221a4b8ae4902670cee6c2b6c6cd5da5bd50e6c87d28",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Improve your future Void Souls.",
+        "why": "the text does not say what improves (the Demon's Cost? the number of Demons?) nor where the improvement is stored; HearthstoneJSON has no related enchantment record",
+        "dependencies": [
+          "dep_improve"
+        ]
+      }
+    ]
+  },
+  "CATA_452": {
+    "card_id": "CATA_452",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Costs (1) less for each damage you dealt with spells this turn.",
+        "why": "v0.1 history counters count casts/cards, not total damage dealt by spells; a damage sum counter is missing.",
+        "dependencies": [
+          "spell_damage_sum"
+        ]
+      }
+    ]
+  },
+  "CATA_497": {
+    "card_id": "CATA_497",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "3319286510ff397f5b98b00ddab25730a5a1b27b76279e7a288c9b98ea666773",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+        "why": "Herald has no v0.1 rule; {0}/{1} are runtime placeholders, not constants 0 and 1; Deathwing name relation unresolved.",
+        "dependencies": [
+          "herald_runtime",
+          "herald_rule"
+        ]
+      }
+    ]
+  },
+  "CATA_585": {
+    "card_id": "CATA_585",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Return this to hand with any excess damage.",
+        "why": "No return-source operation with preserved excess-damage parameter; excess damage timing/calculation unresolved.",
+        "dependencies": [
+          "excess_return"
+        ]
+      }
+    ]
+  },
+  "CORE_RLK_063": {
+    "card_id": "CORE_RLK_063",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Freeze all enemy minions.",
+        "why": "FREEZE operation is absent. The missing middle step must happen between damage and summon; these fragments are not an executable whole.",
+        "dependencies": [
+          "freeze"
+        ]
+      }
+    ]
+  },
+  "CORE_SCH_713": {
+    "card_id": "CORE_SCH_713",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+        "why": "No NEXT_OPPONENT_TURN duration/window. Negative reduce could express +1, but THIS_TURN or turns=1 would not specify the next opponent turn.",
+        "dependencies": [
+          "next_opponent_turn"
+        ]
+      }
+    ]
+  },
+  "EDR_895": {
+    "card_id": "EDR_895",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+        "why": "v0.1 lacks a lunar phase scheduler, full-moon event and THIS_GAME duration. Do not substitute three arbitrary TURN_END triggers.",
+        "dependencies": [
+          "lunar_cycle"
+        ]
+      }
+    ]
+  },
+  "FIR_953": {
+    "card_id": "FIR_953",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+        "why": "No after-source-minion-attack-and-survives event; text says split but does not explicitly say randomly. Keep attack timing and distribution unresolved.",
+        "dependencies": [
+          "attack_survival_split"
+        ]
+      }
+    ]
+  },
+  "JAIL_118": {
+    "card_id": "JAIL_118",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Battlecry: Destroy all non-Paladin minions.",
+        "why": "No negation predicate: card_class PALADIN would invert non-Paladin; enumerating other classes is unsafe for multiclass and unknown classes.",
+        "dependencies": [
+          "class_negation"
+        ]
+      }
+    ]
+  },
+  "JAIL_399": {
+    "card_id": "JAIL_399",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+        "why": "SHUFFLE_INTO_DECK has no insertion-position or multiplicity parameter; random shuffling is not bottom insertion. Token identities also unresolved.",
+        "dependencies": [
+          "bottom_insert"
+        ]
+      }
+    ]
+  },
+  "TIME_216": {
+    "card_id": "TIME_216",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "If it survives, draw 2 cards.",
+        "why": "No survival predicate at the post-damage timing boundary. The conditional draw is omitted rather than made unconditional.",
+        "dependencies": [
+          "survival"
+        ]
+      }
+    ]
+  }
+}
