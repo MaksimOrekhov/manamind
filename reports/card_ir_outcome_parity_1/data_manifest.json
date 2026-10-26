@@ -1,0 +1,20 @@
+{
+  "aggregate_inputs_sha256": "5fef6e019511c55ccceb3aee5fe02481f10e0463764eef9eca3f36062620ec8a",
+  "allowed_policy_games": 83,
+  "eligible_evidence_files": 64,
+  "pre_context_associations": {
+    "EXACT_DECISION_AND_STATE_HASH": 45,
+    "NO_SAFELY_ADDRESSABLE_RAW": 20
+  },
+  "privacy": "Only aggregate hashes/counts published; per-match paths, IDs and contexts stay ignored; aggregate observed_facts file never opened",
+  "protected_evidence_directories_skipped_unopened": 8,
+  "protected_policy_files_skipped_unopened": 9,
+  "raw_matches_reextracted": 27,
+  "selected_actions_by_card": {
+    "CORE_AT_055": 61,
+    "CORE_ICC_055": 4
+  },
+  "selected_games": 41,
+  "split_plan_sha256": "408cb21b8e29cd1caa9dfd585c0b6d2dc7917c6a8021aa49910a4ddd5cf0218a",
+  "unknown_evidence_directories_skipped_unopened": 92
+}
