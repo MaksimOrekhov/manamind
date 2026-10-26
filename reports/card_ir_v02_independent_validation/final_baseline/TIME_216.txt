@@ -1,0 +1,12 @@
+Declared status: FULL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then if them<victim> is alive (survived): you draw 2 x card
+Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.
+Strict acceptance=True; complete=True; computed status=FULL
+Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)
+Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations
+Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it
+Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)
+Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps
+Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction

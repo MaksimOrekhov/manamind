@@ -1,0 +1,2640 @@
+{
+  "vocabulary": {
+    "elements_v01": 110,
+    "elements_v02": 125,
+    "new_elements": [
+      "counter:DAMAGE_DEALT",
+      "deck_position:BOTTOM",
+      "deck_position:RANDOM",
+      "deck_position:TOP",
+      "duration:NEXT_TURN",
+      "duration:THIS_GAME",
+      "event_role:attacker",
+      "event_role:defender",
+      "move:PLAY_TO_HAND",
+      "op:FREEZE",
+      "player_effect:ALL_MATCHING",
+      "player_effect:starts_after",
+      "player_effect:zones",
+      "pred:alive",
+      "value:mul"
+    ],
+    "rules_v01": 40,
+    "rules_v02": 53,
+    "new_rules": [
+      "R_ATTACK_REDIRECT",
+      "R_ATTACK_ROLES",
+      "R_DAMAGE_EVENT_AMOUNT",
+      "R_DELAYED_START",
+      "R_FREEZE",
+      "R_FREEZE_THAW",
+      "R_PLAYER_AURA",
+      "R_RANDOM_SPLIT",
+      "R_RETURN_FULL_HAND",
+      "R_RETURN_TO_HAND",
+      "R_SPLIT_UNQUALIFIED",
+      "R_SURVIVE",
+      "R_TURN_WINDOW"
+    ],
+    "changed_rules": [
+      "R_COST",
+      "R_DECK_POSITION",
+      "R_PLAYER_EFFECT"
+    ],
+    "provisional_rules": [
+      "R_ATTACK_REDIRECT",
+      "R_DAMAGE_EVENT_AMOUNT",
+      "R_FREEZE_THAW",
+      "R_RETURN_FULL_HAND",
+      "R_SPLIT_UNQUALIFIED"
+    ],
+    "rule_bases_v02": {
+      "COMMUNITY_RULES": 7,
+      "DEFINITION": 4,
+      "PROJECT_REVIEWED": 15,
+      "UNKNOWN": 12,
+      "UNVERIFIED": 15
+    }
+  },
+  "examples": [
+    {
+      "card_id": "CATA_452",
+      "status": "FULL_DEP",
+      "accepted": true,
+      "complete": true,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "counter:DAMAGE_DEALT",
+        "value:mul"
+      ],
+      "rules": [
+        "R_AURA",
+        "R_BOARD_LIMIT",
+        "R_COST",
+        "R_COUNTERS",
+        "R_DAMAGE_EVENT_AMOUNT",
+        "R_PLAY_TARGET",
+        "R_SUMMON_POSITION"
+      ],
+      "provisional_acknowledged": [
+        "R_DAMAGE_EVENT_AMOUNT"
+      ],
+      "dependencies": [
+        "dragon_identity TOKEN_IDENTITY/DATA",
+        "damage_amount UNKNOWN_RULE/CONDITIONAL"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+        "In hand: cost reduced by (1 x total damage actually dealt (AMOUNT) by you with card type SPELL this turn)"
+      ],
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Summon a 6/6 Dragon. => Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+        "abilities[1] TEXT: Costs (1) less for each damage you dealt with spells this turn. => In hand: cost reduced by (1 x total damage actually dealt (AMOUNT) by you with card type SPELL this turn)",
+        "Dependency <dragon_identity> TOKEN_IDENTITY/DATA: CATA_452t is a 6/6 Dragon matching the description and ID prefix; no authoritative parent-token relation.; source needed: hsdata CardDefs relations or Power.log",
+        "Dependency <damage_amount> UNKNOWN_RULE/CONDITIONAL: The amount counted per packet (Divine Shield 0, Armor counted, overkill in full) and which boundary sources count as spells (Secrets, spell-created effects) are not settled.; source needed: Power.log: spell damage into Divine Shield, Armor and overkill; acknowledges provisional rule R_DAMAGE_EVENT_AMOUNT",
+        "Decision damage_sum [OUTCOME/TEXT]: What is counted? => damage actually dealt by spells; alternatives: damage actually dealt by spells / spells cast; dependency=none; distinguishing case: Fireball for 6 this turn: the card costs 10 - 6 = 4, not 10 - 1 = 9.",
+        "Decision token [EDGE/METADATA]: Which record is the 6/6 Dragon? => CATA_452t; alternatives: CATA_452t / another 6/6 Dragon; dependency=dragon_identity; distinguishing case: Only one 6/6 Dragon record carries the card's ID prefix.",
+        "Author notes (not executed): CARD-IR-V02 expressivity example.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_AURA [UNKNOWN]: Continuous effects are recomputed between steps; recomputation inside one step is unreviewed",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_COUNTERS [PROJECT_REVIEWED]: Per-player history counters: cards played, spells cast, per turn, per game, last turn",
+        "Rule R_DAMAGE_EVENT_AMOUNT [UNVERIFIED; PROVISIONAL: acknowledged by a dependency]: A DAMAGE_DEALT AMOUNT counter adds the damage actually dealt per packet: prevented damage (Divine Shield, Immune) counts 0, damage absorbed by Armor counts, overkill counts in full",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "card_id": "CATA_585",
+      "status": "PARTIAL",
+      "accepted": true,
+      "complete": false,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [],
+      "rules": [
+        "R_AMOUNT_ORDER",
+        "R_DAMAGE",
+        "R_PLAY_TARGET",
+        "R_SPELL_DAMAGE"
+      ],
+      "provisional_acknowledged": [],
+      "dependencies": [
+        "instance_parameter UNKNOWN_RULE/CORE",
+        "spellpower UNKNOWN_RULE/CORE"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Cast: choose a chosen minion damaged as <t>; deal $8 damage to them<t>",
+        "NOT EXPRESSED: Return this to hand with any excess damage."
+      ],
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $8 damage to a damaged minion. => Cast: choose a chosen minion damaged [zones=PLAY; mode=CHOSEN] as <t>; deal $8 damage to them<t>",
+        "unexpressed[0] UNEXPRESSED (not executed): Return this to hand with any excess damage.; reason: Returning this spell with its damage changed to the excess needs a mutable instance parameter (S2), deferred to a separate task; a static damage value would be wrong after the first return.",
+        "Gap binding /unexpressed/0 => dependencies: instance_parameter",
+        "Dependency <instance_parameter> UNKNOWN_RULE/CORE: No v0.2 construct stores the excess as this card's new damage value across zones; static damage would be wrong after the first return. Mutable instance parameters (S2) are deferred to a separate task.; source needed: reports/card_ir_v02/S2_DESIGN.md, then a separate implementation task",
+        "Dependency <spellpower> UNKNOWN_RULE/CORE: Text carries $8 but metadata says ImmuneToSpellpower: how Spell Damage applies to Torch is unknown.; source needed: Power.log of Torch with Spell Damage",
+        "Decision spellpower [OUTCOME/UNKNOWN]: Does Spell Damage change Torch's damage? => UNRESOLVED; alternatives: adds to the damage / the card procedure applies it differently / does not apply; dependency=spellpower; distinguishing case: Spell Damage +1, target with 3 Health: 9 damage and 6 back, or 8 and 5 back.",
+        "Author notes (not executed): CARD-IR-V02 example of an honest PARTIAL. User-observed: 8 into 3 Health returns 5; 5 into 2 Health returns 3; zero excess (including Divine Shield) does not return; the value persists across replays.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)"
+      ]
+    },
+    {
+      "card_id": "CORE_RLK_063",
+      "status": "FULL_DEP",
+      "accepted": true,
+      "complete": true,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "op:FREEZE"
+      ],
+      "rules": [
+        "R_AMOUNT_ORDER",
+        "R_AREA_SNAPSHOT",
+        "R_BOARD_LIMIT",
+        "R_DAMAGE",
+        "R_FREEZE",
+        "R_FREEZE_THAW",
+        "R_PLAY_TARGET",
+        "R_SPELL_DAMAGE",
+        "R_STEP_BOUNDARY",
+        "R_SUMMON_POSITION"
+      ],
+      "provisional_acknowledged": [
+        "R_FREEZE_THAW"
+      ],
+      "dependencies": [
+        "frostwyrm_identity TOKEN_IDENTITY/DATA",
+        "freeze_thaw UNKNOWN_RULE/CONDITIONAL"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Cast: choose a chosen character as <t>; deal $5 damage to them<t>; then freeze all enemy minions; then summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)"
+      ],
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <t>; deal $5 damage to them<t>; then freeze all enemy minions [zones=PLAY; mode=ALL]; then summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <frostwyrm_identity> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5 and the original ID prefix; the CORE parent relation needs confirmation.; source needed: hsdata CardDefs relations or Power.log",
+        "Dependency <freeze_thaw> UNKNOWN_RULE/CONDITIONAL: When Frozen is removed is not fully confirmed; the common case (frozen on your turn, thawed at the end of the opponent's next turn) is assumed by the executor only through this dependency.; source needed: Power.log of a frozen minion across two turns; acknowledges provisional rule R_FREEZE_THAW",
+        "Decision order [OUTCOME/TEXT]: In which order do damage, Freeze and the summon happen? => damage, Freeze, summon; alternatives: damage, Freeze, summon / damage, summon, Freeze; dependency=none; distinguishing case: The summoned Frostwyrm is friendly, so Freeze never hits it; a summon reaction that checks Frozen enemies sees them frozen under the chosen order.",
+        "Decision damage_target [EDGE/TEXT]: Which characters can 'Deal $5 damage' target? => any character; alternatives: any character / enemy characters; dependency=none; distinguishing case: Targeting your own hero is legal under 'any character'.",
+        "Author notes (not executed): CARD-IR-V02 expressivity example: one sequence instead of the two B1 play abilities.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "card_id": "CORE_SCH_713",
+      "status": "FULL_DEP",
+      "accepted": true,
+      "complete": true,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "duration:NEXT_TURN",
+        "player_effect:ALL_MATCHING",
+        "player_effect:zones"
+      ],
+      "rules": [
+        "R_COST",
+        "R_HIDDEN_ZONE",
+        "R_PLAYER_AURA",
+        "R_PLAYER_EFFECT",
+        "R_PLAY_TARGET",
+        "R_TURN_WINDOW"
+      ],
+      "provisional_acknowledged": [],
+      "dependencies": [
+        "deck_cost UNKNOWN_RULE/CONDITIONAL"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Battlecry: the opponent get a player effect: cost increased by 1; applies to card type SPELL: every matching card while active, including later arrivals; zones=HAND; active immediately; during the opponent's next turn (start to end)"
+      ],
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Your opponent's spells cost (1) more next turn. => Battlecry: the opponent get a player effect: cost increased by 1; applies to card type SPELL: every matching card while active, including later arrivals; zones=HAND; active immediately; during the opponent's next turn (start to end)",
+        "Dependency <deck_cost> UNKNOWN_RULE/CONDITIONAL: Whether spells in the opponent's deck also cost (1) more during that turn; observable only through effects that read costs in the deck.; source needed: Power.log of a deck-cost effect during the affected turn",
+        "Decision owner [NONE/TEXT]: Whose spells change cost? => opponent's spells; alternatives: opponent's spells / your spells; dependency=none; distinguishing case: none",
+        "Decision window [OUTCOME/TEXT]: Which turn is 'next turn'? => the opponent's next turn; alternatives: the opponent's next turn / your next turn; dependency=none; distinguishing case: Played on your turn: the opponent's 1-cost spell costs 2 on their following turn and 1 on yours.",
+        "Decision dynamic [EDGE/COMMUNITY_RULES]: Do spells the opponent draws during that turn cost more too? => yes; alternatives: yes / no; dependency=none; distinguishing case: The opponent draws a 1-cost spell at the start of the affected turn: 2 under yes, 1 under no.",
+        "Decision zones [EDGE/ASSUMPTION]: Which zones' spells change cost? => hand; alternatives: hand / hand and deck; dependency=deck_cost; distinguishing case: A 'draw your highest-cost spell' effect during that turn sees different costs.",
+        "Author notes (not executed): CARD-IR-V02 expressivity example. 'dynamic' follows the Loatheb analogy in CARD_AUDIT 3.8.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "card_id": "EDR_895",
+      "status": "FULL_DEP",
+      "accepted": true,
+      "complete": true,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "duration:THIS_GAME",
+        "player_effect:ALL_MATCHING",
+        "player_effect:starts_after",
+        "player_effect:zones"
+      ],
+      "rules": [
+        "R_COST",
+        "R_DELAYED_START",
+        "R_HIDDEN_ZONE",
+        "R_PLAYER_AURA",
+        "R_PLAYER_EFFECT",
+        "R_PLAY_TARGET",
+        "R_TURN_WINDOW"
+      ],
+      "provisional_acknowledged": [],
+      "dependencies": [
+        "new_cards UNKNOWN_RULE/CONDITIONAL",
+        "replay UNKNOWN_RULE/CONDITIONAL",
+        "cost_interactions UNKNOWN_RULE/CONDITIONAL"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Battlecry: you get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of your turn number 3 after it is created; for the rest of the game"
+      ],
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: you get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of your turn number 3 after it is created; for the rest of the game",
+        "Dependency <new_cards> UNKNOWN_RULE/CONDITIONAL: Whether cards created into hand or deck after the Full Moon also cost (1). uses ALL_MATCHING encodes yes; the user observed hand and deck, not newly created cards.; source needed: Power.log or play-test: generate a card after the Full Moon and read its cost",
+        "Dependency <replay> UNKNOWN_RULE/CONDITIONAL: A second Aviana Battlecry (second cycle, second effect) is not established; the declaration encodes one independent effect per Battlecry.; source needed: Power.log or play-test of a second Aviana",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Interactions with other cost modifiers beyond the general R_COST order are not established (e.g. a modifier applied after the Full Moon).; source needed: Power.log of another cost modifier after the Full Moon",
+        "Decision cycle_owner [OUTCOME/USER_OBSERVED]: Whose turns advance the three-turn lunar cycle? => own turns; alternatives: own turns / every turn; dependency=none; distinguishing case: Battlecry on your turn T: counting own turns the Full Moon rises on your turn T+3; counting every turn it would rise on the opponent's turn T+1 already.",
+        "Decision full_moon_boundary [OUTCOME/COMMUNITY_RULES]: At which boundary does the Full Moon rise? => at the start of your third turn after the Battlecry; alternatives: at the start of your third turn after the Battlecry / at the end of your third turn after the Battlecry; dependency=none; distinguishing case: On your third turn after the Battlecry a 9-cost card in hand costs (1) from that turn's start under the chosen reading and still 9 during that turn under the alternative.",
+        "Decision zones [OUTCOME/USER_OBSERVED]: Which of your cards cost (1)? => hand and deck; alternatives: hand and deck / hand only; dependency=none; distinguishing case: After the Full Moon a 7-cost card in the deck: 'draw your highest-cost card' effects see 1 under hand and deck, 7 under hand only.",
+        "Decision later_cards [EDGE/ASSUMPTION]: Do cards created after the Full Moon cost (1)? => yes (dynamic player effect); alternatives: yes (dynamic player effect) / no (only cards present at the Full Moon); dependency=new_cards; distinguishing case: A card discovered into hand after the Full Moon costs (1) under yes and its printed cost under no.",
+        "Decision duration [OUTCOME/TEXT]: How long do the costs stay (1)? => this game; alternatives: this game / while Aviana is in play; dependency=none; distinguishing case: Aviana dies after the Full Moon: under 'this game' cards still cost (1).",
+        "Author notes (not executed): CARD-IR-V02 expressivity example, not a B1 re-compilation. User-observed facts: three own turns, hand and deck cost (1), until the end of the game.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "card_id": "FIR_953",
+      "status": "PARTIAL",
+      "accepted": true,
+      "complete": false,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "event_role:attacker",
+        "event_role:defender",
+        "pred:alive"
+      ],
+      "rules": [
+        "R_AREA_SNAPSHOT",
+        "R_ATTACK_REDIRECT",
+        "R_ATTACK_ROLES",
+        "R_DAMAGE",
+        "R_LAST_KNOWN",
+        "R_RANDOM_LIVE",
+        "R_RANDOM_SPLIT",
+        "R_SPLIT_UNQUALIFIED",
+        "R_SURVIVE",
+        "R_TRIGGER_ORDER",
+        "R_TRIGGER_TIMING"
+      ],
+      "provisional_acknowledged": [
+        "R_ATTACK_REDIRECT",
+        "R_SPLIT_UNQUALIFIED"
+      ],
+      "dependencies": [
+        "split_reading UNKNOWN_RULE/CORE",
+        "attack_redirect UNKNOWN_RULE/CONDITIONAL"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Keyword Rush",
+        "After attacker this attacks defender a minion, only if this is alive (survived): repeat this's attack times: [deal 1 damage to random 1 enemy character]"
+      ],
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a minion [zones=PLAY; mode=ALL]; ONLY IF this is alive (survived); limit=none declared; effect: repeat this's attack [read=CURRENT] times: [deal 1 damage to random 1 enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split_reading> UNKNOWN_RULE/CORE: 'split among' without 'randomly' is encoded as randomly split (R_SPLIT_UNQUALIFIED); the independent rules check did not confirm that equivalence.; source needed: Power.log of Magma Hound's trigger or an authoritative rules source; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <attack_redirect> UNKNOWN_RULE/CONDITIONAL: If the attack is redirected after declaration, whether 'attacks a minion' sees the original or the final defender.; source needed: Power.log of a redirected Magma Hound attack; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision subject [OUTCOME/TEXT]: Who attacks? => this minion; alternatives: this minion / your hero; dependency=none; distinguishing case: Your hero attacks with a weapon while Hound is in play: no trigger under 'this minion'.",
+        "Decision split [OUTCOME/ASSUMPTION]: How is the damage split? => randomly split: one random live enemy per 1-damage packet; alternatives: randomly split: one random live enemy per 1-damage packet / the controller distributes it; dependency=split_reading; distinguishing case: Two enemy 1-Health minions and 2 Attack: under random split both can survive the second packet hitting the hero; a chosen distribution kills both.",
+        "Decision attack_value [EDGE/TEXT]: When is this minion's Attack read? => current Attack after combat; alternatives: current Attack after combat / Attack when the attack was declared; dependency=none; distinguishing case: A combat reaction that changes Hound's Attack changes the number of packets.",
+        "Author notes (not executed): CARD-IR-V02 expressivity example: the trigger is fully structured; PARTIAL only because the unqualified split reading is unconfirmed (CORE).",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "card_id": "JAIL_399",
+      "status": "FULL_DEP",
+      "accepted": true,
+      "complete": true,
+      "errors": [],
+      "warnings": [],
+      "new_elements": [
+        "deck_position:BOTTOM"
+      ],
+      "rules": [
+        "R_DEATHRATTLE",
+        "R_DEATH_PHASE",
+        "R_DECK_POSITION",
+        "R_HIDDEN_ZONE"
+      ],
+      "provisional_acknowledged": [],
+      "dependencies": [
+        "demons_identity TOKEN_IDENTITY/DATA"
+      ],
+      "v01_validator_rejects": true,
+      "v01_first_error": [
+        "doc: ir must be card-ir/0.1"
+      ],
+      "render": [
+        "Keyword Taunt",
+        "Deathrattle: put on the bottom of your deck: 2 x Grandmother Imp [JAIL_399t1] (resolved by description_match) [position=BOTTOM]"
+      ],
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Taunt. => Keyword TAUNT",
+        "abilities[0] TEXT: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck. => Deathrattle: put on the bottom of your deck: 2 x Grandmother Imp [JAIL_399t1] (resolved by description_match) [position=BOTTOM]",
+        "Dependency <demons_identity> TOKEN_IDENTITY/DATA: JAIL_399t1 Grandmother Imp is the only record with the card's ID prefix and matches 8/8 Demon, Taunt and Lifesteal; no authoritative parent-token relation.; source needed: hsdata CardDefs relations or Power.log",
+        "Decision deck_order [OUTCOME/TEXT]: Where do the Demons go? => bottom of your deck; alternatives: bottom of your deck / shuffled into your deck; dependency=none; distinguishing case: Next draw from a non-empty deck: never a Demon under bottom, possibly one under shuffle.",
+        "Decision two_demons [EDGE/METADATA]: Two copies of one record or two different records? => JAIL_399t1 twice; alternatives: JAIL_399t1 twice / two different records; dependency=demons_identity; distinguishing case: Only one candidate record exists in the pinned snapshot.",
+        "Author notes (not executed): CARD-IR-V02 expressivity example.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_DECK_POSITION [UNVERIFIED]: RANDOM inserts each card at a random deck position; TOP makes it the next card drawn; BOTTOM puts it after every card already in the deck; count N inserts N cards one at a time",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities"
+      ]
+    }
+  ],
+  "conformance": {
+    "total": 98,
+    "passed": 98,
+    "by_kind": {
+      "bad": 39,
+      "edge": 27,
+      "good": 21,
+      "interaction": 11
+    },
+    "by_origin": {
+      "REAL": 69,
+      "SYNTHETIC": 29
+    },
+    "by_feature": {
+      "counter:DAMAGE_DEALT": {
+        "bad": 4,
+        "edge": 2,
+        "good": 1,
+        "passed": 7,
+        "total": 7
+      },
+      "deck_position:BOTTOM": {
+        "bad": 2,
+        "edge": 2,
+        "passed": 4,
+        "total": 4
+      },
+      "deck_position:RANDOM": {
+        "bad": 1,
+        "edge": 1,
+        "good": 1,
+        "passed": 3,
+        "total": 3
+      },
+      "deck_position:TOP": {
+        "bad": 1,
+        "good": 1,
+        "passed": 2,
+        "total": 2
+      },
+      "duration:NEXT_TURN": {
+        "bad": 2,
+        "edge": 2,
+        "good": 1,
+        "passed": 5,
+        "total": 5
+      },
+      "duration:THIS_GAME": {
+        "bad": 2,
+        "edge": 1,
+        "good": 1,
+        "passed": 4,
+        "total": 4
+      },
+      "event_role:attacker": {
+        "bad": 3,
+        "edge": 1,
+        "good": 1,
+        "passed": 5,
+        "total": 5
+      },
+      "event_role:defender": {
+        "bad": 1,
+        "edge": 2,
+        "good": 1,
+        "passed": 4,
+        "total": 4
+      },
+      "examples": {
+        "good": 7,
+        "passed": 7,
+        "total": 7
+      },
+      "gap_receipts": {
+        "interaction": 5,
+        "passed": 5,
+        "total": 5
+      },
+      "modifier:cost": {
+        "bad": 2,
+        "good": 1,
+        "passed": 3,
+        "total": 3
+      },
+      "move:PLAY_TO_HAND": {
+        "bad": 2,
+        "edge": 2,
+        "good": 1,
+        "passed": 5,
+        "total": 5
+      },
+      "op:FREEZE": {
+        "bad": 3,
+        "edge": 2,
+        "good": 1,
+        "interaction": 2,
+        "passed": 8,
+        "total": 8
+      },
+      "player_effect:ALL_MATCHING": {
+        "bad": 3,
+        "edge": 2,
+        "good": 1,
+        "passed": 6,
+        "total": 6
+      },
+      "player_effect:starts_after": {
+        "bad": 3,
+        "edge": 1,
+        "interaction": 1,
+        "passed": 5,
+        "total": 5
+      },
+      "player_effect:zones": {
+        "bad": 2,
+        "edge": 2,
+        "passed": 4,
+        "total": 4
+      },
+      "pred:alive": {
+        "bad": 3,
+        "edge": 2,
+        "good": 2,
+        "interaction": 2,
+        "passed": 9,
+        "total": 9
+      },
+      "reading:split": {
+        "bad": 2,
+        "edge": 1,
+        "good": 1,
+        "passed": 4,
+        "total": 4
+      },
+      "rule_acknowledgement": {
+        "bad": 1,
+        "edge": 2,
+        "passed": 3,
+        "total": 3
+      },
+      "value:mul": {
+        "bad": 2,
+        "edge": 1,
+        "passed": 3,
+        "total": 3
+      },
+      "versioning": {
+        "edge": 1,
+        "interaction": 1,
+        "passed": 2,
+        "total": 2
+      }
+    },
+    "cases": [
+      {
+        "name": "example CATA_452",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example CATA_585",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example CORE_RLK_063",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example CORE_SCH_713",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example EDR_895",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example FIR_953",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "example JAIL_399",
+        "feature": "examples",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "freeze a chosen enemy minion",
+        "feature": "op:FREEZE",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "freeze without acknowledging the thaw rule",
+        "feature": "op:FREEZE",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "R_FREEZE_THAW",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: provisional rule R_FREEZE_THAW needs an UNKNOWN_RULE dependency with rule 'R_FREEZE_THAW'"
+        ]
+      },
+      {
+        "name": "thaw acknowledgement with DATA scope",
+        "feature": "op:FREEZE",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "rule acknowledgement",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies[0]: a rule acknowledgement is an UNKNOWN_RULE with scope CONDITIONAL/CORE",
+          "dependencies: provisional rule R_FREEZE_THAW needs an UNKNOWN_RULE dependency with rule 'R_FREEZE_THAW'",
+          "dependencies: 'r_freeze_thaw' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "freeze text encoded as silence",
+        "feature": "op:FREEZE",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "FREEZE_TEXT",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: FREEZE_TEXT: 'freeze' in the text needs a FREEZE operation"
+        ]
+      },
+      {
+        "name": "freeze cards in hand",
+        "feature": "op:FREEZE",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "FREEZE targets characters",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.to: FREEZE targets characters, not 'CARD'"
+        ]
+      },
+      {
+        "name": "freeze the enemy hero (short selector)",
+        "feature": "op:FREEZE",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Frostwyrm's Fury: summon before freeze",
+        "feature": "op:FREEZE",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "ORDER_V02",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: ORDER_V02: straight-line operations differ from textual verb order"
+        ]
+      },
+      {
+        "name": "Frostwyrm's Fury: freeze hidden in a reminder",
+        "feature": "op:FREEZE",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "REMINDER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ]
+      },
+      {
+        "name": "spells cheaper for the rest of the game",
+        "feature": "duration:THIS_GAME",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "this game read as this turn",
+        "feature": "duration:THIS_GAME",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "WINDOW_GAME",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_EVIDENCE: THIS_TURN lacks a matching textual window",
+          "abilities[0]: WINDOW_GAME: 'this game' modifier needs THIS_GAME duration"
+        ]
+      },
+      {
+        "name": "THIS_GAME without textual evidence",
+        "feature": "duration:THIS_GAME",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "WINDOW_GAME",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_GAME: THIS_GAME needs 'this game' or 'rest of the game' in the text"
+        ]
+      },
+      {
+        "name": "THIS_GAME with integer uses",
+        "feature": "duration:THIS_GAME",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "integer uses with THIS_GAME",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: integer uses with THIS_GAME is UNTIL_USED"
+        ]
+      },
+      {
+        "name": "Cult Neophyte: this turn instead of next turn",
+        "feature": "duration:NEXT_TURN",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "WINDOW_NEXT_V02",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_NEXT_V02: next-turn text needs a next_turn duration"
+        ]
+      },
+      {
+        "name": "Cult Neophyte: your next turn instead of the opponent's",
+        "feature": "duration:NEXT_TURN",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "WINDOW_NEXT_V02",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_NEXT_V02: next turn belongs to OPPONENT, not SELF"
+        ]
+      },
+      {
+        "name": "explicit 'your next turn'",
+        "feature": "duration:NEXT_TURN",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "next_turn without textual evidence",
+        "feature": "duration:NEXT_TURN",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "WINDOW_NEXT_V02",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_NEXT_V02: a next_turn duration needs 'next turn' in the text"
+        ]
+      },
+      {
+        "name": "next_turn names a player",
+        "feature": "duration:NEXT_TURN",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "next_turn",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.duration.next_turn: 'BOTH' not in ('SELF', 'OPPONENT')"
+        ]
+      },
+      {
+        "name": "Aviana: two instead of three turns",
+        "feature": "player_effect:starts_after",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DELAY_COUNT",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DELAY_COUNT: starts_after 2 turns does not match the text [3]",
+          "abilities[0]: DELAY_COUNT: '3 turn' in the text needs starts_after or a turns duration"
+        ]
+      },
+      {
+        "name": "Aviana: effect starts at once",
+        "feature": "player_effect:starts_after",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DELAY_COUNT",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DELAY_COUNT: '3 turn' in the text needs starts_after or a turns duration"
+        ]
+      },
+      {
+        "name": "Aviana: lasts three turns instead of starting after three",
+        "feature": "player_effect:starts_after",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "WINDOW_GAME",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_GAME: 'this game' modifier needs THIS_GAME duration"
+        ]
+      },
+      {
+        "name": "Aviana: counts the opponent's turns",
+        "feature": "player_effect:starts_after",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DELAY_OWNER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DELAY_OWNER: counting another player's turns needs 'opponent' in the text"
+        ]
+      },
+      {
+        "name": "zero turn starts",
+        "feature": "player_effect:starts_after",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "positive integer",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.starts_after.turn_starts: must be a positive integer"
+        ]
+      },
+      {
+        "name": "Aviana: cost player effect without zones",
+        "feature": "player_effect:zones",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "zones",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: a cost player effect states the zones whose cards it modifies"
+        ]
+      },
+      {
+        "name": "zones on a non-cost player effect",
+        "feature": "player_effect:zones",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "zones belong",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: zones belong to a cost player effect"
+        ]
+      },
+      {
+        "name": "repeated zone",
+        "feature": "player_effect:zones",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "without repeats",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.zones: zones must be a non-empty list without repeats"
+        ]
+      },
+      {
+        "name": "Aviana: hand only (a different, valid reading)",
+        "feature": "player_effect:zones",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "your next spell: one use",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "your next spell read as all spells",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "USES_SCOPE",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: WINDOW_EVIDENCE: THIS_TURN lacks a matching textual window",
+          "abilities[0]: USES_SCOPE: 'next' in the text limits uses; ALL_MATCHING applies to every matching card"
+        ]
+      },
+      {
+        "name": "Cult Neophyte: one spell instead of all",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "USES_SCOPE",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: USES_SCOPE: integer uses need 'next' in the text"
+        ]
+      },
+      {
+        "name": "modifier player effect without uses",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "states its cardinality",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: a modifier player effect states its cardinality: uses N or 'ALL_MATCHING'"
+        ]
+      },
+      {
+        "name": "ALL_MATCHING until used",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "use_unit belongs",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: use_unit belongs to integer uses",
+          "abilities[0].effect: ALL_MATCHING is never used up; UNTIL_USED needs integer uses"
+        ]
+      },
+      {
+        "name": "integer uses without a unit",
+        "feature": "player_effect:ALL_MATCHING",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "use_unit",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: integer uses need a use_unit (CARD or EFFECT)"
+        ]
+      },
+      {
+        "name": "a v0.1 declaration relabelled as v0.2",
+        "feature": "versioning",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "zones",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect: a cost player effect states the zones whose cards it modifies"
+        ]
+      },
+      {
+        "name": "Cult Neophyte: negative reduce",
+        "feature": "modifier:cost",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "must not be negative",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.modifier.cost: must not be negative (state the direction: reduce or increase)"
+        ]
+      },
+      {
+        "name": "Cult Neophyte: less instead of more",
+        "feature": "modifier:cost",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "COST_SIGN",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: COST_SIGN: 'costs (N) more' needs increase"
+        ]
+      },
+      {
+        "name": "returned minion costs more (random pick)",
+        "feature": "modifier:cost",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Spellweaver's: spells cast instead of damage",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DAMAGE_COUNTER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: DAMAGE_COUNTER: 'damage you dealt' needs a DAMAGE_DEALT counter"
+        ]
+      },
+      {
+        "name": "Spellweaver's: damage from any source",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DAMAGE_COUNTER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: DAMAGE_COUNTER: 'with spells' <-> source card_type SPELL"
+        ]
+      },
+      {
+        "name": "Spellweaver's: counted this game",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DAMAGE_COUNTER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: DAMAGE_COUNTER: text counts THIS_TURN"
+        ]
+      },
+      {
+        "name": "Spellweaver's: damage the opponent dealt",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DAMAGE_COUNTER",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: DAMAGE_COUNTER: 'you dealt' needs player SELF"
+        ]
+      },
+      {
+        "name": "Spellweaver's: COUNT instead of AMOUNT",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "measure",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1].modifier.cost.mul[1].counter.measure: 'COUNT' not in ('AMOUNT',)"
+        ]
+      },
+      {
+        "name": "Spellweaver's: amount rule not acknowledged",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "R_DAMAGE_EVENT_AMOUNT",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: provisional rule R_DAMAGE_EVENT_AMOUNT needs an UNKNOWN_RULE dependency with rule 'R_DAMAGE_EVENT_AMOUNT'"
+        ]
+      },
+      {
+        "name": "Spellweaver's: reduce by the counter without mul",
+        "feature": "value:mul",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "text number 1",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: text number 1 has no matching IR number with the same mark"
+        ]
+      },
+      {
+        "name": "mul without a literal",
+        "feature": "value:mul",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "mul takes",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1].modifier.cost: mul takes exactly two values, at least one an integer literal from the text",
+          "abilities[1]: text number 1 has no matching IR number with the same mark",
+          "dependencies: 'damage_amount' acknowledges R_DAMAGE_EVENT_AMOUNT, which the declaration does not need"
+        ]
+      },
+      {
+        "name": "mul with a wrong literal",
+        "feature": "value:mul",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "text number 1",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: text number 1 has no matching IR number with the same mark"
+        ]
+      },
+      {
+        "name": "Spellweaver's audit render shows the counter",
+        "feature": "counter:DAMAGE_DEALT",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Magma Hound: hero attack instead of this minion",
+        "feature": "event_role:attacker",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "EVENT_SUBJECT",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: EVENT_SUBJECT: source minion attack is not HERO_ATTACK"
+        ]
+      },
+      {
+        "name": "Magma Hound: v0.1 'subject' role",
+        "feature": "event_role:attacker",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "unknown keys ['subject']",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].event: unknown keys ['subject']",
+          "dependencies: 'attack_redirect' acknowledges R_ATTACK_REDIRECT, which the declaration does not need",
+          "dependencies: 'attack_redirect' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "Magma Hound: an enemy minion attacks",
+        "feature": "event_role:attacker",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "ATTACK_ROLE",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: ATTACK_ROLE: 'this attacks' needs attacker SELF"
+        ]
+      },
+      {
+        "name": "Magma Hound: attacks the hero instead of a minion",
+        "feature": "event_role:defender",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "EVENT_DEFENDER",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: EVENT_DEFENDER: attack must be against a minion"
+        ]
+      },
+      {
+        "name": "Magma Hound: redirect rule not acknowledged",
+        "feature": "event_role:defender",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "R_ATTACK_REDIRECT",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: provisional rule R_ATTACK_REDIRECT needs an UNKNOWN_RULE dependency with rule 'R_ATTACK_REDIRECT'"
+        ]
+      },
+      {
+        "name": "Magma Hound: a random defender",
+        "feature": "event_role:defender",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "use pick ALL",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].event.defender: an event role is a filter on participants: use pick ALL"
+        ]
+      },
+      {
+        "name": "attack event without roles",
+        "feature": "event_role:attacker",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "needs an attacker or defender",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].event: ATTACK_DECLARED needs an attacker or defender role",
+          "dependencies: 'attack_redirect' acknowledges R_ATTACK_REDIRECT, which the declaration does not need",
+          "dependencies: 'attack_redirect' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "a friendly minion is attacked (defender only)",
+        "feature": "event_role:defender",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Magma Hound audit shows both roles and the survival guard",
+        "feature": "event_role:attacker",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Nascent Bolt: draw only if the target survives",
+        "feature": "pred:alive",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Nascent Bolt: unconditional draw",
+        "feature": "pred:alive",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "CONDITION_ENTITY",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      {
+        "name": "Nascent Bolt: draw if it dies",
+        "feature": "pred:alive",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "CONDITION_ENTITY",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      {
+        "name": "Nascent Bolt: survival of the wrong entity",
+        "feature": "pred:alive",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "CONDITION_ENTITY",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      {
+        "name": "alive must be boolean",
+        "feature": "pred:alive",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "alive must be a boolean",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.seq[1].if.is.where[0]: alive must be a boolean"
+        ]
+      },
+      {
+        "name": "alive inside a selector",
+        "feature": "pred:alive",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "alive is only allowed",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.to.where[0]: alive is only allowed in an 'is' condition over SELF or a bound reference"
+        ]
+      },
+      {
+        "name": "if it dies (alive false)",
+        "feature": "pred:alive",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "trigger condition is validated (v0.1 loophole closed)",
+        "feature": "pred:alive",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "unknown predicate",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].condition.is.where[1]: unknown predicate 'no_such_predicate'"
+        ]
+      },
+      {
+        "name": "Magma Hound: survival guard dropped",
+        "feature": "pred:alive",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "CONDITION_ENTITY",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      {
+        "name": "Imp Gang Stooge: shuffle instead of bottom",
+        "feature": "deck_position:BOTTOM",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DECK_POSITION_V02",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DECK_POSITION_V02: text inserts BOTTOM, IR inserts RANDOM"
+        ]
+      },
+      {
+        "name": "Imp Gang Stooge: top instead of bottom",
+        "feature": "deck_position:TOP",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DECK_POSITION_V02",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DECK_POSITION_V02: text inserts BOTTOM, IR inserts TOP"
+        ]
+      },
+      {
+        "name": "Imp Gang Stooge: one Demon instead of two",
+        "feature": "deck_position:BOTTOM",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "DECK_COUNT",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DECK_COUNT: 'put two' requires count=2"
+        ]
+      },
+      {
+        "name": "Imp Gang Stooge: unknown position",
+        "feature": "deck_position:BOTTOM",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "'MIDDLE' not in",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.position: 'MIDDLE' not in ('RANDOM', 'TOP', 'BOTTOM')"
+        ]
+      },
+      {
+        "name": "shuffle with the default position",
+        "feature": "deck_position:RANDOM",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "shuffle with an explicit RANDOM position",
+        "feature": "deck_position:RANDOM",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "shuffle text read as bottom",
+        "feature": "deck_position:RANDOM",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "DECK_POSITION_V02",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: DECK_POSITION_V02: text inserts RANDOM, IR inserts BOTTOM"
+        ]
+      },
+      {
+        "name": "put on top",
+        "feature": "deck_position:TOP",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "negative deck count",
+        "feature": "deck_position:BOTTOM",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "must not be negative",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.count: must not be negative (state the direction: reduce or increase)"
+        ]
+      },
+      {
+        "name": "Waggle Pick: return with the full-hand rule acknowledged",
+        "feature": "move:PLAY_TO_HAND",
+        "kind": "good",
+        "origin": "REAL",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "Waggle Pick: full-hand rule not acknowledged",
+        "feature": "move:PLAY_TO_HAND",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "R_RETURN_FULL_HAND",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: provisional rule R_RETURN_FULL_HAND needs an UNKNOWN_RULE dependency with rule 'R_RETURN_FULL_HAND'"
+        ]
+      },
+      {
+        "name": "Waggle Pick: two minions",
+        "feature": "move:PLAY_TO_HAND",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "RETURN_SOURCE",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: RETURN_SOURCE: one battlefield minion must move into your hand"
+        ]
+      },
+      {
+        "name": "PLAY->HAND move of a non-minion",
+        "feature": "move:PLAY_TO_HAND",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "minions only",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0].effect.seq[0].what: a PLAY->HAND move is defined for minions only"
+        ]
+      },
+      {
+        "name": "full-hand acknowledgement without a move",
+        "feature": "move:PLAY_TO_HAND",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "does not need",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: 'r_return_full_hand' acknowledges R_RETURN_FULL_HAND, which the declaration does not need",
+          "dependencies: 'r_return_full_hand' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "randomly split (confirmed rule, no acknowledgement)",
+        "feature": "reading:split",
+        "kind": "good",
+        "origin": "SYNTHETIC",
+        "expect": "accept",
+        "code": null,
+        "accepted": true,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": []
+      },
+      {
+        "name": "randomly split with an unnecessary unqualified-split acknowledgement",
+        "feature": "reading:split",
+        "kind": "edge",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "does not need",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: 'r_split_unqualified' acknowledges R_SPLIT_UNQUALIFIED, which the declaration does not need",
+          "dependencies: 'r_split_unqualified' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "split read as damage to all enemies",
+        "feature": "reading:split",
+        "kind": "bad",
+        "origin": "SYNTHETIC",
+        "expect": "reject",
+        "code": "SPLIT_ENCODING",
+        "accepted": false,
+        "status": "FULL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[0]: 'random' in the text but not in the IR",
+          "abilities[0]: SPLIT_ENCODING: split damage is a repeat of 1 damage to a RANDOM pick"
+        ]
+      },
+      {
+        "name": "Magma Hound: unqualified split not acknowledged",
+        "feature": "reading:split",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "R_SPLIT_UNQUALIFIED",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies: provisional rule R_SPLIT_UNQUALIFIED needs an UNKNOWN_RULE dependency with rule 'R_SPLIT_UNQUALIFIED'",
+          "doc: status PARTIAL differs from implied FULL_DEP"
+        ]
+      },
+      {
+        "name": "acknowledging a non-provisional rule",
+        "feature": "rule_acknowledgement",
+        "kind": "bad",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "not a provisional v0.2 rule",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies[1]: rule 'R_COST' is not a provisional v0.2 rule",
+          "dependencies: 'cost' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "acknowledging one rule twice",
+        "feature": "rule_acknowledgement",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "already acknowledged",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies[2]: rule 'R_FREEZE_THAW' is already acknowledged",
+          "dependencies: 'again' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "acknowledgement with a non-rule kind",
+        "feature": "rule_acknowledgement",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "rule acknowledgement",
+        "accepted": false,
+        "status": "FULL_DEP",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "dependencies[1]: a rule acknowledgement is an UNKNOWN_RULE with scope CONDITIONAL/CORE",
+          "dependencies: provisional rule R_FREEZE_THAW needs an UNKNOWN_RULE dependency with rule 'R_FREEZE_THAW'",
+          "dependencies: 'freeze_thaw' is declared but never referenced (mark card_level)"
+        ]
+      },
+      {
+        "name": "Torch: no gap receipt",
+        "feature": "gap_receipts",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "GAP_BINDINGS",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "GAP_BINDINGS: explicit external bindings required for every unexpressed span",
+          "CORE_ORPHAN: 'instance_parameter' has no gap, unknown node or decision reference"
+        ]
+      },
+      {
+        "name": "Torch: CORE gap dependency removed",
+        "feature": "gap_receipts",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "GAP_DEPENDENCY",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "GAP_DEPENDENCY: /unexpressed/0 requires missing 'instance_parameter'",
+          "GAP_DEPENDENCY: /unexpressed/0 needs a CORE gap dependency"
+        ]
+      },
+      {
+        "name": "Torch: return hidden in a reminder",
+        "feature": "gap_receipts",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "REMINDER",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ]
+      },
+      {
+        "name": "Torch: static return as a plain ADD_TO_HAND",
+        "feature": "gap_receipts",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "RETURN_MOVE",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "abilities[1]: RETURN_MOVE: 'return' moves an existing card: ADD_TO_HAND needs from_zone"
+        ]
+      },
+      {
+        "name": "Torch: unconditional return of this card (caught only by the fail-closed guard)",
+        "feature": "gap_receipts",
+        "kind": "interaction",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "malformed declaration",
+        "accepted": false,
+        "status": "PARTIAL",
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "STRUCTURE: malformed declaration (AttributeError)"
+        ]
+      },
+      {
+        "name": "unknown version",
+        "feature": "versioning",
+        "kind": "edge",
+        "origin": "REAL",
+        "expect": "reject",
+        "code": "VERSION",
+        "accepted": false,
+        "status": null,
+        "passed": true,
+        "missing_render": [],
+        "messages": [
+          "VERSION: ir 'card-ir/0.3' is not one of ('card-ir/0.1', 'card-ir/0.2')"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "total": 65,
+    "v01_accepted": 65,
+    "dispatch_identical": 65,
+    "v02_rejects_version": 65,
+    "status": {
+      "FULL": 27,
+      "FULL_DEP": 25,
+      "PARTIAL": 13
+    },
+    "rows": [
+      {
+        "card_id": "BE_207",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BE_552",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BE_553t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BE_555",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BE_561",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BE_561t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "BOT_102t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CAP_107t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_200",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_301",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_458",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_465",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_465t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_475",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_487",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_488",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_488t",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_999",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_AT_055",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_BAR_812",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_BT_201",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_BT_416",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_CS2_072",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_DRG_107",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_EX1_002",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_EX1_145",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_EX1_238",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_GIL_836",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_ICC_055",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_REV_990",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_SW_072",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_SW_108",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_TTN_843",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "EDR_100t",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "END_022",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "EX1_277",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "FIR_906",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_321",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_327",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_516",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_730",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_732",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_872",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_603",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_609",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_890",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_890t",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_890t2",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TLC_226",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TLC_602",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TLC_602t",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TLC_816",
+        "v01_status": "FULL_DEP",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TTN_843t1",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_452",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_497",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CATA_585",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_BT_921",
+        "v01_status": "FULL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_DAL_720",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_RLK_063",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "CORE_SCH_713",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "EDR_895",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "FIR_953",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_118",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "JAIL_399",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      },
+      {
+        "card_id": "TIME_216",
+        "v01_status": "PARTIAL",
+        "v01_accepted": true,
+        "dispatch_identical": true,
+        "v02_validator_rejects_version": true
+      }
+    ]
+  },
+  "diagnostics_relabelled": {
+    "total": 9,
+    "rejected": 9,
+    "rows": {
+      "TIME_216/unconditional_draw": {
+        "rejected": true,
+        "reasons": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      "JAIL_118/destroy_all": {
+        "rejected": true,
+        "reasons": [
+          "abilities[0]: EXCLUSION_PREDICATE: exclusion for PALADIN is missing/inverted or in another zone"
+        ]
+      },
+      "JAIL_118/enemy_only": {
+        "rejected": true,
+        "reasons": [
+          "abilities[0]: enemy side needs an enemy word",
+          "abilities[0]: AREA_SIDE: unqualified all minions includes both sides"
+        ]
+      },
+      "JAIL_399/shuffle_not_bottom": {
+        "rejected": true,
+        "reasons": [
+          "abilities[0]: DECK_POSITION_V02: text inserts BOTTOM, IR inserts RANDOM",
+          "abilities[0]: DECK_COUNT: 'put two' requires count=2"
+        ]
+      },
+      "CORE_SCH_713/this_turn": {
+        "rejected": true,
+        "reasons": [
+          "abilities[0].effect.modifier.cost: must not be negative (state the direction: reduce or increase)",
+          "abilities[0].effect: a modifier player effect states its cardinality: uses N or 'ALL_MATCHING'",
+          "abilities[0].effect: a cost player effect states the zones whose cards it modifies"
+        ]
+      },
+      "FIR_953/hero_attack": {
+        "rejected": true,
+        "reasons": [
+          "dependencies: provisional rule R_SPLIT_UNQUALIFIED needs an UNKNOWN_RULE dependency with rule 'R_SPLIT_UNQUALIFIED'"
+        ]
+      },
+      "CATA_585/reminder_loophole": {
+        "rejected": true,
+        "reasons": [
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ]
+      },
+      "CORE_RLK_063/reminder_loophole": {
+        "rejected": true,
+        "reasons": [
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ]
+      },
+      "EDR_895/everything_reminder": {
+        "rejected": true,
+        "reasons": [
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ]
+      }
+    }
+  },
+  "mutations": {
+    "total": 44,
+    "detected": 42,
+    "by_operator": {
+      "NUMBER": {
+        "total": 6,
+        "detected": 6
+      },
+      "ABILITY_DROP": {
+        "total": 7,
+        "detected": 7
+      },
+      "DEP_DROP": {
+        "total": 7,
+        "detected": 7
+      },
+      "STATUS_OPTIMISTIC": {
+        "total": 7,
+        "detected": 7
+      },
+      "MARK_DROP": {
+        "total": 2,
+        "detected": 2
+      },
+      "SIDE": {
+        "total": 3,
+        "detected": 1
+      },
+      "PICK": {
+        "total": 3,
+        "detected": 3
+      },
+      "OP_SWAP": {
+        "total": 3,
+        "detected": 3
+      },
+      "REF_TO_SELF": {
+        "total": 2,
+        "detected": 2
+      },
+      "SEQ_SWAP": {
+        "total": 1,
+        "detected": 1
+      },
+      "STEP_DROP": {
+        "total": 1,
+        "detected": 1
+      },
+      "MARK_ADD": {
+        "total": 1,
+        "detected": 1
+      },
+      "TIMING": {
+        "total": 1,
+        "detected": 1
+      }
+    },
+    "undetected": [
+      {
+        "card_id": "CORE_RLK_063",
+        "operator": "SIDE",
+        "site": "abilities.0.target.choose.side",
+        "detected": false
+      },
+      {
+        "card_id": "FIR_953",
+        "operator": "SIDE",
+        "site": "abilities.0.event.defender.side",
+        "detected": false
+      }
+    ]
+  }
+}

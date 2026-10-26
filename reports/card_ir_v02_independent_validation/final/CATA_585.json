@@ -1,0 +1,90 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CATA_585",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+  "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $8 damage to a damaged minion.",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "victim"
+        },
+        "amount": {
+          "n": 8,
+          "mark": "$"
+        }
+      },
+      "target": {
+        "bind": "victim",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "MINION",
+          "side": "ANY",
+          "where": [
+            {
+              "damaged": true
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "persistent_damage",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+    },
+    {
+      "id": "spell_damage",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "observed",
+      "question": "What does excess carry?",
+      "alternatives": [
+        "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+        "Fresh 8 damage or unconditional return"
+      ],
+      "chosen": "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+      "basis": "USER_OBSERVED",
+      "risk": "OUTCOME",
+      "discriminating_case": "8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.",
+      "dep": "persistent_damage"
+    },
+    {
+      "id": "spellpower",
+      "question": "Does Spell Damage affect Torch?",
+      "alternatives": [
+        "Adds damage",
+        "Ignored by ImmuneToSpellpower"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+      "dep": "spell_damage"
+    }
+  ],
+  "status": "PARTIAL",
+  "unexpressed": [
+    {
+      "span": "Return this to hand with any excess damage.",
+      "why": "IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield."
+    }
+  ],
+  "notes": "The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE."
+}

@@ -1,0 +1,8 @@
+Declared status: FULL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Battlecry: Destroy all non-Paladin minions. => Battlecry: destroy all minions except all minions card class PALADIN [zones=PLAY; mode=ALL] [zones=PLAY; mode=ALL]
+Decision class [OUTCOME/TEXT]: Does non-Paladin exclude both sides? => All sides minus Paladin membership; alternatives: All sides minus Paladin membership / Enemy side only; dependency=none; distinguishing case: A friendly non-Paladin minion dies; a dual-class Paladin minion survives.
+Strict acceptance=True; complete=True; computed status=FULL
+Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)
+Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it

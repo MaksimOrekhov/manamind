@@ -1,0 +1,65 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_DAL_720",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+  "text_sha256": "b3871d585fc7fa49603e7ebeebfe17d42281978a615ac50474f9865ac36f3fef",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
+      "effect": {
+        "seq": [
+          {
+            "op": "ADD_TO_HAND",
+            "player": "SELF",
+            "what": {
+              "from_zone": {
+                "pick": "RANDOM",
+                "type": "MINION",
+                "side": "FRIENDLY",
+                "zone": "PLAY",
+                "n": 1
+              }
+            },
+            "as": "returned"
+          },
+          {
+            "op": "MODIFY_COST",
+            "to": {
+              "ref": "returned"
+            },
+            "reduce": 2
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "full_hand",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+      "rule": "R_RETURN_FULL_HAND"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "capacity",
+      "question": "What happens when hand is full?",
+      "alternatives": [
+        "Destroy moved minion, followup no-op",
+        "Other return failure behavior"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Weapon dies with ten cards in hand and one friendly deathrattle minion.",
+      "dep": "full_hand"
+    }
+  ],
+  "status": "FULL_DEP"
+}

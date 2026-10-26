@@ -1,0 +1,11 @@
+Declared status: FULL_DEP — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+keywords[0] TEXT: Taunt. => Keyword TAUNT
+abilities[0] TEXT: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck. => Deathrattle: put on the bottom of your deck: 2 x Grandmother Imp [JAIL_399t1] (resolved by description_match) [position=BOTTOM]
+Dependency <demon> TOKEN_IDENTITY/DATA: Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Decision position [OUTCOME/TEXT]: Where are the two copies inserted? => Bottom of own deck; alternatives: Bottom of own deck / Random positions; dependency=none; distinguishing case: Existing deck cards must be drawn before either new Demon.
+Strict acceptance=True; complete=True; computed status=FULL_DEP
+Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles
+Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue
+Rule R_DECK_POSITION [UNVERIFIED]: RANDOM inserts each card at a random deck position; TOP makes it the next card drawn; BOTTOM puts it after every card already in the deck; count N inserts N cards one at a time
+Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities

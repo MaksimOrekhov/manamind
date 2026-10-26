@@ -1,0 +1,15 @@
+Declared status: PARTIAL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Summon a 6/6 Dragon. => Cast: summon Azure Warden [CATA_452t] (resolved by description_match)
+abilities[1] TEXT: Costs (1) less for each damage you dealt with spells this turn. => In hand: cost reduced by (1 x total damage actually dealt (AMOUNT) by you with card type SPELL this turn)
+Dependency <dragon> TOKEN_IDENTITY/DATA: CATA_452t Azure Warden is a matching 6/6 Dragon with creator prefix; HSJSON does not contain a formal parent-token edge.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Dependency <damage_amount> UNKNOWN_RULE/CORE: The whole DAMAGE_DEALT amount contract is provisional, including prevention, overkill and qualifying spell sources; normal discount computation depends on it.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_DAMAGE_EVENT_AMOUNT
+Decision counter [OUTCOME/TEXT]: How is discount counted? => Damage amount of own spells this turn; alternatives: Damage amount of own spells this turn / Number of spells cast; dependency=damage_amount; distinguishing case: One spell dealing five damage discounts five, not one.
+Strict acceptance=True; complete=False; computed status=PARTIAL
+Rule R_AURA [UNKNOWN]: Continuous effects are recomputed between steps; recomputation inside one step is unreviewed
+Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned
+Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers
+Rule R_COUNTERS [PROJECT_REVIEWED]: Per-player history counters: cards played, spells cast, per turn, per game, last turn
+Rule R_DAMAGE_EVENT_AMOUNT [UNVERIFIED; PROVISIONAL: acknowledged by a dependency]: A DAMAGE_DEALT AMOUNT counter adds the damage actually dealt per packet: prevented damage (Divine Shield, Immune) counts 0, damage absorbed by Armor counts, overkill counts in full
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it
+Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end

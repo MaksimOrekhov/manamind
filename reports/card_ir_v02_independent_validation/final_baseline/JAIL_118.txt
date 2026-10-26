@@ -1,0 +1,10 @@
+Declared status: FULL_DEP — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Battlecry: Destroy all non-Paladin minions. => Battlecry: destroy all minions except all minions card class PALADIN [zones=PLAY; mode=ALL] [zones=PLAY; mode=ALL]
+Dependency <class_membership> UNKNOWN_RULE/CONDITIONAL: IR predicate says belongs to a class; matching multi-class Paladin membership rather than only scalar cardClass needs a reviewed metadata adapter. No executor exists here.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Decision class [OUTCOME/TEXT]: Does non-Paladin exclude both sides? => All sides minus Paladin membership; alternatives: All sides minus Paladin membership / Enemy side only; dependency=none; distinguishing case: A friendly non-Paladin minion dies; a dual-class Paladin minion survives.
+Decision multiclass [OUTCOME/UNKNOWN]: How does the future adapter test class membership? => UNRESOLVED; alternatives: Membership in classes as well as cardClass / Only scalar cardClass; dependency=class_membership; distinguishing case: A multi-class minion including Paladin should be excluded if membership semantics are implemented.
+Strict acceptance=True; complete=True; computed status=FULL_DEP
+Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)
+Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it

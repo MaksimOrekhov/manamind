@@ -1,0 +1,3493 @@
+[
+  {
+    "id": "fury_damage_enemy",
+    "card_id": "CORE_RLK_063",
+    "category": "target_side",
+    "kind": "semantic_error",
+    "witness": "Choose own hero/minion for the unqualified damage. The adjacent enemy freeze must not restrict that choice.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "FREEZE",
+                "to": {
+                  "pick": "ALL",
+                  "type": "MINION",
+                  "side": "ENEMY"
+                }
+              },
+              {
+                "op": "SUMMON",
+                "what": {
+                  "card": "RLK_063t",
+                  "resolved": "NAME_IN_SET",
+                  "dep": "frostwyrm"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "CHARACTER",
+              "side": "ENEMY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "fury_damage_minions_only",
+    "card_id": "CORE_RLK_063",
+    "category": "target_type",
+    "kind": "semantic_error",
+    "witness": "The unqualified damage can target a hero; minions-only removes that legal action.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "FREEZE",
+                "to": {
+                  "pick": "ALL",
+                  "type": "MINION",
+                  "side": "ENEMY"
+                }
+              },
+              {
+                "op": "SUMMON",
+                "what": {
+                  "card": "RLK_063t",
+                  "resolved": "NAME_IN_SET",
+                  "dep": "frostwyrm"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "fury_freeze_heroes",
+    "card_id": "CORE_RLK_063",
+    "category": "target_type",
+    "kind": "semantic_error",
+    "witness": "Enemy minions should freeze; the enemy hero should not be the area selection.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "FREEZE",
+                "to": {
+                  "pick": "ALL",
+                  "type": "HERO",
+                  "side": "ENEMY"
+                }
+              },
+              {
+                "op": "SUMMON",
+                "what": {
+                  "card": "RLK_063t",
+                  "resolved": "NAME_IN_SET",
+                  "dep": "frostwyrm"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "CHARACTER",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "fury_nested_order",
+    "card_id": "CORE_RLK_063",
+    "category": "order",
+    "kind": "semantic_error",
+    "witness": "A summon reaction reading Frozen enemies runs before freeze in the wrong nested sequence.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "seq": [
+                  {
+                    "op": "SUMMON",
+                    "what": {
+                      "card": "RLK_063t",
+                      "resolved": "NAME_IN_SET",
+                      "dep": "frostwyrm"
+                    }
+                  },
+                  {
+                    "op": "FREEZE",
+                    "to": {
+                      "pick": "ALL",
+                      "type": "MINION",
+                      "side": "ENEMY"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "CHARACTER",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "fury_missing_damage",
+    "card_id": "CORE_RLK_063",
+    "category": "omission",
+    "kind": "semantic_error",
+    "witness": "No damage is dealt although the card has a damage clause; unused victim binding is also visible to structure.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "FREEZE",
+                "to": {
+                  "pick": "ALL",
+                  "type": "MINION",
+                  "side": "ENEMY"
+                }
+              },
+              {
+                "op": "SUMMON",
+                "what": {
+                  "card": "RLK_063t",
+                  "resolved": "NAME_IN_SET",
+                  "dep": "frostwyrm"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "CHARACTER",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_draw_opponent",
+    "card_id": "TIME_216",
+    "category": "owner",
+    "kind": "semantic_error",
+    "witness": "The target survives; the author draws two, not the opponent.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "OPPONENT",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_unconditional_draw",
+    "card_id": "TIME_216",
+    "category": "condition",
+    "kind": "semantic_error",
+    "witness": "Target dies to five damage; wrong declaration still draws two.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "DRAW",
+                "player": "SELF",
+                "count": 2
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_inverted_survival",
+    "card_id": "TIME_216",
+    "category": "condition",
+    "kind": "semantic_error",
+    "witness": "Dead rather than surviving target draws two.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": false
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_health_not_alive",
+    "card_id": "TIME_216",
+    "category": "condition",
+    "kind": "semantic_error",
+    "witness": "After a reaction marks a positive-Health target for destruction, HEALTH>0 is true but R_SURVIVE is false.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "cmp": [
+                    {
+                      "stat": "HEALTH",
+                      "of": {
+                        "ref": "victim"
+                      }
+                    },
+                    ">",
+                    0
+                  ]
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_guard_before_damage",
+    "card_id": "TIME_216",
+    "category": "order",
+    "kind": "semantic_error",
+    "witness": "Living 3-Health target draws before lethal five damage, whereas the card should draw zero.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              },
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_wrong_damage_entity",
+    "card_id": "TIME_216",
+    "category": "binding",
+    "kind": "semantic_error",
+    "witness": "Damage hits SELF instead of the chosen target, whose survival is still tested.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": "SELF",
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "neophyte_minion_tax",
+    "card_id": "CORE_SCH_713",
+    "category": "target_type",
+    "kind": "semantic_error",
+    "witness": "Enemy minions are taxed instead of enemy spells.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_SCH_713",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+      "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "OPPONENT",
+            "duration": {
+              "next_turn": "OPPONENT"
+            },
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND"
+            ],
+            "applies_to": [
+              {
+                "card_type": "MINION"
+              }
+            ],
+            "modifier": {
+              "cost": {
+                "increase": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "deck_cost",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "window",
+          "question": "Who is taxed and for which turn?",
+          "alternatives": [
+            "Every enemy spell during next enemy turn",
+            "Only next spell or current turn"
+          ],
+          "chosen": "Every enemy spell during next enemy turn",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+        },
+        {
+          "id": "deck",
+          "question": "Are deck spell costs also modified?",
+          "alternatives": [
+            "HAND only",
+            "HAND and DECK"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+          "dep": "deck_cost"
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "neophyte_deck_only",
+    "card_id": "CORE_SCH_713",
+    "category": "zone",
+    "kind": "semantic_error",
+    "witness": "A spell already in enemy hand is unaffected by a DECK-only modifier when played.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_SCH_713",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+      "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "OPPONENT",
+            "duration": {
+              "next_turn": "OPPONENT"
+            },
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "DECK"
+            ],
+            "applies_to": [
+              {
+                "card_type": "SPELL"
+              }
+            ],
+            "modifier": {
+              "cost": {
+                "increase": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "deck_cost",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "window",
+          "question": "Who is taxed and for which turn?",
+          "alternatives": [
+            "Every enemy spell during next enemy turn",
+            "Only next spell or current turn"
+          ],
+          "chosen": "Every enemy spell during next enemy turn",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+        },
+        {
+          "id": "deck",
+          "question": "Are deck spell costs also modified?",
+          "alternatives": [
+            "HAND only",
+            "HAND and DECK"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+          "dep": "deck_cost"
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "neophyte_wrong_window",
+    "card_id": "CORE_SCH_713",
+    "category": "window",
+    "kind": "semantic_error",
+    "witness": "Tax expires before the enemy's next turn.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_SCH_713",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+      "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "OPPONENT",
+            "duration": "THIS_TURN",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND"
+            ],
+            "applies_to": [
+              {
+                "card_type": "SPELL"
+              }
+            ],
+            "modifier": {
+              "cost": {
+                "increase": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "deck_cost",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "window",
+          "question": "Who is taxed and for which turn?",
+          "alternatives": [
+            "Every enemy spell during next enemy turn",
+            "Only next spell or current turn"
+          ],
+          "chosen": "Every enemy spell during next enemy turn",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+        },
+        {
+          "id": "deck",
+          "question": "Are deck spell costs also modified?",
+          "alternatives": [
+            "HAND only",
+            "HAND and DECK"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+          "dep": "deck_cost"
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "aviana_enemy_owner",
+    "card_id": "EDR_895",
+    "category": "owner",
+    "kind": "semantic_error",
+    "witness": "Enemy instead of own cards become cheap after enemy instead of own turn starts; both owner fields agree internally.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "EDR_895",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "OPPONENT",
+            "duration": "THIS_GAME",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND",
+              "DECK"
+            ],
+            "starts_after": {
+              "player": "OPPONENT",
+              "turn_starts": 3
+            },
+            "modifier": {
+              "cost": {
+                "set": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "future_cards",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "boundary",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "cost_interactions",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "clock",
+          "question": "Whose three turns and how long?",
+          "alternatives": [
+            "Three own starts, rest of game",
+            "Three global turns, temporary"
+          ],
+          "chosen": "Three own starts, rest of game",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "Three intervening enemy turns must not activate the effect."
+        },
+        {
+          "id": "population",
+          "question": "Do cards arriving after Full Moon inherit cost 1?",
+          "alternatives": [
+            "Dynamic ALL_MATCHING",
+            "Only cards present at activation"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+          "dep": "future_cards"
+        },
+        {
+          "id": "boundary",
+          "question": "At which boundary of own turn three does Full Moon rise?",
+          "alternatives": [
+            "Start",
+            "End"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Read a card's cost during own turn three before its end.",
+          "dep": "boundary"
+        },
+        {
+          "id": "interactions",
+          "question": "How do later cost modifiers and a replayed Aviana interact?",
+          "alternatives": [
+            "Independent dynamic effects",
+            "Other stacking or reset procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+          "dep": "cost_interactions"
+        }
+      ],
+      "status": "PARTIAL",
+      "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+    },
+    "bindings": null
+  },
+  {
+    "id": "aviana_hand_only",
+    "card_id": "EDR_895",
+    "category": "zone",
+    "kind": "semantic_error",
+    "witness": "User explicitly observed deck cards also cost one; this encoding leaves deck costs unchanged.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "EDR_895",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "SELF",
+            "duration": "THIS_GAME",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND"
+            ],
+            "starts_after": {
+              "player": "SELF",
+              "turn_starts": 3
+            },
+            "modifier": {
+              "cost": {
+                "set": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "future_cards",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "boundary",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "cost_interactions",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "clock",
+          "question": "Whose three turns and how long?",
+          "alternatives": [
+            "Three own starts, rest of game",
+            "Three global turns, temporary"
+          ],
+          "chosen": "Three own starts, rest of game",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "Three intervening enemy turns must not activate the effect."
+        },
+        {
+          "id": "population",
+          "question": "Do cards arriving after Full Moon inherit cost 1?",
+          "alternatives": [
+            "Dynamic ALL_MATCHING",
+            "Only cards present at activation"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+          "dep": "future_cards"
+        },
+        {
+          "id": "boundary",
+          "question": "At which boundary of own turn three does Full Moon rise?",
+          "alternatives": [
+            "Start",
+            "End"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Read a card's cost during own turn three before its end.",
+          "dep": "boundary"
+        },
+        {
+          "id": "interactions",
+          "question": "How do later cost modifiers and a replayed Aviana interact?",
+          "alternatives": [
+            "Independent dynamic effects",
+            "Other stacking or reset procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+          "dep": "cost_interactions"
+        }
+      ],
+      "status": "PARTIAL",
+      "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+    },
+    "bindings": null
+  },
+  {
+    "id": "aviana_two_turns",
+    "card_id": "EDR_895",
+    "category": "window",
+    "kind": "semantic_error",
+    "witness": "Cost one activates after two own starts instead of three.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "EDR_895",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "SELF",
+            "duration": "THIS_GAME",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND",
+              "DECK"
+            ],
+            "starts_after": {
+              "player": "SELF",
+              "turn_starts": 2
+            },
+            "modifier": {
+              "cost": {
+                "set": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "future_cards",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "boundary",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "cost_interactions",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "clock",
+          "question": "Whose three turns and how long?",
+          "alternatives": [
+            "Three own starts, rest of game",
+            "Three global turns, temporary"
+          ],
+          "chosen": "Three own starts, rest of game",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "Three intervening enemy turns must not activate the effect."
+        },
+        {
+          "id": "population",
+          "question": "Do cards arriving after Full Moon inherit cost 1?",
+          "alternatives": [
+            "Dynamic ALL_MATCHING",
+            "Only cards present at activation"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+          "dep": "future_cards"
+        },
+        {
+          "id": "boundary",
+          "question": "At which boundary of own turn three does Full Moon rise?",
+          "alternatives": [
+            "Start",
+            "End"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Read a card's cost during own turn three before its end.",
+          "dep": "boundary"
+        },
+        {
+          "id": "interactions",
+          "question": "How do later cost modifiers and a replayed Aviana interact?",
+          "alternatives": [
+            "Independent dynamic effects",
+            "Other stacking or reset procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+          "dep": "cost_interactions"
+        }
+      ],
+      "status": "PARTIAL",
+      "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+    },
+    "bindings": null
+  },
+  {
+    "id": "aviana_no_cost_set",
+    "card_id": "EDR_895",
+    "category": "state_change",
+    "kind": "semantic_error",
+    "witness": "Cost reduced by one instead of set to one: a nine-mana card costs eight.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "EDR_895",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "SELF",
+            "duration": "THIS_GAME",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND",
+              "DECK"
+            ],
+            "starts_after": {
+              "player": "SELF",
+              "turn_starts": 3
+            },
+            "modifier": {
+              "cost": {
+                "reduce": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "future_cards",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "boundary",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "cost_interactions",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "clock",
+          "question": "Whose three turns and how long?",
+          "alternatives": [
+            "Three own starts, rest of game",
+            "Three global turns, temporary"
+          ],
+          "chosen": "Three own starts, rest of game",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "Three intervening enemy turns must not activate the effect."
+        },
+        {
+          "id": "population",
+          "question": "Do cards arriving after Full Moon inherit cost 1?",
+          "alternatives": [
+            "Dynamic ALL_MATCHING",
+            "Only cards present at activation"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+          "dep": "future_cards"
+        },
+        {
+          "id": "boundary",
+          "question": "At which boundary of own turn three does Full Moon rise?",
+          "alternatives": [
+            "Start",
+            "End"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Read a card's cost during own turn three before its end.",
+          "dep": "boundary"
+        },
+        {
+          "id": "interactions",
+          "question": "How do later cost modifiers and a replayed Aviana interact?",
+          "alternatives": [
+            "Independent dynamic effects",
+            "Other stacking or reset procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+          "dep": "cost_interactions"
+        }
+      ],
+      "status": "PARTIAL",
+      "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+    },
+    "bindings": null
+  },
+  {
+    "id": "hound_core_downgrade",
+    "card_id": "FIR_953",
+    "category": "dependency_scope",
+    "kind": "evidence_error",
+    "witness": "Unconfirmed split procedure affects the primary effect every trigger, yet merely changing the author's scope grants FULL_DEP.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "FIR_953",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "abilities": [
+        {
+          "kind": "trigger",
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "event": {
+            "type": "ATTACK_DECLARED",
+            "attacker": "SELF",
+            "defender": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          },
+          "timing": "AFTER",
+          "condition": {
+            "is": {
+              "entity": "SELF",
+              "where": [
+                {
+                  "alive": true
+                }
+              ]
+            }
+          },
+          "effect": {
+            "repeat": {
+              "stat": "ATTACK",
+              "of": "SELF",
+              "at": "CURRENT"
+            },
+            "do": {
+              "op": "DEAL_DAMAGE",
+              "amount": 1,
+              "to": {
+                "pick": "RANDOM",
+                "type": "CHARACTER",
+                "side": "ENEMY"
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "split",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_SPLIT_UNQUALIFIED"
+        },
+        {
+          "id": "redirect",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_ATTACK_REDIRECT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "distribution",
+          "question": "Does unqualified split mean random 1-damage packets?",
+          "alternatives": [
+            "Random live targets per packet",
+            "Other split procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+          "dep": "split"
+        },
+        {
+          "id": "attack",
+          "question": "When and which combat?",
+          "alternatives": [
+            "After source attacks a minion and survives",
+            "Any character's attack"
+          ],
+          "chosen": "After source attacks a minion and survives",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+        }
+      ],
+      "status": "FULL_DEP",
+      "keywords": [
+        {
+          "keyword": "RUSH",
+          "span": "Rush."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "fury_core_downgrade",
+    "card_id": "CORE_RLK_063",
+    "category": "dependency_scope",
+    "kind": "evidence_error",
+    "witness": "Thaw timing affects ordinary next-turn attacks, yet changing CORE to CONDITIONAL grants FULL_DEP.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_RLK_063",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "FREEZE",
+                "to": {
+                  "pick": "ALL",
+                  "type": "MINION",
+                  "side": "ENEMY"
+                }
+              },
+              {
+                "op": "SUMMON",
+                "what": {
+                  "card": "RLK_063t",
+                  "resolved": "NAME_IN_SET",
+                  "dep": "frostwyrm"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "CHARACTER",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "thaw",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_FREEZE_THAW"
+        },
+        {
+          "id": "frostwyrm",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "thaw",
+          "question": "When does Frozen expire?",
+          "alternatives": [
+            "Controller-turn removal conditional on attack availability",
+            "Other thaw timing"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+          "dep": "thaw"
+        },
+        {
+          "id": "damage_target",
+          "question": "Does unqualified damage restrict side?",
+          "alternatives": [
+            "Chosen character on either side",
+            "Enemy characters only"
+          ],
+          "chosen": "Chosen character on either side",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "aviana_core_downgrade",
+    "card_id": "EDR_895",
+    "category": "dependency_scope",
+    "kind": "evidence_error",
+    "witness": "Unresolved activation boundary and future-card procedure remain, but scope alone upgrades the label to FULL_DEP.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "EDR_895",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+          "effect": {
+            "op": "ADD_PLAYER_EFFECT",
+            "player": "SELF",
+            "duration": "THIS_GAME",
+            "uses": "ALL_MATCHING",
+            "zones": [
+              "HAND",
+              "DECK"
+            ],
+            "starts_after": {
+              "player": "SELF",
+              "turn_starts": 3
+            },
+            "modifier": {
+              "cost": {
+                "set": 1
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "future_cards",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "boundary",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "cost_interactions",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "clock",
+          "question": "Whose three turns and how long?",
+          "alternatives": [
+            "Three own starts, rest of game",
+            "Three global turns, temporary"
+          ],
+          "chosen": "Three own starts, rest of game",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "Three intervening enemy turns must not activate the effect."
+        },
+        {
+          "id": "population",
+          "question": "Do cards arriving after Full Moon inherit cost 1?",
+          "alternatives": [
+            "Dynamic ALL_MATCHING",
+            "Only cards present at activation"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+          "dep": "future_cards"
+        },
+        {
+          "id": "boundary",
+          "question": "At which boundary of own turn three does Full Moon rise?",
+          "alternatives": [
+            "Start",
+            "End"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Read a card's cost during own turn three before its end.",
+          "dep": "boundary"
+        },
+        {
+          "id": "interactions",
+          "question": "How do later cost modifiers and a replayed Aviana interact?",
+          "alternatives": [
+            "Independent dynamic effects",
+            "Other stacking or reset procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+          "dep": "cost_interactions"
+        }
+      ],
+      "status": "FULL_DEP",
+      "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+    },
+    "bindings": null
+  },
+  {
+    "id": "hound_health_packets",
+    "card_id": "FIR_953",
+    "category": "state_read",
+    "kind": "semantic_error",
+    "witness": "A 5-Attack, 8-Health Hound deals eight packets rather than five.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "FIR_953",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "abilities": [
+        {
+          "kind": "trigger",
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "event": {
+            "type": "ATTACK_DECLARED",
+            "attacker": "SELF",
+            "defender": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          },
+          "timing": "AFTER",
+          "condition": {
+            "is": {
+              "entity": "SELF",
+              "where": [
+                {
+                  "alive": true
+                }
+              ]
+            }
+          },
+          "effect": {
+            "repeat": {
+              "stat": "HEALTH",
+              "of": "SELF",
+              "at": "CURRENT"
+            },
+            "do": {
+              "op": "DEAL_DAMAGE",
+              "amount": 1,
+              "to": {
+                "pick": "RANDOM",
+                "type": "CHARACTER",
+                "side": "ENEMY"
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "split",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_SPLIT_UNQUALIFIED"
+        },
+        {
+          "id": "redirect",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_ATTACK_REDIRECT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "distribution",
+          "question": "Does unqualified split mean random 1-damage packets?",
+          "alternatives": [
+            "Random live targets per packet",
+            "Other split procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+          "dep": "split"
+        },
+        {
+          "id": "attack",
+          "question": "When and which combat?",
+          "alternatives": [
+            "After source attacks a minion and survives",
+            "Any character's attack"
+          ],
+          "chosen": "After source attacks a minion and survives",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+        }
+      ],
+      "status": "PARTIAL",
+      "keywords": [
+        {
+          "keyword": "RUSH",
+          "span": "Rush."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "hound_no_survival",
+    "card_id": "FIR_953",
+    "category": "condition",
+    "kind": "semantic_error",
+    "witness": "Hound dies attacking a minion; a trigger without the survival condition would still deal damage.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "FIR_953",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "abilities": [
+        {
+          "kind": "trigger",
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "event": {
+            "type": "ATTACK_DECLARED",
+            "attacker": "SELF",
+            "defender": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          },
+          "timing": "AFTER",
+          "effect": {
+            "repeat": {
+              "stat": "ATTACK",
+              "of": "SELF",
+              "at": "CURRENT"
+            },
+            "do": {
+              "op": "DEAL_DAMAGE",
+              "amount": 1,
+              "to": {
+                "pick": "RANDOM",
+                "type": "CHARACTER",
+                "side": "ENEMY"
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "split",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_SPLIT_UNQUALIFIED"
+        },
+        {
+          "id": "redirect",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_ATTACK_REDIRECT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "distribution",
+          "question": "Does unqualified split mean random 1-damage packets?",
+          "alternatives": [
+            "Random live targets per packet",
+            "Other split procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+          "dep": "split"
+        },
+        {
+          "id": "attack",
+          "question": "When and which combat?",
+          "alternatives": [
+            "After source attacks a minion and survives",
+            "Any character's attack"
+          ],
+          "chosen": "After source attacks a minion and survives",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+        }
+      ],
+      "status": "PARTIAL",
+      "keywords": [
+        {
+          "keyword": "RUSH",
+          "span": "Rush."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "hound_defender_hero",
+    "card_id": "FIR_953",
+    "category": "event_role",
+    "kind": "semantic_error",
+    "witness": "Hound attacking a hero triggers the effect instead of attacking a minion.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "FIR_953",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "abilities": [
+        {
+          "kind": "trigger",
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "event": {
+            "type": "ATTACK_DECLARED",
+            "attacker": "SELF",
+            "defender": {
+              "pick": "ALL",
+              "type": "HERO",
+              "side": "ANY"
+            }
+          },
+          "timing": "AFTER",
+          "condition": {
+            "is": {
+              "entity": "SELF",
+              "where": [
+                {
+                  "alive": true
+                }
+              ]
+            }
+          },
+          "effect": {
+            "repeat": {
+              "stat": "ATTACK",
+              "of": "SELF",
+              "at": "CURRENT"
+            },
+            "do": {
+              "op": "DEAL_DAMAGE",
+              "amount": 1,
+              "to": {
+                "pick": "RANDOM",
+                "type": "CHARACTER",
+                "side": "ENEMY"
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "split",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_SPLIT_UNQUALIFIED"
+        },
+        {
+          "id": "redirect",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_ATTACK_REDIRECT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "distribution",
+          "question": "Does unqualified split mean random 1-damage packets?",
+          "alternatives": [
+            "Random live targets per packet",
+            "Other split procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+          "dep": "split"
+        },
+        {
+          "id": "attack",
+          "question": "When and which combat?",
+          "alternatives": [
+            "After source attacks a minion and survives",
+            "Any character's attack"
+          ],
+          "chosen": "After source attacks a minion and survives",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+        }
+      ],
+      "status": "PARTIAL",
+      "keywords": [
+        {
+          "keyword": "RUSH",
+          "span": "Rush."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "hound_defender_enemy_equivalent",
+    "card_id": "FIR_953",
+    "category": "event_role",
+    "kind": "equivalent_control",
+    "witness": "In ordinary legal combat own Hound cannot attack a friendly minion; ANY -> ENEMY is equivalent, excluded from errors.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "FIR_953",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "abilities": [
+        {
+          "kind": "trigger",
+          "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+          "event": {
+            "type": "ATTACK_DECLARED",
+            "attacker": "SELF",
+            "defender": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ENEMY"
+            }
+          },
+          "timing": "AFTER",
+          "condition": {
+            "is": {
+              "entity": "SELF",
+              "where": [
+                {
+                  "alive": true
+                }
+              ]
+            }
+          },
+          "effect": {
+            "repeat": {
+              "stat": "ATTACK",
+              "of": "SELF",
+              "at": "CURRENT"
+            },
+            "do": {
+              "op": "DEAL_DAMAGE",
+              "amount": 1,
+              "to": {
+                "pick": "RANDOM",
+                "type": "CHARACTER",
+                "side": "ENEMY"
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "split",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_SPLIT_UNQUALIFIED"
+        },
+        {
+          "id": "redirect",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_ATTACK_REDIRECT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "distribution",
+          "question": "Does unqualified split mean random 1-damage packets?",
+          "alternatives": [
+            "Random live targets per packet",
+            "Other split procedure"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+          "dep": "split"
+        },
+        {
+          "id": "attack",
+          "question": "When and which combat?",
+          "alternatives": [
+            "After source attacks a minion and survives",
+            "Any character's attack"
+          ],
+          "chosen": "After source attacks a minion and survives",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+        }
+      ],
+      "status": "PARTIAL",
+      "keywords": [
+        {
+          "keyword": "RUSH",
+          "span": "Rush."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "imp_wrong_owner",
+    "card_id": "JAIL_399",
+    "category": "owner",
+    "kind": "semantic_error",
+    "witness": "The two Demons go to opponent's deck instead of own.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "JAIL_399",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+      "abilities": [
+        {
+          "kind": "deathrattle",
+          "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+          "effect": {
+            "op": "SHUFFLE_INTO_DECK",
+            "player": "OPPONENT",
+            "position": "BOTTOM",
+            "count": 2,
+            "what": {
+              "card": "JAIL_399t1",
+              "resolved": "DESCRIPTION_MATCH",
+              "dep": "demon"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "demon",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "position",
+          "question": "Where are the two copies inserted?",
+          "alternatives": [
+            "Bottom of own deck",
+            "Random positions"
+          ],
+          "chosen": "Bottom of own deck",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+        }
+      ],
+      "status": "FULL_DEP",
+      "keywords": [
+        {
+          "keyword": "TAUNT",
+          "span": "Taunt."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "imp_wrong_position",
+    "card_id": "JAIL_399",
+    "category": "window",
+    "kind": "semantic_error",
+    "witness": "A Demon can be drawn before cards that were already in the deck.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "JAIL_399",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+      "abilities": [
+        {
+          "kind": "deathrattle",
+          "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+          "effect": {
+            "op": "SHUFFLE_INTO_DECK",
+            "player": "SELF",
+            "position": "RANDOM",
+            "count": 2,
+            "what": {
+              "card": "JAIL_399t1",
+              "resolved": "DESCRIPTION_MATCH",
+              "dep": "demon"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "demon",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "position",
+          "question": "Where are the two copies inserted?",
+          "alternatives": [
+            "Bottom of own deck",
+            "Random positions"
+          ],
+          "chosen": "Bottom of own deck",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+        }
+      ],
+      "status": "FULL_DEP",
+      "keywords": [
+        {
+          "keyword": "TAUNT",
+          "span": "Taunt."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "imp_wrong_token",
+    "card_id": "JAIL_399",
+    "category": "token",
+    "kind": "semantic_error",
+    "witness": "AT_120 Frost Giant has 8/8 stats but is not a Demon with Taunt and Lifesteal.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "JAIL_399",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+      "abilities": [
+        {
+          "kind": "deathrattle",
+          "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+          "effect": {
+            "op": "SHUFFLE_INTO_DECK",
+            "player": "SELF",
+            "position": "BOTTOM",
+            "count": 2,
+            "what": {
+              "card": "AT_120",
+              "resolved": "DESCRIPTION_MATCH",
+              "dep": "demon"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "demon",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "position",
+          "question": "Where are the two copies inserted?",
+          "alternatives": [
+            "Bottom of own deck",
+            "Random positions"
+          ],
+          "chosen": "Bottom of own deck",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+        }
+      ],
+      "status": "FULL_DEP",
+      "keywords": [
+        {
+          "keyword": "TAUNT",
+          "span": "Taunt."
+        }
+      ]
+    },
+    "bindings": null
+  },
+  {
+    "id": "brilliance_wrong_token",
+    "card_id": "CATA_452",
+    "category": "token",
+    "kind": "semantic_error",
+    "witness": "AT_041 Knight of the Wild is 6/6 but not a Dragon.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CATA_452",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+      "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Summon a 6/6 Dragon.",
+          "effect": {
+            "op": "SUMMON",
+            "what": {
+              "card": "AT_041",
+              "resolved": "DESCRIPTION_MATCH",
+              "dep": "dragon"
+            }
+          }
+        },
+        {
+          "kind": "aura",
+          "span": "Costs (1) less for each damage you dealt with spells this turn.",
+          "active_in": "HAND",
+          "modifier": {
+            "cost": {
+              "reduce": {
+                "mul": [
+                  1,
+                  {
+                    "counter": {
+                      "event": "DAMAGE_DEALT",
+                      "measure": "AMOUNT",
+                      "player": "SELF",
+                      "scope": "THIS_TURN",
+                      "source": [
+                        {
+                          "card_type": "SPELL"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "dragon",
+          "kind": "TOKEN_IDENTITY",
+          "scope": "DATA",
+          "detail": "CATA_452t Azure Warden is a matching 6/6 Dragon with creator prefix; HSJSON does not contain a formal parent-token edge.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "damage_amount",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "The whole DAMAGE_DEALT amount contract is provisional, including prevention, overkill and qualifying spell sources; normal discount computation depends on it.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_DAMAGE_EVENT_AMOUNT"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "counter",
+          "question": "How is discount counted?",
+          "alternatives": [
+            "Damage amount of own spells this turn",
+            "Number of spells cast"
+          ],
+          "chosen": "Damage amount of own spells this turn",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "One spell dealing five damage discounts five, not one.",
+          "dep": "damage_amount"
+        }
+      ],
+      "status": "PARTIAL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "vama_all_minions",
+    "card_id": "JAIL_118",
+    "category": "omission",
+    "kind": "semantic_error",
+    "witness": "A Paladin minion including V'ama is destroyed because the exclusion disappeared.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "JAIL_118",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+      "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "BATTLECRY",
+          "span": "Battlecry: Destroy all non-Paladin minions.",
+          "effect": {
+            "op": "DESTROY",
+            "to": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "class_membership",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "IR predicate says belongs to a class; matching multi-class Paladin membership rather than only scalar cardClass needs a reviewed metadata adapter. No executor exists here.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "class",
+          "question": "Does non-Paladin exclude both sides?",
+          "alternatives": [
+            "All sides minus Paladin membership",
+            "Enemy side only"
+          ],
+          "chosen": "All sides minus Paladin membership",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "A friendly non-Paladin minion dies; a dual-class Paladin minion survives."
+        },
+        {
+          "id": "multiclass",
+          "question": "How does the future adapter test class membership?",
+          "alternatives": [
+            "Membership in classes as well as cardClass",
+            "Only scalar cardClass"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "A multi-class minion including Paladin should be excluded if membership semantics are implemented.",
+          "dep": "class_membership"
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "waggle_wrong_discount_target",
+    "card_id": "CORE_DAL_720",
+    "category": "binding",
+    "kind": "semantic_error",
+    "witness": "The weapon SELF rather than the returned minion receives the cost reduction; returned reference is unused.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CORE_DAL_720",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+      "text_sha256": "b3871d585fc7fa49603e7ebeebfe17d42281978a615ac50474f9865ac36f3fef",
+      "abilities": [
+        {
+          "kind": "deathrattle",
+          "span": "Deathrattle: Return a random friendly minion to your hand. It costs (2) less.",
+          "effect": {
+            "seq": [
+              {
+                "op": "ADD_TO_HAND",
+                "player": "SELF",
+                "what": {
+                  "from_zone": {
+                    "pick": "RANDOM",
+                    "type": "MINION",
+                    "side": "FRIENDLY",
+                    "zone": "PLAY",
+                    "n": 1
+                  }
+                },
+                "as": "returned"
+              },
+              {
+                "op": "MODIFY_COST",
+                "to": "SELF",
+                "reduce": 2
+              }
+            ]
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "full_hand",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+          "rule": "R_RETURN_FULL_HAND"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "capacity",
+          "question": "What happens when hand is full?",
+          "alternatives": [
+            "Destroy moved minion, followup no-op",
+            "Other return failure behavior"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Weapon dies with ten cards in hand and one friendly deathrattle minion.",
+          "dep": "full_hand"
+        }
+      ],
+      "status": "FULL_DEP"
+    },
+    "bindings": null
+  },
+  {
+    "id": "torch_structured_unconditional",
+    "card_id": "CATA_585",
+    "category": "condition_and_state",
+    "kind": "semantic_error",
+    "witness": "Zero excess or Divine Shield must return nothing. This structurally valid encoding unconditionally returns the victim and stores no damage; FULL_DEP is false. Multiple independent semantic faults, not an isolated full Torch control.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CATA_585",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $8 damage to a damaged minion. Return this to hand with any excess damage.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 8,
+                  "mark": "$"
+                }
+              },
+              {
+                "op": "ADD_TO_HAND",
+                "player": "SELF",
+                "what": {
+                  "from_zone": {
+                    "ref": "victim"
+                  }
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY",
+              "where": [
+                {
+                  "damaged": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "spell_damage",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "spellpower",
+          "question": "Does Spell Damage affect Torch?",
+          "alternatives": [
+            "Adds damage",
+            "Ignored by ImmuneToSpellpower"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+          "dep": "spell_damage"
+        }
+      ],
+      "status": "FULL_DEP",
+      "notes": "The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE."
+    },
+    "bindings": null
+  },
+  {
+    "id": "torch_reminder",
+    "card_id": "CATA_585",
+    "category": "service_field",
+    "kind": "semantic_error",
+    "witness": "Executable return clause disguised as a UI reminder must be rejected.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CATA_585",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $8 damage to a damaged minion.",
+          "effect": {
+            "op": "DEAL_DAMAGE",
+            "to": {
+              "ref": "victim"
+            },
+            "amount": {
+              "n": 8,
+              "mark": "$"
+            }
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY",
+              "where": [
+                {
+                  "damaged": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "persistent_damage",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CORE",
+          "detail": "Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        },
+        {
+          "id": "spell_damage",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "observed",
+          "question": "What does excess carry?",
+          "alternatives": [
+            "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+            "Fresh 8 damage or unconditional return"
+          ],
+          "chosen": "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+          "basis": "USER_OBSERVED",
+          "risk": "OUTCOME",
+          "discriminating_case": "8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.",
+          "dep": "persistent_damage"
+        },
+        {
+          "id": "spellpower",
+          "question": "Does Spell Damage affect Torch?",
+          "alternatives": [
+            "Adds damage",
+            "Ignored by ImmuneToSpellpower"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+          "dep": "spell_damage"
+        }
+      ],
+      "status": "PARTIAL",
+      "notes": "The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE.",
+      "reminders": [
+        {
+          "span": "Return this to hand with any excess damage.",
+          "why": "IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield."
+        }
+      ]
+    },
+    "bindings": {
+      "card_id": "CATA_585",
+      "snapshot": "hsjson_255130_enUS",
+      "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+      "gaps": [
+        {
+          "gap": "/unexpressed/0",
+          "span": "Return this to hand with any excess damage.",
+          "why": "IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield.",
+          "dependencies": [
+            "persistent_damage"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "id": "torch_notes_only",
+    "card_id": "CATA_585",
+    "category": "service_field",
+    "kind": "semantic_error",
+    "witness": "Entire return and persistence procedure is only a non-executable note under the full span.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "CATA_585",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $8 damage to a damaged minion. Return this to hand with any excess damage.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 8,
+                  "mark": "$"
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY",
+              "where": [
+                {
+                  "damaged": true
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "dependencies": [
+        {
+          "id": "spell_damage",
+          "kind": "UNKNOWN_RULE",
+          "scope": "CONDITIONAL",
+          "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+          "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+        }
+      ],
+      "decisions": [
+        {
+          "id": "spellpower",
+          "question": "Does Spell Damage affect Torch?",
+          "alternatives": [
+            "Adds damage",
+            "Ignored by ImmuneToSpellpower"
+          ],
+          "chosen": "UNRESOLVED",
+          "basis": "UNKNOWN",
+          "risk": "OUTCOME",
+          "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+          "dep": "spell_damage"
+        }
+      ],
+      "status": "FULL_DEP",
+      "notes": "Runtime must return this spell when excess > 0, storing the excess damage."
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_float_mark",
+    "card_id": "TIME_216",
+    "category": "json_type",
+    "kind": "schema_error",
+    "witness": "The literal schema requires integers; JSON 5.0 is not an integer.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5.0,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_bool_mark",
+    "card_id": "TIME_216",
+    "category": "json_type",
+    "kind": "schema_error",
+    "witness": "A boolean must not be accepted as a marked damage number.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": true,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_untyped_ref",
+    "card_id": "TIME_216",
+    "category": "binding_type",
+    "kind": "schema_error",
+    "witness": "A scalar assigned to victim overwrites its entity binding; subsequent ref victim is no longer an entity.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "set": {
+                  "victim": 5
+                }
+              },
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": [],
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  },
+  {
+    "id": "bolt_empty_dependencies",
+    "card_id": "TIME_216",
+    "category": "json_type",
+    "kind": "schema_error",
+    "witness": "dependencies must be an array; the empty object must not pass by vacuous iteration.",
+    "declaration": {
+      "ir": "card-ir/0.2",
+      "card_id": "TIME_216",
+      "snapshot": "hsjson_255130_enUS",
+      "role": "sample",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "abilities": [
+        {
+          "kind": "play",
+          "label": "SPELL",
+          "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+          "effect": {
+            "seq": [
+              {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "ref": "victim"
+                },
+                "amount": {
+                  "n": 5,
+                  "mark": "$"
+                }
+              },
+              {
+                "if": {
+                  "is": {
+                    "entity": {
+                      "ref": "victim"
+                    },
+                    "where": [
+                      {
+                        "alive": true
+                      }
+                    ]
+                  }
+                },
+                "then": {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              }
+            ]
+          },
+          "target": {
+            "bind": "victim",
+            "choose": {
+              "pick": "CHOSEN",
+              "type": "MINION",
+              "side": "ANY"
+            }
+          }
+        }
+      ],
+      "dependencies": {},
+      "decisions": [
+        {
+          "id": "survival",
+          "question": "Which entity must survive and when?",
+          "alternatives": [
+            "Chosen victim after damage and reactions",
+            "Source or pre-damage victim"
+          ],
+          "chosen": "Chosen victim after damage and reactions",
+          "basis": "TEXT",
+          "risk": "OUTCOME",
+          "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+        }
+      ],
+      "status": "FULL"
+    },
+    "bindings": null
+  }
+]

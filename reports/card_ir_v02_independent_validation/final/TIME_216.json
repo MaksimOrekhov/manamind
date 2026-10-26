@@ -1,0 +1,72 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "TIME_216",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+  "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "effect": {
+        "seq": [
+          {
+            "op": "DEAL_DAMAGE",
+            "to": {
+              "ref": "victim"
+            },
+            "amount": {
+              "n": 5,
+              "mark": "$"
+            }
+          },
+          {
+            "if": {
+              "is": {
+                "entity": {
+                  "ref": "victim"
+                },
+                "where": [
+                  {
+                    "alive": true
+                  }
+                ]
+              }
+            },
+            "then": {
+              "op": "DRAW",
+              "player": "SELF",
+              "count": 2
+            }
+          }
+        ]
+      },
+      "target": {
+        "bind": "victim",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "MINION",
+          "side": "ANY"
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "survival",
+      "question": "Which entity must survive and when?",
+      "alternatives": [
+        "Chosen victim after damage and reactions",
+        "Source or pre-damage victim"
+      ],
+      "chosen": "Chosen victim after damage and reactions",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+    }
+  ],
+  "status": "FULL"
+}

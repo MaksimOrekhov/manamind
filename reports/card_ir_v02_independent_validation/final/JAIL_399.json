@@ -1,0 +1,55 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "JAIL_399",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+  "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+      "effect": {
+        "op": "SHUFFLE_INTO_DECK",
+        "player": "SELF",
+        "position": "BOTTOM",
+        "count": 2,
+        "what": {
+          "card": "JAIL_399t1",
+          "resolved": "DESCRIPTION_MATCH",
+          "dep": "demon"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "demon",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "position",
+      "question": "Where are the two copies inserted?",
+      "alternatives": [
+        "Bottom of own deck",
+        "Random positions"
+      ],
+      "chosen": "Bottom of own deck",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+    }
+  ],
+  "status": "FULL_DEP",
+  "keywords": [
+    {
+      "keyword": "TAUNT",
+      "span": "Taunt."
+    }
+  ]
+}

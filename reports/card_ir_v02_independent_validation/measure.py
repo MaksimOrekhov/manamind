@@ -31,6 +31,7 @@ def check(doc, meta, binding=None):
 
 
 def measure(source, bindings, output):
+    source = source.resolve()
     meta = CardMetadata.load()
     receipts = read(bindings)
     output.mkdir(parents=True, exist_ok=False)

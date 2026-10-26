@@ -1,0 +1,18 @@
+Declared status: PARTIAL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then freeze all enemy minions [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)
+Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW
+Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.
+Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.
+Strict acceptance=True; complete=False; computed status=PARTIAL
+Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)
+Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)
+Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned
+Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations
+Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage
+Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it
+Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)
+Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps
+Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end

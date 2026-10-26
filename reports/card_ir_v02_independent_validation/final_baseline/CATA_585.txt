@@ -1,0 +1,15 @@
+Declared status: PARTIAL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Deal $8 damage to a damaged minion. => Cast: choose a chosen minion damaged [zones=PLAY; mode=CHOSEN] as <victim>; deal $8 damage to them<victim>
+unexpressed[0] UNEXPRESSED (not executed): Return this to hand with any excess damage.; reason: IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield.
+Gap binding /unexpressed/0 => dependencies: persistent_damage
+Dependency <persistent_damage> UNKNOWN_RULE/CORE: Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Dependency <spell_damage> UNKNOWN_RULE/CONDITIONAL: Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs
+Decision observed [OUTCOME/USER_OBSERVED]: What does excess carry? => Remaining instance damage 8 -> 5 -> 3; positive excess only; alternatives: Remaining instance damage 8 -> 5 -> 3; positive excess only / Fresh 8 damage or unconditional return; dependency=persistent_damage; distinguishing case: 8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.
+Decision spellpower [OUTCOME/UNKNOWN]: Does Spell Damage affect Torch? => UNRESOLVED; alternatives: Adds damage / Ignored by ImmuneToSpellpower; dependency=spell_damage; distinguishing case: Cast with +1 Spell Damage and inspect damage and returned parameter.
+Author notes (not executed): The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE.
+Strict acceptance=True; complete=False; computed status=PARTIAL
+Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)
+Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it
+Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)

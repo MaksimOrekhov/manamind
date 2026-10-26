@@ -1,0 +1,15 @@
+Declared status: FULL_DEP — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Deathrattle: Return a random friendly minion to your hand. It costs (2) less. => Deathrattle: you get random 1 friendly minion [zones=PLAY; mode=RANDOM] as <returned> [move PLAY->HAND: state reset R_RETURN_TO_HAND; full hand R_RETURN_FULL_HAND]; then cost of them<returned> reduced by 2
+Dependency <full_hand> UNKNOWN_RULE/CONDITIONAL: Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_RETURN_FULL_HAND
+Decision capacity [OUTCOME/UNKNOWN]: What happens when hand is full? => UNRESOLVED; alternatives: Destroy moved minion, followup no-op / Other return failure behavior; dependency=full_hand; distinguishing case: Weapon dies with ten cards in hand and one friendly deathrattle minion.
+Strict acceptance=True; complete=True; computed status=FULL_DEP
+Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers
+Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles
+Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue
+Rule R_HAND_LIMIT [UNVERIFIED]: At most 10 cards in hand; an extra card is destroyed
+Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities
+Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing
+Rule R_RETURN_FULL_HAND [UNVERIFIED; PROVISIONAL: acknowledged by a dependency]: With a full hand the moved minion is destroyed instead (it dies: Deathrattles and death triggers run) and later steps that refer to it do nothing
+Rule R_RETURN_TO_HAND [COMMUNITY_RULES]: Moving a minion from play to a hand gives the card without its damage, enchantments, Silence or other in-play state; a reference bound to it then denotes the card in hand
+Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps

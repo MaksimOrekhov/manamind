@@ -1,0 +1,11 @@
+Declared status: FULL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+abilities[0] TEXT: Battlecry: Your opponent's spells cost (1) more next turn. => Battlecry: the opponent get a player effect: cost increased by 1; applies to card type SPELL: every matching card while active, including later arrivals; zones=HAND; active immediately; during the opponent's next turn (start to end)
+Decision window [OUTCOME/TEXT]: Who is taxed and for which turn? => Every enemy spell during next enemy turn; alternatives: Every enemy spell during next enemy turn / Only next spell or current turn; dependency=none; distinguishing case: Two enemy spells next turn are both taxed; no tax remains the following turn.
+Strict acceptance=True; complete=True; computed status=FULL
+Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers
+Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities
+Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it
+Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN
+Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it
+Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source

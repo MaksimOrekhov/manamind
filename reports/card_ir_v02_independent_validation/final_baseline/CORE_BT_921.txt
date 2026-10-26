@@ -1,0 +1,6 @@
+Declared status: FULL — representation label, not semantic approval
+IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)
+keywords[0] TEXT: Lifesteal => Keyword LIFESTEAL
+Author notes (not executed): Effect representation only. Pinned record has durability=0 and health=2; do not silently repair metadata or claim weapon execution readiness.
+Strict acceptance=True; complete=True; computed status=FULL
+Rule R_HEALING [PROJECT_REVIEWED]: A '#' amount adds the controller's healing bonus per packet and is capped at missing Health

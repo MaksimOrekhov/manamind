@@ -1,0 +1,27 @@
+[
+  {
+    "card_id": "CORE_RLK_063",
+    "category": "AUTHOR_ERROR",
+    "reason": "Incorrect UNIQUE_NAME resolution; structural checker found three names. Use NAME_IN_SET plus explicit token dependency, preserving the PARTIAL thaw contract."
+  },
+  {
+    "card_id": "CORE_SCH_713",
+    "category": "AUTHOR_ERROR",
+    "reason": "Raw FULL omitted the unconfirmed deck-cost scope of HAND-only encoding. Strict checks accepted it. Record the bounded conditional scenario, downgrade to FULL_DEP."
+  },
+  {
+    "card_id": "EDR_895",
+    "category": "AUTHOR_ERROR",
+    "reason": "Raw omitted uncertainty in the start/end boundary and modifier/replay behavior. Observed three own turns does not by itself prove starts_after's exact boundary. Status remains PARTIAL."
+  },
+  {
+    "card_id": "JAIL_118",
+    "category": "EVIDENCE_CLARIFICATION",
+    "reason": "The written predicate already means class membership, so the set subtraction is expressible; record the unresolved future multi-class adapter explicitly. No proven gameplay error in raw."
+  },
+  {
+    "card_id": "CATA_585",
+    "category": "EVIDENCE_CLARIFICATION",
+    "reason": "Explicitly bound the fixed $8 fragment to the initial play so it cannot be read as a procedure for later Torch instances."
+  }
+]

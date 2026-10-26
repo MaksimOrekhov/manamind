@@ -1,0 +1,2329 @@
+{
+  "summary": {
+    "equivalent_control": {
+      "total": 1,
+      "structure_accepted": 1,
+      "strict_accepted": 1,
+      "accepted_complete": 0
+    },
+    "evidence_error": {
+      "total": 3,
+      "structure_accepted": 3,
+      "strict_accepted": 3,
+      "accepted_complete": 3
+    },
+    "schema_error": {
+      "total": 4,
+      "structure_accepted": 3,
+      "strict_accepted": 3,
+      "accepted_complete": 3
+    },
+    "semantic_error": {
+      "total": 30,
+      "structure_accepted": 27,
+      "strict_accepted": 18,
+      "accepted_complete": 9
+    },
+    "strict_accepted_categories": {
+      "target_side": 1,
+      "target_type": 3,
+      "order": 2,
+      "owner": 3,
+      "condition": 1,
+      "binding": 1,
+      "zone": 2,
+      "state_change": 1,
+      "dependency_scope": 3,
+      "state_read": 1,
+      "token": 2,
+      "condition_and_state": 1,
+      "json_type": 2,
+      "binding_type": 1
+    }
+  },
+  "cases": [
+    {
+      "id": "fury_damage_enemy",
+      "card_id": "CORE_RLK_063",
+      "category": "target_side",
+      "kind": "semantic_error",
+      "witness": "Choose own hero/minion for the unqualified damage. The adjacent enemy freeze must not restrict that choice.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_DAMAGE",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen enemy character [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then freeze all enemy minions [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "fury_damage_minions_only",
+      "card_id": "CORE_RLK_063",
+      "category": "target_type",
+      "kind": "semantic_error",
+      "witness": "The unqualified damage can target a hero; minions-only removes that legal action.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_DAMAGE",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then freeze all enemy minions [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "fury_freeze_heroes",
+      "card_id": "CORE_RLK_063",
+      "category": "target_type",
+      "kind": "semantic_error",
+      "witness": "Enemy minions should freeze; the enemy hero should not be the area selection.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_DAMAGE",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then freeze all enemy heros [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "fury_nested_order",
+      "card_id": "CORE_RLK_063",
+      "category": "order",
+      "kind": "semantic_error",
+      "witness": "A summon reaction reading Frozen enemies runs before freeze in the wrong nested sequence.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_DAMAGE",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 2,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then summon Frostwyrm [RLK_063t] (resolved by name_in_set); then freeze all enemy minions [zones=PLAY; mode=ALL]",
+        "Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "fury_missing_damage",
+      "card_id": "CORE_RLK_063",
+      "category": "omission",
+      "kind": "semantic_error",
+      "witness": "No damage is dealt although the card has a damage clause; unused victim binding is also visible to structure.",
+      "structural": {
+        "ok": false,
+        "errors": [
+          "abilities[0]: text number $5 has no matching IR number with the same mark",
+          "abilities[0].target: 'victim' is bound but never used"
+        ],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [
+          "abilities[0]: text number $5 has no matching IR number with the same mark",
+          "abilities[0].target: 'victim' is bound but never used"
+        ],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <victim>; freeze all enemy minions [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <thaw> UNKNOWN_RULE/CORE: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=False; complete=False; computed status=PARTIAL",
+        "ERROR: abilities[0]: text number $5 has no matching IR number with the same mark",
+        "ERROR: abilities[0].target: 'victim' is bound but never used",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "bolt_draw_opponent",
+      "card_id": "TIME_216",
+      "category": "owner",
+      "kind": "semantic_error",
+      "witness": "The target survives; the author draws two, not the opponent.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then if them<victim> is alive (survived): the opponent draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_unconditional_draw",
+      "card_id": "TIME_216",
+      "category": "condition",
+      "kind": "semantic_error",
+      "witness": "Target dies to five damage; wrong declaration still draws two.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=False; complete=False; computed status=FULL",
+        "REVIEW WARNING: abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps"
+      ]
+    },
+    {
+      "id": "bolt_inverted_survival",
+      "card_id": "TIME_216",
+      "category": "condition",
+      "kind": "semantic_error",
+      "witness": "Dead rather than surviving target draws two.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then if them<victim> is not alive (did not survive): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=False; complete=False; computed status=FULL",
+        "REVIEW WARNING: abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_health_not_alive",
+      "card_id": "TIME_216",
+      "category": "condition",
+      "kind": "semantic_error",
+      "witness": "After a reaction marks a positive-Health target for destruction, HEALTH>0 is true but R_SURVIVE is false.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_LAST_KNOWN",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:cmp": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 2,
+          "value:literal": 2,
+          "value:spell_damage_literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then if them<victim>'s health [read=CURRENT] > 0: you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps"
+      ]
+    },
+    {
+      "id": "bolt_guard_before_damage",
+      "card_id": "TIME_216",
+      "category": "order",
+      "kind": "semantic_error",
+      "witness": "Living 3-Health target draws before lethal five damage, whereas the card should draw zero.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; if them<victim> is alive (survived): you draw 2 x card; then deal $5 damage to them<victim>",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_wrong_damage_entity",
+      "card_id": "TIME_216",
+      "category": "binding",
+      "kind": "semantic_error",
+      "witness": "Damage hits SELF instead of the chosen target, whose survival is still tested.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:SELF": 1,
+          "selector:ref": 1,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to this; then if them<victim> is alive (survived): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "neophyte_minion_tax",
+      "card_id": "CORE_SCH_713",
+      "category": "target_type",
+      "kind": "semantic_error",
+      "witness": "Enemy minions are taxed instead of enemy spells.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_COST",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:NEXT_TURN": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:zones": 1,
+          "pred:card_type": 1,
+          "value:literal": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Your opponent's spells cost (1) more next turn. => Battlecry: the opponent get a player effect: cost increased by 1; applies to card type MINION: every matching card while active, including later arrivals; zones=HAND; active immediately; during the opponent's next turn (start to end)",
+        "Dependency <deck_cost> UNKNOWN_RULE/CONDITIONAL: HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision window [OUTCOME/TEXT]: Who is taxed and for which turn? => Every enemy spell during next enemy turn; alternatives: Every enemy spell during next enemy turn / Only next spell or current turn; dependency=none; distinguishing case: Two enemy spells next turn are both taxed; no tax remains the following turn.",
+        "Decision deck [OUTCOME/UNKNOWN]: Are deck spell costs also modified? => UNRESOLVED; alternatives: HAND only / HAND and DECK; dependency=deck_cost; distinguishing case: During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "neophyte_deck_only",
+      "card_id": "CORE_SCH_713",
+      "category": "zone",
+      "kind": "semantic_error",
+      "witness": "A spell already in enemy hand is unaffected by a DECK-only modifier when played.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_COST",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:NEXT_TURN": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:zones": 1,
+          "pred:card_type": 1,
+          "value:literal": 1,
+          "zone:DECK": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Your opponent's spells cost (1) more next turn. => Battlecry: the opponent get a player effect: cost increased by 1; applies to card type SPELL: every matching card while active, including later arrivals; zones=DECK; active immediately; during the opponent's next turn (start to end)",
+        "Dependency <deck_cost> UNKNOWN_RULE/CONDITIONAL: HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision window [OUTCOME/TEXT]: Who is taxed and for which turn? => Every enemy spell during next enemy turn; alternatives: Every enemy spell during next enemy turn / Only next spell or current turn; dependency=none; distinguishing case: Two enemy spells next turn are both taxed; no tax remains the following turn.",
+        "Decision deck [OUTCOME/UNKNOWN]: Are deck spell costs also modified? => UNRESOLVED; alternatives: HAND only / HAND and DECK; dependency=deck_cost; distinguishing case: During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "neophyte_wrong_window",
+      "card_id": "CORE_SCH_713",
+      "category": "window",
+      "kind": "semantic_error",
+      "witness": "Tax expires before the enemy's next turn.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_COST",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_TURN": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:zones": 1,
+          "pred:card_type": 1,
+          "value:literal": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: WINDOW_NEXT_V02: next-turn text needs a next_turn duration"
+        ]
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Your opponent's spells cost (1) more next turn. => Battlecry: the opponent get a player effect: cost increased by 1; applies to card type SPELL: every matching card while active, including later arrivals; zones=HAND; active immediately; this turn",
+        "Dependency <deck_cost> UNKNOWN_RULE/CONDITIONAL: HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision window [OUTCOME/TEXT]: Who is taxed and for which turn? => Every enemy spell during next enemy turn; alternatives: Every enemy spell during next enemy turn / Only next spell or current turn; dependency=none; distinguishing case: Two enemy spells next turn are both taxed; no tax remains the following turn.",
+        "Decision deck [OUTCOME/UNKNOWN]: Are deck spell costs also modified? => UNRESOLVED; alternatives: HAND only / HAND and DECK; dependency=deck_cost; distinguishing case: During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+        "Strict acceptance=False; complete=False; computed status=FULL_DEP",
+        "REVIEW WARNING: abilities[0]: WINDOW_NEXT_V02: next-turn text needs a next_turn duration",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it"
+      ]
+    },
+    {
+      "id": "aviana_enemy_owner",
+      "card_id": "EDR_895",
+      "category": "owner",
+      "kind": "semantic_error",
+      "witness": "Enemy instead of own cards become cheap after enemy instead of own turn starts; both owner fields agree internally.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_COST",
+          "R_DELAYED_START",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_GAME": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:starts_after": 1,
+          "player_effect:zones": 1,
+          "value:literal": 1,
+          "zone:DECK": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: the opponent get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of the opponent's turn number 3 after it is created; for the rest of the game",
+        "Dependency <future_cards> UNKNOWN_RULE/CORE: ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <boundary> UNKNOWN_RULE/CORE: User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision clock [OUTCOME/USER_OBSERVED]: Whose three turns and how long? => Three own starts, rest of game; alternatives: Three own starts, rest of game / Three global turns, temporary; dependency=none; distinguishing case: Three intervening enemy turns must not activate the effect.",
+        "Decision population [OUTCOME/UNKNOWN]: Do cards arriving after Full Moon inherit cost 1? => UNRESOLVED; alternatives: Dynamic ALL_MATCHING / Only cards present at activation; dependency=future_cards; distinguishing case: Create a new card after Full Moon; compare its cost with 1.",
+        "Decision boundary [OUTCOME/UNKNOWN]: At which boundary of own turn three does Full Moon rise? => UNRESOLVED; alternatives: Start / End; dependency=boundary; distinguishing case: Read a card's cost during own turn three before its end.",
+        "Decision interactions [OUTCOME/UNKNOWN]: How do later cost modifiers and a replayed Aviana interact? => UNRESOLVED; alternatives: Independent dynamic effects / Other stacking or reset procedure; dependency=cost_interactions; distinguishing case: After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+        "Author notes (not executed): Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "aviana_hand_only",
+      "card_id": "EDR_895",
+      "category": "zone",
+      "kind": "semantic_error",
+      "witness": "User explicitly observed deck cards also cost one; this encoding leaves deck costs unchanged.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_COST",
+          "R_DELAYED_START",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_GAME": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:starts_after": 1,
+          "player_effect:zones": 1,
+          "value:literal": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: you get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND; inactive until the start of your turn number 3 after it is created; for the rest of the game",
+        "Dependency <future_cards> UNKNOWN_RULE/CORE: ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <boundary> UNKNOWN_RULE/CORE: User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision clock [OUTCOME/USER_OBSERVED]: Whose three turns and how long? => Three own starts, rest of game; alternatives: Three own starts, rest of game / Three global turns, temporary; dependency=none; distinguishing case: Three intervening enemy turns must not activate the effect.",
+        "Decision population [OUTCOME/UNKNOWN]: Do cards arriving after Full Moon inherit cost 1? => UNRESOLVED; alternatives: Dynamic ALL_MATCHING / Only cards present at activation; dependency=future_cards; distinguishing case: Create a new card after Full Moon; compare its cost with 1.",
+        "Decision boundary [OUTCOME/UNKNOWN]: At which boundary of own turn three does Full Moon rise? => UNRESOLVED; alternatives: Start / End; dependency=boundary; distinguishing case: Read a card's cost during own turn three before its end.",
+        "Decision interactions [OUTCOME/UNKNOWN]: How do later cost modifiers and a replayed Aviana interact? => UNRESOLVED; alternatives: Independent dynamic effects / Other stacking or reset procedure; dependency=cost_interactions; distinguishing case: After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+        "Author notes (not executed): Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "aviana_two_turns",
+      "card_id": "EDR_895",
+      "category": "window",
+      "kind": "semantic_error",
+      "witness": "Cost one activates after two own starts instead of three.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_COST",
+          "R_DELAYED_START",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_GAME": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:starts_after": 1,
+          "player_effect:zones": 1,
+          "value:literal": 1,
+          "zone:DECK": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: DELAY_COUNT: starts_after 2 turns does not match the text [3]",
+          "abilities[0]: DELAY_COUNT: '3 turn' in the text needs starts_after or a turns duration"
+        ]
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: you get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of your turn number 2 after it is created; for the rest of the game",
+        "Dependency <future_cards> UNKNOWN_RULE/CORE: ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <boundary> UNKNOWN_RULE/CORE: User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision clock [OUTCOME/USER_OBSERVED]: Whose three turns and how long? => Three own starts, rest of game; alternatives: Three own starts, rest of game / Three global turns, temporary; dependency=none; distinguishing case: Three intervening enemy turns must not activate the effect.",
+        "Decision population [OUTCOME/UNKNOWN]: Do cards arriving after Full Moon inherit cost 1? => UNRESOLVED; alternatives: Dynamic ALL_MATCHING / Only cards present at activation; dependency=future_cards; distinguishing case: Create a new card after Full Moon; compare its cost with 1.",
+        "Decision boundary [OUTCOME/UNKNOWN]: At which boundary of own turn three does Full Moon rise? => UNRESOLVED; alternatives: Start / End; dependency=boundary; distinguishing case: Read a card's cost during own turn three before its end.",
+        "Decision interactions [OUTCOME/UNKNOWN]: How do later cost modifiers and a replayed Aviana interact? => UNRESOLVED; alternatives: Independent dynamic effects / Other stacking or reset procedure; dependency=cost_interactions; distinguishing case: After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+        "Author notes (not executed): Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open.",
+        "Strict acceptance=False; complete=False; computed status=PARTIAL",
+        "REVIEW WARNING: abilities[0]: DELAY_COUNT: starts_after 2 turns does not match the text [3]",
+        "REVIEW WARNING: abilities[0]: DELAY_COUNT: '3 turn' in the text needs starts_after or a turns duration",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "aviana_no_cost_set",
+      "card_id": "EDR_895",
+      "category": "state_change",
+      "kind": "semantic_error",
+      "witness": "Cost reduced by one instead of set to one: a nine-mana card costs eight.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_COST",
+          "R_DELAYED_START",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_GAME": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:starts_after": 1,
+          "player_effect:zones": 1,
+          "value:literal": 1,
+          "zone:DECK": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: you get a player effect: cost reduced by 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of your turn number 3 after it is created; for the rest of the game",
+        "Dependency <future_cards> UNKNOWN_RULE/CORE: ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <boundary> UNKNOWN_RULE/CORE: User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision clock [OUTCOME/USER_OBSERVED]: Whose three turns and how long? => Three own starts, rest of game; alternatives: Three own starts, rest of game / Three global turns, temporary; dependency=none; distinguishing case: Three intervening enemy turns must not activate the effect.",
+        "Decision population [OUTCOME/UNKNOWN]: Do cards arriving after Full Moon inherit cost 1? => UNRESOLVED; alternatives: Dynamic ALL_MATCHING / Only cards present at activation; dependency=future_cards; distinguishing case: Create a new card after Full Moon; compare its cost with 1.",
+        "Decision boundary [OUTCOME/UNKNOWN]: At which boundary of own turn three does Full Moon rise? => UNRESOLVED; alternatives: Start / End; dependency=boundary; distinguishing case: Read a card's cost during own turn three before its end.",
+        "Decision interactions [OUTCOME/UNKNOWN]: How do later cost modifiers and a replayed Aviana interact? => UNRESOLVED; alternatives: Independent dynamic effects / Other stacking or reset procedure; dependency=cost_interactions; distinguishing case: After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+        "Author notes (not executed): Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "hound_core_downgrade",
+      "card_id": "FIR_953",
+      "category": "dependency_scope",
+      "kind": "evidence_error",
+      "witness": "Unconfirmed split procedure affects the primary effect every trigger, yet merely changing the author's scope grants FULL_DEP.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_ATTACK_REDIRECT",
+          "R_ATTACK_ROLES",
+          "R_DAMAGE",
+          "R_LAST_KNOWN",
+          "R_RANDOM_LIVE",
+          "R_RANDOM_SPLIT",
+          "R_SPLIT_UNQUALIFIED",
+          "R_SURVIVE",
+          "R_TRIGGER_ORDER",
+          "R_TRIGGER_TIMING"
+        ],
+        "elements": {
+          "ability:trigger": 1,
+          "cond:is": 1,
+          "control:repeat": 1,
+          "event:ATTACK_DECLARED": 1,
+          "event_role:attacker": 1,
+          "event_role:defender": 1,
+          "keyword:RUSH": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:ALL": 1,
+          "pick:RANDOM": 1,
+          "pred:alive": 1,
+          "selector:SELF": 3,
+          "timing:AFTER": 1,
+          "value:literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a minion [zones=PLAY; mode=ALL]; ONLY IF this is alive (survived); limit=none declared; effect: repeat this's attack [read=CURRENT] times: [deal 1 damage to random enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split> UNKNOWN_RULE/CONDITIONAL: Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <redirect> UNKNOWN_RULE/CONDITIONAL: Which defender an attack filter sees after redirection remains unknown, conditional on redirection.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision distribution [OUTCOME/UNKNOWN]: Does unqualified split mean random 1-damage packets? => UNRESOLVED; alternatives: Random live targets per packet / Other split procedure; dependency=split; distinguishing case: Two enemy characters: allocation differs between equal and random splitting.",
+        "Decision attack [OUTCOME/TEXT]: When and which combat? => After source attacks a minion and survives; alternatives: After source attacks a minion and survives / Any character's attack; dependency=none; distinguishing case: Attacking the enemy hero must not trigger; source death must not trigger.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "id": "fury_core_downgrade",
+      "card_id": "CORE_RLK_063",
+      "category": "dependency_scope",
+      "kind": "evidence_error",
+      "witness": "Thaw timing affects ordinary next-turn attacks, yet changing CORE to CONDITIONAL grants FULL_DEP.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_AREA_SNAPSHOT",
+          "R_BOARD_LIMIT",
+          "R_DAMAGE",
+          "R_FREEZE",
+          "R_FREEZE_THAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:card": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:FREEZE": 1,
+          "op:SUMMON": 1,
+          "pick:ALL": 1,
+          "pick:CHOSEN": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm. => Cast: choose a chosen character [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then freeze all enemy minions [zones=PLAY; mode=ALL]; then summon Frostwyrm [RLK_063t] (resolved by name_in_set)",
+        "Dependency <thaw> UNKNOWN_RULE/CONDITIONAL: Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_FREEZE_THAW",
+        "Dependency <frostwyrm> TOKEN_IDENTITY/DATA: RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision thaw [OUTCOME/UNKNOWN]: When does Frozen expire? => UNRESOLVED; alternatives: Controller-turn removal conditional on attack availability / Other thaw timing; dependency=thaw; distinguishing case: Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+        "Decision damage_target [OUTCOME/TEXT]: Does unqualified damage restrict side? => Chosen character on either side; alternatives: Chosen character on either side / Enemy characters only; dependency=none; distinguishing case: Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_FREEZE [COMMUNITY_RULES]: FREEZE gives each selected character the Frozen state; a Frozen character cannot attack; freezing deals no damage",
+        "Rule R_FREEZE_THAW [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: When Frozen is removed (commonly at the end of its controller's next turn; details depend on whether the character could still attack)",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "aviana_core_downgrade",
+      "card_id": "EDR_895",
+      "category": "dependency_scope",
+      "kind": "evidence_error",
+      "witness": "Unresolved activation boundary and future-card procedure remain, but scope alone upgrades the label to FULL_DEP.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_COST",
+          "R_DELAYED_START",
+          "R_HIDDEN_ZONE",
+          "R_PLAYER_AURA",
+          "R_PLAYER_EFFECT",
+          "R_PLAY_TARGET",
+          "R_TURN_WINDOW"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "duration:THIS_GAME": 1,
+          "label:BATTLECRY": 1,
+          "modifier:cost": 1,
+          "op:ADD_PLAYER_EFFECT": 1,
+          "player_effect:ALL_MATCHING": 1,
+          "player_effect:starts_after": 1,
+          "player_effect:zones": 1,
+          "value:literal": 1,
+          "zone:DECK": 1,
+          "zone:HAND": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game. => Battlecry: you get a player effect: cost set to 1; applies to any card: every matching card while active, including later arrivals; zones=HAND,DECK; inactive until the start of your turn number 3 after it is created; for the rest of the game",
+        "Dependency <future_cards> UNKNOWN_RULE/CONDITIONAL: ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <boundary> UNKNOWN_RULE/CONDITIONAL: User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <cost_interactions> UNKNOWN_RULE/CONDITIONAL: Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision clock [OUTCOME/USER_OBSERVED]: Whose three turns and how long? => Three own starts, rest of game; alternatives: Three own starts, rest of game / Three global turns, temporary; dependency=none; distinguishing case: Three intervening enemy turns must not activate the effect.",
+        "Decision population [OUTCOME/UNKNOWN]: Do cards arriving after Full Moon inherit cost 1? => UNRESOLVED; alternatives: Dynamic ALL_MATCHING / Only cards present at activation; dependency=future_cards; distinguishing case: Create a new card after Full Moon; compare its cost with 1.",
+        "Decision boundary [OUTCOME/UNKNOWN]: At which boundary of own turn three does Full Moon rise? => UNRESOLVED; alternatives: Start / End; dependency=boundary; distinguishing case: Read a card's cost during own turn three before its end.",
+        "Decision interactions [OUTCOME/UNKNOWN]: How do later cost modifiers and a replayed Aviana interact? => UNRESOLVED; alternatives: Independent dynamic effects / Other stacking or reset procedure; dependency=cost_interactions; distinguishing case: After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+        "Author notes (not executed): Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DELAYED_START [DEFINITION]: starts_after {player P, turn_starts N}: the effect is inactive (affects nothing) until the N-th start of a turn of P after its creation and becomes active at that turn start. How a card's text maps to P and N is the card's decision, not this rule",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAYER_AURA [DEFINITION]: uses ALL_MATCHING: while active, every card in the effect's zones that matches applies_to is modified, including cards that enter those zones later; a card that leaves the zones loses it",
+        "Rule R_PLAYER_EFFECT [UNKNOWN]: A player-level effect lives on the player, independent of its source, from its start to the end of its duration. With integer uses it applies to the next N matching cards (use_unit CARD) or effects (EFFECT); what one use is stays UNKNOWN",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_TURN_WINDOW [DEFINITION]: NEXT_TURN of player P covers the first turn of P that starts after the effect is created, from its start to its end; THIS_GAME lasts until the game ends, independent of the source"
+      ]
+    },
+    {
+      "id": "hound_health_packets",
+      "card_id": "FIR_953",
+      "category": "state_read",
+      "kind": "semantic_error",
+      "witness": "A 5-Attack, 8-Health Hound deals eight packets rather than five.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_ATTACK_REDIRECT",
+          "R_ATTACK_ROLES",
+          "R_DAMAGE",
+          "R_LAST_KNOWN",
+          "R_RANDOM_LIVE",
+          "R_RANDOM_SPLIT",
+          "R_SPLIT_UNQUALIFIED",
+          "R_SURVIVE",
+          "R_TRIGGER_ORDER",
+          "R_TRIGGER_TIMING"
+        ],
+        "elements": {
+          "ability:trigger": 1,
+          "cond:is": 1,
+          "control:repeat": 1,
+          "event:ATTACK_DECLARED": 1,
+          "event_role:attacker": 1,
+          "event_role:defender": 1,
+          "keyword:RUSH": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:ALL": 1,
+          "pick:RANDOM": 1,
+          "pred:alive": 1,
+          "selector:SELF": 3,
+          "timing:AFTER": 1,
+          "value:literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a minion [zones=PLAY; mode=ALL]; ONLY IF this is alive (survived); limit=none declared; effect: repeat this's health [read=CURRENT] times: [deal 1 damage to random enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split> UNKNOWN_RULE/CORE: Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <redirect> UNKNOWN_RULE/CONDITIONAL: Which defender an attack filter sees after redirection remains unknown, conditional on redirection.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision distribution [OUTCOME/UNKNOWN]: Does unqualified split mean random 1-damage packets? => UNRESOLVED; alternatives: Random live targets per packet / Other split procedure; dependency=split; distinguishing case: Two enemy characters: allocation differs between equal and random splitting.",
+        "Decision attack [OUTCOME/TEXT]: When and which combat? => After source attacks a minion and survives; alternatives: After source attacks a minion and survives / Any character's attack; dependency=none; distinguishing case: Attacking the enemy hero must not trigger; source death must not trigger.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "id": "hound_no_survival",
+      "card_id": "FIR_953",
+      "category": "condition",
+      "kind": "semantic_error",
+      "witness": "Hound dies attacking a minion; a trigger without the survival condition would still deal damage.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_ATTACK_REDIRECT",
+          "R_ATTACK_ROLES",
+          "R_DAMAGE",
+          "R_LAST_KNOWN",
+          "R_RANDOM_LIVE",
+          "R_RANDOM_SPLIT",
+          "R_SPLIT_UNQUALIFIED",
+          "R_TRIGGER_ORDER",
+          "R_TRIGGER_TIMING"
+        ],
+        "elements": {
+          "ability:trigger": 1,
+          "control:repeat": 1,
+          "event:ATTACK_DECLARED": 1,
+          "event_role:attacker": 1,
+          "event_role:defender": 1,
+          "keyword:RUSH": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:ALL": 1,
+          "pick:RANDOM": 1,
+          "selector:SELF": 2,
+          "timing:AFTER": 1,
+          "value:literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch"
+        ]
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a minion [zones=PLAY; mode=ALL]; limit=none declared; effect: repeat this's attack [read=CURRENT] times: [deal 1 damage to random enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split> UNKNOWN_RULE/CORE: Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <redirect> UNKNOWN_RULE/CONDITIONAL: Which defender an attack filter sees after redirection remains unknown, conditional on redirection.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision distribution [OUTCOME/UNKNOWN]: Does unqualified split mean random 1-damage packets? => UNRESOLVED; alternatives: Random live targets per packet / Other split procedure; dependency=split; distinguishing case: Two enemy characters: allocation differs between equal and random splitting.",
+        "Decision attack [OUTCOME/TEXT]: When and which combat? => After source attacks a minion and survives; alternatives: After source attacks a minion and survives / Any character's attack; dependency=none; distinguishing case: Attacking the enemy hero must not trigger; source death must not trigger.",
+        "Strict acceptance=False; complete=False; computed status=PARTIAL",
+        "REVIEW WARNING: abilities[0]: CONDITION_ENTITY: survival/death guard missing or on the wrong entity/branch",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "id": "hound_defender_hero",
+      "card_id": "FIR_953",
+      "category": "event_role",
+      "kind": "semantic_error",
+      "witness": "Hound attacking a hero triggers the effect instead of attacking a minion.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_ATTACK_REDIRECT",
+          "R_ATTACK_ROLES",
+          "R_DAMAGE",
+          "R_LAST_KNOWN",
+          "R_RANDOM_LIVE",
+          "R_RANDOM_SPLIT",
+          "R_SPLIT_UNQUALIFIED",
+          "R_SURVIVE",
+          "R_TRIGGER_ORDER",
+          "R_TRIGGER_TIMING"
+        ],
+        "elements": {
+          "ability:trigger": 1,
+          "cond:is": 1,
+          "control:repeat": 1,
+          "event:ATTACK_DECLARED": 1,
+          "event_role:attacker": 1,
+          "event_role:defender": 1,
+          "keyword:RUSH": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:ALL": 1,
+          "pick:RANDOM": 1,
+          "pred:alive": 1,
+          "selector:SELF": 3,
+          "timing:AFTER": 1,
+          "value:literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: EVENT_DEFENDER: attack must be against a minion"
+        ]
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a hero [zones=PLAY; mode=ALL]; ONLY IF this is alive (survived); limit=none declared; effect: repeat this's attack [read=CURRENT] times: [deal 1 damage to random enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split> UNKNOWN_RULE/CORE: Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <redirect> UNKNOWN_RULE/CONDITIONAL: Which defender an attack filter sees after redirection remains unknown, conditional on redirection.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision distribution [OUTCOME/UNKNOWN]: Does unqualified split mean random 1-damage packets? => UNRESOLVED; alternatives: Random live targets per packet / Other split procedure; dependency=split; distinguishing case: Two enemy characters: allocation differs between equal and random splitting.",
+        "Decision attack [OUTCOME/TEXT]: When and which combat? => After source attacks a minion and survives; alternatives: After source attacks a minion and survives / Any character's attack; dependency=none; distinguishing case: Attacking the enemy hero must not trigger; source death must not trigger.",
+        "Strict acceptance=False; complete=False; computed status=PARTIAL",
+        "REVIEW WARNING: abilities[0]: EVENT_DEFENDER: attack must be against a minion",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "id": "hound_defender_enemy_equivalent",
+      "card_id": "FIR_953",
+      "category": "event_role",
+      "kind": "equivalent_control",
+      "witness": "In ordinary legal combat own Hound cannot attack a friendly minion; ANY -> ENEMY is equivalent, excluded from errors.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_ATTACK_REDIRECT",
+          "R_ATTACK_ROLES",
+          "R_DAMAGE",
+          "R_LAST_KNOWN",
+          "R_RANDOM_LIVE",
+          "R_RANDOM_SPLIT",
+          "R_SPLIT_UNQUALIFIED",
+          "R_SURVIVE",
+          "R_TRIGGER_ORDER",
+          "R_TRIGGER_TIMING"
+        ],
+        "elements": {
+          "ability:trigger": 1,
+          "cond:is": 1,
+          "control:repeat": 1,
+          "event:ATTACK_DECLARED": 1,
+          "event_role:attacker": 1,
+          "event_role:defender": 1,
+          "keyword:RUSH": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:ALL": 1,
+          "pick:RANDOM": 1,
+          "pred:alive": 1,
+          "selector:SELF": 3,
+          "timing:AFTER": 1,
+          "value:literal": 1,
+          "value:stat": 1,
+          "zone:PLAY": 2
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Rush. => Keyword RUSH",
+        "abilities[0] TEXT: After this attacks a minion and survives, deal this minion's Attack damage split among all enemies. => Trigger [no keyword, timing=AFTER, active zone=PLAY (default; weapon EQUIPPED)]; attacker this attacks defender a enemy minion [zones=PLAY; mode=ALL]; ONLY IF this is alive (survived); limit=none declared; effect: repeat this's attack [read=CURRENT] times: [deal 1 damage to random enemy character [zones=PLAY; mode=RANDOM]]",
+        "Dependency <split> UNKNOWN_RULE/CORE: Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_SPLIT_UNQUALIFIED",
+        "Dependency <redirect> UNKNOWN_RULE/CONDITIONAL: Which defender an attack filter sees after redirection remains unknown, conditional on redirection.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_ATTACK_REDIRECT",
+        "Decision distribution [OUTCOME/UNKNOWN]: Does unqualified split mean random 1-damage packets? => UNRESOLVED; alternatives: Random live targets per packet / Other split procedure; dependency=split; distinguishing case: Two enemy characters: allocation differs between equal and random splitting.",
+        "Decision attack [OUTCOME/TEXT]: When and which combat? => After source attacks a minion and survives; alternatives: After source attacks a minion and survives / Any character's attack; dependency=none; distinguishing case: Attacking the enemy hero must not trigger; source death must not trigger.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_ATTACK_REDIRECT [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: Which defender role filters see when the attack target changes after declaration",
+        "Rule R_ATTACK_ROLES [DEFINITION]: ATTACK_DECLARED: attacker is the character that attacks, defender the character it attacks; WHEN fires on declaration before combat, AFTER once combat and its reactions resolved",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_LAST_KNOWN [UNVERIFIED]: A value read from an entity that has left play is its last known value",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RANDOM_SPLIT [COMMUNITY_RULES]: 'Randomly split N damage' is N packets of 1 damage, each to a random live candidate chosen per packet (R_RANDOM_LIVE); a '$' mark on N adds packets",
+        "Rule R_SPLIT_UNQUALIFIED [UNKNOWN; PROVISIONAL: acknowledged by a dependency]: 'Split among' without 'randomly' resolves like R_RANDOM_SPLIT",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction",
+        "Rule R_TRIGGER_ORDER [PROJECT_REVIEWED]: Simultaneous triggers resolve in the order their sources entered play; nested consequences finish before siblings",
+        "Rule R_TRIGGER_TIMING [COMMUNITY_RULES]: WHENEVER fires on the event, AFTER once the event has resolved, AT at a turn phase, WHEN (Secrets) before the event resolves"
+      ]
+    },
+    {
+      "id": "imp_wrong_owner",
+      "card_id": "JAIL_399",
+      "category": "owner",
+      "kind": "semantic_error",
+      "witness": "The two Demons go to opponent's deck instead of own.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_DEATHRATTLE",
+          "R_DEATH_PHASE",
+          "R_DECK_POSITION",
+          "R_HIDDEN_ZONE"
+        ],
+        "elements": {
+          "ability:deathrattle": 1,
+          "card_source:card": 1,
+          "deck_position:BOTTOM": 1,
+          "keyword:TAUNT": 1,
+          "op:SHUFFLE_INTO_DECK": 1,
+          "value:literal": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Taunt. => Keyword TAUNT",
+        "abilities[0] TEXT: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck. => Deathrattle: put on the bottom of the opponentr deck: 2 x Grandmother Imp [JAIL_399t1] (resolved by description_match) [position=BOTTOM]",
+        "Dependency <demon> TOKEN_IDENTITY/DATA: Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision position [OUTCOME/TEXT]: Where are the two copies inserted? => Bottom of own deck; alternatives: Bottom of own deck / Random positions; dependency=none; distinguishing case: Existing deck cards must be drawn before either new Demon.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_DECK_POSITION [UNVERIFIED]: RANDOM inserts each card at a random deck position; TOP makes it the next card drawn; BOTTOM puts it after every card already in the deck; count N inserts N cards one at a time",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities"
+      ]
+    },
+    {
+      "id": "imp_wrong_position",
+      "card_id": "JAIL_399",
+      "category": "window",
+      "kind": "semantic_error",
+      "witness": "A Demon can be drawn before cards that were already in the deck.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_DEATHRATTLE",
+          "R_DEATH_PHASE",
+          "R_DECK_POSITION",
+          "R_HIDDEN_ZONE"
+        ],
+        "elements": {
+          "ability:deathrattle": 1,
+          "card_source:card": 1,
+          "deck_position:RANDOM": 1,
+          "keyword:TAUNT": 1,
+          "op:SHUFFLE_INTO_DECK": 1,
+          "value:literal": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: DECK_POSITION_V02: text inserts BOTTOM, IR inserts RANDOM"
+        ]
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Taunt. => Keyword TAUNT",
+        "abilities[0] TEXT: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck. => Deathrattle: shuffle into your deck: 2 x Grandmother Imp [JAIL_399t1] (resolved by description_match) [position=RANDOM]",
+        "Dependency <demon> TOKEN_IDENTITY/DATA: Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision position [OUTCOME/TEXT]: Where are the two copies inserted? => Bottom of own deck; alternatives: Bottom of own deck / Random positions; dependency=none; distinguishing case: Existing deck cards must be drawn before either new Demon.",
+        "Strict acceptance=False; complete=False; computed status=FULL_DEP",
+        "REVIEW WARNING: abilities[0]: DECK_POSITION_V02: text inserts BOTTOM, IR inserts RANDOM",
+        "Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_DECK_POSITION [UNVERIFIED]: RANDOM inserts each card at a random deck position; TOP makes it the next card drawn; BOTTOM puts it after every card already in the deck; count N inserts N cards one at a time",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities"
+      ]
+    },
+    {
+      "id": "imp_wrong_token",
+      "card_id": "JAIL_399",
+      "category": "token",
+      "kind": "semantic_error",
+      "witness": "AT_120 Frost Giant has 8/8 stats but is not a Demon with Taunt and Lifesteal.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_DEATHRATTLE",
+          "R_DEATH_PHASE",
+          "R_DECK_POSITION",
+          "R_HIDDEN_ZONE"
+        ],
+        "elements": {
+          "ability:deathrattle": 1,
+          "card_source:card": 1,
+          "deck_position:BOTTOM": 1,
+          "keyword:TAUNT": 1,
+          "op:SHUFFLE_INTO_DECK": 1,
+          "value:literal": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "keywords[0] TEXT: Taunt. => Keyword TAUNT",
+        "abilities[0] TEXT: Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck. => Deathrattle: put on the bottom of your deck: 2 x Frost Giant [AT_120] (resolved by description_match) [position=BOTTOM]",
+        "Dependency <demon> TOKEN_IDENTITY/DATA: Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision position [OUTCOME/TEXT]: Where are the two copies inserted? => Bottom of own deck; alternatives: Bottom of own deck / Random positions; dependency=none; distinguishing case: Existing deck cards must be drawn before either new Demon.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_DECK_POSITION [UNVERIFIED]: RANDOM inserts each card at a random deck position; TOP makes it the next card drawn; BOTTOM puts it after every card already in the deck; count N inserts N cards one at a time",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities"
+      ]
+    },
+    {
+      "id": "brilliance_wrong_token",
+      "card_id": "CATA_452",
+      "category": "token",
+      "kind": "semantic_error",
+      "witness": "AT_041 Knight of the Wild is 6/6 but not a Dragon.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AURA",
+          "R_BOARD_LIMIT",
+          "R_COST",
+          "R_COUNTERS",
+          "R_DAMAGE_EVENT_AMOUNT",
+          "R_PLAY_TARGET",
+          "R_SUMMON_POSITION"
+        ],
+        "elements": {
+          "ability:aura": 1,
+          "ability:play": 1,
+          "card_source:card": 1,
+          "counter:DAMAGE_DEALT": 1,
+          "label:SPELL": 1,
+          "modifier:cost": 1,
+          "op:SUMMON": 1,
+          "pred:card_type": 1,
+          "scope:THIS_TURN": 1,
+          "value:counter": 1,
+          "value:literal": 1,
+          "value:mul": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Summon a 6/6 Dragon. => Cast: summon Knight of the Wild [AT_041] (resolved by description_match)",
+        "abilities[1] TEXT: Costs (1) less for each damage you dealt with spells this turn. => In hand: cost reduced by (1 x total damage actually dealt (AMOUNT) by you with card type SPELL this turn)",
+        "Dependency <dragon> TOKEN_IDENTITY/DATA: CATA_452t Azure Warden is a matching 6/6 Dragon with creator prefix; HSJSON does not contain a formal parent-token edge.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <damage_amount> UNKNOWN_RULE/CORE: The whole DAMAGE_DEALT amount contract is provisional, including prevention, overkill and qualifying spell sources; normal discount computation depends on it.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_DAMAGE_EVENT_AMOUNT",
+        "Decision counter [OUTCOME/TEXT]: How is discount counted? => Damage amount of own spells this turn; alternatives: Damage amount of own spells this turn / Number of spells cast; dependency=damage_amount; distinguishing case: One spell dealing five damage discounts five, not one.",
+        "Strict acceptance=True; complete=False; computed status=PARTIAL",
+        "Rule R_AURA [UNKNOWN]: Continuous effects are recomputed between steps; recomputation inside one step is unreviewed",
+        "Rule R_BOARD_LIMIT [UNVERIFIED]: At most 7 minions per side; extra summons fail and later steps see only those summoned",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_COUNTERS [PROJECT_REVIEWED]: Per-player history counters: cards played, spells cast, per turn, per game, last turn",
+        "Rule R_DAMAGE_EVENT_AMOUNT [UNVERIFIED; PROVISIONAL: acknowledged by a dependency]: A DAMAGE_DEALT AMOUNT counter adds the damage actually dealt per packet: prevented damage (Divine Shield, Immune) counts 0, damage absorbed by Armor counts, overkill counts in full",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SUMMON_POSITION [UNVERIFIED]: Battlecry summons enter to the right of the source, Deathrattle summons at its slot, other summons at the right end"
+      ]
+    },
+    {
+      "id": "vama_all_minions",
+      "card_id": "JAIL_118",
+      "category": "omission",
+      "kind": "semantic_error",
+      "witness": "A Paladin minion including V'ama is destroyed because the exclusion disappeared.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_AREA_SNAPSHOT",
+          "R_DEATH_PHASE",
+          "R_PLAY_TARGET"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "label:BATTLECRY": 1,
+          "op:DESTROY": 1,
+          "pick:ALL": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": [
+          "abilities[0]: EXCLUSION_PREDICATE: exclusion for PALADIN is missing/inverted or in another zone"
+        ]
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Battlecry: Destroy all non-Paladin minions. => Battlecry: destroy all minions [zones=PLAY; mode=ALL]",
+        "Dependency <class_membership> UNKNOWN_RULE/CONDITIONAL: IR predicate says belongs to a class; matching multi-class Paladin membership rather than only scalar cardClass needs a reviewed metadata adapter. No executor exists here.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision class [OUTCOME/TEXT]: Does non-Paladin exclude both sides? => All sides minus Paladin membership; alternatives: All sides minus Paladin membership / Enemy side only; dependency=none; distinguishing case: A friendly non-Paladin minion dies; a dual-class Paladin minion survives.",
+        "Decision multiclass [OUTCOME/UNKNOWN]: How does the future adapter test class membership? => UNRESOLVED; alternatives: Membership in classes as well as cardClass / Only scalar cardClass; dependency=class_membership; distinguishing case: A multi-class minion including Paladin should be excluded if membership semantics are implemented.",
+        "Strict acceptance=False; complete=False; computed status=FULL_DEP",
+        "REVIEW WARNING: abilities[0]: EXCLUSION_PREDICATE: exclusion for PALADIN is missing/inverted or in another zone",
+        "Rule R_AREA_SNAPSHOT [PROJECT_REVIEWED]: An ALL selector fixes its members when the step starts (mortally wounded included, new entities excluded)",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it"
+      ]
+    },
+    {
+      "id": "waggle_wrong_discount_target",
+      "card_id": "CORE_DAL_720",
+      "category": "binding",
+      "kind": "semantic_error",
+      "witness": "The weapon SELF rather than the returned minion receives the cost reduction; returned reference is unused.",
+      "structural": {
+        "ok": false,
+        "errors": [
+          "abilities[0].effect.seq[0]: 'returned' is bound but never used"
+        ],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_COST",
+          "R_DEATHRATTLE",
+          "R_DEATH_PHASE",
+          "R_HAND_LIMIT",
+          "R_HIDDEN_ZONE",
+          "R_RANDOM_LIVE",
+          "R_RETURN_FULL_HAND",
+          "R_RETURN_TO_HAND",
+          "R_STEP_BOUNDARY"
+        ],
+        "elements": {
+          "ability:deathrattle": 1,
+          "card_source:from_zone": 1,
+          "control:seq": 1,
+          "move:PLAY_TO_HAND": 1,
+          "op:ADD_TO_HAND": 1,
+          "op:MODIFY_COST": 1,
+          "pick:RANDOM": 1,
+          "selector:SELF": 1,
+          "value:literal": 2,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL_DEP",
+        "errors": [
+          "abilities[0].effect.seq[0]: 'returned' is bound but never used"
+        ],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deathrattle: Return a random friendly minion to your hand. It costs (2) less. => Deathrattle: you get random 1 friendly minion [zones=PLAY; mode=RANDOM] as <returned> [move PLAY->HAND: state reset R_RETURN_TO_HAND; full hand R_RETURN_FULL_HAND]; then cost of this reduced by 2",
+        "Dependency <full_hand> UNKNOWN_RULE/CONDITIONAL: Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs; acknowledges provisional rule R_RETURN_FULL_HAND",
+        "Decision capacity [OUTCOME/UNKNOWN]: What happens when hand is full? => UNRESOLVED; alternatives: Destroy moved minion, followup no-op / Other return failure behavior; dependency=full_hand; distinguishing case: Weapon dies with ten cards in hand and one friendly deathrattle minion.",
+        "Strict acceptance=False; complete=False; computed status=FULL_DEP",
+        "ERROR: abilities[0].effect.seq[0]: 'returned' is bound but never used",
+        "Rule R_COST [COMMUNITY_RULES]: Current cost = base cost, then every cost modifier in the order it was applied: a set-to-N replaces the running value, reductions and increases change the running value; the floor of 0 is applied once, after all modifiers",
+        "Rule R_DEATHRATTLE [PROJECT_REVIEWED]: A Deathrattle resolves after its owner leaves play, from its last position; Silence removes it; Reborn returns the minion after its Deathrattles",
+        "Rule R_DEATH_PHASE [PROJECT_REVIEWED]: A destroyed or 0-Health minion stays in play mortally wounded until the outer phase boundary, then dead minions leave in order and their Deathrattles queue",
+        "Rule R_HAND_LIMIT [UNVERIFIED]: At most 10 cards in hand; an extra card is destroyed",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_RANDOM_LIVE [COMMUNITY_RULES]: A RANDOM pick considers only live candidates (not mortally wounded, not pending destroy), is re-evaluated for every pick, and an empty candidate set does nothing",
+        "Rule R_RETURN_FULL_HAND [UNVERIFIED; PROVISIONAL: acknowledged by a dependency]: With a full hand the moved minion is destroyed instead (it dies: Deathrattles and death triggers run) and later steps that refer to it do nothing",
+        "Rule R_RETURN_TO_HAND [COMMUNITY_RULES]: Moving a minion from play to a hand gives the card without its damage, enchantments, Silence or other in-play state; a reference bound to it then denotes the card in hand",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps"
+      ]
+    },
+    {
+      "id": "torch_structured_unconditional",
+      "card_id": "CATA_585",
+      "category": "condition_and_state",
+      "kind": "semantic_error",
+      "witness": "Zero excess or Divine Shield must return nothing. This structurally valid encoding unconditionally returns the victim and stores no damage; FULL_DEP is false. Multiple independent semantic faults, not an isolated full Torch control.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_HAND_LIMIT",
+          "R_HIDDEN_ZONE",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "card_source:from_zone": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:ADD_TO_HAND": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:CHOSEN": 1,
+          "pred:damaged": 1,
+          "selector:ref": 2,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL_DEP",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $8 damage to a damaged minion. Return this to hand with any excess damage. => Cast: choose a chosen minion damaged [zones=PLAY; mode=CHOSEN] as <victim>; deal $8 damage to them<victim>; then you get them<victim>",
+        "Dependency <spell_damage> UNKNOWN_RULE/CONDITIONAL: Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision spellpower [OUTCOME/UNKNOWN]: Does Spell Damage affect Torch? => UNRESOLVED; alternatives: Adds damage / Ignored by ImmuneToSpellpower; dependency=spell_damage; distinguishing case: Cast with +1 Spell Damage and inspect damage and returned parameter.",
+        "Author notes (not executed): The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE.",
+        "Strict acceptance=True; complete=True; computed status=FULL_DEP",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_HAND_LIMIT [UNVERIFIED]: At most 10 cards in hand; an extra card is destroyed",
+        "Rule R_HIDDEN_ZONE [PROJECT_REVIEWED]: Effects on a hidden zone happen but are not observable to SELF; the IR never fills in the hidden identities",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps"
+      ]
+    },
+    {
+      "id": "torch_reminder",
+      "card_id": "CATA_585",
+      "category": "service_field",
+      "kind": "semantic_error",
+      "witness": "Executable return clause disguised as a UI reminder must be rejected.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "PARTIAL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "pick:CHOSEN": 1,
+          "pred:damaged": 1,
+          "selector:ref": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "PARTIAL",
+        "errors": [
+          "GAP_BINDINGS: duplicate or missing gap /unexpressed/0",
+          "REMINDER: /reminders/0 is not a non-operative progress readout"
+        ],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: PARTIAL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $8 damage to a damaged minion. => Cast: choose a chosen minion damaged [zones=PLAY; mode=CHOSEN] as <victim>; deal $8 damage to them<victim>",
+        "reminders[0] REMINDER (not executed): Return this to hand with any excess damage.; reason: IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield.",
+        "Gap binding /unexpressed/0 => dependencies: persistent_damage",
+        "Dependency <persistent_damage> UNKNOWN_RULE/CORE: Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Dependency <spell_damage> UNKNOWN_RULE/CONDITIONAL: Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision observed [OUTCOME/USER_OBSERVED]: What does excess carry? => Remaining instance damage 8 -> 5 -> 3; positive excess only; alternatives: Remaining instance damage 8 -> 5 -> 3; positive excess only / Fresh 8 damage or unconditional return; dependency=persistent_damage; distinguishing case: 8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.",
+        "Decision spellpower [OUTCOME/UNKNOWN]: Does Spell Damage affect Torch? => UNRESOLVED; alternatives: Adds damage / Ignored by ImmuneToSpellpower; dependency=spell_damage; distinguishing case: Cast with +1 Spell Damage and inspect damage and returned parameter.",
+        "Author notes (not executed): The encoded $8 is the initial play fragment only; it does not describe a replay after the user-observed reduction. No full Torch procedure or Spell Damage behavior is asserted. The persistence/return fragment remains unexpressed and CORE.",
+        "Strict acceptance=False; complete=False; computed status=PARTIAL",
+        "ERROR: GAP_BINDINGS: duplicate or missing gap /unexpressed/0",
+        "ERROR: REMINDER: /reminders/0 is not a non-operative progress readout",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)"
+      ]
+    },
+    {
+      "id": "torch_notes_only",
+      "card_id": "CATA_585",
+      "category": "service_field",
+      "kind": "semantic_error",
+      "witness": "Entire return and persistence procedure is only a non-executable note under the full span.",
+      "structural": {
+        "ok": false,
+        "errors": [
+          "abilities[0].effect: seq needs a list of at least two steps",
+          "abilities[0]: text number $8 has no matching IR number with the same mark",
+          "abilities[0].target: 'victim' is bound but never used"
+        ],
+        "status": "FULL_DEP",
+        "rules": [
+          "R_PLAY_TARGET"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "label:SPELL": 1,
+          "pick:CHOSEN": 1,
+          "pred:damaged": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL_DEP",
+        "errors": [
+          "abilities[0].effect: seq needs a list of at least two steps",
+          "abilities[0]: text number $8 has no matching IR number with the same mark",
+          "abilities[0].target: 'victim' is bound but never used"
+        ],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL_DEP — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $8 damage to a damaged minion. Return this to hand with any excess damage. => Cast: choose a chosen minion damaged [zones=PLAY; mode=CHOSEN] as <victim>; deal $8 damage to them<victim>",
+        "Dependency <spell_damage> UNKNOWN_RULE/CONDITIONAL: Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.; source needed: Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+        "Decision spellpower [OUTCOME/UNKNOWN]: Does Spell Damage affect Torch? => UNRESOLVED; alternatives: Adds damage / Ignored by ImmuneToSpellpower; dependency=spell_damage; distinguishing case: Cast with +1 Spell Damage and inspect damage and returned parameter.",
+        "Author notes (not executed): Runtime must return this spell when excess > 0, storing the excess damage.",
+        "Strict acceptance=False; complete=False; computed status=FULL_DEP",
+        "ERROR: abilities[0].effect: seq needs a list of at least two steps",
+        "ERROR: abilities[0]: text number $8 has no matching IR number with the same mark",
+        "ERROR: abilities[0].target: 'victim' is bound but never used",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it"
+      ]
+    },
+    {
+      "id": "bolt_float_mark",
+      "card_id": "TIME_216",
+      "category": "json_type",
+      "kind": "schema_error",
+      "witness": "The literal schema requires integers; JSON 5.0 is not an integer.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5.0 damage to them<victim>; then if them<victim> is alive (survived): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_bool_mark",
+      "card_id": "TIME_216",
+      "category": "json_type",
+      "kind": "schema_error",
+      "witness": "A boolean must not be accepted as a marked damage number.",
+      "structural": {
+        "ok": false,
+        "errors": [
+          "abilities[0]: text number $5 has no matching IR number with the same mark",
+          "abilities[0]: IR number $1 carries a mark the text does not have"
+        ],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": false,
+        "complete": false,
+        "status": "FULL",
+        "errors": [
+          "abilities[0]: text number $5 has no matching IR number with the same mark",
+          "abilities[0]: IR number $1 carries a mark the text does not have"
+        ],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $True damage to them<victim>; then if them<victim> is alive (survived): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=False; complete=False; computed status=FULL",
+        "ERROR: abilities[0]: text number $5 has no matching IR number with the same mark",
+        "ERROR: abilities[0]: IR number $1 carries a mark the text does not have",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_untyped_ref",
+      "card_id": "TIME_216",
+      "category": "binding_type",
+      "kind": "schema_error",
+      "witness": "A scalar assigned to victim overwrites its entity binding; subsequent ref victim is no longer an entity.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "control:set": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 2,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; let victim = 5; then deal $5 damage to them<victim>; then if them<victim> is alive (survived): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    },
+    {
+      "id": "bolt_empty_dependencies",
+      "card_id": "TIME_216",
+      "category": "json_type",
+      "kind": "schema_error",
+      "witness": "dependencies must be an array; the empty object must not pass by vacuous iteration.",
+      "structural": {
+        "ok": true,
+        "errors": [],
+        "status": "FULL",
+        "rules": [
+          "R_AMOUNT_ORDER",
+          "R_DAMAGE",
+          "R_DRAW",
+          "R_PLAY_TARGET",
+          "R_SPELL_DAMAGE",
+          "R_STEP_BOUNDARY",
+          "R_SURVIVE"
+        ],
+        "elements": {
+          "ability:play": 1,
+          "cond:is": 1,
+          "control:if": 1,
+          "control:seq": 1,
+          "label:SPELL": 1,
+          "op:DEAL_DAMAGE": 1,
+          "op:DRAW": 1,
+          "pick:CHOSEN": 1,
+          "pred:alive": 1,
+          "selector:ref": 2,
+          "value:literal": 1,
+          "value:spell_damage_literal": 1,
+          "zone:PLAY": 1
+        }
+      },
+      "strict": {
+        "accepted": true,
+        "complete": true,
+        "status": "FULL",
+        "errors": [],
+        "warnings": []
+      },
+      "audit": [
+        "Declared status: FULL — representation label, not semantic approval",
+        "IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)",
+        "abilities[0] TEXT: Deal $5 damage to a minion. If it survives, draw 2 cards. => Cast: choose a chosen minion [zones=PLAY; mode=CHOSEN] as <victim>; deal $5 damage to them<victim>; then if them<victim> is alive (survived): you draw 2 x card",
+        "Decision survival [OUTCOME/TEXT]: Which entity must survive and when? => Chosen victim after damage and reactions; alternatives: Chosen victim after damage and reactions / Source or pre-damage victim; dependency=none; distinguishing case: Lethal damage to the target must not draw; a surviving target draws two.",
+        "Strict acceptance=True; complete=True; computed status=FULL",
+        "Rule R_AMOUNT_ORDER [UNKNOWN]: Order of additive bonuses (Spell Damage, healing bonus), multipliers (doubling) and replacements (healing becomes damage)",
+        "Rule R_DAMAGE [PROJECT_REVIEWED]: A damage packet: Divine Shield and Immune prevent it, a hero loses Armor first, damage events are dispatched after the step's mutations",
+        "Rule R_DRAW [UNVERIFIED]: A draw takes the top deck card; an empty deck causes fatigue; a full hand destroys the card",
+        "Rule R_PLAY_TARGET [UNVERIFIED]: A CHOSEN target is fixed when the card is played; a spell needs a legal target, a Battlecry without one resolves without it",
+        "Rule R_SPELL_DAMAGE [PROJECT_REVIEWED]: A '$' amount adds the controller's Spell Damage once per step (CURRENT_AT_STEP)",
+        "Rule R_STEP_BOUNDARY [PROJECT_REVIEWED]: A sequence step finishes, with the reactions it causes, before the next step is evaluated; deaths are not processed between steps",
+        "Rule R_SURVIVE [COMMUNITY_RULES]: 'alive: true' holds for an entity that, after the current step and the reactions it caused and before the death phase, is still in play with Health > 0 and not pending destruction"
+      ]
+    }
+  ]
+}
