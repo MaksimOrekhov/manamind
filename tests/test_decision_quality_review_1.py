@@ -189,3 +189,27 @@ def test_server_saves_valid_labels_and_refuses_main_before_pilot(tmp_path, monke
         server.server_close()
     saved = (tmp_path / "labels" / "tester" / "pilot.labels.jsonl").read_text(encoding="utf-8")
     assert "chosen_action_index" not in saved and '"rater":"tester"' in saved
+
+
+def test_compare_guard_and_uniform_expectations():
+    import decision_quality_review_1_compare as cmp
+
+    assert cmp.guarded([0, 1, 2, 3], lethal=[], self_harm=[0]) == [1, 2, 3, 0]
+    assert cmp.guarded([0, 1, 2, 3], lethal=[3, 2], self_harm=[2]) == [2, 0, 1, 3]
+    assert cmp.guarded([0, 1, 2], lethal=[], self_harm=[]) == [0, 1, 2]
+    position = {"acceptable": [1, 2], "blunder": [3], "best": [2]}
+    uniform = cmp.scores(position, None, 4)
+    assert uniform["top1_acceptable"] == 0.5 and uniform["top1_blunder"] == 0.25
+    assert uniform["top3_any_acceptable"] == 1.0 and uniform["best_in_top3"] == 0.75
+    model = cmp.scores(position, [3, 0, 2, 1], 4)
+    assert model == {"top1_acceptable": 0.0, "top1_blunder": 1.0, "top3_any_acceptable": 1.0, "best_in_top3": 1.0}
+
+
+def test_compare_maps_screen_choices_to_menu_indices():
+    import decision_quality_review_1_compare as cmp
+
+    label = {"status": "LABELED", "marks": {"1": "ACCEPTABLE", "3": "BLUNDER", "2": "UNSURE"}, "best": [1],
+             "confidence": "HIGH"}
+    record = cmp.to_indices(label, menu_order=[4, 0, 2, 1, 3])
+    assert record["acceptable"] == [4] and record["blunder"] == [2] and record["unsure"] == [0]
+    assert record["best"] == [4]
