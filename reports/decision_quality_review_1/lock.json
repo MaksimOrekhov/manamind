@@ -1,0 +1,152 @@
+{
+ "schema": "manamind.decision_quality_review_1/lock/1",
+ "created_at_utc": "2026-10-26T16:53:29.996296+00:00",
+ "source_commit": "723274a3f8e5147b702354879a524c617da1b9d2",
+ "code_sha256": {
+  "scripts/decision_quality_review_1.py": "3da5e3e8bf82c1c38690e99b71ffd4e17d81735541147fdf3e2e13f7c207bd53",
+  "scripts/decision_quality_review_1_tool.html": "e18557bc4c5d6420148355d2cf65ea89e4554124426a36244f2f7c8bf2fdb798"
+ },
+ "inventory_sha256": "da58b0446c664de48e73957cb4eafc1b69d326141d6e959e7c36f6dd09a00074",
+ "pool_sha256": "1e9b538bd8e7c5c1152176ded45a11d9a98e832b5e3e75c60bf19bfe43593ef4",
+ "inventory": {
+  "sources": {
+   "EXCLUDED:MATCH_ID_USED_BEFORE": 110,
+   "IMPORTED:": 21,
+   "EXCLUDED:SOURCE_IN_EVAL_2_INVENTORY": 3,
+   "IMPORT_FAILED:SELF_AMBIGUOUS": 4,
+   "EXCLUDED:PROTECTED_FRESH_HOLDOUT_ID_ONLY": 8,
+   "EXCLUDED:LEGACY_FILENAME_WITHOUT_MATCH_KEY": 18
+  },
+  "imported_matches": 21,
+  "pool_decisions": 386,
+  "self_classes": {
+   "DEMONHUNTER": {
+    "matches": 4,
+    "eligible_decisions": 106
+   },
+   "WARLOCK": {
+    "matches": 17,
+    "eligible_decisions": 280
+   }
+  },
+  "opponent_classes": {
+   "HUNTER": 1,
+   "WARRIOR": 7,
+   "PALADIN": 4,
+   "PRIEST": 2,
+   "MAGE": 1,
+   "ROGUE": 1,
+   "SHAMAN": 1,
+   "DEATHKNIGHT": 1,
+   "WARLOCK": 1,
+   "DEMONHUNTER": 2
+  }
+ },
+ "seed": "decision-quality-review-1/20261026",
+ "batches": {
+  "pilot": {
+   "unique_positions": 15,
+   "repeat_screens": 3,
+   "screens": 18,
+   "matches": 15,
+   "self_classes": {
+    "WARLOCK": 11,
+    "DEMONHUNTER": 4
+   },
+   "opponent_classes": {
+    "WARRIOR": 5,
+    "HUNTER": 1,
+    "ROGUE": 1,
+    "MAGE": 1,
+    "PRIEST": 1,
+    "DEATHKNIGHT": 1,
+    "PALADIN": 3,
+    "DEMONHUNTER": 1,
+    "SHAMAN": 1
+   },
+   "menu_buckets": {
+    "3-5": 6,
+    "6-10": 4,
+    "11+": 5
+   },
+   "turn_buckets": {
+    "1-8": 7,
+    "9-16": 7,
+    "17+": 1
+   },
+   "max_positions_per_match": 1,
+   "payload_sha256": "1d6aabbb93f04da9bf9e24626b63c1af1399a1e9eea73badbaca03a89900d830",
+   "manifest_sha256": "f3bf08a26c69aba37c6d799f4eaab078ec205879c6df0700e9aed488a8a3e652",
+   "identity_sha256": "9ffcc31062d2afbcbd29be05457480e9195597236bcfeb2bc44e865292f332ee",
+   "cards_without_text_rendered": 1
+  },
+  "main": {
+   "unique_positions": 80,
+   "repeat_screens": 20,
+   "screens": 100,
+   "matches": 21,
+   "self_classes": {
+    "WARLOCK": 61,
+    "DEMONHUNTER": 19
+   },
+   "opponent_classes": {
+    "ROGUE": 6,
+    "SHAMAN": 8,
+    "DEATHKNIGHT": 4,
+    "WARRIOR": 27,
+    "DEMONHUNTER": 4,
+    "HUNTER": 4,
+    "MAGE": 5,
+    "PRIEST": 10,
+    "PALADIN": 11,
+    "WARLOCK": 1
+   },
+   "menu_buckets": {
+    "3-5": 27,
+    "6-10": 27,
+    "11+": 26
+   },
+   "turn_buckets": {
+    "9-16": 39,
+    "1-8": 31,
+    "17+": 10
+   },
+   "max_positions_per_match": 8,
+   "payload_sha256": "64cef9a58556a65f3b870510c709221fadc3c92bf0ece6a4acff94479a3966c9",
+   "manifest_sha256": "561c044c51da4d2f5848211a7d326c0185d0ebe1f8f84dcb1be97bc82208785e",
+   "identity_sha256": "a82fccaaad9502cc2c32056468db267776cff92dac881bd2bb6acb8b9d0248a0",
+   "cards_without_text_rendered": 2,
+   "status": "READY"
+  }
+ },
+ "card_metadata_snapshot": "hsjson_255130_enUS",
+ "card_ids_missing_from_metadata": 0,
+ "blind": {
+  "model_outputs_computed": false,
+  "chosen_action_or_result_written": false,
+  "forbidden_payload_keys": [
+   "chosen_action_index",
+   "decision_id",
+   "final_result",
+   "game_id",
+   "options_line",
+   "position_id",
+   "provenance",
+   "repeat_of",
+   "selection_line",
+   "state_hash"
+  ]
+ },
+ "pilot_criteria": {
+  "P1_complete": "every pilot screen has a saved label",
+  "P2_display": "DISPLAY_PROBLEM flagged on at most 2 of 18 screens",
+  "P3_display_insufficient": "INSUFFICIENT_INFORMATION for a display or missing-text reason on at most 3 of 15 unique positions",
+  "P4_workload": "median active time per screen at most 180 seconds",
+  "P5_blind_payload": "automated audit: no forbidden field in the served payload"
+ },
+ "raw_logs": {
+  "count": 21,
+  "manifest_sha256": "fffb99653b5c8056689660cd3dd0c535fc7793cd148cc362ceca774db97fa5fc"
+ },
+ "private_lock_sha256": "47692a36643fe49bb67868b59a34cffa5980116352f4dc30f4843465b4a050ac"
+}
