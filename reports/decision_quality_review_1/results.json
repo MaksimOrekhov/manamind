@@ -1,0 +1,670 @@
+{
+ "schema": "manamind.decision_quality_review_1/results/1",
+ "created_at_utc": "2026-10-26T19:12:01.243902+00:00",
+ "source_commit": "4f934c4e91908c7876aaabe3c69b6faee3d63c67",
+ "code_sha256": "551d4ca3c226a68647a4d254002db4f0d3297f6bad94b13e423b4f8e8c7d3e98",
+ "labels": {
+  "pilot": {
+   "labels_sha256": "a33930a2bd8a6ca9661f4bfafb48a5bd9f0642c6b0c74a2aa88d642e1252fd73",
+   "labeled_screens": 18,
+   "truncated": false
+  },
+  "main": {
+   "labels_sha256": "5e193b093821accadce906d3855fc8f7f666022727c80d7e748dda678e6decaa",
+   "labeled_screens": 33,
+   "truncated": true
+  },
+  "pilot_repeats": {
+   "pairs": 3,
+   "items": [
+    {
+     "same_status": true,
+     "acceptable_jaccard": 1.0,
+     "same_blunders": true
+    },
+    {
+     "same_status": true,
+     "acceptable_jaccard": 1.0,
+     "same_blunders": true
+    },
+    {
+     "same_status": true,
+     "acceptable_jaccard": 1.0,
+     "same_blunders": true
+    }
+   ],
+   "note": "Descriptive only (n = 3): amendment 1 records rater stability as NOT MEASURED."
+  }
+ },
+ "positions": 48,
+ "labeled": 48,
+ "insufficient_information": 0,
+ "label_shape": {
+  "mean_menu_size": 11.729166666666666,
+  "mean_acceptable_per_position": 5.791666666666667,
+  "mean_acceptable_share": 0.5076129588771316,
+  "positions_with_best": 29,
+  "confidence": {
+   "MEDIUM": 4,
+   "HIGH": 44
+  }
+ },
+ "bootstrap": {
+  "draws": 5000,
+  "seed": 20261026,
+  "unit": "whole match"
+ },
+ "results": {
+  "arms": {
+   "frozen_v2": {
+    "top1_acceptable": {
+     "mean": 0.625,
+     "ci95": [
+      0.5,
+      0.74
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.25,
+     "ci95": [
+      0.13953488372093023,
+      0.36
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": 0.9166666666666666,
+     "ci95": [
+      0.8163265306122449,
+      1.0
+     ]
+    },
+    "best_in_top3": {
+     "mean": 0.6206896551724138,
+     "ci95": [
+      0.41379310344827586,
+      0.8333333333333334
+     ]
+    }
+   },
+   "policy_v3": {
+    "top1_acceptable": {
+     "mean": 0.6041666666666666,
+     "ci95": [
+      0.4791666666666667,
+      0.7391304347826086
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.2708333333333333,
+     "ci95": [
+      0.1346153846153846,
+      0.4067796610169492
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": 0.9166666666666666,
+     "ci95": [
+      0.8448275862068966,
+      0.9787234042553191
+     ]
+    },
+    "best_in_top3": {
+     "mean": 0.7241379310344828,
+     "ci95": [
+      0.5428571428571428,
+      0.9166666666666666
+     ]
+    }
+   },
+   "scorer_v3": {
+    "top1_acceptable": {
+     "mean": 0.7083333333333334,
+     "ci95": [
+      0.5306122448979592,
+      0.8703703703703703
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.25,
+     "ci95": [
+      0.08695652173913043,
+      0.42857142857142855
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": 0.9375,
+     "ci95": [
+      0.8666666666666667,
+      1.0
+     ]
+    },
+    "best_in_top3": {
+     "mean": 0.7931034482758621,
+     "ci95": [
+      0.6153846153846154,
+      0.9333333333333333
+     ]
+    }
+   },
+   "frozen_v2_guard": {
+    "top1_acceptable": {
+     "mean": 0.625,
+     "ci95": [
+      0.5,
+      0.74
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.25,
+     "ci95": [
+      0.13953488372093023,
+      0.36
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": 0.9166666666666666,
+     "ci95": [
+      0.8163265306122449,
+      1.0
+     ]
+    },
+    "best_in_top3": {
+     "mean": 0.6206896551724138,
+     "ci95": [
+      0.41379310344827586,
+      0.8333333333333334
+     ]
+    }
+   },
+   "uniform": {
+    "top1_acceptable": {
+     "mean": 0.5076129588771316,
+     "ci95": [
+      0.42522522443934924,
+      0.5875101066996847
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.4263368144008401,
+     "ci95": [
+      0.3517191903101782,
+      0.5030504666550353
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": 0.8708803080287666,
+     "ci95": [
+      0.7901100300401349,
+      0.9271201804196518
+     ]
+    },
+    "best_in_top3": {
+     "mean": 0.6436257914077829,
+     "ci95": [
+      0.5440095484563763,
+      0.7510600439628573
+     ]
+    }
+   },
+   "player": {
+    "top1_acceptable": {
+     "mean": 0.8541666666666666,
+     "ci95": [
+      0.7555555555555555,
+      0.95
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.08333333333333333,
+     "ci95": [
+      0.0,
+      0.17647058823529413
+     ]
+    },
+    "top3_any_acceptable": {
+     "mean": null,
+     "ci95": null
+    },
+    "best_in_top3": {
+     "mean": null,
+     "ci95": null
+    }
+   }
+  },
+  "paired": {
+   "frozen_v2 - uniform": {
+    "top1_acceptable": {
+     "mean": 0.11738704112286835,
+     "ci95": [
+      0.007506956763890016,
+      0.2193500666747994
+     ]
+    },
+    "top1_blunder": {
+     "mean": -0.1763368144008401,
+     "ci95": [
+      -0.29175671835602285,
+      -0.0672401894551038
+     ]
+    }
+   },
+   "frozen_v2_guard - frozen_v2": {
+    "top1_acceptable": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.0,
+     "ci95": [
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "policy_v3 - frozen_v2": {
+    "top1_acceptable": {
+     "mean": -0.02083333333333337,
+     "ci95": [
+      -0.14,
+      0.1111111111111111
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.020833333333333315,
+     "ci95": [
+      -0.06976744186046513,
+      0.10909090909090907
+     ]
+    }
+   },
+   "scorer_v3 - frozen_v2": {
+    "top1_acceptable": {
+     "mean": 0.08333333333333337,
+     "ci95": [
+      -0.06818181818181823,
+      0.2325581395348837
+     ]
+    },
+    "top1_blunder": {
+     "mean": 0.0,
+     "ci95": [
+      -0.15254237288135591,
+      0.17021276595744678
+     ]
+    }
+   }
+  }
+ },
+ "slices": {
+  "batch": {
+   "main": {
+    "frozen_v2": {
+     "top1_acceptable": 0.6666666666666666,
+     "top1_blunder": 0.2727272727272727,
+     "top3_any_acceptable": 0.9090909090909091,
+     "best_in_top3": 0.5714285714285714
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.6666666666666666,
+     "top1_blunder": 0.30303030303030304,
+     "top3_any_acceptable": 0.8787878787878788,
+     "best_in_top3": 0.5714285714285714
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.696969696969697,
+     "top1_blunder": 0.30303030303030304,
+     "top3_any_acceptable": 0.9090909090909091,
+     "best_in_top3": 0.7142857142857143
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.6666666666666666,
+     "top1_blunder": 0.2727272727272727,
+     "top3_any_acceptable": 0.9090909090909091,
+     "best_in_top3": 0.5714285714285714
+    },
+    "uniform": {
+     "top1_acceptable": 0.5244482835528325,
+     "top1_blunder": 0.4614230577096294,
+     "top3_any_acceptable": 0.8696717787396134,
+     "best_in_top3": 0.6496811746811747
+    },
+    "player": {
+     "top1_acceptable": 0.9090909090909091,
+     "top1_blunder": 0.09090909090909091,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 33,
+    "matches": 17
+   },
+   "pilot": {
+    "frozen_v2": {
+     "top1_acceptable": 0.5333333333333333,
+     "top1_blunder": 0.2,
+     "top3_any_acceptable": 0.9333333333333333,
+     "best_in_top3": 0.6666666666666666
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.4666666666666667,
+     "top1_blunder": 0.2,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.8666666666666667
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.7333333333333333,
+     "top1_blunder": 0.13333333333333333,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.8666666666666667
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.5333333333333333,
+     "top1_blunder": 0.2,
+     "top3_any_acceptable": 0.9333333333333333,
+     "best_in_top3": 0.6666666666666666
+    },
+    "uniform": {
+     "top1_acceptable": 0.47057524459058986,
+     "top1_blunder": 0.34914707912150367,
+     "top3_any_acceptable": 0.8735390724649037,
+     "best_in_top3": 0.6379741003526169
+    },
+    "player": {
+     "top1_acceptable": 0.7333333333333333,
+     "top1_blunder": 0.06666666666666667,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 15,
+    "matches": 15
+   }
+  },
+  "self_class": {
+   "DEMONHUNTER": {
+    "frozen_v2": {
+     "top1_acceptable": 0.5454545454545454,
+     "top1_blunder": 0.2727272727272727,
+     "top3_any_acceptable": 0.8181818181818182,
+     "best_in_top3": 0.5714285714285714
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.6363636363636364,
+     "top1_blunder": 0.18181818181818182,
+     "top3_any_acceptable": 0.9090909090909091,
+     "best_in_top3": 0.8571428571428571
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.45454545454545453,
+     "top1_blunder": 0.45454545454545453,
+     "top3_any_acceptable": 0.9090909090909091,
+     "best_in_top3": 0.8571428571428571
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.5454545454545454,
+     "top1_blunder": 0.2727272727272727,
+     "top3_any_acceptable": 0.8181818181818182,
+     "best_in_top3": 0.5714285714285714
+    },
+    "uniform": {
+     "top1_acceptable": 0.43462107721001003,
+     "top1_blunder": 0.4806292521707541,
+     "top3_any_acceptable": 0.7749603492686497,
+     "best_in_top3": 0.6615061439595601
+    },
+    "player": {
+     "top1_acceptable": 0.8181818181818182,
+     "top1_blunder": 0.09090909090909091,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 11,
+    "matches": 4
+   },
+   "WARLOCK": {
+    "frozen_v2": {
+     "top1_acceptable": 0.6486486486486487,
+     "top1_blunder": 0.24324324324324326,
+     "top3_any_acceptable": 0.9459459459459459,
+     "best_in_top3": 0.6363636363636364
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.5945945945945946,
+     "top1_blunder": 0.2972972972972973,
+     "top3_any_acceptable": 0.918918918918919,
+     "best_in_top3": 0.6818181818181818
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.7837837837837838,
+     "top1_blunder": 0.1891891891891892,
+     "top3_any_acceptable": 0.9459459459459459,
+     "best_in_top3": 0.7727272727272727
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.6486486486486487,
+     "top1_blunder": 0.24324324324324326,
+     "top3_any_acceptable": 0.9459459459459459,
+     "best_in_top3": 0.6363636363636364
+    },
+    "uniform": {
+     "top1_acceptable": 0.529313248021411,
+     "top1_blunder": 0.4101958193881629,
+     "top3_any_acceptable": 0.8993970525250174,
+     "best_in_top3": 0.6379365883231264
+    },
+    "player": {
+     "top1_acceptable": 0.8648648648648649,
+     "top1_blunder": 0.08108108108108109,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 37,
+    "matches": 15
+   }
+  },
+  "menu_bucket": {
+   "11+": {
+    "frozen_v2": {
+     "top1_acceptable": 0.6470588235294118,
+     "top1_blunder": 0.23529411764705882,
+     "top3_any_acceptable": 0.8823529411764706,
+     "best_in_top3": 0.1111111111111111
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.47058823529411764,
+     "top1_blunder": 0.35294117647058826,
+     "top3_any_acceptable": 0.8235294117647058,
+     "best_in_top3": 0.3333333333333333
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.8235294117647058,
+     "top1_blunder": 0.17647058823529413,
+     "top3_any_acceptable": 0.9411764705882353,
+     "best_in_top3": 0.5555555555555556
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.6470588235294118,
+     "top1_blunder": 0.23529411764705882,
+     "top3_any_acceptable": 0.8823529411764706,
+     "best_in_top3": 0.1111111111111111
+    },
+    "uniform": {
+     "top1_acceptable": 0.4854543302002297,
+     "top1_blunder": 0.4456979708199257,
+     "top3_any_acceptable": 0.8065752114649767,
+     "best_in_top3": 0.28395823792243235
+    },
+    "player": {
+     "top1_acceptable": 0.7647058823529411,
+     "top1_blunder": 0.17647058823529413,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 17,
+    "matches": 11
+   },
+   "3-5": {
+    "frozen_v2": {
+     "top1_acceptable": 0.6470588235294118,
+     "top1_blunder": 0.23529411764705882,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.9230769230769231
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.7058823529411765,
+     "top1_blunder": 0.17647058823529413,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.9230769230769231
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.7058823529411765,
+     "top1_blunder": 0.23529411764705882,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.9230769230769231
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.6470588235294118,
+     "top1_blunder": 0.23529411764705882,
+     "top3_any_acceptable": 1.0,
+     "best_in_top3": 0.9230769230769231
+    },
+    "uniform": {
+     "top1_acceptable": 0.5117647058823529,
+     "top1_blunder": 0.42254901960784313,
+     "top3_any_acceptable": 0.9382352941176471,
+     "best_in_top3": 0.8576923076923078
+    },
+    "player": {
+     "top1_acceptable": 0.9411764705882353,
+     "top1_blunder": 0.0,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 17,
+    "matches": 14
+   },
+   "6-10": {
+    "frozen_v2": {
+     "top1_acceptable": 0.5714285714285714,
+     "top1_blunder": 0.2857142857142857,
+     "top3_any_acceptable": 0.8571428571428571,
+     "best_in_top3": 0.7142857142857143
+    },
+    "policy_v3": {
+     "top1_acceptable": 0.6428571428571429,
+     "top1_blunder": 0.2857142857142857,
+     "top3_any_acceptable": 0.9285714285714286,
+     "best_in_top3": 0.8571428571428571
+    },
+    "scorer_v3": {
+     "top1_acceptable": 0.5714285714285714,
+     "top1_blunder": 0.35714285714285715,
+     "top3_any_acceptable": 0.8571428571428571,
+     "best_in_top3": 0.8571428571428571
+    },
+    "frozen_v2_guard": {
+     "top1_acceptable": 0.5714285714285714,
+     "top1_blunder": 0.2857142857142857,
+     "top3_any_acceptable": 0.8571428571428571,
+     "best_in_top3": 0.7142857142857143
+    },
+    "uniform": {
+     "top1_acceptable": 0.5294784580498866,
+     "top1_blunder": 0.40742630385487527,
+     "top3_any_acceptable": 0.8671768707482993,
+     "best_in_top3": 0.7085034013605442
+    },
+    "player": {
+     "top1_acceptable": 0.8571428571428571,
+     "top1_blunder": 0.07142857142857142,
+     "top3_any_acceptable": null,
+     "best_in_top3": null
+    },
+    "positions": 14,
+    "matches": 11
+   }
+  }
+ },
+ "taxonomy": {
+  "v2_top1_blunder_positions": 12,
+  "v2_top1_not_acceptable_positions": 18,
+  "v2_top1_family_when_blunder": {
+   "PLAY_SPELL": 6,
+   "END_TURN": 1,
+   "HERO_POWER": 2,
+   "ATTACK": 1,
+   "PLAY_MINION": 2
+  },
+  "v2_top1_family_when_not_acceptable": {
+   "ATTACK": 2,
+   "PLAY_MINION": 6,
+   "PLAY_SPELL": 7,
+   "END_TURN": 1,
+   "HERO_POWER": 2
+  },
+  "v2_top1_family_all": {
+   "ATTACK": 12,
+   "HERO_POWER": 8,
+   "PLAY_MINION": 17,
+   "PLAY_SPELL": 10,
+   "END_TURN": 1
+  },
+  "blunder_marks_by_family": {
+   "END_TURN": 46,
+   "ATTACK": 37,
+   "PLAY_SPELL": 139,
+   "HERO_POWER": 6,
+   "PLAY_MINION": 21
+  },
+  "positions_with_any_blunder_mark": 48,
+  "mechanically_checkable_v2_blunders": 0,
+  "guard": {
+   "positions_with_confirmed_lethal": 0,
+   "positions_with_self_harm_flag": 0,
+   "top1_changed": 0
+  },
+  "remembered_positions": 0
+ },
+ "without_remembered_positions": {
+  "frozen_v2": {
+   "top1_acceptable": 0.625,
+   "top1_blunder": 0.25,
+   "top3_any_acceptable": 0.9166666666666666,
+   "best_in_top3": 0.6206896551724138
+  },
+  "policy_v3": {
+   "top1_acceptable": 0.6041666666666666,
+   "top1_blunder": 0.2708333333333333,
+   "top3_any_acceptable": 0.9166666666666666,
+   "best_in_top3": 0.7241379310344828
+  },
+  "scorer_v3": {
+   "top1_acceptable": 0.7083333333333334,
+   "top1_blunder": 0.25,
+   "top3_any_acceptable": 0.9375,
+   "best_in_top3": 0.7931034482758621
+  },
+  "frozen_v2_guard": {
+   "top1_acceptable": 0.625,
+   "top1_blunder": 0.25,
+   "top3_any_acceptable": 0.9166666666666666,
+   "best_in_top3": 0.6206896551724138
+  },
+  "uniform": {
+   "top1_acceptable": 0.5076129588771316,
+   "top1_blunder": 0.4263368144008401,
+   "top3_any_acceptable": 0.8708803080287666,
+   "best_in_top3": 0.6436257914077829
+  },
+  "player": {
+   "top1_acceptable": 0.8541666666666666,
+   "top1_blunder": 0.08333333333333333,
+   "top3_any_acceptable": null,
+   "best_in_top3": null
+  },
+  "positions": 48,
+  "matches": 19
+ },
+ "rater_stability": "NOT_MEASURED (PROTOCOL amendment 1)"
+}
