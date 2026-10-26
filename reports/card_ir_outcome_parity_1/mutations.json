@@ -1,0 +1,531 @@
+{
+  "all_compiled_probes_change_or_refuse": true,
+  "all_public_gates_refuse": true,
+  "cases": [
+    {
+      "compiled_probe": {
+        "changed": true,
+        "view": {
+          "changes": [
+            {
+              "after": 9,
+              "at_least": null,
+              "at_most": null,
+              "before": 10,
+              "field": "available_mana",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 1,
+              "at_least": null,
+              "at_most": null,
+              "before": 2,
+              "field": "hand_size",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 4,
+              "at_least": null,
+              "at_most": null,
+              "before": 9,
+              "field": "health",
+              "side": "OPPONENT",
+              "zone": "BOARD"
+            },
+            {
+              "after": false,
+              "at_least": null,
+              "at_most": null,
+              "before": true,
+              "field": "present",
+              "side": "SELF",
+              "zone": "HAND"
+            }
+          ],
+          "events": [
+            {
+              "amount": 1,
+              "kind": "MANA_SPENT"
+            },
+            {
+              "amount": 5,
+              "kind": "DAMAGE"
+            }
+          ],
+          "reason": null,
+          "status": "PARTIAL"
+        }
+      },
+      "id": "damage_3_to_5",
+      "original": {
+        "changes": [
+          {
+            "after": 9,
+            "at_least": null,
+            "at_most": null,
+            "before": 10,
+            "field": "available_mana",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 1,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "hand_size",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 6,
+            "at_least": null,
+            "at_most": null,
+            "before": 9,
+            "field": "health",
+            "side": "OPPONENT",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          }
+        ],
+        "events": [
+          {
+            "amount": 1,
+            "kind": "MANA_SPENT"
+          },
+          {
+            "amount": 3,
+            "kind": "DAMAGE"
+          }
+        ],
+        "reason": null,
+        "status": "PARTIAL"
+      },
+      "public_gate_reason": "IR_VALIDATION_OR_DEPENDENCY",
+      "public_gate_refused": true,
+      "synthetic": true
+    },
+    {
+      "compiled_probe": {
+        "changed": true,
+        "refused": "TARGET_DOES_NOT_MATCH_TEXT"
+      },
+      "id": "enemy_target_only",
+      "original": {
+        "changes": [
+          {
+            "after": 9,
+            "at_least": null,
+            "at_most": null,
+            "before": 10,
+            "field": "available_mana",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 1,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "hand_size",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 0,
+            "at_least": null,
+            "at_most": null,
+            "before": 3,
+            "field": "health",
+            "side": "SELF",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          }
+        ],
+        "events": [
+          {
+            "amount": 1,
+            "kind": "MANA_SPENT"
+          },
+          {
+            "amount": 3,
+            "kind": "DAMAGE"
+          },
+          {
+            "amount": null,
+            "kind": "DEATH"
+          }
+        ],
+        "reason": null,
+        "status": "PARTIAL"
+      },
+      "public_gate_reason": "IR_VALIDATION_OR_DEPENDENCY",
+      "public_gate_refused": true,
+      "synthetic": true
+    },
+    {
+      "compiled_probe": {
+        "changed": true,
+        "view": {
+          "changes": [
+            {
+              "after": 9,
+              "at_least": null,
+              "at_most": null,
+              "before": 10,
+              "field": "available_mana",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 1,
+              "at_least": null,
+              "at_most": null,
+              "before": 2,
+              "field": "hand_size",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 6,
+              "at_least": null,
+              "at_most": null,
+              "before": 9,
+              "field": "health",
+              "side": "OPPONENT",
+              "zone": "BOARD"
+            },
+            {
+              "after": false,
+              "at_least": null,
+              "at_most": null,
+              "before": true,
+              "field": "present",
+              "side": "SELF",
+              "zone": "HAND"
+            }
+          ],
+          "events": [
+            {
+              "amount": 1,
+              "kind": "MANA_SPENT"
+            },
+            {
+              "amount": 3,
+              "kind": "DAMAGE"
+            }
+          ],
+          "reason": null,
+          "status": "EXACT"
+        }
+      },
+      "id": "remove_lifesteal",
+      "original": {
+        "changes": [
+          {
+            "after": 23,
+            "at_least": null,
+            "at_most": null,
+            "before": 20,
+            "field": "health",
+            "side": "SELF",
+            "zone": "HERO"
+          },
+          {
+            "after": 9,
+            "at_least": null,
+            "at_most": null,
+            "before": 10,
+            "field": "available_mana",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 1,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "hand_size",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 6,
+            "at_least": null,
+            "at_most": null,
+            "before": 9,
+            "field": "health",
+            "side": "OPPONENT",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          }
+        ],
+        "events": [
+          {
+            "amount": 1,
+            "kind": "MANA_SPENT"
+          },
+          {
+            "amount": 3,
+            "kind": "DAMAGE"
+          },
+          {
+            "amount": 3,
+            "kind": "HEAL"
+          }
+        ],
+        "reason": null,
+        "status": "EXACT"
+      },
+      "public_gate_reason": "IR_VALIDATION_OR_DEPENDENCY",
+      "public_gate_refused": true,
+      "synthetic": true
+    },
+    {
+      "compiled_probe": {
+        "changed": true,
+        "view": {
+          "changes": [
+            {
+              "after": 9,
+              "at_least": null,
+              "at_most": null,
+              "before": 10,
+              "field": "available_mana",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 1,
+              "at_least": null,
+              "at_most": null,
+              "before": 2,
+              "field": "hand_size",
+              "side": "SELF",
+              "zone": "PLAYER"
+            },
+            {
+              "after": 4,
+              "at_least": null,
+              "at_most": null,
+              "before": 9,
+              "field": "health",
+              "side": "OPPONENT",
+              "zone": "BOARD"
+            },
+            {
+              "after": false,
+              "at_least": null,
+              "at_most": null,
+              "before": true,
+              "field": "present",
+              "side": "SELF",
+              "zone": "HAND"
+            }
+          ],
+          "events": [
+            {
+              "amount": 1,
+              "kind": "MANA_SPENT"
+            },
+            {
+              "amount": 5,
+              "kind": "DAMAGE"
+            }
+          ],
+          "reason": null,
+          "status": "EXACT"
+        }
+      },
+      "id": "heal_to_damage",
+      "original": {
+        "changes": [
+          {
+            "after": 9,
+            "at_least": null,
+            "at_most": null,
+            "before": 10,
+            "field": "available_mana",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 1,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "hand_size",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 14,
+            "at_least": null,
+            "at_most": null,
+            "before": 9,
+            "field": "health",
+            "side": "OPPONENT",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          }
+        ],
+        "events": [
+          {
+            "amount": 1,
+            "kind": "MANA_SPENT"
+          },
+          {
+            "amount": 5,
+            "kind": "HEAL"
+          }
+        ],
+        "reason": null,
+        "status": "EXACT"
+      },
+      "public_gate_reason": "IR_VALIDATION_OR_DEPENDENCY",
+      "public_gate_refused": true,
+      "synthetic": true
+    },
+    {
+      "compiled_probe": {
+        "changed": true,
+        "refused": "UNBOUND_REF"
+      },
+      "id": "reverse_sequence",
+      "original": {
+        "changes": [
+          {
+            "after": 9,
+            "at_least": null,
+            "at_most": null,
+            "before": 10,
+            "field": "available_mana",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 0,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "hand_size",
+            "side": "SELF",
+            "zone": "PLAYER"
+          },
+          {
+            "after": 4,
+            "at_least": null,
+            "at_most": null,
+            "before": 2,
+            "field": "attack",
+            "side": "SELF",
+            "zone": "BOARD"
+          },
+          {
+            "after": 5,
+            "at_least": null,
+            "at_most": null,
+            "before": 3,
+            "field": "health",
+            "side": "SELF",
+            "zone": "BOARD"
+          },
+          {
+            "after": 5,
+            "at_least": null,
+            "at_most": null,
+            "before": 3,
+            "field": "max_health",
+            "side": "SELF",
+            "zone": "BOARD"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          },
+          {
+            "after": false,
+            "at_least": null,
+            "at_most": null,
+            "before": true,
+            "field": "present",
+            "side": "SELF",
+            "zone": "HAND"
+          }
+        ],
+        "events": [
+          {
+            "amount": 1,
+            "kind": "MANA_SPENT"
+          },
+          {
+            "amount": null,
+            "kind": "BUFF"
+          },
+          {
+            "amount": 1,
+            "kind": "DISCARD"
+          },
+          {
+            "amount": null,
+            "kind": "BUFF"
+          }
+        ],
+        "reason": null,
+        "status": "PARTIAL"
+      },
+      "public_gate_reason": "IR_VALIDATION_OR_DEPENDENCY",
+      "public_gate_refused": true,
+      "synthetic": true
+    }
+  ],
+  "real_events": 0
+}

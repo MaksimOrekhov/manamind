@@ -1,0 +1,252 @@
+{
+  "cases": [
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number $3 has no matching IR number with the same mark",
+        "abilities[0]: IR number $5 carries a mark the text does not have"
+      ],
+      "id": "MUT-amount"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: enemy side needs an enemy word",
+        "abilities[0]: CLAUSE_TARGET: DEAL_DAMAGE clause 'deal $3 damage' requires ('CHOSEN', 'CHARACTER', 'ANY', 'PLAY'), got ('CHOSEN', 'CHARACTER', 'ENEMY', 'PLAY')"
+      ],
+      "id": "MUT-side"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: enemy side needs an enemy word"
+      ],
+      "id": "MUT-area"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0].target: 't' is bound but never used"
+      ],
+      "id": "MUT-unused-target"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number $3 has no matching IR number with the same mark",
+        "abilities[0]: IR number #3 carries a mark the text does not have"
+      ],
+      "id": "MUT-op-heal"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "text: word 'Overload' at 16 is not covered by any span",
+        "text: word '1' at 27 is not covered by any span"
+      ],
+      "id": "MUT-no-overload"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "keywords[0]: text number 1 has no matching IR number with the same mark"
+      ],
+      "id": "MUT-overload-2"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number $3 has no matching IR number with the same mark",
+        "abilities[0]: IR number #3 carries a mark the text does not have"
+      ],
+      "id": "MUT-mark"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0].effect: unknown operation 'EXPLODE'",
+        "abilities[0]: text number $3 has no matching IR number with the same mark",
+        "abilities[0].target: 't' is bound but never used"
+      ],
+      "id": "MUT-unknown-op"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number $3 has no matching IR number with the same mark"
+      ],
+      "id": "MUT-destroy"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0].effect: unknown keys ['condition']",
+        "abilities[0]: text number $3 has no matching IR number with the same mark",
+        "abilities[0].target: 't' is bound but never used"
+      ],
+      "id": "MUT-field"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number #5 has no matching IR number with the same mark",
+        "abilities[0]: IR number #2 carries a mark the text does not have"
+      ],
+      "id": "MUT-heal-2"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: friendly side needs a friendly word"
+      ],
+      "id": "MUT-friendly"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "text: word 'Lifesteal' at 0 is not covered by any span"
+      ],
+      "id": "MUT-no-lifesteal"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: CLAUSE_TARGET: DEAL_DAMAGE clause 'deal $3 damage to a minion' requires ('CHOSEN', 'MINION', 'ANY', 'PLAY'), got ('CHOSEN', 'CHARACTER', 'ANY', 'PLAY')"
+      ],
+      "id": "MUT-any-character"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0].effect: seq needs a list of at least two steps",
+        "abilities[0]: text number 1 has no matching IR number with the same mark",
+        "abilities[0]: text number 1 has no matching IR number with the same mark",
+        "abilities[0]: text number 1 has no matching IR number with the same mark",
+        "abilities[0]: text number 1 has no matching IR number with the same mark"
+      ],
+      "id": "MUT-no-pay"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0].effect.seq[0].then.to: reference 'buffed' is not bound before use"
+      ],
+      "id": "MUT-swap"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: enemy side needs an enemy word",
+        "abilities[0]: your minions: requires ALL FRIENDLY MINION in PLAY"
+      ],
+      "id": "MUT-enemy-buff"
+    },
+    {
+      "after": "REJECTED",
+      "before": "ACCEPTED",
+      "changed": true,
+      "findings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 0 attack=2 differs from its own text +1"
+      ],
+      "id": "MUT-stats"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number 1 has no matching IR number with the same mark",
+        "abilities[0]: text number 1 has no matching IR number with the same mark",
+        "abilities[0]: text number 1 has no matching IR number with the same mark"
+      ],
+      "id": "MUT-stats-2"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: text number 1 has no matching IR number with the same mark"
+      ],
+      "id": "MUT-stats-9"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: IR number #1 carries a mark the text does not have"
+      ],
+      "id": "MUT-heal-between"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "abilities[0]: IR number $1 carries a mark the text does not have"
+      ],
+      "id": "MUT-damage-between"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "doc: status PARTIAL differs from implied FULL"
+      ],
+      "id": "MUT-partial"
+    },
+    {
+      "after": "REJECTED",
+      "before": "REJECTED",
+      "changed": false,
+      "findings": [
+        "doc: ir must be card-ir/0.2 (v0.1 declarations are validated by v0.1 tools)"
+      ],
+      "id": "MUT-version"
+    }
+  ],
+  "changed": [
+    "MUT-stats"
+  ],
+  "historical_files_changed": false,
+  "native_execution": false,
+  "note": "Original native execution outcomes are preserved; only strict validation of copied IR is re-measured."
+}

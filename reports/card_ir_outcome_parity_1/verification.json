@@ -1,0 +1,92 @@
+{
+  "base_sha": "fc501cee81feaa028bca2fd0d9a33b890936a005",
+  "branch": "codex/card-ir-outcome-parity-1",
+  "protocol_commit": "2108dc532f81424e8b76d5442d3d0231abd7975f",
+  "numeric_fix_commit_before_real_forecasts": "c0be622d8c39fa84f84d0934c5f0e22cda277a06",
+  "data_freeze_commit_before_forecasts": "b73d82f798af235240d7b3f4a404612ad195edcf",
+  "runtime": {"python": "3.12.10", "pytest": "9.1.1", "ruff": "0.16.9", "platform": "Windows"},
+  "numeric_regressions": {
+    "measurement": "validation_measure.py",
+    "before": "validation_before.json",
+    "after": "validation_after.json",
+    "wrong_accepted_before": 6,
+    "wrong_accepted_after": 0,
+    "positive_controls_before": 5,
+    "positive_controls_after": 5,
+    "stage_a_profile_passed": 235,
+    "stage_a_profile_seconds": 3.29,
+    "new_numeric_tests": 15
+  },
+  "focused_checks": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_card_ir.py tests/test_card_ir_pilot_1.py tests/test_card_ir_stage_b1.py tests/test_card_ir_semantic_lint.py tests/test_card_ir_strict.py tests/test_card_ir_v02.py tests/test_card_ir_v02_independent_validation.py tests/test_card_ir_execution_pilot.py tests/test_card_ir_numeric_roles.py tests/test_card_ir_outcome_parity.py tests/test_outcome_forecast.py tests/test_outcome_grammar.py tests/test_outcome_verify.py tests/test_outcome_contract.py tests/test_outcome_observed_context.py -q --basetemp=.tmp_parity_focused",
+    "passed": 482,
+    "seconds": 13.74,
+    "exit_code": 0,
+    "new_parity_tests": 20,
+    "new_tests_total": 35,
+    "targeted_post_serialization_fix": {"passed": 20, "seconds": 1.17, "exit_code": 0}
+  },
+  "full_pytest": {
+    "command": ".venv/Scripts/python.exe -m pytest -q --basetemp=.tmp_parity_full_final",
+    "passed": 1605,
+    "skipped": 1,
+    "seconds": 89.92,
+    "exit_code": 0,
+    "earlier_full_run": {"passed": 1605, "skipped": 1, "seconds": 90.28},
+    "scope": "Existing tests directory, including pre-existing untracked user tests; no native experiment or new training run launched"
+  },
+  "ruff": {
+    "scope": "All tracked Python files plus task-owned new Python; unrelated user untracked files and old scratch trees excluded",
+    "files": 363,
+    "failed_batches": 0,
+    "exit_code": 0,
+    "details": "ruff.json",
+    "final_task_files_rechecked": true
+  },
+  "pinned_artifacts": {
+    "command": ".venv/Scripts/python.exe scripts/check_generated_artifacts.py",
+    "outputs_reproduced": 2,
+    "exit_code": 0,
+    "git_diff": "none"
+  },
+  "history": {
+    "details": "history_reproduction.json",
+    "passed": 8,
+    "total": 8,
+    "stage_a_b1_validation2_v02": "Byte-identical to their expected frozen outputs; no new numerical-role verdict deltas in those sets",
+    "independent_audit": "Metrics/card verdicts identical; only current source hashes differ, including engine_translate added by the previous pilot, strict_v02 and new numeric_lint_v02",
+    "independent_details": "independent_audit_reproduction.json",
+    "execution_pilot_mutations": {"total": 25, "changed_verdicts": ["MUT-stats"], "details": "historical_v02_verdict_deltas.json"},
+    "historical_results_edited": false,
+    "native_execution_repeated": false
+  },
+  "real_experiment": {
+    "results_recomputed_equal": true,
+    "write_once_predictions_recomputed_equal": true,
+    "technical_mutations_recomputed_equal": true,
+    "source_fingerprints": "RESULTS.json: source_sha256",
+    "input_fingerprints": "data_manifest.json and private ignored inputs.json",
+    "observed_inputs_and_forecasts_frozen_before_truth_scoring": true,
+    "serializer_repair": "Normalized tuple-valued diagnostic ledgers to JSON lists; metrics, forecasts and saved numeric values unchanged",
+    "all_saved_report_json_parsed": true
+  },
+  "architecture_and_privacy": {
+    "card_ir_isolation_test_passed": true,
+    "outcome_contract_tests_passed": true,
+    "new_adapter_not_imported_from_src_apps_scripts": true,
+    "baseline_outcome_files_changed": false,
+    "native_engine_files_changed": false,
+    "live_policy_encoder_checkpoint_catalog_changed": false,
+    "new_dependencies": 0,
+    "protected_policy_files_unopened": 9,
+    "protected_evidence_directories_unopened": 8,
+    "unassigned_evidence_directories_unopened": 92,
+    "aggregate_observed_facts_file_opened": false,
+    "private_contexts_and_predictions_kept_in_ignored_data": true,
+    "report_raw_match_ids_or_names": false,
+    "unrelated_untracked_files_modified_or_staged": false,
+    "training_labels_or_model_training": false,
+    "worktrees_or_clones": 0,
+    "merge_to_main": false
+  }
+}

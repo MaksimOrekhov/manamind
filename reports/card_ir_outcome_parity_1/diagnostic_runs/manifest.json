@@ -1,0 +1,20 @@
+[
+  {
+    "original": "RESULTS.initial_state_paths.json",
+    "compressed": "RESULTS.initial_state_paths.json.gz",
+    "uncompressed_sha256": "0b19a597fc464b8a21c8b225b5d0756e5fa69102a19e5f71a03c4415ab22b4dc",
+    "uncompressed_bytes": 198141
+  },
+  {
+    "original": "RESULTS.packet_phase.json",
+    "compressed": "RESULTS.packet_phase.json.gz",
+    "uncompressed_sha256": "3a4ced9cc339a6c3c1cc300426fb58e5751a7623f6e5093c71faadda8a6f2bbb",
+    "uncompressed_bytes": 200535
+  },
+  {
+    "original": "RESULTS.pre_metadata.json",
+    "compressed": "RESULTS.pre_metadata.json.gz",
+    "uncompressed_sha256": "53a1b6596a2b59e77d3988966d951225f845fecb2bbb896418cc74841f746994",
+    "uncompressed_bytes": 274225
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "historical_result_changed": false,
+  "metrics_and_card_verdicts_identical": true,
+  "changed_current_source_hashes": [
+    "src/manamind/card_ir/engine_translate.py",
+    "src/manamind/card_ir/numeric_lint_v02.py",
+    "src/manamind/card_ir/strict_v02.py"
+  ]
+}

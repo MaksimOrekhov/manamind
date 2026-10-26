@@ -1,0 +1,87 @@
+{
+  "checks": [
+    {
+      "script": "reports/card_ir_pilot_1/select_sample.py",
+      "expected": "reports/card_ir_pilot_1/protocol.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "c4338e8f87ca1c37b40176dfd9175ca56e592c99a7bc1930ea19e6f048c8c85f",
+      "expected_sha256": "c4338e8f87ca1c37b40176dfd9175ca56e592c99a7bc1930ea19e6f048c8c85f",
+      "stderr": "",
+      "stdout": "curated 16, random 5 from frame 1304 {'MINION': 3, 'SPELL': 2}; engine validation 26\n"
+    },
+    {
+      "script": "reports/card_ir_pilot_1/measure.py",
+      "expected": "reports/card_ir_pilot_1/results.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "9bd1ece97a366b98c2a22d6a038e4460e5e503bdca4e044c294f4c64eda99d9b",
+      "expected_sha256": "9bd1ece97a366b98c2a22d6a038e4460e5e503bdca4e044c294f4c64eda99d9b",
+      "stderr": "",
+      "stdout": "{\n \"counts\": {\n  \"sample\": 21,\n  \"closure\": 6,\n  \"engine_validation\": 26,\n  \"declarations\": 53\n },\n \"statuses\": {\n  \"sample\": {\n   \"FULL\": 5,\n   \"FULL_DEP\": 15,\n   \"PARTIAL\": 1\n  },\n  \"closure\": {\n   \"FULL\": 4,\n   \"FULL_DEP\": 1,\n   \"PARTIAL\": 1\n  },\n  \"engine_validation\": {\n   \"FULL\": 17,\n   \"FULL_DEP\": 9\n  },\n  \"curated_weighted_by_appearances\": {\n   \"FULL\": 0.2935,\n   \"FULL_DEP\": 0.7065\n  },\n  \"random_part\": {\n   \"FULL_DEP\": 4,\n   \"PARTIAL\": 1\n  }\n },\n \"sizes\": {\n  \"sample_mean_text_words\": 10.57,\n  \"sample_mean_ir_nodes\": 7.38,\n  \"sample_mean_elements_per_card\": 8.43,\n  \"sample_mean_decisions_per_card\": 2.24,\n  \"sample_max_ir_nodes\": 24\n }\n}\ngrowth thirds (locked / permutation / combined): {'first': 6, 'middle': 2.286, 'last': 1.857, 'last_over_first': 0.309} {'first': 5.336, 'middle': 2.799, 'last': 2.008, 'last_over_first': 0.376} {'first': 3.82, 'middle': 1.704, 'last': 1.208, 'last_over_first': 0.316}\nengine cards needing new elements after the pilot: 18 ['ability:enchantment_template', 'card_source:copy_of', 'card_source:from_zone', 'cond:is', 'control:if', 'counter:SPELL_CAST', 'duration:N_TURNS', 'duration:UNTIL_USED', 'event:ATTACK_DECLARED', 'event:DAMAGE_DEALT', 'event:DAMAGE_TAKEN', 'keyword:COLOSSAL', 'keyword:DARK_GIFT', 'keyword:LIFESTEAL', 'keyword:OVERLOAD', 'keyword:PREPARE', 'keyword:SECRET', 'label:KINDRED', 'label:SECRET', 'modifier:spell_damage', 'op:CAST', 'pay:discard', 'pred:card_class', 'pred:card_type', 'pred:damaged', 'pred:has_mechanic', 'pred:race', 'pred:spell_school', 'scope:THIS_TURN', 'selector:ENEMY_HERO', 'selector:ENEMY_WEAPON', 'timing:WHEN', 'trigger_limit:FIRST_EACH_TURN', 'value:spell_damage_literal', 'zone:DECK']\nsample cards with a singleton: 12 generic: 10 ['BE_555', 'BE_561', 'CATA_200', 'CATA_301', 'CORE_AT_055', 'CORE_TTN_843', 'TIME_609', 'TIME_890', 'TIME_890t', 'TLC_602']\n"
+    },
+    {
+      "script": "reports/card_ir_pilot_1/mutants.py",
+      "expected": "reports/card_ir_pilot_1/mutants.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "9b9c719944844e8fd0177931f5acbd7da15baf7e78c3dc6576be94b416fcca78",
+      "expected_sha256": "9b9c719944844e8fd0177931f5acbd7da15baf7e78c3dc6576be94b416fcca78",
+      "stderr": "",
+      "stdout": "NUMBER             n= 40 validator= 28 lint_only=  0 undetected= 12\nMARK_DROP          n=  6 validator=  6 lint_only=  0 undetected=  0\nMARK_ADD           n= 10 validator= 10 lint_only=  0 undetected=  0\nSIDE               n= 25 validator=  0 lint_only= 24 undetected=  1\nPICK               n= 25 validator=  8 lint_only=  8 undetected=  9\nZONE               n=  6 validator=  0 lint_only=  5 undetected=  1\nTIMING             n= 13 validator=  0 lint_only= 13 undetected=  0\nOP_SWAP            n= 18 validator=  0 lint_only= 16 undetected=  2\nSEQ_SWAP           n= 13 validator=  9 lint_only=  0 undetected=  4\nSTEP_DROP          n= 13 validator= 11 lint_only=  2 undetected=  0\nEXCLUDE_DROP       n=  2 validator=  0 lint_only=  0 undetected=  2\nREF_TO_SELF        n= 16 validator= 14 lint_only=  0 undetected=  2\nKEYWORD_SWAP       n=  4 validator=  0 lint_only=  0 undetected=  4\nABILITY_DROP       n= 49 validator= 49 lint_only=  0 undetected=  0\nDEP_DROP           n= 27 validator= 27 lint_only=  0 undetected=  0\nSTATUS_OPTIMISTIC  n= 27 validator= 27 lint_only=  0 undetected=  0\ntotal {'mutants': 294, 'validator': 189, 'lint_only': 68, 'undetected': 37}\n"
+    },
+    {
+      "script": "reports/card_ir_pilot_1/engine_mapping.py",
+      "expected": "reports/card_ir_pilot_1/engine_mapping.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "48b8bd21a281c55577f36825522fe43dd56dbfe19fdb4427a99b5843db69b00f",
+      "expected_sha256": "48b8bd21a281c55577f36825522fe43dd56dbfe19fdb4427a99b5843db69b00f",
+      "stderr": "",
+      "stdout": "{\n \"declarations\": 125,\n \"families\": 26,\n \"classes\": {\n  \"COMPOSITION_WITH_CARD_FIELDS\": 15,\n  \"DATA_COMPOSITION\": 46,\n  \"METADATA_ONLY\": 16,\n  \"NAMED_HANDLER\": 48\n },\n \"supported_declarations\": 117,\n \"classes_supported\": {\n  \"COMPOSITION_WITH_CARD_FIELDS\": 15,\n  \"DATA_COMPOSITION\": 46,\n  \"METADATA_ONLY\": 15,\n  \"NAMED_HANDLER\": 41\n },\n \"fully_mapped_to_v0_1\": 83,\n \"fully_mapped_by_class\": {\n  \"COMPOSITION_WITH_CARD_FIELDS\": 2,\n  \"DATA_COMPOSITION\": 32,\n  \"METADATA_ONLY\": 15,\n  \"NAMED_HANDLER\": 34\n },\n \"supported_needing_missing\": 34,\n \"unmapped_constructs\": []\n}\nmissing elements: {'selector:FRIENDLY_HERO': 8, 'op:GAIN_ARMOR': 6, 'event:SPELL_CAST': 4, 'op:FREEZE': 4, 'cond:mortally_wounded': 3, 'control:choose_one': 2, 'counter:SPELL_DAMAGE_DEALT': 1, 'event:CARD_PLAYED': 1, 'keyword:CHARGE': 1, 'keyword:DIVINE_SHIELD': 1, 'keyword:ELUSIVE': 1, 'keyword:SHATTER': 1, 'keyword:WINDFURY': 1, 'modifier:cost_in_template': 1, 'op:COUNTER': 1, 'player:owner_of': 1, 'pred:extremum': 1, 'pred:stat': 1, 'rule:HEALING_BONUS': 1, 'selector:FRIENDLY_WEAPON': 1, 'value:infinite': 1, 'value:missing_health': 1}\nFIR_906 FULL | engine-not-in-ir: [] | ir-beyond: ['ability:play', 'zone:PLAY'] | numbers ok: True\nCORE_EX1_238 FULL | engine-not-in-ir: [] | ir-beyond: ['keyword:OVERLOAD', 'zone:PLAY'] | numbers ok: True\nBOT_102t FULL | engine-not-in-ir: [] | ir-beyond: ['keyword:RUSH'] | numbers ok: True\nTLC_226 FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['selector:SELF'] | numbers ok: True\nCATA_475 FULL | engine-not-in-ir: [] | ir-beyond: ['zone:PLAY'] | numbers ok: True\nCATA_999 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCORE_BT_416 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCORE_BAR_812 FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['pick:ALL', 'zone:PLAY'] | numbers ok: True\nCORE_CS2_072 FULL | engine-not-in-ir: [] | ir-beyond: ['zone:PLAY'] | numbers ok: True\nCORE_DRG_107 FULL_DEP | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCORE_EX1_145 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCORE_GIL_836 FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['pred:has_mechanic'] | numbers ok: True\nCORE_ICC_055 FULL | engine-not-in-ir: [] | ir-beyond: ['zone:PLAY'] | numbers ok: True\nCORE_SW_072 FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['keyword:TRADEABLE'] | numbers ok: True\nCORE_SW_108 FULL | engine-not-in-ir: [] | ir-beyond: ['zone:PLAY'] | numbers ok: True\nEND_022 FULL_DEP | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCATA_487 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCATA_458 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nEX1_277 FULL | engine-not-in-ir: [] | ir-beyond: ['zone:PLAY'] | numbers ok: True\nJAIL_321 FULL_DEP | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nJAIL_327 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nJAIL_516 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nJAIL_872 FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nEDR_100t FULL | engine-not-in-ir: [] | ir-beyond: [] | numbers ok: True\nCATA_488 FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['card_source:card', 'zone:PLAY'] | numbers ok: True\nCATA_488t FULL_DEP | engine-not-in-ir: [] | ir-beyond: ['pred:spell_school'] | numbers ok: True\n"
+    },
+    {
+      "script": "reports/card_ir_stage_b1/select_sample.py",
+      "expected": "reports/card_ir_stage_b1/protocol.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "fa7a33cecbb286799eef5f220381ee90ac9d957fa6303d63933cab297dabf9f7",
+      "expected_sha256": "fa7a33cecbb286799eef5f220381ee90ac9d957fa6303d63933cab297dabf9f7",
+      "stderr": "",
+      "stdout": "Locked 60 cards; only the first 12 authorized for compilation.\n"
+    },
+    {
+      "script": "reports/card_ir_stage_b1/measure.py",
+      "expected": "reports/card_ir_stage_b1/results.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "ff8d2efcb1b842b8ae5a5d5e7cb9a320d3d141ae7e135eae72697fa0b780d5c0",
+      "expected_sha256": "ff8d2efcb1b842b8ae5a5d5e7cb9a320d3d141ae7e135eae72697fa0b780d5c0",
+      "stderr": "",
+      "stdout": "{\n  \"cards\": 12,\n  \"first_pass_check_acceptance\": 12,\n  \"first_pass_complete_check_acceptance\": 2,\n  \"final_complete_check_acceptance\": 1,\n  \"author_corrected_cards\": 1,\n  \"correction_operations\": 9,\n  \"final_statuses\": {\n    \"FULL\": 1,\n    \"PARTIAL\": 11\n  },\n  \"dependencies\": 17,\n  \"unresolved_decisions\": 10,\n  \"decisions\": 21,\n  \"added_structural_elements\": 0,\n  \"added_enum_elements\": 0,\n  \"added_parameters\": 0,\n  \"proposed_distinct\": {\n    \"structural\": 6,\n    \"enum\": 8,\n    \"parameters\": 2\n  },\n  \"cards_proposing_structural\": 6,\n  \"cards_proposing_any\": 11,\n  \"warning_counts\": {\n    \"initial\": {\n      \"validator\": 0,\n      \"old_lint\": 0,\n      \"new_lint\": 0\n    },\n    \"final\": {\n      \"validator\": 0,\n      \"old_lint\": 0,\n      \"new_lint\": 0\n    }\n  },\n  \"A_unmutated_new_warnings\": 0,\n  \"independent_gold_review_required\": 12,\n  \"independent_accuracy\": null,\n  \"false_acceptance_rate\": null,\n  \"final_GO_NO_GO\": \"DEFERRED_PENDING_INDEPENDENT_GOLD\",\n  \"recommendation\": \"CHANGE_PROCESS_BEFORE_NEXT_18\"\n}\nMutations A {'total': 294, 'validator': 189, 'old_lint': 68, 'new_only': 13, 'missed': 24, 'baseline_detected_share': 0.87415, 'enhanced_detected_share': 0.918367}\nMutations B {'total': 56, 'validator': 39, 'old_lint': 11, 'new_only': 1, 'missed': 5, 'baseline_detected_share': 0.892857, 'enhanced_detected_share': 0.910714}\n"
+    },
+    {
+      "script": "reports/card_ir_validation_2/measure.py",
+      "expected": "reports/card_ir_validation_2/results.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "1916112f6541b8135bd79f63c7a66f9ef6eaf0f876330e18ffa92cc10c8c3398",
+      "expected_sha256": "1916112f6541b8135bd79f63c7a66f9ef6eaf0f876330e18ffa92cc10c8c3398",
+      "stderr": "",
+      "stdout": "Nine: {'total': 9, 'before': 1, 'after': 9}\nNew paired cases: {'wrong': 36, 'before': 4, 'after': 36, 'positive_controls': 36, 'false_alerts': 0}\nMutations A {'total': 294, 'before_detected': 270, 'after_detected': 270}\nMutations B1 {'total': 56, 'before_detected': 51, 'after_detected': 56}\n"
+    },
+    {
+      "script": "reports/card_ir_v02/measure.py",
+      "expected": "reports/card_ir_v02_independent_validation/v02_after.json",
+      "exit_code": 0,
+      "bytes_equal": true,
+      "actual_sha256": "0589f355ae9238a80b74f7812a778becdd7d89d4c92e8bdea5895d921a2920ff",
+      "expected_sha256": "0589f355ae9238a80b74f7812a778becdd7d89d4c92e8bdea5895d921a2920ff",
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "passed": 8,
+  "total": 8,
+  "scope": "Static declarations/measurements only, no engine execution or training; original files untouched"
+}
