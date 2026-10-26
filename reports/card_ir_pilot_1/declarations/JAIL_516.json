@@ -1,0 +1,37 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_516",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Battlecry:</b> Summon two\nminions from your deck\nthat cost (2) or less.\nGive them <b>Rush</b>.",
+  "text_sha256": "a0ae31e494b1dc3fa0920bff78ad896a2e3a04d893704b4d10b812b8d927e135",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Summon two minions from your deck that cost (2) or less. Give them Rush.",
+      "effect": {
+        "seq": [
+          {
+            "op": "SUMMON",
+            "what": {
+              "from_zone": {
+                "pick": "RANDOM",
+                "n": 2,
+                "type": "MINION",
+                "side": "FRIENDLY",
+                "zone": "DECK",
+                "where": [{"cost": {"cmp": "<=", "n": 2}}]
+              }
+            },
+            "as": "them"
+          },
+          {"op": "ENCHANT", "to": {"ref": "them"}, "keywords": ["RUSH"], "enchantment_id": "JAIL_516e"}
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

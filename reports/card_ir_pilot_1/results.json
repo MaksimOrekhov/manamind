@@ -1,0 +1,2987 @@
+{
+ "protocol_id": "card_ir_pilot_1_stage_a_v1",
+ "snapshot": "hsjson_255130_enUS",
+ "ir_version": "card-ir/0.1",
+ "counts": {
+  "sample": 21,
+  "closure": 6,
+  "engine_validation": 26,
+  "declarations": 53
+ },
+ "statuses": {
+  "sample": {
+   "FULL": 5,
+   "FULL_DEP": 15,
+   "PARTIAL": 1
+  },
+  "closure": {
+   "FULL": 4,
+   "FULL_DEP": 1,
+   "PARTIAL": 1
+  },
+  "engine_validation": {
+   "FULL": 17,
+   "FULL_DEP": 9
+  },
+  "curated_weighted_by_appearances": {
+   "FULL": 0.2935,
+   "FULL_DEP": 0.7065
+  },
+  "random_part": {
+   "FULL_DEP": 4,
+   "PARTIAL": 1
+  }
+ },
+ "growth": {
+  "authoring_order": [
+   {
+    "card": "BE_555",
+    "new": 14
+   },
+   {
+    "card": "CORE_TTN_843",
+    "new": 5
+   },
+   {
+    "card": "TIME_609",
+    "new": 10
+   },
+   {
+    "card": "CORE_AT_055",
+    "new": 3
+   },
+   {
+    "card": "CORE_REV_990",
+    "new": 2
+   },
+   {
+    "card": "TIME_890t2",
+    "new": 5
+   },
+   {
+    "card": "CORE_BT_201",
+    "new": 3
+   },
+   {
+    "card": "CATA_301",
+    "new": 4
+   },
+   {
+    "card": "TIME_603",
+    "new": 1
+   },
+   {
+    "card": "CATA_200",
+    "new": 3
+   },
+   {
+    "card": "JAIL_730",
+    "new": 3
+   },
+   {
+    "card": "TIME_890",
+    "new": 2
+   },
+   {
+    "card": "BE_207",
+    "new": 1
+   },
+   {
+    "card": "BE_561",
+    "new": 2
+   },
+   {
+    "card": "CATA_465",
+    "new": 2
+   },
+   {
+    "card": "TLC_816",
+    "new": 2
+   },
+   {
+    "card": "CORE_EX1_002",
+    "new": 2
+   },
+   {
+    "card": "CAP_107t",
+    "new": 2
+   },
+   {
+    "card": "TLC_602",
+    "new": 3
+   },
+   {
+    "card": "BE_552",
+    "new": 0
+   },
+   {
+    "card": "TIME_890t",
+    "new": 2
+   }
+  ],
+  "authoring_order_thirds": {
+   "first": 6,
+   "middle": 2.286,
+   "last": 1.857,
+   "last_over_first": 0.309
+  },
+  "permutation_mean_curve": [
+   8.536,
+   6.516,
+   5.641,
+   4.837,
+   4.297,
+   3.988,
+   3.534,
+   3.419,
+   3.188,
+   2.961,
+   2.734,
+   2.491,
+   2.43,
+   2.372,
+   2.161,
+   2.16,
+   2.098,
+   2.035,
+   1.988,
+   1.873,
+   1.741
+  ],
+  "permutation_thirds": {
+   "first": 5.336,
+   "middle": 2.799,
+   "last": 2.008,
+   "last_over_first": 0.376
+  },
+  "pilot_vocabulary_size": 71,
+  "engine_cards_new_after_pilot": {
+   "FIR_906": 2,
+   "CORE_EX1_238": 2,
+   "BOT_102t": 0,
+   "TLC_226": 3,
+   "CATA_475": 0,
+   "CATA_999": 1,
+   "CORE_BT_416": 2,
+   "CORE_BAR_812": 4,
+   "CORE_CS2_072": 1,
+   "CORE_DRG_107": 0,
+   "CORE_EX1_145": 0,
+   "CORE_GIL_836": 1,
+   "CORE_ICC_055": 1,
+   "CORE_SW_072": 1,
+   "CORE_SW_108": 0,
+   "END_022": 2,
+   "CATA_487": 2,
+   "CATA_458": 1,
+   "EX1_277": 0,
+   "JAIL_321": 6,
+   "JAIL_327": 2,
+   "JAIL_516": 0,
+   "JAIL_872": 0,
+   "EDR_100t": 2,
+   "CATA_488": 1,
+   "CATA_488t": 1
+  },
+  "engine_cards_needing_new_after_pilot": 18,
+  "engine_new_elements_after_pilot": [
+   "ability:enchantment_template",
+   "card_source:copy_of",
+   "card_source:from_zone",
+   "cond:is",
+   "control:if",
+   "counter:SPELL_CAST",
+   "duration:N_TURNS",
+   "duration:UNTIL_USED",
+   "event:ATTACK_DECLARED",
+   "event:DAMAGE_DEALT",
+   "event:DAMAGE_TAKEN",
+   "keyword:COLOSSAL",
+   "keyword:DARK_GIFT",
+   "keyword:LIFESTEAL",
+   "keyword:OVERLOAD",
+   "keyword:PREPARE",
+   "keyword:SECRET",
+   "label:KINDRED",
+   "label:SECRET",
+   "modifier:spell_damage",
+   "op:CAST",
+   "pay:discard",
+   "pred:card_class",
+   "pred:card_type",
+   "pred:damaged",
+   "pred:has_mechanic",
+   "pred:race",
+   "pred:spell_school",
+   "scope:THIS_TURN",
+   "selector:ENEMY_HERO",
+   "selector:ENEMY_WEAPON",
+   "timing:WHEN",
+   "trigger_limit:FIRST_EACH_TURN",
+   "value:spell_damage_literal",
+   "zone:DECK"
+  ],
+  "pilot_cards_needing_new_after_engine": 14,
+  "pilot_new_elements_after_engine": 28,
+  "engine_vocabulary_size": 78,
+  "combined_permutation_thirds": {
+   "first": 3.82,
+   "middle": 1.704,
+   "last": 1.208,
+   "last_over_first": 0.316
+  },
+  "combined_share_of_cards_needing_any_new_by_third": {
+   "first": 0.932,
+   "middle": 0.734,
+   "last": 0.611,
+   "last_over_first": 0.656
+  },
+  "combined_share_needing_new_generic_structural_by_third": {
+   "first": 0.717,
+   "middle": 0.369,
+   "last": 0.234,
+   "last_over_first": 0.326
+  },
+  "combined_heaps_fit_extrapolation": {
+   "beta": 0.594,
+   "k": 11.32,
+   "observed_at_n": 106.0,
+   "n": 47,
+   "extrapolated": {
+    "100": 174,
+    "300": 334,
+    "1000": 683
+   }
+  },
+  "combined_by_subset": {
+   "generic": {
+    "vocabulary": 88,
+    "thirds": {
+     "first": 3.355,
+     "middle": 1.323,
+     "last": 0.904,
+     "last_over_first": 0.269
+    },
+    "heaps": {
+     "beta": 0.552,
+     "k": 11.07,
+     "observed_at_n": 88.0,
+     "n": 47,
+     "extrapolated": {
+      "100": 141,
+      "300": 258,
+      "1000": 502
+     }
+    }
+   },
+   "mechanic": {
+    "vocabulary": 16,
+    "thirds": {
+     "first": 0.422,
+     "middle": 0.336,
+     "last": 0.263,
+     "last_over_first": 0.623
+    },
+    "heaps": {
+     "beta": 0.885,
+     "k": 0.56,
+     "observed_at_n": 16.0,
+     "n": 47,
+     "extrapolated": {
+      "100": 33,
+      "300": 87,
+      "1000": 253
+     }
+    }
+   },
+   "structural": {
+    "vocabulary": 44,
+    "thirds": {
+     "first": 1.745,
+     "middle": 0.648,
+     "last": 0.398,
+     "last_over_first": 0.228
+    },
+    "heaps": {
+     "beta": 0.522,
+     "k": 6.27,
+     "observed_at_n": 44.0,
+     "n": 47,
+     "extrapolated": {
+      "100": 69,
+      "300": 123,
+      "1000": 231
+     }
+    }
+   },
+   "enumeration": {
+    "vocabulary": 60,
+    "thirds": {
+     "first": 2.056,
+     "middle": 1.013,
+     "last": 0.745,
+     "last_over_first": 0.362
+    },
+    "heaps": {
+     "beta": 0.633,
+     "k": 5.47,
+     "observed_at_n": 60.0,
+     "n": 47,
+     "extrapolated": {
+      "100": 101,
+      "300": 203,
+      "1000": 435
+     }
+    }
+   }
+  },
+  "vocabulary_size_all_declarations": 110,
+  "vocabulary_size_defined": 110,
+  "by_tier": {
+   "GENERIC": 93,
+   "MECHANIC": 17
+  },
+  "by_category": {
+   "ability": 6,
+   "card_source": 5,
+   "cond": 5,
+   "control": 6,
+   "counter": 2,
+   "duration": 3,
+   "event": 6,
+   "keyword": 12,
+   "label": 5,
+   "modifier": 3,
+   "op": 15,
+   "pay": 1,
+   "pick": 3,
+   "pred": 10,
+   "resource": 2,
+   "rule": 3,
+   "scope": 2,
+   "selector": 5,
+   "timing": 4,
+   "trigger_limit": 1,
+   "value": 8,
+   "zone": 3
+  }
+ },
+ "uniqueness": {
+  "scope": "pilot sample (21) + engine validation (26)",
+  "pre_registered_metric": "sample cards using a GENERIC element that no other card of the 47 uses",
+  "sample_cards_with_generic_singleton_excluding_holes": 9,
+  "sample_cards_with_rare_phrasing_generic_singleton": [
+   "BE_555",
+   "BE_561",
+   "CATA_301",
+   "CORE_TTN_843",
+   "TIME_890t"
+  ],
+  "singletons": [
+   {
+    "element": "ability:enchantment_template",
+    "card": "EDR_100t",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "ability:quest",
+    "card": "TLC_602",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 12
+   },
+   {
+    "element": "card_source:copy_of",
+    "card": "TLC_226",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 51
+   },
+   {
+    "element": "cond:is",
+    "card": "END_022",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 36
+   },
+   {
+    "element": "cond:unknown",
+    "card": "TLC_602",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "control:if",
+    "card": "JAIL_321",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 158
+   },
+   {
+    "element": "control:repeat_while",
+    "card": "BE_555",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 2
+   },
+   {
+    "element": "control:set",
+    "card": "BE_555",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "counter:CARD_PLAYED",
+    "card": "TIME_609",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 37
+   },
+   {
+    "element": "counter:SPELL_CAST",
+    "card": "JAIL_321",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 53
+   },
+   {
+    "element": "duration:N_TURNS",
+    "card": "JAIL_327",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 7
+   },
+   {
+    "element": "duration:UNTIL_USED",
+    "card": "CORE_BT_416",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "event:ATTACK_DECLARED",
+    "card": "CORE_BAR_812",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 4
+   },
+   {
+    "element": "event:CARD_DRAWN",
+    "card": "CORE_TTN_843",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 1
+   },
+   {
+    "element": "event:DAMAGE_DEALT",
+    "card": "CATA_487",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 1
+   },
+   {
+    "element": "event:DAMAGE_TAKEN",
+    "card": "CATA_488t",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 9
+   },
+   {
+    "element": "keyword:COLOSSAL",
+    "card": "CATA_488",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 12
+   },
+   {
+    "element": "keyword:DARK_GIFT",
+    "card": "EDR_100t",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 19
+   },
+   {
+    "element": "keyword:OVERLOAD",
+    "card": "CORE_EX1_238",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 14
+   },
+   {
+    "element": "keyword:PREPARE",
+    "card": "JAIL_321",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 20
+   },
+   {
+    "element": "keyword:QUEST",
+    "card": "TLC_602",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 13
+   },
+   {
+    "element": "keyword:REBORN",
+    "card": "BE_207",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 20
+   },
+   {
+    "element": "keyword:SECRET",
+    "card": "CORE_BAR_812",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 11
+   },
+   {
+    "element": "label:KINDRED",
+    "card": "TLC_226",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 29
+   },
+   {
+    "element": "label:SECRET",
+    "card": "CORE_BAR_812",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 11
+   },
+   {
+    "element": "modifier:spell_damage",
+    "card": "END_022",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 11
+   },
+   {
+    "element": "op:CAST",
+    "card": "JAIL_321",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 6
+   },
+   {
+    "element": "op:CHOOSE",
+    "card": "CATA_200",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 32
+   },
+   {
+    "element": "op:RESTORE_HEALTH",
+    "card": "CORE_AT_055",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 30
+   },
+   {
+    "element": "op:SILENCE",
+    "card": "TIME_890",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 4
+   },
+   {
+    "element": "op:TRANSFORM",
+    "card": "CATA_200",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 20
+   },
+   {
+    "element": "pay:discard",
+    "card": "FIR_906",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 17
+   },
+   {
+    "element": "pred:card_class",
+    "card": "JAIL_321",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "pred:has_mechanic",
+    "card": "CORE_GIL_836",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "pred:race",
+    "card": "CORE_BT_416",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "resource:ARMOR",
+    "card": "BE_561",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 1
+   },
+   {
+    "element": "resource:CORPSE",
+    "card": "CATA_465",
+    "tier": "MECHANIC",
+    "frame_cards_with_signature": 26
+   },
+   {
+    "element": "rule:HEALING_DOES_DAMAGE",
+    "card": "CATA_301",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 1
+   },
+   {
+    "element": "rule:SPELL_DAMAGE_MULTIPLIER",
+    "card": "TIME_890t",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 0
+   },
+   {
+    "element": "rule:SPELL_HEALING_MULTIPLIER",
+    "card": "TIME_890t",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 0
+   },
+   {
+    "element": "scope:THIS_GAME",
+    "card": "TIME_609",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "scope:THIS_TURN",
+    "card": "JAIL_321",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "selector:ENEMY_HERO",
+    "card": "CATA_999",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "selector:ENEMY_WEAPON",
+    "card": "CORE_SW_072",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "timing:WHEN",
+    "card": "CORE_BAR_812",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 34
+   },
+   {
+    "element": "trigger_limit:FIRST_EACH_TURN",
+    "card": "CATA_487",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 1
+   },
+   {
+    "element": "value:arith",
+    "card": "BE_555",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "value:healing_literal",
+    "card": "CORE_AT_055",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": 23
+   },
+   {
+    "element": "value:unknown",
+    "card": "BE_555",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   },
+   {
+    "element": "value:var",
+    "card": "BE_555",
+    "tier": "GENERIC",
+    "frame_cards_with_signature": null
+   }
+  ],
+  "sample_cards_with_any_singleton": 12,
+  "sample_cards_with_generic_singleton": 10,
+  "sample_cards_with_generic_singleton_ids": [
+   "BE_555",
+   "BE_561",
+   "CATA_200",
+   "CATA_301",
+   "CORE_AT_055",
+   "CORE_TTN_843",
+   "TIME_609",
+   "TIME_890",
+   "TIME_890t",
+   "TLC_602"
+  ],
+  "sample_unique_detail": {
+   "BE_207": [
+    {
+     "element": "keyword:REBORN",
+     "tier": "MECHANIC",
+     "frame_cards_with_signature": 20
+    }
+   ],
+   "BE_555": [
+    {
+     "element": "control:repeat_while",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 2
+    },
+    {
+     "element": "control:set",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    },
+    {
+     "element": "value:arith",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    },
+    {
+     "element": "value:unknown",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    },
+    {
+     "element": "value:var",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    }
+   ],
+   "BE_561": [
+    {
+     "element": "resource:ARMOR",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 1
+    }
+   ],
+   "TIME_890t": [
+    {
+     "element": "rule:SPELL_DAMAGE_MULTIPLIER",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 0
+    },
+    {
+     "element": "rule:SPELL_HEALING_MULTIPLIER",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 0
+    }
+   ],
+   "CORE_TTN_843": [
+    {
+     "element": "event:CARD_DRAWN",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 1
+    }
+   ],
+   "CATA_301": [
+    {
+     "element": "rule:HEALING_DOES_DAMAGE",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 1
+    }
+   ],
+   "TIME_890": [
+    {
+     "element": "op:SILENCE",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 4
+    }
+   ],
+   "CORE_AT_055": [
+    {
+     "element": "op:RESTORE_HEALTH",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 30
+    },
+    {
+     "element": "value:healing_literal",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 23
+    }
+   ],
+   "CATA_200": [
+    {
+     "element": "op:CHOOSE",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 32
+    },
+    {
+     "element": "op:TRANSFORM",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 20
+    }
+   ],
+   "TIME_609": [
+    {
+     "element": "counter:CARD_PLAYED",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": 37
+    },
+    {
+     "element": "scope:THIS_GAME",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    }
+   ],
+   "CATA_465": [
+    {
+     "element": "resource:CORPSE",
+     "tier": "MECHANIC",
+     "frame_cards_with_signature": 26
+    }
+   ],
+   "TLC_602": [
+    {
+     "element": "ability:quest",
+     "tier": "MECHANIC",
+     "frame_cards_with_signature": 12
+    },
+    {
+     "element": "cond:unknown",
+     "tier": "GENERIC",
+     "frame_cards_with_signature": null
+    },
+    {
+     "element": "keyword:QUEST",
+     "tier": "MECHANIC",
+     "frame_cards_with_signature": 13
+    }
+   ]
+  },
+  "elements_used_by_one_sample_card_only_within_sample": 39,
+  "reuse_screen_frame_size": 1317,
+  "elements_by_number_of_users": {
+   "1": 50,
+   "2": 15,
+   "3": 12,
+   "4": 6,
+   "5": 6,
+   "6": 1,
+   "7": 2,
+   "8": 3,
+   "9": 1,
+   "10": 1,
+   "11": 1,
+   "12": 3,
+   "13": 1,
+   "15": 1,
+   "19": 1,
+   "27": 1,
+   "32": 1
+  }
+ },
+ "gaps": {
+  "sample_dependencies_by_kind_scope": {
+   "KEYWORD_RULE/DATA": 6,
+   "NAME_REFERENCE/CONDITIONAL": 4,
+   "POOL_MEMBERSHIP/DATA": 2,
+   "TOKEN_IDENTITY/DATA": 4,
+   "UNKNOWN_RULE/CONDITIONAL": 11,
+   "UNKNOWN_RULE/CORE": 1
+  },
+  "sample_cards_with_core_gap": [
+   "TLC_602"
+  ],
+  "sample_decisions": 47,
+  "sample_decisions_by_basis": {
+   "ASSUMPTION": 6,
+   "COMMUNITY_RULES": 2,
+   "LOG_OBSERVED": 3,
+   "PROJECT_REVIEWED": 5,
+   "TEXT": 13,
+   "UNKNOWN": 12,
+   "UNVERIFIED": 6
+  },
+  "sample_decisions_by_risk": {
+   "EDGE": 22,
+   "NONE": 4,
+   "OUTCOME": 21
+  },
+  "sample_decisions_unresolved": 12,
+  "sample_outcome_decisions_with_weak_basis": 12,
+  "universal_rules_needed_by_sample": {
+   "R_AMOUNT_ORDER": {
+    "cards": 3,
+    "basis": "UNKNOWN"
+   },
+   "R_AREA_SNAPSHOT": {
+    "cards": 5,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_AURA": {
+    "cards": 4,
+    "basis": "UNKNOWN"
+   },
+   "R_BOARD_LIMIT": {
+    "cards": 4,
+    "basis": "UNVERIFIED"
+   },
+   "R_CHOICE": {
+    "cards": 1,
+    "basis": "UNKNOWN"
+   },
+   "R_COST": {
+    "cards": 5,
+    "basis": "UNKNOWN"
+   },
+   "R_COUNTERS": {
+    "cards": 1,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_DAMAGE": {
+    "cards": 4,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_DEATHRATTLE": {
+    "cards": 3,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_DEATH_PHASE": {
+    "cards": 5,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_DISCOVER": {
+    "cards": 1,
+    "basis": "UNKNOWN"
+   },
+   "R_DRAW": {
+    "cards": 2,
+    "basis": "UNVERIFIED"
+   },
+   "R_ENCHANTMENT": {
+    "cards": 4,
+    "basis": "UNVERIFIED"
+   },
+   "R_HAND_LIMIT": {
+    "cards": 3,
+    "basis": "UNVERIFIED"
+   },
+   "R_HEALING": {
+    "cards": 1,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_HIDDEN_ZONE": {
+    "cards": 2,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_KINDRED": {
+    "cards": 1,
+    "basis": "UNVERIFIED"
+   },
+   "R_LAST_KNOWN": {
+    "cards": 2,
+    "basis": "UNVERIFIED"
+   },
+   "R_LOOP_BOUND": {
+    "cards": 1,
+    "basis": "UNKNOWN"
+   },
+   "R_NAME_REFERENCE": {
+    "cards": 4,
+    "basis": "UNKNOWN"
+   },
+   "R_PAYMENT": {
+    "cards": 2,
+    "basis": "UNVERIFIED"
+   },
+   "R_PLAYER_EFFECT": {
+    "cards": 1,
+    "basis": "UNKNOWN"
+   },
+   "R_PLAY_TARGET": {
+    "cards": 12,
+    "basis": "UNVERIFIED"
+   },
+   "R_POOL": {
+    "cards": 1,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_QUEST": {
+    "cards": 1,
+    "basis": "UNVERIFIED"
+   },
+   "R_RANDOM_LIVE": {
+    "cards": 3,
+    "basis": "COMMUNITY_RULES"
+   },
+   "R_SILENCE": {
+    "cards": 1,
+    "basis": "UNVERIFIED"
+   },
+   "R_STEP_BOUNDARY": {
+    "cards": 7,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_SUMMON_POSITION": {
+    "cards": 4,
+    "basis": "UNVERIFIED"
+   },
+   "R_TRANSFORM": {
+    "cards": 1,
+    "basis": "UNVERIFIED"
+   },
+   "R_TRIGGER_ORDER": {
+    "cards": 4,
+    "basis": "PROJECT_REVIEWED"
+   },
+   "R_TRIGGER_TIMING": {
+    "cards": 4,
+    "basis": "COMMUNITY_RULES"
+   }
+  },
+  "universal_rules_by_basis": {
+   "COMMUNITY_RULES": 2,
+   "PROJECT_REVIEWED": 10,
+   "UNKNOWN": 8,
+   "UNVERIFIED": 12
+  },
+  "sample_cards_needing_an_unknown_basis_rule": 9,
+  "unknown_basis_rules": [
+   "R_AMOUNT_ORDER",
+   "R_AURA",
+   "R_CHOICE",
+   "R_COST",
+   "R_DISCOVER",
+   "R_LOOP_BOUND",
+   "R_NAME_REFERENCE",
+   "R_PLAYER_EFFECT"
+  ],
+  "program_like_cards": [
+   "BE_555"
+  ]
+ },
+ "metadata": {
+  "split_damage_with_dollar": 4,
+  "split_damage_with_dollar_and_ImmuneToSpellpower": 4,
+  "split_damage_without_dollar": 4,
+  "split_damage_without_dollar_and_ImmuneToSpellpower": 0,
+  "collectible_weapons": 251,
+  "collectible_weapons_with_durability_0_and_health_set": 248,
+  "enchantment_ids_referenced": [
+   "BE_207e",
+   "BE_553e",
+   "BE_555e",
+   "BE_561e",
+   "BT_416e",
+   "CATA_301e",
+   "CATA_458e",
+   "CATA_487e",
+   "EX1_145o",
+   "FIR_906e",
+   "JAIL_516e",
+   "REV_990e"
+  ]
+ },
+ "sizes": {
+  "sample_mean_text_words": 10.57,
+  "sample_mean_ir_nodes": 7.38,
+  "sample_mean_elements_per_card": 8.43,
+  "sample_mean_decisions_per_card": 2.24,
+  "sample_max_ir_nodes": 24
+ },
+ "element_signature_hits": {
+  "ability:aura": 69,
+  "ability:deathrattle": 186,
+  "ability:quest": 12,
+  "ability:trigger": 205,
+  "card_source:all_from": 5,
+  "card_source:copy_of": 51,
+  "card_source:from_zone": 22,
+  "card_source:random_from": 246,
+  "cond:exists": 26,
+  "cond:is": 36,
+  "cond:mechanic": 29,
+  "control:if": 158,
+  "control:pay": 18,
+  "control:repeat": 76,
+  "control:repeat_while": 2,
+  "counter:CARD_PLAYED": 37,
+  "counter:SPELL_CAST": 53,
+  "duration:N_TURNS": 7,
+  "duration:THIS_TURN": 71,
+  "event:ATTACK_DECLARED": 4,
+  "event:CARD_DRAWN": 1,
+  "event:DAMAGE_DEALT": 1,
+  "event:DAMAGE_TAKEN": 9,
+  "event:HERO_ATTACK": 23,
+  "event:TURN_END": 54,
+  "keyword:COLOSSAL": 12,
+  "keyword:DARK_GIFT": 19,
+  "keyword:FABLED": 11,
+  "keyword:LIFESTEAL": 46,
+  "keyword:OVERLOAD": 14,
+  "keyword:PREPARE": 20,
+  "keyword:QUEST": 13,
+  "keyword:REBORN": 20,
+  "keyword:RUSH": 77,
+  "keyword:SECRET": 11,
+  "keyword:TAUNT": 153,
+  "keyword:TRADEABLE": 8,
+  "label:BATTLECRY": 434,
+  "label:KINDRED": 29,
+  "label:SECRET": 11,
+  "modifier:spell_damage": 11,
+  "op:ADD_PLAYER_EFFECT": 33,
+  "op:ADD_TO_HAND": 118,
+  "op:CAST": 6,
+  "op:CHOOSE": 32,
+  "op:DEAL_DAMAGE": 224,
+  "op:DESTROY": 59,
+  "op:DISCOVER": 94,
+  "op:DRAW": 134,
+  "op:ENCHANT": 230,
+  "op:MODIFY_COST": 88,
+  "op:RESTORE_HEALTH": 30,
+  "op:SHUFFLE_INTO_DECK": 24,
+  "op:SILENCE": 4,
+  "op:SUMMON": 241,
+  "op:TRANSFORM": 20,
+  "pay:discard": 17,
+  "pick:ALL": 145,
+  "pick:RANDOM": 258,
+  "pred:cost": 118,
+  "pred:damaged": 15,
+  "resource:ARMOR": 1,
+  "resource:CORPSE": 26,
+  "rule:HEALING_DOES_DAMAGE": 1,
+  "rule:SPELL_DAMAGE_MULTIPLIER": 0,
+  "rule:SPELL_HEALING_MULTIPLIER": 0,
+  "selector:exclude": 45,
+  "timing:AFTER": 98,
+  "timing:AT": 76,
+  "timing:WHEN": 34,
+  "timing:WHENEVER": 31,
+  "trigger_limit:FIRST_EACH_TURN": 1,
+  "value:counter": 88,
+  "value:healing_literal": 23,
+  "value:spell_damage_literal": 123,
+  "zone:DECK": 119,
+  "zone:HAND": 159
+ },
+ "cards": {
+  "BE_207": {
+   "role": "sample",
+   "stratum": "S1_new_collectible",
+   "appearances": 521,
+   "status": "FULL",
+   "words": 9,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:deathrattle",
+    "keyword:REBORN",
+    "op:ENCHANT",
+    "pick:ALL",
+    "value:literal",
+    "zone:HAND"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_DEATHRATTLE",
+    "R_DEATH_PHASE",
+    "R_ENCHANTMENT",
+    "R_HIDDEN_ZONE"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Reborn",
+    "Deathrattle: give all friendly minions in hand +1/+1"
+   ]
+  },
+  "BE_552": {
+   "role": "sample",
+   "stratum": "S1_new_collectible",
+   "appearances": 236,
+   "status": "FULL_DEP",
+   "words": 7,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "card_source:card",
+    "event:HERO_ATTACK",
+    "op:ADD_TO_HAND",
+    "timing:AFTER"
+   ],
+   "rules": [
+    "R_HAND_LIMIT",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "After your hero attacks: you get Overdrive [BE_553t]"
+   ]
+  },
+  "BE_553t": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 14,
+   "ir_nodes": 9,
+   "elements": [
+    "ability:play",
+    "ability:trigger",
+    "event:TURN_END",
+    "keyword:RUSH",
+    "label:SPELL",
+    "op:DESTROY",
+    "op:ENCHANT",
+    "pick:CHOSEN",
+    "pred:race",
+    "selector:SELF",
+    "selector:ref",
+    "timing:AT",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DEATH_PHASE",
+    "R_ENCHANTMENT",
+    "R_PLAY_TARGET",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 3,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: choose a chosen friendly minion race MECHANICAL as <t>; give them<t> +2/+0, Rush, 'At the end of the turn: destroy this'"
+   ]
+  },
+  "BE_555": {
+   "role": "sample",
+   "stratum": "S1_new_collectible",
+   "appearances": 231,
+   "status": "FULL_DEP",
+   "words": 15,
+   "ir_nodes": 24,
+   "elements": [
+    "ability:play",
+    "cond:cmp",
+    "control:repeat_while",
+    "control:seq",
+    "control:set",
+    "label:SPELL",
+    "op:DISCOVER",
+    "op:MODIFY_COST",
+    "selector:ref",
+    "value:arith",
+    "value:literal",
+    "value:stat",
+    "value:unknown",
+    "value:var"
+   ],
+   "rules": [
+    "R_COST",
+    "R_DISCOVER",
+    "R_HAND_LIMIT",
+    "R_LAST_KNOWN",
+    "R_LOOP_BOUND",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [
+    "POOL_MEMBERSHIP/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [
+    "control:repeat_while",
+    "control:set",
+    "value:arith",
+    "value:var"
+   ],
+   "rendered": [
+    "Cast: let r = 8; then while r > 0 (at most <UNKNOWN: dep_loop>): [discover (3 options) a spell from pool <dep_pool> as <s>; then let c = them<s>'s cost; then cost of them<s> reduced by r; then let r = max(0, (r - c))]"
+   ]
+  },
+  "BE_561": {
+   "role": "sample",
+   "stratum": "S1_new_collectible",
+   "appearances": 181,
+   "status": "FULL_DEP",
+   "words": 13,
+   "ir_nodes": 8,
+   "elements": [
+    "ability:play",
+    "card_source:card",
+    "control:pay",
+    "control:seq",
+    "label:LOCATION",
+    "op:ENCHANT",
+    "op:SUMMON",
+    "resource:ARMOR",
+    "selector:ref",
+    "value:literal"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_ENCHANTMENT",
+    "R_PAYMENT",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Activate: summon Steel Golem [BE_561t] (resolved by description_match) as <golem>; then if you can pay 3 Armor, pay it and give them<golem> +3/+3"
+   ]
+  },
+  "BE_561t": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 1,
+   "ir_nodes": 1,
+   "elements": [
+    "keyword:TAUNT"
+   ],
+   "rules": [],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Taunt"
+   ]
+  },
+  "BOT_102t": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 1,
+   "ir_nodes": 1,
+   "elements": [
+    "keyword:RUSH"
+   ],
+   "rules": [],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Rush"
+   ]
+  },
+  "CAP_107t": {
+   "role": "sample",
+   "stratum": "S2_new_to_source_noncollectible_token",
+   "appearances": 563,
+   "status": "FULL",
+   "words": 13,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "event:TURN_END",
+    "op:DEAL_DAMAGE",
+    "pick:RANDOM",
+    "timing:AT",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DAMAGE",
+    "R_RANDOM_LIVE",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "At the end of your turn: deal 1 damage to random 1 enemy character"
+   ]
+  },
+  "CATA_200": {
+   "role": "sample",
+   "stratum": "R_random_minion",
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 12,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "card_source:card",
+    "control:seq",
+    "label:BATTLECRY",
+    "op:CHOOSE",
+    "op:TRANSFORM",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:literal",
+    "zone:HAND"
+   ],
+   "rules": [
+    "R_CHOICE",
+    "R_HIDDEN_ZONE",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY",
+    "R_TRANSFORM"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 2,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Battlecry: you choose a chosen friendly card in hand as <c>; then transform them<c> into The Coin [GAME_005] (resolved by ambiguous)"
+   ]
+  },
+  "CATA_301": {
+   "role": "sample",
+   "stratum": "S4_known_before_one_shot_text",
+   "appearances": 2356,
+   "status": "FULL_DEP",
+   "words": 9,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:play",
+    "duration:THIS_TURN",
+    "label:LOCATION",
+    "modifier:rule",
+    "op:ADD_PLAYER_EFFECT",
+    "rule:HEALING_DOES_DAMAGE"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_PLAYER_EFFECT",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [
+    "UNKNOWN_RULE/CONDITIONAL",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 2,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Activate: you get a player effect: rule HEALING_DOES_DAMAGE, this turn, 1 use (effect)"
+   ]
+  },
+  "CATA_458": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 12,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:play",
+    "label:BATTLECRY",
+    "op:ENCHANT",
+    "pick:ALL",
+    "value:literal",
+    "zone:DECK",
+    "zone:HAND"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_ENCHANTMENT",
+    "R_HIDDEN_ZONE",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Battlecry: give all friendly spells in hand and deck Spell Damage +1"
+   ]
+  },
+  "CATA_465": {
+   "role": "sample",
+   "stratum": "R_random_spell",
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 12,
+   "ir_nodes": 8,
+   "elements": [
+    "ability:play",
+    "card_source:card",
+    "control:pay",
+    "control:seq",
+    "keyword:RUSH",
+    "label:SPELL",
+    "op:ENCHANT",
+    "op:SUMMON",
+    "resource:CORPSE",
+    "selector:ref",
+    "value:literal"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_ENCHANTMENT",
+    "R_PAYMENT",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "TOKEN_IDENTITY/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: summon 5 x Hungry Drake [CATA_465t] (resolved by description_match) as <drakes>; then if you can pay 8 Corpse, pay it and give them<drakes> Rush"
+   ]
+  },
+  "CATA_465t": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 0,
+   "ir_nodes": 0,
+   "elements": [],
+   "rules": [],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": []
+  },
+  "CATA_475": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 12,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "event:TURN_END",
+    "op:DEAL_DAMAGE",
+    "pick:ALL",
+    "timing:AT",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_DAMAGE",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "At the end of your turn: deal 2 damage to all enemy characters"
+   ]
+  },
+  "CATA_487": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 14,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "event:DAMAGE_DEALT",
+    "op:ENCHANT",
+    "pred:card_type",
+    "selector:SELF",
+    "timing:WHENEVER",
+    "trigger_limit:FIRST_EACH_TURN",
+    "value:literal"
+   ],
+   "rules": [
+    "R_ENCHANTMENT",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Whenever you deal damage with card type SPELL (first time each turn only): give this +2/+0"
+   ]
+  },
+  "CATA_488": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 15,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:trigger",
+    "card_source:card",
+    "event:TURN_END",
+    "keyword:COLOSSAL",
+    "op:DEAL_DAMAGE",
+    "pick:ALL",
+    "selector:SELF",
+    "selector:exclude",
+    "timing:AT",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_COLOSSAL",
+    "R_DAMAGE",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Colossal 2 with Plume of Vulcanos [CATA_488t] (resolved by description_match), Plume of Vulcanos [CATA_488t2] (resolved by description_match)",
+    "At the end of your turn: deal 3 damage to all minions except this"
+   ]
+  },
+  "CATA_488t": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 13,
+   "ir_nodes": 9,
+   "elements": [
+    "ability:trigger",
+    "card_source:random_from",
+    "control:seq",
+    "event:DAMAGE_TAKEN",
+    "op:ADD_TO_HAND",
+    "op:MODIFY_COST",
+    "pred:spell_school",
+    "selector:SELF",
+    "selector:ref",
+    "timing:WHENEVER",
+    "value:literal"
+   ],
+   "rules": [
+    "R_COST",
+    "R_HAND_LIMIT",
+    "R_POOL",
+    "R_STEP_BOUNDARY",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "POOL_MEMBERSHIP/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Whenever this takes damage: you get a random spell spell school FIRE from pool <dep_pool> as <s>; then cost of them<s> reduced by 3"
+   ]
+  },
+  "CATA_999": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 13,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:trigger",
+    "event:TURN_END",
+    "op:DEAL_DAMAGE",
+    "selector:ENEMY_HERO",
+    "timing:AT",
+    "value:literal"
+   ],
+   "rules": [
+    "R_DAMAGE",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "At the end of your turn: deal 4 damage to the enemy hero"
+   ]
+  },
+  "CORE_AT_055": {
+   "role": "sample",
+   "stratum": "S5_control_grammar_parses",
+   "appearances": 1463,
+   "status": "FULL",
+   "words": 3,
+   "ir_nodes": 6,
+   "elements": [
+    "ability:play",
+    "label:SPELL",
+    "op:RESTORE_HEALTH",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:healing_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_HEALING",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: choose a chosen character as <t>; restore #5 Health to them<t>"
+   ]
+  },
+  "CORE_BAR_812": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 12,
+   "ir_nodes": 6,
+   "elements": [
+    "ability:trigger",
+    "card_source:card",
+    "event:ATTACK_DECLARED",
+    "keyword:SECRET",
+    "label:SECRET",
+    "op:SUMMON",
+    "pick:ALL",
+    "timing:WHEN",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_BOARD_LIMIT",
+    "R_SECRET",
+    "R_SUMMON_POSITION",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA"
+   ],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Secret",
+    "Secret: When a friendly minion is attacked: summon Water Elemental [CORE_CS2_033] (resolved by name_in_set)"
+   ]
+  },
+  "CORE_BT_201": {
+   "role": "sample",
+   "stratum": "S3_known_before_trigger_text",
+   "appearances": 271,
+   "status": "FULL_DEP",
+   "words": 11,
+   "ir_nodes": 5,
+   "elements": [
+    "ability:deathrattle",
+    "control:repeat",
+    "op:DEAL_DAMAGE",
+    "pick:RANDOM",
+    "selector:SELF",
+    "value:literal",
+    "value:stat",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DAMAGE",
+    "R_DEATHRATTLE",
+    "R_DEATH_PHASE",
+    "R_LAST_KNOWN",
+    "R_RANDOM_LIVE"
+   ],
+   "dependencies": [
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Deathrattle: repeat this's attack (last known) times: [deal 1 damage to random 1 enemy character]"
+   ]
+  },
+  "CORE_BT_416": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 9,
+   "ir_nodes": 6,
+   "elements": [
+    "ability:play",
+    "duration:UNTIL_USED",
+    "label:BATTLECRY",
+    "modifier:cost",
+    "op:ADD_PLAYER_EFFECT",
+    "pred:card_type",
+    "pred:race",
+    "value:literal"
+   ],
+   "rules": [
+    "R_COST",
+    "R_PLAYER_EFFECT",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Battlecry: you get a player effect: cost reduced by 2 for the next card card type MINION, race DEMON, until used, 1 use (card)"
+   ]
+  },
+  "CORE_CS2_072": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 7,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "label:SPELL",
+    "op:DEAL_DAMAGE",
+    "pick:CHOSEN",
+    "pred:damaged",
+    "selector:ref",
+    "value:spell_damage_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_DAMAGE",
+    "R_PLAY_TARGET",
+    "R_SPELL_DAMAGE"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: choose a chosen minion undamaged as <t>; deal $2 damage to them<t>"
+   ]
+  },
+  "CORE_DRG_107": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 9,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:deathrattle",
+    "card_source:card",
+    "op:ADD_TO_HAND"
+   ],
+   "rules": [
+    "R_DEATHRATTLE",
+    "R_DEATH_PHASE",
+    "R_HAND_LIMIT"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA"
+   ],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Deathrattle: you get Arcane Missiles [EX1_277] (resolved by name_in_set)"
+   ]
+  },
+  "CORE_EX1_002": {
+   "role": "sample",
+   "stratum": "R_random_minion",
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 8,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "keyword:TRADEABLE",
+    "label:BATTLECRY",
+    "op:DESTROY",
+    "pick:CHOSEN",
+    "pred:keyword",
+    "selector:ref",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DEATH_PHASE",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Tradeable",
+    "Battlecry: choose a chosen enemy minion with Taunt as <t>; destroy them<t>"
+   ]
+  },
+  "CORE_EX1_145": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 10,
+   "ir_nodes": 5,
+   "elements": [
+    "ability:play",
+    "duration:THIS_TURN",
+    "label:SPELL",
+    "modifier:cost",
+    "op:ADD_PLAYER_EFFECT",
+    "pred:card_type",
+    "value:literal"
+   ],
+   "rules": [
+    "R_COST",
+    "R_PLAYER_EFFECT",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: you get a player effect: cost reduced by 2 for the next card card type SPELL, this turn, 1 use (card)"
+   ]
+  },
+  "CORE_EX1_238": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 5,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "keyword:OVERLOAD",
+    "label:SPELL",
+    "op:DEAL_DAMAGE",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:spell_damage_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_DAMAGE",
+    "R_PLAY_TARGET",
+    "R_SPELL_DAMAGE"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Overload 1",
+    "Cast: choose a chosen character as <t>; deal $3 damage to them<t>"
+   ]
+  },
+  "CORE_GIL_836": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 8,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "control:seq",
+    "label:SPELL",
+    "op:DISCOVER",
+    "op:MODIFY_COST",
+    "pred:has_mechanic",
+    "selector:ref",
+    "value:literal"
+   ],
+   "rules": [
+    "R_COST",
+    "R_DISCOVER",
+    "R_HAND_LIMIT",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [
+    "POOL_MEMBERSHIP/DATA"
+   ],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: discover (3 options) a minion has mechanic BATTLECRY from pool <dep_pool> as <m>; then cost of them<m> reduced by 1"
+   ]
+  },
+  "CORE_ICC_055": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 7,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "keyword:LIFESTEAL",
+    "label:SPELL",
+    "op:DEAL_DAMAGE",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:spell_damage_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_DAMAGE",
+    "R_HEALING",
+    "R_PLAY_TARGET",
+    "R_SPELL_DAMAGE"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Lifesteal",
+    "Cast: choose a chosen minion as <t>; deal $3 damage to them<t>"
+   ]
+  },
+  "CORE_REV_990": {
+   "role": "sample",
+   "stratum": "S5_control_grammar_parses",
+   "appearances": 480,
+   "status": "FULL",
+   "words": 11,
+   "ir_nodes": 8,
+   "elements": [
+    "ability:play",
+    "control:seq",
+    "label:LOCATION",
+    "op:DEAL_DAMAGE",
+    "op:ENCHANT",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DAMAGE",
+    "R_ENCHANTMENT",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Activate: choose a chosen minion as <t>; deal 1 damage to them<t>; then give them<t> +2/+0"
+   ]
+  },
+  "CORE_SW_072": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 6,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:play",
+    "keyword:TRADEABLE",
+    "label:BATTLECRY",
+    "op:DESTROY",
+    "selector:ENEMY_WEAPON"
+   ],
+   "rules": [
+    "R_DEATH_PHASE",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA"
+   ],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Tradeable",
+    "Battlecry: destroy the enemy weapon"
+   ]
+  },
+  "CORE_SW_108": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 13,
+   "ir_nodes": 9,
+   "elements": [
+    "ability:play",
+    "card_source:card",
+    "control:seq",
+    "label:SPELL",
+    "op:ADD_TO_HAND",
+    "op:DEAL_DAMAGE",
+    "pick:CHOSEN",
+    "selector:ref",
+    "value:spell_damage_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_DAMAGE",
+    "R_HAND_LIMIT",
+    "R_PLAY_TARGET",
+    "R_SPELL_DAMAGE",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: choose a chosen minion as <t>; deal $2 damage to them<t>; then you get Second Flame [SW_108t]"
+   ]
+  },
+  "CORE_TTN_843": {
+   "role": "sample",
+   "stratum": "S3_known_before_trigger_text",
+   "appearances": 381,
+   "status": "FULL_DEP",
+   "words": 11,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "card_source:card",
+    "event:CARD_DRAWN",
+    "op:SUMMON",
+    "timing:WHENEVER"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_DRAW",
+    "R_SUMMON_POSITION",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "TOKEN_IDENTITY/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Whenever you draw a card: summon Invading Felbat [TTN_843t1] (resolved by description_match)"
+   ]
+  },
+  "EDR_100t": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 4,
+   "ir_nodes": 1,
+   "elements": [
+    "ability:enchantment_template",
+    "keyword:DARK_GIFT",
+    "keyword:LIFESTEAL",
+    "value:literal"
+   ],
+   "rules": [
+    "R_DARK_GIFT",
+    "R_ENCHANTMENT",
+    "R_HEALING"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Dark Gift option: +3 Attack, Lifesteal"
+   ]
+  },
+  "END_022": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 6,
+   "ir_nodes": 5,
+   "elements": [
+    "ability:aura",
+    "cond:is",
+    "modifier:spell_damage",
+    "pred:damaged",
+    "selector:SELF",
+    "value:literal"
+   ],
+   "rules": [
+    "R_AURA",
+    "R_SPELL_DAMAGE"
+   ],
+   "dependencies": [
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "In play: Spell Damage +2 while this is damaged"
+   ]
+  },
+  "EX1_277": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 8,
+   "ir_nodes": 5,
+   "elements": [
+    "ability:play",
+    "control:repeat",
+    "label:SPELL",
+    "op:DEAL_DAMAGE",
+    "pick:RANDOM",
+    "value:literal",
+    "value:spell_damage_literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_DAMAGE",
+    "R_PLAY_TARGET",
+    "R_RANDOM_LIVE",
+    "R_SPELL_DAMAGE"
+   ],
+   "dependencies": [],
+   "decisions": 1,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: repeat $3 times: [deal 1 damage to random 1 enemy character]"
+   ]
+  },
+  "FIR_906": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 14,
+   "ir_nodes": 10,
+   "elements": [
+    "ability:play",
+    "control:pay",
+    "control:seq",
+    "label:SPELL",
+    "op:ENCHANT",
+    "pay:discard",
+    "pick:ALL",
+    "pick:RANDOM",
+    "pred:spell_school",
+    "selector:ref",
+    "value:literal",
+    "zone:HAND",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_ENCHANTMENT",
+    "R_HIDDEN_ZONE",
+    "R_PAYMENT",
+    "R_PLAY_TARGET",
+    "R_RANDOM_LIVE",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: give all friendly minions +1/+1 as <buffed>; then if you can pay a discard of random 1 friendly spell spell school NATURE in hand, pay it and give them<buffed> +1/+1"
+   ]
+  },
+  "JAIL_321": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 14,
+   "ir_nodes": 11,
+   "elements": [
+    "ability:play",
+    "card_source:random_from",
+    "cond:cmp",
+    "control:if",
+    "counter:SPELL_CAST",
+    "keyword:PREPARE",
+    "label:BATTLECRY",
+    "op:CAST",
+    "pred:card_class",
+    "pred:keyword",
+    "scope:THIS_TURN",
+    "value:counter",
+    "value:literal"
+   ],
+   "rules": [
+    "R_CAST",
+    "R_COUNTERS",
+    "R_PLAY_TARGET",
+    "R_POOL",
+    "R_PREPARE"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "POOL_MEMBERSHIP/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Prepare",
+    "Battlecry: if number of spells cast by you this turn >= 1: cast 2 x a random spell card class MAGE, with Secret from pool <dep_pool>"
+   ]
+  },
+  "JAIL_327": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 20,
+   "ir_nodes": 10,
+   "elements": [
+    "ability:play",
+    "ability:trigger",
+    "card_source:from_zone",
+    "duration:N_TURNS",
+    "event:TURN_END",
+    "label:SPELL",
+    "op:ADD_PLAYER_EFFECT",
+    "op:SUMMON",
+    "pick:RANDOM",
+    "pred:cost",
+    "timing:AT",
+    "value:literal",
+    "zone:DECK"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_HIDDEN_ZONE",
+    "R_PLAYER_EFFECT",
+    "R_PLAY_TARGET",
+    "R_RANDOM_LIVE",
+    "R_SUMMON_POSITION",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: you get a player effect: 'At the end of your turn: summon random 1 friendly minion costing <= 2 in deck', for 3 turns"
+   ]
+  },
+  "JAIL_516": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 15,
+   "ir_nodes": 9,
+   "elements": [
+    "ability:play",
+    "card_source:from_zone",
+    "control:seq",
+    "keyword:RUSH",
+    "label:BATTLECRY",
+    "op:ENCHANT",
+    "op:SUMMON",
+    "pick:RANDOM",
+    "pred:cost",
+    "selector:ref",
+    "value:literal",
+    "zone:DECK"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_ENCHANTMENT",
+    "R_HIDDEN_ZONE",
+    "R_PLAY_TARGET",
+    "R_RANDOM_LIVE",
+    "R_STEP_BOUNDARY",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Battlecry: summon random 2 friendly minion costing <= 2 in deck as <them>; then give them<them> Rush"
+   ]
+  },
+  "JAIL_730": {
+   "role": "sample",
+   "stratum": "S3_known_before_trigger_text",
+   "appearances": 513,
+   "status": "FULL_DEP",
+   "words": 8,
+   "ir_nodes": 4,
+   "elements": [
+    "ability:trigger",
+    "card_source:card",
+    "event:HERO_ATTACK",
+    "op:ADD_TO_HAND",
+    "timing:AFTER"
+   ],
+   "rules": [
+    "R_HAND_LIMIT",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 1,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "After your hero attacks: you get Void Soul [JAIL_732]"
+   ]
+  },
+  "JAIL_732": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "PARTIAL",
+   "words": 10,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:play",
+    "card_source:random_from",
+    "label:SPELL",
+    "op:SUMMON",
+    "pred:cost",
+    "pred:race"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_PLAY_TARGET",
+    "R_POOL",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [
+    "POOL_MEMBERSHIP/DATA",
+    "UNKNOWN_RULE/CORE"
+   ],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [
+    "Improve your future Void Souls."
+   ],
+   "program_like": [],
+   "rendered": [
+    "Cast: summon a random minion race DEMON, costing = 1 from pool <dep_pool>",
+    "NOT EXPRESSED: Improve your future Void Souls."
+   ]
+  },
+  "JAIL_872": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 7,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:trigger",
+    "event:HERO_ATTACK",
+    "op:DRAW",
+    "timing:AFTER",
+    "value:literal"
+   ],
+   "rules": [
+    "R_DRAW",
+    "R_TRIGGER_ORDER",
+    "R_TRIGGER_TIMING"
+   ],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "After your hero attacks: you draw 1 x card"
+   ]
+  },
+  "TIME_603": {
+   "role": "sample",
+   "stratum": "S3_known_before_trigger_text",
+   "appearances": 343,
+   "status": "FULL",
+   "words": 6,
+   "ir_nodes": 3,
+   "elements": [
+    "ability:deathrattle",
+    "op:DESTROY",
+    "pick:RANDOM",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_DEATHRATTLE",
+    "R_DEATH_PHASE",
+    "R_RANDOM_LIVE"
+   ],
+   "dependencies": [],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Deathrattle: destroy random 1 enemy minion"
+   ]
+  },
+  "TIME_609": {
+   "role": "sample",
+   "stratum": "R_random_minion",
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 17,
+   "ir_nodes": 11,
+   "elements": [
+    "ability:play",
+    "control:repeat",
+    "control:seq",
+    "counter:CARD_PLAYED",
+    "keyword:FABLED",
+    "label:BATTLECRY",
+    "op:DEAL_DAMAGE",
+    "pick:ALL",
+    "pred:named",
+    "scope:THIS_GAME",
+    "value:counter",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_COUNTERS",
+    "R_DAMAGE",
+    "R_NAME_REFERENCE",
+    "R_PLAY_TARGET",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "NAME_REFERENCE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Fabled",
+    "Battlecry: deal 2 damage to all enemy characters; then repeat number of distinct cards played named Alleria or Vereesa ['TIME_609t1', 'TIME_609t2'] by you this game times: [deal 2 damage to all enemy characters]"
+   ]
+  },
+  "TIME_890": {
+   "role": "sample",
+   "stratum": "S4_known_before_one_shot_text",
+   "appearances": 1058,
+   "status": "FULL_DEP",
+   "words": 14,
+   "ir_nodes": 13,
+   "elements": [
+    "ability:aura",
+    "ability:play",
+    "cond:exists",
+    "control:seq",
+    "keyword:FABLED",
+    "label:BATTLECRY",
+    "modifier:cost",
+    "op:DESTROY",
+    "op:SILENCE",
+    "pick:ALL",
+    "pred:named",
+    "selector:SELF",
+    "selector:exclude",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_AURA",
+    "R_COST",
+    "R_DEATH_PHASE",
+    "R_NAME_REFERENCE",
+    "R_PLAY_TARGET",
+    "R_SILENCE",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "NAME_REFERENCE/CONDITIONAL"
+   ],
+   "decisions": 4,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Fabled",
+    "In hand: cost set to 0 while there is a friendly location named Karazhan ['TIME_890t2']",
+    "Battlecry: silence all minions except this; then destroy all minions except this"
+   ]
+  },
+  "TIME_890t": {
+   "role": "sample",
+   "stratum": "S2_new_to_source_noncollectible_token",
+   "appearances": 1237,
+   "status": "FULL_DEP",
+   "words": 14,
+   "ir_nodes": 9,
+   "elements": [
+    "ability:aura",
+    "cond:exists",
+    "modifier:cost",
+    "modifier:rule",
+    "pick:ALL",
+    "pred:named",
+    "rule:SPELL_DAMAGE_MULTIPLIER",
+    "rule:SPELL_HEALING_MULTIPLIER",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AMOUNT_ORDER",
+    "R_AREA_SNAPSHOT",
+    "R_AURA",
+    "R_COST",
+    "R_NAME_REFERENCE"
+   ],
+   "dependencies": [
+    "NAME_REFERENCE/CONDITIONAL",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 2,
+   "decisions_outcome_weak_basis": 2,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "In hand: cost set to 0 while there is a friendly minion named Medivh ['TIME_890']",
+    "While equipped: rule SPELL_DAMAGE_MULTIPLIER x2 and rule SPELL_HEALING_MULTIPLIER x2"
+   ]
+  },
+  "TIME_890t2": {
+   "role": "sample",
+   "stratum": "S2_new_to_source_noncollectible_token",
+   "appearances": 966,
+   "status": "FULL_DEP",
+   "words": 11,
+   "ir_nodes": 12,
+   "elements": [
+    "ability:aura",
+    "ability:play",
+    "card_source:random_from",
+    "cond:exists",
+    "label:LOCATION",
+    "modifier:cost",
+    "op:SUMMON",
+    "pick:ALL",
+    "pred:cost",
+    "pred:named",
+    "value:literal",
+    "zone:PLAY"
+   ],
+   "rules": [
+    "R_AREA_SNAPSHOT",
+    "R_AURA",
+    "R_BOARD_LIMIT",
+    "R_COST",
+    "R_NAME_REFERENCE",
+    "R_PLAY_TARGET",
+    "R_POOL",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [
+    "NAME_REFERENCE/CONDITIONAL",
+    "POOL_MEMBERSHIP/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 2,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "In hand: cost set to 0 while there is a friendly weapon named Atiesh ['TIME_890t']",
+    "Activate: summon 2 x a random minion costing = 8 from pool <dep_pool>"
+   ]
+  },
+  "TLC_226": {
+   "role": "engine_validation",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 10,
+   "ir_nodes": 7,
+   "elements": [
+    "ability:deathrattle",
+    "ability:play",
+    "card_source:copy_of",
+    "cond:mechanic",
+    "label:KINDRED",
+    "op:DRAW",
+    "op:SUMMON",
+    "pred:card_type",
+    "selector:SELF",
+    "value:literal"
+   ],
+   "rules": [
+    "R_BOARD_LIMIT",
+    "R_COPY",
+    "R_DEATHRATTLE",
+    "R_DEATH_PHASE",
+    "R_DRAW",
+    "R_KINDRED",
+    "R_PLAY_TARGET",
+    "R_SUMMON_POSITION"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "UNKNOWN_RULE/CONDITIONAL"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Deathrattle: you draw 1 x card card type SPELL",
+    "Kindred (on play): if Kindred holds: summon a copy of this"
+   ]
+  },
+  "TLC_602": {
+   "role": "sample",
+   "stratum": "R_random_spell",
+   "appearances": null,
+   "status": "PARTIAL",
+   "words": 10,
+   "ir_nodes": 5,
+   "elements": [
+    "ability:quest",
+    "card_source:card",
+    "cond:unknown",
+    "keyword:QUEST"
+   ],
+   "rules": [
+    "R_QUEST"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA",
+    "UNKNOWN_RULE/CORE"
+   ],
+   "decisions": 1,
+   "decisions_unresolved": 1,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Quest",
+    "Quest: progress on <UNKNOWN event: dep_progress>, goal 10; reward Latorvius, Gaze of the City [TLC_602t]"
+   ]
+  },
+  "TLC_602t": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL_DEP",
+   "words": 15,
+   "ir_nodes": 11,
+   "elements": [
+    "ability:play",
+    "card_source:all_from",
+    "card_source:random_from",
+    "control:seq",
+    "label:BATTLECRY",
+    "op:ADD_TO_HAND",
+    "op:SHUFFLE_INTO_DECK",
+    "pred:card_set",
+    "selector:ref",
+    "value:literal"
+   ],
+   "rules": [
+    "R_DECK_POSITION",
+    "R_HAND_LIMIT",
+    "R_HIDDEN_ZONE",
+    "R_PLAY_TARGET",
+    "R_POOL",
+    "R_STEP_BOUNDARY"
+   ],
+   "dependencies": [
+    "POOL_MEMBERSHIP/DATA"
+   ],
+   "decisions": 3,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Battlecry: you get 2 x a random card card set UNGORO from pool <dep_pool> as <got>; then shuffle every card card set UNGORO from pool <dep_pool> except them<got> into your deck"
+   ]
+  },
+  "TLC_816": {
+   "role": "sample",
+   "stratum": "S4_known_before_one_shot_text",
+   "appearances": 681,
+   "status": "FULL_DEP",
+   "words": 8,
+   "ir_nodes": 6,
+   "elements": [
+    "ability:aura",
+    "ability:play",
+    "cond:mechanic",
+    "label:SPELL",
+    "modifier:cost",
+    "op:DRAW",
+    "value:literal"
+   ],
+   "rules": [
+    "R_AURA",
+    "R_COST",
+    "R_DRAW",
+    "R_KINDRED",
+    "R_PLAY_TARGET"
+   ],
+   "dependencies": [
+    "KEYWORD_RULE/DATA"
+   ],
+   "decisions": 2,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 1,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Cast: you draw 2 x card",
+    "In hand: cost reduced by 2 while Kindred holds"
+   ]
+  },
+  "TTN_843t1": {
+   "role": "closure",
+   "stratum": null,
+   "appearances": null,
+   "status": "FULL",
+   "words": 1,
+   "ir_nodes": 1,
+   "elements": [
+    "keyword:RUSH"
+   ],
+   "rules": [],
+   "dependencies": [],
+   "decisions": 0,
+   "decisions_unresolved": 0,
+   "decisions_outcome_weak_basis": 0,
+   "unexpressed": [],
+   "program_like": [],
+   "rendered": [
+    "Keyword Rush"
+   ]
+  }
+ }
+}

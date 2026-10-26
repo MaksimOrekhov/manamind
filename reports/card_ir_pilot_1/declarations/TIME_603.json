@@ -1,0 +1,37 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_603",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Deathrattle:</b> Destroy a random enemy minion.",
+  "text_sha256": "c9baf203381b879477d0665bc569895460aa20076b831f92526590bf3e7a64eb",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Destroy a random enemy minion.",
+      "effect": {"op": "DESTROY", "to": {"pick": "RANDOM", "n": 1, "type": "MINION", "side": "ENEMY"}}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Are enemy minions that died in the same death phase (mortally wounded) excluded from the pick?",
+      "alternatives": ["excluded (live candidates only)", "included"],
+      "chosen": "excluded (live candidates only)",
+      "basis": "COMMUNITY_RULES",
+      "risk": "OUTCOME",
+      "discriminating_case": "a board-wide AoE kills the Timebomb and one enemy minion; the Deathrattle can only pick a survivor"
+    },
+    {
+      "id": "d2",
+      "question": "'Enemy' relative to the controller when it died",
+      "alternatives": ["controller at death", "owner"],
+      "chosen": "controller at death",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "the Timebomb dies under the opponent's control"
+    }
+  ],
+  "status": "FULL"
+}

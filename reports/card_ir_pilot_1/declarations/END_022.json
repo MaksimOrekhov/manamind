@@ -1,0 +1,39 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "END_022",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Has <b>Spell Damage +2</b> while damaged.",
+  "text_sha256": "81507e38cdbc55d39e5a63d8d9b1fb8e2cabad16bcb31b3046d55047784423ee",
+  "abilities": [
+    {
+      "kind": "aura",
+      "span": "Has Spell Damage +2 while damaged.",
+      "active_in": "PLAY",
+      "while": {"is": {"entity": "SELF", "where": [{"damaged": true}]}},
+      "modifier": {"spell_damage": 2}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_aura",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "card_level": true,
+      "detail": "R_AURA: when the Seer becomes damaged inside one spell area, whether the area's own damage sees the new Spell Damage (ManaEngine fails closed)",
+      "source_needed": "a log of an AoE spell that damages an undamaged Seer"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Is Spell Damage re-evaluated per instruction when the Seer gets damaged mid-spell?",
+      "alternatives": ["per instruction (CURRENT_AT_STEP)", "fixed at cast"],
+      "chosen": "per instruction (CURRENT_AT_STEP)",
+      "basis": "COMMUNITY_RULES",
+      "risk": "OUTCOME",
+      "discriminating_case": "Sleet Storm + Seer (ManaEngine checkpoint H6, answered by a forum post): the second instruction deals +2"
+    }
+  ],
+  "status": "FULL_DEP"
+}

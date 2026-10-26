@@ -1,0 +1,204 @@
+{
+ "declarations": 53,
+ "operators": [
+  "NUMBER",
+  "MARK_DROP",
+  "MARK_ADD",
+  "SIDE",
+  "PICK",
+  "ZONE",
+  "TIMING",
+  "OP_SWAP",
+  "SEQ_SWAP",
+  "STEP_DROP",
+  "EXCLUDE_DROP",
+  "REF_TO_SELF",
+  "KEYWORD_SWAP",
+  "ABILITY_DROP",
+  "DEP_DROP",
+  "STATUS_OPTIMISTIC"
+ ],
+ "table": {
+  "NUMBER": {
+   "mutants": 40,
+   "validator": 28,
+   "lint_only": 0,
+   "undetected": 12,
+   "detected_share": 0.7,
+   "undetected_examples": [
+    "BE_561 abilities.0.effect.seq.1.pay.amount",
+    "CAP_107t abilities.0.effect.to.n",
+    "CATA_200 abilities.0.effect.seq.0.from.n",
+    "CATA_465 abilities.0.effect.seq.0.count",
+    "CORE_BT_201 abilities.0.effect.do.to.n",
+    "FIR_906 abilities.0.effect.seq.0.attack",
+    "JAIL_321 abilities.0.effect.then.count",
+    "JAIL_516 abilities.0.effect.seq.0.what.from_zone.n",
+    "JAIL_872 abilities.0.effect.count",
+    "TIME_603 abilities.0.effect.to.n",
+    "TIME_609 abilities.0.effect.seq.0.amount",
+    "TLC_226 abilities.0.effect.count"
+   ]
+  },
+  "MARK_DROP": {
+   "mutants": 6,
+   "validator": 6,
+   "lint_only": 0,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "MARK_ADD": {
+   "mutants": 10,
+   "validator": 10,
+   "lint_only": 0,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "SIDE": {
+   "mutants": 25,
+   "validator": 0,
+   "lint_only": 24,
+   "undetected": 1,
+   "detected_share": 0.96,
+   "undetected_examples": [
+    "TIME_609 abilities.0.effect.seq.0.to.side"
+   ]
+  },
+  "PICK": {
+   "mutants": 25,
+   "validator": 8,
+   "lint_only": 8,
+   "undetected": 9,
+   "detected_share": 0.64,
+   "undetected_examples": [
+    "CATA_200 abilities.0.effect.seq.0.from.pick",
+    "CORE_BAR_812 abilities.0.event.defender.pick",
+    "FIR_906 abilities.0.effect.seq.0.to.pick",
+    "JAIL_327 abilities.0.effect.abilities.0.effect.what.from_zone.pick",
+    "JAIL_516 abilities.0.effect.seq.0.what.from_zone.pick",
+    "TIME_609 abilities.0.effect.seq.0.to.pick",
+    "TIME_890 abilities.0.while.exists.pick",
+    "TIME_890t abilities.0.while.exists.pick",
+    "TIME_890t2 abilities.0.while.exists.pick"
+   ]
+  },
+  "ZONE": {
+   "mutants": 6,
+   "validator": 0,
+   "lint_only": 5,
+   "undetected": 1,
+   "detected_share": 0.833,
+   "undetected_examples": [
+    "FIR_906 abilities.0.effect.seq.1.pay.discard.zone"
+   ]
+  },
+  "TIMING": {
+   "mutants": 13,
+   "validator": 0,
+   "lint_only": 13,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "OP_SWAP": {
+   "mutants": 18,
+   "validator": 0,
+   "lint_only": 16,
+   "undetected": 2,
+   "detected_share": 0.889,
+   "undetected_examples": [
+    "BE_553t abilities.0.effect.abilities.0.effect.op",
+    "TIME_609 abilities.0.effect.seq.0.op"
+   ]
+  },
+  "SEQ_SWAP": {
+   "mutants": 13,
+   "validator": 9,
+   "lint_only": 0,
+   "undetected": 4,
+   "detected_share": 0.692,
+   "undetected_examples": [
+    "CORE_REV_990 abilities.0.effect",
+    "CORE_SW_108 abilities.0.effect",
+    "TIME_609 abilities.0.effect",
+    "TIME_890 abilities.1.effect"
+   ]
+  },
+  "STEP_DROP": {
+   "mutants": 13,
+   "validator": 11,
+   "lint_only": 2,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "EXCLUDE_DROP": {
+   "mutants": 2,
+   "validator": 0,
+   "lint_only": 0,
+   "undetected": 2,
+   "detected_share": 0.0,
+   "undetected_examples": [
+    "CATA_488 abilities.0.effect.to",
+    "TIME_890 abilities.1.effect.seq.0.to"
+   ]
+  },
+  "REF_TO_SELF": {
+   "mutants": 16,
+   "validator": 14,
+   "lint_only": 0,
+   "undetected": 2,
+   "detected_share": 0.875,
+   "undetected_examples": [
+    "BE_555 abilities.0.effect.seq.1.do.seq.2.to",
+    "CORE_REV_990 abilities.0.effect.seq.0.to"
+   ]
+  },
+  "KEYWORD_SWAP": {
+   "mutants": 4,
+   "validator": 0,
+   "lint_only": 0,
+   "undetected": 4,
+   "detected_share": 0.0,
+   "undetected_examples": [
+    "BE_553t abilities.0.effect.keywords",
+    "CATA_465 abilities.0.effect.seq.1.then.keywords",
+    "EDR_100t abilities.0.keywords",
+    "JAIL_516 abilities.0.effect.seq.1.keywords"
+   ]
+  },
+  "ABILITY_DROP": {
+   "mutants": 49,
+   "validator": 49,
+   "lint_only": 0,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "DEP_DROP": {
+   "mutants": 27,
+   "validator": 27,
+   "lint_only": 0,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  },
+  "STATUS_OPTIMISTIC": {
+   "mutants": 27,
+   "validator": 27,
+   "lint_only": 0,
+   "undetected": 0,
+   "detected_share": 1.0,
+   "undetected_examples": []
+  }
+ },
+ "total": {
+  "mutants": 294,
+  "validator": 189,
+  "lint_only": 68,
+  "undetected": 37
+ },
+ "caveat": "lint anchors were tuned to zero warnings on these same declarations; detection on new cards must be measured separately. Some mutants are semantically equivalent to the original."
+}

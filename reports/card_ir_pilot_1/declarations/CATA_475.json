@@ -1,0 +1,30 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_475",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]At the end of your\nturn, deal 2 damage\nto all enemies.",
+  "text_sha256": "6d35be5fc13e0f53f68379848b82b24cab539b5a814f279495dd90842af80025",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "At the end of your turn, deal 2 damage to all enemies.",
+      "event": {"type": "TURN_END", "player": "SELF"},
+      "timing": "AT",
+      "effect": {"op": "DEAL_DAMAGE", "to": {"pick": "ALL", "type": "CHARACTER", "side": "ENEMY"}, "amount": 2}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Are enemy minions already mortally wounded by an earlier end-of-turn effect hit?",
+      "alternatives": ["yes: area membership includes mortally wounded", "no"],
+      "chosen": "yes: area membership includes mortally wounded",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "EDGE",
+      "discriminating_case": "MORTALITY_POLICY: ordinary AoE includes pending-death minions"
+    }
+  ],
+  "status": "FULL"
+}

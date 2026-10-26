@@ -1,0 +1,38 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_BT_416",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "<b>Battlecry:</b> The next Demon you play costs (2) less.",
+  "text_sha256": "9b1e1b8bdd591e3074a3b35ee3d8abd3a88a517eb446201298ed211b596964d0",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: The next Demon you play costs (2) less.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "modifier": {"cost": {"reduce": 2}},
+        "applies_to": [{"card_type": "MINION"}, {"race": "DEMON"}],
+        "duration": "UNTIL_USED",
+        "uses": 1,
+        "use_unit": "CARD",
+        "enchantment_id": "BT_416e"
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does it expire at end of turn?",
+      "alternatives": ["no: until a Demon is played", "yes"],
+      "chosen": "no: until a Demon is played",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Preparation says 'this turn', this text does not; BT_416e 'Your next Demon costs (2) less.'"
+    }
+  ],
+  "status": "FULL"
+}

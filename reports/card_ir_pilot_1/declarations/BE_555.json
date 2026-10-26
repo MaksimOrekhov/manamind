@@ -1,0 +1,84 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_555",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Discover</b> a spell and reduce its Cost by (8). Repeat this with excess Cost reduction.",
+  "text_sha256": "9666ef085d354c468cd0c7c30df843dd1f494ab26d55a411fc6d1ead9d5fa91f",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Discover a spell and reduce its Cost by (8). Repeat this with excess Cost reduction.",
+      "effect": {
+        "seq": [
+          {"set": {"r": 8}},
+          {
+            "repeat_while": {"cmp": [{"var": "r"}, ">", 0]},
+            "max": {"unknown": "dep_loop"},
+            "do": {
+              "seq": [
+                {"op": "DISCOVER", "pool": {"type": "SPELL", "where": [], "dep": "dep_pool"}, "options": 3, "as": "s"},
+                {"set": {"c": {"stat": "COST", "of": {"ref": "s"}}}},
+                {"op": "MODIFY_COST", "to": {"ref": "s"}, "reduce": {"var": "r"}, "enchantment_id": "BE_555e"},
+                {"set": {"r": {"max": [0, {"sub": [{"var": "r"}, {"var": "c"}]}]}}}
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "which spells a 'Discover a spell' offers (class and neutral? Standard only? three distinct?)",
+      "source_needed": "reviewed pool manifest (hsdata CardDefs.xml or official rules)"
+    },
+    {
+      "id": "dep_loop",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "termination: a discovered 0-Cost spell leaves the excess unchanged; whether the game excludes such options or bounds the repeats is not documented",
+      "source_needed": "logs of Reload discovering a 0-Cost spell, or official rules"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "What is the 'excess Cost reduction'?",
+      "alternatives": [
+        "max(0, reduction - the spell's Cost when reduced)",
+        "reduction - the spell's base Cost",
+        "always one more repeat"
+      ],
+      "chosen": "max(0, reduction - the spell's Cost when reduced)",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "first pick costs 3: it becomes 0 and a second Discover runs with 5; a 5-Cost second pick ends the chain"
+    },
+    {
+      "id": "d2",
+      "question": "What happens when a 0-Cost spell is discovered?",
+      "alternatives": ["the full reduction carries over and the loop continues", "0-Cost spells are never offered"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_loop",
+      "discriminating_case": "the options shown after a 0-Cost pick"
+    },
+    {
+      "id": "d3",
+      "question": "Is 'its Cost' the current cost (with other cost modifiers) or the printed cost?",
+      "alternatives": ["current cost when reduced", "printed cost"],
+      "chosen": "current cost when reduced",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "a hand aura 'your spells cost (1) less' is active while Reload resolves"
+    }
+  ],
+  "notes": "Program-like: needs local variables, arithmetic and a conditional loop.",
+  "status": "FULL_DEP"
+}

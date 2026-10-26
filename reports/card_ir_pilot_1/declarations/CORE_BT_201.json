@@ -1,0 +1,61 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_BT_201",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Deathrattle</b>: Deal this\nminion's Attack damage\nrandomly split among\nall enemies.",
+  "text_sha256": "9a7e187a33c54e45aca43aa4b56b441648099918cd84d35cbf1647287cb1d4b6",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Deal this minion's Attack damage randomly split among all enemies.",
+      "effect": {
+        "repeat": {"stat": "ATTACK", "of": "SELF", "at": "LAST_KNOWN"},
+        "do": {
+          "op": "DEAL_DAMAGE",
+          "to": {"pick": "RANDOM", "n": 1, "type": "CHARACTER", "side": "ENEMY"},
+          "amount": 1
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_lki",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "R_LAST_KNOWN: the Attack used is the value when the minion died (with buffs and auras), not the printed 2",
+      "source_needed": "a log of a buffed Porcupine dying"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Which Attack: last known (with buffs) or printed?",
+      "alternatives": ["last known Attack when it died", "printed Attack"],
+      "chosen": "last known Attack when it died",
+      "basis": "UNVERIFIED",
+      "risk": "OUTCOME",
+      "dep": "dep_lki",
+      "discriminating_case": "Porcupine buffed to 5 Attack dies: 5 hits or 2"
+    },
+    {
+      "id": "d2",
+      "question": "Split = separate 1-damage hits, each re-picked among live enemies?",
+      "alternatives": ["separate hits, re-picked among live enemies", "targets fixed up front"],
+      "chosen": "separate hits, re-picked among live enemies",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "a 1-Health enemy minion is hit first; later hits never target it (DAMAGE_GROUP_RULES_REVIEW requirement 3)"
+    },
+    {
+      "id": "d3",
+      "question": "Is the damage affected by Spell Damage?",
+      "alternatives": ["no: no '$', minion effect", "yes"],
+      "chosen": "no: no '$', minion effect",
+      "basis": "TEXT",
+      "risk": "NONE"
+    }
+  ],
+  "status": "FULL_DEP"
+}

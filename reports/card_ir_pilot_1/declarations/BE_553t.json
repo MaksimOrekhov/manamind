@@ -1,0 +1,65 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_553t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "closure",
+  "text": "Give a friendly Mech\n+2 Attack and <b>Rush</b>. It dies at end of turn.",
+  "text_sha256": "edaae0fb914f8a3a38fc6311d6a9bf0a007cb06f34bd90b106e856e00a8fb9f6",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Give a friendly Mech +2 Attack and Rush. It dies at end of turn.",
+      "target": {
+        "bind": "t",
+        "choose": {"pick": "CHOSEN", "type": "MINION", "side": "FRIENDLY", "where": [{"race": "MECHANICAL"}]}
+      },
+      "effect": {
+        "op": "ENCHANT",
+        "to": {"ref": "t"},
+        "attack": 2,
+        "keywords": ["RUSH"],
+        "enchantment_id": "BE_553e",
+        "abilities": [
+          {
+            "kind": "trigger",
+            "event": {"type": "TURN_END"},
+            "timing": "AT",
+            "effect": {"op": "DESTROY", "to": "SELF"}
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "'It dies' = destroyed (its Deathrattle triggers) rather than removed?",
+      "alternatives": ["destroyed", "removed from the game"],
+      "chosen": "destroyed",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Overdrive on Ticking Timebomb: its Deathrattle fires at end of turn"
+    },
+    {
+      "id": "d2",
+      "question": "Inside the attached trigger, SELF is the enchanted minion (the host)",
+      "alternatives": ["host", "the spell"],
+      "chosen": "host",
+      "basis": "METADATA",
+      "risk": "NONE",
+      "discriminating_case": "BE_553e: '+2 Attack, Rush, and dies at end of turn.' with TAG_ONE_TURN_EFFECT"
+    },
+    {
+      "id": "d3",
+      "question": "Does silencing the minion before the end of turn save it?",
+      "alternatives": ["yes: the enchantment is removed", "no"],
+      "chosen": "yes: the enchantment is removed",
+      "basis": "UNVERIFIED",
+      "risk": "EDGE",
+      "discriminating_case": "silence the Mech after Overdrive: it survives the turn end"
+    }
+  ],
+  "status": "FULL"
+}

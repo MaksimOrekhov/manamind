@@ -1,0 +1,83 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_890t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Costs (0) if you control\nMedivh. Double the\ndamage and healing\nof your spells.",
+  "text_sha256": "44fb9893b87597e1fe3a316b61669e57e89b771dbc726dd5a47ac040e4f69e9e",
+  "abilities": [
+    {
+      "kind": "aura",
+      "span": "Costs (0) if you control Medivh.",
+      "active_in": "HAND",
+      "while": {
+        "exists": {
+          "pick": "ALL",
+          "type": "MINION",
+          "side": "FRIENDLY",
+          "where": [{"named": "Medivh", "ids": ["TIME_890"], "dep": "dep_name"}]
+        }
+      },
+      "modifier": {"cost": {"set": 0}}
+    },
+    {
+      "kind": "aura",
+      "span": "Double the damage and healing of your spells.",
+      "active_in": "EQUIPPED",
+      "modifier": [
+        {"rule": "SPELL_DAMAGE_MULTIPLIER", "factor": 2},
+        {"rule": "SPELL_HEALING_MULTIPLIER", "factor": 2}
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_name",
+      "kind": "NAME_REFERENCE",
+      "scope": "CONDITIONAL",
+      "detail": "'Medivh' resolved to TIME_890 (Fabled bundle, ID prefix); 22 records contain 'Medivh' (Wild KAR_097 Medivh, the Guardian, hero skins)",
+      "source_needed": "client card relation; logs confirm only the ordinary case"
+    },
+    {
+      "id": "dep_order",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "card_level": true,
+      "detail": "R_AMOUNT_ORDER: Spell Damage / healing bonus added before or after doubling; doubling of healing turned into damage by Ruby Sanctum",
+      "source_needed": "a log with Atiesh plus a Spell Damage source or a healing bonus"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does 'control Medivh' mean the bundle minion TIME_890 or any card named Medivh?",
+      "alternatives": ["TIME_890 only", "any minion whose name contains Medivh"],
+      "chosen": "TIME_890 only",
+      "basis": "LOG_OBSERVED",
+      "risk": "EDGE",
+      "dep": "dep_name",
+      "discriminating_case": "CONSEQUENCE-PILOT-1 saw the cost drop to 0 with TIME_890 on board; a Wild Medivh minion would discriminate"
+    },
+    {
+      "id": "d2",
+      "question": "Order of Spell Damage and doubling for a '$4' spell with Spell Damage +1",
+      "alternatives": ["(4 + 1) x 2 = 10", "4 x 2 + 1 = 9"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_order",
+      "discriminating_case": "Medivh's Triumph with Atiesh and one Spell Damage minion: 10 or 9 to each minion"
+    },
+    {
+      "id": "d3",
+      "question": "Is healing that Ruby Sanctum turned into damage doubled as healing, as damage, or not at all?",
+      "alternatives": ["doubled", "not doubled"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_order",
+      "discriminating_case": "CONSEQUENCE-PILOT-1 observed Flash Heal dealing 18 with Atiesh; the components were not decomposed"
+    }
+  ],
+  "status": "FULL_DEP"
+}

@@ -1,0 +1,70 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_321",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Prepare</b>\n<b>Battlecry:</b> If you've cast a\nspell this turn, cast two\n  random Mage <b>Secrets</b>.",
+  "text_sha256": "8317b6903e1902672f5300b67f2d23502fb9e0497344c772ee5b7c7d42cd5d05",
+  "keywords": [{"keyword": "PREPARE", "span": "Prepare"}],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: If you've cast a spell this turn, cast two random Mage Secrets.",
+      "effect": {
+        "if": {"cmp": [{"counter": {"event": "SPELL_CAST", "player": "SELF", "scope": "THIS_TURN"}}, ">=", 1]},
+        "then": {
+          "op": "CAST",
+          "count": 2,
+          "what": {
+            "random_from": {
+              "type": "SPELL",
+              "dep": "dep_pool",
+              "where": [{"card_class": "MAGE"}, {"keyword": "SECRET"}]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "Mage Secrets that can be cast (ManaEngine reviewed a 6-card list); Secrets already active are presumably excluded",
+      "source_needed": "reviewed pool manifest"
+    },
+    {
+      "id": "dep_prepare",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Prepare: a 1-Mana hand action seen in Power.log (PREPARE-ROOTS-1); what it changes is not in the text",
+      "source_needed": "official keyword rule"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Two distinct Secrets, none already active?",
+      "alternatives": ["distinct and not active", "independent draws"],
+      "chosen": "distinct and not active",
+      "basis": "UNVERIFIED",
+      "risk": "OUTCOME",
+      "dep": "dep_pool",
+      "discriminating_case": "cast with one Mage Secret already active"
+    },
+    {
+      "id": "d2",
+      "question": "Does preparing the card count as casting a spell this turn?",
+      "alternatives": ["no", "yes"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_prepare",
+      "discriminating_case": "Prepare the card, then play it with no other spell cast"
+    }
+  ],
+  "status": "FULL_DEP"
+}

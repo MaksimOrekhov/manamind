@@ -1,0 +1,47 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_207",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b><b>Reborn</b>\n</b><b>Deathrattle:</b> Give all\nminions in your\nhand +1/+1.",
+  "text_sha256": "389e8e54d580a6368e76d60fc73b1130d4b537391c53c1800e8a9b401133626a",
+  "keywords": [{"keyword": "REBORN", "span": "Reborn"}],
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Give all minions in your hand +1/+1.",
+      "effect": {
+        "op": "ENCHANT",
+        "to": {"pick": "ALL", "type": "MINION", "side": "FRIENDLY", "zone": "HAND"},
+        "attack": 1,
+        "health": 1,
+        "enchantment_id": "BE_207e"
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the Reborn copy keep the Deathrattle, so a second death gives another +1/+1?",
+      "alternatives": [
+        "yes: Reborn returns the card with its text; each death triggers once",
+        "no: only the first death triggers"
+      ],
+      "chosen": "yes: Reborn returns the card with its text; each death triggers once",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "Prototype dies, returns, dies again: minions in hand end +2/+2 rather than +1/+1 (REBORN_RULES_EVIDENCE E3: Deathrattles before Reborn, copy without enchantments)"
+    },
+    {
+      "id": "d2",
+      "question": "Whose hand is 'your hand' when the minion dies under the opponent's control?",
+      "alternatives": ["the controller at death", "the original owner"],
+      "chosen": "the controller at death",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "an opponent takes control of the Prototype and it dies: their hand is buffed"
+    }
+  ],
+  "status": "FULL"
+}

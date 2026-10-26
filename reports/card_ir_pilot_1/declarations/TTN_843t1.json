@@ -1,0 +1,13 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TTN_843t1",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "closure",
+  "text": "<b>Rush</b>",
+  "text_sha256": "cc0cd2faf07ae02f7b1b3cf5d189014662159ac126e4a73b00de6d9c463c574d",
+  "keywords": [{"keyword": "RUSH", "span": "Rush"}],
+  "abilities": [],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

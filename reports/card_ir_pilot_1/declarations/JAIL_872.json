@@ -1,0 +1,20 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_872",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "After your hero attacks, draw a card.",
+  "text_sha256": "f06799e7e94f17ca198c2bc3374c4755d9dfd82a4031bccf43d7fdd0dd8ff907",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "After your hero attacks, draw a card.",
+      "event": {"type": "HERO_ATTACK", "player": "SELF"},
+      "timing": "AFTER",
+      "effect": {"op": "DRAW", "player": "SELF", "count": 1}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

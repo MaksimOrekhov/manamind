@@ -1,0 +1,64 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_TTN_843",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Whenever you draw a card, summon a 1/1 Demon with <b>Rush</b>.",
+  "text_sha256": "bb3c5e2c4168fa99d82f6ec282933f30fbe60f15613a67e987bd522e9c4b7bd6",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "Whenever you draw a card, summon a 1/1 Demon with Rush.",
+      "event": {"type": "CARD_DRAWN", "player": "SELF"},
+      "timing": "WHENEVER",
+      "effect": {"op": "SUMMON", "what": {"card": "TTN_843t1", "resolved": "DESCRIPTION_MATCH", "dep": "dep_token"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_token",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "'a 1/1 Demon with Rush' resolved to TTN_843t1 Invading Felbat: the CORE reprint is assumed to reuse the token of the original TITANS card (ID prefix, stats, Rush)",
+      "source_needed": "one log of the trigger or hsdata relation"
+    },
+    {
+      "id": "dep_draw",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "whether a draw that is destroyed by a full hand, or a fatigue draw from an empty deck, counts as 'you draw a card'",
+      "source_needed": "logs with a full hand or empty deck while the minion is in play"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Do burned draws (full hand) and fatigue count?",
+      "alternatives": ["burned counts, fatigue does not", "neither counts", "both count"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_draw",
+      "discriminating_case": "draw with 10 cards in hand: is a Felbat summoned"
+    },
+    {
+      "id": "d2",
+      "question": "Does it trigger on draws during the opponent's turn?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "the controller draws from an opponent's effect"
+    },
+    {
+      "id": "d3",
+      "question": "Drawing two cards: two separate triggers after each draw, or both after the batch?",
+      "alternatives": ["one trigger per drawn card, resolved after the draw step", "interleaved per card"],
+      "chosen": "one trigger per drawn card, resolved after the draw step",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "Draw 2 with 6 friendly minions: board limit decides how many Felbats appear and when"
+    }
+  ],
+  "status": "FULL_DEP"
+}

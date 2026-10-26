@@ -1,0 +1,49 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_552",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "After your hero attacks, get an 'Overdrive'.",
+  "text_sha256": "0a9bf4deddffde3caac21106f2d423ad5a2dd5e57cd08f0823b5938429a27d2d",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "After your hero attacks, get an 'Overdrive'.",
+      "event": {"type": "HERO_ATTACK", "player": "SELF"},
+      "timing": "AFTER",
+      "active_in": "EQUIPPED",
+      "effect": {"op": "ADD_TO_HAND", "player": "SELF", "what": {"card": "BE_553t", "resolved": "UNIQUE_NAME"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_last_attack",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "whether an AFTER-attack trigger of a weapon still fires on the attack that destroys the weapon (last Durability); the same question applies to every after-attack weapon",
+      "source_needed": "one Power.log of the weapon's last-Durability attack"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the last attack (the weapon breaks) still give an 'Overdrive'?",
+      "alternatives": ["yes", "no"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_last_attack",
+      "discriminating_case": "attack with Flamespitter at 1 Durability: is BE_553t created in hand after the attack"
+    },
+    {
+      "id": "d2",
+      "question": "Does a hero attack cancelled before damage (attacker killed by a Secret) count?",
+      "alternatives": ["no: the attack did not happen", "yes: the attack was declared"],
+      "chosen": "no: the attack did not happen",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "hero attacks into a Secret that destroys the weapon or kills the hero's attack"
+    }
+  ],
+  "status": "FULL_DEP"
+}

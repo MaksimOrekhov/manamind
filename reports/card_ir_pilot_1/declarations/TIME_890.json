@@ -1,0 +1,93 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_890",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Fabled</b>. Costs (0) if\nyou control Karazhan.\n<b>Battlecry:</b> <b>Silence</b> and destroy\nall other minions.",
+  "text_sha256": "a40f0ff3176b24c4ec2bd0094571d001cefc86e7d604f73ddb2b472ce8995cda",
+  "keywords": [{"keyword": "FABLED", "span": "Fabled."}],
+  "abilities": [
+    {
+      "kind": "aura",
+      "span": "Costs (0) if you control Karazhan.",
+      "active_in": "HAND",
+      "while": {
+        "exists": {
+          "pick": "ALL",
+          "type": "LOCATION",
+          "side": "FRIENDLY",
+          "where": [{"named": "Karazhan", "ids": ["TIME_890t2"], "dep": "dep_name"}]
+        }
+      },
+      "modifier": {"cost": {"set": 0}}
+    },
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Silence and destroy all other minions.",
+      "effect": {
+        "seq": [
+          {"op": "SILENCE", "to": {"pick": "ALL", "type": "MINION", "side": "ANY", "exclude": ["SELF"]}},
+          {"op": "DESTROY", "to": {"pick": "ALL", "type": "MINION", "side": "ANY", "exclude": ["SELF"]}}
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_name",
+      "kind": "NAME_REFERENCE",
+      "scope": "CONDITIONAL",
+      "detail": "'Karazhan' resolved to TIME_890t2 Karazhan the Sanctum (the only gameplay location of that name)",
+      "source_needed": "client card relation"
+    },
+    {
+      "id": "dep_fabled",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Fabled has no rule text in HearthstoneJSON; read as a deck-building bundle with no in-game effect",
+      "source_needed": "official rules for Fabled"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Silence before destroy, so no Deathrattle of the other minions triggers?",
+      "alternatives": ["silence first: no Deathrattles", "destroy first: Deathrattles trigger"],
+      "chosen": "silence first: no Deathrattles",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "an enemy Ticking Timebomb on board: with silence first nothing else is destroyed"
+    },
+    {
+      "id": "d2",
+      "question": "Silence all then destroy all, or silence-destroy per minion?",
+      "alternatives": ["all then all", "per minion"],
+      "chosen": "all then all",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "NONE",
+      "discriminating_case": "equivalent: destroyed minions stay mortally wounded until the phase ends (R_DEATH_PHASE)"
+    },
+    {
+      "id": "d3",
+      "question": "Does Fabled do anything during the game?",
+      "alternatives": ["no", "yes"],
+      "chosen": "no",
+      "basis": "UNVERIFIED",
+      "risk": "EDGE",
+      "dep": "dep_fabled",
+      "discriminating_case": "official description of Fabled"
+    },
+    {
+      "id": "d4",
+      "question": "'control Karazhan' = the location on your side of the board",
+      "alternatives": ["yes", "also in hand"],
+      "chosen": "yes",
+      "basis": "LOG_OBSERVED",
+      "risk": "EDGE",
+      "discriminating_case": "CONSEQUENCE-PILOT-1 saw the cyclic cost drop with the location in play"
+    }
+  ],
+  "status": "FULL_DEP"
+}

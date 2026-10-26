@@ -1,0 +1,52 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_EX1_002",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Tradeable</b>\n <b>Battlecry:</b> Destroy an  enemy minion with <b>Taunt</b>.",
+  "text_sha256": "834ffdf6b78d881797d78e560a0547b2822d7398e9221afcdefe754832adf784",
+  "keywords": [{"keyword": "TRADEABLE", "span": "Tradeable"}],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Destroy an enemy minion with Taunt.",
+      "target": {
+        "bind": "t",
+        "choose": {"pick": "CHOSEN", "type": "MINION", "side": "ENEMY", "where": [{"keyword": "TAUNT"}]}
+      },
+      "effect": {"op": "DESTROY", "to": {"ref": "t"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_tradeable",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Tradeable (pay 1 Mana: shuffle into the deck, draw a card) is not in the card text",
+      "source_needed": "official keyword rule; the hand action is visible in Power.log (PREPARE-ROOTS-1)"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "With no enemy Taunt minion, can it be played (Battlecry does nothing)?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "UNVERIFIED",
+      "risk": "EDGE",
+      "discriminating_case": "the play option in Power.log with no Taunt on the enemy board"
+    },
+    {
+      "id": "d2",
+      "question": "Does a minion whose Taunt came from an enchantment qualify?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "target list includes a minion given Taunt"
+    }
+  ],
+  "status": "FULL_DEP"
+}

@@ -1,0 +1,62 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_488",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Colossal +2</b>\nAt the end of your turn,\ndeal 3 damage to all\nother minions.",
+  "text_sha256": "d7d744096b3dcc4fb175e878acb6032948402ca298373ac230978d67b5760041",
+  "keywords": [
+    {
+      "keyword": "COLOSSAL",
+      "span": "Colossal +2",
+      "amount": 2,
+      "parts": [
+        {"card": "CATA_488t", "resolved": "DESCRIPTION_MATCH", "dep": "dep_parts"},
+        {"card": "CATA_488t2", "resolved": "DESCRIPTION_MATCH", "dep": "dep_parts"}
+      ]
+    }
+  ],
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "At the end of your turn, deal 3 damage to all other minions.",
+      "event": {"type": "TURN_END", "player": "SELF"},
+      "timing": "AT",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {"pick": "ALL", "type": "MINION", "side": "ANY", "exclude": ["SELF"]},
+        "amount": 3
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_parts",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "the two appendages resolved to CATA_488t/CATA_488t2 Plume of Vulcanos by ID prefix (ManaEngine colossal_appendage metadata agrees)",
+      "source_needed": "one log of Vulcanos being played"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "'all other minions' includes Vulcanos's own Plumes?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "both Plumes take 3 and trigger"
+    },
+    {
+      "id": "d2",
+      "question": "Do both Plumes take damage before either Plume trigger resolves?",
+      "alternatives": ["yes", "no: sequential"],
+      "chosen": "yes",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "DAMAGE_GROUP_RULES_REVIEW Vulcanos determination (RULES_REVIEWED_FROM_PHASE_MODEL)"
+    }
+  ],
+  "status": "FULL_DEP"
+}

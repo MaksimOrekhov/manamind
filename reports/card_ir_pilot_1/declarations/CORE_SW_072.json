@@ -1,0 +1,29 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_SW_072",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Tradeable</b>\n<b>Battlecry:</b> Destroy your\nopponent's weapon.",
+  "text_sha256": "b22a4ca433287ba1be336ec978e04852fbc0037ec8df371be3feb5e0b1a726e5",
+  "keywords": [{"keyword": "TRADEABLE", "span": "Tradeable"}],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Destroy your opponent's weapon.",
+      "effect": {"op": "DESTROY", "to": "ENEMY_WEAPON"}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_tradeable",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Tradeable is not in the card text",
+      "source_needed": "official keyword rule"
+    }
+  ],
+  "decisions": [],
+  "status": "FULL_DEP"
+}

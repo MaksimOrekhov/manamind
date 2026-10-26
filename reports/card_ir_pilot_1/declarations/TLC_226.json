@@ -1,0 +1,62 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TLC_226",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "<b>Deathrattle:</b> Draw a spell. <b>Kindred:</b> Summon a copy of this.",
+  "text_sha256": "5d88d0e5fa30ae8cdc700d344180eb6a128a6d9a6151a489e45cf681079ddff0",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Draw a spell.",
+      "effect": {"op": "DRAW", "player": "SELF", "count": 1, "where": [{"card_type": "SPELL"}]}
+    },
+    {
+      "kind": "play",
+      "label": "KINDRED",
+      "span": "Kindred: Summon a copy of this.",
+      "condition": {"mechanic": "KINDRED"},
+      "effect": {"op": "SUMMON", "what": {"copy_of": "SELF"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_kindred",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Kindred for an Elemental minion: an Elemental was played on the controller's previous turn (ManaEngine kindred_qualified)",
+      "source_needed": "official Kindred rule"
+    },
+    {
+      "id": "dep_copy",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "card_level": true,
+      "detail": "R_COPY: what a copy keeps when the played instance was enchanted in hand (ManaEngine INSTANCE_COPY_V1 fails closed on any enchantment)",
+      "source_needed": "a log of the Kindred copy of an enchanted Bookkeeper"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Draw a spell = a random spell of the deck or the top-most spell?",
+      "alternatives": ["random spell in deck", "top-most spell"],
+      "chosen": "random spell in deck",
+      "basis": "ASSUMPTION",
+      "risk": "NONE",
+      "discriminating_case": "indistinguishable to SELF: deck order is hidden"
+    },
+    {
+      "id": "d2",
+      "question": "Copy of an instance buffed in hand (e.g. by Unstable Prototype): +1/+1 kept?",
+      "alternatives": ["kept", "base card"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_copy",
+      "discriminating_case": "Bookkeeper with +1/+1 from BE_207 played with Kindred: the copy's stats"
+    }
+  ],
+  "status": "FULL_DEP"
+}

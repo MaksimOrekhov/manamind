@@ -1,0 +1,57 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_488t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]Whenever this takes\ndamage, get a random Fire\nspell. It costs (3) less.",
+  "text_sha256": "f0c7d3b92ff04368e3edc04f2e40b449706fa4765d8856521b077222956a83ea",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "Whenever this takes damage, get a random Fire spell. It costs (3) less.",
+      "event": {"type": "DAMAGE_TAKEN", "subject": "SELF"},
+      "timing": "WHENEVER",
+      "effect": {
+        "seq": [
+          {
+            "op": "ADD_TO_HAND",
+            "player": "SELF",
+            "as": "s",
+            "what": {"random_from": {"type": "SPELL", "where": [{"spell_school": "FIRE"}], "dep": "dep_pool"}}
+          },
+          {"op": "MODIFY_COST", "to": {"ref": "s"}, "reduce": 3}
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "random Fire spells (ManaEngine: 33-card REVIEWED_INFERRED manifest, exact membership unresolved)",
+      "source_needed": "reviewed pool manifest"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Lethal damage: does a Plume that dies from the hit still give a spell?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "DAMAGE_GROUP_RULES_REVIEW requirement 4: 'takes damage' is not 'survives damage' (ManaEngine still fails closed)"
+    },
+    {
+      "id": "d2",
+      "question": "A hit absorbed by Divine Shield is not 'takes damage'",
+      "alternatives": ["not damage", "damage"],
+      "chosen": "not damage",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "EDGE",
+      "discriminating_case": "requirement 9: prevented packets emit no damage event"
+    }
+  ],
+  "status": "FULL_DEP"
+}

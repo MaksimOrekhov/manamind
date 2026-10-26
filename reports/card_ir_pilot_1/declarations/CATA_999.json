@@ -1,0 +1,30 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_999",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "At the end of your turn, deal 4 damage to the enemy hero.",
+  "text_sha256": "a43566af11d7d54f1eced1aa829a0a5c56792296dade4d9e7e1e237a86de292e",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "At the end of your turn, deal 4 damage to the enemy hero.",
+      "event": {"type": "TURN_END", "player": "SELF"},
+      "timing": "AT",
+      "effect": {"op": "DEAL_DAMAGE", "to": "ENEMY_HERO", "amount": 4}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does it still fire if an earlier end-of-turn effect left this minion mortally wounded?",
+      "alternatives": ["yes: queued and still in play", "no"],
+      "chosen": "yes: queued and still in play",
+      "basis": "COMMUNITY_RULES",
+      "risk": "EDGE",
+      "discriminating_case": "ManaEngine records MORTAL_QUEUED_EOT_SOURCE_UNVERIFIED for exactly this case"
+    }
+  ],
+  "status": "FULL"
+}

@@ -1,0 +1,47 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TLC_602",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Quest:</b> Survive 10 turns.\n<b>Reward: </b>Latorvius, Gaze\nof the City.",
+  "text_sha256": "522d2677fb1cb35d2885c2d11929b3c3ee1f096912bfe8bc957e2ecf8e6b67b6",
+  "keywords": [{"keyword": "QUEST", "span": "Quest:"}],
+  "abilities": [
+    {
+      "kind": "quest",
+      "span": "Survive 10 turns. Reward: Latorvius, Gaze of the City.",
+      "progress": {"event": {"unknown": "dep_progress"}, "goal": 10},
+      "reward": {"card": "TLC_602t", "resolved": "UNIQUE_NAME"}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_progress",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "what advances 'Survive N turns': start or end of whose turns, and whether the turn the Quest is played counts",
+      "source_needed": "QUEST_PROGRESS tag changes in Power.log (OBSERVATION-AUDIT-1 reads them)"
+    },
+    {
+      "id": "dep_quest",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Quest rules (opening hand, Secret zone, reward to hand on completion) are not in the text",
+      "source_needed": "official Quest rules"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "When does progress increase?",
+      "alternatives": ["start of your turn", "end of your turn", "end of the opponent's turn"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_progress",
+      "discriminating_case": "the turn on which QUEST_PROGRESS reaches 10 in an existing log"
+    }
+  ],
+  "status": "PARTIAL"
+}

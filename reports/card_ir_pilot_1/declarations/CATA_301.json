@@ -1,0 +1,73 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_301",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Your next Healing\neffect this turn deals\ndamage instead.",
+  "text_sha256": "2dec4ec7d8a71099066d1018541aca7a7124292bb635eb4163f8c7a463e51e87",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "LOCATION",
+      "span": "Your next Healing effect this turn deals damage instead.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "modifier": {"rule": "HEALING_DOES_DAMAGE"},
+        "duration": "THIS_TURN",
+        "uses": 1,
+        "use_unit": "EFFECT",
+        "enchantment_id": "CATA_301e"
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_unit",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "what one 'Healing effect' is: every packet of one card's healing (Moonwell heals several characters) or one packet; whether Lifesteal counts",
+      "source_needed": "a log of a multi-target heal or Lifesteal right after the activation"
+    },
+    {
+      "id": "dep_order",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "card_level": true,
+      "detail": "R_AMOUNT_ORDER: the damage dealt is the healing amount after which bonuses and multipliers",
+      "source_needed": "a log with Cleansing Cleric's bonus or Atiesh active"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Is one 'Healing effect' all heal packets of the next healing card, or one packet?",
+      "alternatives": ["all packets of the next healing effect", "one packet"],
+      "chosen": "all packets of the next healing effect",
+      "basis": "ASSUMPTION",
+      "risk": "OUTCOME",
+      "dep": "dep_unit",
+      "discriminating_case": "Moonwell after Ruby Sanctum: do all friendly characters take 4, or only the first"
+    },
+    {
+      "id": "d2",
+      "question": "Does Lifesteal healing consume the effect?",
+      "alternatives": ["yes", "no"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_unit",
+      "discriminating_case": "a Lifesteal attack after the activation: the own hero takes damage or heals"
+    },
+    {
+      "id": "d3",
+      "question": "Is the effect kept when the activation spends the last Durability and the location leaves?",
+      "alternatives": ["kept: it is a player enchantment", "removed with the location"],
+      "chosen": "kept: it is a player enchantment",
+      "basis": "LOG_OBSERVED",
+      "risk": "OUTCOME",
+      "discriminating_case": "CONSEQUENCE-PILOT-1: last-charge activation still turned Flash Heal into damage; OBSERVATION-AUDIT-1: CATA_301e on the player entity with HEALING_DOES_DAMAGE"
+    }
+  ],
+  "status": "FULL_DEP"
+}

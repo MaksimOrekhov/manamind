@@ -1,0 +1,44 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CAP_107t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]At the end of your turn,\ndeal 1 damage to a\nrandom enemy.",
+  "text_sha256": "0e68a6311dbabfc163faecebe1f35b4dcb43c02583ee23e5a55b082761db78d6",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "At the end of your turn, deal 1 damage to a random enemy.",
+      "event": {"type": "TURN_END", "player": "SELF"},
+      "timing": "AT",
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {"pick": "RANDOM", "n": 1, "type": "CHARACTER", "side": "ENEMY"},
+        "amount": 1
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Can 'a random enemy' be the enemy hero?",
+      "alternatives": ["yes: 'enemy' is any enemy character", "no: minions only"],
+      "chosen": "yes: 'enemy' is any enemy character",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "empty enemy board at end of turn: the enemy hero takes 1"
+    },
+    {
+      "id": "d2",
+      "question": "Are enemies left at 0 Health by an earlier end-of-turn effect excluded?",
+      "alternatives": ["excluded (live candidates only)", "included"],
+      "chosen": "excluded (live candidates only)",
+      "basis": "COMMUNITY_RULES",
+      "risk": "EDGE",
+      "discriminating_case": "two end-of-turn effects: the first leaves an enemy minion mortally wounded; Cannoneer never hits it"
+    }
+  ],
+  "notes": "Hand Cannon (CAP_103) says 'your Cannoneers FIRE!': another card triggers this ability by name. v0.1 abilities have no IDs, so such references are not expressible yet.",
+  "status": "FULL"
+}

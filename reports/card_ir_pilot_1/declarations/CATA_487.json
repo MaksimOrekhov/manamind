@@ -1,0 +1,40 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_487",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "The first time you deal damage with a spell each turn, gain +2 Attack.",
+  "text_sha256": "b5b295718902f46f06d6e61e213f657f07f84bd9d89ece47ae1c3ea59cd53aaf",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "The first time you deal damage with a spell each turn, gain +2 Attack.",
+      "event": {"type": "DAMAGE_DEALT", "player": "SELF", "source": [{"card_type": "SPELL"}]},
+      "timing": "WHENEVER",
+      "limit": "FIRST_EACH_TURN",
+      "effect": {"op": "ENCHANT", "to": "SELF", "attack": 2, "enchantment_id": "CATA_487e"}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Timing relative to the spell: during it (WHENEVER) or after it resolves?",
+      "alternatives": ["whenever", "after"],
+      "chosen": "whenever",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "matters only if the +2 Attack is read by the same spell"
+    },
+    {
+      "id": "d2",
+      "question": "Is the +2 Attack permanent?",
+      "alternatives": ["yes", "this turn"],
+      "chosen": "yes",
+      "basis": "METADATA",
+      "risk": "OUTCOME",
+      "discriminating_case": "CATA_487e '+2 Attack.' has no one-turn tag; ManaEngine SPELL_DAMAGE_GAINS_ATTACK"
+    }
+  ],
+  "status": "FULL"
+}

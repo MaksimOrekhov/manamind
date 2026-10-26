@@ -1,0 +1,1789 @@
+{
+ "declarations": 125,
+ "families": 26,
+ "classes": {
+  "COMPOSITION_WITH_CARD_FIELDS": 15,
+  "DATA_COMPOSITION": 46,
+  "METADATA_ONLY": 16,
+  "NAMED_HANDLER": 48
+ },
+ "supported_declarations": 117,
+ "classes_supported": {
+  "COMPOSITION_WITH_CARD_FIELDS": 15,
+  "DATA_COMPOSITION": 46,
+  "METADATA_ONLY": 15,
+  "NAMED_HANDLER": 41
+ },
+ "fully_mapped_to_v0_1": 83,
+ "fully_mapped_by_class": {
+  "COMPOSITION_WITH_CARD_FIELDS": 2,
+  "DATA_COMPOSITION": 32,
+  "METADATA_ONLY": 15,
+  "NAMED_HANDLER": 34
+ },
+ "supported_needing_missing": 34,
+ "missing_elements_for_supported": {
+  "selector:FRIENDLY_HERO": 8,
+  "op:GAIN_ARMOR": 6,
+  "event:SPELL_CAST": 4,
+  "op:FREEZE": 4,
+  "cond:mortally_wounded": 3,
+  "control:choose_one": 2,
+  "counter:SPELL_DAMAGE_DEALT": 1,
+  "event:CARD_PLAYED": 1,
+  "keyword:CHARGE": 1,
+  "keyword:SHATTER": 1,
+  "modifier:cost_in_template": 1,
+  "op:COUNTER": 1,
+  "player:owner_of": 1,
+  "pred:extremum": 1,
+  "pred:stat": 1,
+  "rule:HEALING_BONUS": 1,
+  "selector:FRIENDLY_WEAPON": 1,
+  "value:infinite": 1,
+  "value:missing_health": 1
+ },
+ "missing_elements": {
+  "selector:FRIENDLY_HERO": {
+   "declarations": 8,
+   "examples": [
+    "CATA_582",
+    "CORE_BOT_222",
+    "CORE_EX1_610",
+    "CORE_EX1_289",
+    "END_007",
+    "TIME_218"
+   ]
+  },
+  "op:GAIN_ARMOR": {
+   "declarations": 6,
+   "examples": [
+    "CORE_EX1_289",
+    "EDR_531",
+    "END_007",
+    "HERO_01bp",
+    "CORE_AT_064",
+    "CORE_EX1_606"
+   ]
+  },
+  "event:SPELL_CAST": {
+   "declarations": 4,
+   "examples": [
+    "CORE_EX1_287",
+    "JAIL_801",
+    "JAIL_803",
+    "JAIL_805"
+   ]
+  },
+  "op:FREEZE": {
+   "declarations": 4,
+   "examples": [
+    "CORE_CS2_024",
+    "JAIL_803",
+    "JAIL_803t",
+    "CORE_UNG_205"
+   ]
+  },
+  "cond:mortally_wounded": {
+   "declarations": 3,
+   "examples": [
+    "CATA_303",
+    "CORE_EX1_302",
+    "CORE_EX1_391"
+   ]
+  },
+  "control:choose_one": {
+   "declarations": 2,
+   "examples": [
+    "CORE_AT_037",
+    "EDR_570"
+   ]
+  },
+  "counter:SPELL_DAMAGE_DEALT": {
+   "declarations": 1,
+   "examples": [
+    "CATA_452"
+   ]
+  },
+  "event:CARD_PLAYED": {
+   "declarations": 1,
+   "examples": [
+    "CORE_LOOT_101"
+   ]
+  },
+  "keyword:CHARGE": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t6"
+   ]
+  },
+  "keyword:DIVINE_SHIELD": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t13"
+   ]
+  },
+  "keyword:ELUSIVE": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t1"
+   ]
+  },
+  "keyword:SHATTER": {
+   "declarations": 1,
+   "examples": [
+    "CATA_489"
+   ]
+  },
+  "keyword:WINDFURY": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t13"
+   ]
+  },
+  "modifier:cost_in_template": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t2"
+   ]
+  },
+  "op:COUNTER": {
+   "declarations": 1,
+   "examples": [
+    "CORE_EX1_287"
+   ]
+  },
+  "player:owner_of": {
+   "declarations": 1,
+   "examples": [
+    "FIR_954"
+   ]
+  },
+  "pred:extremum": {
+   "declarations": 1,
+   "examples": [
+    "END_024"
+   ]
+  },
+  "pred:stat": {
+   "declarations": 1,
+   "examples": [
+    "EDR_100t6"
+   ]
+  },
+  "rule:HEALING_BONUS": {
+   "declarations": 1,
+   "examples": [
+    "CATA_216"
+   ]
+  },
+  "selector:FRIENDLY_WEAPON": {
+   "declarations": 1,
+   "examples": [
+    "CORE_CS2_074"
+   ]
+  },
+  "value:infinite": {
+   "declarations": 1,
+   "examples": [
+    "END_024"
+   ]
+  },
+  "value:missing_health": {
+   "declarations": 1,
+   "examples": [
+    "CATA_302"
+   ]
+  }
+ },
+ "declarations_needing_missing": 36,
+ "unmapped_constructs": [],
+ "metadata_duplicated_in_declarations": [
+  "JAIL_801t",
+  "JAIL_803t",
+  "JAIL_805t"
+ ],
+ "engine_unsupported_declarations": [
+  "CORE_CS2_033",
+  "CORE_SW_072",
+  "EDR_100t1",
+  "EDR_100t13",
+  "EDR_100t5",
+  "EDR_100t7",
+  "EDR_100t8",
+  "EDR_100t9"
+ ],
+ "card_ids_hardcoded_in_cpp": [
+  "CORE_CS2_033 (Oasis Ally's Water Elemental)",
+  "GAME_005 (The Coin)"
+ ],
+ "representatives": [
+  {
+   "card": "FIR_906",
+   "ability": "EFFECT_COMPOSITION",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "ability:play",
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    1,
+    1
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_EX1_238",
+   "ability": "TARGET_DAMAGE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "keyword:OVERLOAD",
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "BOT_102t",
+   "ability": "NONE",
+   "engine_support_state": "VERIFIED_VANILLA",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "keyword:RUSH"
+   ],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "TLC_226",
+   "ability": "DEATHRATTLE_DRAW",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "selector:SELF"
+   ],
+   "engine_numbers": [
+    1
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_475",
+   "ability": "END_TURN_ENEMY_AREA_DAMAGE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_999",
+   "ability": "END_TURN_ENEMY_HERO_DAMAGE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    4
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_BT_416",
+   "ability": "NEXT_DEMON_DISCOUNT",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_BAR_812",
+   "ability": "SECRET",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "pick:ALL",
+    "zone:PLAY"
+   ],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_CS2_072",
+   "ability": "BACKSTAB",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_DRG_107",
+   "ability": "DEATHRATTLE_GENERATE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_EX1_145",
+   "ability": "NEXT_SPELL_DISCOUNT",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_GIL_836",
+   "ability": "DISCOVER",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "pred:has_mechanic"
+   ],
+   "engine_numbers": [
+    1,
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_ICC_055",
+   "ability": "LIFESTEAL_DAMAGE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_SW_072",
+   "ability": "DESTROY_ENEMY_WEAPON",
+   "engine_support_state": "UNSUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "keyword:TRADEABLE"
+   ],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CORE_SW_108",
+   "ability": "MINION_DAMAGE_GENERATE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "END_022",
+   "ability": "SPELL_DAMAGE_AURA",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_487",
+   "ability": "SPELL_DAMAGE_GAINS_ATTACK",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_458",
+   "ability": "SPELL_DAMAGE_HAND_DECK",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    1
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "EX1_277",
+   "ability": "RANDOM_MISSILES",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "JAIL_321",
+   "ability": "CAST_RANDOM_SECRETS",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "JAIL_327",
+   "ability": "REINFORCEMENT_AURA",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    1,
+    2,
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "JAIL_516",
+   "ability": "RECRUITER_SUMMON_RUSH",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    2,
+    2
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "JAIL_872",
+   "ability": "HERO_ATTACK_DRAW",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "EDR_100t",
+   "ability": "DARK_GIFT_OPTION",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_488",
+   "ability": "END_TURN_OTHER_MINIONS_DAMAGE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "card_source:card",
+    "zone:PLAY"
+   ],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  },
+  {
+   "card": "CATA_488t",
+   "ability": "TAKES_DAMAGE_GENERATE",
+   "engine_support_state": "SUPPORTED",
+   "ir_status": "FULL_DEP",
+   "engine_constructs_not_in_text_ir": [],
+   "engine_constructs_missing_from_v0_1": [],
+   "text_ir_elements_beyond_engine": [
+    "pred:spell_school"
+   ],
+   "engine_numbers": [
+    3
+   ],
+   "ir_numbers_cover_engine_numbers": true
+  }
+ ],
+ "census": {
+  "FIR_906": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_238": {
+   "ability": "TARGET_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BOT_451": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "BOT_102t": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "TIME_006": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "TIME_006t1": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "TLC_226": {
+   "ability": "DEATHRATTLE_DRAW",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_452": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "counter:SPELL_DAMAGE_DEALT"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_452t": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_485": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_475": {
+   "ability": "END_TURN_ENEMY_AREA_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_489": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "keyword:SHATTER"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_489t": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_489t2": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_302": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "value:missing_health"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_AT_055": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_582": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_303": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "cond:mortally_wounded"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_302": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "cond:mortally_wounded"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_391": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "cond:mortally_wounded"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "FIR_954": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "player:owner_of"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_999": {
+   "ability": "END_TURN_ENEMY_HERO_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BT_416": {
+   "ability": "NEXT_DEMON_DISCOUNT",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BOT_222": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_024": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:FREEZE"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_029": {
+   "ability": "TARGET_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_DS1_185": {
+   "ability": "TARGET_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS1_130": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_032": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BAR_801": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "BAR_035t": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BAR_812": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_033": {
+   "ability": "NONE",
+   "support_state": "UNSUPPORTED",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_610": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_287": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "event:SPELL_CAST",
+    "op:COUNTER"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_289": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "op:GAIN_ARMOR",
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_LOOT_101": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "event:CARD_PLAYED"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_108": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_062": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_072": {
+   "ability": "BACKSTAB",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_DRG_107": {
+   "ability": "DEATHRATTLE_GENERATE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_012": {
+   "ability": "DEATHRATTLE_DRAW",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_129": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_145": {
+   "ability": "NEXT_SPELL_DISCOUNT",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_GIL_836": {
+   "ability": "DISCOVER",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_ICC_055": {
+   "ability": "LIFESTEAL_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_SW_072": {
+   "ability": "DESTROY_ENEMY_WEAPON",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_SW_108": {
+   "ability": "MINION_DAMAGE_GENERATE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "END_024": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "pred:extremum",
+    "value:infinite"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_531": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:GAIN_ARMOR"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "END_022": {
+   "ability": "SPELL_DAMAGE_AURA",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "FIR_929": {
+   "ability": "DEATHRATTLE_DRAW",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_487": {
+   "ability": "SPELL_DAMAGE_GAINS_ATTACK",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_458": {
+   "ability": "SPELL_DAMAGE_HAND_DECK",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "END_007": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:GAIN_ARMOR",
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EX1_277": {
+   "ability": "RANDOM_MISSILES",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "HERO_08bp": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "HERO_01bp": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:GAIN_ARMOR"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "HERO_05bp": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "HERO_09bp": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CS2_tk1": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_321": {
+   "ability": "CAST_RANDOM_SECRETS",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_315": {
+   "ability": "SECRET",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_327": {
+   "ability": "REINFORCEMENT_AURA",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_516": {
+   "ability": "RECRUITER_SUMMON_RUSH",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_801": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "event:SPELL_CAST"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_801t": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": true,
+   "evidence_field": false
+  },
+  "JAIL_803": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "event:SPELL_CAST",
+    "op:FREEZE"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_803t": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "op:FREEZE"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": true,
+   "evidence_field": false
+  },
+  "JAIL_805": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "event:SPELL_CAST"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "JAIL_805t": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": true,
+   "evidence_field": false
+  },
+  "JAIL_872": {
+   "ability": "HERO_ATTACK_DRAW",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "SW_108t": {
+   "ability": "MINION_DAMAGE_GENERATE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "TIME_218": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t1": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "keyword:ELUSIVE"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t13": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "keyword:DIVINE_SHIELD",
+    "keyword:WINDFURY"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t2": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "modifier:cost_in_template"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t3": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t5": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t6": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [
+    "keyword:CHARGE",
+    "pred:stat"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t7": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t8": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_100t9": {
+   "ability": "DARK_GIFT_OPTION",
+   "support_state": "UNSUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "FIR_900": {
+   "ability": "DISCOVER",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_488": {
+   "ability": "DISCOVER",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_AT_037": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "control:choose_one"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_570": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "control:choose_one"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "AT_037t": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_074": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "COMPOSITION_WITH_CARD_FIELDS",
+   "missing_elements": [
+    "selector:FRIENDLY_WEAPON"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_ULD_723": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_488": {
+   "ability": "END_TURN_OTHER_MINIONS_DAMAGE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_488t": {
+   "ability": "TAKES_DAMAGE_GENERATE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_488t2": {
+   "ability": "TAKES_DAMAGE_GENERATE",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "TIME_855": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": true
+  },
+  "CORE_CS2_094": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_093": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_SW_442": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_SW_088": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CS2_065": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_492": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_TRL_307": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_023": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_189": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_319": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_492t": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_042": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_UNG_205": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:FREEZE"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_096": {
+   "ability": "DEATHRATTLE_DRAW",
+   "support_state": "SUPPORTED",
+   "class": "NAMED_HANDLER",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_011": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_BT_035": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "selector:FRIENDLY_HERO"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS2_179": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_GIL_558": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_486": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_LOOT_137": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "Core_CS2_200": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CS3_038": {
+   "ability": "NONE",
+   "support_state": "VERIFIED_VANILLA",
+   "class": "METADATA_ONLY",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_278": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_AT_064": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:GAIN_ARMOR"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_EX1_606": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "op:GAIN_ARMOR"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "RLK_709": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "EDR_476": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CS1_112": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CORE_CFM_604": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  },
+  "CATA_216": {
+   "ability": "EFFECT_COMPOSITION",
+   "support_state": "SUPPORTED",
+   "class": "DATA_COMPOSITION",
+   "missing_elements": [
+    "rule:HEALING_BONUS"
+   ],
+   "unmapped_constructs": [],
+   "metadata_duplicated": false,
+   "evidence_field": false
+  }
+ }
+}

@@ -1,0 +1,70 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_561",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Summon a 3/3 Golem\nwith <b>Taunt</b>. Spend 3\nArmor to give it +3/+3.",
+  "text_sha256": "8695ad5b4fb95c98aeb2e5fcd07ca4ded3b0d0b814bdee1d72e007aef9f22b47",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "LOCATION",
+      "span": "Summon a 3/3 Golem with Taunt. Spend 3 Armor to give it +3/+3.",
+      "effect": {
+        "seq": [
+          {
+            "op": "SUMMON",
+            "what": {"card": "BE_561t", "resolved": "DESCRIPTION_MATCH", "dep": "dep_golem"},
+            "as": "golem"
+          },
+          {
+            "pay": {"resource": "ARMOR", "amount": 3},
+            "then": {"op": "ENCHANT", "to": {"ref": "golem"}, "attack": 3, "health": 3, "enchantment_id": "BE_561e"}
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_golem",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "'a 3/3 Golem with Taunt' resolved to BE_561t Steel Golem by ID prefix, stats and keyword; HearthstoneJSON has no card-to-token link",
+      "source_needed": "hsdata CardDefs.xml relation or one log of the activation"
+    },
+    {
+      "id": "dep_spend",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "'Spend N Armor to ...': automatic or optional, and what happens with less than N Armor",
+      "source_needed": "logs with 0 < Armor < 3 and Armor >= 3"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Is spending the Armor automatic and all-or-nothing?",
+      "alternatives": [
+        "automatic when at least 3 Armor, otherwise nothing",
+        "the player chooses",
+        "spends what is available"
+      ],
+      "chosen": "automatic when at least 3 Armor, otherwise nothing",
+      "basis": "UNVERIFIED",
+      "risk": "OUTCOME",
+      "dep": "dep_spend",
+      "discriminating_case": "activate with 2 Armor: Armor stays 2 and the Golem is 3/3"
+    },
+    {
+      "id": "d2",
+      "question": "Board full: no Golem is summoned. Is Armor still spent?",
+      "alternatives": ["no", "yes"],
+      "chosen": "no",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "activate with 7 friendly minions and 3 Armor"
+    }
+  ],
+  "status": "FULL_DEP"
+}

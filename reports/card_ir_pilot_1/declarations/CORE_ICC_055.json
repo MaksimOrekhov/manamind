@@ -1,0 +1,21 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_ICC_055",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "<b>Lifesteal</b>\nDeal $3 damage\nto a minion.",
+  "text_sha256": "db3cb89d60caf0ea5054822b9070ee2e066f91de5471039446c1fb69ab77f9f7",
+  "keywords": [{"keyword": "LIFESTEAL", "span": "Lifesteal"}],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $3 damage to a minion.",
+      "target": {"bind": "t", "choose": {"pick": "CHOSEN", "type": "MINION", "side": "ANY"}},
+      "effect": {"op": "DEAL_DAMAGE", "to": {"ref": "t"}, "amount": {"n": 3, "mark": "$"}}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

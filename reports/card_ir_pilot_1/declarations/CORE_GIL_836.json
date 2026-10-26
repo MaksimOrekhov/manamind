@@ -1,0 +1,37 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_GIL_836",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Discover</b> a <b>Battlecry</b>\nminion. It costs (1) less.",
+  "text_sha256": "63178452af296ffc9ae8ddef2c4eb3529542090a234a6a68b26fdcc60df8be13",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Discover a Battlecry minion. It costs (1) less.",
+      "effect": {
+        "seq": [
+          {
+            "op": "DISCOVER",
+            "pool": {"type": "MINION", "where": [{"has_mechanic": "BATTLECRY"}], "dep": "dep_pool"},
+            "options": 3,
+            "as": "m"
+          },
+          {"op": "MODIFY_COST", "to": {"ref": "m"}, "reduce": 1}
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "Battlecry minions offered by Discover (ManaEngine: pinned Standard class + neutral pool)",
+      "source_needed": "reviewed pool manifest"
+    }
+  ],
+  "decisions": [],
+  "status": "FULL_DEP"
+}

@@ -1,0 +1,62 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_327",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]At the end of your turn,\nsummon a minion from\nyour deck that costs (2)\nor less. Lasts 3 turns.",
+  "text_sha256": "d038b298486ed5f498ef28a2ba0e6cf3df9dc62c6074c9097ca05b5ab990a29d",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "At the end of your turn, summon a minion from your deck that costs (2) or less. Lasts 3 turns.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "duration": {"turns": 3},
+        "abilities": [
+          {
+            "kind": "trigger",
+            "event": {"type": "TURN_END", "player": "SELF"},
+            "timing": "AT",
+            "effect": {
+              "op": "SUMMON",
+              "what": {
+                "from_zone": {
+                  "pick": "RANDOM",
+                  "n": 1,
+                  "type": "MINION",
+                  "side": "FRIENDLY",
+                  "zone": "DECK",
+                  "where": [{"cost": {"cmp": "<=", "n": 2}}]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the turn it is cast count as the first of the 3?",
+      "alternatives": ["yes", "no: three later turns"],
+      "chosen": "yes",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "EDGE",
+      "discriminating_case": "ManaEngine REINFORCEMENT_AURA duration 3 with turns_remaining; the summon count is 3 either way"
+    },
+    {
+      "id": "d2",
+      "question": "Cost (2) or less: current cost in deck",
+      "alternatives": ["current cost", "printed cost"],
+      "chosen": "current cost",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "a deck minion discounted by an effect"
+    }
+  ],
+  "status": "FULL"
+}

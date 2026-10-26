@@ -1,0 +1,25 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_SW_108",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+  "text_sha256": "44616ac04961c83c743822dff1ef82bba58833d7c3a1b49e6a9c61a57e7e08dc",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $2 damage to a minion. Add a Second Flame to your hand.",
+      "target": {"bind": "t", "choose": {"pick": "CHOSEN", "type": "MINION", "side": "ANY"}},
+      "effect": {
+        "seq": [
+          {"op": "DEAL_DAMAGE", "to": {"ref": "t"}, "amount": {"n": 2, "mark": "$"}},
+          {"op": "ADD_TO_HAND", "player": "SELF", "what": {"card": "SW_108t", "resolved": "UNIQUE_NAME"}}
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

@@ -1,0 +1,38 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_EX1_145",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "The next spell you cast this turn costs (2) less.",
+  "text_sha256": "e8e0ba7922a28f516b69b5ec40b0bd35b611b9ac6fdf8ac2fed177f41b0b0666",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "The next spell you cast this turn costs (2) less.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "modifier": {"cost": {"reduce": 2}},
+        "applies_to": [{"card_type": "SPELL"}],
+        "duration": "THIS_TURN",
+        "uses": 1,
+        "use_unit": "CARD",
+        "enchantment_id": "EX1_145o"
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does a spell cast by another effect (not played) consume it?",
+      "alternatives": ["no", "yes"],
+      "chosen": "no",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "Preparation, then Tricksy Improviser casts Secrets: is the next played spell still cheaper"
+    }
+  ],
+  "status": "FULL"
+}

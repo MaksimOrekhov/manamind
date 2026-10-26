@@ -1,0 +1,78 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TLC_602t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "closure",
+  "text": "[x]<b>Battlecry:</b> Get 2 random\n'Journey to Un'Goro' <b>Quest\nRewards</b>. Shuffle the rest\ninto your deck.",
+  "text_sha256": "08dac222a7ae13b6ce9624c77154f343055adb25415026c235ab887426b27f82",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Get 2 random 'Journey to Un'Goro' Quest Rewards. Shuffle the rest into your deck.",
+      "effect": {
+        "seq": [
+          {
+            "op": "ADD_TO_HAND",
+            "player": "SELF",
+            "count": 2,
+            "what": {"random_from": {"type": "CARD", "where": [{"card_set": "UNGORO"}], "dep": "dep_pool"}},
+            "as": "got"
+          },
+          {
+            "op": "SHUFFLE_INTO_DECK",
+            "player": "SELF",
+            "what": {
+              "all_from": {"type": "CARD", "where": [{"card_set": "UNGORO"}], "dep": "dep_pool"},
+              "exclude": [{"ref": "got"}]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "the exact list of 'Journey to Un'Goro' Quest Rewards (one reward per Un'Goro Quest; the snapshot has 9 UNGORO Quests and no quest-to-reward link); 'the rest' needs the full list",
+      "source_needed": "reviewed manifest of the reward cards"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d0",
+      "question": "The pool constraint 'Quest Rewards' has no IR predicate: is the pool 'any UNGORO card'?",
+      "alternatives": [
+        "no: membership is the manifest of the 9 reward cards; card_set UNGORO is only a necessary filter",
+        "yes: any UNGORO card"
+      ],
+      "chosen": "no: membership is the manifest of the 9 reward cards; card_set UNGORO is only a necessary filter",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "dep": "dep_pool",
+      "discriminating_case": "found in the review of the rendered IR: without the manifest an executor would draw any of 232 UNGORO records"
+    },
+    {
+      "id": "d1",
+      "question": "'the rest' = every other reward of the list, one copy each?",
+      "alternatives": ["every other member once", "only rewards of your class"],
+      "chosen": "every other member once",
+      "basis": "ASSUMPTION",
+      "risk": "OUTCOME",
+      "dep": "dep_pool",
+      "discriminating_case": "deck size change after the Battlecry in a log"
+    },
+    {
+      "id": "d2",
+      "question": "If a gotten reward burns (full hand), is it still excluded from 'the rest'?",
+      "alternatives": ["yes", "no"],
+      "chosen": "yes",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "play with 9 cards in hand"
+    }
+  ],
+  "status": "FULL_DEP"
+}

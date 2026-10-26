@@ -1,0 +1,31 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "EDR_100t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "+3 Attack and <b>Lifesteal</b>.",
+  "text_sha256": "aa1d670998625b9462a6a7bb84ac0ac619564916d796b2d41a91fe152ecd687f",
+  "keywords": [],
+  "abilities": [
+    {
+      "kind": "enchantment_template",
+      "span": "+3 Attack and Lifesteal.",
+      "context": "DARK_GIFT",
+      "attack": 3,
+      "keywords": ["LIFESTEAL"]
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "The option card is applied as its enchantment EDR_100te, not cast",
+      "alternatives": ["enchantment", "spell"],
+      "chosen": "enchantment",
+      "basis": "METADATA",
+      "risk": "NONE",
+      "discriminating_case": "EDR_100te carries the same text; ManaEngine DARK_GIFT_OPTION"
+    }
+  ],
+  "status": "FULL"
+}

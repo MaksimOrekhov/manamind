@@ -1,0 +1,73 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_890t2",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Costs (0) if you're wielding Atiesh. Summon two random 8-Cost minions.",
+  "text_sha256": "47944b666bab48ba2e4916afbb6e5e25468112d4a11215413afc8d076bef33ac",
+  "abilities": [
+    {
+      "kind": "aura",
+      "span": "Costs (0) if you're wielding Atiesh.",
+      "active_in": "HAND",
+      "while": {
+        "exists": {
+          "pick": "ALL",
+          "type": "WEAPON",
+          "side": "FRIENDLY",
+          "where": [{"named": "Atiesh", "ids": ["TIME_890t"], "dep": "dep_name"}]
+        }
+      },
+      "modifier": {"cost": {"set": 0}}
+    },
+    {
+      "kind": "play",
+      "label": "LOCATION",
+      "span": "Summon two random 8-Cost minions.",
+      "effect": {
+        "op": "SUMMON",
+        "count": 2,
+        "what": {"random_from": {"type": "MINION", "where": [{"cost": {"cmp": "=", "n": 8}}], "dep": "dep_pool"}}
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_name",
+      "kind": "NAME_REFERENCE",
+      "scope": "CONDITIONAL",
+      "detail": "'Atiesh' resolved to TIME_890t; 4 records contain 'Atiesh' (Wild KAR_097t Atiesh, adventure copies)",
+      "source_needed": "client card relation; logs confirm only the ordinary case"
+    },
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "random 8-Cost minions: collectible only? which sets (Standard or all)? two independent draws or distinct?",
+      "source_needed": "reviewed pool manifest; logs give only a lower bound of members"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Are the two minions independent draws (duplicates allowed) or distinct?",
+      "alternatives": ["independent draws", "two distinct minions"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_pool",
+      "discriminating_case": "two identical minions from one activation would refute 'distinct'"
+    },
+    {
+      "id": "d2",
+      "question": "Is the pool every collectible 8-Cost minion or the Standard ones?",
+      "alternatives": ["Standard collectible", "all collectible"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_pool",
+      "discriminating_case": "any observed Wild-only 8-Cost minion proves 'all collectible'"
+    }
+  ],
+  "status": "FULL_DEP"
+}

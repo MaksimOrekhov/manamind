@@ -1,0 +1,83 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TIME_609",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Fabled</b>. <b>Battlecry:</b> Deal 2\ndamage to all enemies.\n    If you've played Alleria or    \n  Vereesa, repeat for each.",
+  "text_sha256": "e4839613c7bb8948ecbab41cb209461eed49e93f20e5a3e6a6be16bff3b08216",
+  "keywords": [{"keyword": "FABLED", "span": "Fabled."}],
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Deal 2 damage to all enemies. If you've played Alleria or Vereesa, repeat for each.",
+      "effect": {
+        "seq": [
+          {"op": "DEAL_DAMAGE", "to": {"pick": "ALL", "type": "CHARACTER", "side": "ENEMY"}, "amount": 2},
+          {
+            "repeat": {
+              "counter": {
+                "event": "CARD_PLAYED",
+                "player": "SELF",
+                "scope": "THIS_GAME",
+                "distinct": true,
+                "where": [{"named": ["Alleria", "Vereesa"], "ids": ["TIME_609t1", "TIME_609t2"], "dep": "dep_names"}]
+              }
+            },
+            "do": {"op": "DEAL_DAMAGE", "to": {"pick": "ALL", "type": "CHARACTER", "side": "ENEMY"}, "amount": 2}
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_names",
+      "kind": "NAME_REFERENCE",
+      "scope": "CONDITIONAL",
+      "detail": "'Alleria' and 'Vereesa' resolved to the Fabled bundle cards TIME_609t1/TIME_609t2; the names also match hero skins and Wild DAL_379 Vereesa Windrunner",
+      "source_needed": "client card relation"
+    },
+    {
+      "id": "dep_fabled",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Fabled: deck-building bundle, no rule text",
+      "source_needed": "official rules for Fabled"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "'repeat for each': once per distinct named card played, or per play (copies)?",
+      "alternatives": ["once per distinct named card (0-2)", "once per play, copies included"],
+      "chosen": "once per distinct named card (0-2)",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "a generated second copy of Alleria was played: 2 or 3 waves"
+    },
+    {
+      "id": "d2",
+      "question": "Do minions killed by the first wave die before the repeat (Deathrattles, Reborn in between)?",
+      "alternatives": [
+        "no: they stay mortally wounded and are hit again; deaths after the Battlecry",
+        "yes: deaths between waves"
+      ],
+      "chosen": "no: they stay mortally wounded and are hit again; deaths after the Battlecry",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "an enemy Reborn minion at 2 Health with Alleria played: it returns only after both waves and keeps 1 Health"
+    },
+    {
+      "id": "d3",
+      "question": "'played' = played from hand this game (not summoned or cast by effects)?",
+      "alternatives": ["played from hand", "any entry into play"],
+      "chosen": "played from hand",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "Alleria summoned by another effect does not count"
+    }
+  ],
+  "status": "FULL_DEP"
+}

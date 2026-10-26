@@ -1,0 +1,43 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_REV_990",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Deal 1 damage to a \nminion and give it \n+2 Attack.",
+  "text_sha256": "81b2bab3ef494f80d698448588fed79fb05018a7583d6842c37b786d368026d3",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "LOCATION",
+      "span": "Deal 1 damage to a minion and give it +2 Attack.",
+      "target": {"bind": "t", "choose": {"pick": "CHOSEN", "type": "MINION", "side": "ANY"}},
+      "effect": {
+        "seq": [
+          {"op": "DEAL_DAMAGE", "to": {"ref": "t"}, "amount": 1},
+          {"op": "ENCHANT", "to": {"ref": "t"}, "attack": 2, "enchantment_id": "REV_990e"}
+        ]
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the minion get +2 Attack when the 1 damage kills it or is absorbed by Divine Shield?",
+      "alternatives": ["yes: it is still in play", "no"],
+      "chosen": "yes: it is still in play",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "EDGE",
+      "discriminating_case": "target a 1-Health minion: it dies at the phase end regardless (R_DEATH_PHASE)"
+    },
+    {
+      "id": "d2",
+      "question": "Is the damage affected by Spell Damage?",
+      "alternatives": ["no: no '$'", "yes"],
+      "chosen": "no: no '$'",
+      "basis": "TEXT",
+      "risk": "NONE"
+    }
+  ],
+  "status": "FULL"
+}

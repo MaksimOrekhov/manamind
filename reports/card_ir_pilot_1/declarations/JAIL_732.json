@@ -1,0 +1,50 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_732",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "closure",
+  "text": "[x]Summon a random\n1-Cost Demon. Improve\nyour future Void Souls.",
+  "text_sha256": "8575a54f5ad04b251ce2221a4b8ae4902670cee6c2b6c6cd5da5bd50e6c87d28",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Summon a random 1-Cost Demon.",
+      "effect": {
+        "op": "SUMMON",
+        "what": {
+          "random_from": {
+            "type": "MINION",
+            "dep": "dep_pool",
+            "where": [{"race": "DEMON"}, {"cost": {"cmp": "=", "n": 1}}]
+          }
+        }
+      }
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Improve your future Void Souls.",
+      "why": "the text does not say what improves (the Demon's Cost? the number of Demons?) nor where the improvement is stored; HearthstoneJSON has no related enchantment record"
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_pool",
+      "kind": "POOL_MEMBERSHIP",
+      "scope": "DATA",
+      "detail": "random 1-Cost Demons: collectible? Standard? (and the Cost changes once improved)",
+      "source_needed": "reviewed pool manifest"
+    },
+    {
+      "id": "dep_improve",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "card_level": true,
+      "detail": "semantics of 'Improve your future Void Souls'; the in-game text probably changes, the pinned text does not",
+      "source_needed": "logs of consecutive Void Souls (summoned Demon costs) or the client's text variables"
+    }
+  ],
+  "decisions": [],
+  "status": "PARTIAL"
+}

@@ -1,0 +1,40 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_BAR_812",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "[x]<b>Secret:</b> When a\nfriendly minion is\nattacked, summon a\n3/6 Water Elemental.",
+  "text_sha256": "9c9448c1b473184e8f28209e1f442a7a233ffd85318ff406e373335fd6378a22",
+  "keywords": [{"keyword": "SECRET", "span": "Secret:"}],
+  "abilities": [
+    {
+      "kind": "trigger",
+      "label": "SECRET",
+      "span": "When a friendly minion is attacked, summon a 3/6 Water Elemental.",
+      "event": {"type": "ATTACK_DECLARED", "defender": {"pick": "ALL", "type": "MINION", "side": "FRIENDLY"}},
+      "timing": "WHEN",
+      "effect": {"op": "SUMMON", "what": {"card": "CORE_CS2_033", "resolved": "NAME_IN_SET", "dep": "dep_token"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_token",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "9 records are named 'Water Elemental' (6 are 3/6); CORE_CS2_033 chosen as the CORE card; ManaEngine hard-codes the same ID in C++, not in its declaration",
+      "source_needed": "one log of the Secret"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the attack continue against the original target?",
+      "alternatives": ["yes", "no: redirected"],
+      "chosen": "yes",
+      "basis": "PROJECT_REVIEWED",
+      "risk": "OUTCOME",
+      "discriminating_case": "ManaEngine OASIS_ALLY secret window tests"
+    }
+  ],
+  "status": "FULL_DEP"
+}

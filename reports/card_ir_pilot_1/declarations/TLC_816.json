@@ -1,0 +1,58 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "TLC_816",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Draw 2 cards. <b>Kindred:</b> This costs (2) less.",
+  "text_sha256": "b22de94c5cd02a632dd5f40718fb0ae71a0eb1947e4de3f274e08c01e977db0a",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Draw 2 cards.",
+      "effect": {"op": "DRAW", "player": "SELF", "count": 2}
+    },
+    {
+      "kind": "aura",
+      "span": "Kindred: This costs (2) less.",
+      "active_in": "HAND",
+      "while": {"mechanic": "KINDRED"},
+      "modifier": {"cost": {"reduce": 2}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_kindred",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Kindred is not defined in card text; for a spell it must match the spell school (Holy) of a card played last turn. ManaEngine's kindred_qualified checks minion types only, so it would never qualify this spell",
+      "source_needed": "official Kindred rule (minion type and spell school, which turn)"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "When is Kindred met for a Holy spell?",
+      "alternatives": [
+        "a Holy spell was played on your previous turn",
+        "any card sharing a type or school was played last turn by either player"
+      ],
+      "chosen": "a Holy spell was played on your previous turn",
+      "basis": "UNVERIFIED",
+      "risk": "OUTCOME",
+      "dep": "dep_kindred",
+      "discriminating_case": "previous turn: Flash Heal (Holy) played; this card's cost in hand shows 2"
+    },
+    {
+      "id": "d2",
+      "question": "Is the reduction live in hand (aura) or applied once?",
+      "alternatives": ["live in hand", "applied once"],
+      "chosen": "live in hand",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "the card's cost tag in hand changes at the turn boundary"
+    }
+  ],
+  "status": "FULL_DEP"
+}

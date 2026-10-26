@@ -1,0 +1,36 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "EX1_277",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Deal $3 damage randomly split among all enemies.",
+  "text_sha256": "f9f448bb5b6ef383c06438635c561d820d941ebc8ec4e70550e743bc557ddf68",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $3 damage randomly split among all enemies.",
+      "effect": {
+        "repeat": {"n": 3, "mark": "$"},
+        "do": {
+          "op": "DEAL_DAMAGE",
+          "to": {"pick": "RANDOM", "n": 1, "type": "CHARACTER", "side": "ENEMY"},
+          "amount": 1
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Where does Spell Damage apply: to the number of hits or to each hit?",
+      "alternatives": ["number of hits", "each hit"],
+      "chosen": "number of hits",
+      "basis": "METADATA",
+      "risk": "OUTCOME",
+      "discriminating_case": "the record carries ImmuneToSpellpower; ManaEngine MISSILE_TOTAL; with Spell Damage +1: 4 hits of 1"
+    }
+  ],
+  "status": "FULL"
+}

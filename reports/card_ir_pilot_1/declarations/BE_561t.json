@@ -1,0 +1,13 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "BE_561t",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "closure",
+  "text": "<b>Taunt</b>",
+  "text_sha256": "d38f91cc6ca8f2b38c224cc1154548f2b39c671288d679eea7f0a05d0c426b82",
+  "keywords": [{"keyword": "TAUNT", "span": "Taunt"}],
+  "abilities": [],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

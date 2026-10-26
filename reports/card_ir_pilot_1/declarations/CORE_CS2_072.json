@@ -1,0 +1,23 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_CS2_072",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "Deal $2 damage to an undamaged minion.",
+  "text_sha256": "01eb3c1228aa95e51cb84c7a307be72d65d72bff423a5de2483927582587e911",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $2 damage to an undamaged minion.",
+      "target": {
+        "bind": "t",
+        "choose": {"pick": "CHOSEN", "type": "MINION", "side": "ANY", "where": [{"damaged": false}]}
+      },
+      "effect": {"op": "DEAL_DAMAGE", "to": {"ref": "t"}, "amount": {"n": 2, "mark": "$"}}
+    }
+  ],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL"
+}

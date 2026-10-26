@@ -1,0 +1,30 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CORE_DRG_107",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "engine_validation",
+  "text": "<b>Deathrattle:</b> Add an 'Arcane Missiles' spell to your hand.",
+  "text_sha256": "7396d91534f0847b96bfc22276f77af408d32f8f8a547ad1b2f401430254d236",
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Add an 'Arcane Missiles' spell to your hand.",
+      "effect": {
+        "op": "ADD_TO_HAND",
+        "player": "SELF",
+        "what": {"card": "EX1_277", "resolved": "NAME_IN_SET", "dep": "dep_card"}
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_card",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "4 records are named 'Arcane Missiles' (EX1_277, VAN_, TUTR_, DH_Prologue_); EX1_277 chosen, as in ManaEngine",
+      "source_needed": "one log of the Deathrattle"
+    }
+  ],
+  "decisions": [],
+  "status": "FULL_DEP"
+}

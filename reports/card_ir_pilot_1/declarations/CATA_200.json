@@ -1,0 +1,68 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_200",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Battlecry:</b> Choose a\ncard in your hand to\n transform into a Coin.",
+  "text_sha256": "2b51be66e9cc851839837b98b2639bd992ae0e66cdd8cbcf662ff4ed526fcd3a",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Choose a card in your hand to transform into a Coin.",
+      "effect": {
+        "seq": [
+          {
+            "op": "CHOOSE",
+            "from": {"pick": "CHOSEN", "n": 1, "type": "CARD", "side": "FRIENDLY", "zone": "HAND"},
+            "as": "c"
+          },
+          {
+            "op": "TRANSFORM",
+            "to": {"ref": "c"},
+            "into": {"card": "GAME_005", "resolved": "AMBIGUOUS", "dep": "dep_coin"}
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_coin",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "70 gameplay records are named 'The Coin' with identical text and cost; which ID the card creates is not in HearthstoneJSON (ManaEngine hard-codes GAME_005 in C++)",
+      "source_needed": "one log of the Battlecry"
+    },
+    {
+      "id": "dep_choice",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "whether the card is picked as a play-time target or in a choice after the minion is played; what happens with an empty hand",
+      "source_needed": "the option menu in Power.log when the card is played"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Is the hand card chosen while playing (target) or in a sub-choice afterwards?",
+      "alternatives": ["sub-choice after the play", "play-time target"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_choice",
+      "discriminating_case": "Power.log options: targets listed with the PLAY option or a separate choice block"
+    },
+    {
+      "id": "d2",
+      "question": "Which Coin ID?",
+      "alternatives": ["GAME_005", "a set-specific coin"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "EDGE",
+      "dep": "dep_coin",
+      "discriminating_case": "the created entity's card ID in the log"
+    }
+  ],
+  "status": "FULL_DEP"
+}

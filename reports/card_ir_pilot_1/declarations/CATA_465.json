@@ -1,0 +1,75 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "CATA_465",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]Summon five 5/4 Undead\nDrakes. Spend 8 <b>Corpses</b>\nto give them <b>Rush</b>.",
+  "text_sha256": "e416d93a934099f07153dc6c84caaa68a0e2546ba22b167c43d6a49913cd7e30",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Summon five 5/4 Undead Drakes. Spend 8 Corpses to give them Rush.",
+      "effect": {
+        "seq": [
+          {
+            "op": "SUMMON",
+            "count": 5,
+            "what": {"card": "CATA_465t", "resolved": "DESCRIPTION_MATCH", "dep": "dep_token"},
+            "as": "drakes"
+          },
+          {
+            "pay": {"resource": "CORPSE", "amount": 8},
+            "then": {"op": "ENCHANT", "to": {"ref": "drakes"}, "keywords": ["RUSH"]}
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_token",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "'5/4 Undead Drakes' resolved to CATA_465t Hungry Drake (5/4, Undead Dragon, ID prefix)",
+      "source_needed": "one log of the spell"
+    },
+    {
+      "id": "dep_corpse",
+      "kind": "KEYWORD_RULE",
+      "scope": "DATA",
+      "card_level": true,
+      "detail": "Corpses (gained when friendly minions die, spent by Death Knight cards) are not defined in card text",
+      "source_needed": "official Corpse rules; the counter is a player tag in Power.log"
+    },
+    {
+      "id": "dep_spend",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "'Spend N Corpses to ...': automatic, all-or-nothing with fewer than N",
+      "source_needed": "a log with fewer than 8 Corpses"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Is spending automatic and all-or-nothing?",
+      "alternatives": ["automatic when at least 8, otherwise nothing", "the player chooses", "partial"],
+      "chosen": "automatic when at least 8, otherwise nothing",
+      "basis": "UNVERIFIED",
+      "risk": "OUTCOME",
+      "dep": "dep_spend",
+      "discriminating_case": "cast with 7 Corpses: no Rush, Corpses stay 7"
+    },
+    {
+      "id": "d2",
+      "question": "'them' = the Drakes actually summoned (board limit)?",
+      "alternatives": ["summoned ones", "five"],
+      "chosen": "summoned ones",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "cast with 4 friendly minions: 3 Drakes get Rush"
+    }
+  ],
+  "status": "FULL_DEP"
+}

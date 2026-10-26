@@ -1,0 +1,41 @@
+{
+  "ir": "card-ir/0.1",
+  "card_id": "JAIL_730",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "After your hero attacks, get a Void Soul.",
+  "text_sha256": "31e7d10dbc2fb6857adefc57424ea060490c6873ab59413653fdfffda251213b",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "After your hero attacks, get a Void Soul.",
+      "event": {"type": "HERO_ATTACK", "player": "SELF"},
+      "timing": "AFTER",
+      "active_in": "EQUIPPED",
+      "effect": {"op": "ADD_TO_HAND", "player": "SELF", "what": {"card": "JAIL_732", "resolved": "UNIQUE_NAME"}}
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dep_last_attack",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "same rule question as every after-attack weapon: does the trigger fire on the attack that destroys the weapon",
+      "source_needed": "one Power.log of the last-Durability attack"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "question": "Does the last attack (the Scythe breaks) still give a Void Soul?",
+      "alternatives": ["yes", "no"],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "dep": "dep_last_attack",
+      "discriminating_case": "attack at 1 Durability: is JAIL_732 created in hand"
+    }
+  ],
+  "notes": "The generated Void Soul is a separate closure declaration (JAIL_732); its own text is only partly expressible.",
+  "status": "FULL_DEP"
+}
