@@ -1,0 +1,45 @@
+{
+  "task": "CARD-IR-EXECUTION-PILOT-1",
+  "registered": "2026-10-26",
+  "base": {
+    "branch": "codex/card-ir-v02-independent-validation",
+    "sha": "3fc4177b9a13d131af55539f546ac5f3a667eff0"
+  },
+  "note": "Written and committed before the translator, bridge, scenarios and mutation tests exist. Later files must not change this protocol; deviations are reported in README.md.",
+  "hypothesis": "For a small validated subset of Card IR v0.2, a game action can be executed through ManaEngine's existing generic EFFECT_COMPOSITION steps, without card-specific handlers and without losing the declaration's semantics; the executed behaviour is a function of the IR content, not of the card ID.",
+  "baselines": {
+    "B0_legacy": "The existing ManaEngine declaration of the same card (experiments/manaengine/data/card_abilities.json, unchanged) on the same deterministic scenario. Agreement is a compatibility check only: both may encode the same wrong rule.",
+    "B1_id_passthrough": "A hypothetical bridge that reads only card_id and runs the legacy declaration. By construction every IR mutation leaves its result unchanged (mutation sensitivity 0). The pilot fails if any mutation reproduces the B1 result without an explanation."
+  },
+  "cards": {
+    "CORE_EX1_238": {"name": "Lightning Bolt", "ir_source": "reports/card_ir_pilot_1/declarations/CORE_EX1_238.json", "constructs": ["DEAL_DAMAGE $", "CHOSEN CHARACTER ANY", "keyword OVERLOAD"], "legacy_family": "TARGET_DAMAGE (named handler)"},
+    "CORE_AT_055": {"name": "Flash Heal", "ir_source": "reports/card_ir_pilot_1/declarations/CORE_AT_055.json", "constructs": ["RESTORE_HEALTH #", "CHOSEN CHARACTER ANY"], "legacy_family": "EFFECT_COMPOSITION"},
+    "CORE_ICC_055": {"name": "Drain Soul", "ir_source": "reports/card_ir_pilot_1/declarations/CORE_ICC_055.json", "constructs": ["DEAL_DAMAGE $", "CHOSEN MINION ANY", "keyword LIFESTEAL"], "legacy_family": "LIFESTEAL_DAMAGE (named handler)"},
+    "FIR_906": {"name": "Overheat", "ir_source": "reports/card_ir_pilot_1/declarations/FIR_906.json", "constructs": ["seq", "ENCHANT ALL FRIENDLY MINION", "pay discard RANDOM SPELL NATURE", "ref to a bound set"], "legacy_family": "EFFECT_COMPOSITION"}
+  },
+  "card_selection_reason": "Every Card IR declaration (pilot_1, v0.2 examples, independent validation final) was intersected with ManaEngine's catalog. Only these four are status FULL, have no dependencies, need no unreviewed rule for their ordinary resolution, and map onto existing generic steps (Damage, Heal, BuffFriendlyMinions, DiscardRandomSpell). CATA_452 (FULL_DEP, cost aura) and all named-handler cards with triggers, auras, pools or Secrets are excluded. Torch, Ultraxion, Aviana are not used.",
+  "ir_version_handling": "The four declarations are card-ir/0.1. Copies with only the ir field changed to card-ir/0.2 are stored under declarations/; each must pass validate_strict_v02 as FULL with no errors or warnings before translation. Historical files are not edited.",
+  "evidence_levels": [
+    "L1 validated: strict v0.2 acceptance",
+    "L2 independent semantic confirmation: an independent review of this declaration on record",
+    "L3 technically executes: IR -> native steps -> COMPLETED attempt with the expected state",
+    "L4 independent game evidence: consistent real Power.log observations (non-holdout) of the same effect",
+    "L5 training admission: always false here (ManaEngine training_eligible is false)"
+  ],
+  "scenario_requirements": "Deterministic scenarios built only through the supported prototype path (ManaEngineSession decks, shuffle=False, fixed seed, ordinary legal actions). Expected deltas are written by hand from card text and documented rules, not by running either declaration. Each mechanic gets a normal case, an edge case, an unsupported interaction, an order check where steps exist, and a wrong-IR refusal.",
+  "mutation_classes": ["amount", "owner/side", "target", "removed operation", "unknown operation", "unknown field", "removed keyword", "amount mark", "step order"],
+  "success_criteria": {
+    "C1": "At least two different generic operations go IR -> native steps -> checked state change.",
+    "C2": "No card-specific code: the translator and bridge contain no card-ID literals or card_id comparisons (static check).",
+    "C3": "All supported scenarios match the hand-written expectations (every listed field).",
+    "C4": "Every unsupported construct or interaction stops with a typed refusal or a non-COMPLETED attempt; nothing is silently skipped.",
+    "C5": "Every mutation either changes the executed result as predicted in advance or is refused; zero unexplained B1-identical results.",
+    "C6": "ManaEngine sources, data and existing tests, Card IR modules and historical Card IR results are unchanged (git diff and reproduction scripts)."
+  },
+  "verdict_rules": {
+    "GO": "C1-C6 all hold and no scenario needed a native change, a state importer or a new engine.",
+    "CONDITIONAL_GO": "The vertical path works (C1-C5) but named missing mechanisms limit scaling or use for real positions.",
+    "NO_GO": "Even one correct vertical scenario is impossible without substantial native rework, a new executor or a state importer."
+  },
+  "out_of_scope": ["native ManaEngine changes", "state importer", "search/MCTS", "LIVE/Overlay/Policy", "training or data generation", "S2/Herald", "new card support", "fresh_holdout"]
+}
