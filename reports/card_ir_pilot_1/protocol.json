@@ -1,0 +1,794 @@
+{
+  "protocol_id": "card_ir_pilot_1_stage_a_v1",
+  "locked_on": "2026-10-26",
+  "status": "LOCKED_BEFORE_IR_AUTHORING",
+  "hypothesis": "Card effects of current Standard can be written as compositions of a small, slowly growing vocabulary of generic primitives, so that most new cards are data and manual work goes to new primitives, not to cards.",
+  "baseline": {
+    "outcome_grammar_full_parse": "6.0% of Standard (census, FUTURE-ARCHITECTURE-RESEARCH-1); 24.9% of real appearances (CARD-METADATA-2)",
+    "manaengine": "125 declarations, 26 ability families of which 21 are named single-card handlers; 11.8% of real appearances declared",
+    "manual_estimate_20260929": "about 50% of 100 cards expressible with existing RosettaStone primitives"
+  },
+  "inputs": {
+    "candidates": {
+      "path": "reports/card_metadata_2/card_ir_pilot_candidates.json",
+      "sha256": "94ff50d3647893a8ef4327d0883358e24490a3546bd12590268836b84154c396"
+    },
+    "snapshot": {
+      "snapshot_id": "hsjson_255130_enUS",
+      "raw_sha256": "06e61ce4afd2bce9c2ff53de8c2c1cc0080df27aa4743c8eee3d63894d10dc04"
+    },
+    "standard_scope": {
+      "path": "data/cards/standard_scope_20261001.json",
+      "sha256": "adc6ae328d5d5db9edc911fb307af4d571492144aab0e11061f480167cfc32cb"
+    },
+    "manaengine_declarations": {
+      "path": "experiments/manaengine/data/card_abilities.json",
+      "sha256": "843ee2e7fb71936e5cbadde53374d32679dae69e18970db450af920ccc1a34ad"
+    },
+    "text_rule": "strip_text_artifacts(record.text): layout '&' and debug tail removed; HTML, [x], $ and # kept",
+    "game_data_read": "none; appearance counts are copied from the candidate list"
+  },
+  "selection": {
+    "curated": {
+      "quota": {
+        "S1_new_collectible": 4,
+        "S2_new_to_source_noncollectible_token": 3,
+        "S3_known_before_trigger_text": 4,
+        "S4_known_before_one_shot_text": 3,
+        "S5_control_grammar_parses": 2
+      },
+      "rule": "within each CARD-METADATA-2 stratum, order by appearances (desc, then id); take the most frequent card of each card type in order of first appearance; fill any remaining quota by appearances"
+    },
+    "random": {
+      "frame": "collectible MINION/SPELL/WEAPON/LOCATION/HERO records of the current snapshot whose set is in the pinned Standard scope sets or BE (BE is played in Ranked Standard on build 254477; the profile is not changed), minus the scope's excluded IDs, minus the curated cards, minus empty-text cards",
+      "frame_size": 1304,
+      "frame_by_type": {
+        "HERO": 2,
+        "LOCATION": 19,
+        "MINION": 804,
+        "SPELL": 439,
+        "WEAPON": 40
+      },
+      "allocation": {
+        "MINION": 3,
+        "SPELL": 2
+      },
+      "allocation_rule": "largest remainder, proportional to the frame's type counts",
+      "seed": 20261026,
+      "method": "random.Random(seed).sample(sorted ids of the type, n), types in alphabetical order"
+    },
+    "closure_rule": "cards that a sampled text names and that the IR must reference (tokens, generated cards) get their own declarations as closure items; they are reported separately and never replace a sampled card",
+    "no_substitution": "a card that cannot be described stays in the sample and is reported as PARTIAL or UNSUPPORTED"
+  },
+  "authoring_order": {
+    "seed": 20261027,
+    "ids": [
+      "BE_555",
+      "CORE_TTN_843",
+      "TIME_609",
+      "CORE_AT_055",
+      "CORE_REV_990",
+      "TIME_890t2",
+      "CORE_BT_201",
+      "CATA_301",
+      "TIME_603",
+      "CATA_200",
+      "JAIL_730",
+      "TIME_890",
+      "BE_207",
+      "BE_561",
+      "CATA_465",
+      "TLC_816",
+      "CORE_EX1_002",
+      "CAP_107t",
+      "TLC_602",
+      "BE_552",
+      "TIME_890t"
+    ],
+    "note": "vocabulary growth is reported in this order and as a mean over 1000 seeded permutations"
+  },
+  "sample": [
+    {
+      "stratum": "S1_new_collectible",
+      "id": "BE_207",
+      "name": "Unstable Prototype",
+      "type": "MINION",
+      "set": "BE",
+      "card_class": "NEUTRAL",
+      "collectible": true,
+      "cost": 1,
+      "attack": 0,
+      "health": 1,
+      "durability": null,
+      "mechanics": [
+        "DEATHRATTLE",
+        "REBORN"
+      ],
+      "referenced_tags": [],
+      "appearances": 521,
+      "rule": "type_first_by_appearances",
+      "text": "[x]<b><b>Reborn</b>\n</b><b>Deathrattle:</b> Give all\nminions in your\nhand +1/+1.",
+      "text_sha256": "389e8e54d580a6368e76d60fc73b1130d4b537391c53c1800e8a9b401133626a"
+    },
+    {
+      "stratum": "S1_new_collectible",
+      "id": "BE_552",
+      "name": "Flamespitter",
+      "type": "WEAPON",
+      "set": "BE",
+      "card_class": "HUNTER",
+      "collectible": true,
+      "cost": 3,
+      "attack": 2,
+      "health": 2,
+      "durability": 0,
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "referenced_tags": [],
+      "appearances": 236,
+      "rule": "type_first_by_appearances",
+      "text": "After your hero attacks, get an 'Overdrive'.",
+      "text_sha256": "0a9bf4deddffde3caac21106f2d423ad5a2dd5e57cd08f0823b5938429a27d2d"
+    },
+    {
+      "stratum": "S1_new_collectible",
+      "id": "BE_555",
+      "name": "Reload",
+      "type": "SPELL",
+      "set": "BE",
+      "card_class": "HUNTER",
+      "collectible": true,
+      "cost": 8,
+      "attack": null,
+      "health": null,
+      "durability": null,
+      "mechanics": [
+        "DISCOVER"
+      ],
+      "referenced_tags": [],
+      "appearances": 231,
+      "rule": "type_first_by_appearances",
+      "text": "<b>Discover</b> a spell and reduce its Cost by (8). Repeat this with excess Cost reduction.",
+      "text_sha256": "9666ef085d354c468cd0c7c30df843dd1f494ab26d55a411fc6d1ead9d5fa91f"
+    },
+    {
+      "stratum": "S1_new_collectible",
+      "id": "BE_561",
+      "name": "Forge of Origination",
+      "type": "LOCATION",
+      "set": "BE",
+      "card_class": "WARRIOR",
+      "collectible": true,
+      "cost": 3,
+      "attack": null,
+      "health": 2,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [
+        "TAUNT"
+      ],
+      "appearances": 181,
+      "rule": "type_first_by_appearances",
+      "text": "[x]Summon a 3/3 Golem\nwith <b>Taunt</b>. Spend 3\nArmor to give it +3/+3.",
+      "text_sha256": "8695ad5b4fb95c98aeb2e5fcd07ca4ded3b0d0b814bdee1d72e007aef9f22b47"
+    },
+    {
+      "stratum": "S2_new_to_source_noncollectible_token",
+      "id": "TIME_890t",
+      "name": "Atiesh the Greatstaff",
+      "type": "WEAPON",
+      "set": "TIME_TRAVEL",
+      "card_class": "PRIEST",
+      "collectible": false,
+      "cost": 10,
+      "attack": 1,
+      "health": 3,
+      "durability": 0,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 1237,
+      "rule": "type_first_by_appearances",
+      "text": "[x]Costs (0) if you control\nMedivh. Double the\ndamage and healing\nof your spells.",
+      "text_sha256": "44fb9893b87597e1fe3a316b61669e57e89b771dbc726dd5a47ac040e4f69e9e"
+    },
+    {
+      "stratum": "S2_new_to_source_noncollectible_token",
+      "id": "TIME_890t2",
+      "name": "Karazhan the Sanctum",
+      "type": "LOCATION",
+      "set": "TIME_TRAVEL",
+      "card_class": "PRIEST",
+      "collectible": false,
+      "cost": 10,
+      "attack": null,
+      "health": 2,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 966,
+      "rule": "type_first_by_appearances",
+      "text": "Costs (0) if you're wielding Atiesh. Summon two random 8-Cost minions.",
+      "text_sha256": "47944b666bab48ba2e4916afbb6e5e25468112d4a11215413afc8d076bef33ac"
+    },
+    {
+      "stratum": "S2_new_to_source_noncollectible_token",
+      "id": "CAP_107t",
+      "name": "Cannoneer",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "card_class": "WARRIOR",
+      "collectible": false,
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "durability": null,
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "referenced_tags": [],
+      "appearances": 563,
+      "rule": "type_first_by_appearances",
+      "text": "[x]At the end of your turn,\ndeal 1 damage to a\nrandom enemy.",
+      "text_sha256": "0e68a6311dbabfc163faecebe1f35b4dcb43c02583ee23e5a55b082761db78d6"
+    },
+    {
+      "stratum": "S3_known_before_trigger_text",
+      "id": "JAIL_730",
+      "name": "Stardust Scythe",
+      "type": "WEAPON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "card_class": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "durability": 0,
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "referenced_tags": [],
+      "appearances": 513,
+      "rule": "type_first_by_appearances",
+      "text": "After your hero attacks, get a Void Soul.",
+      "text_sha256": "31e7d10dbc2fb6857adefc57424ea060490c6873ab59413653fdfffda251213b"
+    },
+    {
+      "stratum": "S3_known_before_trigger_text",
+      "id": "CORE_TTN_843",
+      "name": "Eredar Deceptor",
+      "type": "MINION",
+      "set": "CORE",
+      "card_class": "DEMONHUNTER",
+      "collectible": true,
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "durability": null,
+      "mechanics": [
+        "TRIGGER_VISUAL"
+      ],
+      "referenced_tags": [
+        "RUSH"
+      ],
+      "appearances": 381,
+      "rule": "type_first_by_appearances",
+      "text": "Whenever you draw a card, summon a 1/1 Demon with <b>Rush</b>.",
+      "text_sha256": "bb3c5e2c4168fa99d82f6ec282933f30fbe60f15613a67e987bd522e9c4b7bd6"
+    },
+    {
+      "stratum": "S3_known_before_trigger_text",
+      "id": "TIME_603",
+      "name": "Ticking Timebomb",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "card_class": "HUNTER",
+      "collectible": true,
+      "cost": 2,
+      "attack": 1,
+      "health": 1,
+      "durability": null,
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "referenced_tags": [],
+      "appearances": 343,
+      "rule": "type_first_by_appearances",
+      "text": "<b>Deathrattle:</b> Destroy a random enemy minion.",
+      "text_sha256": "c9baf203381b879477d0665bc569895460aa20076b831f92526590bf3e7a64eb"
+    },
+    {
+      "stratum": "S3_known_before_trigger_text",
+      "id": "CORE_BT_201",
+      "name": "Augmented Porcupine",
+      "type": "MINION",
+      "set": "CORE",
+      "card_class": "HUNTER",
+      "collectible": true,
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "durability": null,
+      "mechanics": [
+        "DEATHRATTLE"
+      ],
+      "referenced_tags": [],
+      "appearances": 271,
+      "rule": "type_first_by_appearances",
+      "text": "[x]<b>Deathrattle</b>: Deal this\nminion's Attack damage\nrandomly split among\nall enemies.",
+      "text_sha256": "9a7e187a33c54e45aca43aa4b56b441648099918cd84d35cbf1647287cb1d4b6"
+    },
+    {
+      "stratum": "S4_known_before_one_shot_text",
+      "id": "CATA_301",
+      "name": "Ruby Sanctum",
+      "type": "LOCATION",
+      "set": "CATACLYSM",
+      "card_class": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "attack": null,
+      "health": 3,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 2356,
+      "rule": "type_first_by_appearances",
+      "text": "[x]Your next Healing\neffect this turn deals\ndamage instead.",
+      "text_sha256": "2dec4ec7d8a71099066d1018541aca7a7124292bb635eb4163f8c7a463e51e87"
+    },
+    {
+      "stratum": "S4_known_before_one_shot_text",
+      "id": "TIME_890",
+      "name": "Medivh the Hallowed",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "card_class": "PRIEST",
+      "collectible": true,
+      "cost": 10,
+      "attack": 7,
+      "health": 7,
+      "durability": null,
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "referenced_tags": [
+        "SILENCE"
+      ],
+      "appearances": 1058,
+      "rule": "type_first_by_appearances",
+      "text": "[x]<b>Fabled</b>. Costs (0) if\nyou control Karazhan.\n<b>Battlecry:</b> <b>Silence</b> and destroy\nall other minions.",
+      "text_sha256": "a40f0ff3176b24c4ec2bd0094571d001cefc86e7d604f73ddb2b472ce8995cda"
+    },
+    {
+      "stratum": "S4_known_before_one_shot_text",
+      "id": "TLC_816",
+      "name": "Gravedawn Sunbloom",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "card_class": "PRIEST",
+      "collectible": true,
+      "cost": 4,
+      "attack": null,
+      "health": null,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 681,
+      "rule": "type_first_by_appearances",
+      "text": "Draw 2 cards. <b>Kindred:</b> This costs (2) less.",
+      "text_sha256": "b22de94c5cd02a632dd5f40718fb0ae71a0eb1947e4de3f274e08c01e977db0a"
+    },
+    {
+      "stratum": "S5_control_grammar_parses",
+      "id": "CORE_AT_055",
+      "name": "Flash Heal",
+      "type": "SPELL",
+      "set": "CORE",
+      "card_class": "PRIEST",
+      "collectible": true,
+      "cost": 1,
+      "attack": null,
+      "health": null,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 1463,
+      "rule": "type_first_by_appearances",
+      "text": "Restore #5 Health.",
+      "text_sha256": "caebafaf154d01d22e7685b6b599baa74bc1c50753cc29b97c77e153fa7b04a8"
+    },
+    {
+      "stratum": "S5_control_grammar_parses",
+      "id": "CORE_REV_990",
+      "name": "Sanguine Depths",
+      "type": "LOCATION",
+      "set": "CORE",
+      "card_class": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "attack": null,
+      "health": 3,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [],
+      "appearances": 480,
+      "rule": "type_first_by_appearances",
+      "text": "[x]Deal 1 damage to a \nminion and give it \n+2 Attack.",
+      "text_sha256": "81b2bab3ef494f80d698448588fed79fb05018a7583d6842c37b786d368026d3"
+    },
+    {
+      "stratum": "R_random_minion",
+      "id": "CATA_200",
+      "name": "Agent of the Old Ones",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "card_class": "ROGUE",
+      "collectible": true,
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "durability": null,
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "referenced_tags": [],
+      "appearances": null,
+      "rule": "random.Random(20261026).sample",
+      "text": "[x]<b>Battlecry:</b> Choose a\ncard in your hand to\n transform into a Coin.",
+      "text_sha256": "2b51be66e9cc851839837b98b2639bd992ae0e66cdd8cbcf662ff4ed526fcd3a"
+    },
+    {
+      "stratum": "R_random_minion",
+      "id": "CORE_EX1_002",
+      "name": "The Black Knight",
+      "type": "MINION",
+      "set": "CORE",
+      "card_class": "NEUTRAL",
+      "collectible": true,
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "durability": null,
+      "mechanics": [
+        "BATTLECRY",
+        "TRADEABLE"
+      ],
+      "referenced_tags": [
+        "TAUNT"
+      ],
+      "appearances": null,
+      "rule": "random.Random(20261026).sample",
+      "text": "<b>Tradeable</b>\n <b>Battlecry:</b> Destroy an  enemy minion with <b>Taunt</b>.",
+      "text_sha256": "834ffdf6b78d881797d78e560a0547b2822d7398e9221afcdefe754832adf784"
+    },
+    {
+      "stratum": "R_random_minion",
+      "id": "TIME_609",
+      "name": "Ranger General Sylvanas",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "card_class": "HUNTER",
+      "collectible": true,
+      "cost": 3,
+      "attack": 2,
+      "health": 4,
+      "durability": null,
+      "mechanics": [
+        "BATTLECRY"
+      ],
+      "referenced_tags": [],
+      "appearances": null,
+      "rule": "random.Random(20261026).sample",
+      "text": "[x]<b>Fabled</b>. <b>Battlecry:</b> Deal 2\ndamage to all enemies.\n    If you've played Alleria or    \n  Vereesa, repeat for each.",
+      "text_sha256": "e4839613c7bb8948ecbab41cb209461eed49e93f20e5a3e6a6be16bff3b08216"
+    },
+    {
+      "stratum": "R_random_spell",
+      "id": "CATA_465",
+      "name": "Chow Down",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "card_class": "DEATHKNIGHT",
+      "collectible": true,
+      "cost": 8,
+      "attack": null,
+      "health": null,
+      "durability": null,
+      "mechanics": [],
+      "referenced_tags": [
+        "RUSH"
+      ],
+      "appearances": null,
+      "rule": "random.Random(20261026).sample",
+      "text": "[x]Summon five 5/4 Undead\nDrakes. Spend 8 <b>Corpses</b>\nto give them <b>Rush</b>.",
+      "text_sha256": "e416d93a934099f07153dc6c84caaa68a0e2546ba22b167c43d6a49913cd7e30"
+    },
+    {
+      "stratum": "R_random_spell",
+      "id": "TLC_602",
+      "name": "Enter the Lost City",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "card_class": "WARRIOR",
+      "collectible": true,
+      "cost": 1,
+      "attack": null,
+      "health": null,
+      "durability": null,
+      "mechanics": [
+        "QUEST",
+        "TRIGGER_VISUAL"
+      ],
+      "referenced_tags": [],
+      "appearances": null,
+      "rule": "random.Random(20261026).sample",
+      "text": "[x]<b>Quest:</b> Survive 10 turns.\n<b>Reward: </b>Latorvius, Gaze\nof the City.",
+      "text_sha256": "522d2677fb1cb35d2885c2d11929b3c3ee1f096912bfe8bc957e2ecf8e6b67b6"
+    }
+  ],
+  "engine_validation": {
+    "rule": "first declaration in file order of every ManaEngine ability family (each family is one typed C++ handler); written in IR from the card text, then compared with the engine declaration. All 125 declarations are additionally classified by a construct-mapping table (census, not a sample)",
+    "cards": [
+      {
+        "id": "FIR_906",
+        "ability": "EFFECT_COMPOSITION",
+        "support_state": "SUPPORTED",
+        "fields": [],
+        "reviewed_rules_text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more."
+      },
+      {
+        "id": "CORE_EX1_238",
+        "ability": "TARGET_DAMAGE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "Deal $3 damage. Overload: (1)"
+      },
+      {
+        "id": "BOT_102t",
+        "ability": "NONE",
+        "support_state": "VERIFIED_VANILLA",
+        "fields": [],
+        "reviewed_rules_text": "<b>Rush</b>"
+      },
+      {
+        "id": "TLC_226",
+        "ability": "DEATHRATTLE_DRAW",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "deathrattle_draw_count",
+          "deck_draw_filter",
+          "kindred_copy_contract"
+        ],
+        "reviewed_rules_text": "Deathrattle: Draw a spell. Kindred: Summon a copy of this."
+      },
+      {
+        "id": "CATA_475",
+        "ability": "END_TURN_ENEMY_AREA_DAMAGE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "At the end of your turn, deal 2 damage to all enemies."
+      },
+      {
+        "id": "CATA_999",
+        "ability": "END_TURN_ENEMY_HERO_DAMAGE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "At the end of your turn, deal 4 damage to the enemy hero."
+      },
+      {
+        "id": "CORE_BT_416",
+        "ability": "NEXT_DEMON_DISCOUNT",
+        "support_state": "SUPPORTED",
+        "fields": [],
+        "reviewed_rules_text": "Battlecry: The next Demon you play costs (2) less."
+      },
+      {
+        "id": "CORE_BAR_812",
+        "ability": "SECRET",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "secret_effect",
+          "secret_trigger"
+        ],
+        "reviewed_rules_text": "Secret: When a friendly minion is attacked, summon a 3/6 Water Elemental."
+      },
+      {
+        "id": "CORE_CS2_072",
+        "ability": "BACKSTAB",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "Deal $2 damage to an undamaged minion."
+      },
+      {
+        "id": "CORE_DRG_107",
+        "ability": "DEATHRATTLE_GENERATE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "generated_card"
+        ],
+        "reviewed_rules_text": "Deathrattle: Add an 'Arcane Missiles' spell to your hand."
+      },
+      {
+        "id": "CORE_EX1_145",
+        "ability": "NEXT_SPELL_DISCOUNT",
+        "support_state": "SUPPORTED",
+        "fields": [],
+        "reviewed_rules_text": "The next spell you cast this turn costs (2) less."
+      },
+      {
+        "id": "CORE_GIL_836",
+        "ability": "DISCOVER",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "choice_cost_delta",
+          "choice_count",
+          "choice_pool"
+        ],
+        "reviewed_rules_text": "Discover a Battlecry minion. It costs (1) less."
+      },
+      {
+        "id": "CORE_ICC_055",
+        "ability": "LIFESTEAL_DAMAGE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "Lifesteal Deal $3 damage to a minion."
+      },
+      {
+        "id": "CORE_SW_072",
+        "ability": "DESTROY_ENEMY_WEAPON",
+        "support_state": "UNSUPPORTED",
+        "fields": [],
+        "reviewed_rules_text": "Tradeable Battlecry: Destroy your opponent's weapon."
+      },
+      {
+        "id": "CORE_SW_108",
+        "ability": "MINION_DAMAGE_GENERATE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage",
+          "generated_card"
+        ],
+        "reviewed_rules_text": "Deal $2 damage to a minion. Add a Second Flame to your hand."
+      },
+      {
+        "id": "END_022",
+        "ability": "SPELL_DAMAGE_AURA",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damaged_spell_damage"
+        ],
+        "reviewed_rules_text": "Has Spell Damage +2 while damaged."
+      },
+      {
+        "id": "CATA_487",
+        "ability": "SPELL_DAMAGE_GAINS_ATTACK",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "spell_damage_attack"
+        ],
+        "reviewed_rules_text": "The first time you deal damage with a spell each turn, gain +2 Attack."
+      },
+      {
+        "id": "CATA_458",
+        "ability": "SPELL_DAMAGE_HAND_DECK",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "spell_damage_grant"
+        ],
+        "reviewed_rules_text": "Battlecry: Give all spells in your hand and deck Spell Damage +1."
+      },
+      {
+        "id": "EX1_277",
+        "ability": "RANDOM_MISSILES",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "damage"
+        ],
+        "reviewed_rules_text": "Deal $3 damage randomly split among all enemies."
+      },
+      {
+        "id": "JAIL_321",
+        "ability": "CAST_RANDOM_SECRETS",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "prepare",
+          "random_cast_count",
+          "reviewed_random_secret_pool"
+        ],
+        "reviewed_rules_text": "Prepare Battlecry: If you've cast a spell this turn, cast two random Mage Secrets."
+      },
+      {
+        "id": "JAIL_327",
+        "ability": "REINFORCEMENT_AURA",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "duration",
+          "pool_count",
+          "pool_max_cost"
+        ],
+        "reviewed_rules_text": "At the end of your turn, summon a minion from your deck that costs (2) or less. Lasts 3 turns."
+      },
+      {
+        "id": "JAIL_516",
+        "ability": "RECRUITER_SUMMON_RUSH",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "pool_count",
+          "pool_max_cost"
+        ],
+        "reviewed_rules_text": "Battlecry: Summon two minions from your deck that cost (2) or less. Give them Rush."
+      },
+      {
+        "id": "JAIL_872",
+        "ability": "HERO_ATTACK_DRAW",
+        "support_state": "SUPPORTED",
+        "fields": [],
+        "reviewed_rules_text": "After your hero attacks, draw a card."
+      },
+      {
+        "id": "EDR_100t",
+        "ability": "DARK_GIFT_OPTION",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "dark_gift_attack",
+          "dark_gift_keywords"
+        ],
+        "reviewed_rules_text": "+3 Attack and Lifesteal."
+      },
+      {
+        "id": "CATA_488",
+        "ability": "END_TURN_OTHER_MINIONS_DAMAGE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "colossal_appendages",
+          "damage"
+        ],
+        "reviewed_rules_text": "Colossal +2 At the end of your turn, deal 3 damage to all other minions."
+      },
+      {
+        "id": "CATA_488t",
+        "ability": "TAKES_DAMAGE_GENERATE",
+        "support_state": "SUPPORTED",
+        "fields": [
+          "takes_damage_cost_delta",
+          "takes_damage_pool_id"
+        ],
+        "reviewed_rules_text": "Whenever this takes damage, get a random Fire spell. It costs (3) less."
+      }
+    ]
+  },
+  "metrics": {
+    "expressibility": "per card FULL (complete, no open unknown) / FULL_DEP (complete structure, correctness depends on a typed external dependency such as pool membership) / PARTIAL (a text span is unexpressed or its reading is unresolved) / UNSUPPORTED; every unexpressed span listed",
+    "vocabulary": "elements = op, selector, predicate, value, condition, event, duration, keyword rule, extension; new elements per card in authoring order, mean over permutations, singletons",
+    "unique_primitive_cards": "cards that use at least one element no other card in the pilot uses",
+    "extensions": "card- or mechanic-specific elements, counted apart from generic primitives",
+    "unknowns": "typed external dependencies and unresolved rules per card",
+    "manual_decisions": "interpretation decisions recorded per card, with their basis",
+    "engine_translation": "ManaEngine validation declarations expressible in IR v0 without loss; constructs that needed C++ semantics"
+  },
+  "criteria": {
+    "alarm": [
+      "> 40% of sampled cards need a card-unique primitive",
+      "vocabulary growth is roughly linear: permutation-mean new elements per card in the last third >= 0.75 x the first third"
+    ],
+    "positive": [
+      "FULL + FULL_DEP >= 75% of sampled cards, with no hidden simplification",
+      "<= 25% of sampled cards need a card-unique primitive that is not a reusable mechanic rule",
+      "permutation-mean new elements per card in the last third < 0.5 x the first third",
+      ">= 90% of the ManaEngine family representatives translate without loss"
+    ],
+    "uniqueness_scope": "an element is unique if no other card of pilot + engine validation uses it; reuse potential of singletons is screened by a text signature over the frame (heuristic)",
+    "not_a_claim": "stage A cannot establish compiler accuracy, false-acceptance rate or execution correctness"
+  }
+}
