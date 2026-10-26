@@ -1,0 +1,197 @@
+# corpus_inventory.py (v2, run from main checkout root)
+== A. Physical log files ==
+all *.log under data/raw: 260
+  data/raw/collected match slices: 164 (keyed by match id 146, legacy names 18)
+  LIVE recordings: 95 match directories in 23 client sessions; slice.log copies 95
+  loose files in data/raw: 1; collector pending slices: 0
+collector_state game sections: 212 -> {'IMPORTED': 146, 'SKIPPED_NOT_RANKED': 66}
+protected keys among collected keyed logs: 8; among LIVE dirs: 7
+
+== B. Match identities ==
+keyed raw match logs: 146 unique keys; LIVE dirs: 95 unique keys, 93 also keyed raw, 2 LIVE-only
+Policy match files: 158 unique game_ids; 140 have a keyed raw log; 18 come from legacy/loose logs (identity known only via the Policy file)
+keyed raw logs without a Policy file (rejected by the strict Policy importer): 6
+identity-level unique completed Ranked Standard matches (keyed raw U Policy): 164; protected among them: 8
+limit: legacy logs rejected by the Policy importer have no identity without opening them (not opened).
+
+== C. Usage of non-protected Policy matches ==
+non-protected Policy matches: 150 (protected excluded by file name: 8)
+  EVAL-1 eligible: 13
+  EVAL-2 completed (incl. 12 strict): 33
+  not in any registry (collected after EVAL-2): 22
+  prepare-corpus split: test_seen: 16
+  prepare-corpus split: train: 56
+  prepare-corpus split: validation: 10
+  of them in real_policy_retrain_1 (initial 55-match corpus): 54; in refresh_obs1_final (32): 32; EVAL-2 strict: 12
+  usage registry statuses (prepare corpus, 92): {'TRAINED_OR_SELECTED': 80, 'EVALUATED_ONLY': 3, 'NOT_KNOWN_USED': 9}
+
+== D. ALL non-protected Policy matches: matches=150 decisions=5142 effect-zone appearances=52669 unique effect-zone card IDs=906 ==
+  SELF classes: {'PRIEST': 47, 'DEMONHUNTER': 26, 'WARRIOR': 26, 'WARLOCK': 23, 'HUNTER': 16, 'MAGE': 5, 'DEATHKNIGHT': 5, 'ROGUE': 1, 'PALADIN': 1} | OPP classes: {'PRIEST': 32, 'WARRIOR': 20, 'PALADIN': 19, 'WARLOCK': 15, 'MAGE': 13, 'DEMONHUNTER': 12, 'DEATHKNIGHT': 10, 'ROGUE': 10, 'HUNTER': 9, 'DRUID': 6, 'SHAMAN': 4}
+  top-K share: {10: '22.7%', 25: '38.0%', 50: '50.6%', 100: '65.3%'}
+  IDs needed for share: {'50%': 49, '80%': 195, '90%': 327, '95%': 459}
+  by zone (appearances | unique | text source | template-parsed | engine-declared, appearance-weighted):
+    hand              30275 |  431 |  77.2% |  28.6% |  16.6%
+    opp_board          8222 |  571 |  72.3% |   4.2% |   5.1%
+    opp_hero_power     5142 |   45 |   0.0% |   0.0% |  10.2%
+    opp_location        922 |   14 |  81.3% |  11.6% |   0.0%
+    opp_weapon          851 |   38 |  51.2% |   0.8% |   0.0%
+    self_board         9163 |  350 |  59.2% |   2.7% |   8.3%
+    self_hero_power    5142 |   15 |   0.0% |   0.0% |   6.6%
+    self_location      2192 |    7 |  85.8% |   9.9% |   0.0%
+    self_weapon        1044 |   25 |  34.8% |   0.0% |   0.0%
+  effect-zone appearances by ID source: {'standard_catalog': '71.5%', 'token_like_suffix': '16.7%', 'other_noncollectible': '10.8%', 'collectible_snapshot_non_standard': '1.0%', 'hero_power_like': '0.1%'}
+  decision-level (effect zones): {'all_text_source': '685/5142 (13.3%)', 'all_template_parsed': '0/5142 (0.0%)', 'all_engine_declared': '0/5142 (0.0%)'}
+  per SELF/OPP class: matches-in-class, unique IDs, IDs for 80% of that class's appearances
+    OPP DEATHKNIGHT        matches= 10 unique=  67 ids_for_80%=31
+    OPP DEMONHUNTER        matches= 12 unique=  60 ids_for_80%=27
+    OPP DRUID              matches=  6 unique=  35 ids_for_80%=20
+    OPP HUNTER             matches=  9 unique=  53 ids_for_80%=21
+    OPP MAGE               matches= 13 unique= 118 ids_for_80%=41
+    OPP PALADIN            matches= 19 unique=  73 ids_for_80%=28
+    OPP PRIEST             matches= 32 unique= 168 ids_for_80%=49
+    OPP ROGUE              matches= 10 unique=  89 ids_for_80%=41
+    OPP SHAMAN             matches=  4 unique=  50 ids_for_80%=23
+    OPP WARLOCK            matches= 15 unique=  66 ids_for_80%=29
+    OPP WARRIOR            matches= 20 unique=  86 ids_for_80%=31
+    SELF DEATHKNIGHT       matches=  5 unique=  32 ids_for_80%=15
+    SELF DEMONHUNTER       matches= 26 unique=  94 ids_for_80%=31
+    SELF HUNTER            matches= 16 unique=  73 ids_for_80%=16
+    SELF MAGE              matches=  5 unique=  39 ids_for_80%=15
+    SELF PALADIN           matches=  1 unique=  23 ids_for_80%=11
+    SELF PRIEST            matches= 47 unique= 240 ids_for_80%=17
+    SELF ROGUE             matches=  1 unique=  21 ids_for_80%=12
+    SELF WARLOCK           matches= 23 unique=  87 ids_for_80%=35
+    SELF WARRIOR           matches= 26 unique=  78 ids_for_80%=27
+
+== D. INITIAL corpus real_policy_retrain_1: matches=54 decisions=2050 effect-zone appearances=22024 unique effect-zone card IDs=496 ==
+  SELF classes: {'PRIEST': 37, 'WARRIOR': 14, 'DEATHKNIGHT': 3} | OPP classes: {'PRIEST': 21, 'PALADIN': 6, 'WARLOCK': 5, 'WARRIOR': 4, 'DEMONHUNTER': 4, 'ROGUE': 3, 'MAGE': 3, 'HUNTER': 3, 'DEATHKNIGHT': 2, 'SHAMAN': 2, 'DRUID': 1}
+  top-K share: {10: '42.7%', 25: '65.5%', 50: '77.2%', 100: '85.9%'}
+  IDs needed for share: {'50%': 14, '80%': 63, '90%': 142, '95%': 228}
+  by zone (appearances | unique | text source | template-parsed | engine-declared, appearance-weighted):
+    hand              13294 |  191 |  85.3% |  43.6% |  22.4%
+    opp_board          3003 |  324 |  83.4% |   5.1% |   6.5%
+    opp_hero_power     2050 |   27 |   0.0% |   0.0% |   9.7%
+    opp_location        647 |    7 |  86.6% |   8.8% |   0.0%
+    opp_weapon          263 |   16 |  30.8% |   0.0% |   0.0%
+    self_board         2884 |  164 |  78.9% |   1.0% |  15.5%
+    self_hero_power    2050 |    5 |   0.0% |   0.0% |   9.3%
+    self_location      1480 |    5 |  86.4% |  12.4% |   0.0%
+    self_weapon         453 |    6 |  21.9% |   0.0% |   0.0%
+  effect-zone appearances by ID source: {'standard_catalog': '81.7%', 'token_like_suffix': '15.8%', 'other_noncollectible': '1.8%', 'collectible_snapshot_non_standard': '0.6%', 'hero_power_like': '0.0%'}
+  decision-level (effect zones): {'all_text_source': '263/2050 (12.8%)', 'all_template_parsed': '0/2050 (0.0%)', 'all_engine_declared': '0/2050 (0.0%)'}
+  per SELF/OPP class: matches-in-class, unique IDs, IDs for 80% of that class's appearances
+    OPP DEATHKNIGHT        matches=  2 unique=  10 ids_for_80%=6
+    OPP DEMONHUNTER        matches=  4 unique=  39 ids_for_80%=21
+    OPP DRUID              matches=  1 unique=   6 ids_for_80%=4
+    OPP HUNTER             matches=  3 unique=  26 ids_for_80%=10
+    OPP MAGE               matches=  3 unique=  53 ids_for_80%=21
+    OPP PALADIN            matches=  6 unique=  40 ids_for_80%=22
+    OPP PRIEST             matches= 21 unique= 121 ids_for_80%=38
+    OPP ROGUE              matches=  3 unique=  28 ids_for_80%=14
+    OPP SHAMAN             matches=  2 unique=  27 ids_for_80%=14
+    OPP WARLOCK            matches=  5 unique=  31 ids_for_80%=17
+    OPP WARRIOR            matches=  4 unique=  32 ids_for_80%=15
+    SELF DEATHKNIGHT       matches=  3 unique=  27 ids_for_80%=14
+    SELF PRIEST            matches= 37 unique= 201 ids_for_80%=17
+    SELF WARRIOR           matches= 14 unique=  46 ids_for_80%=15
+
+== D. OLDER: prepare-corpus matches (collected up to 2026-10-15): matches=82 decisions=3117 effect-zone appearances=32751 unique effect-zone card IDs=633 ==
+  SELF classes: {'PRIEST': 45, 'WARRIOR': 17, 'DEMONHUNTER': 13, 'DEATHKNIGHT': 5, 'WARLOCK': 2} | OPP classes: {'PRIEST': 24, 'PALADIN': 11, 'WARLOCK': 9, 'WARRIOR': 7, 'MAGE': 6, 'ROGUE': 6, 'DEATHKNIGHT': 5, 'DEMONHUNTER': 5, 'HUNTER': 4, 'SHAMAN': 3, 'DRUID': 2}
+  top-K share: {10: '35.0%', 25: '54.9%', 50: '67.8%', 100: '79.2%'}
+  IDs needed for share: {'50%': 20, '80%': 106, '90%': 208, '95%': 311}
+  by zone (appearances | unique | text source | template-parsed | engine-declared, appearance-weighted):
+    hand              19277 |  252 |  87.5% |  39.1% |  20.0%
+    opp_board          4816 |  418 |  78.9% |   5.4% |   6.0%
+    opp_hero_power     3117 |   36 |   0.0% |   0.0% |   7.2%
+    opp_location        740 |   11 |  84.9% |   7.7% |   0.0%
+    opp_weapon          524 |   25 |  53.2% |   1.3% |   0.0%
+    self_board         4776 |  224 |  74.5% |   2.4% |  12.7%
+    self_hero_power    3117 |    9 |   0.0% |   0.0% |   6.1%
+    self_location      1937 |    5 |  87.9% |  11.2% |   0.0%
+    self_weapon         681 |   11 |  36.9% |   0.0% |   0.0%
+  effect-zone appearances by ID source: {'standard_catalog': '82.1%', 'token_like_suffix': '15.5%', 'other_noncollectible': '1.7%', 'collectible_snapshot_non_standard': '0.6%', 'hero_power_like': '0.1%'}
+  decision-level (effect zones): {'all_text_source': '594/3117 (19.1%)', 'all_template_parsed': '0/3117 (0.0%)', 'all_engine_declared': '0/3117 (0.0%)'}
+  per SELF/OPP class: matches-in-class, unique IDs, IDs for 80% of that class's appearances
+    OPP DEATHKNIGHT        matches=  5 unique=  35 ids_for_80%=19
+    OPP DEMONHUNTER        matches=  5 unique=  39 ids_for_80%=21
+    OPP DRUID              matches=  2 unique=  13 ids_for_80%=9
+    OPP HUNTER             matches=  4 unique=  31 ids_for_80%=14
+    OPP MAGE               matches=  6 unique=  64 ids_for_80%=26
+    OPP PALADIN            matches= 11 unique=  59 ids_for_80%=26
+    OPP PRIEST             matches= 24 unique= 132 ids_for_80%=39
+    OPP ROGUE              matches=  6 unique=  71 ids_for_80%=34
+    OPP SHAMAN             matches=  3 unique=  38 ids_for_80%=20
+    OPP WARLOCK            matches=  9 unique=  57 ids_for_80%=27
+    OPP WARRIOR            matches=  7 unique=  42 ids_for_80%=19
+    SELF DEATHKNIGHT       matches=  5 unique=  32 ids_for_80%=15
+    SELF DEMONHUNTER       matches= 13 unique=  53 ids_for_80%=20
+    SELF PRIEST            matches= 45 unique= 232 ids_for_80%=17
+    SELF WARLOCK           matches=  2 unique=  24 ids_for_80%=14
+    SELF WARRIOR           matches= 17 unique=  51 ids_for_80%=15
+
+== D. NEWER: matches collected after the prepare corpus: matches=68 decisions=2025 effect-zone appearances=19918 unique effect-zone card IDs=594 ==
+  SELF classes: {'WARLOCK': 21, 'HUNTER': 16, 'DEMONHUNTER': 13, 'WARRIOR': 9, 'MAGE': 5, 'PRIEST': 2, 'ROGUE': 1, 'PALADIN': 1} | OPP classes: {'WARRIOR': 13, 'PRIEST': 8, 'PALADIN': 8, 'DEMONHUNTER': 7, 'MAGE': 7, 'WARLOCK': 6, 'HUNTER': 5, 'DEATHKNIGHT': 5, 'ROGUE': 4, 'DRUID': 4, 'SHAMAN': 1}
+  top-K share: {10: '15.7%', 25: '30.2%', 50: '46.6%', 100: '66.1%'}
+  IDs needed for share: {'50%': 57, '80%': 163, '90%': 256, '95%': 344}
+  by zone (appearances | unique | text source | template-parsed | engine-declared, appearance-weighted):
+    hand              10998 |  261 |  59.0% |  10.4% |  10.6%
+    opp_board          3406 |  345 |  63.0% |   2.4% |   3.8%
+    opp_hero_power     2025 |   33 |   0.0% |   0.0% |  14.8%
+    opp_location        182 |    7 |  67.0% |  27.5% |   0.0%
+    opp_weapon          327 |   21 |  48.0% |   0.0% |   0.0%
+    self_board         4387 |  193 |  42.7% |   3.0% |   3.6%
+    self_hero_power    2025 |   11 |   0.0% |   0.0% |   7.2%
+    self_location       255 |    3 |  69.8% |   0.0% |   0.0%
+    self_weapon         363 |   16 |  30.9% |   0.0% |   0.0%
+  effect-zone appearances by ID source: {'standard_catalog': '54.1%', 'other_noncollectible': '25.7%', 'token_like_suffix': '18.7%', 'collectible_snapshot_non_standard': '1.5%', 'hero_power_like': '0.0%'}
+  decision-level (effect zones): {'all_text_source': '91/2025 (4.5%)', 'all_template_parsed': '0/2025 (0.0%)', 'all_engine_declared': '0/2025 (0.0%)'}
+  per SELF/OPP class: matches-in-class, unique IDs, IDs for 80% of that class's appearances
+    OPP DEATHKNIGHT        matches=  5 unique=  41 ids_for_80%=20
+    OPP DEMONHUNTER        matches=  7 unique=  42 ids_for_80%=18
+    OPP DRUID              matches=  4 unique=  26 ids_for_80%=15
+    OPP HUNTER             matches=  5 unique=  32 ids_for_80%=15
+    OPP MAGE               matches=  7 unique=  70 ids_for_80%=24
+    OPP PALADIN            matches=  8 unique=  33 ids_for_80%=15
+    OPP PRIEST             matches=  8 unique=  56 ids_for_80%=26
+    OPP ROGUE              matches=  4 unique=  27 ids_for_80%=13
+    OPP SHAMAN             matches=  1 unique=  18 ids_for_80%=8
+    OPP WARLOCK            matches=  6 unique=  24 ids_for_80%=10
+    OPP WARRIOR            matches= 13 unique=  63 ids_for_80%=25
+    SELF DEMONHUNTER       matches= 13 unique=  81 ids_for_80%=32
+    SELF HUNTER            matches= 16 unique=  73 ids_for_80%=16
+    SELF MAGE              matches=  5 unique=  39 ids_for_80%=15
+    SELF PALADIN           matches=  1 unique=  23 ids_for_80%=11
+    SELF PRIEST            matches=  2 unique=  41 ids_for_80%=14
+    SELF ROGUE             matches=  1 unique=  21 ids_for_80%=12
+    SELF WARLOCK           matches= 21 unique=  75 ids_for_80%=32
+    SELF WARRIOR           matches=  9 unique=  34 ids_for_80%=15
+
+== E. Does a short list learned on older matches cover newer matches? ==
+  top-25 IDs of OLDER corpus cover 8.4% of NEWER effect-zone appearances
+  top-50 IDs of OLDER corpus cover 12.4% of NEWER effect-zone appearances
+  top-100 IDs of OLDER corpus cover 21.5% of NEWER effect-zone appearances
+  top-200 IDs of OLDER corpus cover 30.0% of NEWER effect-zone appearances
+  NEWER IDs never seen in OLDER: 273 of 594; their share of NEWER appearances: 48.1%
+
+== F. Accumulation of unique effect-zone IDs with more matches (deterministic order by game_id) ==
+  matches -> unique IDs: {10: 241, 25: 457, 50: 575, 75: 739, 100: 799, 125: 865, 150: 906}
+
+== G. Decision structure (for the performance section) ==
+  SELF labeled decisions per match: mean 34.3, median 31.0
+  SELF decisions per match incl. importer-skipped: mean 41.8, median 37.5
+  last observed turn_number per match (both players' turns): mean 19.7, median 17.5
+  SELF labeled decisions per SELF turn: mean 3.43, p90 6, max 12
+  legal menu size: mean 10.5, median 8.0, p90 23, max 82
+
+== H. Effect-zone IDs without any pinned text record, by set prefix ==
+  OLDER: missing 17.3% of appearances; by prefix (share of all appearances): {'TIME': '7.5%', 'TLC': '2.0%', 'CAP': '1.6%', 'JAIL': '1.3%', 'DINO': '1.2%', 'EDR': '1.1%'}
+  NEWER: missing 44.4% of appearances; by prefix (share of all appearances): {'BE': '28.1%', 'TIME': '5.8%', 'JAIL': '2.0%', 'EDR': '1.9%', 'DINO': '1.5%', 'TLC': '1.4%'}
+
+== I. Board entities: what the Turn Engine must know about them ==
+  opp_board: keywords/stats only on board 36.3%, has trigger or static rule 36.0%, no text record 27.7%
+  self_board: no text record 40.8%, has trigger or static rule 29.6%, keywords/stats only on board 29.6%
+
+# forecaster_cpu_cost.py
+decisions=300 (state load failures 0) actions=2902
+forecast per action: median 0.145 ms, p95 0.243 ms, mean 0.146 ms (1 thread)
+status share: {'PARTIAL': '94.9%', 'EXACT': '3.6%', 'UNSUPPORTED': '1.4%'}

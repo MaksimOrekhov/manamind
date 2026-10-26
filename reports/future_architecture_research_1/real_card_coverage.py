@@ -1,5 +1,8 @@
 """Read-only: which card IDs appear in real decisions, frequency concentration, and decision-level coverage
-by (a) ManaEngine declarations, (b) the outcome text grammar. Prints aggregates only (no game IDs / names)."""
+by (a) ManaEngine declarations, (b) the outcome text grammar. Prints aggregates only (no game IDs / names).
+
+NOTE (review v2): this initial v1 diagnostic reads board["card_id"], but board and Location slots nest the card
+under board["card"], so it counts no board entities. Kept unchanged for history; corpus_inventory.py replaces it."""
 import sys, json, re, collections
 from pathlib import Path
 sys.path.insert(0, "src")
