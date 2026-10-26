@@ -750,7 +750,7 @@ def pilot_verdict(screens: list[dict], labels: dict[str, dict], manifest: dict) 
             if times else None}
 
 
-def run_freeze(batch: str, rater: str) -> None:
+def run_freeze(batch: str, rater: str, truncated_reason: str | None = None) -> None:
     path = labels_path(rater, batch)
     out = path.parent / f"{batch}.freeze.json"
     if out.exists():
@@ -766,7 +766,15 @@ def run_freeze(batch: str, rater: str) -> None:
     if batch == "pilot":
         freeze.update(pilot_verdict(payload["screens"], labels, manifest))
     elif len(labels) != len(payload["screens"]):
-        raise SystemExit(f"{len(payload['screens']) - len(labels)} screens are not labeled yet")
+        if not truncated_reason:
+            raise SystemExit(f"{len(payload['screens']) - len(labels)} screens are not labeled yet "
+                             "(PROTOCOL amendment 1: --truncated REASON freezes the labeled screens only)")
+        # Amendment 1: stop early, decided before any model run. Only saved screens count;
+        # unlabeled screens are dropped, never imputed.
+        repeats = {s["screen_id"] for s in manifest["screens"] if s["repeat"]}
+        freeze.update(truncated=True, truncated_reason=truncated_reason,
+                      frozen_screen_ids=sorted(labels), unique_labeled=len(set(labels) - repeats),
+                      repeat_labeled=len(set(labels) & repeats))
     write_once(out, json.dumps(freeze, ensure_ascii=False, indent=1) + "\n")
     print(json.dumps(freeze, ensure_ascii=False, indent=1))
 
@@ -782,6 +790,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--rater", default="user")
     parser.add_argument("--port", type=int, default=8765)
     parser.add_argument("--no-browser", action="store_true")
+    parser.add_argument("--truncated", metavar="REASON",
+                        help="freeze an incompletely labeled main batch (PROTOCOL amendment 1)")
     args = parser.parse_args(argv)
     if args.inventory:
         run_inventory()
@@ -790,7 +800,7 @@ def main(argv: list[str] | None = None) -> None:
     elif args.serve:
         serve(args.batch, args.rater, args.port, not args.no_browser)
     else:
-        run_freeze(args.batch, args.rater)
+        run_freeze(args.batch, args.rater, args.truncated)
 
 
 if __name__ == "__main__":
