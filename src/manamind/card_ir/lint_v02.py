@@ -11,6 +11,7 @@ import re
 from collections.abc import Mapping
 
 from manamind.card_ir.semantic_lint import NUMBER, VERBS, WORDS, nodes
+from manamind.card_ir.strict_lint import _actions
 from manamind.card_ir.validate import normalise_text
 
 SUPERSEDED_V01 = {
@@ -21,6 +22,61 @@ SUPERSEDED_V01 = {
 }
 _TURNS = re.compile(rf"\b({NUMBER})[ -]turns?\b")
 ORDER_VERBS = {**VERBS, "FREEZE": r"\bfreeze\b"}
+
+
+def _linear_steps(effect):
+    """Flatten only unconditional sequences; never guess order across guards or loops."""
+    if not isinstance(effect, Mapping):
+        return None
+    if "op" in effect:
+        return [effect]
+    if "seq" not in effect:
+        return None
+    steps = []
+    for child in effect["seq"]:
+        part = _linear_steps(child)
+        if part is None:
+            return None
+        steps.extend(part)
+    return steps
+
+
+def _clause_targets(ability, span):
+    """Associate a unique verb with its own sentence and resolve the play-target handle.
+
+    Deliberately narrow English templates. A neighbouring enemy word must not
+    justify an enemy-only *damage* target. No card IDs or names are consulted.
+    """
+    actions = list(_actions(ability.get("effect", {})))
+    for op in ("DEAL_DAMAGE", "FREEZE"):
+        matches = list(re.finditer(ORDER_VERBS[op], span))
+        candidates = [a.node for a in actions if a.node["op"] == op]
+        if len(matches) != 1 or len(candidates) != 1:
+            continue
+        start = matches[0].start()
+        stop = re.search(r"[.;]", span[start:])
+        clause = span[start:start + stop.start()] if stop else span[start:]
+        expected = None
+        if op == "DEAL_DAMAGE":
+            phrase = re.fullmatch(r"deal\s+[$#]?\d+\s+damage(?:\s+to\s+(?:a|an)\s+(?:damaged\s+)?(minion|hero|character))?", clause)
+            if phrase:
+                expected = ("CHOSEN", (phrase[1] or "character").upper(), "ANY", "PLAY")
+        elif re.fullmatch(r"freeze all enemy minions", clause):
+            expected = ("ALL", "MINION", "ENEMY", "PLAY")
+        if expected is None:
+            continue
+        target = candidates[0].get("to")
+        binding = ability.get("target", {})
+        if isinstance(target, Mapping) and target == {"ref": binding.get("bind")}:
+            target = binding.get("choose")
+        # CHOSEN constrains a play target; automatic damage without one is outside
+        # this template. FREEZE's explicit area clause always constrains its selector.
+        if op == "DEAL_DAMAGE" and not binding:
+            continue
+        actual = ((target.get("pick"), target.get("type"), target.get("side"), target.get("zone", "PLAY"))
+                  if isinstance(target, Mapping) else None)
+        if actual != expected:
+            yield f"CLAUSE_TARGET: {op} clause {clause!r} requires {expected}, got {actual}"
 
 
 def _integer(text):
@@ -52,6 +108,8 @@ def lint_v02(doc: Mapping) -> list[str]:
         def warn(code, message):
             warnings.append(f"{path}: {code}: {message}")
 
+        warnings.extend(f"{path}: {message}" for message in _clause_targets(ability, span))
+
         # FREEZE: the verb and the operation in both directions.
         has_freeze = any(n["op"] == "FREEZE" for n in ops)
         if re.search(r"\bfreeze\b", span) and not has_freeze:
@@ -60,7 +118,7 @@ def lint_v02(doc: Mapping) -> list[str]:
             warn("FREEZE_TEXT", "FREEZE needs 'freeze' in the text")
         # Straight-line order with FREEZE (the v0.1 semantic lint skips sequences containing an op it does not know).
         effect = ability.get("effect", {})
-        steps = effect.get("seq", []) if isinstance(effect, Mapping) else []
+        steps = _linear_steps(effect) or []
         if has_freeze and steps and all(isinstance(s, Mapping) and s.get("op") in ORDER_VERBS for s in steps):
             positions = [[m.start() for m in re.finditer(ORDER_VERBS[s["op"]], span)] for s in steps]
             if all(len(p) == 1 for p in positions) and [p[0] for p in positions] != sorted(p[0] for p in positions):

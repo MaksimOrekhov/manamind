@@ -92,6 +92,9 @@ class _WalkerV02(_Walker):
 
     # values, conditions, predicates --------------------------------------------------------------------------------
     def value(self, node: Any, path: str, bound: set[str]) -> None:
+        if isinstance(node, Mapping) and "mark" in node and not _is_int(node.get("n")):
+            self.err(path + ".n", "a marked amount must be an integer, not a boolean or float")
+            return
         if isinstance(node, Mapping) and len(node) == 1 and "mul" in node:
             items = node["mul"]
             if not isinstance(items, list) or len(items) != 2 or not any(_is_int(item) for item in items):
@@ -352,6 +355,14 @@ def _check_decisions_v02(doc: Mapping[str, Any], walker: _WalkerV02, report: Rep
 def validate_declaration_v02(doc: Mapping[str, Any], meta: Any) -> Report:
     """Validate one ``card-ir/0.2`` declaration against the pinned metadata ``meta`` (a ``CardMetadata``)."""
     report = Report(str(doc.get("card_id")) if isinstance(doc, Mapping) else "?")
+    if not isinstance(doc, Mapping):
+        report.errors.append("doc: expected an object")
+        return report
+    for key in ("abilities", "dependencies", "decisions", "keywords", "reminders", "unexpressed"):
+        if key in doc and not isinstance(doc[key], list):
+            report.errors.append(f"doc.{key}: must be an array")
+    if report.errors:
+        return report
     walker = _WalkerV02(doc if isinstance(doc, Mapping) else {}, meta, report)
     if not walker.keys(doc, "doc", ("ir", "card_id", "snapshot", "role", "text", "text_sha256", "abilities",
                                     "dependencies", "decisions", "status"),

@@ -185,7 +185,17 @@ def test_v02_strict_rejects_malformed_input_instead_of_crashing(meta, examples):
 def test_measurements_reproduce_byte_for_byte():
     module = load("measure")
     result = module.build()
-    assert module.payload(result) == (HERE / "results.json").read_bytes()
+    audit = ROOT / "reports/card_ir_v02_independent_validation"
+    # Preserve the historical measurement. Independent validation changed exactly
+    # one old mutation verdict (Frostwyrm's enemy-only damage target).
+    assert (audit / "v02_before.json").read_bytes() == (HERE / "results.json").read_bytes()
+    assert module.payload(result) == (audit / "v02_after.json").read_bytes()
+    expected = copy.deepcopy(read(HERE / "results.json"))
+    expected["mutations"]["detected"] += 1
+    expected["mutations"]["by_operator"]["SIDE"]["detected"] += 1
+    expected["mutations"]["undetected"] = [r for r in expected["mutations"]["undetected"]
+                                            if r["card_id"] != "CORE_RLK_063"]
+    assert result == expected
     assert result["conformance"]["passed"] == result["conformance"]["total"] == CASES
     assert result["history"]["v01_accepted"] == result["history"]["dispatch_identical"] == 65
     assert result["diagnostics_relabelled"]["rejected"] == 9

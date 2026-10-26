@@ -124,7 +124,9 @@ report = validate_strict_any(declaration, metadata, bindings=receipt_or_none)  #
 - **Provisional rules.** A v0.2 declaration that needs a rule listed in `vocabulary_v02.PROVISIONAL_RULES`
   (`R_RETURN_FULL_HAND`, `R_SPLIT_UNQUALIFIED`, `R_FREEZE_THAW`, `R_ATTACK_REDIRECT`, `R_DAMAGE_EVENT_AMOUNT`)
   must acknowledge it with an `UNKNOWN_RULE` dependency carrying `"rule": "<id>"` and scope CONDITIONAL or CORE.
-  An acknowledgement of a rule the declaration does not need is an error. The scope sets the status honestly.
+  An acknowledgement of a rule the declaration does not need is an error. Scope is an **author assertion**:
+  the checker does not establish whether CONDITIONAL is justified. Changing CORE to CONDITIONAL can grant
+  FULL_DEP without new evidence. Independent review must check ordinary-case vs additional-condition impact.
 - **Rule bases.** `DEFINITION` marks a rule that defines an IR construct (turn windows, delayed start, all-matching
   player effects, attack roles) without claiming anything about a card; the card's mapping is its own decision.
   Decision basis `USER_OBSERVED` records the user's game experience; it is a source, not official documentation.
@@ -135,3 +137,11 @@ report = validate_strict_any(declaration, metadata, bindings=receipt_or_none)  #
   v0.1 declarations render byte-identically to validation-2.
 
 Conformance cases, examples and known blind spots: [reports/card_ir_v02](../reports/card_ir_v02/README.md).
+
+Independent validation and before/after measurements:
+[CARD-IR-V02-INDEPENDENT-VALIDATION](../reports/card_ir_v02_independent_validation/README.md).
+The v0.2 checker now rejects non-array document collections and non-integer marked amounts. Narrow per-operation
+clause checks resolve a play-target reference before checking its side/type/zone; an enemy word in a neighbouring
+Freeze clause does not justify enemy-only damage. Unconditional nested sequences are flattened for the existing
+Freeze order check. Branch/loop order, arbitrary conditions, token semantics, evidence provenance and dependency
+severity still require review. This adds no language operation and changes no frozen v0.1 checker or historical result.
