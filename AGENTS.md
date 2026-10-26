@@ -8,6 +8,15 @@ Read on demand: [docs/REAL_MATCH_DATA.md](docs/REAL_MATCH_DATA.md) (Power.log an
 
 Answer in Russian by default. Explain Python/ML concepts plainly; the user is a frontend developer learning this stack.
 
+## Git workflow
+
+- Work in the existing main `ManaMind` directory. Before starting a new task, run `git fetch origin` and inspect the current `origin/main`.
+- Start a new task with an ordinary branch from the fetched `origin/main` (`git switch -c codex/<task> origin/main`). To continue an existing task, switch to its branch instead.
+- Do not create additional worktrees by default. Use a temporary worktree only for a concrete technical need, and remove it safely within the same task.
+- Preserve other work: never overwrite, stage, clean, or delete someone else's uncommitted, untracked, or ignored files. If switching branches would affect them, stop and explain the conflict; do not force the switch.
+- Merge into `main` only with separate explicit user permission. Removing a worktree does not authorize merging or deleting its branch.
+- At task completion, commit and push the task branch; do not leave another permanent working directory. Stage only files belonging to the task.
+
 ## Strategy: Model-first
 
 ManaMind is a desktop Hearthstone adviser built around **its own local neural network** that scores the currently legal actions from the player-visible state, card metadata and card text, accumulated experience and observed action outcomes. It does not automate gameplay: no mouse movement, clicks or game actions.
