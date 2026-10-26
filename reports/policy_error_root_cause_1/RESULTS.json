@@ -1,0 +1,518 @@
+{
+  "schema": "manamind.policy_error_root_cause_1/results/1",
+  "status": "COMPLETE",
+  "date": "2026-10-26",
+  "base_commit": "3e03ca0f919c63892c4c18208e967d2a9c920ecd",
+  "branch": "codex/policy-error-root-cause-1",
+  "cohort": {
+    "positions": 48,
+    "games": 19,
+    "original_policy_top1_blunders": 12,
+    "controls": 36,
+    "classes": {
+      "WARLOCK": 37,
+      "DEMONHUNTER": 11
+    },
+    "all_36_controls_used": true
+  },
+  "identities": {
+    "checkpoint_sha256": "044b9b50cd6b33912faf8dabe42d919305cb238a8d5cbfb1edf30bb3689d1e4d",
+    "model_config": {
+      "architecture": "PolicyNetworkV2",
+      "hidden_size": 64,
+      "dropout": 0.1,
+      "card_count": 1187,
+      "state_feature_count": 158,
+      "entity_feature_count": 163,
+      "card_embedding_dim": 32
+    },
+    "catalog_sha256": "3dfae0cb5fe312af22c2a16e01eba1286c073f89ea020808fbbf1778067870d9",
+    "vocabulary_sha256": "5d54256a24edce79df217ee13852eb6f0f4132213ad3abc09fd75c2fa36301a1",
+    "training_dataset_sha256": "2b20c3b0fd48c34031dfbb8cf516cda9679ce53fee21843e0fc8613609f0b598",
+    "training_split_sha256": "4e96ec57ecdf26ac95d754c23b2ea88d354a27cb9f363ee91cecd8e44d85229b",
+    "metadata_snapshot": "hsjson_255130_enUS",
+    "frozen_input_sha256": {
+      "lock.private.json": "47692a36643fe49bb67868b59a34cffa5980116352f4dc30f4843465b4a050ac",
+      "inventory.private.json": "da58b0446c664de48e73957cb4eafc1b69d326141d6e959e7c36f6dd09a00074",
+      "pool.private.jsonl": "1e9b538bd8e7c5c1152176ded45a11d9a98e832b5e3e75c60bf19bfe43593ef4",
+      "compare.private.json": "62336ed2254bd56c0be829b2693a53fcedb4764ca2bed29dc46926112e49df49",
+      "pilot.manifest.private.json": "f3bf08a26c69aba37c6d799f4eaab078ec205879c6df0700e9aed488a8a3e652",
+      "main.manifest.private.json": "561c044c51da4d2f5848211a7d326c0185d0ebe1f8f84dcb1be97bc82208785e",
+      "labels/user/pilot.labels.jsonl": "a33930a2bd8a6ca9661f4bfafb48a5bd9f0642c6b0c74a2aa88d642e1252fd73",
+      "labels/user/main.labels.jsonl": "5e193b093821accadce906d3855fc8f7f666022727c80d7e748dda678e6decaa",
+      "labels/user/pilot.freeze.json": "0f6fec0f25afb34aa7b3c6b4b3e036baf619b7717ade038b7d9baed9a085308f",
+      "labels/user/main.freeze.json": "dea55655b9b2e138754376a3c78e757742a79c648e25f01c233351738203ac1c"
+    },
+    "code_sha256": {
+      "scripts/policy_error_root_cause_1.py": "d8abccde5d70b4c44c6293bb45db3c30ab26ba0469678e30eb1fe1f52a0710cb",
+      "scripts/decision_quality_review_1_compare.py": "551d4ca3c226a68647a4d254002db4f0d3297f6bad94b13e423b4f8e8c7d3e98",
+      "src/manamind/models/policy_v2.py": "6f4addf7a9e75778a1a2e3a7e866807193b42828542172e09a8a3aae2965cabd",
+      "src/manamind/models/policy_inputs.py": "7184c3b59eb1b7eb0fdf37bf254d6eadcff292291a50e105dbf85b2ed29248c1",
+      "src/manamind/models/policy.py": "222004dbdac90774ab3dcccfdd33817687b681ba494dfaeb1dd5f2f2ecd07e6e",
+      "src/manamind/encoding/state_encoder.py": "e70d7a6a94da9194b25c26b3db6765d6c7cfc8a953e801e9ec5cbbbf8f3acb19",
+      "src/manamind/encoding/entity_encoder.py": "dc5c8e4fc7713584a9311ae7819c22ab1e81637c24ab1ed127ea87e8ed5b5926",
+      "src/manamind/strategy/scorer.py": "c4c4383d3dfecb8536fa5bd586f7d8fff0275aca9fb34e2edf6af513a0fda015",
+      "src/manamind/strategy/value.py": "110c96cee87f6216a9a5cd39be1dd9e36435f3483dd48a493e34ee30f153d6e8",
+      "scripts/train_real_policy.py": "0bb8292ceebcfe12fe528303e968b09320cc40cf43ddb810db389f3514f9d531"
+    },
+    "private_artifact_sha256": {
+      "reconstruction.private.json": "24c82f4109cc5c817f6720061bfe7fab342966b48c84d7eaa007b4a0c6f9a0ac",
+      "training.private.json": "9d099a522f0e2b1689109aee88743800c94051eca9445e8f1997d979d10dede3",
+      "diagnostics.private.json": "00aa88b66a5d8db70fbbd0215fc2149855c8c9fa51ee10df92427b04d17c590d"
+    }
+  },
+  "integrity": {
+    "frozen_states_and_menus_match_reimport": 48,
+    "full_policy_rankings_match_reference": 48,
+    "full_scorer_rankings_match_reference": 48,
+    "independent_reconstruction_records_identical": 48,
+    "full_checkpoint_dataset_hash_verified": true,
+    "audit_games_disjoint_from_checkpoint_all_splits": true,
+    "fresh_holdout_excluded_before_game_read": true,
+    "fresh_holdout_matches": 9,
+    "protected_game_contents_opened": false,
+    "labels_unchanged": true,
+    "checkpoint_unchanged": true,
+    "production_changed": false,
+    "catalog_changed": false,
+    "training_run": false,
+    "tuning_run": false,
+    "future_continuations_used_as_inputs": false
+  },
+  "diagnostics": {
+    "errors": {
+      "positions": 12,
+      "nonhero_unknown_tokens": 82,
+      "nonhero_tokens": 147,
+      "source_actions": 11,
+      "unknown_source": 2,
+      "acceptable_in_policy_top3": 9,
+      "policy_acceptable": 0,
+      "scorer_acceptable": 6,
+      "scorer_blunder": 6,
+      "acceptable_same_family": 5,
+      "acceptable_same_source_type": 0
+    },
+    "controls": {
+      "positions": 36,
+      "nonhero_unknown_tokens": 239,
+      "nonhero_tokens": 424,
+      "source_actions": 36,
+      "unknown_source": 10,
+      "acceptable_in_policy_top3": 35,
+      "policy_acceptable": 30,
+      "scorer_acceptable": 28,
+      "scorer_blunder": 6,
+      "acceptable_same_family": 34,
+      "acceptable_same_source_type": 32
+    },
+    "label_conflict_collision_positions": 0,
+    "max_single_candidate_logit_change": 7.152557373046875e-07,
+    "paired_scorer": {
+      "fixes_policy_blunder_with_acceptable": 6,
+      "policy_acceptable_to_scorer_blunder": 5,
+      "policy_blunder_to_not_blunder": 6,
+      "policy_not_blunder_to_scorer_blunder": 6
+    },
+    "controls_selected": {
+      "policy_acceptable": "C01",
+      "both_acceptable": "C01",
+      "scorer_blunder": "C06",
+      "policy_acceptable_scorer_blunder": "C16",
+      "attack_with_available_draw_discover_or_buff": "C27"
+    }
+  },
+  "assessment": {
+    "strong_local_explanations": 4,
+    "strong_cases": [
+      "E02",
+      "E04",
+      "E06",
+      "E07"
+    ],
+    "strong_cases_games": 3,
+    "likely_explanations": 2,
+    "likely_cases": [
+      "E01",
+      "E11"
+    ],
+    "not_sufficiently_established": 6,
+    "clear_mistake_is_separate_from_original_label": true,
+    "blind_second_human_rating": false,
+    "causal_weight_explanations_established": 0,
+    "mechanically_certified_guard_errors_in_original_comparison": 0
+  },
+  "catacombs": {
+    "positions": 4,
+    "games": 3,
+    "unique_states": 4,
+    "same_match_pair": [
+      "E09",
+      "E11"
+    ],
+    "exact_repeated_states": 0,
+    "confirmed_strict_order_failures": 0,
+    "possible_aura_preparation_case": "E11",
+    "vocabulary_index": 1109,
+    "metadata_base_cost": 0,
+    "ends_turn": false,
+    "consumes_ready_attack": false,
+    "coin_after_discover_forbidden": false,
+    "future_discover_options_used": false
+  },
+  "training_distribution": {
+    "train_games": 17,
+    "train_decisions": 591,
+    "classes_games": {
+      "WARRIOR": 3,
+      "PRIEST": 14
+    },
+    "classes_decisions": {
+      "WARRIOR": 79,
+      "PRIEST": 512
+    },
+    "chosen_action_types": {
+      "PLAY_CARD": 278,
+      "END_TURN": 144,
+      "ATTACK": 82,
+      "HERO_POWER": 58,
+      "ACTIVATE_LOCATION": 29
+    },
+    "order_exposure": {}
+  },
+  "source_card_exposure": {
+    "CATA_725": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "CORE_EX1_312": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "EDR_856": {
+      "hand_decisions": 15,
+      "menu_decisions": 3,
+      "chosen_decisions": 0,
+      "hand_games": 1,
+      "menu_games": 1
+    },
+    "HERO_10bchp": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "JAIL_513": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "JAIL_892": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "JAIL_EVENT_COIN": {
+      "hand_decisions": 54,
+      "menu_decisions": 54,
+      "chosen_decisions": 2,
+      "hand_games": 3,
+      "menu_games": 3
+    },
+    "TIME_026": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "TLC_451": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    },
+    "TLC_630t": {
+      "hand_decisions": 0,
+      "menu_decisions": 0,
+      "chosen_decisions": 0,
+      "hand_games": 0,
+      "menu_games": 0
+    }
+  },
+  "frozen_review_metrics": {
+    "policy_top1_acceptable": 0.625,
+    "policy_top1_blunder": 0.25,
+    "scorer_top1_acceptable": 0.7083333333333334,
+    "scorer_top1_blunder": 0.25,
+    "scorer_minus_policy_acceptable_pp": 8.333333333333334,
+    "scorer_minus_policy_acceptable_95ci_pp": [
+      -6.8,
+      23.3
+    ],
+    "scorer_minus_policy_blunder_95ci_pp": [
+      -15,
+      17
+    ],
+    "interval_source": "original whole-match bootstrap, not a new audit test",
+    "rater_stability": "NOT_MEASURED",
+    "original_end_turn_blunder_positions": 46
+  },
+  "cases": [
+    {
+      "case": "E01",
+      "original_label": "BLUNDER",
+      "assessment": "LIKELY",
+      "clear_mistake": false,
+      "diagnosis": "EMPTY_BUFF_RECIPIENT_WITH_OTHER_EFFECT_UNVALUED",
+      "policy_top1_source": "TIME_026",
+      "policy_top1_softmax": 0.41535807594836516,
+      "policy_top1_logit": 1.9586838483810425,
+      "source_vocabulary_index": 911,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E02",
+      "original_label": "BLUNDER",
+      "assessment": "STRONG_LOCAL_EXPLANATION",
+      "clear_mistake": true,
+      "diagnosis": "UNUSED_HERO_ATTACK_OPPORTUNITY_WITH_HEALTH_COST",
+      "policy_top1_source": "END_TURN",
+      "policy_top1_softmax": 0.23929391016023444,
+      "policy_top1_logit": -0.4465826153755188,
+      "source_vocabulary_index": null,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E03",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "CATACOMBS_BEFORE_COIN_ORDER_LOSS_NOT_ESTABLISHED",
+      "policy_top1_source": "TLC_451",
+      "policy_top1_softmax": 0.6539684134410655,
+      "policy_top1_logit": 0.7650591135025024,
+      "source_vocabulary_index": 1109,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E04",
+      "original_label": "BLUNDER",
+      "assessment": "STRONG_LOCAL_EXPLANATION",
+      "clear_mistake": true,
+      "diagnosis": "SYMMETRIC_CLEAR_DESTROYS_STRONG_OWN_BOARD",
+      "policy_top1_source": "CORE_EX1_312",
+      "policy_top1_softmax": 0.25688439748282355,
+      "policy_top1_logit": 2.4593989849090576,
+      "source_vocabulary_index": 302,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E05",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "CATACOMBS_BEFORE_TEMPO_ORDER_LOSS_NOT_ESTABLISHED",
+      "policy_top1_source": "TLC_451",
+      "policy_top1_softmax": 0.21961968051039996,
+      "policy_top1_logit": 0.7228841781616211,
+      "source_vocabulary_index": 1109,
+      "acceptable_in_policy_top3": false,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E06",
+      "original_label": "BLUNDER",
+      "assessment": "STRONG_LOCAL_EXPLANATION",
+      "clear_mistake": true,
+      "diagnosis": "OUTCAST_COPY_AND_DAMAGE_THRESHOLD_VERSUS_HERO_POWER",
+      "policy_top1_source": "HERO_10bchp",
+      "policy_top1_softmax": 0.2800792618786794,
+      "policy_top1_logit": 1.5462539196014404,
+      "source_vocabulary_index": 1,
+      "acceptable_in_policy_top3": false,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E07",
+      "original_label": "BLUNDER",
+      "assessment": "STRONG_LOCAL_EXPLANATION",
+      "clear_mistake": true,
+      "diagnosis": "ATTACKER_BELOW_TAUNT_KILL_THRESHOLD",
+      "policy_top1_source": "EDR_856",
+      "policy_top1_softmax": 0.6161432005592672,
+      "policy_top1_logit": 2.71036696434021,
+      "source_vocabulary_index": 609,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E08",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "TEMPO_VERSUS_DRAW_PREFERENCE_NOT_ESTABLISHED",
+      "policy_top1_source": "JAIL_513",
+      "policy_top1_softmax": 0.31876775552408343,
+      "policy_top1_logit": 2.754328727722168,
+      "source_vocabulary_index": 789,
+      "acceptable_in_policy_top3": false,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E09",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "DISCOVER_DOES_NOT_CONSUME_READY_ATTACK",
+      "policy_top1_source": "TLC_451",
+      "policy_top1_softmax": 0.5555836771367557,
+      "policy_top1_logit": 1.106823205947876,
+      "source_vocabulary_index": 1109,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E10",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "UNRESOLVED_HERALD_PARAMETER_AND_COMPLEX_EFFECTS",
+      "policy_top1_source": "CATA_725",
+      "policy_top1_softmax": 0.325487499474066,
+      "policy_top1_logit": 2.7342097759246826,
+      "source_vocabulary_index": 156,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E11",
+      "original_label": "BLUNDER",
+      "assessment": "LIKELY",
+      "clear_mistake": false,
+      "diagnosis": "POSSIBLE_COST_AURA_PREPARATION_WITH_UNPROVEN_LINE",
+      "policy_top1_source": "TLC_451",
+      "policy_top1_softmax": 0.3685539924898003,
+      "policy_top1_logit": 1.1646900177001953,
+      "source_vocabulary_index": 1109,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": true,
+      "scorer_top1_blunder": false,
+      "scorer_top1_forecast_status": "PARTIAL"
+    },
+    {
+      "case": "E12",
+      "original_label": "BLUNDER",
+      "assessment": "NOT_SUFFICIENTLY_ESTABLISHED",
+      "clear_mistake": false,
+      "diagnosis": "HERO_POWER_VERSUS_TOKEN_EFFECT_WITH_LABEL_CONFLICT",
+      "policy_top1_source": "HERO_10bchp",
+      "policy_top1_softmax": 0.44681968891319807,
+      "policy_top1_logit": 1.3844503164291382,
+      "source_vocabulary_index": 1,
+      "acceptable_in_policy_top3": true,
+      "scorer_top1_acceptable": false,
+      "scorer_top1_blunder": true,
+      "scorer_top1_forecast_status": "PARTIAL"
+    }
+  ],
+  "hypotheses": {
+    "H1": "GENERAL_CARD_SEMANTICS_GAP_CONFIRMED_NOT_ERROR_ENRICHMENT",
+    "H2": "CANDIDATE_MENU_INDEPENDENCE_CONFIRMED_ORDER_CAUSE_NOT_DOMINANTLY_ESTABLISHED",
+    "H3": "5_SAME_FAMILY_0_SAME_SOURCE_TYPE_ACCEPTABLE_ALTERNATIVES_IN_12",
+    "H4": "SELF_CLASS_SHIFT_AND_LOW_CARD_EXPOSURE_CONFIRMED_TRAINING_BENEFIT_UNTESTED",
+    "H5": "SCORER_FIXES_AND_NEW_BLUNDERS_CANCEL_NO_PROVEN_ADVANTAGE"
+  },
+  "next_experiment": {
+    "direction": "A_DATA_ONLY_V2_PILOT",
+    "implemented": false,
+    "independent_dataset_and_split_review_required_before_training": true,
+    "architecture_change": false,
+    "new_test_positions": 64,
+    "test_games_limit": 16,
+    "train_games_limit": 16,
+    "validation_games_limit": 4,
+    "new_train_decisions_limit": 600,
+    "runs_limit": 2,
+    "epochs_per_run_limit": 10,
+    "minutes_per_run_limit": 15,
+    "contains_old_48_in_independent_test": false,
+    "winrate_gain_claimed": false
+  },
+  "validation": {
+    "focused_tests": {
+      "passed": 4
+    },
+    "ruff_tracked_and_task_files": {
+      "passed": true,
+      "python_files": 320
+    },
+    "pinned_regeneration": {
+      "passed": true,
+      "outputs": 2,
+      "git_diff_empty": true
+    },
+    "full_pytest_sandbox": {
+      "passed": 1294,
+      "failed": 1,
+      "skipped": 1,
+      "failure": "existing localhost HTTP test, WinError 10013 sandbox restriction",
+      "seconds": 103.57
+    },
+    "full_pytest_with_loopback": {
+      "passed": 1295,
+      "failed": 0,
+      "skipped": 1,
+      "seconds": 97.27
+    },
+    "privacy_scan": {
+      "passed": true,
+      "scope": "all five public report files; full/private IDs and prefixes excluded; no full states/menus exported"
+    },
+    "report_links_valid": true
+  },
+  "private_outputs": "data/processed_policy_error_root_cause_1/verified_run/",
+  "external_rule_reference": {
+    "url": "https://hearthstone.blizzard.com/en-us/news/24115553",
+    "scope": "Temporary keyword definition only; no snapshot/catalog replacement",
+    "publisher": "Blizzard Entertainment",
+    "published": "2024-07-15",
+    "checked": "2026-10-26"
+  }
+}
