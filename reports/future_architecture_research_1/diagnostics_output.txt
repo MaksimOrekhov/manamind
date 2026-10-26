@@ -1,0 +1,40 @@
+# census_standard_mechanics.py
+cards=1185 textless=3 fully_parsed_by_outcome_grammar=71 (6.0%) some_clause_parsed=266
+by type: {'MINION': '32/729', 'SPELL': '36/399', 'WEAPON': '2/36', 'HERO': '0/2', 'LOCATION': '1/19'}
+trigger_whenever_after                              113  9.5%
+start_end_of_turn                                    72  6.1%
+deathrattle                                         167 14.1%
+battlecry                                           381 32.2%
+aura_static (your X have/cost)                       40  3.4%
+cost_modification                                   122 10.3%
+random_any                                          230 19.4%
+discover                                             90  7.6%
+generate_to_hand (add/get)                           95  8.0%
+transform                                            16  1.4%
+copy                                                 53  4.5%
+shuffle_into_deck                                    25  2.1%
+history/counter (this game/this turn/if you've)     132 11.1%
+choose_one                                           27  2.3%
+secret_quest                                         24  2.0%
+summon                                              212 17.9%
+draw                                                130 11.0%
+deal_damage                                         189 15.9%
+set_expansion_keywords                              193 16.3%
+top mechanics tags: [('BATTLECRY', 376), ('TRIGGER_VISUAL', 155), ('DEATHRATTLE', 140), ('TAUNT', 97), ('DISCOVER', 81), ('RUSH', 42), ('LIFESTEAL', 31), ('AURA', 29), ('CHOOSE_ONE', 21), ('ELUSIVE', 18), ('STEALTH', 15), ('DIVINE_SHIELD', 15), ('COMBO', 14), ('ImmuneToSpellpower', 12), ('OVERLOAD', 12), ('QUEST', 12), ('COLOSSAL', 11), ('SECRET', 11), ('START_OF_GAME_KEYWORD', 10), ('REBORN', 9), ('TRADEABLE', 8), ('OUTCAST', 8), ('SPELLPOWER', 6), ('CHARGE', 6), ('ENRAGED', 4), ('WINDFURY', 3), ('FREEZE', 3), ('POISONOUS', 3), ('InvisibleDeathrattle', 2), ('AFFECTED_BY_SPELL_POWER', 2), ('ADJACENT_BUFF', 1), ('CANT_ATTACK', 1), ('GEARS', 1), ('SIDE_QUEST', 1)]
+text keywords: [('taunt', 137), ('discover', 88), ('rush', 68), ('lifesteal', 41), ('divine shield', 32), ('kindred', 29), ('choose one', 27), ('stealth', 23), ('prepare', 20), ('elusive', 20), ('dark gift', 19), ('rewind', 19), ('reborn', 17), ('dormant', 17), ('combo', 16), ('imbue', 16), ('herald', 15), ('overload', 13), ('freeze', 13), ('colossal', 12), ('fabled', 11), ('windfury', 9), ('outcast', 9), ('tradeable', 8), ('poisonous', 8), ('shatter', 7), ('corpse', 3), ('silence', 3), ('titan', 1)]
+sets: [('CORE', 289), ('THE_LOST_CITY', 183), ('EMERALD_DREAM', 183), ('TIME_TRAVEL', 183), ('ESCAPEFROM_VIOLET_HOLD', 164), ('CATACLYSM', 164), ('EVENT', 18), ('BE', 1)]
+
+# real_card_coverage.py data/processed_policy_real/real_policy_retrain_1
+decisions=2074 matches=55 unique_card_ids=209 appearances=14159
+  50% of appearances covered by top 9 card IDs
+  80% of appearances covered by top 26 card IDs
+  90% of appearances covered by top 42 card IDs
+  95% of appearances covered by top 72 card IDs
+decision-level coverage: {'all_in_standard_catalog': '527/2074 (25.4%)', 'all_with_text_source': '534/2074 (25.7%)', 'all_grammar': '6/2074 (0.3%)', 'all_manaengine': '1/2074 (0.0%)'}
+appearances with Standard catalog record 81.9%; with any pinned text source 82.1%
+unique ids supported by ManaEngine: 19 | fully parsed by grammar: 21
+
+# policy_cpu_latency.py
+examples from data/processed_policy_real\real_policy_retrain_1 2074
+v2: encode median 2.91 ms, forward median 0.31 ms, p95 fwd 0.39 ms (1 thread, n=200)
+v3: encode median 1.97 ms, forward median 0.67 ms, p95 fwd 1.29 ms (1 thread, n=200)
