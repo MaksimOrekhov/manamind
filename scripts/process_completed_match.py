@@ -25,6 +25,7 @@ import uuid
 import warnings
 from dataclasses import dataclass, field
 from pathlib import Path
+from hslog.exceptions import ParsingError
 
 from manamind.cards.catalog import CardCatalog
 from manamind.evidence.pipeline import run_extraction
@@ -61,7 +62,8 @@ class ProcessorResult:
 # INVARIANT, or a reason added later) is operational or unknown and must surface as FAILED.
 POLICY_MATCH_SKIP_REASONS = frozenset({
     "MODE_INELIGIBLE", "UNSUPPORTED_MODE", "MODE_AMBIGUOUS", "MID_GAME_START", "INCOMPLETE",
-    "GAME_RESET", "SELF_AMBIGUOUS", "RESULT_UNRESOLVED", "SPECTATOR", "RECONNECT",
+    "GAME_RESET", "SELF_AMBIGUOUS", "SELF_UNRESOLVED", "SELF_CONFLICTING_SIGNALS",
+    "SELF_CHOICE_OWNERS_AMBIGUOUS", "RESULT_UNRESOLVED", "SPECTATOR", "RECONNECT",
 })
 
 
@@ -115,6 +117,7 @@ def build_mechanic_observations(raw_slice: Path, output_dir: Path, catalog_path:
 
 def process_completed_match(
     raw_slice: Path, outputs: Outputs, catalog_path: Path, *, catalog: CardCatalog | None = None,
+    only: set[str] | None = None,
 ) -> dict[str, ProcessorResult]:
     """Run all processors on a saved raw slice. Each processor, including loading the card
     catalog for Policy, is isolated: a failure comes back as FAILED instead of raising."""
@@ -126,11 +129,57 @@ def process_completed_match(
     }
     results: dict[str, ProcessorResult] = {}
     for name, step in steps.items():
+        if only is not None and name not in only:
+            continue
         try:
             results[name] = step()
         except Exception as error:  # privacy: class name only, messages can carry log content
-            results[name] = ProcessorResult(FAILED, 0, {"error": type(error).__name__})
+            results[name] = ProcessorResult(FAILED, 0, {
+                "error": type(error).__name__,
+                "reason_code": processor_failure_code(name, error),
+                "retryable": processor_error_is_retryable(error),
+            })
     return results
+
+
+def processor_error_is_retryable(error: Exception) -> bool:
+    """Retry only likely transient IO errors or exceptions explicitly marked retryable."""
+    if getattr(error, "retryable", False) is True:
+        return True
+    if isinstance(error, (FileNotFoundError, PermissionError)):
+        return False
+    return isinstance(error, (ConnectionError, TimeoutError, OSError))
+
+
+def processor_failure_code(processor: str, error: Exception) -> str:
+    """Stable, privacy-safe failure categories; never serialize exception messages."""
+    from manamind.integrations.powerlog.policy_import import PolicyImportError
+
+    if isinstance(error, PolicyImportError):
+        return error.reason
+    if getattr(error, "reason_code", None) in {
+        "SELF_UNRESOLVED", "SELF_AMBIGUOUS", "SELF_CONFLICTING_SIGNALS",
+        "SELF_CHOICE_OWNERS_AMBIGUOUS", "RESULT_UNRESOLVED", "DECISION_EVENTS_MISSING",
+    }:
+        return error.reason_code
+    if isinstance(error, ParsingError):
+        return "POWERLOG_PARSE_ERROR"
+    if isinstance(error, OSError):
+        return "PROCESSOR_IO_ERROR"
+    if isinstance(error, (ValueError, TypeError, KeyError)):
+        message = str(error)
+        if processor == "value":
+            if "local player" in message or "local player perspective" in message:
+                return "SELF_UNRESOLVED"
+            if "result" in message or "win/loss/draw" in message:
+                return "RESULT_UNRESOLVED"
+            if "decision-point" in message:
+                return "DECISION_EVENTS_MISSING"
+            if "exactly one match" in message:
+                return "MATCH_BOUNDARY_INVALID"
+            return "INVALID_PARSED_DATA"
+        return "INVALID_PARSED_DATA"
+    return "PROCESSOR_RUNTIME_ERROR"
 
 
 def main() -> int:

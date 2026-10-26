@@ -185,7 +185,7 @@ def extract_match(lines: list[str], catalog: CardCatalog,
     finish_confirmation()
     game = session.game
     if game is None or not game.ended or game.self_player_id is None:
-        raise PolicyImportError("SELF_AMBIGUOUS")
+        raise PolicyImportError("SELF_UNRESOLVED")
     try:
         game.reducer.commit()
     except Exception:
@@ -193,7 +193,7 @@ def extract_match(lines: list[str], catalog: CardCatalog,
     players = [p for p in game.reducer.game.players
                if p.tags.get(GameTag.PLAYER_ID) == game.self_player_id]
     if len(players) != 1:
-        raise PolicyImportError("SELF_AMBIGUOUS")
+        raise PolicyImportError("SELF_UNRESOLVED")
     result = {PlayState.WON: 1.0, PlayState.LOST: 0.0, PlayState.TIED: 0.5}.get(
         players[0].tags.get(GameTag.PLAYSTATE))
     if result is None:

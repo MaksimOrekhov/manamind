@@ -454,7 +454,7 @@ class LiveSession:
         """
         chosen = game.self_choice_players
         if len(chosen) > 1:
-            raise ReducerError(Reason.SELF_AMBIGUOUS)
+            raise ReducerError(Reason.SELF_CHOICE_OWNERS_AMBIGUOUS)
         by_choice = next(iter(chosen)) if chosen else None
         try:
             by_hand = infer_local_player_id(board)
@@ -462,20 +462,20 @@ class LiveSession:
             by_hand = None
         signals = {value for value in (by_choice, by_hand) if value is not None}
         if len(signals) > 1:
-            raise ReducerError(Reason.SELF_AMBIGUOUS)
+            raise ReducerError(Reason.SELF_CONFLICTING_SIGNALS)
         remembered = game.self_player_id
         if signals:
             resolved = next(iter(signals))
             if remembered is not None and remembered != resolved:
-                raise ReducerError(Reason.SELF_AMBIGUOUS)
+                raise ReducerError(Reason.SELF_CONFLICTING_SIGNALS)
         elif remembered is not None:
             resolved = remembered
         elif len(controllers) == 1:
             resolved = next(iter(controllers))
         else:
-            raise ReducerError(Reason.SELF_AMBIGUOUS)
+            raise ReducerError(Reason.SELF_UNRESOLVED)
         if controllers - {resolved}:
-            raise ReducerError(Reason.SELF_AMBIGUOUS)
+            raise ReducerError(Reason.SELF_CONFLICTING_SIGNALS)
         game.self_player_id = resolved
         return resolved
 

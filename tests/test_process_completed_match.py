@@ -89,7 +89,7 @@ def test_policy_failure_keeps_raw_value_and_session(env: Env, monkeypatch):
     assert any("Policy examples: FAILED" in m for m in env.messages)
     assert "policy exploded" not in "\n".join(env.messages)
     state = json.loads((env.raw / "collector_state.json").read_text(encoding="utf-8"))
-    assert list(state["games"].values()) == [cpl.IMPORTED]
+    assert list(state["games"].values()) == [cpl.RAW_SAVED]
 
     # Backfill from the preserved raw match recovers the missing dataset.
     monkeypatch.undo()
@@ -203,7 +203,8 @@ def test_interrupted_evidence_extraction_leaves_no_final_directory_and_recovers(
 
 
 def test_whitelist_covers_match_gates_but_not_operational_reasons():
-    assert {"GAME_RESET", "SELF_AMBIGUOUS", "MID_GAME_START"} <= pcm.POLICY_MATCH_SKIP_REASONS
+    assert {"GAME_RESET", "SELF_AMBIGUOUS", "SELF_UNRESOLVED", "SELF_CONFLICTING_SIGNALS",
+            "SELF_CHOICE_OWNERS_AMBIGUOUS", "MID_GAME_START"} <= pcm.POLICY_MATCH_SKIP_REASONS
     assert not {"DATASET_INVALIDATED", "VALUE_DATASET_DESTINATION", "INVALID_MATCH_ID",
                 "PARSE_ERROR"} & pcm.POLICY_MATCH_SKIP_REASONS
 

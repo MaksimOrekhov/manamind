@@ -73,6 +73,7 @@ SKIPPED_NOT_STANDARD = "SKIPPED_NOT_STANDARD"
 SKIPPED_METADATA_AMBIGUOUS = "SKIPPED_METADATA_AMBIGUOUS"
 SKIPPED_MID_GAME_START = "SKIPPED_MID_GAME_START"
 PARSE_FAILED = "PARSE_FAILED"
+RAW_SAVED = "RAW_SAVED"
 
 # A decided game is never re-examined. INCOMPLETE and PARSE_FAILED are retried.
 TERMINAL_STATUSES = frozenset({
@@ -82,9 +83,10 @@ TERMINAL_STATUSES = frozenset({
     SKIPPED_NOT_STANDARD,
     SKIPPED_METADATA_AMBIGUOUS,
     SKIPPED_MID_GAME_START,
+    RAW_SAVED,
 })
 
-STATE_VERSION = 1
+STATE_VERSION = 2
 RESULT_LABEL = {"WON": "WIN", "LOST": "LOSS", "TIED": "DRAW"}
 
 @dataclass
@@ -206,11 +208,13 @@ class Collector:
         self.emit = emit or (lambda message: print(message, flush=True))
         self.stats = Stats()
         self._known: dict[str, str] = self._load_state()
+        self._processor_state: dict[str, dict[str, dict]] = self._load_processor_state()
         self._signatures: dict[Path, tuple[int, int]] = {}
         self._announced: set[str] = set()
         self._failure_announced: dict[tuple[str, str, str, str], tuple[int, tuple[int, int] | None]] = {}
-        self._permanent_failure_fingerprints: dict[tuple[Path, str], str] = {}
+        self._permanent_failure_fingerprints: dict[str, str] = self._load_permanent_failures()
         self._duplicate_seen: set[str] = set()
+        self._processor_announced: set[tuple[str, str, str]] = set()
         self.failure_diagnostics = True
         self._active_stage = "FILE_DISCOVERY"
         self._active_path: Path | None = None
@@ -224,14 +228,41 @@ class Collector:
     def _load_state(self) -> dict[str, str]:
         try:
             data = json.loads(self.state_path.read_text(encoding="utf-8"))
-            games = data.get("games", {}) if data.get("version") == STATE_VERSION else {}
+            games = data.get("games", {}) if data.get("version") in (1, STATE_VERSION) else {}
             return {k: v for k, v in games.items() if v in TERMINAL_STATUSES}
         except (OSError, ValueError, AttributeError):
             return {}  # importer fingerprint dedup still protects against re-import
 
+    def _load_processor_state(self) -> dict[str, dict[str, dict]]:
+        try:
+            data = json.loads(self.state_path.read_text(encoding="utf-8"))
+            records = data.get("processors", {}) if data.get("version") == STATE_VERSION else {}
+            return {
+                key: {name: dict(result) for name, result in stages.items()
+                      if isinstance(result, dict)}
+                for key, stages in records.items() if isinstance(stages, dict)
+            }
+        except (OSError, ValueError, AttributeError, TypeError):
+            return {}
+
+    def _load_permanent_failures(self) -> dict[str, str]:
+        try:
+            data = json.loads(self.state_path.read_text(encoding="utf-8"))
+            failures = data.get("permanent_failures", {}) if data.get("version") == STATE_VERSION else {}
+            return {key: digest for key, digest in failures.items()
+                    if isinstance(key, str) and isinstance(digest, str)}
+        except (OSError, ValueError, AttributeError, TypeError):
+            return {}
+
     def _save_state(self) -> None:
         self.state_path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {"version": STATE_VERSION, "games": dict(sorted(self._known.items()))}
+        payload = {
+            "version": STATE_VERSION,
+            "games": dict(sorted(self._known.items())),
+            "processors": {key: dict(sorted(stages.items()))
+                           for key, stages in sorted(self._processor_state.items())},
+            "permanent_failures": dict(sorted(self._permanent_failure_fingerprints.items())),
+        }
         _atomic_write(self.state_path, json.dumps(payload, indent=1))
 
     def write_summary(self) -> Path:
@@ -243,6 +274,8 @@ class Collector:
     # -- scanning ------------------------------------------------------------
 
     def scan_once(self) -> None:
+        for key in tuple(self._processor_state):
+            self._retry_saved_processors(key)
         try:
             paths = candidate_files(self.logs_root, self.max_sessions)
         except Exception as error:  # keep the continuous collector alive, but report a safe cause
@@ -287,14 +320,19 @@ class Collector:
             self.stats.games_seen.add(info.start_key)
             if info.start_key in self._known:
                 self._note_known(info.start_key)
+                self._retry_saved_processors(info.start_key)
                 continue
             segment_fingerprint = (
                 _completed_segment_fingerprint(info) if info.complete_index is not None else None
             )
             if (segment_fingerprint is not None
-                    and self._permanent_failure_fingerprints.get((path, info.start_key))
+                    and self._permanent_failure_fingerprints.get(info.start_key)
                     == segment_fingerprint):
-                continue  # deterministic parser rejection; retry only if this segment changes
+                continue  # deterministic parser rejection; cached across restarts
+            if (segment_fingerprint is not None
+                    and info.start_key in self._permanent_failure_fingerprints):
+                self._permanent_failure_fingerprints.pop(info.start_key)
+                self._save_state()
             self._last_failure_retryable = True
             self._active_stage = "PROCESS_SEGMENT"
             if self._process(info, path=path, segment_index=segment_index,
@@ -306,7 +344,7 @@ class Collector:
             self._signatures[path] = signature
 
     def _note_known(self, key: str) -> None:
-        if self._known[key] in (IMPORTED, SKIPPED_ALREADY_IMPORTED) and key not in self._duplicate_seen:
+        if self._known[key] in (IMPORTED, RAW_SAVED, SKIPPED_ALREADY_IMPORTED) and key not in self._duplicate_seen:
             self._duplicate_seen.add(key)
             self.stats.duplicates += 1
 
@@ -343,27 +381,29 @@ class Collector:
                 return self._finish(key, SKIPPED_METADATA_AMBIGUOUS if disagree else SKIPPED_INCOMPLETE)
             # The raw match is persisted before any derived dataset is attempted.
             phase = "RAW_SLICE_PERSIST"
-            os.replace(slice_path, raw_path)
+            if raw_path.exists():
+                # Existing persisted raw is authoritative; never replace it on recovery.
+                slice_path.unlink()
+            else:
+                os.replace(slice_path, raw_path)
             phase = "POST_GAME_PROCESSORS"
             results = process_completed_match(
                 raw_path, self.outputs, self.catalog_path)
             value = results["value"]
-            self._report_derived(results)
+            self._report_derived(results, key)
             self._write_capture_diagnostics(key, results)
-            if value.status == FAILED:
-                self._report_failure(path, RuntimeError("value processor failed"), stage="VALUE_IMPORT",
-                                     retryable=True, match_key=key, segment_index=segment_index,
-                                     signature=file_signature)
-                return self._finish(key, PARSE_FAILED)  # raw kept; Value is retried next poll
+            self._record_processor_results(key, results)
+            self._permanent_failure_fingerprints.pop(key, None)
             if value.status == DUPLICATE:
                 return self._finish(key, SKIPPED_ALREADY_IMPORTED)
-            return self._finish(key, IMPORTED, value.detail)
+            return self._finish(key, RAW_SAVED, value.detail if value.status != FAILED else None)
         except Exception as error:  # privacy: report a stable code, never the exception text
             retryable = not (phase == "AUDIT_LOG" and isinstance(error, ParsingError))
             self._last_failure_retryable = retryable
             if not retryable:
                 assert segment_fingerprint is not None
-                self._permanent_failure_fingerprints[(path, key)] = segment_fingerprint
+                self._permanent_failure_fingerprints[key] = segment_fingerprint
+                self._save_state()
             self._report_failure(path, error, stage=phase, retryable=retryable,
                                  match_key=key, segment_index=segment_index,
                                  signature=file_signature)
@@ -374,17 +414,20 @@ class Collector:
             except OSError:
                 pass
 
-    def _report_derived(self, results: dict) -> None:
+    def _report_derived(self, results: dict, match_key: str | None = None) -> None:
         self.emit(f"[{_now()}] raw match saved")
         labels = {"value": "Value examples", "policy": "Policy examples",
                   "observations": "mechanic observations"}
         for name, result in results.items():
             if result.status == FAILED:
-                reason = result.detail.get("error") or ",".join(
+                reason = result.detail.get("reason_code") or result.detail.get("error") or ",".join(
                     sorted(result.detail.get("game_skip_reasons", {}))) or "unknown"
                 self.stats.processor_failures[name] = self.stats.processor_failures.get(name, 0) + 1
-                self.emit(f"[{_now()}] {labels[name]}: FAILED ({reason}); raw match kept; "
-                          "backfill later with scripts/process_completed_match.py")
+                identity = (match_key or "", name, str(reason))
+                if identity not in self._processor_announced:
+                    self._processor_announced.add(identity)
+                    self.emit(f"[{_now()}] {labels[name]}: FAILED ({reason}); raw match kept; "
+                              "backfill later with scripts/process_completed_match.py")
             elif result.status == SKIPPED:
                 reason = ",".join(sorted(result.detail.get("game_skip_reasons", {}))) or "ineligible"
                 self.emit(f"[{_now()}] {labels[name]}: skipped ({reason})")
@@ -444,6 +487,16 @@ class Collector:
             label = RESULT_LABEL.get(str(result.get("result")), "?")
             self.emit(f"[{_now()}] Ranked Standard · {label} · {result.get('turns')} turns")
             self.emit(f"[{_now()}] imported {result.get('examples_written')} decision states")
+        elif status == RAW_SAVED:
+            self.stats.matches_imported += 1
+            if result is not None:
+                self.stats.decision_states += int(result.get("examples_written", 0))
+                label = RESULT_LABEL.get(str(result.get("result")), "?")
+                self.emit(f"[{_now()}] Ranked Standard · {label} · {result.get('turns')} turns")
+                self.emit(f"[{_now()}] imported {result.get('examples_written')} decision states")
+            self._known[key] = status
+            self._save_state()
+            return status
         elif status == SKIPPED_ALREADY_IMPORTED:
             self.stats.duplicates += 1
             self._duplicate_seen.add(key)
@@ -459,6 +512,35 @@ class Collector:
             f"{self.stats.skipped_total} skipped"
         )
         return status
+
+    def _record_processor_results(self, key: str, results: dict) -> None:
+        stages = self._processor_state.setdefault(key, {})
+        for name, result in results.items():
+            retryable = bool(result.detail.get("retryable", False)) if result.status == FAILED else False
+            stages[name] = {
+                "status": result.status,
+                "reason_code": result.detail.get("reason_code") or result.detail.get("error"),
+                "retryable": retryable,
+                "count": int(result.count),
+            }
+        self._save_state()
+
+    def _retry_saved_processors(self, key: str) -> None:
+        stages = self._processor_state.get(key, {})
+        pending = {name for name, item in stages.items()
+                   if item.get("status") == FAILED and item.get("retryable")}
+        if not pending:
+            return
+        raw_path = self.raw_output / f"{key[:16]}.log"
+        if not raw_path.is_file():
+            return
+        try:
+            results = process_completed_match(raw_path, self.outputs, self.catalog_path, only=pending)
+            self._report_derived(results, key)
+            self._record_processor_results(key, results)
+        except Exception as error:
+            self._report_failure(raw_path, error, stage="PROCESSOR_RETRY", retryable=True,
+                                 match_key=key)
 
     def _report_failure(self, path: Path, error: Exception, *, stage: str,
                         retryable: bool, match_key: str | None = None,

@@ -111,19 +111,17 @@ def test_transient_parse_failure_does_not_crash_and_is_retried(env: Env, monkeyp
     def flaky(*args, **kwargs):
         calls["n"] += 1
         if calls["n"] <= 12:
-            raise RuntimeError(f"boom {SECRET_NAME}")
+            raise OSError(f"temporary file lock {SECRET_NAME}")
         return real_import(*args, **kwargs)
 
     monkeypatch.setattr(pcm, "import_power_log", flaky)
     collector = env.collector()
     for _ in range(12):
         collector.scan_once()
-    assert collector.stats.parse_failures == 12 and env.outputs() == []
+    assert collector.stats.parse_failures == 0 and env.outputs() == []
+    assert collector.stats.processor_failures == {"value": 12}
+    assert len(list(env.raw.glob("*.log"))) == 1
     assert not list((env.raw / ".pending").glob("*"))  # no half-written leftovers
-    warnings = [line for line in env.messages if "collection warning:" in line]
-    retries = [line for line in env.messages if "collection retry:" in line]
-    assert len(warnings) == len(retries) == 1
-    assert "attempt=12" in retries[0]
 
     collector.scan_once()
     assert collector.stats.matches_imported == 1
@@ -165,6 +163,11 @@ def test_permanent_parser_rejection_is_cached_by_segment_until_repaired(env: Env
 
     collector.scan_once()  # unchanged completed segment: no repeated scan or warning
     assert collector.stats.parse_failures == 1
+    assert len([line for line in env.messages if "collection warning:" in line]) == 1
+
+    restarted = env.collector()
+    restarted.scan_once()  # persisted digest suppresses the same deterministic rejection
+    assert restarted.stats.parse_failures == 0
     assert len([line for line in env.messages if "collection warning:" in line]) == 1
 
     next_match = build_game(seed=62, variant=1)
@@ -344,6 +347,94 @@ def test_corrupt_state_file_does_not_crash(env: Env):
     collector = env.collector()
     collector.scan_once()
     assert collector.stats.matches_imported == 1
+
+
+def test_value_failure_is_persisted_per_processor_without_rewriting_raw(env: Env, monkeypatch):
+    env.write("Power.log", to_text(build_game(seed=52)))
+    monkeypatch.setattr(pcm, "import_power_log", lambda *a, **k: (_ for _ in ()).throw(
+        ValueError("local player perspective is ambiguous")))
+    collector = env.collector()
+    collector.scan_once()
+    raw = next(env.raw.glob("*.log"))
+    original = raw.read_bytes()
+    first_state = json.loads((env.raw / "collector_state.json").read_text(encoding="utf-8"))
+    evidence_output = env.processed.parent / "processed_evidence" / "collected"
+
+    assert first_state["games"] and set(first_state["processors"][next(iter(first_state["processors"]))]) == {
+        "value", "policy", "observations"
+    }
+    assert first_state["processors"][next(iter(first_state["processors"]))]["value"] == {
+        "status": pcm.FAILED, "reason_code": "SELF_UNRESOLVED", "retryable": False, "count": 0
+    }
+    assert len(list(evidence_output.glob("*/*"))) > 0
+    assert collector.stats.matches_imported == 1
+
+    collector.scan_once()
+    restarted = env.collector()
+    restarted.scan_once()
+    assert raw.read_bytes() == original
+    assert len(list(env.raw.glob("*.log"))) == 1
+    assert len(env.outputs()) == 0
+    assert first_state["processors"][next(iter(first_state["processors"]))]["policy"]["status"] in {
+        pcm.OK, pcm.DUPLICATE, pcm.SKIPPED
+    }
+    assert collector.stats.processor_failures == {"value": 1}
+
+
+def test_transient_processor_failure_retries_only_that_stage_after_restart(env: Env, monkeypatch):
+    env.write("Power.log", to_text(build_game(seed=54)))
+    real_import = pcm.import_power_log
+    calls = {"count": 0}
+
+    def temporarily_unavailable(*args, **kwargs):
+        calls["count"] += 1
+        if calls["count"] == 1:
+            raise OSError("temporary")
+        return real_import(*args, **kwargs)
+
+    monkeypatch.setattr(pcm, "import_power_log", temporarily_unavailable)
+    collector = env.collector()
+    collector.scan_once()
+    raw = next(env.raw.glob("*.log"))
+    original = raw.read_bytes()
+    evidence_output = env.processed.parent / "processed_evidence" / "collected"
+    restarted = env.collector()
+    restarted.scan_once()
+
+    assert calls["count"] == 2
+    assert raw.read_bytes() == original
+    assert len(list(env.raw.glob("*.log"))) == 1
+    assert len(env.outputs()) == 1
+    state = json.loads((env.raw / "collector_state.json").read_text(encoding="utf-8"))
+    assert state["processors"][next(iter(state["processors"]))]["policy"]["status"] in {
+        pcm.OK, pcm.DUPLICATE, pcm.SKIPPED
+    }
+    assert len(list(evidence_output.glob("*/*"))) > 0
+
+
+def test_persisted_processor_failures_are_skipped_by_backfill_retries(env: Env, monkeypatch):
+    env.write("Power.log", to_text(build_game(seed=55)))
+    calls = {"count": 0}
+    real_import = pcm.import_power_log
+
+    def deterministic_failure(*args, **kwargs):
+        calls["count"] += 1
+        raise ValueError("bad data")
+
+    monkeypatch.setattr(pcm, "import_power_log", deterministic_failure)
+    env.collector().scan_once()
+    assert calls["count"] == 1
+    # A repeated poll and a restarted collector honor the persisted terminal failure.
+    env.collector().scan_once()
+    env.collector().scan_once()
+    assert calls["count"] == 1
+    # An explicit backfill is an intentional retry and writes only the missing Value artifact.
+    monkeypatch.setattr(pcm, "import_power_log", real_import)
+    raw = next(env.raw.glob("*.log"))
+    repaired = pcm.process_completed_match(raw, pcm.Outputs(env.processed, env.root / "p", env.root / "e"), CATALOG,
+                                           only={"value"})
+    assert repaired["value"].status == pcm.OK
+    assert len(env.outputs()) == 1
 
 
 def test_rotated_and_new_session_files_do_not_duplicate_old_matches(env: Env):

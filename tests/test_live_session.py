@@ -222,7 +222,21 @@ def test_self_rules_disagree_is_untrusted():
     session = make()
     events = drive(session, log.lines)
     assert snapshots(events) == []
-    assert (session.status, session.reason) == (LiveStatus.UNTRUSTED, Reason.SELF_AMBIGUOUS)
+    assert (session.status, session.reason) == (LiveStatus.UNTRUSTED, Reason.SELF_CONFLICTING_SIGNALS)
+
+
+def test_mulligan_choice_entities_from_multiple_players_are_untrusted():
+    log = LiveLog().create_game()
+    log.raw("GameState", "SendChoices", "id=1 ChoiceType=MULLIGAN")
+    log.raw("GameState", "SendChoices", "  m_chosenEntities[0]=[entityName=X id=20 zone=HAND zonePos=1 cardId= player=1]")
+    log.raw("GameState", "SendChoices", "  m_chosenEntities[1]=[entityName=Y id=21 zone=HAND zonePos=1 cardId= player=2]")
+    log.self_decision(1)
+    session = make()
+    events = drive(session, log.lines)
+    assert snapshots(events) == []
+    assert (session.status, session.reason) == (
+        LiveStatus.UNTRUSTED, Reason.SELF_CHOICE_OWNERS_AMBIGUOUS
+    )
 
 
 def test_self_unknown_without_any_evidence_is_untrusted():
@@ -235,7 +249,7 @@ def test_self_unknown_without_any_evidence_is_untrusted():
     session = make()
     events = drive(session, log.lines)
     assert snapshots(events) == []
-    assert (session.status, session.reason) == (LiveStatus.UNTRUSTED, Reason.SELF_AMBIGUOUS)
+    assert (session.status, session.reason) == (LiveStatus.UNTRUSTED, Reason.SELF_UNRESOLVED)
 
 
 def test_self_is_remembered_when_the_hand_later_empties():

@@ -23,6 +23,8 @@ ROW_FIELDS = {"schema_version", "action_schema_version", "game_id", "decision_id
               "legal_actions", "chosen_action_index", "final_result", "source", "provenance"}
 SKIP_REASONS = frozenset({"AMBIGUOUS_SELECTION", "TARGET_UNRESOLVED", "CHOICE_UNRESOLVED",
                           "OPTIONS_SUPERSEDED", "PARSE_ERROR", "SELF_AMBIGUOUS",
+                          "SELF_UNRESOLVED", "SELF_CONFLICTING_SIGNALS",
+                          "SELF_CHOICE_OWNERS_AMBIGUOUS",
                           "UNSUPPORTED_DECISION_KIND", "NO_SELECTION",
                           # after a GAME_RESET (Rewind) the visible state still holds entities not re-sent since then
                           "GAME_RESET_STALE_STATE"})

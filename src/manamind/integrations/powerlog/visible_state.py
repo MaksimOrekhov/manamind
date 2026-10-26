@@ -21,6 +21,14 @@ OpponentIdentityPolicy = Literal["revealed", "none"]
 HandOrder = Literal["entity", "zone_position"]
 
 
+class SelfIdentityError(ValueError):
+    """Local-side inference failed without revealing any game content."""
+
+    def __init__(self, reason_code: str):
+        self.reason_code = reason_code
+        super().__init__(reason_code)
+
+
 def infer_local_player_id(game) -> int:
     """Identify the client side from visible identities in the initial hands."""
     scores: dict[int, int] = {}
@@ -35,11 +43,13 @@ def infer_local_player_id(game) -> int:
             and bool(entity.card_id)
         )
     if not scores:
-        raise ValueError("could not identify the local player from visible hand cards")
+        raise SelfIdentityError("SELF_UNRESOLVED")
     best = max(scores.values())
     winners = [player_id for player_id, score in scores.items() if score == best]
-    if best == 0 or len(winners) != 1:
-        raise ValueError("local player perspective is ambiguous; no data was written")
+    if best == 0:
+        raise SelfIdentityError("SELF_UNRESOLVED")
+    if len(winners) != 1:
+        raise SelfIdentityError("SELF_AMBIGUOUS")
     return winners[0]
 
 
