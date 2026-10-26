@@ -1,0 +1,890 @@
+{
+  "id": "CARD-IR-B1-INDEPENDENT-REVIEW/diagnostics",
+  "snapshot": "hsjson_255130_enUS",
+  "checkers": "frozen validate.py, lint.py (A) and semantic_lint.py (B1) at the B1 commit",
+  "counterfactual": {
+    "JAIL_118": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL_DEP",
+      "declared_status": "FULL_DEP",
+      "accepted": true,
+      "render": [
+        "Battlecry: destroy all minions except all minions card class PALADIN"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "JAIL_118",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+        "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "BATTLECRY",
+            "span": "Battlecry: Destroy all non-Paladin minions.",
+            "effect": {
+              "op": "DESTROY",
+              "to": {
+                "pick": "ALL",
+                "type": "MINION",
+                "side": "ANY",
+                "exclude": [
+                  {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "ANY",
+                    "where": [
+                      {
+                        "card_class": "PALADIN"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "multiclass",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Whether pred:card_class PALADIN matches a multi-class minion listing Paladin",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [
+          {
+            "id": "multiclass",
+            "question": "Does a multi-class minion with Paladin count as Paladin?",
+            "alternatives": [
+              "Paladin among its classes",
+              "single-class Paladin only"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "EDGE",
+            "dep": "multiclass",
+            "discriminating_case": "A Paladin/Priest minion on board survives only in the first reading."
+          }
+        ],
+        "status": "FULL_DEP"
+      }
+    },
+    "TIME_216": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL_DEP",
+      "declared_status": "FULL_DEP",
+      "accepted": true,
+      "render": [
+        "Cast: choose a chosen minion as <target>; deal $5 damage to them<target>; then if them<target>'s health > 0: you draw 2 x card"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "TIME_216",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+        "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+            "target": {
+              "bind": "target",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "MINION",
+                "side": "ANY",
+                "zone": "PLAY"
+              }
+            },
+            "effect": {
+              "seq": [
+                {
+                  "op": "DEAL_DAMAGE",
+                  "to": {
+                    "ref": "target"
+                  },
+                  "amount": {
+                    "n": 5,
+                    "mark": "$"
+                  }
+                },
+                {
+                  "if": {
+                    "cmp": [
+                      {
+                        "stat": "HEALTH",
+                        "of": {
+                          "ref": "target"
+                        }
+                      },
+                      ">",
+                      0
+                    ]
+                  },
+                  "then": {
+                    "op": "DRAW",
+                    "player": "SELF",
+                    "count": 2
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "pending_destroy",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Health > 0 does not see a minion set pending destroy by a reaction (counts as dying)",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [],
+        "status": "FULL_DEP"
+      }
+    },
+    "FIR_953": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "PARTIAL",
+      "declared_status": "PARTIAL",
+      "accepted": true,
+      "render": [
+        "Keyword Rush",
+        "After a enemy minion is attacked: repeat this's attack times: [deal 1 damage to random 1 enemy character]"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "FIR_953",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+        "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+        "abilities": [
+          {
+            "kind": "trigger",
+            "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+            "event": {
+              "type": "ATTACK_DECLARED",
+              "subject": "SELF",
+              "defender": {
+                "pick": "ALL",
+                "type": "MINION",
+                "side": "ENEMY"
+              }
+            },
+            "timing": "AFTER",
+            "condition": {
+              "cmp": [
+                {
+                  "stat": "HEALTH",
+                  "of": "SELF"
+                },
+                ">",
+                0
+              ]
+            },
+            "effect": {
+              "repeat": {
+                "stat": "ATTACK",
+                "of": "SELF"
+              },
+              "do": {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "pick": "RANDOM",
+                  "n": 1,
+                  "type": "CHARACTER",
+                  "side": "ENEMY"
+                },
+                "amount": 1
+              }
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "attacker_role",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "v0.1 does not define the subject role of ATTACK_DECLARED; read here as the attacker",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [
+          {
+            "id": "subject",
+            "question": "Is ATTACK_DECLARED.subject the attacker?",
+            "alternatives": [
+              "attacker",
+              "undefined"
+            ],
+            "chosen": "attacker",
+            "basis": "ASSUMPTION",
+            "risk": "OUTCOME",
+            "dep": "attacker_role",
+            "discriminating_case": "An enemy minion attacks Magma Hound: no trigger in the card's reading."
+          }
+        ],
+        "keywords": [
+          {
+            "keyword": "RUSH",
+            "span": "Rush."
+          }
+        ],
+        "status": "PARTIAL"
+      }
+    }
+  },
+  "wrong_but_accepted": {
+    "TIME_216/unconditional_draw": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [
+        "Cast: choose a chosen minion as <target>; deal $5 damage to them<target>; then you draw 2 x card"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "TIME_216",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+        "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+            "target": {
+              "bind": "target",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "MINION",
+                "side": "ANY",
+                "zone": "PLAY"
+              }
+            },
+            "effect": {
+              "seq": [
+                {
+                  "op": "DEAL_DAMAGE",
+                  "to": {
+                    "ref": "target"
+                  },
+                  "amount": {
+                    "n": 5,
+                    "mark": "$"
+                  }
+                },
+                {
+                  "op": "DRAW",
+                  "player": "SELF",
+                  "count": 2
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "game_case": "Target an enemy 3/3: it dies; the card draws 0, the declaration draws 2."
+    },
+    "JAIL_118/destroy_all": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [
+        "Battlecry: destroy all minions"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "JAIL_118",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+        "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "BATTLECRY",
+            "span": "Battlecry: Destroy all non-Paladin minions.",
+            "effect": {
+              "op": "DESTROY",
+              "to": {
+                "pick": "ALL",
+                "type": "MINION",
+                "side": "ANY"
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "game_case": "Board with a Silver Hand Recruit: the card keeps it (and V'ama), the declaration kills both."
+    },
+    "JAIL_118/enemy_only": {
+      "validator": [],
+      "old_lint": [
+        "abilities[0]: enemy side needs an enemy word"
+      ],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": false,
+      "render": [
+        "Battlecry: destroy all enemy minions except all minions card class PALADIN"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "JAIL_118",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+        "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "BATTLECRY",
+            "span": "Battlecry: Destroy all non-Paladin minions.",
+            "effect": {
+              "op": "DESTROY",
+              "to": {
+                "pick": "ALL",
+                "type": "MINION",
+                "side": "ENEMY",
+                "exclude": [
+                  {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "ANY",
+                    "where": [
+                      {
+                        "card_class": "PALADIN"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "game_case": "A friendly neutral minion survives in the declaration but dies to the card (control)."
+    },
+    "JAIL_399/shuffle_not_bottom": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL_DEP",
+      "declared_status": "FULL_DEP",
+      "accepted": true,
+      "render": [
+        "Keyword Taunt",
+        "Deathrattle: repeat 2 times: [shuffle Grandmother Imp [JAIL_399t1] (resolved by description_match) into your deck]"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "JAIL_399",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+        "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+        "abilities": [
+          {
+            "kind": "deathrattle",
+            "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+            "effect": {
+              "repeat": 2,
+              "do": {
+                "op": "SHUFFLE_INTO_DECK",
+                "player": "SELF",
+                "what": {
+                  "card": "JAIL_399t1",
+                  "resolved": "DESCRIPTION_MATCH",
+                  "dep": "token"
+                }
+              }
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "token",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "JAIL_399t1 by prefix and stats",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [],
+        "keywords": [
+          {
+            "keyword": "TAUNT",
+            "span": "Taunt."
+          }
+        ],
+        "status": "FULL_DEP"
+      },
+      "game_case": "Next draw after the Deathrattle: the card never draws a Grandmother Imp from a non-empty deck, the declaration may."
+    },
+    "CORE_SCH_713/this_turn": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [
+        "Battlecry: the opponent get a player effect: cost reduced by -1 for the next card card type SPELL, this turn"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "CORE_SCH_713",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+        "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "BATTLECRY",
+            "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+            "effect": {
+              "op": "ADD_PLAYER_EFFECT",
+              "player": "OPPONENT",
+              "duration": "THIS_TURN",
+              "modifier": {
+                "cost": {
+                  "reduce": -1
+                }
+              },
+              "applies_to": [
+                {
+                  "card_type": "SPELL"
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "game_case": "Opponent's 1-mana spell on their next turn: the card makes it cost 2, the declaration 1."
+    },
+    "FIR_953/hero_attack": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [
+        "Keyword Rush",
+        "After your hero attacks: repeat this's attack times: [deal 1 damage to random 1 enemy character]"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "FIR_953",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+        "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+        "abilities": [
+          {
+            "kind": "trigger",
+            "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+            "event": {
+              "type": "HERO_ATTACK",
+              "player": "SELF"
+            },
+            "timing": "AFTER",
+            "effect": {
+              "repeat": {
+                "stat": "ATTACK",
+                "of": "SELF"
+              },
+              "do": {
+                "op": "DEAL_DAMAGE",
+                "to": {
+                  "pick": "RANDOM",
+                  "n": 1,
+                  "type": "CHARACTER",
+                  "side": "ENEMY"
+                },
+                "amount": 1
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "keywords": [
+          {
+            "keyword": "RUSH",
+            "span": "Rush."
+          }
+        ],
+        "status": "FULL"
+      },
+      "game_case": "Your hero attacks with a weapon while Magma Hound stays idle: only the declaration fires."
+    },
+    "CATA_585/reminder_loophole": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [
+        "Cast: choose a chosen minion damaged as <target>; deal $8 damage to them<target>"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "CATA_585",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+        "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $8 damage to a damaged minion.",
+            "target": {
+              "bind": "target",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "MINION",
+                "side": "ANY",
+                "zone": "PLAY",
+                "where": [
+                  {
+                    "damaged": true
+                  }
+                ]
+              }
+            },
+            "effect": {
+              "op": "DEAL_DAMAGE",
+              "to": {
+                "ref": "target"
+              },
+              "amount": {
+                "n": 8,
+                "mark": "$"
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "reminders": [
+          {
+            "span": "Return this to hand with any excess damage.",
+            "why": "flavour"
+          }
+        ],
+        "status": "FULL"
+      },
+      "game_case": "Any damaged 2-Health target: the card returns Torch(6); the declaration never returns it, and adds Spell Damage the card ignores."
+    },
+    "CORE_RLK_063/reminder_loophole": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL_DEP",
+      "declared_status": "FULL_DEP",
+      "accepted": true,
+      "render": [
+        "Cast: choose a chosen character as <target>; deal $5 damage to them<target>",
+        "Cast: summon 1 x Frostwyrm [RLK_063t] (resolved by name_in_set)"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "CORE_RLK_063",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+        "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $5 damage.",
+            "target": {
+              "bind": "target",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "CHARACTER",
+                "side": "ANY",
+                "zone": "PLAY"
+              }
+            },
+            "effect": {
+              "op": "DEAL_DAMAGE",
+              "to": {
+                "ref": "target"
+              },
+              "amount": {
+                "n": 5,
+                "mark": "$"
+              }
+            }
+          },
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Summon a 5/5 Frostwyrm.",
+            "effect": {
+              "op": "SUMMON",
+              "count": 1,
+              "what": {
+                "card": "RLK_063t",
+                "resolved": "NAME_IN_SET",
+                "dep": "token"
+              }
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "token",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "RLK_063t by name",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [],
+        "reminders": [
+          {
+            "span": "Freeze all enemy minions.",
+            "why": "reminder"
+          }
+        ],
+        "status": "FULL_DEP"
+      },
+      "game_case": "Enemy minions attack next turn in the declaration; the card froze them."
+    },
+    "EDR_895/everything_reminder": {
+      "validator": [],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL",
+      "declared_status": "FULL",
+      "accepted": true,
+      "render": [],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "EDR_895",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+        "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+        "abilities": [],
+        "dependencies": [],
+        "decisions": [],
+        "reminders": [
+          {
+            "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+            "why": "reminder"
+          }
+        ],
+        "status": "FULL"
+      },
+      "game_case": "Three own turns later: the card sets all your card costs to 1, the declaration does nothing."
+    }
+  },
+  "probes": {
+    "CATA_585/ImmuneToSpellpower_without_mark": {
+      "validator": [
+        "abilities[0]: text number $8 has no matching IR number with the same mark"
+      ],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "PARTIAL",
+      "declared_status": "PARTIAL",
+      "accepted": false,
+      "render": [
+        "Cast: choose a chosen minion damaged as <target>; deal 8 damage to them<target>",
+        "NOT EXPRESSED: Return this to hand with any excess damage."
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "CATA_585",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+        "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $8 damage to a damaged minion.",
+            "target": {
+              "bind": "target",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "MINION",
+                "side": "ANY",
+                "zone": "PLAY",
+                "where": [
+                  {
+                    "damaged": true
+                  }
+                ]
+              }
+            },
+            "effect": {
+              "op": "DEAL_DAMAGE",
+              "to": {
+                "ref": "target"
+              },
+              "amount": 8
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "unexpressed": [
+          {
+            "span": "Return this to hand with any excess damage.",
+            "why": "probe"
+          }
+        ],
+        "status": "PARTIAL"
+      }
+    },
+    "CATA_452/one_less_for_each_counter": {
+      "validator": [
+        "abilities[1]: text number 1 has no matching IR number with the same mark"
+      ],
+      "old_lint": [],
+      "new_lint": [],
+      "computed_status": "FULL_DEP",
+      "declared_status": "FULL_DEP",
+      "accepted": false,
+      "render": [
+        "Cast: summon 1 x Azure Warden [CATA_452t] (resolved by description_match)",
+        "In hand: cost reduced by number of spells cast by you this turn"
+      ],
+      "declaration": {
+        "ir": "card-ir/0.1",
+        "card_id": "CATA_452",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+        "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Summon a 6/6 Dragon.",
+            "effect": {
+              "op": "SUMMON",
+              "count": 1,
+              "what": {
+                "card": "CATA_452t",
+                "resolved": "DESCRIPTION_MATCH",
+                "dep": "token"
+              }
+            }
+          },
+          {
+            "kind": "aura",
+            "active_in": "HAND",
+            "span": "Costs (1) less for each damage you dealt with spells this turn.",
+            "modifier": {
+              "cost": {
+                "reduce": {
+                  "counter": {
+                    "event": "SPELL_CAST",
+                    "player": "SELF",
+                    "scope": "THIS_TURN"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "dependencies": [
+          {
+            "id": "token",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "CATA_452t by prefix and stats",
+            "source_needed": "Reviewer-written probe (Claude Opus 5.5); not a gold declaration",
+            "card_level": true
+          }
+        ],
+        "decisions": [],
+        "status": "FULL_DEP"
+      }
+    }
+  },
+  "reuse": {
+    "frame_size": 1276,
+    "frame_ids_sha256": "a3aac77811f8d8c1b56243c70693b9a743dfa8574994048cde82d22842a5dc99",
+    "note": "B1 frame (pinned Standard sets + BE, collectible, nonempty text, A declarations and scope exclusions removed). Text screen only: a match is a mention, not an occurrence of the semantics.",
+    "counts": {
+      "op:FREEZE": 15,
+      "pred:alive / 'survives'": 10,
+      "event roles: 'after X attacks'": 27,
+      "split among": 15,
+      "duration:NEXT_TURN ('next turn')": 20,
+      "duration:THIS_GAME / permanent ('this game')": 43,
+      "delayed start ('in N turns', 'N-turn')": 31,
+      "event:TURN_START": 20,
+      "deck position (top/bottom)": 6,
+      "zone move to hand ('return ... hand')": 11,
+      "counter: damage amount": 2,
+      "counter: damage this turn/game (broad)": 4,
+      "player-wide cost aura ('your X cost', 'opponent's X cost')": 8,
+      "value arith mul ('(N) less/more for each')": 17,
+      "excess damage": 8,
+      "class negation ('non-X')": 1,
+      "runtime placeholders {0}/{1}": 36,
+      "herald": 15
+    },
+    "immune_to_spellpower_with_dollar": {
+      "cards": 11,
+      "split_or_random": 8,
+      "other_ids": [
+        "CATA_491",
+        "CATA_585",
+        "CORE_LOOT_101"
+      ]
+    }
+  }
+}
