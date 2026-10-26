@@ -3,6 +3,9 @@ from __future__ import annotations
 
 import json
 import hashlib
+import os
+import re
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -21,14 +24,44 @@ def decision_id(snapshot: Snapshot) -> str:
 SHADOW_MAX_BYTES = 64 * 1024 * 1024
 
 
+def _rotation_stamp() -> str:
+    """Informational time in an archive name. Uniqueness never depends on it (see ``_archive_target``)."""
+    return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+
+
+def _archive_target(path: Path) -> Path:
+    """Reserve a fresh archive name ``<stem>.<stamp>.<index>.jsonl`` for ``path`` and return it.
+
+    The index is one more than the highest index among the archives already on disk (older ``<stem>.<stamp>.jsonl``
+    archives count as index 0), so it grows with every rotation, survives restarts and ignores the clock. The name is
+    then created with ``open(..., "x")`` (O_EXCL: atomic, fails if anything already has that name on Windows and
+    Linux); on ``FileExistsError`` the next index is tried. An existing archive is therefore never replaced, even by a
+    concurrent writer. The caller owns the empty placeholder this leaves behind.
+    """
+    pattern = re.compile(rf"^{re.escape(path.stem)}\.\d{{8}}T\d{{12}}Z(?:\.(\d+))?\.jsonl$")
+    taken = [int(m.group(1) or 0) for entry in path.parent.iterdir() if (m := pattern.match(entry.name))]
+    index = max(taken, default=0) + 1
+    stamp = _rotation_stamp()
+    while True:
+        target = path.with_name(f"{path.stem}.{stamp}.{index:06d}.jsonl")
+        try:
+            with target.open("x"):
+                return target
+        except FileExistsError:
+            index += 1
+
+
 class PredictionJournal:
     """Store only sanitized action descriptors, hashes and stable game identity.
 
     The outcome shadow (ACTION-OUTCOME-2) writes to its own append-only file next to this journal so that the
     format and the growth of the RECOMMENDATION stream stay exactly what they were; rows of both files join on
     ``decision_id``. The shadow file is created only when the shadow is switched on. At ``shadow_max_bytes`` it is
-    renamed (never deleted or truncated) to ``<name>.<UTC time>.jsonl`` and a fresh file is started, so one file never
-    grows without bound and no row is lost; archive or analyze the rotated files at will. The strategy shadow
+    renamed (never deleted or truncated) to ``<name>.<UTC time>.<index>.jsonl`` and a fresh file is started, so one file
+    never grows without bound and no row is lost; archive or analyze the rotated files at will. Guarantees: a rotation
+    never overwrites an existing archive (reserved with O_EXCL, index independent of the clock); within one process
+    appends and rotations are serialised; if a rotation fails the active file keeps growing and every row is still
+    appended (``rotation_failures`` counts the failures). One process per journal directory is the supported model. The strategy shadow
     (STRATEGIC-SCORER-1) follows the same rules in its own ``<stem>.strategy_shadow.jsonl``.
     """
 
@@ -43,6 +76,8 @@ class PredictionJournal:
         self.strategy_path = (Path(strategy_path) if strategy_path is not None
                               else self.path.with_name(f"{self.path.stem}.strategy_shadow.jsonl"))
         self.shadow_max_bytes = shadow_max_bytes
+        self.rotation_failures = 0
+        self._lock = threading.Lock()
 
     def _append(self, event: dict, path: Path | None = None) -> None:
         target = self.path if path is None else path
@@ -129,14 +164,29 @@ class PredictionJournal:
     # -- outcome shadow (ACTION-OUTCOME-2) ---------------------------------------------------------------------
 
     def _append_rotating(self, event: dict, path: Path) -> None:
+        with self._lock:
+            try:
+                size = path.stat().st_size
+            except FileNotFoundError:
+                size = 0
+            if size >= self.shadow_max_bytes:
+                self._rotate(path)
+            self._append(event, path)
+
+    def _rotate(self, path: Path) -> None:
+        """Move the full active file to a new unique archive; on any OS error leave everything as it was."""
+        target = None
         try:
-            size = path.stat().st_size
-        except FileNotFoundError:
-            size = 0
-        if size >= self.shadow_max_bytes:
-            stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-            path.replace(path.with_name(f"{path.stem}.{stamp}.jsonl"))
-        self._append(event, path)
+            target = _archive_target(path)
+            os.replace(path, target)        # replaces only the empty placeholder reserved just above
+        except OSError:
+            self.rotation_failures += 1
+            if target is not None:
+                try:
+                    if target.stat().st_size == 0:
+                        target.unlink()
+                except OSError:
+                    pass
 
     def _append_shadow(self, event: dict) -> None:
         self._append_rotating(event, self.shadow_path)
