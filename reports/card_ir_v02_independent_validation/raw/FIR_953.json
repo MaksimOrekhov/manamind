@@ -1,0 +1,102 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "FIR_953",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+  "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+      "event": {
+        "type": "ATTACK_DECLARED",
+        "attacker": "SELF",
+        "defender": {
+          "pick": "ALL",
+          "type": "MINION",
+          "side": "ANY"
+        }
+      },
+      "timing": "AFTER",
+      "condition": {
+        "is": {
+          "entity": "SELF",
+          "where": [
+            {
+              "alive": true
+            }
+          ]
+        }
+      },
+      "effect": {
+        "repeat": {
+          "stat": "ATTACK",
+          "of": "SELF",
+          "at": "CURRENT"
+        },
+        "do": {
+          "op": "DEAL_DAMAGE",
+          "amount": 1,
+          "to": {
+            "pick": "RANDOM",
+            "type": "CHARACTER",
+            "side": "ENEMY"
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "split",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+      "rule": "R_SPLIT_UNQUALIFIED"
+    },
+    {
+      "id": "redirect",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+      "rule": "R_ATTACK_REDIRECT"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "distribution",
+      "question": "Does unqualified split mean random 1-damage packets?",
+      "alternatives": [
+        "Random live targets per packet",
+        "Other split procedure"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+      "dep": "split"
+    },
+    {
+      "id": "attack",
+      "question": "When and which combat?",
+      "alternatives": [
+        "After source attacks a minion and survives",
+        "Any character's attack"
+      ],
+      "chosen": "After source attacks a minion and survives",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+    }
+  ],
+  "status": "PARTIAL",
+  "keywords": [
+    {
+      "keyword": "RUSH",
+      "span": "Rush."
+    }
+  ]
+}

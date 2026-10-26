@@ -1,0 +1,19 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_BT_921",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Lifesteal</b>",
+  "text_sha256": "8ce4e2063d0494e66987f5cb47c6b950ed1e38d227385c682c833caa701e011d",
+  "abilities": [],
+  "dependencies": [],
+  "decisions": [],
+  "status": "FULL",
+  "keywords": [
+    {
+      "keyword": "LIFESTEAL",
+      "span": "Lifesteal"
+    }
+  ],
+  "notes": "Effect representation only. Pinned record has durability=0 and health=2; do not silently repair metadata or claim weapon execution readiness."
+}

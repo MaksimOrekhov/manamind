@@ -1,0 +1,52 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_SCH_713",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+  "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "OPPONENT",
+        "duration": {
+          "next_turn": "OPPONENT"
+        },
+        "uses": "ALL_MATCHING",
+        "zones": [
+          "HAND"
+        ],
+        "applies_to": [
+          {
+            "card_type": "SPELL"
+          }
+        ],
+        "modifier": {
+          "cost": {
+            "increase": 1
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "window",
+      "question": "Who is taxed and for which turn?",
+      "alternatives": [
+        "Every enemy spell during next enemy turn",
+        "Only next spell or current turn"
+      ],
+      "chosen": "Every enemy spell during next enemy turn",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+    }
+  ],
+  "status": "FULL"
+}

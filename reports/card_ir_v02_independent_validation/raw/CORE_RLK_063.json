@@ -1,0 +1,90 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_RLK_063",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+  "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+      "effect": {
+        "seq": [
+          {
+            "op": "DEAL_DAMAGE",
+            "to": {
+              "ref": "victim"
+            },
+            "amount": {
+              "n": 5,
+              "mark": "$"
+            }
+          },
+          {
+            "op": "FREEZE",
+            "to": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ENEMY"
+            }
+          },
+          {
+            "op": "SUMMON",
+            "what": {
+              "card": "RLK_063t",
+              "resolved": "UNIQUE_NAME"
+            }
+          }
+        ]
+      },
+      "target": {
+        "bind": "victim",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "CHARACTER",
+          "side": "ANY"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "thaw",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+      "rule": "R_FREEZE_THAW"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "thaw",
+      "question": "When does Frozen expire?",
+      "alternatives": [
+        "Controller-turn removal conditional on attack availability",
+        "Other thaw timing"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+      "dep": "thaw"
+    },
+    {
+      "id": "damage_target",
+      "question": "Does unqualified damage restrict side?",
+      "alternatives": [
+        "Chosen character on either side",
+        "Enemy characters only"
+      ],
+      "chosen": "Chosen character on either side",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+    }
+  ],
+  "status": "PARTIAL"
+}

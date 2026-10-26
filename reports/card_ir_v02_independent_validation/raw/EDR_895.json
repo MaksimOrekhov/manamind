@@ -1,0 +1,72 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "EDR_895",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+  "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "duration": "THIS_GAME",
+        "uses": "ALL_MATCHING",
+        "zones": [
+          "HAND",
+          "DECK"
+        ],
+        "starts_after": {
+          "player": "SELF",
+          "turn_starts": 3
+        },
+        "modifier": {
+          "cost": {
+            "set": 1
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "future_cards",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "clock",
+      "question": "Whose three turns and how long?",
+      "alternatives": [
+        "Three own starts, rest of game",
+        "Three global turns, temporary"
+      ],
+      "chosen": "Three own starts, rest of game",
+      "basis": "USER_OBSERVED",
+      "risk": "OUTCOME",
+      "discriminating_case": "Three intervening enemy turns must not activate the effect."
+    },
+    {
+      "id": "population",
+      "question": "Do cards arriving after Full Moon inherit cost 1?",
+      "alternatives": [
+        "Dynamic ALL_MATCHING",
+        "Only cards present at activation"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+      "dep": "future_cards"
+    }
+  ],
+  "status": "PARTIAL",
+  "notes": "Provisional dynamic encoding only; not a confirmed rule. User confirms hand/deck at Full Moon, three own turns, permanence. New cards and cost-modifier interactions remain open."
+}

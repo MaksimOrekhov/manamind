@@ -1,0 +1,51 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "JAIL_118",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+  "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Destroy all non-Paladin minions.",
+      "effect": {
+        "op": "DESTROY",
+        "to": {
+          "pick": "ALL",
+          "type": "MINION",
+          "side": "ANY",
+          "exclude": [
+            {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ANY",
+              "where": [
+                {
+                  "card_class": "PALADIN"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "dependencies": [],
+  "decisions": [
+    {
+      "id": "class",
+      "question": "Does non-Paladin exclude both sides?",
+      "alternatives": [
+        "All sides minus Paladin membership",
+        "Enemy side only"
+      ],
+      "chosen": "All sides minus Paladin membership",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "A friendly non-Paladin minion dies; a dual-class Paladin minion survives."
+    }
+  ],
+  "status": "FULL"
+}

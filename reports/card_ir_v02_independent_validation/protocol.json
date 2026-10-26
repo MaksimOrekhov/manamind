@@ -1,0 +1,27 @@
+{
+  "id": "CARD-IR-V02-INDEPENDENT-VALIDATION",
+  "base_sha": "ec67dcbba91869bb01417476b3fcd7badab58466",
+  "author": "OpenAI Codex, GPT-6 family; exact serving revision, sampling seed and temperature unavailable",
+  "hypothesis": "Strict v0.2 catches syntax and selected text contradictions, but cannot establish semantics or dependency severity independently of its author.",
+  "baseline": "Unmodified ec67dcb; Opus claimed potential 9/12, not a target or gold standard",
+  "order": [
+    "EDR_895",
+    "TIME_216",
+    "CATA_497",
+    "CATA_452",
+    "JAIL_118",
+    "CORE_BT_921",
+    "JAIL_399",
+    "CORE_SCH_713",
+    "CORE_DAL_720",
+    "FIR_953",
+    "CATA_585",
+    "CORE_RLK_063"
+  ],
+  "snapshot": "hsjson_255130_enUS",
+  "protocol_sha256": "fa7a33cecbb286799eef5f220381ee90ac9d957fa6303d63933cab297dabf9f7",
+  "independence": "First 12 declarations generated once before validation results or prior declarations/conformance solutions were read; raw plus receipts committed before comparison.",
+  "limits": "12 cards only; no execution, training, holdout, new snapshot, S2 or Herald implementation; no semantic gold accuracy claim",
+  "scope_policy": "Unknown rule needed for ordinary primary effect is CORE; explicitly bounded additional edge scenario may be CONDITIONAL. This conservative author policy is not enforced by v0.2.",
+  "first_pass": "Both base structure and strict checks reported; complete means accepted AND FULL/FULL_DEP; potential expressibility reported separately"
+}

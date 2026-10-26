@@ -1,0 +1,40 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CATA_497",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "sample",
+  "text": "[x]<b>Battlecry:</b> <b>Herald</b> {0}.\nReduce Deathwing's\nCost by ({1}).\n <i>(<b>Herald</b> to improve!)</i>",
+  "text_sha256": "3319286510ff397f5b98b00ddab25730a5a1b27b76279e7a288c9b98ea666773",
+  "abilities": [],
+  "dependencies": [
+    {
+      "id": "herald_state",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Herald procedure, improvement counters, dynamic values and referenced Deathwing identity require external evidence; no invented values.",
+      "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "herald",
+      "question": "Can placeholders be assigned literal values?",
+      "alternatives": [
+        "Read current client state",
+        "Guess base values"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Different prior Herald counts can change both operations.",
+      "dep": "herald_state"
+    }
+  ],
+  "status": "PARTIAL",
+  "unexpressed": [
+    {
+      "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+      "why": "Herald operation and dynamic {0}/{1} state are absent; the identity of Deathwing and improvement rules cannot be inferred safely from this text."
+    }
+  ]
+}
