@@ -1,0 +1,17 @@
+{
+  "CATA_585": {
+    "card_id": "CATA_585",
+    "snapshot": "hsjson_255130_enUS",
+    "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+    "gaps": [
+      {
+        "gap": "/unexpressed/0",
+        "span": "Return this to hand with any excess damage.",
+        "why": "Returning this spell with its damage changed to the excess needs a mutable instance parameter (S2), deferred to a separate task; a static damage value would be wrong after the first return.",
+        "dependencies": [
+          "instance_parameter"
+        ]
+      }
+    ]
+  }
+}

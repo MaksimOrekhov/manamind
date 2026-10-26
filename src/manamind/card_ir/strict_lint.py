@@ -61,6 +61,10 @@ def _actions(effect, guards=()):
 
 
 def _alive(cond, entity, positive):
+    node = cond.get("is") if isinstance(cond, Mapping) else None
+    if isinstance(node, Mapping) and node.get("entity") == entity:
+        # card-ir/0.2 survival predicate (R_SURVIVE); the v0.1 validator rejects it before this lint runs.
+        return any(isinstance(p, Mapping) and p.get("alive") is positive for p in node.get("where", []))
     cmp = cond.get("cmp", []) if isinstance(cond, Mapping) else []
     if len(cmp) != 3:
         return False

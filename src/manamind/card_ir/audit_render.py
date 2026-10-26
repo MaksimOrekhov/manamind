@@ -73,8 +73,16 @@ class _AuditRenderer(_Renderer):
 
 def _render_audit(doc, meta=None, bindings=None, strict_report=None):
     """Never hide reminders, unknowns or conditions. Invalid fragments remain visible."""
-    renderer = _AuditRenderer(meta)
+    v02 = doc.get("ir") == "card-ir/0.2"
+    if v02:
+        # Lazy import: render_v02 builds on this module. A v0.1 declaration renders byte-identically to validation-2.
+        from manamind.card_ir.render_v02 import AuditRendererV02
+        renderer = AuditRendererV02(meta)
+    else:
+        renderer = _AuditRenderer(meta)
     lines = [f"Declared status: {doc.get('status', '?')} — representation label, not semantic approval"]
+    if v02:
+        lines.append("IR version: card-ir/0.2 (v0.2 rules apply; see reports/card_ir_v02/CHANGELOG.md)")
     for kind in ("keywords", "abilities"):
         for i, node in enumerate(doc.get(kind, [])):
             try:
@@ -96,7 +104,8 @@ def _render_audit(doc, meta=None, bindings=None, strict_report=None):
         for item in bindings.get("gaps", []):
             lines.append(f"Gap binding {item['gap']} => dependencies: {', '.join(item['dependencies'])}")
     for dep in doc.get("dependencies", []):
-        lines.append(f"Dependency <{dep['id']}> {dep['kind']}/{dep['scope']}: {dep['detail']}; source needed: {dep['source_needed']}")
+        rule = f"; acknowledges provisional rule {dep['rule']}" if "rule" in dep else ""
+        lines.append(f"Dependency <{dep['id']}> {dep['kind']}/{dep['scope']}: {dep['detail']}; source needed: {dep['source_needed']}{rule}")
     for decision in doc.get("decisions", []):
         lines.append(f"Decision {decision['id']} [{decision['risk']}/{decision['basis']}]: {decision['question']} => "
                      f"{decision['chosen']}; alternatives: {' / '.join(decision['alternatives'])}; "
@@ -108,7 +117,16 @@ def _render_audit(doc, meta=None, bindings=None, strict_report=None):
         lines.extend("ERROR: " + e for e in strict_report.errors)
         lines.extend("REVIEW WARNING: " + w for w in strict_report.warnings)
     # Show rule provenance, rather than implying that a clean declaration proved the rules.
-    if meta is not None:
+    if meta is not None and v02:
+        from manamind.card_ir.validate_v02 import validate_declaration_v02
+        from manamind.card_ir.vocabulary_v02 import PROVISIONAL_RULES, RULES_V02
+        try:
+            needed = validate_declaration_v02(doc, meta).rules
+            lines += [f"Rule {r} [{RULES_V02[r].basis}{'; PROVISIONAL: acknowledged by a dependency' if r in PROVISIONAL_RULES else ''}]: "
+                      f"{RULES_V02[r].meaning}" for r in sorted(needed)]
+        except (TypeError, ValueError, KeyError, AttributeError, IndexError):
+            lines.append("Rule requirements unavailable: invalid declaration")
+    elif meta is not None:
         from manamind.card_ir.validate import validate_declaration
         try:
             needed = validate_declaration(doc, meta).rules

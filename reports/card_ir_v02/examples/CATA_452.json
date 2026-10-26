@@ -1,0 +1,97 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CATA_452",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+  "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Summon a 6/6 Dragon.",
+      "effect": {
+        "op": "SUMMON",
+        "count": 1,
+        "what": {
+          "card": "CATA_452t",
+          "resolved": "DESCRIPTION_MATCH",
+          "dep": "dragon_identity"
+        }
+      }
+    },
+    {
+      "kind": "aura",
+      "active_in": "HAND",
+      "span": "Costs (1) less for each damage you dealt with spells this turn.",
+      "modifier": {
+        "cost": {
+          "reduce": {
+            "mul": [
+              1,
+              {
+                "counter": {
+                  "event": "DAMAGE_DEALT",
+                  "measure": "AMOUNT",
+                  "player": "SELF",
+                  "scope": "THIS_TURN",
+                  "source": [
+                    {
+                      "card_type": "SPELL"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "dragon_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "CATA_452t is a 6/6 Dragon matching the description and ID prefix; no authoritative parent-token relation.",
+      "source_needed": "hsdata CardDefs relations or Power.log"
+    },
+    {
+      "id": "damage_amount",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "The amount counted per packet (Divine Shield 0, Armor counted, overkill in full) and which boundary sources count as spells (Secrets, spell-created effects) are not settled.",
+      "source_needed": "Power.log: spell damage into Divine Shield, Armor and overkill",
+      "rule": "R_DAMAGE_EVENT_AMOUNT"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "damage_sum",
+      "question": "What is counted?",
+      "alternatives": [
+        "damage actually dealt by spells",
+        "spells cast"
+      ],
+      "chosen": "damage actually dealt by spells",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Fireball for 6 this turn: the card costs 10 - 6 = 4, not 10 - 1 = 9."
+    },
+    {
+      "id": "token",
+      "question": "Which record is the 6/6 Dragon?",
+      "alternatives": [
+        "CATA_452t",
+        "another 6/6 Dragon"
+      ],
+      "chosen": "CATA_452t",
+      "basis": "METADATA",
+      "risk": "EDGE",
+      "discriminating_case": "Only one 6/6 Dragon record carries the card's ID prefix.",
+      "dep": "dragon_identity"
+    }
+  ],
+  "status": "FULL_DEP",
+  "notes": "CARD-IR-V02 expressivity example."
+}

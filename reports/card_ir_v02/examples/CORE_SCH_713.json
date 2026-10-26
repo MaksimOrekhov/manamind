@@ -1,0 +1,97 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_SCH_713",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+  "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Your opponent's spells cost (1) more next turn.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "OPPONENT",
+        "modifier": {
+          "cost": {
+            "increase": 1
+          }
+        },
+        "applies_to": [
+          {
+            "card_type": "SPELL"
+          }
+        ],
+        "uses": "ALL_MATCHING",
+        "zones": [
+          "HAND"
+        ],
+        "duration": {
+          "next_turn": "OPPONENT"
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "deck_cost",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Whether spells in the opponent's deck also cost (1) more during that turn; observable only through effects that read costs in the deck.",
+      "source_needed": "Power.log of a deck-cost effect during the affected turn"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "owner",
+      "question": "Whose spells change cost?",
+      "alternatives": [
+        "opponent's spells",
+        "your spells"
+      ],
+      "chosen": "opponent's spells",
+      "basis": "TEXT",
+      "risk": "NONE"
+    },
+    {
+      "id": "window",
+      "question": "Which turn is 'next turn'?",
+      "alternatives": [
+        "the opponent's next turn",
+        "your next turn"
+      ],
+      "chosen": "the opponent's next turn",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Played on your turn: the opponent's 1-cost spell costs 2 on their following turn and 1 on yours."
+    },
+    {
+      "id": "dynamic",
+      "question": "Do spells the opponent draws during that turn cost more too?",
+      "alternatives": [
+        "yes",
+        "no"
+      ],
+      "chosen": "yes",
+      "basis": "COMMUNITY_RULES",
+      "risk": "EDGE",
+      "discriminating_case": "The opponent draws a 1-cost spell at the start of the affected turn: 2 under yes, 1 under no."
+    },
+    {
+      "id": "zones",
+      "question": "Which zones' spells change cost?",
+      "alternatives": [
+        "hand",
+        "hand and deck"
+      ],
+      "chosen": "hand",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "A 'draw your highest-cost spell' effect during that turn sees different costs.",
+      "dep": "deck_cost"
+    }
+  ],
+  "status": "FULL_DEP",
+  "notes": "CARD-IR-V02 expressivity example. 'dynamic' follows the Loatheb analogy in CARD_AUDIT 3.8."
+}

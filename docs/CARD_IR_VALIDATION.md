@@ -1,8 +1,12 @@
-# Strict validation of Card IR v0.1
+# Strict validation of Card IR v0.1 and v0.2
 
 This is the contract for the **opt-in validation-2 acceptance layer**. It adds no game operations,
 parameters or rules to `card-ir/0.1`. Historical `validate_declaration`, `lint_declaration`, `lint_semantics`
 and `render` are frozen and still reproduce Stage A/B1 and the independent review.
+
+`card-ir/0.2` (language delta: [reports/card_ir_v02/CHANGELOG.md](../reports/card_ir_v02/CHANGELOG.md)) has its own
+modules (`vocabulary_v02`, `validate_v02`, `lint_v02`, `strict_v02`, `render_v02`) and is accepted only through the
+same strict layer; see [Card IR v0.2](#card-ir-v02) below.
 
 ## Acceptance
 
@@ -97,3 +101,37 @@ reminders, omissions, dependencies, decisions and rule provenance. Undefined/def
 undefined event subject roles are not silently translated into an attacker. Player-effect applicability
 without uses is shown as unspecified, rather than inventing a cardinality. Malformed data renders as
 an explicit failure with its original content instead of disappearing.
+
+## Card IR v0.2
+
+```python
+from manamind.card_ir.strict_v02 import validate_strict_any, validate_strict_v02
+
+report = validate_strict_any(declaration, metadata, bindings=receipt_or_none)  # picks v0.1 or v0.2 by "ir"
+```
+
+`scripts/validate_card_ir.py` uses the same dispatcher; exit codes are unchanged. An unknown `ir` is rejected.
+
+- **One version per declaration.** v0.1 tools reject `card-ir/0.2`; the v0.2 validator rejects `card-ir/0.1`.
+  Upgrading a v0.1 declaration is re-authoring: constructs whose meaning changed must be explicit in v0.2
+  (player-effect `uses` and cost `zones`, cost `increase` instead of a negative `reduce`, attack roles
+  `attacker`/`defender` instead of `subject`), so a relabelled v0.1 declaration does not pass silently.
+- **v0.2 strict = v0.2 validator + every validation-2 check** (structure, gap receipts and their migration file,
+  CORE anchors, reminders, both v0.1 lints, the strict lint) **+ `lint_v02`.** Only the strict-lint warnings that
+  said "v0.1 cannot express this" are dropped, each replaced by a check that the v0.2 encoding is right:
+  `WINDOW_NEXT` → `WINDOW_NEXT_V02`, `DECK_POSITION` → `DECK_POSITION_V02`, `RETURN_CONTRACT` → the PLAY→HAND
+  rules, `EVENT_ROLE` → attack roles in the validator.
+- **Provisional rules.** A v0.2 declaration that needs a rule listed in `vocabulary_v02.PROVISIONAL_RULES`
+  (`R_RETURN_FULL_HAND`, `R_SPLIT_UNQUALIFIED`, `R_FREEZE_THAW`, `R_ATTACK_REDIRECT`, `R_DAMAGE_EVENT_AMOUNT`)
+  must acknowledge it with an `UNKNOWN_RULE` dependency carrying `"rule": "<id>"` and scope CONDITIONAL or CORE.
+  An acknowledgement of a rule the declaration does not need is an error. The scope sets the status honestly.
+- **Rule bases.** `DEFINITION` marks a rule that defines an IR construct (turn windows, delayed start, all-matching
+  player effects, attack roles) without claiming anything about a card; the card's mapping is its own decision.
+  Decision basis `USER_OBSERVED` records the user's game experience; it is a source, not official documentation.
+- **Trigger conditions are validated in v0.2.** The frozen v0.1 validator accepts any `condition` on a trigger
+  without checking it; v0.1 strict does not close that loophole either.
+- `render_audit` renders v0.2 declarations with the v0.2 renderer: zones, delayed start, window, cardinality,
+  deck position, attack roles, survival predicates, rule acknowledgements and provisional rule provenance are shown.
+  v0.1 declarations render byte-identically to validation-2.
+
+Conformance cases, examples and known blind spots: [reports/card_ir_v02](../reports/card_ir_v02/README.md).

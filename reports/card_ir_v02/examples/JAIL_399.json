@@ -1,0 +1,69 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "JAIL_399",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+  "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+  "keywords": [
+    {
+      "keyword": "TAUNT",
+      "span": "Taunt."
+    }
+  ],
+  "abilities": [
+    {
+      "kind": "deathrattle",
+      "span": "Deathrattle: Put two 8/8 Demons with Taunt and Lifesteal on the bottom of your deck.",
+      "effect": {
+        "op": "SHUFFLE_INTO_DECK",
+        "player": "SELF",
+        "what": {
+          "card": "JAIL_399t1",
+          "resolved": "DESCRIPTION_MATCH",
+          "dep": "demons_identity"
+        },
+        "count": 2,
+        "position": "BOTTOM"
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "demons_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "JAIL_399t1 Grandmother Imp is the only record with the card's ID prefix and matches 8/8 Demon, Taunt and Lifesteal; no authoritative parent-token relation.",
+      "source_needed": "hsdata CardDefs relations or Power.log"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "deck_order",
+      "question": "Where do the Demons go?",
+      "alternatives": [
+        "bottom of your deck",
+        "shuffled into your deck"
+      ],
+      "chosen": "bottom of your deck",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Next draw from a non-empty deck: never a Demon under bottom, possibly one under shuffle."
+    },
+    {
+      "id": "two_demons",
+      "question": "Two copies of one record or two different records?",
+      "alternatives": [
+        "JAIL_399t1 twice",
+        "two different records"
+      ],
+      "chosen": "JAIL_399t1 twice",
+      "basis": "METADATA",
+      "risk": "EDGE",
+      "discriminating_case": "Only one candidate record exists in the pinned snapshot.",
+      "dep": "demons_identity"
+    }
+  ],
+  "status": "FULL_DEP",
+  "notes": "CARD-IR-V02 expressivity example."
+}

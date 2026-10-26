@@ -1,0 +1,124 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "EDR_895",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+  "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "BATTLECRY",
+      "span": "Battlecry: Start a three turn lunar cycle. When the Full Moon rises, your cards cost (1) this game.",
+      "effect": {
+        "op": "ADD_PLAYER_EFFECT",
+        "player": "SELF",
+        "modifier": {
+          "cost": {
+            "set": 1
+          }
+        },
+        "uses": "ALL_MATCHING",
+        "zones": [
+          "HAND",
+          "DECK"
+        ],
+        "starts_after": {
+          "player": "SELF",
+          "turn_starts": 3
+        },
+        "duration": "THIS_GAME"
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "new_cards",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Whether cards created into hand or deck after the Full Moon also cost (1). uses ALL_MATCHING encodes yes; the user observed hand and deck, not newly created cards.",
+      "source_needed": "Power.log or play-test: generate a card after the Full Moon and read its cost"
+    },
+    {
+      "id": "replay",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "A second Aviana Battlecry (second cycle, second effect) is not established; the declaration encodes one independent effect per Battlecry.",
+      "source_needed": "Power.log or play-test of a second Aviana",
+      "card_level": true
+    },
+    {
+      "id": "cost_interactions",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "Interactions with other cost modifiers beyond the general R_COST order are not established (e.g. a modifier applied after the Full Moon).",
+      "source_needed": "Power.log of another cost modifier after the Full Moon",
+      "card_level": true
+    }
+  ],
+  "decisions": [
+    {
+      "id": "cycle_owner",
+      "question": "Whose turns advance the three-turn lunar cycle?",
+      "alternatives": [
+        "own turns",
+        "every turn"
+      ],
+      "chosen": "own turns",
+      "basis": "USER_OBSERVED",
+      "risk": "OUTCOME",
+      "discriminating_case": "Battlecry on your turn T: counting own turns the Full Moon rises on your turn T+3; counting every turn it would rise on the opponent's turn T+1 already."
+    },
+    {
+      "id": "full_moon_boundary",
+      "question": "At which boundary does the Full Moon rise?",
+      "alternatives": [
+        "at the start of your third turn after the Battlecry",
+        "at the end of your third turn after the Battlecry"
+      ],
+      "chosen": "at the start of your third turn after the Battlecry",
+      "basis": "COMMUNITY_RULES",
+      "risk": "OUTCOME",
+      "discriminating_case": "On your third turn after the Battlecry a 9-cost card in hand costs (1) from that turn's start under the chosen reading and still 9 during that turn under the alternative."
+    },
+    {
+      "id": "zones",
+      "question": "Which of your cards cost (1)?",
+      "alternatives": [
+        "hand and deck",
+        "hand only"
+      ],
+      "chosen": "hand and deck",
+      "basis": "USER_OBSERVED",
+      "risk": "OUTCOME",
+      "discriminating_case": "After the Full Moon a 7-cost card in the deck: 'draw your highest-cost card' effects see 1 under hand and deck, 7 under hand only."
+    },
+    {
+      "id": "later_cards",
+      "question": "Do cards created after the Full Moon cost (1)?",
+      "alternatives": [
+        "yes (dynamic player effect)",
+        "no (only cards present at the Full Moon)"
+      ],
+      "chosen": "yes (dynamic player effect)",
+      "basis": "ASSUMPTION",
+      "risk": "EDGE",
+      "discriminating_case": "A card discovered into hand after the Full Moon costs (1) under yes and its printed cost under no.",
+      "dep": "new_cards"
+    },
+    {
+      "id": "duration",
+      "question": "How long do the costs stay (1)?",
+      "alternatives": [
+        "this game",
+        "while Aviana is in play"
+      ],
+      "chosen": "this game",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Aviana dies after the Full Moon: under 'this game' cards still cost (1)."
+    }
+  ],
+  "status": "FULL_DEP",
+  "notes": "CARD-IR-V02 expressivity example, not a B1 re-compilation. User-observed facts: three own turns, hand and deck cost (1), until the end of the game."
+}

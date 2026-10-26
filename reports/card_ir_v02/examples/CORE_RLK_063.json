@@ -1,0 +1,99 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CORE_RLK_063",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+  "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $5 damage. Freeze all enemy minions. Summon a 5/5 Frostwyrm.",
+      "target": {
+        "bind": "t",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "CHARACTER",
+          "side": "ANY"
+        }
+      },
+      "effect": {
+        "seq": [
+          {
+            "op": "DEAL_DAMAGE",
+            "to": {
+              "ref": "t"
+            },
+            "amount": {
+              "n": 5,
+              "mark": "$"
+            }
+          },
+          {
+            "op": "FREEZE",
+            "to": {
+              "pick": "ALL",
+              "type": "MINION",
+              "side": "ENEMY"
+            }
+          },
+          {
+            "op": "SUMMON",
+            "count": 1,
+            "what": {
+              "card": "RLK_063t",
+              "resolved": "NAME_IN_SET",
+              "dep": "frostwyrm_identity"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "frostwyrm_identity",
+      "kind": "TOKEN_IDENTITY",
+      "scope": "DATA",
+      "detail": "RLK_063t matches name, 5/5 and the original ID prefix; the CORE parent relation needs confirmation.",
+      "source_needed": "hsdata CardDefs relations or Power.log"
+    },
+    {
+      "id": "freeze_thaw",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "When Frozen is removed is not fully confirmed; the common case (frozen on your turn, thawed at the end of the opponent's next turn) is assumed by the executor only through this dependency.",
+      "source_needed": "Power.log of a frozen minion across two turns",
+      "rule": "R_FREEZE_THAW"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "order",
+      "question": "In which order do damage, Freeze and the summon happen?",
+      "alternatives": [
+        "damage, Freeze, summon",
+        "damage, summon, Freeze"
+      ],
+      "chosen": "damage, Freeze, summon",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "The summoned Frostwyrm is friendly, so Freeze never hits it; a summon reaction that checks Frozen enemies sees them frozen under the chosen order."
+    },
+    {
+      "id": "damage_target",
+      "question": "Which characters can 'Deal $5 damage' target?",
+      "alternatives": [
+        "any character",
+        "enemy characters"
+      ],
+      "chosen": "any character",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "Targeting your own hero is legal under 'any character'."
+    }
+  ],
+  "status": "FULL_DEP",
+  "notes": "CARD-IR-V02 expressivity example: one sequence instead of the two B1 play abilities."
+}

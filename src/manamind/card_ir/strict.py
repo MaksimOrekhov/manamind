@@ -109,6 +109,29 @@ def _gaps(doc, bindings, errors):
 _DISPLAY = re.compile(r"\(\d+\s*(?:/\s*\d+|(?:turns? |uses? |charges? )?(?:left|remaining))!?\)", re.I)
 
 
+_NUMERIC = ("amount", "n", "count", "attack", "health", "reduce", "set", "turns", "uses", "options", "goal", "spell_damage")
+
+
+def _structure(doc, errors, booleans=("damaged",), numeric=_NUMERIC):
+    for section in ("abilities", "keywords"):
+        for path, node in walk(doc.get(section, []), f"/{section}"):
+            if isinstance(node, Mapping):
+                for key in booleans:
+                    if key in node and not isinstance(node[key], bool):
+                        errors.append(f"STRUCTURE: {path}/{key} must be a boolean")
+                for key in numeric:
+                    if isinstance(node.get(key), bool):
+                        errors.append(f"STRUCTURE: {path}/{key} must not be a boolean number")
+
+
+def _reminders(doc, errors):
+    for i, reminder in enumerate(doc.get("reminders", [])):
+        if not isinstance(reminder["why"], str) or not reminder["why"].strip():
+            errors.append(f"REMINDER: /reminders/{i} needs a display explanation")
+        if not _DISPLAY.fullmatch(reminder["span"]):
+            errors.append(f"REMINDER: /reminders/{i} is not a non-operative progress readout")
+
+
 def validate_strict(doc: Mapping[str, Any], meta: Any, bindings: Mapping | None = None) -> StrictReport:
     report = StrictReport(str(doc.get("card_id")) if isinstance(doc, Mapping) else "?")
     if not isinstance(doc, Mapping):
@@ -120,20 +143,9 @@ def validate_strict(doc: Mapping[str, Any], meta: Any, bindings: Mapping | None 
         report.status = base.computed_status
         if base.errors:
             return report
-        for section in ("abilities", "keywords"):
-            for path, node in walk(doc.get(section, []), f"/{section}"):
-                if isinstance(node, Mapping):
-                    if "damaged" in node and not isinstance(node["damaged"], bool):
-                        report.errors.append(f"STRUCTURE: {path}/damaged must be a boolean")
-                    for key in ("amount", "n", "count", "attack", "health", "reduce", "set", "turns", "uses", "options", "goal", "spell_damage"):
-                        if isinstance(node.get(key), bool):
-                            report.errors.append(f"STRUCTURE: {path}/{key} must not be a boolean number")
+        _structure(doc, report.errors)
         _gaps(doc, bindings, report.errors)
-        for i, reminder in enumerate(doc.get("reminders", [])):
-            if not isinstance(reminder["why"], str) or not reminder["why"].strip():
-                report.errors.append(f"REMINDER: /reminders/{i} needs a display explanation")
-            if not _DISPLAY.fullmatch(reminder["span"]):
-                report.errors.append(f"REMINDER: /reminders/{i} is not a non-operative progress readout")
+        _reminders(doc, report.errors)
         report.warnings.extend(lint_declaration(doc))
         report.warnings.extend(lint_semantics(doc))
         report.warnings.extend(lint_strict(doc))

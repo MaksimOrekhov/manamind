@@ -1,0 +1,79 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "CATA_585",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+  "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+  "abilities": [
+    {
+      "kind": "play",
+      "label": "SPELL",
+      "span": "Deal $8 damage to a damaged minion.",
+      "target": {
+        "bind": "t",
+        "choose": {
+          "pick": "CHOSEN",
+          "type": "MINION",
+          "side": "ANY",
+          "where": [
+            {
+              "damaged": true
+            }
+          ]
+        }
+      },
+      "effect": {
+        "op": "DEAL_DAMAGE",
+        "to": {
+          "ref": "t"
+        },
+        "amount": {
+          "n": 8,
+          "mark": "$"
+        }
+      }
+    }
+  ],
+  "unexpressed": [
+    {
+      "span": "Return this to hand with any excess damage.",
+      "why": "Returning this spell with its damage changed to the excess needs a mutable instance parameter (S2), deferred to a separate task; a static damage value would be wrong after the first return."
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "instance_parameter",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "No v0.2 construct stores the excess as this card's new damage value across zones; static damage would be wrong after the first return. Mutable instance parameters (S2) are deferred to a separate task.",
+      "source_needed": "reports/card_ir_v02/S2_DESIGN.md, then a separate implementation task",
+      "card_level": true
+    },
+    {
+      "id": "spellpower",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "Text carries $8 but metadata says ImmuneToSpellpower: how Spell Damage applies to Torch is unknown.",
+      "source_needed": "Power.log of Torch with Spell Damage"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "spellpower",
+      "question": "Does Spell Damage change Torch's damage?",
+      "alternatives": [
+        "adds to the damage",
+        "the card procedure applies it differently",
+        "does not apply"
+      ],
+      "chosen": "UNRESOLVED",
+      "basis": "UNKNOWN",
+      "risk": "OUTCOME",
+      "discriminating_case": "Spell Damage +1, target with 3 Health: 9 damage and 6 back, or 8 and 5 back.",
+      "dep": "spellpower"
+    }
+  ],
+  "status": "PARTIAL",
+  "notes": "CARD-IR-V02 example of an honest PARTIAL. User-observed: 8 into 3 Health returns 5; 5 into 2 Health returns 3; zero excess (including Divine Shield) does not return; the value persists across replays."
+}

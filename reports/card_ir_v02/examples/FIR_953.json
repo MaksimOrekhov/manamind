@@ -1,0 +1,115 @@
+{
+  "ir": "card-ir/0.2",
+  "card_id": "FIR_953",
+  "snapshot": "hsjson_255130_enUS",
+  "role": "example",
+  "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+  "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+  "keywords": [
+    {
+      "keyword": "RUSH",
+      "span": "Rush."
+    }
+  ],
+  "abilities": [
+    {
+      "kind": "trigger",
+      "span": "After this attacks a minion and survives, deal this minion's Attack damage split among all enemies.",
+      "event": {
+        "type": "ATTACK_DECLARED",
+        "attacker": "SELF",
+        "defender": {
+          "pick": "ALL",
+          "type": "MINION",
+          "side": "ANY"
+        }
+      },
+      "timing": "AFTER",
+      "condition": {
+        "is": {
+          "entity": "SELF",
+          "where": [
+            {
+              "alive": true
+            }
+          ]
+        }
+      },
+      "effect": {
+        "repeat": {
+          "stat": "ATTACK",
+          "of": "SELF"
+        },
+        "do": {
+          "op": "DEAL_DAMAGE",
+          "amount": 1,
+          "to": {
+            "pick": "RANDOM",
+            "n": 1,
+            "type": "CHARACTER",
+            "side": "ENEMY"
+          }
+        }
+      }
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "split_reading",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CORE",
+      "detail": "'split among' without 'randomly' is encoded as randomly split (R_SPLIT_UNQUALIFIED); the independent rules check did not confirm that equivalence.",
+      "source_needed": "Power.log of Magma Hound's trigger or an authoritative rules source",
+      "rule": "R_SPLIT_UNQUALIFIED"
+    },
+    {
+      "id": "attack_redirect",
+      "kind": "UNKNOWN_RULE",
+      "scope": "CONDITIONAL",
+      "detail": "If the attack is redirected after declaration, whether 'attacks a minion' sees the original or the final defender.",
+      "source_needed": "Power.log of a redirected Magma Hound attack",
+      "rule": "R_ATTACK_REDIRECT"
+    }
+  ],
+  "decisions": [
+    {
+      "id": "subject",
+      "question": "Who attacks?",
+      "alternatives": [
+        "this minion",
+        "your hero"
+      ],
+      "chosen": "this minion",
+      "basis": "TEXT",
+      "risk": "OUTCOME",
+      "discriminating_case": "Your hero attacks with a weapon while Hound is in play: no trigger under 'this minion'."
+    },
+    {
+      "id": "split",
+      "question": "How is the damage split?",
+      "alternatives": [
+        "randomly split: one random live enemy per 1-damage packet",
+        "the controller distributes it"
+      ],
+      "chosen": "randomly split: one random live enemy per 1-damage packet",
+      "basis": "ASSUMPTION",
+      "risk": "OUTCOME",
+      "discriminating_case": "Two enemy 1-Health minions and 2 Attack: under random split both can survive the second packet hitting the hero; a chosen distribution kills both.",
+      "dep": "split_reading"
+    },
+    {
+      "id": "attack_value",
+      "question": "When is this minion's Attack read?",
+      "alternatives": [
+        "current Attack after combat",
+        "Attack when the attack was declared"
+      ],
+      "chosen": "current Attack after combat",
+      "basis": "TEXT",
+      "risk": "EDGE",
+      "discriminating_case": "A combat reaction that changes Hound's Attack changes the number of packets."
+    }
+  ],
+  "status": "PARTIAL",
+  "notes": "CARD-IR-V02 expressivity example: the trigger is fully structured; PARTIAL only because the unqualified split reading is unconfirmed (CORE)."
+}
