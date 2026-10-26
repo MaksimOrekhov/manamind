@@ -145,3 +145,8 @@ clause checks resolve a play-target reference before checking its side/type/zone
 Freeze clause does not justify enemy-only damage. Unconditional nested sequences are flattened for the existing
 Freeze order check. Branch/loop order, arbitrary conditions, token semantics, evidence provenance and dependency
 severity still require review. This adds no language operation and changes no frozen v0.1 checker or historical result.
+
+Strict v0.2 additionally checks numeric roles in unambiguous templates: signed Attack/Health grant pairs against
+their corresponding ENCHANT, and singular/count-word random discards against the payment selector's cardinality.
+It does not require every IR number to appear literally in the text: implicit defaults, expressions and metadata
+numbers remain legitimate. See [outcome parity numeric fix](../reports/card_ir_outcome_parity_1/VALIDATION_FIX.md).

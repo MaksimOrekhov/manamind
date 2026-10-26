@@ -1,0 +1,950 @@
+{
+  "cases": [
+    {
+      "id": "original_CORE_AT_055",
+      "kind": "control",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "CORE_AT_055",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "sample",
+        "text": "Restore #5 Health.",
+        "text_sha256": "caebafaf154d01d22e7685b6b599baa74bc1c50753cc29b97c77e153fa7b04a8",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Restore #5 Health.",
+            "target": {
+              "bind": "t",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "CHARACTER",
+                "side": "ANY"
+              }
+            },
+            "effect": {
+              "op": "RESTORE_HEALTH",
+              "to": {
+                "ref": "t"
+              },
+              "amount": {
+                "n": 5,
+                "mark": "#"
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "Which targets: any character (friendly or enemy, hero or minion)?",
+            "alternatives": [
+              "any character",
+              "friendly characters only"
+            ],
+            "chosen": "any character",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [],
+      "accepted": true,
+      "complete": true,
+      "status": "FULL"
+    },
+    {
+      "id": "original_CORE_EX1_238",
+      "kind": "control",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "CORE_EX1_238",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Deal $3 damage. <b>Overload:</b> (1)",
+        "text_sha256": "2e0e6b3b8f701a317d01e7d3101503157af8dd1aaef3dc2ff0c40a514d78affd",
+        "keywords": [
+          {
+            "keyword": "OVERLOAD",
+            "span": "Overload: (1)",
+            "amount": 1
+          }
+        ],
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $3 damage.",
+            "target": {
+              "bind": "t",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "CHARACTER",
+                "side": "ANY"
+              }
+            },
+            "effect": {
+              "op": "DEAL_DAMAGE",
+              "to": {
+                "ref": "t"
+              },
+              "amount": {
+                "n": 3,
+                "mark": "$"
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [],
+      "accepted": true,
+      "complete": true,
+      "status": "FULL"
+    },
+    {
+      "id": "original_CORE_ICC_055",
+      "kind": "control",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "CORE_ICC_055",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "<b>Lifesteal</b>\nDeal $3 damage\nto a minion.",
+        "text_sha256": "db3cb89d60caf0ea5054822b9070ee2e066f91de5471039446c1fb69ab77f9f7",
+        "keywords": [
+          {
+            "keyword": "LIFESTEAL",
+            "span": "Lifesteal"
+          }
+        ],
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Deal $3 damage to a minion.",
+            "target": {
+              "bind": "t",
+              "choose": {
+                "pick": "CHOSEN",
+                "type": "MINION",
+                "side": "ANY"
+              }
+            },
+            "effect": {
+              "op": "DEAL_DAMAGE",
+              "to": {
+                "ref": "t"
+              },
+              "amount": {
+                "n": 3,
+                "mark": "$"
+              }
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [],
+      "accepted": true,
+      "complete": true,
+      "status": "FULL"
+    },
+    {
+      "id": "original_FIR_906",
+      "kind": "control",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [],
+      "accepted": true,
+      "complete": true,
+      "status": "FULL"
+    },
+    {
+      "id": "attack_7",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 7,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 0 attack=7 differs from its own text +1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "attack_2",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 2,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 0 attack=2 differs from its own text +1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "health_9",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 9,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 0 health=9 differs from its own text +1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "second_attack_7",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 7,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 1 attack=7 differs from its own text +1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "second_health_9",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 1,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 9,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_STAT_ROLE: grant 1 health=9 differs from its own text +1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "discard_2",
+      "kind": "wrong",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "n": 2,
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [
+        "abilities[0]: NUMERIC_DISCARD_ROLE: discard 0 count=2 differs from its own text count 1"
+      ],
+      "accepted": false,
+      "complete": false,
+      "status": "FULL"
+    },
+    {
+      "id": "implicit_discard_one",
+      "kind": "control",
+      "declaration": {
+        "ir": "card-ir/0.2",
+        "card_id": "FIR_906",
+        "snapshot": "hsjson_255130_enUS",
+        "role": "engine_validation",
+        "text": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+        "text_sha256": "50666992297b34c679b8d416000125d389b576befc2771d60311a9fa51b34a15",
+        "abilities": [
+          {
+            "kind": "play",
+            "label": "SPELL",
+            "span": "Give your minions +1/+1. Discard a random Nature spell to give them +1/+1 more.",
+            "effect": {
+              "seq": [
+                {
+                  "op": "ENCHANT",
+                  "to": {
+                    "pick": "ALL",
+                    "type": "MINION",
+                    "side": "FRIENDLY"
+                  },
+                  "attack": 1,
+                  "health": 1,
+                  "enchantment_id": "FIR_906e",
+                  "as": "buffed"
+                },
+                {
+                  "pay": {
+                    "discard": {
+                      "pick": "RANDOM",
+                      "type": "SPELL",
+                      "side": "FRIENDLY",
+                      "zone": "HAND",
+                      "where": [
+                        {
+                          "spell_school": "NATURE"
+                        }
+                      ]
+                    }
+                  },
+                  "then": {
+                    "op": "ENCHANT",
+                    "to": {
+                      "ref": "buffed"
+                    },
+                    "attack": 1,
+                    "health": 1,
+                    "enchantment_id": "FIR_906e"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "d1",
+            "question": "'them' = the minions buffed by the first step (not re-selected)?",
+            "alternatives": [
+              "the buffed minions",
+              "your minions now"
+            ],
+            "chosen": "the buffed minions",
+            "basis": "TEXT",
+            "risk": "EDGE",
+            "discriminating_case": "equal unless a minion enters or leaves between the steps"
+          },
+          {
+            "id": "d2",
+            "question": "No Nature spell in hand: no second buff and nothing discarded",
+            "alternatives": [
+              "nothing",
+              "discard anything"
+            ],
+            "chosen": "nothing",
+            "basis": "TEXT",
+            "risk": "NONE"
+          }
+        ],
+        "status": "FULL"
+      },
+      "structural_valid": true,
+      "errors": [],
+      "warnings": [],
+      "accepted": true,
+      "complete": true,
+      "status": "FULL"
+    }
+  ],
+  "summary": {
+    "control": {
+      "total": 5,
+      "accepted": 5
+    },
+    "wrong": {
+      "total": 6,
+      "accepted": 0
+    }
+  },
+  "source_sha256": {
+    "src/manamind/card_ir/__init__.py": "49e12a7b208649086f509689ff102a0d5ed87125657c9f5a9bdf2d5fb3cb8c4e",
+    "src/manamind/card_ir/audit_render.py": "fb6c0f21a6146965e12081b5d3c0f79ba94fb87a07fc26e10662ff23d237815e",
+    "src/manamind/card_ir/engine_translate.py": "eacdeb7c6185bcec3e83035a88f35ddb173f2195284ce96ce4f14e5d5bc59bd0",
+    "src/manamind/card_ir/lint.py": "dbc29b94596352d44bd774d1c1c7fb6a20c0e3a20ea94515b30813ab66ad8422",
+    "src/manamind/card_ir/lint_v02.py": "08de2aa1418c186d3a2774444c56a09ab0453db27ee16d0b2d686611d2637adc",
+    "src/manamind/card_ir/numeric_lint_v02.py": "0673406f5ac16e2acfc6b94902265c8898b67fa13818453d6cb988ceb192040f",
+    "src/manamind/card_ir/render.py": "035e41aa62e7cef4034ea55c052be029f4c0afdca9486954bdb603a5b2b2eecc",
+    "src/manamind/card_ir/render_v02.py": "3645efecc95bee2b2ca6576b9b7d108430c3add391a165e78c4796160dd1dc31",
+    "src/manamind/card_ir/semantic_lint.py": "4a8a8a22c0ece965d2fae9333665f68245dc238f00d18f99c4c00fa963c252d6",
+    "src/manamind/card_ir/strict.py": "dc224d053cee6b5f9c03db0f0b782f24ea0463f718d9b71a9e462b1be907b217",
+    "src/manamind/card_ir/strict_lint.py": "60d4b1320c5d88b49fc9f2696a82f5cd99a44a3a8d0bcb2916658234eeb97f4d",
+    "src/manamind/card_ir/strict_v02.py": "3e058c59ca7782dd872d239730e3d188074361b64a4dd55710e79fbb732d2960",
+    "src/manamind/card_ir/validate.py": "798017d65a011965fa7150f19f66c245954ac194d5e36818bad64810ec16d24c",
+    "src/manamind/card_ir/validate_v02.py": "c357599c66a4821adf5057f678e4cac3b57a0a9baba57031e453b58bf49780a1",
+    "src/manamind/card_ir/vocabulary.py": "0281573e8d5705c510e1c381123d4911f807023e328dffb3218276d38f4dffc6",
+    "src/manamind/card_ir/vocabulary_v02.py": "d404661aeb4d2d930e2b2b54390f866187f77466614d13d9e95f2ceba998466f"
+  }
+}

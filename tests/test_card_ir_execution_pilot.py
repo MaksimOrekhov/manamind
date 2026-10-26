@@ -119,16 +119,16 @@ def test_target_side_mutations_change_the_explicit_selector():
     assert translate(character).steps[0].target == "EXPLICIT_CHARACTER"
 
 
-def test_validator_gap_unmarked_stat_numbers_are_not_checked_against_the_text(meta):
-    """Finding: one changed Overheat stat passes strict v0.2 as FULL (text numbers are matched one way only)."""
+def test_former_validator_gap_is_closed_by_numeric_roles_without_changing_history(meta):
+    """Outcome parity adds role checks; immutable execution-pilot results retain the original verdicts."""
     _, doc = _mutated("M-stats")
     report = validate_strict_v02(doc, meta)
-    assert report.accepted and report.status == "FULL"
-    # Same slack through the implicit 'a random' count: accepted by the validator, refused by the translator.
+    assert not report.accepted and any("NUMERIC_STAT_ROLE" in w for w in report.warnings)
+    # The implicit 'a random' count is independent of the four +1/+1 stat literals.
     doc = copy.deepcopy(declared()[SC.OVERHEAT])
     doc["abilities"][0]["effect"]["seq"][1]["pay"]["discard"]["n"] = 2
     report = validate_strict_v02(doc, meta)
-    assert report.accepted and report.status == "FULL"
+    assert not report.accepted and any("NUMERIC_DISCARD_ROLE" in w for w in report.warnings)
     with pytest.raises(TranslationRefused) as caught:
         translate(doc)
     assert caught.value.code == "UNSUPPORTED_PAYMENT"

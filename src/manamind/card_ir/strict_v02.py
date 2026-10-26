@@ -12,6 +12,7 @@ from typing import Any
 
 from manamind.card_ir.lint import lint_declaration
 from manamind.card_ir.lint_v02 import lint_v02, superseded
+from manamind.card_ir.numeric_lint_v02 import lint_numeric_roles
 from manamind.card_ir.semantic_lint import lint_semantics
 from manamind.card_ir.strict import _NUMERIC, StrictReport, _gaps, _reminders, _structure, validate_strict
 from manamind.card_ir.strict_lint import lint_strict
@@ -39,6 +40,7 @@ def validate_strict_v02(doc: Mapping[str, Any], meta: Any, bindings: Mapping | N
         report.warnings.extend(lint_semantics(doc))
         report.warnings.extend(w for w in lint_strict(doc) if not superseded(w))
         report.warnings.extend(lint_v02(doc))
+        report.warnings.extend(lint_numeric_roles(doc))
     except (TypeError, ValueError, KeyError, AttributeError, IndexError, RecursionError) as exc:
         report.errors.append(f"STRUCTURE: malformed declaration ({type(exc).__name__})")
     return report
