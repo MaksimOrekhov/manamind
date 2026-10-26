@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Слепая разметка ходов</title>
+<style>
+:root {
+  --bg: #f6f5f2; --panel: #ffffff; --ink: #1d1d1f; --muted: #6b6b70; --line: #dcdad4;
+  --self: #e8f1ea; --opp: #f5e9e7; --ok: #2f7d4a; --bad: #b3261e; --unsure: #8a6d00; --accent: #2c5aa0;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { position: sticky; top: 0; z-index: 2; background: var(--panel); border-bottom: 1px solid var(--line);
+  display: flex; gap: 12px; align-items: center; padding: 8px 16px; flex-wrap: wrap; }
+header h1 { font-size: 16px; margin: 0 8px 0 0; }
+header .grow { flex: 1; }
+button { font: inherit; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+button:hover { border-color: var(--muted); }
+button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+main { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px; padding: 16px; }
+@media (max-width: 1000px) { main { grid-template-columns: 1fr; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.side { border-radius: 8px; padding: 10px; margin-bottom: 10px; }
+.side.opp { background: var(--opp); } .side.self { background: var(--self); }
+.side h2 { font-size: 14px; margin: 0 0 6px; }
+.stats { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--ink); }
+.stats b { font-weight: 600; }
+.row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.card { background: rgba(255,255,255,.85); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; min-width: 120px; max-width: 220px; }
+.card .n { font-weight: 600; }
+.card .s { color: var(--muted); font-size: 12px; }
+.card .t { font-size: 12px; margin-top: 2px; }
+.card .t.missing { color: var(--bad); font-style: italic; }
+.kw { display: inline-block; font-size: 11px; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; margin: 1px 2px 0 0; }
+.label { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.menu { list-style: none; margin: 0; padding: 0; }
+.menu li { border-top: 1px solid var(--line); padding: 6px 0; display: grid; grid-template-columns: 28px 1fr auto; gap: 6px; align-items: start; }
+.menu li.ACCEPTABLE { background: #eef7f0; } .menu li.BLUNDER { background: #fbecea; } .menu li.UNSURE { background: #fbf6e3; }
+.menu .num { color: var(--muted); text-align: right; }
+.menu .txt small { display: block; color: var(--muted); }
+.marks { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.marks button { padding: 2px 6px; font-size: 12px; }
+.marks button.on.ACCEPTABLE { background: var(--ok); color: #fff; border-color: var(--ok); }
+.marks button.on.BLUNDER { background: var(--bad); color: #fff; border-color: var(--bad); }
+.marks button.on.UNSURE { background: var(--unsure); color: #fff; border-color: var(--unsure); }
+.marks button.on.best { background: #f2c94c; border-color: #c9a227; }
+fieldset { border: 1px solid var(--line); border-radius: 6px; margin: 10px 0 0; padding: 6px 10px; }
+legend { color: var(--muted); font-size: 12px; }
+textarea { width: 100%; min-height: 48px; font: inherit; }
+.status { font-size: 12px; color: var(--muted); }
+.err { color: var(--bad); white-space: pre-line; }
+.nav { display: flex; flex-wrap: wrap; gap: 3px; padding: 0 16px 16px; }
+.nav button { font-size: 11px; padding: 1px 5px; }
+.nav button.done { background: #e2efe5; } .nav button.ii { background: #f3ead0; } .nav button.cur { outline: 2px solid var(--accent); }
+.help { font-size: 13px; }
+.help li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Слепая разметка ходов</h1>
+  <span id="where" class="status"></span>
+  <span class="grow"></span>
+  <button id="prev">← Назад</button>
+  <button id="next">Далее →</button>
+  <button id="nextOpen">Следующая без метки</button>
+  <button id="toggleHelp">Инструкция</button>
+</header>
+<div id="help" class="panel help" style="margin:16px; display:none">
+  <ol>
+    <li>Оцените <b>следующее действие</b> в этой позиции. Считайте, что после него вы доиграете ход наилучшим образом.</li>
+    <li>Отметьте <b>все приемлемые</b> действия. Если хороших вариантов несколько и выбор между ними — дело стиля, отметьте их все. Выбирать один лучший не обязательно; ★ ставьте, только если уверены.</li>
+    <li><b>Грубая ошибка</b> — действие, которое компетентный игрок считает явно плохим: упущенный летал, вред себе без пользы, бессмысленная трата ресурса.</li>
+    <li>Действия без отметки считаются «не приемлемо, но и не грубо». «Не уверен» — если не можете судить именно об этом варианте.</li>
+    <li>Если позицию нельзя оценить по показанной информации, выберите «Недостаточно информации» и укажите причину. Если что-то показано неверно или неполно, отметьте «Проблема отображения» и опишите её.</li>
+    <li>Свои Секреты и Квесты показаны только количеством: их идентичность пока не попадает в состояние. Если это важно для решения, отметьте «Недостаточно информации» → «позиция показана неверно/неполно».</li>
+    <li>«[?]» в тексте карты — число, которое клиент подставляет во время игры; в снимке карт его нет.</li>
+    <li>Здесь нет оценок моделей, вашего хода и исхода партии. Если вы помните эту партию или позицию, отметьте это честно.</li>
+  </ol>
+</div>
+<main>
+  <section class="panel" id="board"></section>
+  <section class="panel">
+    <div class="label">Доступные действия (фиксированный порядок: карты по руке, сила героя, атаки по атакующему, конец хода)</div>
+    <ul class="menu" id="menu"></ul>
+    <fieldset>
+      <legend>Итог позиции</legend>
+      <label><input type="radio" name="status" value="LABELED"> Оценено</label>
+      <label><input type="radio" name="status" value="INSUFFICIENT_INFORMATION"> Недостаточно информации</label>
+      <div id="reasons" style="margin-top:4px">
+        <label><input type="checkbox" value="DISPLAY_PROBLEM"> позиция показана неверно/неполно</label><br>
+        <label><input type="checkbox" value="CARD_TEXT_MISSING"> нет текста нужной карты</label><br>
+        <label><input type="checkbox" value="HIDDEN_INFORMATION_NEEDED"> решение зависит от скрытой информации</label><br>
+        <label><input type="checkbox" value="RULES_UNCLEAR"> не уверен в правилах взаимодействия</label><br>
+        <label><input type="checkbox" value="OTHER"> другое (в комментарии)</label>
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend>Уверенность в оценке</legend>
+      <label><input type="radio" name="confidence" value="LOW"> низкая</label>
+      <label><input type="radio" name="confidence" value="MEDIUM"> средняя</label>
+      <label><input type="radio" name="confidence" value="HIGH"> высокая</label>
+    </fieldset>
+    <fieldset>
+      <legend>Пометки</legend>
+      <label><input type="checkbox" id="display_problem"> Проблема отображения</label><br>
+      <label><input type="checkbox" id="remembers_game"> Помню эту партию или позицию</label><br>
+      <label><input type="checkbox" id="needs_independent_review"> Спорная позиция: нужно независимое ревью</label>
+      <textarea id="comment" placeholder="Комментарий (необязательно)"></textarea>
+    </fieldset>
+    <p><button class="primary" id="save">Сохранить</button> <span id="saveState" class="status"></span></p>
+    <div id="errors" class="err"></div>
+  </section>
+</main>
+<div class="nav" id="nav"></div>
+<script>
+"use strict";
+let data = null, index = 0, draft = null, dirty = false;
+let activeSeconds = 0, lastTick = Date.now();
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const TYPES = {MINION: "существо", SPELL: "заклинание", WEAPON: "оружие", HERO_POWER: "сила героя",
+  LOCATION: "локация", HERO: "герой"};
+const val = (v) => (v === null || v === undefined) ? "?" : v;
+
+function tick() {
+  const t = Date.now();
+  if (document.visibilityState === "visible" && document.hasFocus()) activeSeconds += (t - lastTick) / 1000;
+  lastTick = t;
+}
+setInterval(tick, 1000);
+
+function cardHtml(c, extra) {
+  if (!c) return "";
+  const stats = [];
+  if (c.cost !== null && c.cost !== undefined && c.position === undefined) stats.push(c.cost + " маны");
+  if (c.attack !== null && c.attack !== undefined && c.health !== null && c.health !== undefined)
+    stats.push(c.attack + "/" + c.health + (c.max_health && c.max_health !== c.health ? " (макс. " + c.max_health + ")" : ""));
+  else if (c.durability !== null && c.durability !== undefined) stats.push("прочность " + c.durability);
+  if (c.type) stats.push(TYPES[c.type] || c.type.toLowerCase());
+  const kws = (c.keywords || []).map((k) => `<span class="kw">${esc(k)}</span>`).join("");
+  const text = c.text === null || c.text === undefined
+    ? `<div class="t missing">текст карты недоступен</div>` : (c.text ? `<div class="t">${c.text}</div>` : "");
+  return `<div class="card"><div class="n">${esc(c.name)}</div><div class="s">${esc(stats.join(" · "))}${extra || ""}</div>${kws}${text}</div>`;
+}
+
+function sideHtml(p, title, cls) {
+  const hero = `<div class="stats"><span><b>${esc(p.class)}</b></span>
+    <span>Здоровье <b>${val(p.hero_health)}</b>/${val(p.hero_max_health)}</span>
+    <span>Броня <b>${val(p.armor)}</b></span>
+    <span>Атака героя <b>${val(p.hero_attack)}</b></span>
+    <span>Мана <b>${val(p.available_mana)}</b>/${val(p.max_mana)}</span>
+    ${p.overloaded_mana ? `<span>Перегрузка сейчас ${p.overloaded_mana}</span>` : ""}
+    ${p.pending_overload ? `<span>Перегрузка на след. ход ${p.pending_overload}</span>` : ""}
+    <span>Рука ${val(p.hand_size)}</span><span>Колода ${val(p.deck_size)}</span>
+    ${p.fatigue ? `<span>Усталость ${p.fatigue}</span>` : ""}
+    ${p.secret_count ? `<span><b>Секретов: ${p.secret_count}</b></span>` : ""}
+    ${p.spell_damage ? `<span>Spell Damage +${p.spell_damage}</span>` : ""}
+    ${p.healing_bonus ? `<span>Бонус лечения +${p.healing_bonus}</span>` : ""}
+    ${p.hero_frozen ? `<span class="kw">герой заморожен</span>` : ""}
+    ${p.hero_divine_shield ? `<span class="kw">щит героя</span>` : ""}</div>`;
+  const singles = [];
+  if (p.hero_power) singles.push(cardHtml(p.hero_power, p.hero_power_ready === false ? " · использована" : (p.hero_power_ready ? " · готова" : "")));
+  if (p.weapon) singles.push(cardHtml(p.weapon, " · оружие"));
+  (p.known_secrets || []).forEach((s) => singles.push(cardHtml(s, " · известный секрет")));
+  (p.active_effects || []).forEach((s) => singles.push(cardHtml(s, " · активный эффект")));
+  const board = (p.board || []).map((m) => cardHtml(m, ` · поз. ${m.position}${m.can_attack ? " · может атаковать" : ""}`)).join("");
+  const locs = (p.locations || []).map((m) => cardHtml(m, ` · локация, поз. ${m.position}${m.can_activate ? " · можно активировать" : ""}${m.on_cooldown ? " · перезарядка" : ""}`)).join("");
+  return `<div class="side ${cls}"><h2>${title}</h2>${hero}
+    <div class="label">Сила героя, оружие, секреты</div><div class="row">${singles.join("") || "<span class='status'>—</span>"}</div>
+    <div class="label">Стол</div><div class="row">${board || "<span class='status'>пусто</span>"}</div>
+    ${locs ? `<div class="label">Локации</div><div class="row">${locs}</div>` : ""}</div>`;
+}
+
+function render() {
+  const s = data.screens[index];
+  const saved = data.labels[s.screen_id];
+  draft = saved ? JSON.parse(JSON.stringify(saved)) : {marks: {}, best: [], insufficient_reasons: []};
+  activeSeconds = saved && saved.active_seconds ? saved.active_seconds : 0;
+  dirty = false;
+  $("where").textContent = `Пакет «${data.batch}», разметчик «${data.rater}» · экран ${index + 1} из ${data.screens.length} (${s.screen_id}) · ход ${s.turn_number}`
+    + (data.frozen ? " · ЗАМОРОЖЕНО" : "");
+  const hand = s.hand.map((c) => cardHtml(c, ` · рука #${c.slot}`)).join("");
+  const known = (s.opponent_known_cards || []).map((c) => cardHtml(c)).join("");
+  $("board").innerHTML = sideHtml(s.opponent, "Соперник", "opp")
+    + (known ? `<div class="label">Известные карты соперника</div><div class="row">${known}</div>` : "")
+    + sideHtml(s.self, "Вы", "self")
+    + `<div class="label">Ваша рука (по порядку)</div><div class="row">${hand || "<span class='status'>пусто</span>"}</div>`;
+  $("menu").innerHTML = s.menu.map((m) => `<li id="m${m.choice}">
+      <span class="num">${m.choice}.</span>
+      <span class="txt">${esc(m.label)}${m.text ? `<small>${m.text}</small>` : ""}</span>
+      <span class="marks">
+        <button data-c="${m.choice}" data-m="ACCEPTABLE" class="ACCEPTABLE">приемлемо</button>
+        <button data-c="${m.choice}" data-m="BLUNDER" class="BLUNDER">грубая ошибка</button>
+        <button data-c="${m.choice}" data-m="UNSURE" class="UNSURE">не уверен</button>
+        <button data-c="${m.choice}" data-m="BEST" class="best" title="лучший (необязательно)">★</button>
+      </span></li>`).join("");
+  document.querySelectorAll(".marks button").forEach((b) => b.addEventListener("click", () => mark(+b.dataset.c, b.dataset.m)));
+  document.querySelectorAll("input[name=status]").forEach((r) => { r.checked = r.value === draft.status; });
+  document.querySelectorAll("input[name=confidence]").forEach((r) => { r.checked = r.value === draft.confidence; });
+  document.querySelectorAll("#reasons input").forEach((c) => { c.checked = (draft.insufficient_reasons || []).includes(c.value); });
+  ["display_problem", "remembers_game", "needs_independent_review"].forEach((k) => { $(k).checked = !!draft[k]; });
+  $("comment").value = draft.comment || "";
+  $("errors").textContent = "";
+  $("saveState").textContent = saved ? "сохранено " + saved.saved_at_utc.slice(0, 19).replace("T", " ") + " UTC" : "не сохранено";
+  paintMarks();
+  renderNav();
+  window.scrollTo(0, 0);
+}
+
+function mark(choice, kind) {
+  const key = String(choice);
+  if (kind === "BEST") {
+    const i = draft.best.indexOf(choice);
+    if (i >= 0) draft.best.splice(i, 1); else { draft.best.push(choice); draft.marks[key] = "ACCEPTABLE"; }
+  } else if (draft.marks[key] === kind) {
+    delete draft.marks[key];
+    draft.best = draft.best.filter((b) => b !== choice);
+  } else {
+    draft.marks[key] = kind;
+    if (kind !== "ACCEPTABLE") draft.best = draft.best.filter((b) => b !== choice);
+  }
+  dirty = true;
+  paintMarks();
+}
+
+function paintMarks() {
+  data.screens[index].menu.forEach((m) => {
+    const li = $("m" + m.choice), mk = draft.marks[String(m.choice)];
+    li.className = mk || "";
+    li.querySelectorAll("button").forEach((b) => {
+      const on = b.dataset.m === "BEST" ? draft.best.includes(m.choice) : b.dataset.m === mk;
+      b.classList.toggle("on", on);
+    });
+  });
+}
+
+function collect() {
+  tick();
+  const status = document.querySelector("input[name=status]:checked");
+  const confidence = document.querySelector("input[name=confidence]:checked");
+  return {
+    screen_id: data.screens[index].screen_id, status: status ? status.value : null,
+    marks: draft.marks, best: draft.best,
+    insufficient_reasons: [...document.querySelectorAll("#reasons input:checked")].map((c) => c.value),
+    confidence: confidence ? confidence.value : null,
+    display_problem: $("display_problem").checked, remembers_game: $("remembers_game").checked,
+    needs_independent_review: $("needs_independent_review").checked, comment: $("comment").value.trim(),
+    active_seconds: Math.round(activeSeconds),
+  };
+}
+
+async function save() {
+  const label = collect();
+  const r = await fetch("/api/label", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(label)});
+  const body = await r.json();
+  if (!r.ok) { $("errors").textContent = "Не сохранено:\n" + (body.errors || []).join("\n"); return false; }
+  label.saved_at_utc = new Date().toISOString();
+  data.labels[label.screen_id] = label;
+  dirty = false;
+  $("saveState").textContent = "сохранено";
+  $("errors").textContent = "";
+  renderNav();
+  return true;
+}
+
+function go(i) {
+  if (i < 0 || i >= data.screens.length) return;
+  if (dirty && !confirm("Есть несохранённые изменения. Перейти без сохранения?")) return;
+  index = i;
+  render();
+}
+
+function renderNav() {
+  $("nav").innerHTML = data.screens.map((s, i) => {
+    const l = data.labels[s.screen_id];
+    const cls = (l ? (l.status === "LABELED" ? "done" : "ii") : "") + (i === index ? " cur" : "");
+    return `<button class="${cls}" data-i="${i}">${i + 1}</button>`;
+  }).join("");
+  document.querySelectorAll("#nav button").forEach((b) => b.addEventListener("click", () => go(+b.dataset.i)));
+}
+
+["status", "confidence"].forEach((n) => document.addEventListener("change", (e) => { if (e.target.name === n) dirty = true; }));
+document.addEventListener("input", (e) => { if (e.target.closest("fieldset")) dirty = true; });
+$("save").addEventListener("click", save);
+$("prev").addEventListener("click", () => go(index - 1));
+$("next").addEventListener("click", () => go(index + 1));
+$("nextOpen").addEventListener("click", () => {
+  const i = data.screens.findIndex((s, j) => j > index && !data.labels[s.screen_id]);
+  const k = i >= 0 ? i : data.screens.findIndex((s) => !data.labels[s.screen_id]);
+  if (k >= 0) go(k); else alert("Все экраны пакета размечены.");
+});
+$("toggleHelp").addEventListener("click", () => { const h = $("help"); h.style.display = h.style.display === "none" ? "block" : "none"; });
+window.addEventListener("beforeunload", (e) => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+fetch("/api/batch").then((r) => r.json()).then((d) => {
+  data = d;
+  const first = data.screens.findIndex((s) => !data.labels[s.screen_id]);
+  index = first >= 0 ? first : 0;
+  if (!Object.keys(data.labels).length) $("help").style.display = "block";
+  render();
+});
+</script>
+</body>
+</html>
