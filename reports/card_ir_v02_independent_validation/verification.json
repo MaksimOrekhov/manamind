@@ -1,0 +1,97 @@
+{
+  "base_sha": "ec67dcbba91869bb01417476b3fcd7badab58466",
+  "branch": "codex/card-ir-v02-independent-validation",
+  "raw_commit": "498b52d1c7ff6215ba844134e8f36567f0e871e4",
+  "baseline_commit": "1fb02d816c0c88f02764bef637b43343fd0d3996",
+  "validator_fix_commit": "a898db1c6e61e6d93a4f3888d8a5a3eddac7b896",
+  "runtime": {
+    "python": "3.12.10",
+    "pytest": "9.1.1",
+    "ruff": "0.16.9",
+    "executable": ".venv/Scripts/python.exe",
+    "platform": "Windows",
+    "user_date": "2026-10-26",
+    "user_timezone": "Asia/Nicosia"
+  },
+  "card_ir_before": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_card_ir.py tests/test_card_ir_pilot_1.py tests/test_card_ir_stage_b1.py tests/test_card_ir_semantic_lint.py tests/test_card_ir_strict.py tests/test_card_ir_v02.py -q --basetemp=.tmp_card_ir_v02_independent_baseline",
+    "passed": 219,
+    "seconds": 10.93,
+    "exit_code": 0
+  },
+  "card_ir_after": {
+    "command": ".venv/Scripts/python.exe -m pytest tests/test_card_ir.py tests/test_card_ir_pilot_1.py tests/test_card_ir_stage_b1.py tests/test_card_ir_semantic_lint.py tests/test_card_ir_strict.py tests/test_card_ir_v02.py tests/test_card_ir_v02_independent_validation.py -q --basetemp=.tmp_card_ir_v02_independent_fixed",
+    "passed": 293,
+    "new_tests": 74,
+    "seconds": 9.29,
+    "exit_code": 0
+  },
+  "full_pytest": {
+    "command": ".venv/Scripts/python.exe -m pytest -q --basetemp=.tmp_card_ir_v02_independent_full",
+    "passed": 1534,
+    "skipped": 1,
+    "seconds": 94.30,
+    "exit_code": 0,
+    "scope": "All tests collected in the existing working directory, including pre-existing untracked user tests; no experimental training or game execution was launched"
+  },
+  "ruff_root": {
+    "command": ".venv/Scripts/python.exe -m ruff check .",
+    "exit_code": 1,
+    "errors": 73,
+    "cause": "Pre-existing untracked test scratch trees contain intentionally invalid Python; untracked src/manamind/outcome/decision_review.py also has an unused Forecast import. These files were preserved. Directory access warnings were also reported."
+  },
+  "ruff_tracked_and_task": {
+    "command": "Python subprocess batches of .venv/Scripts/python.exe -m ruff check <all git ls-files *.py plus all task report *.py>",
+    "files": 346,
+    "failed_batches": 0,
+    "exit_code": 0,
+    "details": "ruff_final.json",
+    "earlier_details": "ruff_tracked.json"
+  },
+  "generated_artifacts": {
+    "command": ".venv/Scripts/python.exe scripts/check_generated_artifacts.py",
+    "pinned_outputs_reproduced": 2,
+    "exit_code": 0,
+    "diff": "none",
+    "snapshot_downloaded_or_replaced": false
+  },
+  "historical_reproduction": {
+    "runner": "verify_history.py",
+    "details": "history_reproduction.json",
+    "passed": 8,
+    "total": 8,
+    "stage_a": "protocol/results/mutations/engine mapping byte-identical; mapping is a static report, not engine execution",
+    "stage_b1": "protocol/results byte-identical",
+    "validation_2": "results byte-identical",
+    "v02_before": "v02_before.json byte-identical to unchanged reports/card_ir_v02/results.json before code edits",
+    "v02_after": "v02_after.json byte-identical to current reproduction; only one old SIDE mutation verdict changes (42/44 -> 43/44)"
+  },
+  "compatibility": {
+    "conformance": {"passed": 98, "total": 98},
+    "historical_declarations": {"total": 65, "v01_accepted": 65, "dispatch_identical": 65, "v02_version_rejected": 65},
+    "isolation_test": "tests/test_card_ir.py::test_nothing_outside_the_package_imports_card_ir_and_it_imports_only_card_metadata",
+    "isolation_passed": true,
+    "frozen_v01_hash_checks_passed": true,
+    "historical_reports_and_declarations_changed": false,
+    "checkpoints_datasets_raw_logs_pinned_snapshots_changed": false
+  },
+  "additional_reproducibility": {
+    "frozen_negative_corpus_rebuilt_equal": true,
+    "negative_after_measurement_rebuilt_equal": true,
+    "results_json_rebuilt_equal": true,
+    "raw_hashes_verified_by_tests": true,
+    "final_statuses_same_before_after_checker_fix": true,
+    "post_fix_diagnostic_followups": ["contract_probes.json", "extra_contract_probes.json"],
+    "post_fix_followups_counted_in_original_negative_metrics": false
+  },
+  "task_boundaries": {
+    "worktrees_or_clones_created": 0,
+    "merge_to_main": false,
+    "protected_holdout_used_as_audit_input": false,
+    "new_training_experiments": false,
+    "self_play_or_ir_game_execution": false,
+    "s2_or_herald_implemented": false,
+    "next_18_authored": false,
+    "user_untracked_files_modified_or_staged": false
+  }
+}

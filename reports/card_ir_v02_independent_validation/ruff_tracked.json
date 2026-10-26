@@ -1,0 +1,26 @@
+{
+  "scope": "Tracked Python files plus explicitly task-owned new tests; excludes unrelated untracked files and old test scratch",
+  "files": 342,
+  "batches": [
+    {
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,2452 @@
+{
+  "id": "CARD-IR-V02-INDEPENDENT-VALIDATION",
+  "base_sha": "ec67dcbba91869bb01417476b3fcd7badab58466",
+  "raw_commit": "498b52d",
+  "baseline_commit": "1fb02d8",
+  "validator_fix_commit": "a898db1",
+  "metrics": {
+    "first_pass": {
+      "cards": 12,
+      "structural_valid": 11,
+      "strict_valid": 11,
+      "complete": 6,
+      "declared_complete": 6,
+      "partial": 6
+    },
+    "final": {
+      "cards": 12,
+      "structural_valid": 12,
+      "strict_valid": 12,
+      "complete": 6,
+      "declared_complete": 6,
+      "partial": 6
+    },
+    "expressibility": {
+      "effect_skeleton_without_unexpressed": 10,
+      "missing_structural_mechanism_cards": [
+        "CATA_497",
+        "CATA_585"
+      ],
+      "opus_potential_complete": 9,
+      "independent_accepted_complete": 6,
+      "explanation": "Three additional PARTIAL labels (Aviana, Spellweaver, Fury) reflect conservative rule/evidence policy, not three new missing syntax constructs. Hound remains PARTIAL for unqualified split in both v0.2 authorships."
+    },
+    "author_errors": {
+      "unit": "One documented error group per affected card; not per JSON leaf",
+      "total": 3,
+      "structural_caught": 1,
+      "missed_evidence_or_scope_omissions": 2,
+      "independent_gameplay_accuracy": null
+    },
+    "corrections": {
+      "changed_cards": 5,
+      "rounds": 1,
+      "groups": 5,
+      "leaf_operations": 14,
+      "evidence_clarifications": 2,
+      "runner_path_bug": "Fixed relative/absolute path mismatch after raw commit; raw declarations unaffected, not an authoring error"
+    },
+    "adversarial_before": {
+      "equivalent_control": {
+        "total": 1,
+        "structure_accepted": 1,
+        "strict_accepted": 1,
+        "accepted_complete": 0
+      },
+      "evidence_error": {
+        "total": 3,
+        "structure_accepted": 3,
+        "strict_accepted": 3,
+        "accepted_complete": 3
+      },
+      "schema_error": {
+        "total": 4,
+        "structure_accepted": 3,
+        "strict_accepted": 3,
+        "accepted_complete": 3
+      },
+      "semantic_error": {
+        "total": 30,
+        "structure_accepted": 27,
+        "strict_accepted": 18,
+        "accepted_complete": 9
+      },
+      "strict_accepted_categories": {
+        "target_side": 1,
+        "target_type": 3,
+        "order": 2,
+        "owner": 3,
+        "condition": 1,
+        "binding": 1,
+        "zone": 2,
+        "state_change": 1,
+        "dependency_scope": 3,
+        "state_read": 1,
+        "token": 2,
+        "condition_and_state": 1,
+        "json_type": 2,
+        "binding_type": 1
+      }
+    },
+    "adversarial_after": {
+      "equivalent_control": {
+        "total": 1,
+        "structure_accepted": 1,
+        "strict_accepted": 1,
+        "accepted_complete": 0
+      },
+      "evidence_error": {
+        "total": 3,
+        "structure_accepted": 3,
+        "strict_accepted": 3,
+        "accepted_complete": 3
+      },
+      "schema_error": {
+        "total": 4,
+        "structure_accepted": 1,
+        "strict_accepted": 1,
+        "accepted_complete": 1
+      },
+      "semantic_error": {
+        "total": 30,
+        "structure_accepted": 27,
+        "strict_accepted": 13,
+        "accepted_complete": 8
+      },
+      "strict_accepted_categories": {
+        "owner": 3,
+        "condition": 1,
+        "order": 1,
+        "target_type": 1,
+        "zone": 2,
+        "state_change": 1,
+        "dependency_scope": 3,
+        "state_read": 1,
+        "token": 2,
+        "condition_and_state": 1,
+        "binding_type": 1
+      }
+    },
+    "adversarial_wrong_total": 37,
+    "adversarial_missed_before": 24,
+    "adversarial_missed_after": 17,
+    "adversarial_false_complete_before": 15,
+    "adversarial_false_complete_after": 12,
+    "structural_valid_semantic_negatives": {
+      "total": 27,
+      "accepted_before": 18,
+      "accepted_after": 13
+    },
+    "normalized_program_agreement": {
+      "comparable": 11,
+      "equal": 11,
+      "json_equal": 0,
+      "independent_opus_authored_counterparts": 10,
+      "inherited_historical_counterparts": 1,
+      "not_comparable": [
+        "CATA_497"
+      ],
+      "semantic_correctness_agreement": null,
+      "caveat": "Equivalent chosen hypotheses/partial fragments are included. This is not eleven confirmed full card semantics or independent proof."
+    },
+    "v02_regression": {
+      "conformance_before": 98,
+      "conformance_after": 98,
+      "historical_declarations": {
+        "total": 65,
+        "v01_accepted": 65,
+        "dispatch_identical": 65,
+        "v02_rejects_version": 65,
+        "status": {
+          "FULL": 27,
+          "FULL_DEP": 25,
+          "PARTIAL": 13
+        },
+        "rows": [
+          {
+            "card_id": "BE_207",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BE_552",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BE_553t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BE_555",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BE_561",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BE_561t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "BOT_102t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CAP_107t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_200",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_301",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_458",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_465",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_465t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_475",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_487",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_488",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_488t",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_999",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_AT_055",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_BAR_812",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_BT_201",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_BT_416",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_CS2_072",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_DRG_107",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_EX1_002",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_EX1_145",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_EX1_238",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_GIL_836",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_ICC_055",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_REV_990",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_SW_072",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_SW_108",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_TTN_843",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "EDR_100t",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "END_022",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "EX1_277",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "FIR_906",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_321",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_327",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_516",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_730",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_732",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_872",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_603",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_609",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_890",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_890t",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_890t2",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TLC_226",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TLC_602",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TLC_602t",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TLC_816",
+            "v01_status": "FULL_DEP",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TTN_843t1",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_452",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_497",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CATA_585",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_BT_921",
+            "v01_status": "FULL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_DAL_720",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_RLK_063",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "CORE_SCH_713",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "EDR_895",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "FIR_953",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_118",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "JAIL_399",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          },
+          {
+            "card_id": "TIME_216",
+            "v01_status": "PARTIAL",
+            "v01_accepted": true,
+            "dispatch_identical": true,
+            "v02_validator_rejects_version": true
+          }
+        ]
+      },
+      "old_mutations_before": 42,
+      "old_mutations_after": 43,
+      "old_mutations_total": 44
+    }
+  },
+  "cards": [
+    {
+      "card_id": "EDR_895",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_COST",
+            "R_DELAYED_START",
+            "R_HIDDEN_ZONE",
+            "R_PLAYER_AURA",
+            "R_PLAYER_EFFECT",
+            "R_PLAY_TARGET",
+            "R_TURN_WINDOW"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "duration:THIS_GAME": 1,
+            "label:BATTLECRY": 1,
+            "modifier:cost": 1,
+            "op:ADD_PLAYER_EFFECT": 1,
+            "player_effect:ALL_MATCHING": 1,
+            "player_effect:starts_after": 1,
+            "player_effect:zones": 1,
+            "value:literal": 1,
+            "zone:DECK": 1,
+            "zone:HAND": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/EDR_895.json",
+        "sha256": "0a7b2f59d493648d5333654c6b36a859da52b99917afa1cfeed435ff3a0349f2",
+        "dependencies": [
+          {
+            "id": "future_cards",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "clock",
+            "question": "Whose three turns and how long?",
+            "alternatives": [
+              "Three own starts, rest of game",
+              "Three global turns, temporary"
+            ],
+            "chosen": "Three own starts, rest of game",
+            "basis": "USER_OBSERVED",
+            "risk": "OUTCOME",
+            "discriminating_case": "Three intervening enemy turns must not activate the effect."
+          },
+          {
+            "id": "population",
+            "question": "Do cards arriving after Full Moon inherit cost 1?",
+            "alternatives": [
+              "Dynamic ALL_MATCHING",
+              "Only cards present at activation"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+            "dep": "future_cards"
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_COST",
+            "R_DELAYED_START",
+            "R_HIDDEN_ZONE",
+            "R_PLAYER_AURA",
+            "R_PLAYER_EFFECT",
+            "R_PLAY_TARGET",
+            "R_TURN_WINDOW"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "duration:THIS_GAME": 1,
+            "label:BATTLECRY": 1,
+            "modifier:cost": 1,
+            "op:ADD_PLAYER_EFFECT": 1,
+            "player_effect:ALL_MATCHING": 1,
+            "player_effect:starts_after": 1,
+            "player_effect:zones": 1,
+            "value:literal": 1,
+            "zone:DECK": 1,
+            "zone:HAND": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/EDR_895.json",
+        "sha256": "cf8c5c5f775ef9f3c99a08f510865f27e2ec807e83c6b88515fbbb50240653ae",
+        "dependencies": [
+          {
+            "id": "future_cards",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "ALL_MATCHING includes later arrivals and removes the modifier on leaving zones; user observations establish existing HAND/DECK and permanence only. Dynamic vs one-time population not confirmed.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "boundary",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "User observations give three own turns but do not explicitly locate Full Moon at start rather than end of the third turn; starts_after fixes a boundary that needs evidence.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "cost_interactions",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Ordering with other cost modifiers and repeated lunar cycles is not confirmed by the user's observations.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "clock",
+            "question": "Whose three turns and how long?",
+            "alternatives": [
+              "Three own starts, rest of game",
+              "Three global turns, temporary"
+            ],
+            "chosen": "Three own starts, rest of game",
+            "basis": "USER_OBSERVED",
+            "risk": "OUTCOME",
+            "discriminating_case": "Three intervening enemy turns must not activate the effect."
+          },
+          {
+            "id": "population",
+            "question": "Do cards arriving after Full Moon inherit cost 1?",
+            "alternatives": [
+              "Dynamic ALL_MATCHING",
+              "Only cards present at activation"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Create a new card after Full Moon; compare its cost with 1.",
+            "dep": "future_cards"
+          },
+          {
+            "id": "boundary",
+            "question": "At which boundary of own turn three does Full Moon rise?",
+            "alternatives": [
+              "Start",
+              "End"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Read a card's cost during own turn three before its end.",
+            "dep": "boundary"
+          },
+          {
+            "id": "interactions",
+            "question": "How do later cost modifiers and a replayed Aviana interact?",
+            "alternatives": [
+              "Independent dynamic effects",
+              "Other stacking or reset procedure"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "After Full Moon reduce one card's cost or replay Aviana, and compare the resulting cost and activation time.",
+            "dep": "cost_interactions"
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [
+        {
+          "card_id": "EDR_895",
+          "category": "AUTHOR_ERROR",
+          "reason": "Raw omitted uncertainty in the start/end boundary and modifier/replay behavior. Observed three own turns does not by itself prove starts_after's exact boundary. Status remains PARTIAL."
+        }
+      ],
+      "changed": true,
+      "leaf_changes": 4,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/EDR_895.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "TIME_216",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_DAMAGE",
+            "R_DRAW",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE",
+            "R_STEP_BOUNDARY",
+            "R_SURVIVE"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "cond:is": 1,
+            "control:if": 1,
+            "control:seq": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "op:DRAW": 1,
+            "pick:CHOSEN": 1,
+            "pred:alive": 1,
+            "selector:ref": 2,
+            "value:literal": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/TIME_216.json",
+        "sha256": "0d32b1d8b71b814c77393bc5e161e2ac8b5beb6d16822b316adb858f68562ee0",
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "survival",
+            "question": "Which entity must survive and when?",
+            "alternatives": [
+              "Chosen victim after damage and reactions",
+              "Source or pre-damage victim"
+            ],
+            "chosen": "Chosen victim after damage and reactions",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_DAMAGE",
+            "R_DRAW",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE",
+            "R_STEP_BOUNDARY",
+            "R_SURVIVE"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "cond:is": 1,
+            "control:if": 1,
+            "control:seq": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "op:DRAW": 1,
+            "pick:CHOSEN": 1,
+            "pred:alive": 1,
+            "selector:ref": 2,
+            "value:literal": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/TIME_216.json",
+        "sha256": "0d32b1d8b71b814c77393bc5e161e2ac8b5beb6d16822b316adb858f68562ee0",
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "survival",
+            "question": "Which entity must survive and when?",
+            "alternatives": [
+              "Chosen victim after damage and reactions",
+              "Source or pre-damage victim"
+            ],
+            "chosen": "Chosen victim after damage and reactions",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Lethal damage to the target must not draw; a surviving target draws two."
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_v02/conformance.py: Nascent Bolt: draw only if the target survives",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CATA_497",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [],
+          "elements": {}
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CATA_497.json",
+        "sha256": "363e3aac7b08f43978bd3fa393e9e299124466ca1a35d3ed5398f18796021dfc",
+        "dependencies": [
+          {
+            "id": "herald_state",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Herald procedure, improvement counters, dynamic values and referenced Deathwing identity require external evidence; no invented values.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "herald",
+            "question": "Can placeholders be assigned literal values?",
+            "alternatives": [
+              "Read current client state",
+              "Guess base values"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Different prior Herald counts can change both operations.",
+            "dep": "herald_state"
+          }
+        ],
+        "unexpressed": [
+          {
+            "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+            "why": "Herald operation and dynamic {0}/{1} state are absent; the identity of Deathwing and improvement rules cannot be inferred safely from this text."
+          }
+        ]
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [],
+          "elements": {}
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CATA_497.json",
+        "sha256": "363e3aac7b08f43978bd3fa393e9e299124466ca1a35d3ed5398f18796021dfc",
+        "dependencies": [
+          {
+            "id": "herald_state",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Herald procedure, improvement counters, dynamic values and referenced Deathwing identity require external evidence; no invented values.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "herald",
+            "question": "Can placeholders be assigned literal values?",
+            "alternatives": [
+              "Read current client state",
+              "Guess base values"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Different prior Herald counts can change both operations.",
+            "dep": "herald_state"
+          }
+        ],
+        "unexpressed": [
+          {
+            "span": "Battlecry: Herald {0}. Reduce Deathwing's Cost by ({1}). (Herald to improve!)",
+            "why": "Herald operation and dynamic {0}/{1} state are absent; the identity of Deathwing and improvement rules cannot be inferred safely from this text."
+          }
+        ]
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "Opus v0.2 forecast only; no authored Ultraxion v0.2 declaration",
+        "comparable": false,
+        "normalized_program_equal": null,
+        "json_equal": null,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CATA_452",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AURA",
+            "R_BOARD_LIMIT",
+            "R_COST",
+            "R_COUNTERS",
+            "R_DAMAGE_EVENT_AMOUNT",
+            "R_PLAY_TARGET",
+            "R_SUMMON_POSITION"
+          ],
+          "elements": {
+            "ability:aura": 1,
+            "ability:play": 1,
+            "card_source:card": 1,
+            "counter:DAMAGE_DEALT": 1,
+            "label:SPELL": 1,
+            "modifier:cost": 1,
+            "op:SUMMON": 1,
+            "pred:card_type": 1,
+            "scope:THIS_TURN": 1,
+            "value:counter": 1,
+            "value:literal": 1,
+            "value:mul": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CATA_452.json",
+        "sha256": "9c8e55c5e8a5b32da93c8ed544c032068621047a87a1ace7651cc52e70ca1794",
+        "dependencies": [
+          {
+            "id": "dragon",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "CATA_452t Azure Warden is a matching 6/6 Dragon with creator prefix; HSJSON does not contain a formal parent-token edge.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "damage_amount",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "The whole DAMAGE_DEALT amount contract is provisional, including prevention, overkill and qualifying spell sources; normal discount computation depends on it.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_DAMAGE_EVENT_AMOUNT"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "counter",
+            "question": "How is discount counted?",
+            "alternatives": [
+              "Damage amount of own spells this turn",
+              "Number of spells cast"
+            ],
+            "chosen": "Damage amount of own spells this turn",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "One spell dealing five damage discounts five, not one.",
+            "dep": "damage_amount"
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AURA",
+            "R_BOARD_LIMIT",
+            "R_COST",
+            "R_COUNTERS",
+            "R_DAMAGE_EVENT_AMOUNT",
+            "R_PLAY_TARGET",
+            "R_SUMMON_POSITION"
+          ],
+          "elements": {
+            "ability:aura": 1,
+            "ability:play": 1,
+            "card_source:card": 1,
+            "counter:DAMAGE_DEALT": 1,
+            "label:SPELL": 1,
+            "modifier:cost": 1,
+            "op:SUMMON": 1,
+            "pred:card_type": 1,
+            "scope:THIS_TURN": 1,
+            "value:counter": 1,
+            "value:literal": 1,
+            "value:mul": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CATA_452.json",
+        "sha256": "9c8e55c5e8a5b32da93c8ed544c032068621047a87a1ace7651cc52e70ca1794",
+        "dependencies": [
+          {
+            "id": "dragon",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "CATA_452t Azure Warden is a matching 6/6 Dragon with creator prefix; HSJSON does not contain a formal parent-token edge.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "damage_amount",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "The whole DAMAGE_DEALT amount contract is provisional, including prevention, overkill and qualifying spell sources; normal discount computation depends on it.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_DAMAGE_EVENT_AMOUNT"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "counter",
+            "question": "How is discount counted?",
+            "alternatives": [
+              "Damage amount of own spells this turn",
+              "Number of spells cast"
+            ],
+            "chosen": "Damage amount of own spells this turn",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "One spell dealing five damage discounts five, not one.",
+            "dep": "damage_amount"
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/CATA_452.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "JAIL_118",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_AREA_SNAPSHOT",
+            "R_DEATH_PHASE",
+            "R_PLAY_TARGET"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "label:BATTLECRY": 1,
+            "op:DESTROY": 1,
+            "pick:ALL": 2,
+            "pred:card_class": 1,
+            "selector:exclude": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/JAIL_118.json",
+        "sha256": "888486396c6e809de9588904a9455e25615cc347c2a34c73aacf9986f5e7b47f",
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "class",
+            "question": "Does non-Paladin exclude both sides?",
+            "alternatives": [
+              "All sides minus Paladin membership",
+              "Enemy side only"
+            ],
+            "chosen": "All sides minus Paladin membership",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "A friendly non-Paladin minion dies; a dual-class Paladin minion survives."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_AREA_SNAPSHOT",
+            "R_DEATH_PHASE",
+            "R_PLAY_TARGET"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "label:BATTLECRY": 1,
+            "op:DESTROY": 1,
+            "pick:ALL": 2,
+            "pred:card_class": 1,
+            "selector:exclude": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/JAIL_118.json",
+        "sha256": "eeb922aacf82eea4d2790516ae1ffcc87adf592e156415043fb25b4223782756",
+        "dependencies": [
+          {
+            "id": "class_membership",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "IR predicate says belongs to a class; matching multi-class Paladin membership rather than only scalar cardClass needs a reviewed metadata adapter. No executor exists here.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "class",
+            "question": "Does non-Paladin exclude both sides?",
+            "alternatives": [
+              "All sides minus Paladin membership",
+              "Enemy side only"
+            ],
+            "chosen": "All sides minus Paladin membership",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "A friendly non-Paladin minion dies; a dual-class Paladin minion survives."
+          },
+          {
+            "id": "multiclass",
+            "question": "How does the future adapter test class membership?",
+            "alternatives": [
+              "Membership in classes as well as cardClass",
+              "Only scalar cardClass"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "A multi-class minion including Paladin should be excluded if membership semantics are implemented.",
+            "dep": "class_membership"
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [
+        {
+          "card_id": "JAIL_118",
+          "category": "EVIDENCE_CLARIFICATION",
+          "reason": "The written predicate already means class membership, so the set subtraction is expressible; record the unresolved future multi-class adapter explicitly. No proven gameplay error in raw."
+        }
+      ],
+      "changed": true,
+      "leaf_changes": 3,
+      "comparison": {
+        "source": "reports/card_ir_b1_independent_review/diagnostics.json: counterfactual.JAIL_118 (v0.1)",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CORE_BT_921",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_HEALING"
+          ],
+          "elements": {
+            "keyword:LIFESTEAL": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CORE_BT_921.json",
+        "sha256": "98bca7358ee7566c9a29f57c3f94286ec216b62fcb72f1f59a58d8c76b4ecfed",
+        "dependencies": [],
+        "decisions": [],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_HEALING"
+          ],
+          "elements": {
+            "keyword:LIFESTEAL": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CORE_BT_921.json",
+        "sha256": "98bca7358ee7566c9a29f57c3f94286ec216b62fcb72f1f59a58d8c76b4ecfed",
+        "dependencies": [],
+        "decisions": [],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_stage_b1/final/CORE_BT_921.json (inherited v0.1; no new Opus declaration)",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "JAIL_399",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_DEATHRATTLE",
+            "R_DEATH_PHASE",
+            "R_DECK_POSITION",
+            "R_HIDDEN_ZONE"
+          ],
+          "elements": {
+            "ability:deathrattle": 1,
+            "card_source:card": 1,
+            "deck_position:BOTTOM": 1,
+            "keyword:TAUNT": 1,
+            "op:SHUFFLE_INTO_DECK": 1,
+            "value:literal": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/JAIL_399.json",
+        "sha256": "a4567c0752a826f26f2bee381db2d49384b86121fefce081b3317f6cc5aafbda",
+        "dependencies": [
+          {
+            "id": "demon",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "position",
+            "question": "Where are the two copies inserted?",
+            "alternatives": [
+              "Bottom of own deck",
+              "Random positions"
+            ],
+            "chosen": "Bottom of own deck",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_DEATHRATTLE",
+            "R_DEATH_PHASE",
+            "R_DECK_POSITION",
+            "R_HIDDEN_ZONE"
+          ],
+          "elements": {
+            "ability:deathrattle": 1,
+            "card_source:card": 1,
+            "deck_position:BOTTOM": 1,
+            "keyword:TAUNT": 1,
+            "op:SHUFFLE_INTO_DECK": 1,
+            "value:literal": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/JAIL_399.json",
+        "sha256": "a4567c0752a826f26f2bee381db2d49384b86121fefce081b3317f6cc5aafbda",
+        "dependencies": [
+          {
+            "id": "demon",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "Grandmother Imp is an 8/8 Demon with Taunt and Lifesteal, creator prefix JAIL_399; formal creator linkage remains data dependency.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "position",
+            "question": "Where are the two copies inserted?",
+            "alternatives": [
+              "Bottom of own deck",
+              "Random positions"
+            ],
+            "chosen": "Bottom of own deck",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Existing deck cards must be drawn before either new Demon."
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/JAIL_399.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CORE_SCH_713",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL",
+          "rules": [
+            "R_COST",
+            "R_HIDDEN_ZONE",
+            "R_PLAYER_AURA",
+            "R_PLAYER_EFFECT",
+            "R_PLAY_TARGET",
+            "R_TURN_WINDOW"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "duration:NEXT_TURN": 1,
+            "label:BATTLECRY": 1,
+            "modifier:cost": 1,
+            "op:ADD_PLAYER_EFFECT": 1,
+            "player_effect:ALL_MATCHING": 1,
+            "player_effect:zones": 1,
+            "pred:card_type": 1,
+            "value:literal": 1,
+            "zone:HAND": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CORE_SCH_713.json",
+        "sha256": "a251765e6914c9d1405d5afcbafd1ecb5192874dbcabe6c026aa566c67709a3d",
+        "dependencies": [],
+        "decisions": [
+          {
+            "id": "window",
+            "question": "Who is taxed and for which turn?",
+            "alternatives": [
+              "Every enemy spell during next enemy turn",
+              "Only next spell or current turn"
+            ],
+            "chosen": "Every enemy spell during next enemy turn",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_COST",
+            "R_HIDDEN_ZONE",
+            "R_PLAYER_AURA",
+            "R_PLAYER_EFFECT",
+            "R_PLAY_TARGET",
+            "R_TURN_WINDOW"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "duration:NEXT_TURN": 1,
+            "label:BATTLECRY": 1,
+            "modifier:cost": 1,
+            "op:ADD_PLAYER_EFFECT": 1,
+            "player_effect:ALL_MATCHING": 1,
+            "player_effect:zones": 1,
+            "pred:card_type": 1,
+            "value:literal": 1,
+            "zone:HAND": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CORE_SCH_713.json",
+        "sha256": "8aab6a8c71ccea08bb70f11dceef4a383d3df61cd1af43e91459bbcec65257e7",
+        "dependencies": [
+          {
+            "id": "deck_cost",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "HAND-only application leaves the cost of spells in DECK unresolved when an additional effect reads deck costs.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "window",
+            "question": "Who is taxed and for which turn?",
+            "alternatives": [
+              "Every enemy spell during next enemy turn",
+              "Only next spell or current turn"
+            ],
+            "chosen": "Every enemy spell during next enemy turn",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Two enemy spells next turn are both taxed; no tax remains the following turn."
+          },
+          {
+            "id": "deck",
+            "question": "Are deck spell costs also modified?",
+            "alternatives": [
+              "HAND only",
+              "HAND and DECK"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "During the taxed turn an effect reads a spell's cost while it is still in the opponent's deck.",
+            "dep": "deck_cost"
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [
+        {
+          "card_id": "CORE_SCH_713",
+          "category": "AUTHOR_ERROR",
+          "reason": "Raw FULL omitted the unconfirmed deck-cost scope of HAND-only encoding. Strict checks accepted it. Record the bounded conditional scenario, downgrade to FULL_DEP."
+        }
+      ],
+      "changed": true,
+      "leaf_changes": 3,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/CORE_SCH_713.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CORE_DAL_720",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_COST",
+            "R_DEATHRATTLE",
+            "R_DEATH_PHASE",
+            "R_HAND_LIMIT",
+            "R_HIDDEN_ZONE",
+            "R_RANDOM_LIVE",
+            "R_RETURN_FULL_HAND",
+            "R_RETURN_TO_HAND",
+            "R_STEP_BOUNDARY"
+          ],
+          "elements": {
+            "ability:deathrattle": 1,
+            "card_source:from_zone": 1,
+            "control:seq": 1,
+            "move:PLAY_TO_HAND": 1,
+            "op:ADD_TO_HAND": 1,
+            "op:MODIFY_COST": 1,
+            "pick:RANDOM": 1,
+            "selector:ref": 1,
+            "value:literal": 2,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CORE_DAL_720.json",
+        "sha256": "1e92a3e9dffe1190fe1d58c82db501d321b7177e07b84f9cbb0790c1d4cdabd2",
+        "dependencies": [
+          {
+            "id": "full_hand",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_RETURN_FULL_HAND"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "capacity",
+            "question": "What happens when hand is full?",
+            "alternatives": [
+              "Destroy moved minion, followup no-op",
+              "Other return failure behavior"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Weapon dies with ten cards in hand and one friendly deathrattle minion.",
+            "dep": "full_hand"
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "FULL_DEP",
+          "rules": [
+            "R_COST",
+            "R_DEATHRATTLE",
+            "R_DEATH_PHASE",
+            "R_HAND_LIMIT",
+            "R_HIDDEN_ZONE",
+            "R_RANDOM_LIVE",
+            "R_RETURN_FULL_HAND",
+            "R_RETURN_TO_HAND",
+            "R_STEP_BOUNDARY"
+          ],
+          "elements": {
+            "ability:deathrattle": 1,
+            "card_source:from_zone": 1,
+            "control:seq": 1,
+            "move:PLAY_TO_HAND": 1,
+            "op:ADD_TO_HAND": 1,
+            "op:MODIFY_COST": 1,
+            "pick:RANDOM": 1,
+            "selector:ref": 1,
+            "value:literal": 2,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": true,
+          "status": "FULL_DEP",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CORE_DAL_720.json",
+        "sha256": "1e92a3e9dffe1190fe1d58c82db501d321b7177e07b84f9cbb0790c1d4cdabd2",
+        "dependencies": [
+          {
+            "id": "full_hand",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Return reset is represented by R_RETURN_TO_HAND; destruction/no-op followup with a full hand is unverified and conditional on hand capacity.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_RETURN_FULL_HAND"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "capacity",
+            "question": "What happens when hand is full?",
+            "alternatives": [
+              "Destroy moved minion, followup no-op",
+              "Other return failure behavior"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Weapon dies with ten cards in hand and one friendly deathrattle minion.",
+            "dep": "full_hand"
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_v02/conformance.py: Waggle Pick: return with the full-hand rule acknowledged",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "FIR_953",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AREA_SNAPSHOT",
+            "R_ATTACK_REDIRECT",
+            "R_ATTACK_ROLES",
+            "R_DAMAGE",
+            "R_LAST_KNOWN",
+            "R_RANDOM_LIVE",
+            "R_RANDOM_SPLIT",
+            "R_SPLIT_UNQUALIFIED",
+            "R_SURVIVE",
+            "R_TRIGGER_ORDER",
+            "R_TRIGGER_TIMING"
+          ],
+          "elements": {
+            "ability:trigger": 1,
+            "cond:is": 1,
+            "control:repeat": 1,
+            "event:ATTACK_DECLARED": 1,
+            "event_role:attacker": 1,
+            "event_role:defender": 1,
+            "keyword:RUSH": 1,
+            "op:DEAL_DAMAGE": 1,
+            "pick:ALL": 1,
+            "pick:RANDOM": 1,
+            "pred:alive": 1,
+            "selector:SELF": 3,
+            "timing:AFTER": 1,
+            "value:literal": 1,
+            "value:stat": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/FIR_953.json",
+        "sha256": "4d591bee2bcf3a630ba6a9398faf2d9a2c49237906440e1ef17fb6e837d55447",
+        "dependencies": [
+          {
+            "id": "split",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_SPLIT_UNQUALIFIED"
+          },
+          {
+            "id": "redirect",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_ATTACK_REDIRECT"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "distribution",
+            "question": "Does unqualified split mean random 1-damage packets?",
+            "alternatives": [
+              "Random live targets per packet",
+              "Other split procedure"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+            "dep": "split"
+          },
+          {
+            "id": "attack",
+            "question": "When and which combat?",
+            "alternatives": [
+              "After source attacks a minion and survives",
+              "Any character's attack"
+            ],
+            "chosen": "After source attacks a minion and survives",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AREA_SNAPSHOT",
+            "R_ATTACK_REDIRECT",
+            "R_ATTACK_ROLES",
+            "R_DAMAGE",
+            "R_LAST_KNOWN",
+            "R_RANDOM_LIVE",
+            "R_RANDOM_SPLIT",
+            "R_SPLIT_UNQUALIFIED",
+            "R_SURVIVE",
+            "R_TRIGGER_ORDER",
+            "R_TRIGGER_TIMING"
+          ],
+          "elements": {
+            "ability:trigger": 1,
+            "cond:is": 1,
+            "control:repeat": 1,
+            "event:ATTACK_DECLARED": 1,
+            "event_role:attacker": 1,
+            "event_role:defender": 1,
+            "keyword:RUSH": 1,
+            "op:DEAL_DAMAGE": 1,
+            "pick:ALL": 1,
+            "pick:RANDOM": 1,
+            "pred:alive": 1,
+            "selector:SELF": 3,
+            "timing:AFTER": 1,
+            "value:literal": 1,
+            "value:stat": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/FIR_953.json",
+        "sha256": "4d591bee2bcf3a630ba6a9398faf2d9a2c49237906440e1ef17fb6e837d55447",
+        "dependencies": [
+          {
+            "id": "split",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Unqualified split is not confirmed to mean random packets; it changes the primary effect on every successful trigger.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_SPLIT_UNQUALIFIED"
+          },
+          {
+            "id": "redirect",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Which defender an attack filter sees after redirection remains unknown, conditional on redirection.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_ATTACK_REDIRECT"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "distribution",
+            "question": "Does unqualified split mean random 1-damage packets?",
+            "alternatives": [
+              "Random live targets per packet",
+              "Other split procedure"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Two enemy characters: allocation differs between equal and random splitting.",
+            "dep": "split"
+          },
+          {
+            "id": "attack",
+            "question": "When and which combat?",
+            "alternatives": [
+              "After source attacks a minion and survives",
+              "Any character's attack"
+            ],
+            "chosen": "After source attacks a minion and survives",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Attacking the enemy hero must not trigger; source death must not trigger."
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [],
+      "changed": false,
+      "leaf_changes": 0,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/FIR_953.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CATA_585",
+      "raw": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_DAMAGE",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "pick:CHOSEN": 1,
+            "pred:damaged": 1,
+            "selector:ref": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "raw/CATA_585.json",
+        "sha256": "e13b1dc4de7075344fa07a07238c95fb4a1de9c1a0b86747f89d651bb67d5192",
+        "dependencies": [
+          {
+            "id": "persistent_damage",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "spell_damage",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "observed",
+            "question": "What does excess carry?",
+            "alternatives": [
+              "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+              "Fresh 8 damage or unconditional return"
+            ],
+            "chosen": "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+            "basis": "USER_OBSERVED",
+            "risk": "OUTCOME",
+            "discriminating_case": "8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.",
+            "dep": "persistent_damage"
+          },
+          {
+            "id": "spellpower",
+            "question": "Does Spell Damage affect Torch?",
+            "alternatives": [
+              "Adds damage",
+              "Ignored by ImmuneToSpellpower"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+            "dep": "spell_damage"
+          }
+        ],
+        "unexpressed": [
+          {
+            "span": "Return this to hand with any excess damage.",
+            "why": "IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield."
+          }
+        ]
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_DAMAGE",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "pick:CHOSEN": 1,
+            "pred:damaged": 1,
+            "selector:ref": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 1
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CATA_585.json",
+        "sha256": "9adee158fa8007bc669795cde478c3c4fd24c12b3b2027a6f09bf3a3a26bce37",
+        "dependencies": [
+          {
+            "id": "persistent_damage",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Need per-instance damage state and conditional return of the spell itself, not a fresh fixed card.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          },
+          {
+            "id": "spell_damage",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CONDITIONAL",
+            "detail": "Pinned $8 spelling and ImmuneToSpellpower tag conflict as an executable convention; Spell Damage, Immune and full-hand cases are unconfirmed.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "observed",
+            "question": "What does excess carry?",
+            "alternatives": [
+              "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+              "Fresh 8 damage or unconditional return"
+            ],
+            "chosen": "Remaining instance damage 8 -> 5 -> 3; positive excess only",
+            "basis": "USER_OBSERVED",
+            "risk": "OUTCOME",
+            "discriminating_case": "8 damage against 3 HP returns 5; next 5 against 2 HP returns 3; zero excess and Divine Shield return nothing.",
+            "dep": "persistent_damage"
+          },
+          {
+            "id": "spellpower",
+            "question": "Does Spell Damage affect Torch?",
+            "alternatives": [
+              "Adds damage",
+              "Ignored by ImmuneToSpellpower"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Cast with +1 Spell Damage and inspect damage and returned parameter.",
+            "dep": "spell_damage"
+          }
+        ],
+        "unexpressed": [
+          {
+            "span": "Return this to hand with any excess damage.",
+            "why": "IR has no persistent per-card damage parameter or spell-return contract; local variables cannot preserve 8 -> 5 -> 3 over repeated plays, and return requires positive actual excess with no return through Divine Shield."
+          }
+        ]
+      },
+      "corrections": [
+        {
+          "card_id": "CATA_585",
+          "category": "EVIDENCE_CLARIFICATION",
+          "reason": "Explicitly bound the fixed $8 fragment to the initial play so it cannot be read as a procedure for later Torch instances."
+        }
+      ],
+      "changed": true,
+      "leaf_changes": 1,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/CATA_585.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    },
+    {
+      "card_id": "CORE_RLK_063",
+      "raw": {
+        "structural": {
+          "ok": false,
+          "errors": [
+            "abilities[0].effect.seq[2].what: UNIQUE_NAME but 3 gameplay records are named 'Frostwyrm'"
+          ],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_AREA_SNAPSHOT",
+            "R_BOARD_LIMIT",
+            "R_DAMAGE",
+            "R_FREEZE",
+            "R_FREEZE_THAW",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE",
+            "R_STEP_BOUNDARY",
+            "R_SUMMON_POSITION"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "card_source:card": 1,
+            "control:seq": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "op:FREEZE": 1,
+            "op:SUMMON": 1,
+            "pick:ALL": 1,
+            "pick:CHOSEN": 1,
+            "selector:ref": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": false,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [
+            "abilities[0].effect.seq[2].what: UNIQUE_NAME but 3 gameplay records are named 'Frostwyrm'"
+          ],
+          "warnings": []
+        },
+        "declaration": "raw/CORE_RLK_063.json",
+        "sha256": "85931fa11399e80632fb098ce4ef84c8d3dd05d542305d1a3a92f2e66b8fce6f",
+        "dependencies": [
+          {
+            "id": "thaw",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_FREEZE_THAW"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "thaw",
+            "question": "When does Frozen expire?",
+            "alternatives": [
+              "Controller-turn removal conditional on attack availability",
+              "Other thaw timing"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+            "dep": "thaw"
+          },
+          {
+            "id": "damage_target",
+            "question": "Does unqualified damage restrict side?",
+            "alternatives": [
+              "Chosen character on either side",
+              "Enemy characters only"
+            ],
+            "chosen": "Chosen character on either side",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+          }
+        ],
+        "unexpressed": []
+      },
+      "final": {
+        "structural": {
+          "ok": true,
+          "errors": [],
+          "status": "PARTIAL",
+          "rules": [
+            "R_AMOUNT_ORDER",
+            "R_AREA_SNAPSHOT",
+            "R_BOARD_LIMIT",
+            "R_DAMAGE",
+            "R_FREEZE",
+            "R_FREEZE_THAW",
+            "R_PLAY_TARGET",
+            "R_SPELL_DAMAGE",
+            "R_STEP_BOUNDARY",
+            "R_SUMMON_POSITION"
+          ],
+          "elements": {
+            "ability:play": 1,
+            "card_source:card": 1,
+            "control:seq": 1,
+            "label:SPELL": 1,
+            "op:DEAL_DAMAGE": 1,
+            "op:FREEZE": 1,
+            "op:SUMMON": 1,
+            "pick:ALL": 1,
+            "pick:CHOSEN": 1,
+            "selector:ref": 1,
+            "value:spell_damage_literal": 1,
+            "zone:PLAY": 2
+          }
+        },
+        "strict": {
+          "accepted": true,
+          "complete": false,
+          "status": "PARTIAL",
+          "errors": [],
+          "warnings": []
+        },
+        "declaration": "final/CORE_RLK_063.json",
+        "sha256": "5a545f9468d08af958af91dd510663abdbaae1847883822d16e0874c6c4eb797",
+        "dependencies": [
+          {
+            "id": "thaw",
+            "kind": "UNKNOWN_RULE",
+            "scope": "CORE",
+            "detail": "Thaw timing changes whether affected minions can attack on their ordinary next turn; provisional contract is not a confirmed freeze lifecycle.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs",
+            "rule": "R_FREEZE_THAW"
+          },
+          {
+            "id": "frostwyrm",
+            "kind": "TOKEN_IDENTITY",
+            "scope": "DATA",
+            "detail": "RLK_063t matches name, 5/5, original creator prefix; there are three gameplay records named Frostwyrm, so UNIQUE_NAME was false. CORE reprint linkage remains a DATA dependency.",
+            "source_needed": "Independent rule evidence or a discriminating observed game; pinned metadata for IDs"
+          }
+        ],
+        "decisions": [
+          {
+            "id": "thaw",
+            "question": "When does Frozen expire?",
+            "alternatives": [
+              "Controller-turn removal conditional on attack availability",
+              "Other thaw timing"
+            ],
+            "chosen": "UNRESOLVED",
+            "basis": "UNKNOWN",
+            "risk": "OUTCOME",
+            "discriminating_case": "Freeze an exhausted enemy minion and inspect its next attack opportunity.",
+            "dep": "thaw"
+          },
+          {
+            "id": "damage_target",
+            "question": "Does unqualified damage restrict side?",
+            "alternatives": [
+              "Chosen character on either side",
+              "Enemy characters only"
+            ],
+            "chosen": "Chosen character on either side",
+            "basis": "TEXT",
+            "risk": "OUTCOME",
+            "discriminating_case": "Friendly hero or minion is an allowed selected damage target; only the freeze is enemy-wide."
+          }
+        ],
+        "unexpressed": []
+      },
+      "corrections": [
+        {
+          "card_id": "CORE_RLK_063",
+          "category": "AUTHOR_ERROR",
+          "reason": "Incorrect UNIQUE_NAME resolution; structural checker found three names. Use NAME_IN_SET plus explicit token dependency, preserving the PARTIAL thaw contract."
+        }
+      ],
+      "changed": true,
+      "leaf_changes": 3,
+      "comparison": {
+        "source": "reports/card_ir_v02/examples/CORE_RLK_063.json",
+        "comparable": true,
+        "normalized_program_equal": true,
+        "json_equal": false,
+        "scope": "Encoded program/partial fragment only; evidence, dependencies and correctness excluded"
+      }
+    }
+  ],
+  "artifacts": {
+    "card_comparison": "CARD_COMPARISON.md",
+    "validator_audit": "VALIDATOR_AUDIT.md",
+    "verification": "verification.json",
+    "history": "history_reproduction.json",
+    "raw_hashes": "raw_manifest.json",
+    "raw_bindings": "raw_bindings.json",
+    "final_bindings": "final_bindings.json",
+    "before": "negatives_before.json",
+    "after": "negatives_after.json",
+    "frozen_cases": "negative_cases.json",
+    "later_diagnostics": ["contract_probes.json", "extra_contract_probes.json"]
+  },
+  "current_hashes": {
+    "reports/card_ir_v02_independent_validation/final_bindings.json": "31dd350c038c161b62b12590e4745fbb437876361aaecc8d52e60010f9c0e6c0",
+    "reports/card_ir_v02_independent_validation/negative_cases.json": "20f78360abd5509c644a161850b284e6f703571c76570c9bb9b3689f8b2bd6f5",
+    "reports/card_ir_v02_independent_validation/protocol.json": "87b39fafa480f35bb68ec5f044a677f165c395ce898f846201db412c50c624b2",
+    "reports/card_ir_v02_independent_validation/raw_bindings.json": "31dd350c038c161b62b12590e4745fbb437876361aaecc8d52e60010f9c0e6c0",
+    "src/manamind/card_ir/__init__.py": "49e12a7b208649086f509689ff102a0d5ed87125657c9f5a9bdf2d5fb3cb8c4e",
+    "src/manamind/card_ir/audit_render.py": "fb6c0f21a6146965e12081b5d3c0f79ba94fb87a07fc26e10662ff23d237815e",
+    "src/manamind/card_ir/lint.py": "dbc29b94596352d44bd774d1c1c7fb6a20c0e3a20ea94515b30813ab66ad8422",
+    "src/manamind/card_ir/lint_v02.py": "08de2aa1418c186d3a2774444c56a09ab0453db27ee16d0b2d686611d2637adc",
+    "src/manamind/card_ir/render.py": "035e41aa62e7cef4034ea55c052be029f4c0afdca9486954bdb603a5b2b2eecc",
+    "src/manamind/card_ir/render_v02.py": "3645efecc95bee2b2ca6576b9b7d108430c3add391a165e78c4796160dd1dc31",
+    "src/manamind/card_ir/semantic_lint.py": "4a8a8a22c0ece965d2fae9333665f68245dc238f00d18f99c4c00fa963c252d6",
+    "src/manamind/card_ir/strict.py": "dc224d053cee6b5f9c03db0f0b782f24ea0463f718d9b71a9e462b1be907b217",
+    "src/manamind/card_ir/strict_lint.py": "60d4b1320c5d88b49fc9f2696a82f5cd99a44a3a8d0bcb2916658234eeb97f4d",
+    "src/manamind/card_ir/strict_v02.py": "ba2359b331308ff6eb88113100efa09687d185d4c442427d4733ef44a0cfc512",
+    "src/manamind/card_ir/validate.py": "798017d65a011965fa7150f19f66c245954ac194d5e36818bad64810ec16d24c",
+    "src/manamind/card_ir/validate_v02.py": "c357599c66a4821adf5057f678e4cac3b57a0a9baba57031e453b58bf49780a1",
+    "src/manamind/card_ir/vocabulary.py": "0281573e8d5705c510e1c381123d4911f807023e328dffb3218276d38f4dffc6",
+    "src/manamind/card_ir/vocabulary_v02.py": "d404661aeb4d2d930e2b2b54390f866187f77466614d13d9e95f2ceba998466f"
+  },
+  "recommendation": "NO-GO",
+  "recommendation_scope": "Mass automatic compilation and using FULL_DEP as a semantic gate; bounded manual research can resume only with separate authorization and review gates",
+  "next_18": "Separate task after evidence/scope and adversarial semantic review gates; not started",
+  "torch_s2": "Defer. First test generalization on the next bounded, independently reviewed batch after gates; one-card S2 does not address current false acceptance.",
+  "semantic_gold_accuracy": null,
+  "population_false_acceptance_rate": null,
+  "limitations": [
+    "Single in-session author, not blinded to task's known issues or normative examples in prose; raw committed before prior declarations/fixtures.",
+    "No external game-rule research or execution; disputed rules remain explicitly unknown, user observations have USER_OBSERVED provenance.",
+    "Adversarial corpus selected after Opus comparison; not a random or protected holdout. Cases include combined faults.",
+    "One equivalent mutation excluded from error count. Three malformed semantic probes rejected for unrelated shape/binding errors do not prove semantic detection.",
+    "Agreement measured on normalized encoded programs, not actual Hearthstone outcomes.",
+    "Before snapshots remain immutable; source fixes do not retroactively improve first-pass metrics."
+  ]
+}
