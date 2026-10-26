@@ -1,0 +1,1798 @@
+{
+  "id": "CARD-IR-STAGE-B1",
+  "locked_on": "2026-10-26",
+  "status": "LOCKED_BEFORE_GENERATION",
+  "hypothesis": "Existing v0.1 can describe unfamiliar cards with explicit gaps; general lexical checks improve mutation detection over A without many clean-A warnings. Semantic compiler accuracy needs independent gold.",
+  "baseline": {
+    "A_full_or_full_dep": "20/21",
+    "A_last_third_any_new_element_share": 0.61,
+    "A_last_third_structural_share": 0.23,
+    "A_mutations": {
+      "total": 294,
+      "validator": 189,
+      "lint_only": 68,
+      "missed": 37
+    },
+    "A_first_pass_compilation_accuracy": null
+  },
+  "inputs": {
+    "snapshot": "hsjson_255130_enUS",
+    "snapshot_raw_sha256": "06e61ce4afd2bce9c2ff53de8c2c1cc0080df27aa4743c8eee3d63894d10dc04",
+    "files": {
+      "data/cards/standard_scope_20261001.json": "adc6ae328d5d5db9edc911fb307af4d571492144aab0e11061f480167cfc32cb",
+      "data/card_metadata/manifest.json": "8083616999b16b8e08d4301ef9212d1b15ec110f49d30adcffe62803b6bda511",
+      "reports/card_ir_pilot_1/protocol.json": "c4338e8f87ca1c37b40176dfd9175ca56e592c99a7bc1930ea19e6f048c8c85f",
+      "reports/card_ir_pilot_1/IR_SPEC.md": "4d9cd6c9719826dd189ae62e6c7fc956900ebf1966af6b9e4149b3bebdaba1b6",
+      "reports/card_ir_pilot_1/README.md": "4b4081dce3807992e4fd490a1e8df5fc814770a62e7d1dcfd0eb7ef7c247bc9e",
+      "reports/card_ir_stage_b1/compiler_prompt.md": "1b94fe532a2f1f49e5d015fb2030506a3e168da6cd485ec3edc4b5ee4b7fbd65",
+      "src/manamind/card_ir/vocabulary.py": "0281573e8d5705c510e1c381123d4911f807023e328dffb3218276d38f4dffc6",
+      "src/manamind/card_ir/validate.py": "798017d65a011965fa7150f19f66c245954ac194d5e36818bad64810ec16d24c",
+      "src/manamind/card_ir/lint.py": "dbc29b94596352d44bd774d1c1c7fb6a20c0e3a20ea94515b30813ab66ad8422",
+      "src/manamind/card_ir/render.py": "035e41aa62e7cef4034ea55c052be029f4c0afdca9486954bdb603a5b2b2eecc"
+    },
+    "A_declarations": {
+      "BE_207.json": "90c49524cbd0b689a999d5d4239c9c4e2dfde918c458be588f21e90385f43d3a",
+      "BE_552.json": "8a6ebcc5a2491c2da0d2f1d103da9c19b4839e69d0e6a0ce03697f74ae91a911",
+      "BE_553t.json": "ccda45a1d2cd62905107e34293f2aba0c48f43a15db7af1dc067781f518fa0e8",
+      "BE_555.json": "9e8e0edf7032c5f5d946759e7121424f7bb15e78c5da0209cd6854ac39d4d054",
+      "BE_561.json": "a145a55015dfa5e13d772ef1f3dc1b4190cf4a78c048cb13464daca189d5a0c0",
+      "BE_561t.json": "b3b44215b06c6dea7586eb21504374ee953ba13a148f850cda0ff033b7acdbda",
+      "BOT_102t.json": "e8499d9b1e8d1163f2c435e0e1cd9ba9cec6b140e8ce4df9371c7a5a90c51e86",
+      "CAP_107t.json": "669e58cac1c73a7178a84462857323ac4faf98d71d23fb59a7b9c7c6fb0c2f70",
+      "CATA_200.json": "2bdc0f49901b70556241f8d75d0c221b3878d12764b78de029ddeaf7c8b515cb",
+      "CATA_301.json": "4855cba22ecd0d34b6a00b23d996c417f8f0e07d3e1f910038d120ee9cc7dab4",
+      "CATA_458.json": "b6052d5733ead1a06738d5b9a6f49f2fb780958403cb41713cd7eed3faf378f5",
+      "CATA_465.json": "8efeacf415e556540cf89eac9e73e1413c7aa4c75de703e33d0df13aad6a9e72",
+      "CATA_465t.json": "b9b4e2b8c48d03d8fed39cae725ca6bb705885d54fdc6cb29b03b2f9172754a0",
+      "CATA_475.json": "c01a82d8f6b5d11f0f2aec7514a651885153faa2750bc12bb41f82876d787592",
+      "CATA_487.json": "b0d132ace9b1edc06333db855dc932075ec60425e4461b4e40c1268450c6aea4",
+      "CATA_488.json": "64b960ff7cfea02257b6dbb7e480aef7fe93df8c313cac1e8d43bdf937321551",
+      "CATA_488t.json": "447562cd722c2513d5eab2146f5d9e1e319d8d9c1120b485f3ccfef3333ff218",
+      "CATA_999.json": "74db80af4d8a223eb046ab01ea5a6b04e310ad49a2e2dabe9407acb4b5d58e63",
+      "CORE_AT_055.json": "376fc5498949ba7e4d9802065b68554916d707958afb9d00830b431805349e68",
+      "CORE_BAR_812.json": "b0d224112f44ab32dcdfa8b7ae5e6e5fed4f588a15fdcefcbc96f3d883657dad",
+      "CORE_BT_201.json": "9d5230646bccad64b9110d3844223f6b21034018b85b0398600abc388b00bead",
+      "CORE_BT_416.json": "3cbcf2de577fa165a902a50ddd3257646c9675ab97f213c76f223093cf15fd1b",
+      "CORE_CS2_072.json": "867b7681afb178a4ad22271e8a103947c0fcafa04825292dc96a92f0b2bf8b84",
+      "CORE_DRG_107.json": "92f39e2b8d0bdd20231bd33376cdddc7aa715c4ad91a7018b5999a299174a3cf",
+      "CORE_EX1_002.json": "ad3590da240b150459112b0f029c02fa7f019cfaae70aec5e376c60176a0085e",
+      "CORE_EX1_145.json": "b1f6b4a284d589065a64a72d263456da42beb487af1491ebd19772b90eee65ab",
+      "CORE_EX1_238.json": "6841abec7a4fc62ea8e778804fa0f483b4d27ed187c97442ab251b2ee1f6842f",
+      "CORE_GIL_836.json": "014de6db53723d6785f7245e1d73302090299d3473152c8775096cf6d5a70ad9",
+      "CORE_ICC_055.json": "573db2a161e32a31a5fbcf0d4744453ef9547e1089befeb41fdd5c18fb651ec5",
+      "CORE_REV_990.json": "dd46efe73d0aa5e248d9927d3e396abb82adc2bfac9d242c0494f78c862aefc4",
+      "CORE_SW_072.json": "10155344860d3d4fa79acabb6ab802457d00fd63970c49769332d950106b8dd0",
+      "CORE_SW_108.json": "6a46058e94930a00c7f65dd1f932342cafa469fd620fa9be82c8750158323dec",
+      "CORE_TTN_843.json": "c135943488e535f98469fcdfe0301458e0dfb49d5645ebfec8df593729b78048",
+      "EDR_100t.json": "9143686f28de691c49ad7ee17d497db830f7ea3e564e092b554c6577ea764d63",
+      "END_022.json": "f4d920bd191da8423dd737f9a78a7874437510ffaed7c6812a44435ddb31c23b",
+      "EX1_277.json": "1a76675c14154f102fa751c4263b27d82711cf56311c0f79588d8a5a208f902a",
+      "FIR_906.json": "4497b3e9b59a41bd3414c8e014fa7abc2cd1d262d5042436828aa784a5e2c960",
+      "JAIL_321.json": "1988b6d381eb39017dd4b2c3a15273e5077b0697075ad107e2b49f7697f23faf",
+      "JAIL_327.json": "9d6564b1971893d8ef363dea8ef2b8e9fdb9d082446733ecdcdc0afbc4e3e6f2",
+      "JAIL_516.json": "1ffc32d987a83217a6156f1096ece5ffa594aa26bd3a81d55077b00372b388e5",
+      "JAIL_730.json": "cbc7ef13600f1775fd4f197af2e83626bca1278174431516b5f05e5b765f0764",
+      "JAIL_732.json": "541fa8a02852a32cdb3802d0a34612a5272f5070c82650f4b3e3445cb59dfd1a",
+      "JAIL_872.json": "2f02ee0fc3fd52fd3d99b1129afddaf1ff41d00f10fca799ea22126492710af5",
+      "TIME_603.json": "f2e180a5819a2ab48a974801ad94771f0dad09a92ef3ebdf3c6d3cc66459a6df",
+      "TIME_609.json": "d3889b1ffc03c912400f0583c330466ecaf3eda05372b39be31cb7984ef597de",
+      "TIME_890.json": "69dd86383d37c946a58bdc4f4ce99ebda11b38065b5f2d1ff40c57956060cd64",
+      "TIME_890t.json": "b902950aa42fcb3e96d43dc121c855490441e96478896d764b4e06194254c03d",
+      "TIME_890t2.json": "a9c9f464f42f6edc8ee0f66c39c8d00e6f84a9a645f2b4e241ec4779a3e9e950",
+      "TLC_226.json": "cf763d76a65ba723180e6c733e0421a0be7c92297451730ab7ef038bce9cb2e9",
+      "TLC_602.json": "b469a890ba1c253fdae3b4534fd1fda146c446cfd558e9c7bb3cba26aa7d2c40",
+      "TLC_602t.json": "32dbc279814085b2eeb3fe8592e7d5acfb07347dd0966ce9a5bc22ef0c0f1b65",
+      "TLC_816.json": "36c6fc6bd090e49448c6d906c7b1874a9681430b00f93959d17e2bedc6ae1082",
+      "TTN_843t1.json": "aedef7ca7ba91993fcd9268a0c1690a37d458ce7500758b42e1509c12ea8bafe"
+    }
+  },
+  "selection": {
+    "seed": 20261027,
+    "frame": "A random frame: pinned Standard sets plus BE; collectible nonempty effect text; five gameplay card types; scope exclusions and all 53 A declarations removed",
+    "frame_size": 1276,
+    "frame_ids_sha256": "a3aac77811f8d8c1b56243c70693b9a743dfa8574994048cde82d22842a5dc99",
+    "method": "Shuffle sorted class strata with random.Random(seed); pop randrange from sorted remaining IDs in each stratum. Repeat until 60. Missing cardClass gets MULTICLASS stratum (original classes retained). Order is draw order. No substitutions.",
+    "classes": [
+      "DEATHKNIGHT",
+      "DEMONHUNTER",
+      "DRUID",
+      "HUNTER",
+      "MAGE",
+      "MULTICLASS",
+      "NEUTRAL",
+      "PALADIN",
+      "PRIEST",
+      "ROGUE",
+      "SHAMAN",
+      "WARLOCK",
+      "WARRIOR"
+    ],
+    "frame_types": {
+      "HERO": 2,
+      "LOCATION": 19,
+      "MINION": 788,
+      "SPELL": 427,
+      "WEAPON": 40
+    },
+    "sample_types": {
+      "MINION": 36,
+      "SPELL": 21,
+      "WEAPON": 3
+    },
+    "bias": "Class-balanced rather than frequency or type-proportional; rare types and mechanics not guaranteed; no selection using checker capabilities."
+  },
+  "sample": [
+    {
+      "order": 1,
+      "id": "EDR_895",
+      "name": "Aviana, Elune's Chosen",
+      "card_class": "PRIEST",
+      "classes": null,
+      "class_stratum": "PRIEST",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Battlecry:</b> Start a three\nturn lunar cycle. When the\nFull Moon rises, your cards\ncost (1) this game.",
+      "text_sha256": "2acf8c6303a6575606ddbab51aae4d5ae9393f0bc08bfc629a01780dcbfe3360",
+      "record_sha256": "7737061c08972f6f3c1c7e3a449fd5b1261c903c3d761b2f6a0d0cc443dff786",
+      "metadata": {
+        "cost": 9,
+        "attack": 7,
+        "health": 11,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 2,
+      "id": "TIME_216",
+      "name": "Nascent Bolt",
+      "card_class": "SHAMAN",
+      "classes": null,
+      "class_stratum": "SHAMAN",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Deal $5 damage to a minion. If it survives, draw 2 cards.",
+      "text_sha256": "cd278e255de23c1d523da4cb38dfe75d4ab5c7f70ac8d339e90e06961925e266",
+      "record_sha256": "192824834f3fcb45043238aee9855b5a7bf3bf6156452be9b07eb16389194737",
+      "metadata": {
+        "cost": 3,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "NATURE"
+      }
+    },
+    {
+      "order": 3,
+      "id": "CATA_497",
+      "name": "Ultraxion",
+      "card_class": null,
+      "classes": [
+        "DEATHKNIGHT",
+        "ROGUE",
+        "SHAMAN",
+        "WARLOCK",
+        "WARRIOR",
+        "DEMONHUNTER"
+      ],
+      "class_stratum": "MULTICLASS",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Battlecry:</b> <b>Herald</b> {0}.\nReduce Deathwing's\nCost by ({1}).\n <i>(<b>Herald</b> to improve!)</i>",
+      "text_sha256": "3319286510ff397f5b98b00ddab25730a5a1b27b76279e7a288c9b98ea666773",
+      "record_sha256": "e1682f3ffb1486f559a7b21872718b80381051563ed3cacf6931aa3fd9d76fcf",
+      "metadata": {
+        "cost": 6,
+        "attack": 6,
+        "health": 7,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "DRAGON"
+        ],
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 4,
+      "id": "CATA_452",
+      "name": "Spellweaver's Brilliance",
+      "card_class": "MAGE",
+      "classes": null,
+      "class_stratum": "MAGE",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Summon a 6/6 Dragon.\nCosts (1) less for\neach damage you dealt\nwith spells this turn.",
+      "text_sha256": "10027c1363dc19aa0150f170081172395b5b615eb571a6ed6eed91239fbf1324",
+      "record_sha256": "15cb15c2d8f7c235833256343920e8b60bd0b94d15723b1f199e9504b3f4e042",
+      "metadata": {
+        "cost": 10,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "ARCANE"
+      }
+    },
+    {
+      "order": 5,
+      "id": "JAIL_118",
+      "name": "V'ama, Looming Death",
+      "card_class": "PALADIN",
+      "classes": null,
+      "class_stratum": "PALADIN",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Battlecry:</b> Destroy all\nnon-Paladin minions.",
+      "text_sha256": "5527cbf42b66a98729cf62e3cc408576dbdc9c56246610d2f676f6dcb92373f9",
+      "record_sha256": "1d331581763031d4cea3989538c4f9c9238e581b68c97deb27fa7457a1a8bc3a",
+      "metadata": {
+        "cost": 9,
+        "attack": 5,
+        "health": 5,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 6,
+      "id": "CORE_BT_921",
+      "name": "Aldrachi Warblades",
+      "card_class": "DEMONHUNTER",
+      "classes": null,
+      "class_stratum": "DEMONHUNTER",
+      "type": "WEAPON",
+      "set": "CORE",
+      "text": "<b>Lifesteal</b>",
+      "text_sha256": "8ce4e2063d0494e66987f5cb47c6b950ed1e38d227385c682c833caa701e011d",
+      "record_sha256": "74f5896b41c88a25520b1e4564e8587c7ed97e95cec35d0730aff19ee1128931",
+      "metadata": {
+        "cost": 3,
+        "attack": 2,
+        "health": 2,
+        "durability": 0,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "LIFESTEAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 7,
+      "id": "JAIL_399",
+      "name": "Imp Gang Stooge",
+      "card_class": "WARLOCK",
+      "classes": null,
+      "class_stratum": "WARLOCK",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Taunt</b>. <b>Deathrattle:</b>\nPut two 8/8 Demons with\n<b>Taunt</b> and <b>Lifesteal</b> on the\nbottom of your deck.",
+      "text_sha256": "302fa1fdfad81e786facfdd15a16dfd700ead0c913e8628c7ee407d6af1b43af",
+      "record_sha256": "6b4e7a340ca5d51c4348f2d7f0ce6ccfec4c0816483489a4e0fa8808ef399f20",
+      "metadata": {
+        "cost": 3,
+        "attack": 2,
+        "health": 5,
+        "durability": null,
+        "race": "DEMON",
+        "races": [
+          "DEMON"
+        ],
+        "mechanics": [
+          "DEATHRATTLE",
+          "TAUNT"
+        ],
+        "referencedTags": [
+          "LIFESTEAL"
+        ],
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 8,
+      "id": "CORE_SCH_713",
+      "name": "Cult Neophyte",
+      "card_class": "NEUTRAL",
+      "classes": null,
+      "class_stratum": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "<b>Battlecry:</b> Your opponent's spells cost (1) more next turn.",
+      "text_sha256": "f7e43f679e5b388e3f46727443857164ff0e24be6155d316aa58ec894fe1a61e",
+      "record_sha256": "f7d4ab3dc15941a40b8157f60ddd8d6ceb80a0286a50ab4c06b8c7d98441c82b",
+      "metadata": {
+        "cost": 2,
+        "attack": 3,
+        "health": 2,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 9,
+      "id": "CORE_DAL_720",
+      "name": "Waggle Pick",
+      "card_class": "ROGUE",
+      "classes": null,
+      "class_stratum": "ROGUE",
+      "type": "WEAPON",
+      "set": "CORE",
+      "text": "[x]<b>Deathrattle:</b> Return\na random friendly\nminion to your hand.\nIt costs (2) less.",
+      "text_sha256": "b3871d585fc7fa49603e7ebeebfe17d42281978a615ac50474f9865ac36f3fef",
+      "record_sha256": "2284c54023ed655b1a146de032ab44269a5f6144990483b925bea6986196d834",
+      "metadata": {
+        "cost": 4,
+        "attack": 4,
+        "health": 2,
+        "durability": 0,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 10,
+      "id": "FIR_953",
+      "name": "Magma Hound",
+      "card_class": "HUNTER",
+      "classes": null,
+      "class_stratum": "HUNTER",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Rush</b>. After this attacks a\nminion and survives, deal this\nminion's Attack damage split\namong all enemies.",
+      "text_sha256": "1c7a87c1f80d49415e2dc329270935965b252567b9b1ecaa89c92c21dc51c4dc",
+      "record_sha256": "b5c9047cc48566e0f3c20eff72a62162f2b6a10cb6d8b2b2dafc71088d361179",
+      "metadata": {
+        "cost": 8,
+        "attack": 5,
+        "health": 8,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "ELEMENTAL",
+          "BEAST"
+        ],
+        "mechanics": [
+          "RUSH",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 11,
+      "id": "CATA_585",
+      "name": "Torch",
+      "card_class": "WARRIOR",
+      "classes": null,
+      "class_stratum": "WARRIOR",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "[x]Deal $8 damage\nto a damaged minion.\nReturn this to hand with\nany excess damage.",
+      "text_sha256": "3b16b5f099470be6603a612133bf4ea47ba484db3be7b6e2bf518f4838b7b920",
+      "record_sha256": "bb77db781d10356ae99fca14c13fecc125d84ff940c0d923be61e9a9c4afb9b0",
+      "metadata": {
+        "cost": 1,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "ImmuneToSpellpower"
+        ],
+        "referencedTags": null,
+        "spellSchool": "FIRE"
+      }
+    },
+    {
+      "order": 12,
+      "id": "CORE_RLK_063",
+      "name": "Frostwyrm's Fury",
+      "card_class": "DEATHKNIGHT",
+      "classes": null,
+      "class_stratum": "DEATHKNIGHT",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Deal $5 damage. <b>Freeze</b> all enemy minions.\nSummon a 5/5 Frostwyrm.",
+      "text_sha256": "84ce63578a21ffaa1dcc683865e865d5824c4a66f50a74525345129f71a8cbe5",
+      "record_sha256": "55cd8ce113c0b444c772bc7f6a8bcc755a4aa13e25f23285d3dc8bf582712abc",
+      "metadata": {
+        "cost": 7,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": [
+          "FREEZE"
+        ],
+        "spellSchool": "FROST"
+      }
+    },
+    {
+      "order": 13,
+      "id": "JAIL_875",
+      "name": "Staff of Trickery",
+      "card_class": "DRUID",
+      "classes": null,
+      "class_stratum": "DRUID",
+      "type": "WEAPON",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]After your hero attacks,\n<b>Discover</b> a Druid card.\nReduce its Cost by\nyour hero's Attack.",
+      "text_sha256": "3a519482a02177a46c473034b35ce997cfc0457abc12e2dad9dee12fc057c404",
+      "record_sha256": "31cf33c8b30d77253d7ac923ff2ceefc4446135a63aa1d6cf3517933994c58a5",
+      "metadata": {
+        "cost": 4,
+        "attack": 1,
+        "health": 4,
+        "durability": 0,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "DISCOVER",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 14,
+      "id": "DINO_136",
+      "name": "Horn of Feasting",
+      "card_class": "DEMONHUNTER",
+      "classes": null,
+      "class_stratum": "DEMONHUNTER",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "Summon three\n2/1 Raptors with <b>Rush</b>.\n<b>Outcast:</b> Give them <b>Immune</b>\nwhile attacking this turn.",
+      "text_sha256": "08600c95bfae1346f52cfd26a82d68e8b641c0283eed8dcf7169d4582a44b8b6",
+      "record_sha256": "8cda580888f1a4db6b08392a4bee7c0160dbaeb461026ff038cdbfa91810808a",
+      "metadata": {
+        "cost": 4,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "OUTCAST"
+        ],
+        "referencedTags": [
+          "IMMUNE",
+          "RUSH"
+        ],
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 15,
+      "id": "EDR_227",
+      "name": "Umbraclaw",
+      "card_class": "HUNTER",
+      "classes": null,
+      "class_stratum": "HUNTER",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Rush</b>\n<b>Deathrattle:</b> <b>Imbue</b> your Hero Power.",
+      "text_sha256": "7f46ad52a4eeddd47aaa0e64d389a2b637120ef24be238959c43632107767e9b",
+      "record_sha256": "f9cbf53a67f6bb54a9bcd49f2f44729363c65345bc7da5031aa6a8f66c79f509",
+      "metadata": {
+        "cost": 4,
+        "attack": 5,
+        "health": 2,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "DEATHRATTLE",
+          "RUSH"
+        ],
+        "referencedTags": [
+          "IMBUE"
+        ],
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 16,
+      "id": "TLC_221",
+      "name": "Sizzling Swarm",
+      "card_class": "SHAMAN",
+      "classes": null,
+      "class_stratum": "SHAMAN",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "Deal $3 damage.\nSummon that many 2/1 Sizzling Cinders.",
+      "text_sha256": "5712cd89e161a7e7ec332d07727760535d2924d337aac5813675b4c7371b3b81",
+      "record_sha256": "0280088fd5d9564d33c273d38fa5b631ef706566bb47a30d9a6b3f93f8d12dd5",
+      "metadata": {
+        "cost": 6,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "FIRE"
+      }
+    },
+    {
+      "order": 17,
+      "id": "TLC_819",
+      "name": "Gladesong Siren",
+      "card_class": "PRIEST",
+      "classes": null,
+      "class_stratum": "PRIEST",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Lifesteal</b>\nCosts (1) if you've\ncast a Holy and Shadow spell this turn.",
+      "text_sha256": "1fb9405e47939f4fa91789c469062cd7495bb7511d87729a2273dc17b3a63378",
+      "record_sha256": "2010d09cff8f5fdec8d746734ab66108fecabc58215e7a0a37bc0be36b4c1e41",
+      "metadata": {
+        "cost": 6,
+        "attack": 4,
+        "health": 7,
+        "durability": null,
+        "race": "NAGA",
+        "races": [
+          "NAGA"
+        ],
+        "mechanics": [
+          "LIFESTEAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 18,
+      "id": "TIME_015",
+      "name": "Hardlight Protector",
+      "card_class": "PALADIN",
+      "classes": null,
+      "class_stratum": "PALADIN",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Divine Shield</b>\n<b>Battlecry:</b> Restore #3 Health\nto your hero and give them\n<b>Divine Shield</b>.",
+      "text_sha256": "87f25ec100300bf49a9fc114db8275fd7235379cc3ccb3cb9ab6a24dee901976",
+      "record_sha256": "417948bc3581734de44acda6c7ec9a721e145b038e501fb350209717421f5406",
+      "metadata": {
+        "cost": 2,
+        "attack": 2,
+        "health": 1,
+        "durability": null,
+        "race": "MECHANICAL",
+        "races": [
+          "MECHANICAL"
+        ],
+        "mechanics": [
+          "BATTLECRY",
+          "DIVINE_SHIELD"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 19,
+      "id": "TIME_611",
+      "name": "Timestop",
+      "card_class": "DEATHKNIGHT",
+      "classes": null,
+      "class_stratum": "DEATHKNIGHT",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "Deal $3 damage.\n<b>Freeze</b> two random enemy minions.",
+      "text_sha256": "53d4bcc8ba739868533095d7d7631647e2e19e876aa8f97acb2c1cc578a43380",
+      "record_sha256": "d794c8cc9c74320e50eccd1ea63da7994e4feb72cffad867f4bcf080072ccc91",
+      "metadata": {
+        "cost": 2,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": [
+          "FREEZE"
+        ],
+        "spellSchool": "FROST"
+      }
+    },
+    {
+      "order": 20,
+      "id": "CATA_785",
+      "name": "Rite of Twilight",
+      "card_class": "ROGUE",
+      "classes": null,
+      "class_stratum": "ROGUE",
+      "type": "SPELL",
+      "set": "CATACLYSM",
+      "text": "<b>Herald</b> {0}.\n<b>Combo:</b> Deal $3 damage.",
+      "text_sha256": "030b5025c6b8b8958f4852befcfb56273d25d398352873d30778ac499e749912",
+      "record_sha256": "b7dba11aeaae4dd54df31656963c69c4e95cd5b80775a532a4358a240189cacf",
+      "metadata": {
+        "cost": 2,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "COMBO"
+        ],
+        "referencedTags": null,
+        "spellSchool": "SHADOW"
+      }
+    },
+    {
+      "order": 21,
+      "id": "CORE_EX1_312",
+      "name": "Twisting Nether",
+      "card_class": "WARLOCK",
+      "classes": null,
+      "class_stratum": "WARLOCK",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Destroy all minions\nand locations.",
+      "text_sha256": "223f0d8a3bb4b30d323f1f0c9147fef4cd048b1a757124409302d8ceb6b77637",
+      "record_sha256": "e0973fa235e5162e3c6c444130570cb8f46b60fa3d38e88bb6770b15ba713a77",
+      "metadata": {
+        "cost": 8,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "SHADOW"
+      }
+    },
+    {
+      "order": 22,
+      "id": "CATA_483",
+      "name": "Unstable Spellcaster",
+      "card_class": "MAGE",
+      "classes": null,
+      "class_stratum": "MAGE",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Spell Damage +1</b>\n<b>Battlecry:</b> If you dealt\ndamage with a spell this turn,\n summon a copy of this.",
+      "text_sha256": "66d1b28a8bc516586fb43229ff8ebe5b393d716f557b1072e4a121fe73814a62",
+      "record_sha256": "1ff72b6a5d34851cad35bfa94560cb3adbd6e518f9de2d4ec262ac6180a5f6c7",
+      "metadata": {
+        "cost": 4,
+        "attack": 2,
+        "health": 5,
+        "durability": null,
+        "race": "ELEMENTAL",
+        "races": [
+          "ELEMENTAL"
+        ],
+        "mechanics": [
+          "BATTLECRY",
+          "SPELLPOWER"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 23,
+      "id": "DINO_130",
+      "name": "Longneck Egg",
+      "card_class": "DRUID",
+      "classes": null,
+      "class_stratum": "DRUID",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Deathrattle:</b> Summon a 3/3 Beast. Give your minions +1/+1.",
+      "text_sha256": "f7be1746643e4d962a8ebf078e4cf77ade0d62d93071d49b5cf0bfa2db0879ea",
+      "record_sha256": "f2f4d7d84897bd61247089dd06d4a95139f4dd206d5562ce670d38c8047414c1",
+      "metadata": {
+        "cost": 2,
+        "attack": 0,
+        "health": 2,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 24,
+      "id": "CORE_EX1_100",
+      "name": "Lorewalker Cho",
+      "card_class": "NEUTRAL",
+      "classes": null,
+      "class_stratum": "NEUTRAL",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "Whenever a player casts a spell, put a copy into the other player’s hand.",
+      "text_sha256": "c6212cf3178a427c93f0910e1a106a24497a489288ffcd71b3edaafa01b32026",
+      "record_sha256": "5e288da1a5efa2f27cb557f1635de89175c37578a2e2936d114d6c2c8872cd37",
+      "metadata": {
+        "cost": 2,
+        "attack": 0,
+        "health": 4,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 25,
+      "id": "END_023",
+      "name": "Bitter End",
+      "card_class": null,
+      "classes": [
+        "MAGE",
+        "WARRIOR"
+      ],
+      "class_stratum": "MULTICLASS",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Freeze</b> a minion and its neighbors. Destroy any that are damaged.",
+      "text_sha256": "d12f3a040c8f6146ca511a7428cda57b36fd06c9e186a0ad1f698b7379f98069",
+      "record_sha256": "3e88af1eee6482a36c910e5d57b90dd9b1d2ea5080955e13e55e560cf1493e54",
+      "metadata": {
+        "cost": 5,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": [
+          "FREEZE"
+        ],
+        "spellSchool": "FROST"
+      }
+    },
+    {
+      "order": 26,
+      "id": "EDR_459",
+      "name": "Afflicted Devastator",
+      "card_class": "WARRIOR",
+      "classes": null,
+      "class_stratum": "WARRIOR",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "[x]<b>Battlecry:</b> Deal 3 damage\nto all other friendly minions.\n<b>Deathrattle:</b> Deal 3 damage\nto all enemy minions.",
+      "text_sha256": "58d839e7384464086c1a9a22f20c73574b6f9806a03ea0afb7270171caa490e9",
+      "record_sha256": "2148d23248e65da7a73b3ca7183f7fa448add723a7c123d3bb4b40c0ecf467ba",
+      "metadata": {
+        "cost": 4,
+        "attack": 6,
+        "health": 6,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "DRAGON"
+        ],
+        "mechanics": [
+          "BATTLECRY",
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 27,
+      "id": "TIME_612",
+      "name": "Blood Draw",
+      "card_class": "DEATHKNIGHT",
+      "classes": null,
+      "class_stratum": "DEATHKNIGHT",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Discover</b> a spell.\nThis costs Health instead of Mana.",
+      "text_sha256": "96098165d89276e285979fbb5a90b9ce4c2b476af6ea728d44d600870c2b3341",
+      "record_sha256": "0c4f7dccba1ecb90b1a3807edfd533e2872f1d88669da621d5901bd9454b420b",
+      "metadata": {
+        "cost": 3,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "DISCOVER"
+        ],
+        "referencedTags": null,
+        "spellSchool": "SHADOW"
+      }
+    },
+    {
+      "order": 28,
+      "id": "DINO_412",
+      "name": "Tortotem",
+      "card_class": "SHAMAN",
+      "classes": null,
+      "class_stratum": "SHAMAN",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "[x]At the end of your turn,\nget a random minion with\nmultiple minion types.",
+      "text_sha256": "00a0bb4a68d4edc73e1cb5011640ecd0ab23cdabfcb3dcd0fb8c5850c3be63c2",
+      "record_sha256": "b91e3f2b47b9f2d31f8a1a1d8db30bad3d3e38451d3049d71a0fc9377f8118ca",
+      "metadata": {
+        "cost": 1,
+        "attack": 0,
+        "health": 3,
+        "durability": null,
+        "race": "TOTEM",
+        "races": [
+          "TOTEM"
+        ],
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 29,
+      "id": "TLC_811",
+      "name": "Archaios",
+      "card_class": "PRIEST",
+      "classes": null,
+      "class_stratum": "PRIEST",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Whenever another\nfriendly minion attacks,\nset its Health equal to\nthis minion's Health.",
+      "text_sha256": "075e223b977bf4b7221f963eff0a350e3daa954c07bfb3ecedac4eb16ec54b44",
+      "record_sha256": "9070dec05ae8cf682b18d94383116bab079274f6a1115056567857819db66d83",
+      "metadata": {
+        "cost": 3,
+        "attack": 1,
+        "health": 6,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 30,
+      "id": "CATA_139",
+      "name": "Wickerfang",
+      "card_class": "DRUID",
+      "classes": null,
+      "class_stratum": "DRUID",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "<b>Colossal +4</b>\nAfter one of Wickerfang's Legs gains stats, this gains them too.",
+      "text_sha256": "bb7ac22e4acf9739d1aff623522d5d2e7021bd4f2f0fa21254ffdb0a2111bbe6",
+      "record_sha256": "0e8f8f00e7e564710dcae6a4fa96670013f1e61254e547e973af67e46e89dede",
+      "metadata": {
+        "cost": 6,
+        "attack": 0,
+        "health": 5,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "COLOSSAL",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 31,
+      "id": "BE_730",
+      "name": "Clockwork Boars",
+      "card_class": "HUNTER",
+      "classes": null,
+      "class_stratum": "HUNTER",
+      "type": "SPELL",
+      "set": "BE",
+      "text": "[x]Summon two 1/1 Mech\nBeasts with <b>Charge</b>.",
+      "text_sha256": "4d084ac56d6175f63e9ca2a7418cde238ab0b31d23380b0e7069ec4ee02682f4",
+      "record_sha256": "1bd72e12bfccc264a15a9bc0c70c12180907d16eaf86baea7a855170445477d3",
+      "metadata": {
+        "cost": 2,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": [
+          "CHARGE"
+        ],
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 32,
+      "id": "CORE_KAR_077",
+      "name": "Silvermoon Portal",
+      "card_class": "PALADIN",
+      "classes": null,
+      "class_stratum": "PALADIN",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "Give a minion +2/+2. Summon a random\n2-Cost minion.",
+      "text_sha256": "14338b0f331ec3b2de6098eebd42d5fb1391f47f60d1d59f0c11c2eca49e4cc8",
+      "record_sha256": "08763c568044ddecedffab6faefd7e349724e99324d85a78dac93707e661c259",
+      "metadata": {
+        "cost": 3,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "HOLY"
+      }
+    },
+    {
+      "order": 33,
+      "id": "JAIL_125",
+      "name": "Cold Snap",
+      "card_class": "MAGE",
+      "classes": null,
+      "class_stratum": "MAGE",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "<b>Freeze</b> an enemy.\nGet a random\nFrost spell.",
+      "text_sha256": "42fc9ffa800075f72257113da93c54156a1ca2802fb5026edb213600813a0fe2",
+      "record_sha256": "4bf454ceb8591aeefa206b7666126c8366c800a80f81c9b491e8bfc1eced56ca",
+      "metadata": {
+        "cost": 1,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": [
+          "FREEZE"
+        ],
+        "spellSchool": "FROST"
+      }
+    },
+    {
+      "order": 34,
+      "id": "TLC_256",
+      "name": "Marshland Thresher",
+      "card_class": "NEUTRAL",
+      "classes": null,
+      "class_stratum": "NEUTRAL",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "After you cast a spell,\ngain <b>Divine Shield</b>.",
+      "text_sha256": "8ab346c6b696a5dcd181e57e11703887ded20b33063488d939753e1c851c2901",
+      "record_sha256": "cfa3f0cceb3f8ee6fe752fa59f33f7ce9601e7bd39ee1e28d5190aa3364c53ed",
+      "metadata": {
+        "cost": 3,
+        "attack": 3,
+        "health": 3,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": [
+          "DIVINE_SHIELD"
+        ],
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 35,
+      "id": "EDR_890",
+      "name": "Nightmare Dragonkin",
+      "card_class": "DEMONHUNTER",
+      "classes": null,
+      "class_stratum": "DEMONHUNTER",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Deathrattle:</b> Reduce the\nCost of the right-most card in your hand by (2).",
+      "text_sha256": "5a9122c1215cafb7eb22709a732e1bac902e9c9d9b8f0e5f4d87f1e4d682c08d",
+      "record_sha256": "821bdca6739623b5827ebc935bc3532ea4e4b0c2b394f9d73186d7c9856ff31e",
+      "metadata": {
+        "cost": 3,
+        "attack": 4,
+        "health": 2,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "DRAGON"
+        ],
+        "mechanics": [
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 36,
+      "id": "CORE_LOOT_368",
+      "name": "Voidlord",
+      "card_class": "WARLOCK",
+      "classes": null,
+      "class_stratum": "WARLOCK",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "[x]<b>Taunt</b>\n <b>Deathrattle:</b> Summon three\n1/3 Demons with <b>Taunt</b>.",
+      "text_sha256": "8620640a63eba808d217210892e4332ebabec4622bb40c29d39405892cad2d80",
+      "record_sha256": "aeb001de293d03661d02c7d1849e30e35e70efc70c8f1b74e082a4c6f67ee26b",
+      "metadata": {
+        "cost": 9,
+        "attack": 3,
+        "health": 9,
+        "durability": null,
+        "race": "DEMON",
+        "races": [
+          "DEMON"
+        ],
+        "mechanics": [
+          "DEATHRATTLE",
+          "TAUNT"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 37,
+      "id": "CATA_EVENT_002",
+      "name": "Baleful Blazer",
+      "card_class": "WARRIOR",
+      "classes": null,
+      "class_stratum": "WARRIOR",
+      "type": "MINION",
+      "set": "EVENT",
+      "text": "<b>Battlecry:</b> If you've played a Fire spell this turn, destroy a minion.",
+      "text_sha256": "c1847f74a0dcae9c7debd01258f5c15323e73b4e4286072f3bea839d8a48296a",
+      "record_sha256": "29d229560a98bac4c65b4ff47900cde3a217c30989b36d7f3e0eb891e1f2526f",
+      "metadata": {
+        "cost": 3,
+        "attack": 4,
+        "health": 3,
+        "durability": null,
+        "race": "ELEMENTAL",
+        "races": [
+          "ELEMENTAL"
+        ],
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 38,
+      "id": "TLC_514",
+      "name": "Merchant of Legend",
+      "card_class": "ROGUE",
+      "classes": null,
+      "class_stratum": "ROGUE",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Battlecry:</b> <b>Discover</b>\na <b>Legendary</b> minion.\nShuffle the other two into your deck.",
+      "text_sha256": "14d79d8d0b52e29117d918f25ea056afb4ae5360d54100a538283aa6c1243880",
+      "record_sha256": "60eb7b9e7b49b87771d7205208ffd194be436ad7776bbb7ea9f393936f9fceb3",
+      "metadata": {
+        "cost": 1,
+        "attack": 1,
+        "health": 2,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY",
+          "DISCOVER"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 39,
+      "id": "CATA_722",
+      "name": "Envoy of the End",
+      "card_class": null,
+      "classes": [
+        "DEATHKNIGHT",
+        "ROGUE",
+        "SHAMAN",
+        "WARLOCK",
+        "WARRIOR",
+        "DEMONHUNTER"
+      ],
+      "class_stratum": "MULTICLASS",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "<b>Taunt</b>\n <b>Battlecry:</b> <b>Herald</b> {0}.",
+      "text_sha256": "fe24f634792c752da11762e7ec562f406093dc5b364c7d4527bf0002b7eebfeb",
+      "record_sha256": "ee3df3452e60a5df77f7b9147cc15330000e58c956d3058a0449125f10ee4847",
+      "metadata": {
+        "cost": 5,
+        "attack": 5,
+        "health": 4,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY",
+          "TAUNT"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 40,
+      "id": "TIME_705",
+      "name": "Krona, Keeper of Eons",
+      "card_class": "DRUID",
+      "classes": null,
+      "class_stratum": "DRUID",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Taunt</b>\n<b>Battlecry:</b> Set the Costs\nof the bottom 5 cards\nof your deck to (1).",
+      "text_sha256": "4bb12d438449a6ac35c04707b1be7faf966ae25b6fd5c61807a789295eb64309",
+      "record_sha256": "4b034d0c0f319149d6d8a7406f3052be86485edc9d6c71caa28fb79c4a748771",
+      "metadata": {
+        "cost": 6,
+        "attack": 4,
+        "health": 7,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY",
+          "TAUNT"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 41,
+      "id": "END_008",
+      "name": "Enduring Roach",
+      "card_class": null,
+      "classes": [
+        "DRUID",
+        "DEMONHUNTER"
+      ],
+      "class_stratum": "MULTICLASS",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "After you use your Hero Power, refresh\n2 Mana Crystals.",
+      "text_sha256": "b468736ff3b7829a0655ef6800a67f92f6e648fd2e7704515dd99fad2507fc2e",
+      "record_sha256": "c57f19b2076da4eafe2e6258c9a5a9d219e97440faa512a7c25dd62b3cc91836",
+      "metadata": {
+        "cost": 3,
+        "attack": 3,
+        "health": 4,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 42,
+      "id": "EDR_110",
+      "name": "Sporegnasher",
+      "card_class": "NEUTRAL",
+      "classes": null,
+      "class_stratum": "NEUTRAL",
+      "type": "MINION",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Poisonous</b>\n<b>Deathrattle:</b> Deal 1\ndamage to a random\nenemy minion.",
+      "text_sha256": "ce292111361033a3367cf7c80df42c779b638a5fc6beacbdac7ab64676a7075b",
+      "record_sha256": "24873f17b3a6c0b50ad115e88572ca6f72075237a2706da7ddb5588e3c4123e0",
+      "metadata": {
+        "cost": 5,
+        "attack": 1,
+        "health": 5,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "DEATHRATTLE",
+          "POISONOUS"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 43,
+      "id": "TLC_364",
+      "name": "Story of the Waygate",
+      "card_class": "MAGE",
+      "classes": null,
+      "class_stratum": "MAGE",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "[x]Reduce the Cost of cards\nin your hand that didn't\nstart in your deck by (1).",
+      "text_sha256": "dfc95597af3bbca3189f71ddc774da3da8f4c4108f585e7fee50393e285ad33d",
+      "record_sha256": "1bbc54c2f467615326eaecedd30618d1357ed286afb138dfb0709450db6d3b6c",
+      "metadata": {
+        "cost": 2,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 44,
+      "id": "CORE_BT_801",
+      "name": "Eye Beam",
+      "card_class": "DEMONHUNTER",
+      "classes": null,
+      "class_stratum": "DEMONHUNTER",
+      "type": "SPELL",
+      "set": "CORE",
+      "text": "<b>Lifesteal</b>. Deal $3 damage to a minion.\n<b>Outcast:</b> This costs (1).",
+      "text_sha256": "7127f94a8394fd90dadec8d2423338211eedfea8c8f9fc872ca472aecdd4b32e",
+      "record_sha256": "2c3c8b229c3db40075d008cee03b1d18244b7e579e30f67d3fed5d9a4becbf87",
+      "metadata": {
+        "cost": 3,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "LIFESTEAL",
+          "OUTCAST"
+        ],
+        "referencedTags": null,
+        "spellSchool": "FEL"
+      }
+    },
+    {
+      "order": 45,
+      "id": "JAIL_397",
+      "name": "Commander Beatrix",
+      "card_class": "PALADIN",
+      "classes": null,
+      "class_stratum": "PALADIN",
+      "type": "MINION",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]<b>Taunt</b>\nWhile building your deck,\npick a 2-Cost minion. Ten\n copies join your deck!",
+      "text_sha256": "990b38ed70005b4584daac02fe6bb6471561ee3feebb3b235d77239140268b21",
+      "record_sha256": "e4859473191fc9ba6045d8f568cc20c4ebcca7339d07310bec6648f438b681f7",
+      "metadata": {
+        "cost": 5,
+        "attack": 5,
+        "health": 6,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "START_OF_GAME_KEYWORD",
+          "TAUNT"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 46,
+      "id": "TLC_469",
+      "name": "Tunnel Terror",
+      "card_class": "WARLOCK",
+      "classes": null,
+      "class_stratum": "WARLOCK",
+      "type": "MINION",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Deathrattle:</b> Get two random <b>Temporary</b>\n2-Cost minions.",
+      "text_sha256": "88e94838be39eaca3eb0cb6fd0dd8d904a6c885aa51e6d6d84b516d52ac56bf5",
+      "record_sha256": "ff808c1556d8c475d88ffebec2e1805d5e42999fcbff06642bdc6a42c5d79128",
+      "metadata": {
+        "cost": 3,
+        "attack": 4,
+        "health": 3,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 47,
+      "id": "TLC_830",
+      "name": "The Food Chain",
+      "card_class": "HUNTER",
+      "classes": null,
+      "class_stratum": "HUNTER",
+      "type": "SPELL",
+      "set": "THE_LOST_CITY",
+      "text": "<b>Quest:</b> Play a 1, 3, 5, and 7-Attack Beast.\n<b>Reward:</b> Shokk.",
+      "text_sha256": "608aedc070aa0816ee7c7e8d6c0cb16725306b0ae07cfaaf1f5a543491b8d207",
+      "record_sha256": "d59292ea5632b8b40f5d4ba968b70be2332941b3ce68c9aba50a2352ccda3185",
+      "metadata": {
+        "cost": 1,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "QUEST"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 48,
+      "id": "CATA_155",
+      "name": "Arisen Onyxia",
+      "card_class": "DEATHKNIGHT",
+      "classes": null,
+      "class_stratum": "DEATHKNIGHT",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Colossal +2</b>. When your\nhero would lose Health on\nyour turn, gain that much\nmax Health instead.",
+      "text_sha256": "ae05f6a999240bd39fe57b2780cd6669dac28d7e667a58cf87de544528875fc9",
+      "record_sha256": "945693a9db21f3cb170a44993a59abdc973a9fa0ef6e78869d31669b75615c0a",
+      "metadata": {
+        "cost": 9,
+        "attack": 3,
+        "health": 6,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "UNDEAD",
+          "DRAGON"
+        ],
+        "mechanics": [
+          "COLOSSAL",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 49,
+      "id": "TIME_876",
+      "name": "Shapeshifter",
+      "card_class": "ROGUE",
+      "classes": null,
+      "class_stratum": "ROGUE",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]Each turn this is in your\nhand, transform into a\nrandom minion in your\nopponent's hand.",
+      "text_sha256": "f4a8821f74f03a3d725ae7eb89e19abfe4727b3dfee23246496f9c0378a4f36a",
+      "record_sha256": "c63e4939acebd045becec5c3c1adfbf1f855bddea4b3f4eaccf3be212af9846f",
+      "metadata": {
+        "cost": 1,
+        "attack": 1,
+        "health": 1,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 50,
+      "id": "TIME_714",
+      "name": "Chrono-Lord Epoch",
+      "card_class": "WARRIOR",
+      "classes": null,
+      "class_stratum": "WARRIOR",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Battlecry:</b> Destroy all minions that your opponent played last turn.",
+      "text_sha256": "fe950e1118bef919bbaceda22e30fdc0dac0fdf071c0a8a36675e64790dbdd34",
+      "record_sha256": "1f4d12b61d964789a5613e0eee22e5bc5f586fc57a260f5185bd521b2beed674",
+      "metadata": {
+        "cost": 6,
+        "attack": 7,
+        "health": 5,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "DRAGON"
+        ],
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 51,
+      "id": "EDR_233",
+      "name": "Spirits of the Forest",
+      "card_class": "SHAMAN",
+      "classes": null,
+      "class_stratum": "SHAMAN",
+      "type": "SPELL",
+      "set": "EMERALD_DREAM",
+      "text": "<b>Choose One -</b> Summon three 2/3 Wolves with <b>Taunt</b>; or Summon two 4/3 Falcons with <b>Windfury</b>.",
+      "text_sha256": "9092b9349221dfc0fbc0e7738b2651923d6fe55c3067434d07dc46c5a69578d0",
+      "record_sha256": "8a26e3554beba6734472770d3214002e266fa137905148b57a86a8d70d20569f",
+      "metadata": {
+        "cost": 5,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "CHOOSE_ONE"
+        ],
+        "referencedTags": [
+          "TAUNT",
+          "WINDFURY"
+        ],
+        "spellSchool": "NATURE"
+      }
+    },
+    {
+      "order": 52,
+      "id": "TIME_037",
+      "name": "Disciple of the Dove",
+      "card_class": "PRIEST",
+      "classes": null,
+      "class_stratum": "PRIEST",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Battlecry:</b> Draw a minion. Give minions in your hand +2 Health.",
+      "text_sha256": "51400fffec982554d9c53196a79907ddcf425f0ef75f8843919dd6d57959e69c",
+      "record_sha256": "5dd2d7133c6745ef20165cbfa7b17610487687dc4c3002dc7f1598595511dd4f",
+      "metadata": {
+        "cost": 3,
+        "attack": 2,
+        "health": 2,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 53,
+      "id": "BE_229",
+      "name": "Sandcrafter",
+      "card_class": "PALADIN",
+      "classes": null,
+      "class_stratum": "PALADIN",
+      "type": "MINION",
+      "set": "BE",
+      "text": "<b>Battlecry:</b> <b>Assemble</b> a minion with an end of your turn effect.",
+      "text_sha256": "e0ebcaa7ef51ea651c1afb3be64c79a1351df34d6ac67e9e51cc8154446940ed",
+      "record_sha256": "385fe92ec34e956cf1f7db7d9e63379b8488ea541b737d2c6ada39750906007a",
+      "metadata": {
+        "cost": 2,
+        "attack": 3,
+        "health": 2,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 54,
+      "id": "CATA_469",
+      "name": "Chromatic Broodmother",
+      "card_class": "DEATHKNIGHT",
+      "classes": null,
+      "class_stratum": "DEATHKNIGHT",
+      "type": "MINION",
+      "set": "CATACLYSM",
+      "text": "[x]<b>Rush</b>\n  Whenever this attacks,\nrefresh Mana Crystals equal\n   to this minion's Attack.",
+      "text_sha256": "5351fb704a8c17b5fada6f8f4b889daa02ef865719d154cc5c264ef8d54a209e",
+      "record_sha256": "83b52aa5fa757b43cb256d2e179b98f6c16a4363d3e8d19051d6d76acb073a7d",
+      "metadata": {
+        "cost": 4,
+        "attack": 2,
+        "health": 5,
+        "durability": null,
+        "race": "DRAGON",
+        "races": [
+          "UNDEAD",
+          "DRAGON"
+        ],
+        "mechanics": [
+          "RUSH",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 55,
+      "id": "TIME_858",
+      "name": "Temporal Construct",
+      "card_class": "MAGE",
+      "classes": null,
+      "class_stratum": "MAGE",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Battlecry:</b> Deal 5 damage\nto an enemy minion.\nDraw cards equal to the\nexcess damage.",
+      "text_sha256": "934bda57c00406158df46e0244a179cb5b22a4c0c75446e1434103216e9dcb0b",
+      "record_sha256": "30f00a0dab88bdc9cc9dd516e6cb647f7c08bda5691e7ee5d2c6408c49782772",
+      "metadata": {
+        "cost": 7,
+        "attack": 5,
+        "health": 5,
+        "durability": null,
+        "race": "ELEMENTAL",
+        "races": [
+          "ELEMENTAL"
+        ],
+        "mechanics": [
+          "BATTLECRY"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 56,
+      "id": "CORE_CFM_781",
+      "name": "Shaku, the Collector",
+      "card_class": "ROGUE",
+      "classes": null,
+      "class_stratum": "ROGUE",
+      "type": "MINION",
+      "set": "CORE",
+      "text": "[x]<b>Stealth</b>\nWhenever this attacks,\n add a card from another\nclass to your hand.",
+      "text_sha256": "7834a4866ae29db5cf91893823c2f5ce2895be28ae9048c7ca99a37b7c9dcca9",
+      "record_sha256": "0bab644240f0521e1b8c6496b60ca7d380c589696ae69b9ed455539d75fb9231",
+      "metadata": {
+        "cost": 3,
+        "attack": 2,
+        "health": 4,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": [
+          "STEALTH",
+          "TRIGGER_VISUAL"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 57,
+      "id": "JAIL_941",
+      "name": "Holy Embrace",
+      "card_class": "PRIEST",
+      "classes": null,
+      "class_stratum": "PRIEST",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "Restore #4 Health.\n Get a 'Dark Embrace'\n that deals 4 damage.",
+      "text_sha256": "6f88820e3bdc96478878be914d58101310723066f0b93f645b3b3944c0b8264c",
+      "record_sha256": "7e1e7c36907312acadd369f6b410d728321fcc37a536b080d556b1e438b0e4e3",
+      "metadata": {
+        "cost": 2,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "HOLY"
+      }
+    },
+    {
+      "order": 58,
+      "id": "JAIL_866",
+      "name": "Lethal Recipe",
+      "card_class": "DRUID",
+      "classes": null,
+      "class_stratum": "DRUID",
+      "type": "SPELL",
+      "set": "ESCAPEFROM_VIOLET_HOLD",
+      "text": "[x]Draw 2 minions.\nIf you have 10 or more\nMana, give them +3/+3.",
+      "text_sha256": "a8349c63f980eab3c90a426369a37ac4282cd4a26238f14bd2685d6b45bd3b3a",
+      "record_sha256": "296fe0f8ccac5de2abb5561db3aa4c804e18faf7c20ae749cd9e030061e7e241",
+      "metadata": {
+        "cost": 3,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 59,
+      "id": "END_015",
+      "name": "Triennium Rex",
+      "card_class": "HUNTER",
+      "classes": null,
+      "class_stratum": "HUNTER",
+      "type": "MINION",
+      "set": "TIME_TRAVEL",
+      "text": "[x]<b>Kindred and Deathrattle:</b>\nGet a random <b>Deathrattle</b>\n minion. It costs (2) less.",
+      "text_sha256": "3d9a8a0470c53968a6fd77b20686ca3b3417eb8b1b287d45b126c292306fb220",
+      "record_sha256": "534ca54a7735d7e1aa0fb7180e7925f05bd700f15ddcd52a2a35dadfad9a1337",
+      "metadata": {
+        "cost": 5,
+        "attack": 5,
+        "health": 5,
+        "durability": null,
+        "race": "BEAST",
+        "races": [
+          "BEAST"
+        ],
+        "mechanics": [
+          "DEATHRATTLE"
+        ],
+        "referencedTags": null,
+        "spellSchool": null
+      }
+    },
+    {
+      "order": 60,
+      "id": "TIME_441",
+      "name": "Aeon Rend",
+      "card_class": "DEMONHUNTER",
+      "classes": null,
+      "class_stratum": "DEMONHUNTER",
+      "type": "SPELL",
+      "set": "TIME_TRAVEL",
+      "text": "<b>Rewind</b>\nDeal $4 damage to two random enemies.",
+      "text_sha256": "6ecc61c1a55fe24c2cf538d3db2d123a5c2e5147798cc1487f65e20619858b0e",
+      "record_sha256": "8d138db02e3d43888d1da76ce7f3ceaef938e7f22d64b8e4343f8afe2db59b16",
+      "metadata": {
+        "cost": 4,
+        "attack": null,
+        "health": null,
+        "durability": null,
+        "race": null,
+        "races": null,
+        "mechanics": null,
+        "referencedTags": null,
+        "spellSchool": "FEL"
+      }
+    }
+  ],
+  "batch_size": 12,
+  "stop_after": 12,
+  "process": {
+    "author": "Codex in this chat, not independent automatic compilation or gold",
+    "context": "User task, repository rules/README/roadmap, A report/spec/protocol/source/tests, pinned metadata. No games, protected holdout, online rule sources or external compiler API.",
+    "model": "GPT-6 family per session developer identity; exact serving revision/temperature/top_p/seed unavailable; selection seed is NOT a generation seed",
+    "order": "Freeze protocol commit; implement general checks using A mutations before reading batch texts; freeze checks in a second commit; generate raw batch once; validate/lint/render; self-review with separately stored corrections; independent gold deferred",
+    "raw": "Write-once files; no simulated API calls, no invented raw errors, no retry hidden in first-pass metric",
+    "closure": "Metadata lookups only for explicitly named dependencies; no extra declarations or execution",
+    "schema": "Freeze v0.1; unsupported constructs stay PARTIAL with proposed extensions; no vocabulary additions in B1"
+  },
+  "metrics": {
+    "automatic_acceptance": "raw structural errors=0 AND old lint=0 AND new lint=0, including PARTIAL separately; not semantic accuracy",
+    "correction": "raw/final JSON diff; number of changed cards, correction rounds and leaf operations; includes author self-review (no external human edits)",
+    "detection": "paired A and B final-declaration mutations via unchanged A operators; validator/old lint/new-only/missed; equivalent mutations possible",
+    "false_positive": "warning counts on unmutated A/B; author disposition only, not an independent false-positive estimate",
+    "effort": "record actual generation batches, per-card reviews, check passes, correction rounds and JSON leaf changes; no fabricated minutes"
+  },
+  "full_B_gates_from_A_section_10": {
+    "new_structural_last_30": {
+      "success": "<=25%",
+      "stop": ">40% after first 30"
+    },
+    "any_new_last_30": {
+      "success": "<=45%",
+      "stop": "not declining relative to A"
+    },
+    "gold_false_acceptance": {
+      "success": "<=1/60",
+      "stop": ">=3 in first 30"
+    },
+    "automatic_acceptance": {
+      "success": ">=60%",
+      "stop": "<35%"
+    },
+    "B1_decision": "Do not apply final GO/NO-GO or false-acceptance gates before independent user gold; recommend continue next 18 / change process / stop, then STOP."
+  }
+}
